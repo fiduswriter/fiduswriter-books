@@ -1,0 +1,95 @@
+# LANGUAGE translation for Fidus Writer
+# Copyright (C) 2016 Nicolas Rochard
+# This file is distributed under the same license as Fidus Writer.
+# Nicolas Rochard <nrochard@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-04 20:33+0000\n"
+"PO-Revision-Date: 2016-06-17 15:21+0200\n"
+"Last-Translator: Nicolas Rochard <nrochard@gmail.com>\n"
+"Language-Team: français <nrochard@gmail.com>\n"
+"Language: French \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#: book/templates/book/index.html:6
+msgid "Book Overview"
+msgstr "Aperçu du Livre"
+
+#: book/templates/book/index.html:46
+msgid "Delete selected"
+msgstr "Effacer la sélection"
+
+#: book/templates/book/index.html:51
+msgid "Share selected"
+msgstr "Partager la sélection"
+
+#: book/templates/book/index.html:56
+msgid "Copy selected"
+msgstr "Copier la sélection"
+
+#: book/templates/book/index.html:61
+msgid "Export selected as Epub"
+msgstr "Exporter la sélection en Epub"
+
+#: book/templates/book/index.html:66
+msgid "Export selected as HTML"
+msgstr "Exporter la sélection en HTML"
+
+#: book/templates/book/index.html:71
+msgid "Export selected as LaTeX"
+msgstr "Exporter la sélection en LaTex"
+
+#: book/templates/book/index.html:76
+msgid "Export selected for Print/PDF"
+msgstr "Exporter la sélection pour Impression/PDF"
+
+#: book/templates/book/index.html:84
+msgid "Create New Book"
+msgstr "Créer un Nouveau Livre"
+
+#: book/templates/book/index.html:90
+msgid "Upload Fidus Book"
+msgstr "Charger un FidusBook"
+
+#: book/templates/book/index.html:100
+msgid "Title"
+msgstr "Titre"
+
+#: book/templates/book/index.html:101
+msgid "Created"
+msgstr "Créé"
+
+#: book/templates/book/index.html:102
+msgid "Last changed"
+msgstr "Dernière modification"
+
+#: book/templates/book/index.html:103
+msgid "Owner"
+msgstr "Propriétaire"
+
+#: book/templates/book/index.html:104
+msgid "Rights"
+msgstr "Droits"
+
+#: book/templates/book/index.html:105
+msgid "Delete"
+msgstr "Effacer"
+
+#: book/views.py:319
+msgid "Untitled"
+msgstr "Sans Titre"
+
+#: book/views.py:335
+msgid "Book shared:"
+msgstr "Livre partagé:"
+
+#: book/views.py:364
+msgid "Fidus Writer book write access"
+msgstr "Accès en écriture du Livre Fidus Writer"

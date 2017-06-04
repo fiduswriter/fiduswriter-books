@@ -1,0 +1,94 @@
+# LANGUAGE translation for Fidus Writer
+# Copyright (C) YEAR THE TRANSLATORS NAME
+# This file is distributed under the same license as Fidus Writer.
+# THE TRANSLATORS NAME <EMAIL@ADDRESS>, YEAR
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-04 20:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: book/templates/book/index.html:6
+msgid "Book Overview"
+msgstr ""
+
+#: book/templates/book/index.html:46
+msgid "Delete selected"
+msgstr ""
+
+#: book/templates/book/index.html:51
+msgid "Share selected"
+msgstr ""
+
+#: book/templates/book/index.html:56
+msgid "Copy selected"
+msgstr ""
+
+#: book/templates/book/index.html:61
+msgid "Export selected as Epub"
+msgstr ""
+
+#: book/templates/book/index.html:66
+msgid "Export selected as HTML"
+msgstr ""
+
+#: book/templates/book/index.html:71
+msgid "Export selected as LaTeX"
+msgstr ""
+
+#: book/templates/book/index.html:76
+msgid "Export selected for Print/PDF"
+msgstr ""
+
+#: book/templates/book/index.html:84
+msgid "Create New Book"
+msgstr ""
+
+#: book/templates/book/index.html:90
+msgid "Upload Fidus Book"
+msgstr ""
+
+#: book/templates/book/index.html:100
+msgid "Title"
+msgstr ""
+
+#: book/templates/book/index.html:101
+msgid "Created"
+msgstr ""
+
+#: book/templates/book/index.html:102
+msgid "Last changed"
+msgstr ""
+
+#: book/templates/book/index.html:103
+msgid "Owner"
+msgstr ""
+
+#: book/templates/book/index.html:104
+msgid "Rights"
+msgstr ""
+
+#: book/templates/book/index.html:105
+msgid "Delete"
+msgstr ""
+
+#: book/views.py:319
+msgid "Untitled"
+msgstr ""
+
+#: book/views.py:335
+msgid "Book shared:"
+msgstr ""
+
+#: book/views.py:364
+msgid "Fidus Writer book write access"
+msgstr ""

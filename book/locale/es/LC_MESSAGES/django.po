@@ -1,0 +1,95 @@
+# Spanish translation for Fidus Writer
+# Copyright (C) 2012 Ana Carolina Vera Resquín
+# This file is distributed under the same license as Fidus Writer.
+# Ana Vera Resquín <ani.tavr77@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-04 20:33+0000\n"
+"PO-Revision-Date: 2013-03-03 12:18-0700\n"
+"Last-Translator: Ana Vera Resquín <ani.tavr77@gmail.com>\n"
+"Language-Team: Spanish <ani.tavr77@gmail.com>\n"
+"Language: Spanish \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: book/templates/book/index.html:6
+msgid "Book Overview"
+msgstr "Lista de Libros"
+
+#: book/templates/book/index.html:46
+msgid "Delete selected"
+msgstr "Borrar lo seleccionado"
+
+#: book/templates/book/index.html:51
+msgid "Share selected"
+msgstr "Compartir lo seleccionado"
+
+#: book/templates/book/index.html:56
+msgid "Copy selected"
+msgstr "Copiar lo seleccionado"
+
+#: book/templates/book/index.html:61
+msgid "Export selected as Epub"
+msgstr "Exportar lo seleccionado a Epub"
+
+#: book/templates/book/index.html:66
+msgid "Export selected as HTML"
+msgstr "Exportar lo seleccionado a HTML"
+
+#: book/templates/book/index.html:71
+msgid "Export selected as LaTeX"
+msgstr "Exportar lo seleccionado a LaTeX"
+
+#: book/templates/book/index.html:76
+msgid "Export selected for Print/PDF"
+msgstr "Exportar lo seleccionado a Impresion/PDF"
+
+#: book/templates/book/index.html:84
+msgid "Create New Book"
+msgstr "Crear un Nuevo Libro"
+
+#: book/templates/book/index.html:90
+msgid "Upload Fidus Book"
+msgstr "Subir Libro Fidus"
+
+#: book/templates/book/index.html:100
+msgid "Title"
+msgstr "Título"
+
+#: book/templates/book/index.html:101
+msgid "Created"
+msgstr "Creado"
+
+#: book/templates/book/index.html:102
+msgid "Last changed"
+msgstr "Último cambio"
+
+#: book/templates/book/index.html:103
+msgid "Owner"
+msgstr "Propietario"
+
+#: book/templates/book/index.html:104
+msgid "Rights"
+msgstr "Derechos"
+
+#: book/templates/book/index.html:105
+msgid "Delete"
+msgstr "Borrar"
+
+#: book/views.py:319
+msgid "Untitled"
+msgstr "Sin título"
+
+#: book/views.py:335
+msgid "Book shared:"
+msgstr "Libro compartido:"
+
+#: book/views.py:364
+#, fuzzy
+msgid "Fidus Writer book write access"
+msgstr "Fidus Writer libro accesso a editor"

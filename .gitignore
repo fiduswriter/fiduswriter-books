@@ -1,0 +1,4 @@
+*.pyc
+*~
+dist/
+fiduswriter_book.egg-info/

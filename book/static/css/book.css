@@ -1,0 +1,20 @@
+#book-dialog td .dk-selected, #book-dialog td .dk-select-options {
+    width: 486px !important;
+}
+
+#book-dialog th .dk-selected, #book-dialog th .dk-select-options {
+    width: 140px !important;
+}
+
+#book-dialog input.entryForm,
+#book-dialog input.fw-input {
+    width: 486px;
+}
+
+.fw-document-table td.book-sort-up, .fw-document-table td.book-sort-down {
+    padding-right: 0;
+}
+
+b.part {
+    font-weight: bold;
+}

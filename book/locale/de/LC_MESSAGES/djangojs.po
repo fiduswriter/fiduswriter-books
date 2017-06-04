@@ -1,0 +1,328 @@
+# German translation for Fidus Writer
+# Copyright (C) 2013 Daniel Frebel
+# This file is distributed under the same license as Fidus Writer.
+# Daniel Frebel <daniel@fiduswriter.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-04 20:37+0000\n"
+"PO-Revision-Date: 2013-02-24 10:03-0600\n"
+"Last-Translator: Daniel Frebel <daniel@fiduswriter.com>\n"
+"Language-Team: German <daniel@fiduswriter.com>\n"
+"Language: DE \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: book/static/js/es6_modules/books/accessrights/index.js:16
+msgid "Share your book with others"
+msgstr "Teile dein Buch mit anderen"
+
+#: book/static/js/es6_modules/books/accessrights/index.js:55
+#: book/static/js/es6_modules/books/actions.js:98
+#: book/static/js/es6_modules/books/actions.js:182
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: book/static/js/es6_modules/books/accessrights/index.js:59
+#: book/static/js/es6_modules/books/actions.js:175
+msgid "Submit"
+msgstr "Bestätigen"
+
+#: book/static/js/es6_modules/books/accessrights/index.js:159
+msgid "Access rights have been saved"
+msgstr "Zugangsrechte wurde gespeichert"
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:5
+msgid "My contacts"
+msgstr "Meine Kontakte"
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:7
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:20
+msgid "My collaborators"
+msgstr "Meine Helfer"
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:23
+msgid "Collaborators"
+msgstr "Helfer"
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:24
+msgid "Rights"
+msgstr "Rechte"
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:25
+#: book/static/js/es6_modules/books/actions.js:90
+#: book/static/js/es6_modules/books/templates.js:234
+msgid "Delete"
+msgstr "Entfernen"
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:50
+msgid "Write"
+msgstr ""
+
+#: book/static/js/es6_modules/books/accessrights/templates.js:55
+#, fuzzy
+#| msgid "Read only"
+msgid "Read"
+msgstr "Nur lesen"
+
+#: book/static/js/es6_modules/books/actions.js:64
+msgid "Search for Book Title"
+msgstr "Such nach Buchtitel"
+
+#: book/static/js/es6_modules/books/actions.js:85
+msgid "Confirm deletion"
+msgstr "Entfernen bestätigen"
+
+#: book/static/js/es6_modules/books/actions.js:87
+msgid "Delete the book(s)?"
+msgstr "Die Bücher/Das Buch entfernen?"
+
+#: book/static/js/es6_modules/books/actions.js:95
+msgid "The book(s) have been deleted"
+msgstr "Das/Die Dokument(e) wurde(n) entfernt"
+
+#: book/static/js/es6_modules/books/actions.js:163
+#: book/static/js/es6_modules/books/templates.js:19
+#: book/static/js/es6_modules/books/templates.js:259
+#: book/static/js/es6_modules/books/templates.js:297
+msgid "Untitled"
+msgstr "Ohne Titel"
+
+#: book/static/js/es6_modules/books/actions.js:165
+msgid "Edit Chapter"
+msgstr "Kapitell bearbeiten"
+
+#: book/static/js/es6_modules/books/actions.js:344
+#, fuzzy
+#| msgid "The image has been uploaded"
+msgid "The image has been uploaded."
+msgstr "Das Bild wurde upgeloaded"
+
+#: book/static/js/es6_modules/books/actions.js:349
+#, fuzzy
+#| msgid "Some errors are found. Please examine the form."
+msgid "Some errors were found. Please examine the form."
+msgstr "Eine Fehler wurden gefunden. Bitte untersuche das Formular."
+
+#: book/static/js/es6_modules/books/exporter/epub/index.js:34
+#: book/static/js/es6_modules/books/exporter/html/index.js:24
+msgid "Book cannot be exported due to lack of chapters."
+msgstr ""
+
+#: book/static/js/es6_modules/books/exporter/epub/index.js:72
+msgid "Cover"
+msgstr "Vorderseite"
+
+#: book/static/js/es6_modules/books/exporter/epub/index.js:81
+msgid "Title page"
+msgstr "Titelseite"
+
+#: book/static/js/es6_modules/books/exporter/epub/index.js:209
+#: book/static/js/es6_modules/books/exporter/epub/index.js:264
+#: book/static/js/es6_modules/books/exporter/epub/index.js:273
+msgid "en"
+msgstr "de"
+
+#: book/static/js/es6_modules/books/exporter/epub/index.js:228
+msgid "Copyright"
+msgstr "Copyright"
+
+#: book/static/js/es6_modules/books/exporter/epub/index.js:249
+msgid "en-US"
+msgstr "de-DE"
+
+#: book/static/js/es6_modules/books/exporter/epub/index.js:300
+#: book/static/js/es6_modules/books/exporter/html/index.js:187
+msgid "English"
+msgstr "Deutsch"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:72
+msgid "Cover Image"
+msgstr "Vorderseitenbild"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:93
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:114
+#: book/static/js/es6_modules/books/exporter/html/templates.js:29
+msgid "by"
+msgstr "von"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:120
+#: book/static/js/es6_modules/books/templates.js:63
+#: book/static/js/es6_modules/books/templates.js:232
+msgid "Title"
+msgstr "Titel"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:122
+#: book/static/js/es6_modules/books/templates.js:71
+msgid "Author"
+msgstr "Autor"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:125
+#: book/static/js/es6_modules/books/exporter/html/templates.js:37
+msgid "Published by"
+msgstr "Publiziert von"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:127
+#: book/static/js/es6_modules/books/exporter/html/templates.js:39
+msgid "Last Updated"
+msgstr "Zuletzt verändert"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:128
+#: book/static/js/es6_modules/books/exporter/html/templates.js:40
+msgid "Created"
+msgstr "Erstellt"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:129
+#: book/static/js/es6_modules/books/exporter/html/templates.js:41
+msgid "Language"
+msgstr "Sprache"
+
+#: book/static/js/es6_modules/books/exporter/epub/templates.js:130
+#: book/static/js/es6_modules/books/exporter/html/templates.js:42
+msgid "Created by"
+msgstr "Erstellt von"
+
+#: book/static/js/es6_modules/books/index.js:115
+msgid "You cannot delete or share: "
+msgstr "Du kannst nicht löschen oder teilen: "
+
+#: book/static/js/es6_modules/books/index.js:145
+msgid "Epub export has been initiated."
+msgstr "Epub export wurde initiert."
+
+#: book/static/js/es6_modules/books/index.js:156
+msgid "Latex export has been initiated."
+msgstr "Latex export wurde initiert."
+
+#: book/static/js/es6_modules/books/index.js:167
+msgid "HTML export has been initiated."
+msgstr "HTML export wurde initiert."
+
+#: book/static/js/es6_modules/books/templates.js:79
+msgid "Subtitle"
+msgstr "Untertitel"
+
+#: book/static/js/es6_modules/books/templates.js:87
+msgid "Publisher"
+msgstr "Verlag"
+
+#: book/static/js/es6_modules/books/templates.js:95
+msgid "Copyright notice"
+msgstr "Copyright Notiz"
+
+#: book/static/js/es6_modules/books/templates.js:103
+msgid "Comma separated keywords"
+msgstr "Kommaseparierte Keywörter"
+
+#: book/static/js/es6_modules/books/templates.js:103
+msgid "Keywords"
+msgstr "Keywörter"
+
+#: book/static/js/es6_modules/books/templates.js:115
+msgid "Citation style"
+msgstr "Zitatestil"
+
+#: book/static/js/es6_modules/books/templates.js:131
+msgid "Document style"
+msgstr "Dokumentstil"
+
+#: book/static/js/es6_modules/books/templates.js:143
+msgid "Paper size"
+msgstr "Papiergröße"
+
+#: book/static/js/es6_modules/books/templates.js:148
+msgid "Folio (15 x 12 inch)"
+msgstr "Folio (15 x 12 inch)"
+
+#: book/static/js/es6_modules/books/templates.js:149
+msgid "Quarto (12 × 9 inch)"
+msgstr "Quarto (12 × 9 inch)"
+
+#: book/static/js/es6_modules/books/templates.js:150
+msgid "Octavo (9 x 6 inch)"
+msgstr "Octavo (9 x 6 inch)"
+
+#: book/static/js/es6_modules/books/templates.js:151
+msgid "A5"
+msgstr "DIN A5"
+
+#: book/static/js/es6_modules/books/templates.js:152
+msgid "A4"
+msgstr "DIN A4"
+
+#: book/static/js/es6_modules/books/templates.js:171
+msgid "Cover image"
+msgstr "Vorderseitenbild"
+
+#: book/static/js/es6_modules/books/templates.js:185
+msgid "Select Image"
+msgstr "Bild Auswählen"
+
+#: book/static/js/es6_modules/books/templates.js:189
+msgid "Remove Image"
+msgstr "Bild Entfernen"
+
+#: book/static/js/es6_modules/books/templates.js:201
+msgid "Basic info"
+msgstr "Basisangaben"
+
+#: book/static/js/es6_modules/books/templates.js:202
+msgid "Chapters"
+msgstr "Kapitel"
+
+#: book/static/js/es6_modules/books/templates.js:203
+msgid "Bibliography"
+msgstr "Bibliografie"
+
+#: book/static/js/es6_modules/books/templates.js:204
+msgid "Epub"
+msgstr "Epub"
+
+#: book/static/js/es6_modules/books/templates.js:205
+msgid "Print/PDF"
+msgstr "Druck/PDF"
+
+#: book/static/js/es6_modules/books/templates.js:219
+msgid "My documents"
+msgstr "Meine Dokumente"
+
+#: book/static/js/es6_modules/books/templates.js:221
+msgid "Documents"
+msgstr "Dokumente"
+
+#: book/static/js/es6_modules/books/templates.js:230
+msgid "Book chapters"
+msgstr "Buchkapitel"
+
+#: book/static/js/es6_modules/books/templates.js:234
+msgid "Sort"
+msgstr "Sortieren"
+
+#: book/static/js/es6_modules/books/templates.js:256
+msgid "Book part"
+msgstr "Buchabschnitt"
+
+#: book/static/js/es6_modules/books/templates.js:317
+msgid ""
+"If this chapter starts a part of the book, specify the title of that part "
+"here"
+msgstr ""
+"Wenn dieses Kapitel einen Abschnitt des Buches starte, spezifiziere den "
+"Titel dieses Abschnittes hier"
+
+#: book/static/js/es6_modules/books/templates.js:317
+msgid "Book part title"
+msgstr "Buchabschnitttitel"
+
+#: book/static/js/es6_modules/plugins/menu/book.js:12
+#, fuzzy
+#| msgid "Book"
+msgid "Books"
+msgstr "Buch"
