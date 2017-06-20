@@ -17,10 +17,10 @@ Installation
 3. Add "book" to your INSTALLED_APPS setting in the
    configuration.py file like this::
 
-    INSTALLED_APPS = [
+    INSTALLED_APPS += (
         ...
         'book',
-    ]
+    )
 
 4. Run `python manage.py transpile` to create the needed JavaScript files.
 
