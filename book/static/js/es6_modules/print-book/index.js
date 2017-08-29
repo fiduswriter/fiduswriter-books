@@ -52,25 +52,25 @@ export class PrintBook {
         this.bindEvents()
     }
 
-    setTheBook(aBook) {
-        aBook.settings = JSON.parse(aBook.settings)
-        aBook.metadata = JSON.parse(aBook.metadata)
-        for (let i = 0; i < aBook.chapters.length; i++) {
-            aBook.chapters[i].metadata = JSON.parse(aBook.chapters[
+    setTheBook(book) {
+        book.settings = JSON.parse(book.settings)
+        book.metadata = JSON.parse(book.metadata)
+        for (let i = 0; i < book.chapters.length; i++) {
+            book.chapters[i].metadata = JSON.parse(book.chapters[
                 i].metadata)
-            aBook.chapters[i].settings = JSON.parse(aBook.chapters[
+            book.chapters[i].settings = JSON.parse(book.chapters[
                 i].settings)
-            aBook.chapters[i].contents = JSON.parse(aBook.chapters[
+            book.chapters[i].contents = JSON.parse(book.chapters[
                 i].contents)
-            if (this.documentOwners.indexOf(aBook.chapters[i].owner)===-1) {
-                this.documentOwners.push(aBook.chapters[i].owner)
+            if (this.documentOwners.indexOf(book.chapters[i].owner)===-1) {
+                this.documentOwners.push(book.chapters[i].owner)
             }
         }
-        this.theBook = aBook
-        this.setDocumentStyle(this.theBook.settings.documentstyle)
+        this.book = book
+        this.setDocumentStyle(this.book.settings.documentstyle)
 
-        this.printConfig['pageHeight'] = this.pageSizes[this.theBook.settings.papersize].height
-        this.printConfig['pageWidth'] = this.pageSizes[this.theBook.settings.papersize].width
+        this.printConfig['pageHeight'] = this.pageSizes[this.book.settings.papersize].height
+        this.printConfig['pageWidth'] = this.pageSizes[this.book.settings.papersize].width
 
         this.bibDB = new BibliographyDB(this.documentOwners.join(','))
 
@@ -96,15 +96,15 @@ export class PrintBook {
     }
 
     fillPrintPage() {
-        jQuery(document.body).addClass(this.theBook.settings.documentstyle)
+        jQuery(document.body).addClass(this.book.settings.documentstyle)
         jQuery('#book')[0].outerHTML = bookPrintTemplate({
-            theBook: this.theBook,
+            book: this.book,
             docSchema
         })
 
         this.citRenderer = new RenderCitations(
             document.body,
-            this.theBook.settings.citationstyle,
+            this.book.settings.citationstyle,
             this.bibDB,
             true
         )
@@ -130,19 +130,19 @@ export class PrintBook {
         }
 
 
-        this.printConfig['frontmatterContents'] = bookPrintStartTemplate({theBook: this.theBook})
-
+        this.printConfig['frontmatterContents'] = bookPrintStartTemplate(
+            {book: this.book}
+        )
 
         let paginator = new PaginateForPrint(this.printConfig)
         paginator.initiate()
         jQuery("#pagination-contents").addClass('user-contents')
         jQuery('head title').html(jQuery('.article-title').text())
 
-
     }
 
     setDocumentStyle() {
-        let theValue = this.theBook.settings.documentstyle
+        let theValue = this.book.settings.documentstyle
         let documentStyleLink = document.getElementById('document-style-link'),
             newDocumentStyleLink = document.createElement('link')
         newDocumentStyleLink.setAttribute("rel", "stylesheet")

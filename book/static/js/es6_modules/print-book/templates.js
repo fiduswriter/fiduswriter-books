@@ -1,40 +1,56 @@
 /** A template for the initial pages of a book before the contents begin. */
-export let bookPrintStartTemplate = _.template('\
-    <h1 id="document-title"><%= theBook.title %></h1>\
-    <% if (theBook.metadata.subtitle && theBook.metadata.subtitle != "" ) { %>\
-        <h2 id="metadata-subtitle"><%= theBook.metadata.subtitle %></h2>\
-    <% } %>\
-    <% if (theBook.metadata.author && theBook.metadata.author != "" ) { %>\
-        <h3><%= theBook.metadata.author %></h3>\
-    <% } %>\
-<div class="pagination-pagebreak"></div>\
-    <% if (theBook.metadata.publisher && theBook.metadata.publisher != "" ) { %>\
-        <div class="publisher"><%= theBook.metadata.publisher %></div>\
-    <% } %>\
-    <% if (theBook.metadata.copyright && theBook.metadata.copyright != "" ) { %>\
-        <div class="copyright"><%= theBook.metadata.copyright %></div>\
-    <% } %>\
-<div class="pagination-pagebreak">\
-')
+export let bookPrintStartTemplate = ({book}) =>
+    `<h1 id="document-title">${escapeText(book.title)}</h1>
+    ${
+        book.metadata.subtitle && book.metadata.subtitle.length ?
+        `<h2 id="metadata-subtitle">${escapeText(book.metadata.subtitle)}</h2>` :
+        ''
+    }
+    ${
+        book.metadata.author && book.metadata.author.length ?
+        `<h3>${escapeText(book.metadata.author)}</h3>` :
+        ''
+    }
+    <div class="pagination-pagebreak"></div>
+    ${
+        book.metadata.publisher && book.metadata.publisher.length ?
+        `<div class="publisher">${escapeText(book.metadata.publisher)}</div>` :
+        ''
+    }
+    ${
+        book.metadata.copyright && book.metadata.copyright.length ?
+        `<div class="copyright">${escapeText(book.metadata.copyright)}</div>` :
+        ''
+    }
+    <div class="pagination-pagebreak">`
 
 /** A template for the print view of a book. */
-export let bookPrintTemplate = _.template('\
-<% _.each(theBook.chapters, function (chapter) { %>\
-    <% var tempNode; %>\
-    <% if (chapter.part && chapter.part != "") { %>\
-        <div class="part">\
-            <h1><%= chapter.part %></h1>\
-        </div>\
-    <% } %>\
-    <div class="chapter">\
-        <h1 class="title"><%= chapter.title %></h1>\
-        <% if (chapter.metadata.subtitle) { %>\
-            <h2 class="metadata-subtitle"><%= chapter.metadata.subtitle %></h2>\
-        <% } %>\
-        <% if (chapter.metadata.abstract ) { %>\
-            <div class="metadata-abstract"><%= chapter.metadata.abstract %></div>\
-        <% } %>\
-        <%= docSchema.nodeFromJSON(_.findWhere(chapter.contents.content,{type:"body"})).toDOM().innerHTML %>\
-    </div>\
-<% }); %>\
-')
+export let bookPrintTemplate = ({book, docSchema}) =>
+    book.chapters.map(
+        chapter =>
+        `${
+            chapter.part && chapter.part.length ?
+            `<div class="part">
+                <h1>${escapeText(chapter.part)}</h1>
+            </div>` :
+            ''
+        }
+        <div class="chapter">
+            <h1 class="title">${escapeText(chapter.title)}</h1>
+            ${
+                chapter.metadata.subtitle ?
+                `<h2 class="metadata-subtitle">${escapeText(chapter.metadata.subtitle)}</h2>` :
+                ''
+            }
+            ${
+                chapter.metadata.abstract ?
+                `<div class="metadata-abstract">${escapeText(chapter.metadata.abstract)}</div>` :
+                ''
+            }
+            ${
+                docSchema.nodeFromJSON(
+                    chapter.contents.content.find(node => node.type==="body")
+                ).toDOM().innerHTML
+            }
+        </div>`
+    ).join('')

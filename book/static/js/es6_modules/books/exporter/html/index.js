@@ -1,7 +1,7 @@
 import {katexRender} from "../../../katex"
 
 import {getMissingChapterData, getImageAndBibDB, uniqueObjects} from "../tools"
-import {htmlBookExportTemplate, htmlBookIndexTemplate, htmlBookIndexItemTemplate} from "./templates"
+import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {docSchema} from "../../../schema/document"
 import {removeHidden} from "../../../exporter/tools/doc-contents"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
@@ -40,15 +40,11 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
 
     exportOne() {
 
-        this.book.chapters = _.sortBy(this.book.chapters, function (chapter) {
-            return chapter.number
-        })
+        this.book.chapters.sort((a,b) => a.number < b.number)
 
         for (let i = 0; i < this.book.chapters.length; i++) {
 
-            let doc = _.findWhere(this.docList, {
-                id: this.book.chapters[i].text
-            })
+            let doc = this.docList.find(doc => doc.id === this.book.chapters[i].text)
 
             let docContents = removeHidden(doc.contents)
 
@@ -182,13 +178,12 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             filename: 'index.html',
             contents: htmlBookIndexTemplate({
                 contentItems,
-                aBook: this.book,
+                book: this.book,
                 creator: this.user.name,
-                language: gettext('English'), //TODO: specify a book language rather than using the current users UI language
-                templates: {htmlBookIndexItemTemplate}
+                // TODO: specify a book language rather than using the current users UI language
+                language: gettext('English')
             })
         })
-
         if (this.math) {
             includeZips.push({
                 'directory': '',

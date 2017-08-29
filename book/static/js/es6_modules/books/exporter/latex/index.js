@@ -11,7 +11,7 @@ export class LatexBookExporter {
 
     constructor(book, user, docList) {
         this.book = book
-        this.book.chapters = _.sortBy(this.book.chapters, chapter => chapter.number)
+        this.book.chapters.sort((a,b) => a.number < b.number)
         this.user = user // Not used, but we keep it for consistency
         this.docList = docList
         this.textFiles = []
@@ -35,15 +35,15 @@ export class LatexBookExporter {
         let bibIds = [], imageIds = [], features = {}
         this.book.chapters.forEach((chapter, index) => {
             let converter = new LatexExporterConvert(this, this.imageDB, this.bibDB)
-            let doc = _.findWhere(this.docList, {id: chapter.text})
+            let doc = this.docList.find(doc => doc.id === chapter.text)
             let chapterContents = removeHidden(doc.contents)
             let convertedDoc = converter.init(chapterContents)
             this.textFiles.push({
                 filename: `chapter-${index+1}.tex`,
                 contents: convertedDoc.latex
             })
-            bibIds = _.unique(bibIds.concat(convertedDoc.bibIds))
-            imageIds = _.unique(imageIds.concat(convertedDoc.imageIds))
+            bibIds = [...new Set(bibIds.concat(convertedDoc.bibIds))]
+            imageIds = [...new Set(imageIds.concat(convertedDoc.imageIds))]
             Object.assign(features, converter.features)
         })
         if (bibIds.length > 0) {

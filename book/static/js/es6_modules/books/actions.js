@@ -31,10 +31,7 @@ export class BookActions {
             success: (data, textStatus, jqXHR) => {
                 this.stopBookTable()
                 jQuery('#Book_' + id).detach()
-                this.bookList.bookList = _.reject(
-                    this.bookList.bookList,
-                    book => book.id === id
-                )
+                this.bookList.bookList = this.bookList.bookList.filter(book => book.id !== id)
                 this.startBookTable()
             },
         })
@@ -74,7 +71,7 @@ export class BookActions {
         jQuery('#book-table .fw-searchable').each(function() {
             autocompleteTags.push(this.textContent.replace(/^\s+/g, '').replace(/\s+$/g, ''))
         })
-        autocompleteTags = _.uniq(autocompleteTags)
+        autocompleteTags = [ ...new Set(autocompleteTags) ] // get unique entries
         jQuery("#book-table_filter input").autocomplete({
             source: autocompleteTags
         })
@@ -116,14 +113,14 @@ export class BookActions {
     }
 
     unpackBooks(booksFromServer) {
-        // metadata and settings are stored as a json stirng in a text field on the server, so they need to be unpacked before being available.
-        for (let i = 0; i < booksFromServer.length; i++) {
-            booksFromServer[i].metadata = JSON.parse(booksFromServer[
-                i].metadata)
-            booksFromServer[i].settings = JSON.parse(booksFromServer[
-                i].settings)
-        }
-        return booksFromServer
+        // metadata and settings are stored as a json stirng in a text field on
+        // the server, so they need to be unpacked before being available.
+        return booksFromServer.map(book => {
+            let uBook = Object.assign({}, book)
+            uBook.metadata = JSON.parse(book.metadata)
+            uBook.settings = JSON.parse(book.settings)
+            return uBook
+        })
     }
 
 
@@ -152,31 +149,30 @@ export class BookActions {
         })
     }
 
-    editChapterDialog(aChapter, theBook) {
-
-        let aDocument = _.findWhere(this.bookList.documentList, {
-            id: aChapter.text
-        }),
-            documentTitle = aDocument.title,
+    editChapterDialog(chapter, book) {
+        let doc = this.bookList.documentList.find(doc => doc.id === chapter.text),
+            docTitle = doc.title,
             dialogHeader, dialogBody
-        if (documentTitle.length < 0) {
-            documentTitle = gettext('Untitled')
+        if (!docTitle.length) {
+            docTitle = gettext('Untitled')
         }
-        dialogHeader = gettext('Edit Chapter') + ': ' + aChapter.number +
-            '. ' + documentTitle
+        dialogHeader = `${gettext('Edit Chapter')}: ${chapter.number}. ${docTitle}`
         dialogBody = bookChapterDialogTemplate({
             'dialogHeader': dialogHeader,
-            'aChapter': aChapter
+            'aChapter': chapter
         })
 
         jQuery('body').append(dialogBody)
         let diaButtons = {}
         let that = this
         diaButtons[gettext('Submit')] = function () {
-            aChapter.part = jQuery('#book-chapter-part').val()
-            jQuery('#book-chapter-list').html(bookChapterListTemplate({
-                theBook, documentList: that.bookList.documentList
-            }))
+            chapter.part = jQuery('#book-chapter-part').val()
+            jQuery('#book-chapter-list').html(
+                bookChapterListTemplate({
+                    book,
+                    documentList: that.bookList.documentList
+                })
+            )
             jQuery(this).dialog('close')
         }
         diaButtons[gettext('Cancel')] = function () {
@@ -204,11 +200,11 @@ export class BookActions {
     }
 
 
-    saveBook(theBook, theOldBook, currentDialog) {
+    saveBook(book, oldBook, currentDialog) {
         jQuery.ajax({
             url: '/book/save/',
             data: {
-                the_book: JSON.stringify(theBook)
+                the_book: JSON.stringify(book)
             },
             type: 'POST',
             dataType: 'json',
@@ -217,17 +213,16 @@ export class BookActions {
                 xhr.setRequestHeader("X-CSRFToken", csrfToken),
             success: (response, textStatus, jqXHR) => {
                 if (jqXHR.status == 201) {
-                    theBook.id = response.id
-                    theBook.added = response.added
+                    book.id = response.id
+                    book.added = response.added
                 }
-                theBook.updated = response.updated
-                if (typeof (theOldBook) !== 'undefined') {
-                    this.bookList.bookList = _.reject(
-                        this.bookList.bookList,
-                        book => book = theOldBook
+                book.updated = response.updated
+                if (typeof (oldBook) !== 'undefined') {
+                    this.bookList.bookList = this.bookList.bookList.filter(
+                        book => book !== oldBook
                     )
                 }
-                this.bookList.bookList.push(theBook)
+                this.bookList.bookList.push(book)
                 this.stopBookTable()
                 jQuery('#book-table tbody').html(bookListTemplate({
                     bookList: this.bookList.bookList,
@@ -244,26 +239,26 @@ export class BookActions {
         })
     }
 
-    copyBook(theOldBook) {
-        let theBook = jQuery.extend(true, {}, theOldBook)
-        theBook.id = 0
-        theBook.is_owner = true
-        theBook.owner_avatar = this.bookList.user.avatar
-        theBook.owner_name = this.bookList.user.name
-        theBook.owner = this.bookList.user.id
-        theBook.rights = 'write'
-        if (theOldBook.owner != theBook.owner) {
+    copyBook(oldBook) {
+        let book = Object.assign({}, oldBook)
+        book.id = 0
+        book.is_owner = true
+        book.owner_avatar = this.bookList.user.avatar
+        book.owner_name = this.bookList.user.name
+        book.owner = this.bookList.user.id
+        book.rights = 'write'
+        if (oldBook.owner !== book.owner) {
             this.prepareCopyCoverImage(
-                theBook.cover_image,
-                theOldBook.owner
+                book.cover_image,
+                oldBook.owner
             ).then(
                 id => {
-                    theBook.cover_image = id
-                    this.saveBook(theBook)
+                    book.cover_image = id
+                    this.saveBook(book)
                 }
             )
         } else {
-            this.saveBook(theBook)
+            this.saveBook(book)
         }
     }
 
@@ -284,9 +279,10 @@ export class BookActions {
         let newImageEntry = false,
             imageTranslation = false
 
-        let matchEntries = _.where(this.bookList.imageDB.db, {
-            checksum: oldImageObject.checksum
-        })
+        let matchEntries = this.bookList.imageDB.db.filter(
+            image => image.checksum === oldImageObject.checksum
+        )
+
         if (0 === matchEntries.length) {
             //create new
             newImageEntry = {
@@ -299,9 +295,9 @@ export class BookActions {
             matchEntries[0].pk) {
             imageTranslation = matchEntries[0].pk
         } else if (1 < matchEntries.length) {
-            if (!(_.findWhere(matchEntries, {
-                pk: oldImageObject.pk
-            }))) {
+            if (!(
+                matchEntries.find(entry => entry.pm === oldImageObject.pk)
+            )) {
                 // There are several matches, and none of the matches have the same id as the key in shrunkImageDB.
                 // We now pick the first match.
                 // TODO: Figure out if this behavior is correct.
@@ -370,12 +366,12 @@ export class BookActions {
     }
 
 
-    createBookDialog(bookId, anImageDB) {
-        let dialogHeader, theBook, theOldBook
+    createBookDialog(bookId, imageDB) {
+        let dialogHeader, book, oldBook
 
         if (bookId === 0) {
             dialogHeader = gettext('Create Book')
-            theBook = {
+            book = {
                 title: '',
                 id: 0,
                 chapters: [],
@@ -392,94 +388,98 @@ export class BookActions {
                 }
             }
         } else {
-            theOldBook = _.findWhere(this.bookList.bookList, {
-                id: bookId
-            })
-            theBook = jQuery.extend(true, {}, theOldBook)
+            oldBook = this.bookList.bookList.find(book => book.id===bookId)
+            book = Object.assign({}, oldBook)
             dialogHeader = gettext('Edit Book')
         }
 
 
         let dialogBody = bookDialogTemplate({
-            dialogHeader: dialogHeader,
+            dialogHeader,
             basicInfo: bookBasicInfoTemplate({
-                theBook: theBook
+                book
             }),
             chapters: bookDialogChaptersTemplate({
-                theBook: theBook,
+                book,
                 chapters: bookChapterListTemplate({
-                    theBook, documentList: this.bookList.documentList
+                    book,
+                    documentList: this.bookList.documentList
                 }),
                 documents: bookDocumentListTemplate({
-                    theBook,
+                    book,
                     documentList: this.bookList.documentList
                 })
             }),
             bibliographyData: bookBibliographyDataTemplate({
-                theBook,
+                book,
                 citationDefinitions
             }),
             printData: bookPrintDataTemplate({
-                theBook,
+                book,
                 documentStyleList
             }),
             epubData: bookEpubDataTemplate({
-                theBook: theBook,
-
                 coverImage: bookEpubDataCoverTemplate({
-                    theBook,
-                    anImageDB
+                    book,
+                    imageDB
                 })
             })
 
         })
         let that = this
         jQuery(document).on('click', '.book-sort-up', function () {
-            let chapter = _.findWhere(theBook.chapters, {
-                text: parseInt(jQuery(this).attr('data-id'))
-            })
-            let higherChapter = _.findWhere(theBook.chapters, {
-                number: (chapter.number - 1)
-            })
+            let chapter = book.chapters.find(
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+            )
+
+            let higherChapter = book.chapters.find(
+                bChapter => bChapter.number === (chapter.number - 1)
+            )
+
             chapter.number--
             higherChapter.number++
             jQuery('#book-chapter-list').html(bookChapterListTemplate({
-                theBook, documentList: that.bookList.documentList
+                book,
+                documentList: that.bookList.documentList
             }))
         })
         jQuery(document).on('click', '.book-sort-down', function () {
-            let chapter = _.findWhere(theBook.chapters, {
-                text: parseInt(jQuery(this).attr('data-id'))
-            })
-            let lowerChapter = _.findWhere(theBook.chapters, {
-                number: (chapter.number + 1)
-            })
+            let chapter = book.chapters.find(
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+            )
+
+            let lowerChapter = book.chapters.find(
+                bChapter => bChapter.number === (chapter.number + 1)
+            )
+
             chapter.number++
             lowerChapter.number--
             jQuery('#book-chapter-list').html(bookChapterListTemplate({
-                theBook, documentList: that.bookList.documentList
+                book,
+                documentList: that.bookList.documentList
             }))
         })
 
         jQuery(document).on('click', '.delete-chapter', function () {
-            let thisChapter = _.findWhere(theBook.chapters, {
-                text: parseInt(jQuery(this).attr('data-id'))
-            })
-            _.each(theBook.chapters, chapter => {
+            let thisChapter = book.chapters.find(
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+            )
+
+            book.chapters.forEach(chapter => {
                 if (chapter.number > thisChapter.number) {
                     chapter.number--
                 }
             })
-            theBook.chapters = _.filter(
-                theBook.chapters,
-                chapter => chapter !== thisChapter
-            )
+
+            book.chapters = book.chapters.filter(chapter => chapter !== thisChapter)
+
             jQuery('#book-chapter-list').html(bookChapterListTemplate({
-                theBook, documentList: that.bookList.documentList
+                book,
+                documentList: that.bookList.documentList
             }))
             jQuery('#book-document-list').html(bookDocumentListTemplate({
                 documentList: that.bookList.documentList,
-                theBook
+                book
             }))
         })
 
@@ -491,14 +491,13 @@ export class BookActions {
             jQuery('#book-document-list td.checked').each(function () {
                 let documentId = parseInt(jQuery(this).attr(
                     'data-id')),
-                    lastChapterNumber = _.max(
-                        theBook.chapters,
-                        chapter => chapter.number
+                    lastChapterNumber = Math.max(
+                        book.chapters.map(chapter => chapter.number)
                     ).number
                 if (isNaN(lastChapterNumber)) {
                     lastChapterNumber = 0
                 }
-                theBook.chapters.push({
+                book.chapters.push({
                     text: documentId,
                     title: jQuery.trim(this.textContent),
                     number: lastChapterNumber + 1,
@@ -506,86 +505,87 @@ export class BookActions {
                 })
             })
             jQuery('#book-chapter-list').html(bookChapterListTemplate({
-                theBook,
+                book,
                 documentList: this.bookList.documentList
             }))
             jQuery('#book-document-list').html(bookDocumentListTemplate({
                 documentList: this.bookList.documentList,
-                theBook
+                book
             }))
         })
 
         jQuery(document).on('click', '.edit-chapter', function () {
-            let thisChapter = _.findWhere(theBook.chapters, {
-                text: parseInt(jQuery(this).attr('data-id'))
-            })
-            that.editChapterDialog(thisChapter, theBook)
+            let thisChapter = book.chapters.find(
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+            )
+            that.editChapterDialog(thisChapter, book)
         })
 
 
         jQuery(document).on('click', '#select-cover-image-button', () => {
             let imageSelection = new ImageSelectionDialog(
-                anImageDB,
-                theBook.cover_image,
-                theBook.owner)
+                imageDB,
+                book.cover_image,
+                book.owner)
 
             imageSelection.init().then(
                 imageId => {
                     if (!imageId) {
-                        delete theBook.cover_image
+                        delete book.cover_image
                     } else {
-                        theBook.cover_image = imageId
+                        book.cover_image = imageId
                     }
                     jQuery('#figure-preview-row').html(bookEpubDataCoverTemplate({
-                        anImageDB,
-                        theBook
+                        imageDB,
+                        book
                     }))
                 }
             )
         })
 
         jQuery(document).on('click', '#remove-cover-image-button', () => {
-            delete theBook.cover_image
+            delete book.cover_image
             jQuery('#figure-preview-row').html(bookEpubDataCoverTemplate({
-                theBook
+                book,
+                imageDb: false
             }))
         })
 
         function getFormData() {
-            theBook.title = jQuery('#book-title').val()
-            theBook.metadata.author = jQuery('#book-metadata-author').val()
-            theBook.metadata.subtitle = jQuery('#book-metadata-subtitle').val()
-            theBook.metadata.copyright = jQuery('#book-metadata-copyright')
+            book.title = jQuery('#book-title').val()
+            book.metadata.author = jQuery('#book-metadata-author').val()
+            book.metadata.subtitle = jQuery('#book-metadata-subtitle').val()
+            book.metadata.copyright = jQuery('#book-metadata-copyright')
                 .val()
-            theBook.metadata.publisher = jQuery('#book-metadata-publisher')
+            book.metadata.publisher = jQuery('#book-metadata-publisher')
                 .val()
-            theBook.metadata.keywords = jQuery('#book-metadata-keywords').val()
+            book.metadata.keywords = jQuery('#book-metadata-keywords').val()
         }
 
         jQuery('body').append(dialogBody)
 
         jQuery('#book-settings-citationstyle').dropkick({
             change: (value, label) => {
-                theBook.settings.citationstyle = value
+                book.settings.citationstyle = value
             }
         })
 
         jQuery('#book-settings-documentstyle').dropkick({
             change: (value, label) => {
-                theBook.settings.documentstyle = value
+                book.settings.documentstyle = value
             }
         })
 
         jQuery('#book-settings-papersize').dropkick({
             change: (value, label) => {
-                theBook.settings.papersize = value
+                book.settings.papersize = value
             }
         })
         let diaButtons = {}
-        if (theBook.rights === 'write') {
+        if (book.rights === 'write') {
             diaButtons[gettext('Submit')] = function () {
                 getFormData()
-                that.saveBook(theBook, theOldBook, this)
+                that.saveBook(book, oldBook, this)
 
             }
             diaButtons[gettext('Cancel')] = function () {

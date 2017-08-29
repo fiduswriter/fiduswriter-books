@@ -137,10 +137,7 @@ export class BookList {
                         break
                     case 'epub':
                         for (let i = 0; i < ids.length; i++) {
-                            let aBook = _.findWhere(
-                                that.bookList, {
-                                    id: ids[i]
-                                })
+                            let aBook = that.bookList.find(book => book.id===ids[i])
                             addAlert('info', aBook.title + ': ' + gettext(
                                 'Epub export has been initiated.'))
                             new EpubBookExporter(aBook, that.user, that.documentList)
@@ -148,10 +145,7 @@ export class BookList {
                         break
                     case 'latex':
                         for (let i = 0; i < ids.length; i++) {
-                            let aBook = _.findWhere(
-                                that.bookList, {
-                                    id: ids[i]
-                                })
+                            let aBook = that.bookList.find(book => book.id===ids[i])
                             addAlert('info', aBook.title + ': ' + gettext(
                                 'Latex export has been initiated.'))
                             new LatexBookExporter(aBook, that.user, that.documentList)
@@ -159,10 +153,7 @@ export class BookList {
                         break
                     case 'html':
                         for (let i = 0; i < ids.length; i++) {
-                            let aBook = _.findWhere(
-                                that.bookList, {
-                                    id: ids[i]
-                                })
+                            let aBook = that.bookList.find(book => book.id===ids[i])
                             addAlert('info', aBook.title + ': ' + gettext(
                                 'HTML export has been initiated.'))
                             new HTMLBookExporter(aBook, that.user, that.documentList)
@@ -170,18 +161,18 @@ export class BookList {
                         break
                     case 'copy':
                         for (let i = 0; i < ids.length; i++) {
-                            that.mod.actions.copyBook(_.findWhere(
-                                that.bookList, {
-                                    id: ids[i]
-                                }))
+                            that.mod.actions.copyBook(
+                                that.bookList.find(book => book.id===ids[i])
+                            )
                         }
                         break
                     case 'print':
                         for (let i = 0; i < ids.length; i++) {
-                            window.open('/book/print/'+_.findWhere(
-                                that.bookList, {
-                                    id: ids[i]
-                                }).id+'/')
+                            window.open(
+                                `/book/print/${
+                                    that.bookList.find(book => book.id===ids[i]).id
+                                }/`
+                            )
                         }
                         break
                     }
@@ -196,7 +187,7 @@ export class BookList {
 
             jQuery(document).on('click', '.book-title', function () {
                 let bookId = parseInt(jQuery(this).attr('data-id'))
-                let book = _.findWhere(that.bookList,{id: bookId})
+                let book = that.bookList.find(book => book.id===bookId)
                 if (book.is_owner) {
                     that.getImageDB().then(() => {
                         that.mod.actions.createBookDialog(bookId, that.imageDB)

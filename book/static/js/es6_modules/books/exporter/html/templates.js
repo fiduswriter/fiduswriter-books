@@ -1,56 +1,86 @@
+import {escapeText} from "../../../common"
+
 /** A template for HTML export of a book. */
-export let htmlBookExportTemplate = _.template('\
-<!DOCTYPE html>\n\
-<html>\n<head><title><%= title %></title>\
-    <% var tempNode; %>\
-    <% _.each(styleSheets,function(item){ %>\
-        \t<link rel="stylesheet" type="text/css" href="<%= item.filename %>" />\
-    <% }); %>\
-    </head><body>\
-    <% if (part && part !="") { %>\
-        <h1 class="part"><%= part %></h1>\
-    <% } %>\
-    <%= contents %></body></html>'
-)
+export let htmlBookExportTemplate = ({styleSheets, part, contents}) =>
+`<!DOCTYPE html>
+<html>
+    <head>
+        <title>${title}</title>
+        ${
+            styleSheets.map(sheet =>
+                `<link rel="stylesheet" type="text/css" href="${sheet.filename}" />`
+            ).join('')
+        }
+    </head>
+    <body>
+        ${
+            part && part.length ?
+            `<h1 class="part">${escapeText(part)}</h1>` :
+            ''
+        }
+        ${contents}
+    </body>
+</html>`
+
+/** A template to create the book index item. */
+let htmlBookIndexItemTemplate = ({item}) =>
+    `<li>
+        <a href="${
+            item.link ?
+            item.link :
+            item.docNum ?
+            `document-${item.docNum}.html#${item.id}` :
+            `document.html#${item.id}`
+        }>
+            ${escapeText(item.title)}
+        </a>
+        ${
+            item.subItems.length ?
+            `<ol>
+                ${
+                    item.subItems.map(subItem =>
+                        htmlBookIndexItemTemplate({item: subItem})
+                    ).join('')
+                }
+            </ol>` :
+            ''
+        }
+    </li>`
 
 /** A template to create the book index. */
-export let htmlBookIndexTemplate = _.template('\
-    <html>\n\
-    \t<head>\n\
-    \t\t<meta charset="utf-8"></meta>\n\
-    \t\t<title><%- aBook.title %></title>\n\
-    \t</head>\n\
-    \t<body>\n\
-    \t\t<h1><%- aBook.title %></h1>\
-    <% if (aBook.metadata.subtitle !="") { %>\
-        \t\t<h2><%- aBook.metadata.subtitle %></h2>\
-    <% } %>\
-    <% if (aBook.metadata.author !="") { %>\
-        \t\t<h3>'+gettext('by')+' <%- aBook.metadata.author %></h3>\
-    <% } %>\
-    \t\t<ol>\n\
-        <% _.each(contentItems,function(item){ %>\
-            <%= templates.htmlBookIndexItemTemplate({"item":item, "templates": templates})%>\
-        <% }); %>\
-    \t\t</ol>\n\
-    <% if (aBook.metadata.publisher && aBook.metadata.publisher !="") { %>\
-        \t\t<p>'+gettext('Published by')+': <%- aBook.metadata.publisher %></p>\
-    <% } %>\
-    \t\t<p>'+gettext('Last Updated')+': <%= aBook.updated %></p>\
-    \t\t<p>'+gettext('Created')+': <%= aBook.added %></p>\
-    \t\t<p>'+gettext('Language')+': <%= language %></p>\
-    \t\t<p>'+gettext('Created by')+': <%= creator %></p>\
-    \t</body>\n\
-    </html>'
-)
-/** A template to create the book index item. */
-export let htmlBookIndexItemTemplate = _.template('\
-\t\t\t\t<li><a href="<% if (item.link) {print(item.link);} else { %>document<% if (item.docNum) {print("-"+item.docNum);}%>.html#<% print(item.id); } %>"><%= item.title %></a>\
-    <% if (item.subItems.length > 0) { %>\
-        <ol>\
-            <% _.each(item.subItems,function(item){ %>\
-                <%= templates.htmlBookIndexItemTemplate({"item":item, "templates": templates})%>\
-            <% }); %>\
-        </ol>\
-    <% } %>\
-</li>\n');
+export let htmlBookIndexTemplate = ({book, contentItems, language, creator}) =>
+`<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>${escapeText(book.title)}</title>
+    </head>
+    <body>
+        <h1>${escapeText(book.title)}</h1>
+        ${
+            book.metadata.subtitle.length ?
+            `<h2>${escapeText(book.metadata.subtitle)}</h2>` :
+            ''
+        }
+        ${
+            book.metadata.author.length ?
+            `<h3>${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
+            ''
+        }
+        <ol>
+            ${
+                contentItems.map(item =>
+                    htmlBookIndexItemTemplate({item})
+                ).join('')
+            }
+        </ol>
+        ${
+            book.metadata.publisher && book.metadata.publisher.length ?
+            `<p>${gettext('Published by')}: ${escapeText(book.metadata.publisher)}</p>` :
+            ''
+        }
+        <p>${gettext('Last Updated')}: ${book.updated}</p>
+        <p>${gettext('Created')}: ${book.added}</p>
+        <p>${gettext('Language')}: ${language}</p>
+        <p>${gettext('Created by')}: ${escapeText(creator)}</p>
+    </body>
+</html>`

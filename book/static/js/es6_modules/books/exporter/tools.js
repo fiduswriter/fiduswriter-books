@@ -7,7 +7,7 @@ export let getMissingChapterData = function (aBook, documentList) {
     let bookDocuments = []
 
     for (let i = 0; i < aBook.chapters.length; i++) {
-        if (!_.findWhere(documentList, {id: aBook.chapters[i].text})) {
+        if (!documentList.find(doc => doc.id === aBook.chapters[i].text)) {
             addAlert('error', "Cannot produce book as you lack access rights to its chapters.")
             return Promise.reject()
         }
@@ -19,12 +19,12 @@ export let getMissingChapterData = function (aBook, documentList) {
 export let getImageAndBibDB = function (aBook, documentList) {
     let documentOwners = []
     for (let i = 0; i < aBook.chapters.length; i++) {
-        documentOwners.push(_.findWhere(documentList, {
-            id: aBook.chapters[i].text
-        }).owner.id)
+        documentOwners.push(
+            documentList.find(doc => doc.id === aBook.chapters[i].text).owner.id
+        )
     }
 
-    documentOwners = _.unique(documentOwners).join(',')
+    documentOwners = [...new Set(documentOwners)].join(',')
     let imageDB = new ImageDB(documentOwners)
     let bibDB = new BibliographyDB(documentOwners)
     return imageDB.getDB().then(
@@ -34,14 +34,13 @@ export let getImageAndBibDB = function (aBook, documentList) {
     )
 }
 
-
 export let uniqueObjects = function (array) {
     let results = []
 
     for (let i = 0; i < array.length; i++) {
         let willCopy = true
         for (let j = 0; j < i; j++) {
-            if (_.isEqual(array[i], array[j])) {
+            if (JSON.stringify(array[i]) === JSON.stringify(array[j])) {
                 willCopy = false
                 break
             }

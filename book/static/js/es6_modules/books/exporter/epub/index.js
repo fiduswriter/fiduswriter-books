@@ -49,15 +49,10 @@ export class EpubBookExporter extends BaseEpubExporter {
 
     exportOne() {
 
-        this.book.chapters = _.sortBy(this.book.chapters, function (chapter) {
-            return chapter.number
-        })
-
+        this.book.chapters.sort((a, b) => a.number < b.number)
 
         if (this.book.cover_image) {
-            this.coverImage = _.findWhere(this.imageDB.db, {
-                pk: this.book.cover_image
-            })
+            this.coverImage = this.imageDB.db.find(image => image.pk === this.book.cover_image)
             this.images.push({
                 url: this.coverImage.image.split('?')[0],
                 filename: this.coverImage.image.split('/').pop().split('?')[0]
@@ -65,7 +60,7 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             this.outputList.push({
                 filename: 'EPUB/cover.xhtml',
-                contents: epubBookCoverTemplate({aBook: this.book, coverImage: this.coverImage})
+                contents: epubBookCoverTemplate({book: this.book, coverImage: this.coverImage})
             })
             this.contentItems.push({
                 link: 'cover.xhtml#cover',
@@ -92,9 +87,9 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             let aChapter = {}
 
-            aChapter.document = _.findWhere(this.docList, {
-                id: this.book.chapters[i].text
-            })
+            aChapter.document = this.docList.find(
+                doc => doc.id === this.book.chapters[i].text
+            )
 
             let docContents = removeHidden(aChapter.document.contents)
 
@@ -240,14 +235,14 @@ export class EpubBookExporter extends BaseEpubExporter {
 
         // mark cover image
         if (this.coverImage) {
-            _.findWhere(this.images, {
-                url: this.coverImage.image.split('?')[0]
-            }).coverImage = true
+            this.images.find(
+                image => image.url === this.coverImage.image.split('?')[0]
+            ).coverImage = true
         }
 
         let opfCode = epubBookOpfTemplate({
             language: gettext('en-US'), // TODO: specify a document language rather than using the current users UI language
-            aBook: this.book,
+            book: this.book,
             idType: 'fidus',
             date: timestamp.slice(0, 10), // TODO: the date should probably be the original document creation date instead
             modified: timestamp,
@@ -290,14 +285,15 @@ export class EpubBookExporter extends BaseEpubExporter {
         }, {
             filename: 'EPUB/titlepage.xhtml',
             contents: epubBookTitlepageTemplate({
-                aBook: this.book
+                book: this.book
             })
         }, {
             filename: 'EPUB/copyright.xhtml',
             contents: epubBookCopyrightTemplate({
-                aBook: this.book,
+                book: this.book,
                 creator: this.user.name,
-                language: gettext('English') //TODO: specify a book language rather than using the current users UI language
+                //TODO: specify a book language rather than using the current users UI language
+                language: gettext('English')
             })
         }])
 
