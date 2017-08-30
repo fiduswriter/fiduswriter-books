@@ -1,7 +1,7 @@
-import {bookListTemplate, bookBasicInfoTemplate, bookPrintDataTemplate,
-    bookDialogChaptersTemplate, bookDialogTemplate,
+import {bookListTemplate,
+    bookDialogTemplate,
     bookChapterListTemplate, bookDocumentListTemplate, bookChapterDialogTemplate,
-    bookBibliographyDataTemplate, bookEpubDataTemplate, bookEpubDataCoverTemplate
+    bookEpubDataCoverTemplate
   } from "./templates"
 import {ImageDB} from "../images/database"
 import {ImageSelectionDialog} from "../images/selection-dialog"
@@ -380,7 +380,13 @@ export class BookActions {
                 owner_name: this.bookList.user.name,
                 owner: this.bookList.user.id,
                 rights: 'write',
-                metadata: {},
+                metadata: {
+                    author: '',
+                    subtitle: '',
+                    publisher: '',
+                    copyright: '',
+                    keywords: ''
+                },
                 settings: {
                     citationstyle: defaultCitationStyle,
                     documentstyle: defaultDocumentStyle,
@@ -393,38 +399,13 @@ export class BookActions {
             dialogHeader = gettext('Edit Book')
         }
 
-
         let dialogBody = bookDialogTemplate({
             dialogHeader,
-            basicInfo: bookBasicInfoTemplate({
-                book
-            }),
-            chapters: bookDialogChaptersTemplate({
-                book,
-                chapters: bookChapterListTemplate({
-                    book,
-                    documentList: this.bookList.documentList
-                }),
-                documents: bookDocumentListTemplate({
-                    book,
-                    documentList: this.bookList.documentList
-                })
-            }),
-            bibliographyData: bookBibliographyDataTemplate({
-                book,
-                citationDefinitions
-            }),
-            printData: bookPrintDataTemplate({
-                book,
-                documentStyleList
-            }),
-            epubData: bookEpubDataTemplate({
-                coverImage: bookEpubDataCoverTemplate({
-                    book,
-                    imageDB
-                })
-            })
-
+            book,
+            documentList: this.bookList.documentList,
+            citationDefinitions,
+            documentStyleList,
+            imageDB
         })
         let that = this
         jQuery(document).on('click', '.book-sort-up', function () {
@@ -493,7 +474,7 @@ export class BookActions {
                     'data-id')),
                     lastChapterNumber = Math.max(
                         book.chapters.map(chapter => chapter.number)
-                    ).number
+                    )
                 if (isNaN(lastChapterNumber)) {
                     lastChapterNumber = 0
                 }
@@ -615,7 +596,6 @@ export class BookActions {
                 jQuery(document).off('click', '#add-chapter')
                 jQuery(document).off('click', '.book-sort-up')
                 jQuery(document).off('click', '.book-sort-down')
-                jQuery(document).off('click', '#add-chapter')
                 jQuery(document).off('click', '#book-document-list td')
                 jQuery(document).off('click', '.delete-chapter')
                 jQuery(document).off('click', '.edit-chapter')

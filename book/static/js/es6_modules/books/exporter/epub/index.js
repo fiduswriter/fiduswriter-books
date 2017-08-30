@@ -49,7 +49,7 @@ export class EpubBookExporter extends BaseEpubExporter {
 
     exportOne() {
 
-        this.book.chapters.sort((a, b) => a.number < b.number)
+        this.book.chapters.sort((a, b) => a.number > b.number)
 
         if (this.book.cover_image) {
             this.coverImage = this.imageDB.db.find(image => image.pk === this.book.cover_image)

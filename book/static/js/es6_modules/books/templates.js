@@ -1,4 +1,4 @@
-import {escapeText} from "../../common"
+import {escapeText} from "../common"
 
 /** A template for the list of books */
 export let bookListTemplate = ({bookList, user}) =>
@@ -50,8 +50,8 @@ export let bookListTemplate = ({bookList, user}) =>
                 <span class="delete-book fw-inline fw-link-text"
                         data-id="${book.id}" data-title="${escapeText(book.title)}">
                     ${
-                        user.id == book.owner ?
-                        '<i class="fa fa-trash-o">' :
+                        user.id === book.owner ?
+                        '<i class="fa fa-trash-o"></i>' :
                         ''
                     }
                </span>
@@ -61,7 +61,7 @@ export let bookListTemplate = ({bookList, user}) =>
 
 
 /** A template for the basic info book template pane */
-export let bookBasicInfoTemplate = ({book}) =>
+let bookBasicInfoTemplate = ({book}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Title")}</h4>
@@ -156,7 +156,7 @@ export let bookBasicInfoTemplate = ({book}) =>
     </tr>`
 
 /** A template for the citation style pane of the book dialog */
-export let bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
+let bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
@@ -195,7 +195,7 @@ let paperSizes =
     ]
 
 /** A template for the print related data pane of the book dialog */
-export let bookPrintDataTemplate = ({book, documentStyleList}) =>
+let bookPrintDataTemplate = ({book, documentStyleList}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Document style")}</h4>
@@ -253,12 +253,6 @@ export let bookPrintDataTemplate = ({book, documentStyleList}) =>
         </td>
     </tr>`
 
-/** A template for the epub related data pane of the book dialog */
-export let bookEpubDataTemplate = ({coverImage}) =>
-    `<tr id="figure-preview-row">
-        ${coverImage}
-    </tr>`
-
 /** A template for the cover image input on the epub pane of the book dialog. */
 export let bookEpubDataCoverTemplate = ({book, imageDB}) =>
         `<th class="figure-preview-row">
@@ -296,8 +290,24 @@ export let bookEpubDataCoverTemplate = ({book, imageDB}) =>
             ''
         }`
 
+/** A template for the epub related data pane of the book dialog */
+let bookEpubDataTemplate = ({book, imageDB}) =>
+    `<tr id="figure-preview-row">
+        ${bookEpubDataCoverTemplate({
+            book,
+            imageDB
+        })}
+    </tr>`
+
 /** A template for the book dialog. */
-export let bookDialogTemplate = ({dialogHeader, basicInfo, chapters, bibliographyData, epubData, printData}) =>
+export let bookDialogTemplate = ({
+    dialogHeader,
+    citationDefinitions,
+    documentStyleList,
+    imageDB,
+    book,
+    documentList
+}) =>
     `<div id="book-dialog" title="${dialogHeader}">
         <div id="bookoptionsTab">
             <ul>
@@ -330,31 +340,43 @@ export let bookDialogTemplate = ({dialogHeader, basicInfo, chapters, bibliograph
             <div id="optionTab1">
                 <table class="fw-dialog-table">
                     <tbody>
-                        ${basicInfo}
+                        ${bookBasicInfoTemplate({book})}
                     </tbody>
                 </table>
             </div>
             <div id="optionTab2">
-                ${chapters}
+                ${bookDialogChaptersTemplate({
+                    book,
+                    documentList,
+                })}
             </div>
             <div id="optionTab3">
                 <table class="fw-dialog-table">
                     <tbody>
-                        ${bibliographyData}
+                        ${bookBibliographyDataTemplate({
+                            book,
+                            citationDefinitions
+                        })}
                     </tbody>
                 </table>
             </div>
             <div id="optionTab4">
                 <table class="fw-dialog-table fw-media-uploader">
                     <tbody>
-                        ${epubData}
+                        ${bookEpubDataTemplate({
+                            book,
+                            imageDB
+                        })}
                     </tbody>
                 </table>
             </div>
             <div id="optionTab5">
                 <table class="fw-dialog-table">
                     <tbody>
-                        ${printData}
+                        ${bookPrintDataTemplate({
+                            book,
+                            documentStyleList
+                        })}
                     </tbody>
                 </table>
             </div>
@@ -362,7 +384,7 @@ export let bookDialogTemplate = ({dialogHeader, basicInfo, chapters, bibliograph
     </div>`
 
 /** A template for the chapter pane of the book dialog. */
-export let bookDialogChaptersTemplate = ({book, documents, chapters}) =>
+let bookDialogChaptersTemplate = ({book, documentList}) =>
     `${
         book.rights === "write" ?
         `<div class="fw-ar-container">
@@ -374,7 +396,10 @@ export let bookDialogChaptersTemplate = ({book, documents, chapters}) =>
                     </tr>
                 </thead>
                 <tbody class="fw-document-table-body fw-small" id="book-document-list">
-                    ${documents}
+                    ${bookDocumentListTemplate({
+                        book,
+                        documentList
+                    })}
                 </tbody>
             </table>
         </div>
@@ -398,7 +423,10 @@ export let bookDialogChaptersTemplate = ({book, documents, chapters}) =>
                 </tr>
             </thead>
             <tbody class="fw-document-table-body fw-small" id="book-chapter-list">
-                ${chapters}
+                ${bookChapterListTemplate({
+                    book,
+                    documentList
+                })}
             </tbody>
         </table>
     </div>`
@@ -407,7 +435,7 @@ export let bookDialogChaptersTemplate = ({book, documents, chapters}) =>
 export let bookChapterListTemplate = ({book, documentList}) => {
     let partCounter = 1
     return book.chapters.slice().sort(
-        (a, b) => a.number < b.number
+        (a, b) => a.number > b.number
     ).map((chapter, index, array) => {
         let doc = documentList.find(doc => doc.id === chapter.text)
         return `<tr

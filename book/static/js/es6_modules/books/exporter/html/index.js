@@ -40,7 +40,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
 
     exportOne() {
 
-        this.book.chapters.sort((a,b) => a.number < b.number)
+        this.book.chapters.sort((a,b) => a.number > b.number)
 
         for (let i = 0; i < this.book.chapters.length; i++) {
 

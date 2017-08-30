@@ -11,7 +11,7 @@ export class LatexBookExporter {
 
     constructor(book, user, docList) {
         this.book = book
-        this.book.chapters.sort((a,b) => a.number < b.number)
+        this.book.chapters.sort((a,b) => a.number > b.number)
         this.user = user // Not used, but we keep it for consistency
         this.docList = docList
         this.textFiles = []
