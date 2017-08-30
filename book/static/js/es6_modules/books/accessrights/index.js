@@ -19,7 +19,7 @@ export class BookAccessRightsDialog {
           let len = this.accessRights.length
 
           for (let i = 0; i < len; i++) {
-              if (_.include(this.bookIds, this.accessRights[i].book_id)) {
+              if (this.bookIds.includes(this.accessRights[i].book_id)) {
                   if (!(this.accessRights[i].user_id in bookCollaborators)) {
                       bookCollaborators[this.accessRights[i].user_id] = this.accessRights[i]
                       bookCollaborators[this.accessRights[i].user_id].count = 1
@@ -34,11 +34,9 @@ export class BookAccessRightsDialog {
                   }
               }
           }
-          bookCollaborators = _.select(
-              bookCollaborators,
-              obj => obj.count === this.bookIds.length
+          bookCollaborators = bookCollaborators.filter(
+              collab => collab.count === this.bookIds.length
           )
-
 
 
           let dialogBody = bookAccessRightOverviewTemplate({

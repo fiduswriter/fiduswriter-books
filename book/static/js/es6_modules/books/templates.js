@@ -15,7 +15,7 @@ export let bookListTemplate = ({bookList, user}) =>
             </td>
             <td width="280">
                 <span class="fw-document-table-title fw-inline">
-                    <i class="icon-book"></i>
+                    <i class="fa fa-book"></i>
                     <span class="book-title fw-link-text fw-searchable"
                             data-id="${book.id}">
                         ${
@@ -49,7 +49,7 @@ export let bookListTemplate = ({bookList, user}) =>
                         data-id="${book.id}" data-title="${escapeText(book.title)}">
                     ${
                         user.id == book.owner ?
-                        '<i class="icon-trash">' :
+                        '<i class="fa fa-trash-o">' :
                         ''
                     }
                </span>
@@ -445,7 +445,7 @@ export let bookChapterListTemplate = ({book}) => {
             ${
                 book.rights === "write" ?
                 `<td width="30" data-id="${chapter.text}" class="edit-chapter">
-                    <i class="icon-edit fw-link-text"></i>
+                    <i class="fa fa-pencil fw-link-text"></i>
                 </td>
                     ${
                         index === 0 ?
