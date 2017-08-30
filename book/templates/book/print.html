@@ -13,8 +13,6 @@
         <script type="text/javascript" src="{{ JQUERY_URL }}"></script>
         <!-- JS error handling -->
         <script type="text/javascript" src="{% url 'js-error-handler-js' %}"></script>
-        <!-- Underscore -->
-        <script type="text/javascript" src="{{ UNDERSCOREJS_URL }}"></script>
     {% compress js %}
             <script type="text/javascript">
                 var staticUrl = '{{ STATIC_URL }}';
