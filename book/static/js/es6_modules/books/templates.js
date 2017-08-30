@@ -1,3 +1,5 @@
+import {escapeText} from "../../common"
+
 /** A template for the list of books */
 export let bookListTemplate = ({bookList, user}) =>
     Object.values(bookList).map(book =>
@@ -402,14 +404,13 @@ export let bookDialogChaptersTemplate = ({book, documents, chapters}) =>
     </div>`
 
 /** A template for the chapter list on the chapter pane the book dialog. */
-export let bookChapterListTemplate = ({book}) => {
+export let bookChapterListTemplate = ({book, documentList}) => {
     let partCounter = 1
     return book.chapters.slice().sort(
         (a, b) => a.number < b.number
     ).map((chapter, index, array) => {
         let doc = documentList.find(doc => doc.id === chapter.text)
-        return
-            `<tr
+        return `<tr
                 ${
                     typeof(doc) === "undefined" ?
                     'class="noaccess"' :
@@ -434,11 +435,9 @@ export let bookChapterListTemplate = ({book}) => {
                     }
                     ${chapter.number}
                     ${
-                        if (doc.title.length) {
-                            escapeText(doc.title)
-                        } else {
-                            gettext('Untitled')
-                        }
+                        doc.title.length ?
+                        escapeText(doc.title) :
+                        gettext('Untitled')
                     }
                 </span>
             </td>
@@ -447,36 +446,36 @@ export let bookChapterListTemplate = ({book}) => {
                 `<td width="30" data-id="${chapter.text}" class="edit-chapter">
                     <i class="fa fa-pencil fw-link-text"></i>
                 </td>
-                    ${
-                        index === 0 ?
-                        '<td width="10"></td>' :
-                        `<td width="10" class="book-sort-up" data-id="${chapter.text}">
-                            <i class="fa fa-sort-asc"></i>
-                        </td>`
-                    }
-                    ${
-                        index + 1 === array.length ?
-                        `<td width="10" class="book-sort-down" data-id="${chapter.text}">
-                            <i class="fa fa-sort-dsc fw-link-text"></i>
-                        </td>` :
-                        '<td width="10"></td>'
-                    }
-                    <td width="50" align="center">
-                        <span class="delete-chapter fw-inline" data-id="${chapter.text}">
-                            <i class="fa fa-trash-o fw-link-text"></i>
-                        </span>
+                ${
+                    index === 0 ?
+                    '<td width="10"></td>' :
+                    `<td width="10" class="book-sort-up" data-id="${chapter.text}">
+                        <i class="fa fa-sort-asc"></i>
+                    </td>`
+                }
+                ${
+                    index + 1 === array.length ?
+                    `<td width="10" class="book-sort-down" data-id="${chapter.text}">
+                        <i class="fa fa-sort-dsc fw-link-text"></i>
                     </td>` :
-                    `<td width="30"></td>
-                    <td width="10"></td>
-                    <td width="10"></td>
-                    <td width="50"></td>`
+                    '<td width="10"></td>'
+                }
+                <td width="50" align="center">
+                    <span class="delete-chapter fw-inline" data-id="${chapter.text}">
+                        <i class="fa fa-trash-o fw-link-text"></i>
+                    </span>
+                </td>` :
+                `<td width="30"></td>
+                <td width="10"></td>
+                <td width="10"></td>
+                <td width="50"></td>`
             }
         </tr>`
     }).join('')
 }
 
 /** A template for the document list on the chapter pane of the book dialog */
-export let bookDocumentListTemplate = ({documentList, book}) => {
+export let bookDocumentListTemplate = ({documentList, book}) =>
     documentList.filter(
         // filter to only take documents that are NOT a chapter in the book
         doc => !(book.chapters.map(chapter => chapter.text).includes(doc.id))

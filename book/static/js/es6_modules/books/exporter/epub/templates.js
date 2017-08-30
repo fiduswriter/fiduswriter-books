@@ -2,6 +2,7 @@ import {escapeText} from "../../../common"
 
 /** A template to create the OPF file of book epubs. */
 export let epubBookOpfTemplate = ({
+        book,
         language,
         idType,
         date,
@@ -72,7 +73,7 @@ export let epubBookOpfTemplate = ({
                 } href="${image.filename}" media-type="image/${
                     image.filename.split(".")[1]==="png" ?
                     'png' :
-                    item.filename.split(".")[1]==="svg" ?
+                    image.filename.split(".")[1]==="svg" ?
                     'svg+xml' :
                     'jpeg'
                 }/>`
@@ -175,7 +176,7 @@ export let epubBookCopyrightTemplate = ({
                     ${escapeText(book.title)}
                     ${
                         book.metadata.author.length ?
-                        `${gettext('by') ${escapeText(book.metadata.author)}}` :
+                        `${gettext('by')} ${escapeText(book.metadata.author)}}` :
                         ''
                     }
                 </p>

@@ -1,7 +1,7 @@
 import {escapeText} from "../../../common"
 
 /** A template for HTML export of a book. */
-export let htmlBookExportTemplate = ({styleSheets, part, contents}) =>
+export let htmlBookExportTemplate = ({styleSheets, part, contents, title}) =>
 `<!DOCTYPE html>
 <html>
     <head>

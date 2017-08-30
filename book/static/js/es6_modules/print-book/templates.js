@@ -1,3 +1,5 @@
+import {escapeText} from "../../common"
+
 /** A template for the initial pages of a book before the contents begin. */
 export let bookPrintStartTemplate = ({book}) =>
     `<h1 id="document-title">${escapeText(book.title)}</h1>

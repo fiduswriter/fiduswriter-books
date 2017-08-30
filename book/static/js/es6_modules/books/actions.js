@@ -429,7 +429,7 @@ export class BookActions {
         let that = this
         jQuery(document).on('click', '.book-sort-up', function () {
             let chapter = book.chapters.find(
-                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id'))
             )
 
             let higherChapter = book.chapters.find(
@@ -445,7 +445,7 @@ export class BookActions {
         })
         jQuery(document).on('click', '.book-sort-down', function () {
             let chapter = book.chapters.find(
-                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id'))
             )
 
             let lowerChapter = book.chapters.find(
@@ -462,7 +462,7 @@ export class BookActions {
 
         jQuery(document).on('click', '.delete-chapter', function () {
             let thisChapter = book.chapters.find(
-                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id'))
             )
 
             book.chapters.forEach(chapter => {
@@ -516,7 +516,7 @@ export class BookActions {
 
         jQuery(document).on('click', '.edit-chapter', function () {
             let thisChapter = book.chapters.find(
-                chapter => chapter.text === parseInt(jQuery(this).attr('data-id')
+                chapter => chapter.text === parseInt(jQuery(this).attr('data-id'))
             )
             that.editChapterDialog(thisChapter, book)
         })

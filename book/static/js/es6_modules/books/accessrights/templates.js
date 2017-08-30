@@ -1,3 +1,5 @@
+import {escapeText} from "../../common"
+
 /** A template for the book access rights overview */
 export let bookAccessRightOverviewTemplate = ({dialogHeader, contacts, collaborators}) =>
     `<div id="access-rights-dialog" title="${dialogHeader}">
