@@ -26,7 +26,7 @@ export class BookList {
 
     getImageDB() {
         if (!this.imageDB) {
-            let imageGetter = new ImageDB(this.user.id)
+            let imageGetter = new ImageDB()
             return new Promise((resolve, reject) => {
                 imageGetter.getDB().then(
                     () => {
@@ -38,15 +38,6 @@ export class BookList {
         } else {
             return Promise.resolve()
         }
-    }
-
-    getAnImageDB(userId){
-        let imageGetter = new ImageDB(userId)
-        return new Promise(resolve => {
-            imageGetter.getDB().then(() => {
-                resolve(imageGetter)
-            })
-        })
     }
 
     bindEvents() {
@@ -187,18 +178,9 @@ export class BookList {
 
             jQuery(document).on('click', '.book-title', function () {
                 let bookId = parseInt(jQuery(this).attr('data-id'))
-                let book = that.bookList.find(book => book.id===bookId)
-                if (book.is_owner) {
-                    that.getImageDB().then(() => {
-                        that.mod.actions.createBookDialog(bookId, that.imageDB)
-                    })
-                } else {
-                    that.getAnImageDB(book.owner).then(anImageDB => {
-                        that.mod.actions.createBookDialog(bookId, anImageDB)
-                    })
-
-                }
-
+                that.getImageDB().then(() => {
+                    that.mod.actions.createBookDialog(bookId, that.imageDB)
+                })
             })
         })
     }

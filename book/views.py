@@ -1,4 +1,5 @@
 import json
+from time import mktime
 
 from django.shortcuts import render
 from django.http import JsonResponse, HttpRequest
@@ -160,7 +161,22 @@ def get_booklist_js(request):
                 'settings': book.settings
             }
             if book.cover_image:
-                book_data['cover_image'] = book.cover_image.id
+                image = book.cover_image
+                book_data['cover_image'] = image.id
+                field_obj = {
+                    'id': image.id,
+                    'added': mktime(image.added.timetuple()) * 1000,
+                    'checksum': image.checksum,
+                    'file_type': image.file_type,
+                    'title': '',
+                    'cats': '',
+                    'image': image.image.url
+                }
+                if image.thumbnail:
+                    field_obj['thumbnail'] = image.thumbnail.url
+                    field_obj['height'] = image.height
+                    field_obj['width'] = image.width
+                book_data['cover_image_data'] = field_obj
             response['books'].append(book_data)
         response['team_members'] = []
         for team_member in request.user.leader.all():
@@ -300,7 +316,10 @@ def delete_js(request):
     if request.is_ajax() and request.method == 'POST':
         book_id = int(request.POST['id'])
         book = Book.objects.get(pk=book_id, owner=request.user)
+        image = book.cover_image
         book.delete()
+        if image and image.is_deletable():
+            image.delete()
         status = 200
     return JsonResponse(
         response,

@@ -1,51 +1,5 @@
 import {escapeText} from "../../common"
 
-/** A template for the book access rights overview */
-export let bookAccessRightOverviewTemplate = ({dialogHeader, contacts, collaborators}) =>
-    `<div id="access-rights-dialog" title="${dialogHeader}">
-        <div id="my-contacts" class="fw-ar-container">
-            <h3 class="fw-green-title">${gettext("My contacts")}</h3>
-            <table class="fw-document-table">
-                <thead class="fw-document-table-header">
-                    <tr>
-                        <th width="332">${gettext("Contacts")}</th>
-                    </tr>
-                </thead>
-                <tbody class="fw-document-table-body fw-small">
-                    ${
-                        contacts.map(contact =>
-                            `<tr>
-                                <td width="332" data-id="${contact.id}"
-                                        data-avatar="${contact.avatar}"
-                                        data-name="${escapeText(contact.name)}"
-                                        class="fw-checkable fw-checkable-td">
-                                    <span>
-                                        <img class="fw-avatar" src="${contact.avatar}" />
-                                    </span>
-                                    <span class="fw-inline">${escapeText(contact.name)}</span>
-                                </td>
-                            </tr>`
-                        ).join('')
-                    }
-                </tbody>
-            </table>
-        </div>
-        <span id="add-share-member" class="fw-button fw-large fw-square fw-light fw-ar-button">
-            <i class="fa fa-caret-right"></i>
-        </span>
-        <div id="share-member" class="fw-ar-container">
-            <h3 class="fw-green-title">${gettext("My collaborators")}</h3>
-            <table class="fw-document-table tablesorter">
-                <thead class="fw-document-table-header"><tr>
-                        <th width="212">${gettext("Collaborators")}</th>
-                        <th width="50" align="center">${gettext("Rights")}</th>
-                        <th width="50" align="center">${gettext("Delete")}</th>
-                </tr></thead>
-                <tbody class="fw-document-table-body fw-small">${collaborators}</tbody>
-            </table>
-        </div>
-    </div>`
-
 /** A template for the book collaboration pane */
 export let bookCollaboratorsTemplate = ({collaborators}) =>
     collaborators.map(collaborator =>
@@ -82,3 +36,51 @@ export let bookCollaboratorsTemplate = ({collaborators}) =>
             </td>
         </tr>`
     ).join('')
+
+    /** A template for the book access rights overview */
+    export let bookAccessRightOverviewTemplate = ({dialogHeader, contacts, collaborators}) =>
+        `<div id="access-rights-dialog" title="${dialogHeader}">
+            <div id="my-contacts" class="fw-ar-container">
+                <h3 class="fw-green-title">${gettext("My contacts")}</h3>
+                <table class="fw-document-table">
+                    <thead class="fw-document-table-header">
+                        <tr>
+                            <th width="332">${gettext("Contacts")}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fw-document-table-body fw-small">
+                        ${
+                            contacts.map(contact =>
+                                `<tr>
+                                    <td width="332" data-id="${contact.id}"
+                                            data-avatar="${contact.avatar}"
+                                            data-name="${escapeText(contact.name)}"
+                                            class="fw-checkable fw-checkable-td">
+                                        <span>
+                                            <img class="fw-avatar" src="${contact.avatar}" />
+                                        </span>
+                                        <span class="fw-inline">${escapeText(contact.name)}</span>
+                                    </td>
+                                </tr>`
+                            ).join('')
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <span id="add-share-member" class="fw-button fw-large fw-square fw-light fw-ar-button">
+                <i class="fa fa-caret-right"></i>
+            </span>
+            <div id="share-member" class="fw-ar-container">
+                <h3 class="fw-green-title">${gettext("My collaborators")}</h3>
+                <table class="fw-document-table tablesorter">
+                    <thead class="fw-document-table-header"><tr>
+                            <th width="212">${gettext("Collaborators")}</th>
+                            <th width="50" align="center">${gettext("Rights")}</th>
+                            <th width="50" align="center">${gettext("Delete")}</th>
+                    </tr></thead>
+                    <tbody class="fw-document-table-body fw-small">${bookCollaboratorsTemplate({
+                        collaborators
+                    })}</tbody>
+                </table>
+            </div>
+        </div>`

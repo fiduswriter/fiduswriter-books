@@ -14,37 +14,34 @@ export class BookAccessRightsDialog {
 
       init() {
           let dialogHeader = gettext('Share your book with others')
-          let bookCollaborators = {}
+          let collabObject = {}
 
           let len = this.accessRights.length
 
-          for (let i = 0; i < len; i++) {
-              if (this.bookIds.includes(this.accessRights[i].book_id)) {
-                  if (!(this.accessRights[i].user_id in bookCollaborators)) {
-                      bookCollaborators[this.accessRights[i].user_id] = this.accessRights[i]
-                      bookCollaborators[this.accessRights[i].user_id].count = 1
-
+          this.accessRights.forEach(right => {
+              if (this.bookIds.includes(right.book_id)) {
+                  if (right.user_id in collabObject) {
+                      if (collabObject[right.user_id].rights !== right.rights) {
+                          // different rights to different books, so we fall back to read
+                          // rights
+                          collabObject[right.user_id].rights = 'read'
+                      }
+                      collabObject[right.user_id].count += 1
                   } else {
-                      if (bookCollaborators[this.accessRights[i].user_id].rights !=
-                          this.accessRights[i].rights)
-                      bookCollaborators[this.accessRights[i].user_id].rights =
-                          'read'
-                      bookCollaborators[this.accessRights[i].user_id].count +=
-                          1
+                      collabObject[right.user_id] = right
+                      collabObject[right.user_id].count = 1
                   }
               }
-          }
-          bookCollaborators = bookCollaborators.filter(
+          })
+
+          let collaborators = Object.values(collabObject).filter(
               collab => collab.count === this.bookIds.length
           )
 
-
           let dialogBody = bookAccessRightOverviewTemplate({
-              'dialogHeader': dialogHeader,
-              'contacts': this.teamMembers,
-              'collaborators': bookCollaboratorsTemplate({
-                  'collaborators': bookCollaborators
-              })
+              dialogHeader,
+              contacts: this.teamMembers,
+              collaborators
           })
           jQuery('body').append(dialogBody)
           let diaButtons = {}
@@ -90,17 +87,17 @@ export class BookAccessRightsDialog {
               jQuery('#add-share-member').bind('click', () => {
                   let selectedMembers = jQuery(
                       '#my-contacts .fw-checkable.checked')
-                  let selectedData = []
+                  let collaborators = []
                   selectedMembers.each(function () {
                       let memberId = jQuery(this).attr('data-id')
                       let collaborator = jQuery('#collaborator-' + memberId)
                       if (0 === collaborator.length) {
-                          selectedData[selectedData.length] = {
+                          collaborators.push({
                               'user_id': memberId,
                               'user_name': jQuery(this).attr('data-name'),
                               'avatar': jQuery(this).attr('data-avatar'),
                               'rights': 'read'
-                          }
+                          })
                       } else if ('delete' == collaborator.attr('data-right')) {
                           collaborator.removeClass('delete').addClass('read').attr(
                               'data-right', 'read')
@@ -109,7 +106,7 @@ export class BookAccessRightsDialog {
                   jQuery('#my-contacts .checkable-label.checked').removeClass(
                       'checked')
                   jQuery('#share-member table tbody').append(bookCollaboratorsTemplate({
-                      'collaborators': selectedData
+                      collaborators
                   }))
                   this.collaboratorFunctionsEvent()
               })

@@ -151,15 +151,14 @@ export class BookActions {
 
     editChapterDialog(chapter, book) {
         let doc = this.bookList.documentList.find(doc => doc.id === chapter.text),
-            docTitle = doc.title,
-            dialogHeader, dialogBody
+            docTitle = doc.title
         if (!docTitle.length) {
             docTitle = gettext('Untitled')
         }
-        dialogHeader = `${gettext('Edit Chapter')}: ${chapter.number}. ${docTitle}`
-        dialogBody = bookChapterDialogTemplate({
-            'dialogHeader': dialogHeader,
-            'aChapter': chapter
+        let dialogHeader = `${gettext('Edit Chapter')}: ${chapter.number}. ${docTitle}`
+        let dialogBody = bookChapterDialogTemplate({
+            dialogHeader,
+            chapter
         })
 
         jQuery('body').append(dialogBody)
@@ -367,7 +366,7 @@ export class BookActions {
 
 
     createBookDialog(bookId, imageDB) {
-        let dialogHeader, book, oldBook
+        let dialogHeader, book, oldBook, bookImageDB = {db:{}}
 
         if (bookId === 0) {
             dialogHeader = gettext('Create Book')
@@ -396,6 +395,15 @@ export class BookActions {
         } else {
             oldBook = this.bookList.bookList.find(book => book.id===bookId)
             book = Object.assign({}, oldBook)
+
+            if (book.cover_image && !imageDB.db[book.cover_image]) {
+                // The cover image is not in the current user's image DB --
+                // it was either deleted or another user originalyl added
+                // it. As we don't do anything fancy with it, we simply add
+                // the current cover image to the DB locally so that image
+                // selection works as expected.
+                bookImageDB.db[book.cover_image] = book.cover_image_data
+            }
             dialogHeader = gettext('Edit Book')
         }
 
@@ -405,7 +413,7 @@ export class BookActions {
             documentList: this.bookList.documentList,
             citationDefinitions,
             documentStyleList,
-            imageDB
+            imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
         })
         let that = this
         jQuery(document).on('click', '.book-sort-up', function () {
@@ -505,19 +513,20 @@ export class BookActions {
 
         jQuery(document).on('click', '#select-cover-image-button', () => {
             let imageSelection = new ImageSelectionDialog(
+                bookImageDB,
                 imageDB,
                 book.cover_image,
                 book.owner)
 
             imageSelection.init().then(
-                imageId => {
-                    if (!imageId) {
+                image => {
+                    if (!image) {
                         delete book.cover_image
                     } else {
-                        book.cover_image = imageId
+                        book.cover_image = image.id
                     }
                     jQuery('#figure-preview-row').html(bookEpubDataCoverTemplate({
-                        imageDB,
+                        imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)},
                         book
                     }))
                 }
@@ -528,7 +537,7 @@ export class BookActions {
             delete book.cover_image
             jQuery('#figure-preview-row').html(bookEpubDataCoverTemplate({
                 book,
-                imageDb: false
+                imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
             }))
         })
 
