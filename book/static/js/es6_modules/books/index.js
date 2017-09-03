@@ -15,6 +15,7 @@ export class BookList {
     constructor() {
         this.mod = {}
         this.bookList = []
+        this.styles = false
         this.documentList = []
         this.teamMembers = []
         this.accessRights = []
@@ -147,7 +148,7 @@ export class BookList {
                             let book = that.bookList.find(book => book.id===id)
                             addAlert('info', book.title + ': ' + gettext(
                                 'HTML export has been initiated.'))
-                            new HTMLBookExporter(book, that.user, that.documentList)
+                            new HTMLBookExporter(book, that.user, that.documentList, that.styles)
                         })
                         break
                     case 'copy':

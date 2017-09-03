@@ -13,7 +13,10 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.core.mail import send_mail
 
+from document.helpers.serializers import PythonWithURLSerializer
 from book.models import Book, BookAccessRight, Chapter
+
+from style.models import DocumentStyle, CitationStyle, CitationLocale
 
 from document.models import AccessRight
 from document.views import documents_list
@@ -23,6 +26,8 @@ from avatar.utils import get_primary_avatar, get_default_avatar_url
 from avatar.templatetags.avatar_tags import avatar_url
 
 from django.core.serializers.python import Serializer
+
+
 
 from django.db.models import Q
 import dateutil.parser
@@ -191,6 +196,22 @@ def get_booklist_js(request):
         response['user']['avatar'] = avatar_url(request.user, 80)
         response['access_rights'] = get_accessrights(
             BookAccessRight.objects.filter(book__owner=request.user))
+        serializer = PythonWithURLSerializer()
+        document_styles = serializer.serialize(
+            DocumentStyle.objects.all(),
+            use_natural_foreign_keys=True
+        )
+        cite_styles = serializer.serialize(
+            CitationStyle.objects.all()
+        )
+        cite_locales = serializer.serialize(
+            CitationLocale.objects.all()
+        )
+        response['styles'] = {
+            'document_styles': [obj['fields'] for obj in document_styles],
+            'citation_styles': [obj['fields'] for obj in cite_styles],
+            'citation_locales': [obj['fields'] for obj in cite_locales],
+        }
     return JsonResponse(
         response,
         status=status
@@ -267,8 +288,6 @@ def save_js(request):
     status = 200
     book_obj = json.loads(request.POST['book'])
     chapters = book_obj.pop('chapters')
-    # if book['cover_image']==False:
-    #     book.pop('cover_image')
     has_book_write_access = False
     if book_obj['id'] == 0:
         # We are dealing with a new book that still has not obtained an
@@ -288,8 +307,10 @@ def save_js(request):
             has_book_write_access = True
             book.updated = timezone.now()
     has_coverimage_access = True
-    if book_obj['cover_image'] == False:
-        book.pop('cover_image')
+    if 'cover_image' not in book_obj:
+        book.cover_image = None
+    elif book_obj['cover_image'] == False:
+        book.cover_image = None
     elif (
         book_obj['cover_image'] != book.cover_image and not
         UserImage.objects.filter(

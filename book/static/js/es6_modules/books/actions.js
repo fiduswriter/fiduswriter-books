@@ -144,6 +144,7 @@ export class BookActions {
                 this.bookList.teamMembers = response.team_members
                 this.bookList.accessRights = response.access_rights
                 this.bookList.user = response.user
+                this.bookList.styles = response.styles
                 jQuery.event.trigger({
                     type: "bookDataLoaded",
                 })

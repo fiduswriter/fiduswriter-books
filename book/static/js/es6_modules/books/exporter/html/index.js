@@ -1,5 +1,4 @@
 import {katexRender} from "../../../katex"
-
 import {getMissingChapterData, getImageAndBibDB, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {docSchema} from "../../../schema/document"
@@ -10,14 +9,17 @@ import {findImages} from "../../../exporter/tools/html"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
+
 import download from "downloadjs"
+import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends BaseEpubExporter { // extension is correct. Neds orderLinks/setLinks methods from base epub exporter.
-    constructor(book, user, docList) {
+    constructor(book, user, docList, styles) {
         super()
         this.book = book
         this.user = user
         this.docList = docList
+        this.styles = styles
         this.chapters = []
         this.math = false
         if (this.book.chapters.length === 0) {
@@ -26,13 +28,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         }
 
         getMissingChapterData(this.book, this.docList).then(
-            () => getImageAndBibDB(this.book, this.docList)
-        ).then(
-            ({imageDB, bibDB}) => {
-                this.bibDB = bibDB
-                this.imageDB = imageDB
-                this.exportOne()
-            }
+            () => this.exportOne()
         ).catch(
             () => {}
         )
@@ -40,121 +36,106 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
 
     exportOne() {
 
-        this.book.chapters.sort((a,b) => a.number > b.number)
-
-        for (let i = 0; i < this.book.chapters.length; i++) {
-
-            let doc = this.docList.find(doc => doc.id === this.book.chapters[i].text)
-
-            let docContents = removeHidden(doc.contents)
-
-            let contents = docSchema.nodeFromJSON(docContents).toDOM()
-
-            let equations = contents.querySelectorAll('.equation')
-
-            let figureEquations = contents.querySelectorAll('.figure-equation')
-
+        this.chapters = this.book.chapters.sort(
+            (a,b) => a.number > b.number
+        ).map(chapter => {
+            let doc = this.docList.find(doc => doc.id === chapter.text),
+                schema = docSchema
+            schema.cached.imageDB = {db: doc.images}
+            let docContents = removeHidden(doc.contents),
+                serializer = DOMSerializer.fromSchema(schema),
+                contents = serializer.serializeNode(schema.nodeFromJSON(docContents)),
+                equations = [].slice.call(contents.querySelectorAll('.equation')),
+                figureEquations = [].slice.call(contents.querySelectorAll('.figure-equation'))
             if (equations.length > 0 || figureEquations.length > 0) {
                 this.math = true
             }
 
-            for (let j = 0; j < equations.length; j++) {
-                let node = equations[j]
-                let formula = node.getAttribute('data-equation')
-                katexRender(formula, node, {throwOnError: false})
-            }
-            for (let j = 0; j < figureEquations.length; j++) {
-                let node = figureEquations[j]
-                let formula = node.getAttribute('data-equation')
-                katexRender(formula, node, {
-                    displayMode: true,
-                    throwOnError: false
-                })
-            }
+            equations.forEach(el => {
+                let formula = el.getAttribute('data-equation')
+                katexRender(formula, el, {throwOnError: false})
+            })
 
-            this.chapters.push({
+            figureEquations.forEach(el => {
+                let formula = el.getAttribute('data-equation')
+                katexRender(formula, el, {displayMode: true, throwOnError: false})
+            })
+
+            return {
                 doc,
                 contents
-            })
-        }
-        this.exportTwo()
-    }
-
-    exportTwo(chapterNumber = 0) {
-        // add bibliographies (asynchronously)
-        let citRenderer = new RenderCitations(
-            this.chapters[chapterNumber].contents,
-            this.book.settings.citationstyle,
-            this.bibDB,
-            true
-        )
-        citRenderer.init().then(
-            () => {
-                let bibHTML = citRenderer.fm.bibHTML
-                if (bibHTML.length > 0) {
-                    this.chapters[chapterNumber].contents.innerHTML += bibHTML
-                }
-                chapterNumber++
-                if (chapterNumber===this.chapters.length) {
-                    this.exportThree()
-                } else {
-                    this.exportTwo(chapterNumber)
-                }
             }
-        )
+
+        })
+
+        let citRendererPromises = this.chapters.map(chapter => {
+            // add bibliographies (asynchronously)
+
+            let citRenderer = new RenderCitations(
+                chapter.contents,
+                this.book.settings.citationstyle,
+                {db: chapter.doc.bibliography},
+                this.styles.citation_styles, // Where do these come from?
+                this.styles.citation_locales, // Where come from?
+                true
+            )
+            return citRenderer.init().then(
+                () => {
+                    let bibHTML = citRenderer.fm.bibHTML
+                    if (bibHTML.length > 0) {
+                        chapter.contents.innerHTML += bibHTML
+                    }
+                    return Promise.resolve()
+                }
+            )
+        })
+        Promise.all(citRendererPromises).then(() => this.exportTwo())
 
     }
 
-    exportThree() {
-
+    exportTwo() {
         let styleSheets = [],
-            outputList = [],
-            images = [],
             contentItems = [],
-            includeZips = [],
-            chapters = this.chapters
+            images = [],
+            includeZips = []
 
-        for (let i=0; i < chapters.length; i++) {
-
-            let contents = chapters[i].contents
-
-            let doc = chapters[i].doc
-
-            let title = doc.title
+        let outputList = this.chapters.map((chapter, index) => {
+            let contents = chapter.contents,
+                doc = chapter.doc,
+                title = doc.title
 
             images = images.concat(findImages(contents))
-
             contents = this.cleanHTML(contents)
 
-            if (this.book.chapters[i].part && this.book.chapters[i].part !== '') {
+            if (this.book.chapters[index].part && this.book.chapters[index].part !== '') {
                 contentItems.push({
-                    link: 'document-' + this.book.chapters[i].number + '.html',
-                    title: this.book.chapters[i].part,
-                    docNum: this.book.chapters[i].number,
+                    link: `document-${this.book.chapters[index].number}.html`,
+                    title: this.book.chapters[index].part,
+                    docNum: this.book.chapters[index].number,
                     id: 0,
                     level: -1,
-                    subItems: [],
+                    subItems: []
                 })
             }
 
             contentItems.push({
-                link: 'document-' + this.book.chapters[i].number + '.html',
-                title: title,
-                docNum: this.book.chapters[i].number,
+                link: `document-${this.book.chapters[index].number}.html`,
+                title,
+                docNum: this.book.chapters[index].number,
                 id: 0,
                 level: 0,
-                subItems: [],
+                subItems: []
             })
 
             // Make links to all H1-3 and create a TOC list of them
             contentItems = contentItems.concat(this.setLinks(contents,
-                this.book.chapters[i].number))
+                this.book.chapters[index].number))
 
 
             let contentsCode = this.replaceImgSrc(contents.innerHTML)
 
             let htmlCode = htmlBookExportTemplate({
-                part: this.book.chapters[i].part,
+                part: this.book.chapters[index].part,
                 title,
                 metadata: doc.metadata,
                 settings: doc.settings,
@@ -163,12 +144,11 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
                 math: this.math
             })
 
-            outputList.push({
-                filename: 'document-' + this.book.chapters[i].number + '.html',
+            return {
+                filename: `document-${this.book.chapters[index].number}.html`,
                 contents: htmlCode
-            })
-
-        }
+            }
+        })
 
         contentItems = this.orderLinks(contentItems)
 

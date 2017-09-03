@@ -5,6 +5,7 @@ export let htmlBookExportTemplate = ({styleSheets, part, contents, title}) =>
 `<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>${title}</title>
         ${
             styleSheets.map(sheet =>

@@ -1,37 +1,19 @@
 import {getMissingDocumentListData} from "../../documents/tools"
-import {BibliographyDB} from "../../bibliography/database"
-import {ImageDB} from "../../images/database"
 import {addAlert} from "../../common"
 
-export let getMissingChapterData = function (aBook, documentList) {
-    let bookDocuments = []
-
-    for (let i = 0; i < aBook.chapters.length; i++) {
-        if (!documentList.find(doc => doc.id === aBook.chapters[i].text)) {
-            addAlert('error', "Cannot produce book as you lack access rights to its chapters.")
-            return Promise.reject()
-        }
-        bookDocuments.push(aBook.chapters[i].text)
-    }
-    return getMissingDocumentListData(bookDocuments, documentList)
-}
-
-export let getImageAndBibDB = function (aBook, documentList) {
-    let documentOwners = []
-    for (let i = 0; i < aBook.chapters.length; i++) {
-        documentOwners.push(
-            documentList.find(doc => doc.id === aBook.chapters[i].text).owner.id
-        )
-    }
-
-    documentOwners = [...new Set(documentOwners)].join(',')
-    let imageDB = new ImageDB(documentOwners)
-    let bibDB = new BibliographyDB(documentOwners)
-    return imageDB.getDB().then(
-        bibDB => bibDB.getDB()
-    ).then(
-        () => Promise.resolve({imageDB, bibDB})
+export let getMissingChapterData = function (book, documentList) {
+    let bookDocuments = book.chapters.map(chapter =>
+        documentList.find(doc => doc.id === chapter.text)
     )
+
+    if (bookDocuments.some(doc => doc === undefined)) {
+        addAlert('error', "Cannot produce book as you lack access rights to its chapters.")
+        return Promise.reject()
+    }
+
+    let docIds = book.chapters.map(chapter => chapter.text)
+
+    return getMissingDocumentListData(docIds, documentList)
 }
 
 export let uniqueObjects = function (array) {
