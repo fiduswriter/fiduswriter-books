@@ -14,7 +14,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 from book.models import Book, BookAccessRight, Chapter
-from book.forms import BookForm
 
 from document.models import AccessRight
 from document.views import documents_list
@@ -299,15 +298,11 @@ def save_js(request):
         ).exists()
     ):
         has_coverimage_access = False
-    # Now we check the augmented form against the modelform
-    #form = BookForm(book)
+
     if has_book_write_access and has_coverimage_access:
         book.metadata = json.dumps(book_obj['metadata'])
         book.settings = json.dumps(book_obj['settings'])
         book.title = book_obj['title']
-        # The form was valid, so we save the instance in the database,
-        # and return the id that was assigned back to the client.
-        #form.save()
         book.save()
         status = 201
         response['id'] = book.id
@@ -317,49 +312,6 @@ def save_js(request):
         response['updated'] = date_obj.strftime(date_format)
         add_chapters(
             book, chapters, request.user)
-    #else:
-    #    response['errors'] = form.errors
-
-    # else:
-    #     book = Book.objects.get(pk=book['id'])
-    #     book['owner'] = book.owner.id
-    #     book['updated'] = timezone.now()
-    #     if book.owner == request.user:
-    #         form = BookForm(book, instance=book)
-    #         if form.is_valid():
-    #             form.save()
-    #             status = 200
-    #             date_obj = dateutil.parser.parse(
-    #                 str(form.instance.updated))
-    #             response['updated'] = date_obj.strftime(date_format)
-    #             form.instance.chapter_set.all().delete()
-    #             status = add_chapters(
-    #                 form.instance, the_chapters, status, request.user)
-    #         else:
-    #             response['errors'] = form.errors
-    #             status = 422
-    #     else:
-    #         # We are not dealing with the owner, so we need to check if the
-    #         # current user has the right to save the book
-    #         if len(
-    #             book.bookaccessright_set.filter(
-    #                 user=request.user,
-    #                 rights=u'write')) > 0:
-    #             form = BookForm(book, instance=book)
-    #             if form.is_valid():
-    #                 form.save()
-    #                 date_obj = dateutil.parser.parse(
-    #                     str(form.instance.updated))
-    #                 response['updated'] = date_obj.strftime(date_format)
-    #                 status = 200
-    #                 form.instance.chapter_set.all().delete()
-    #                 status = add_chapters(
-    #                     form.instance, the_chapters, status, request.user)
-    #             else:
-    #                 status = 422
-    #         else:
-    #             status = 403
-
     return JsonResponse(
         response,
         status=status
