@@ -18,6 +18,7 @@ from book.forms import BookForm
 
 from document.models import AccessRight
 from document.views import documents_list
+from usermedia.models import UserImage
 
 from avatar.utils import get_primary_avatar, get_default_avatar_url
 from avatar.templatetags.avatar_tags import avatar_url
@@ -197,18 +198,18 @@ def get_booklist_js(request):
     )
 
 
-def add_chapters(book_instance, chapters, status, this_user):
+def add_chapters(book, chapters, user):
     for chapter in chapters:
         new_chapter = Chapter(
-            book=book_instance,
+            book=book,
             text_id=chapter['text'],
             number=chapter['number'],
             part=chapter['part'])
         new_chapter.save()
         # If the current user is the owner of the chapter-document, make sure
         # that everyone with access to the book gets at least read access.
-        if this_user == new_chapter.text.owner:
-            for bar in BookAccessRight.objects.filter(book=book_instance):
+        if user == new_chapter.text.owner:
+            for bar in BookAccessRight.objects.filter(book=book):
                 if len(
                     new_chapter.text.accessright_set.filter(
                         user=bar.user)) == 0:
@@ -217,91 +218,147 @@ def add_chapters(book_instance, chapters, status, this_user):
                         user_id=bar.user.id,
                         rights='read',
                     )
-            if this_user != book_instance.owner and len(
+            if user != book.owner and len(
                 new_chapter.text.accessright_set.filter(
-                    user=book_instance.owner)) == 0:
+                    user=book.owner)) == 0:
                 AccessRight.objects.create(
                     document_id=new_chapter.text.id,
-                    user_id=book_instance.owner.id,
+                    user_id=book.owner.id,
                     rights='read',
                 )
-    return status
+    return
+
+@login_required
+def copy_js(request):
+    # Copy a book
+    if not request.is_ajax() or request.method != 'POST':
+        return JsonResponse({},status=405)
+    book_id = request.POST['book_id']
+    book = Book.objects.get(id=book_id)
+    if (
+        book.owner != request.user and not
+        book.bookaccessright_set.filter(
+            user=request.user
+        ).exists()
+    ):
+        return JsonResponse({},status=405)
+    response = {}
+    status = 201
+    book.id = None
+    book.owner = request.user
+    book.save()
+    # Copy chapters
+    for chapter in Chapter.objects.filter(book_id=book_id):
+        chapter.id = None
+        chapter.book_id = book.id
+        chapter.save()
+    response['new_book_id'] = book.id
+    return JsonResponse(
+        response,
+        status=status
+    )
 
 
 @login_required
 def save_js(request):
+    if not request.is_ajax() or request.method != 'POST':
+        return JsonResponse({},status=405)
     date_format = '%d/%m/%Y'
     response = {}
-    status = 405
-    if request.is_ajax() and request.method == 'POST':
-        the_book = json.loads(request.POST['the_book'])
-        the_chapters = the_book.pop('chapters')
-        # if the_book['cover_image']==False:
-        #     the_book.pop('cover_image')
-        the_book['metadata'] = json.dumps(the_book['metadata'])
-        the_book['settings'] = json.dumps(the_book['settings'])
-        if the_book['id'] == 0:
-            # We are dealing with a new book that still has not obtained an
-            # ID.
-            the_book['owner'] = request.user.pk
+    status = 200
+    book_obj = json.loads(request.POST['book'])
+    chapters = book_obj.pop('chapters')
+    # if book['cover_image']==False:
+    #     book.pop('cover_image')
+    has_book_write_access = False
+    if book_obj['id'] == 0:
+        # We are dealing with a new book that still has not obtained an
+        # ID.
+        book = Book()
+        book.owner = request.user
+        has_book_write_access = True
+    else:
+        book = Book.objects.get(id=book_obj['id'])
+        if (
+            book.owner == request.user or
+            book.bookaccessright_set.filter(
+                user=request.user,
+                rights='write'
+            ).exists()
+        ):
+            has_book_write_access = True
+            book.updated = timezone.now()
+    has_coverimage_access = True
+    if book_obj['cover_image'] == False:
+        book.pop('cover_image')
+    elif (
+        book_obj['cover_image'] != book.cover_image and not
+        UserImage.objects.filter(
+            owner=request.user,
+            image_id=book_obj['cover_image']
+        ).exists()
+    ):
+        has_coverimage_access = False
+    # Now we check the augmented form against the modelform
+    #form = BookForm(book)
+    if has_book_write_access and has_coverimage_access:
+        book.metadata = json.dumps(book_obj['metadata'])
+        book.settings = json.dumps(book_obj['settings'])
+        book.title = book_obj['title']
+        # The form was valid, so we save the instance in the database,
+        # and return the id that was assigned back to the client.
+        #form.save()
+        book.save()
+        status = 201
+        response['id'] = book.id
+        date_obj = dateutil.parser.parse(str(book.added))
+        response['added'] = date_obj.strftime(date_format)
+        date_obj = dateutil.parser.parse(str(book.updated))
+        response['updated'] = date_obj.strftime(date_format)
+        add_chapters(
+            book, chapters, request.user)
+    #else:
+    #    response['errors'] = form.errors
 
-            # Now we check the augmented form against the modelform
-            form = BookForm(the_book)
-            if form.is_valid():
-                # The form was valid, so we save the instance in the database,
-                # and return the id that was assigned back to the client.
-                form.save()
-                status = 201
-                the_book['id'] = form.instance.id
-                response['id'] = the_book['id']
-                date_obj = dateutil.parser.parse(str(form.instance.added))
-                response['added'] = date_obj.strftime(date_format)
-                date_obj = dateutil.parser.parse(str(form.instance.updated))
-                response['updated'] = date_obj.strftime(date_format)
-                status = add_chapters(
-                    form.instance, the_chapters, status, request.user)
-            else:
-                response['errors'] = form.errors
-
-        else:
-            book = Book.objects.get(pk=the_book['id'])
-            the_book['owner'] = book.owner.id
-            the_book['updated'] = timezone.now()
-            if book.owner == request.user:
-                form = BookForm(the_book, instance=book)
-                if form.is_valid():
-                    form.save()
-                    status = 200
-                    date_obj = dateutil.parser.parse(
-                        str(form.instance.updated))
-                    response['updated'] = date_obj.strftime(date_format)
-                    form.instance.chapter_set.all().delete()
-                    status = add_chapters(
-                        form.instance, the_chapters, status, request.user)
-                else:
-                    response['errors'] = form.errors
-                    status = 422
-            else:
-                # We are not dealing with the owner, so we need to check if the
-                # current user has the right to save the book
-                if len(
-                    book.bookaccessright_set.filter(
-                        user=request.user,
-                        rights=u'write')) > 0:
-                    form = BookForm(the_book, instance=book)
-                    if form.is_valid():
-                        form.save()
-                        date_obj = dateutil.parser.parse(
-                            str(form.instance.updated))
-                        response['updated'] = date_obj.strftime(date_format)
-                        status = 200
-                        form.instance.chapter_set.all().delete()
-                        status = add_chapters(
-                            form.instance, the_chapters, status, request.user)
-                    else:
-                        status = 422
-                else:
-                    status = 403
+    # else:
+    #     book = Book.objects.get(pk=book['id'])
+    #     book['owner'] = book.owner.id
+    #     book['updated'] = timezone.now()
+    #     if book.owner == request.user:
+    #         form = BookForm(book, instance=book)
+    #         if form.is_valid():
+    #             form.save()
+    #             status = 200
+    #             date_obj = dateutil.parser.parse(
+    #                 str(form.instance.updated))
+    #             response['updated'] = date_obj.strftime(date_format)
+    #             form.instance.chapter_set.all().delete()
+    #             status = add_chapters(
+    #                 form.instance, the_chapters, status, request.user)
+    #         else:
+    #             response['errors'] = form.errors
+    #             status = 422
+    #     else:
+    #         # We are not dealing with the owner, so we need to check if the
+    #         # current user has the right to save the book
+    #         if len(
+    #             book.bookaccessright_set.filter(
+    #                 user=request.user,
+    #                 rights=u'write')) > 0:
+    #             form = BookForm(book, instance=book)
+    #             if form.is_valid():
+    #                 form.save()
+    #                 date_obj = dateutil.parser.parse(
+    #                     str(form.instance.updated))
+    #                 response['updated'] = date_obj.strftime(date_format)
+    #                 status = 200
+    #                 form.instance.chapter_set.all().delete()
+    #                 status = add_chapters(
+    #                     form.instance, the_chapters, status, request.user)
+    #             else:
+    #                 status = 422
+    #         else:
+    #             status = 403
 
     return JsonResponse(
         response,
@@ -399,7 +456,7 @@ def access_right_save_js(request):
         for tgt_book in tgt_books:
             book_id = int(tgt_book)
             try:
-                the_book = Book.objects.get(pk=book_id, owner=request.user)
+                book = Book.objects.get(pk=book_id, owner=request.user)
             except ObjectDoesNotExist:
                 continue
             x = 0
@@ -436,7 +493,7 @@ def access_right_save_js(request):
                         send_share_notification(
                             request, book_id, collaborator_id, tgt_right)
                     access_right.save()
-                    for text in the_book.chapters.all():
+                    for text in book.chapters.all():
                         # If one shares a book with another user and that user
                         # has no access rights on the chapters that belong to
                         # the current user, give read access to the chapter

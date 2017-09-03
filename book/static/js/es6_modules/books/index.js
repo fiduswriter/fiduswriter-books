@@ -127,44 +127,44 @@ export class BookList {
                         })
                         break
                     case 'epub':
-                        for (let i = 0; i < ids.length; i++) {
-                            let aBook = that.bookList.find(book => book.id===ids[i])
-                            addAlert('info', aBook.title + ': ' + gettext(
+                        ids.forEach(id => {
+                            let book = that.bookList.find(book => book.id===id)
+                            addAlert('info', book.title + ': ' + gettext(
                                 'Epub export has been initiated.'))
-                            new EpubBookExporter(aBook, that.user, that.documentList)
-                        }
+                            new EpubBookExporter(book, that.user, that.documentList)
+                        })
                         break
                     case 'latex':
-                        for (let i = 0; i < ids.length; i++) {
-                            let aBook = that.bookList.find(book => book.id===ids[i])
-                            addAlert('info', aBook.title + ': ' + gettext(
-                                'Latex export has been initiated.'))
-                            new LatexBookExporter(aBook, that.user, that.documentList)
-                        }
+                        ids.forEach(id => {
+                            let book = that.bookList.find(book => book.id===id)
+                            addAlert('info', book.title + ': ' + gettext(
+                                'LaTeX export has been initiated.'))
+                            new LatexBookExporter(book, that.user, that.documentList)
+                        })
                         break
                     case 'html':
-                        for (let i = 0; i < ids.length; i++) {
-                            let aBook = that.bookList.find(book => book.id===ids[i])
-                            addAlert('info', aBook.title + ': ' + gettext(
+                        ids.forEach(id => {
+                            let book = that.bookList.find(book => book.id===id)
+                            addAlert('info', book.title + ': ' + gettext(
                                 'HTML export has been initiated.'))
-                            new HTMLBookExporter(aBook, that.user, that.documentList)
-                        }
+                            new HTMLBookExporter(book, that.user, that.documentList)
+                        })
                         break
                     case 'copy':
-                        for (let i = 0; i < ids.length; i++) {
+                        ids.forEach(id =>
                             that.mod.actions.copyBook(
-                                that.bookList.find(book => book.id===ids[i])
+                                that.bookList.find(book => book.id===id)
                             )
-                        }
+                        )
                         break
                     case 'print':
-                        for (let i = 0; i < ids.length; i++) {
+                        ids.forEach(id =>
                             window.open(
                                 `/book/print/${
-                                    that.bookList.find(book => book.id===ids[i]).id
+                                    that.bookList.find(book => book.id===id).id
                                 }/`
                             )
-                        }
+                        )
                         break
                     }
 
