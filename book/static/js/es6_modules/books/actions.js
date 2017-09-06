@@ -206,11 +206,14 @@ export class BookActions {
 
 
     saveBook(book, oldBook = false) {
+
+        let bookData = Object.assign({}, book)
+        delete bookData.cover_image_data
         return new Promise((resolve, reject) => {
             jQuery.ajax({
                 url: '/book/save/',
                 data: {
-                    book: JSON.stringify(book)
+                    book: JSON.stringify(bookData)
                 },
                 type: 'POST',
                 dataType: 'json',
@@ -318,7 +321,7 @@ export class BookActions {
 
             if (book.cover_image && !imageDB.db[book.cover_image]) {
                 // The cover image is not in the current user's image DB --
-                // it was either deleted or another user originalyl added
+                // it was either deleted or another user originally added
                 // it. As we don't do anything fancy with it, we simply add
                 // the current cover image to the DB locally so that image
                 // selection works as expected.
@@ -444,6 +447,8 @@ export class BookActions {
                         delete book.cover_image
                     } else {
                         book.cover_image = image.id
+                        book.cover_image_data = image.db === 'user' ?
+                            imageDB.db[image.id] : bookImageDB.db[image.id]
                     }
                     jQuery('#figure-preview-row').html(bookEpubDataCoverTemplate({
                         imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)},

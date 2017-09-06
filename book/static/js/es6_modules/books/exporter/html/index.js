@@ -75,8 +75,8 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
                 chapter.contents,
                 this.book.settings.citationstyle,
                 {db: chapter.doc.bibliography},
-                this.styles.citation_styles, // Where do these come from?
-                this.styles.citation_locales, // Where come from?
+                this.styles.citation_styles,
+                this.styles.citation_locales,
                 true
             )
             return citRenderer.init().then(

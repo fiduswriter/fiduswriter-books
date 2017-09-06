@@ -1,6 +1,6 @@
 import {katexRender} from "../../../katex"
 
-import {getMissingChapterData, getImageAndBibDB, uniqueObjects} from "../tools"
+import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
   epubBookCopyrightTemplate} from "./templates"
 import {katexOpfIncludes} from "../../../katex/opf-includes"
@@ -16,14 +16,16 @@ import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
 import download from "downloadjs"
+import {DOMSerializer} from "prosemirror-model"
 
 
 export class EpubBookExporter extends BaseEpubExporter {
-    constructor(book, user, docList) {
+    constructor(book, user, docList, styles) {
         super()
         this.book = book
         this.user = user
         this.docList = docList
+        this.styles = styles
         this.chapters = []
         this.images = []
         this.outputList = []
@@ -35,24 +37,17 @@ export class EpubBookExporter extends BaseEpubExporter {
             return false
         }
         getMissingChapterData(this.book, this.docList).then(
-            () => getImageAndBibDB(this.book, this.docList)
-        ).then(
-            ({imageDB, bibDB}) => {
-                this.bibDB = bibDB
-                this.imageDB = imageDB
-                this.exportOne()
-            }
+            () => this.exportOne()
         ).catch(
             () => {}
         )
     }
 
     exportOne() {
-
         this.book.chapters.sort((a, b) => a.number > b.number)
 
         if (this.book.cover_image) {
-            this.coverImage = this.imageDB.db.find(image => image.pk === this.book.cover_image)
+            this.coverImage = this.book.cover_image_data
             this.images.push({
                 url: this.coverImage.image.split('?')[0],
                 filename: this.coverImage.image.split('/').pop().split('?')[0]
@@ -79,23 +74,14 @@ export class EpubBookExporter extends BaseEpubExporter {
             level: 0,
             subItems: [],
         })
-
-
-
-
-        for (let i = 0; i < this.book.chapters.length; i++) {
-
-            let aChapter = {}
-
-            aChapter.document = this.docList.find(
-                doc => doc.id === this.book.chapters[i].text
-            )
-
-            let docContents = removeHidden(aChapter.document.contents)
-
-            let tempNode = docSchema.nodeFromJSON(docContents).toDOM()
-
-            let contents = document.createElement('body')
+        this.chapters = this.book.chapters.map(chapter => {
+            let doc = this.docList.find(doc => doc.id === chapter.text),
+                schema = docSchema, math = false
+            schema.cached.imageDB = {db: doc.images}
+            let docContents = removeHidden(doc.contents),
+                serializer = DOMSerializer.fromSchema(schema),
+                tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents)),
+                contents = document.createElement('body')
 
             while (tempNode.firstChild) {
                 contents.appendChild(tempNode.firstChild)
@@ -103,43 +89,33 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             this.images = this.images.concat(findImages(contents))
 
-
             contents = this.cleanHTML(contents)
 
             contents = this.addFigureNumbers(contents)
 
-            aChapter.number = this.book.chapters[i].number
+            let equations = [].slice.call(contents.querySelectorAll('.equation'))
 
-            aChapter.part = this.book.chapters[i].part
-
-            let equations = contents.querySelectorAll('.equation')
-
-            let figureEquations = contents.querySelectorAll('.figure-equation')
+            let figureEquations = [].slice.call(contents.querySelectorAll('.figure-equation'))
 
             if (equations.length > 0 || figureEquations.length > 0) {
-                aChapter.math = true
+                math = true
                 this.math = true
             }
 
-            for (let i = 0; i < equations.length; i++) {
-                let node = equations[i]
-                let formula = node.getAttribute('data-equation')
-                katexRender(formula, node, {throwOnError: false})
-            }
-            for (let i = 0; i < figureEquations.length; i++) {
-                let node = figureEquations[i]
-                let formula = node.getAttribute('data-equation')
-                katexRender(formula, node, {
-                    displayMode: true,
-                    throwOnError: false
-                })
-            }
+            equations.forEach(el => {
+                let formula = el.getAttribute('data-equation')
+                katexRender(formula, el, {throwOnError: false})
+            })
+            figureEquations.forEach(el => {
+                let formula = el.getAttribute('data-equation')
+                katexRender(formula, el, {throwOnError: false, displayMode: true})
+            })
 
-            if (this.book.chapters[i].part && this.book.chapters[i].part !== '') {
+            if (chapter.part && chapter.part.length) {
                 this.contentItems.push({
-                    link: 'document-' + this.book.chapters[i].number + '.xhtml',
-                    title: aChapter.part,
-                    docNum: aChapter.number,
+                    link: `document-${chapter.number}.xhtml`,
+                    title: chapter.part,
+                    docNum: chapter.number,
                     id: 0,
                     level: -1,
                     subItems: [],
@@ -148,75 +124,68 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             // Make links to all H1-3 and create a TOC list of them
             this.contentItems = this.contentItems.concat(this.setLinks(
-                contents, aChapter.number))
+                contents, chapter.number))
 
-         //   aChapter.contents = this.styleEpubFootnotes(contents)
 
-            aChapter.contents = contents
-
-            this.chapters.push(aChapter)
-
-        }
-        this.exportTwo(0)
-    }
-
-    exportTwo(chapterNumber = 0) {
-        // add bibliographies (asynchronously)
-        let citRenderer = new RenderCitations(
-            this.chapters[chapterNumber].contents,
-            this.book.settings.citationstyle,
-            this.bibDB,
-            true
-        )
-        citRenderer.init().then(
-            () => {
-                let bibHTML = citRenderer.fm.bibHTML
-                if (bibHTML.length > 0) {
-                    this.chapters[chapterNumber].contents.innerHTML += bibHTML
-                }
-                chapterNumber++
-                if (chapterNumber===this.chapters.length) {
-                    this.exportThree()
-                } else {
-                    this.exportTwo(chapterNumber)
-                }
+            return {
+                contents,
+                number : chapter.number,
+                part: chapter.part,
+                math,
+                doc
             }
-        )
+        })
+        let citRendererPromises = this.chapters.map(chapter => {
+            // add bibliographies (asynchronously)
+            let citRenderer = new RenderCitations(
+                chapter.contents,
+                this.book.settings.citationstyle,
+                {db: chapter.doc.bibliography},
+                this.styles.citation_styles,
+                this.styles.citation_locales,
+                true
+            )
+            return citRenderer.init().then(
+                () => {
+                    let bibHTML = citRenderer.fm.bibHTML
+                    if (bibHTML.length > 0) {
+                        chapter.contents.innerHTML += bibHTML
+                    }
+                    return Promise.resolve()
+                }
+            )
+        })
+        Promise.all(citRendererPromises).then(() => this.exportTwo())
 
     }
 
-
-    exportThree() {
-
+    exportTwo() {
         let includeZips = [],
             httpOutputList = [],
-            styleSheets = [],
-            chapters = this.chapters
+            styleSheets = []
 
+        this.outputList = this.outputList.concat(
+            this.chapters.map(chapter => {
+                chapter.contents = this.styleEpubFootnotes(chapter.contents)
+                let xhtmlCode = xhtmlTemplate({
+                    part: chapter.part,
+                    shortLang: chapter.doc.settings.language.split('-')[0],
+                    title: chapter.doc.title,
+                    metadata: chapter.doc.metadata,
+                    settings: chapter.doc.settings,
+                    styleSheets,
+                    body: obj2Node(node2Obj(chapter.contents), 'xhtml').innerHTML,
+                    math: chapter.math
+                })
 
-        for (let i=0;i<chapters.length;i++) {
+                xhtmlCode = this.replaceImgSrc(xhtmlCode)
 
-            chapters[i].contents = this.styleEpubFootnotes(chapters[i].contents)
-
-
-            let xhtmlCode = xhtmlTemplate({
-                part: chapters[i].part,
-                shortLang: gettext('en'), // TODO: specify a document language rather than using the current users UI language
-                title: chapters[i].document.title,
-                metadata: chapters[i].document.metadata,
-                settings: chapters[i].document.settings,
-                styleSheets,
-                body: obj2Node(node2Obj(chapters[i].contents), 'xhtml').innerHTML,
-                math: chapters[i].math
+                return {
+                    filename: `EPUB/document-${chapter.number}.xhtml`,
+                    contents: xhtmlCode
+                }
             })
-
-            xhtmlCode = this.replaceImgSrc(xhtmlCode)
-
-            this.outputList.push({
-                filename: 'EPUB/document-' + chapters[i].number + '.xhtml',
-                contents: xhtmlCode
-            })
-        }
+        )
 
         this.contentItems.push({
             link: 'copyright.xhtml#copyright',
@@ -240,8 +209,15 @@ export class EpubBookExporter extends BaseEpubExporter {
             ).coverImage = true
         }
 
+        // Take language of first chapter.
+        let language = 'en-US'
+        if (this.chapters.length) {
+            language = this.chapters[0].doc.settings.language
+        }
+        let shortLang = language.split('-')[0]
+
         let opfCode = epubBookOpfTemplate({
-            language: gettext('en-US'), // TODO: specify a document language rather than using the current users UI language
+            language,
             book: this.book,
             idType: 'fidus',
             date: timestamp.slice(0, 10), // TODO: the date should probably be the original document creation date instead
@@ -249,14 +225,14 @@ export class EpubBookExporter extends BaseEpubExporter {
             styleSheets,
             math: this.math,
             images: this.images,
-            chapters,
+            chapters: this.chapters,
             coverImage: this.coverImage,
             katexOpfIncludes,
             user: this.user
         })
 
         let ncxCode = ncxTemplate({
-            shortLang: gettext('en'), // TODO: specify a document language rather than using the current users UI language
+            shortLang,
             title: this.book.title,
             idType: 'fidus',
             id: this.book.id,
@@ -265,7 +241,7 @@ export class EpubBookExporter extends BaseEpubExporter {
         })
 
         let navCode = navTemplate({
-            shortLang: gettext('en'), // TODO: specify a document language rather than using the current users UI language
+            shortLang,
             contentItems: this.contentItems,
             templates: {navTemplate, navItemTemplate}
         })
@@ -292,24 +268,23 @@ export class EpubBookExporter extends BaseEpubExporter {
             contents: epubBookCopyrightTemplate({
                 book: this.book,
                 creator: this.user.name,
-                //TODO: specify a book language rather than using the current users UI language
-                language: gettext('English')
+                language
             })
         }])
 
-        for (let i = 0; i < styleSheets.length; i++) {
-            this.outputList.push({
-                filename: 'EPUB/' + styleSheets[i].filename,
-                contents: styleSheets[i].contents
-            })
-        }
+        this.outputList = this.outputList.concat(
+            styleSheets.map(sheet => ({
+                filename: `EPUB/${sheet.filename}`,
+                contents: sheet.contents
+            }))
+        )
 
-        for (let i = 0; i < this.images.length; i++) {
-            httpOutputList.push({
-                filename: 'EPUB/' + this.images[i].filename,
-                url: this.images[i].url
-            })
-        }
+        httpOutputList = httpOutputList.concat(
+            this.images.map(image => ({
+                filename: `EPUB/${image.filename}`,
+                url: image.url
+            }))
+        )
 
         if (this.math) {
             includeZips.push({

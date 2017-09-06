@@ -132,7 +132,7 @@ export class BookList {
                             let book = that.bookList.find(book => book.id===id)
                             addAlert('info', book.title + ': ' + gettext(
                                 'Epub export has been initiated.'))
-                            new EpubBookExporter(book, that.user, that.documentList)
+                            new EpubBookExporter(book, that.user, that.documentList, that.styles)
                         })
                         break
                     case 'latex':
