@@ -6,12 +6,12 @@ export class BookMenuItem {
     }
 
     init() {
-        jQuery('div.fw-nav-container').append(`
-            <p class="fw-nav-item">
-                <a class="fw-header-navigation-text" href="/book/" title="compose books" data-item="books">
-                    ${gettext("Books")}
-                </a>
-            </p>`)
+        this.menu.navItems.push({
+            id: "books",
+            title: gettext('compose books'),
+            url: "/book/",
+            text: gettext('Books')
+        })
     }
 
 }
