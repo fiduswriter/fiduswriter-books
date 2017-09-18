@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 20:33+0000\n"
+"POT-Creation-Date: 2017-09-13 22:55+0000\n"
 "PO-Revision-Date: 2013-09-18 08:54+0200\n"
 "Last-Translator: Vladimir Vitkov <vvitkov@linux-bg.org>\n"
 "Language-Team: Bulgarian <vvitkov@linux-bg.org>\n"
@@ -20,76 +20,67 @@ msgstr ""
 msgid "Book Overview"
 msgstr "Обзор на Книгата"
 
-#: book/templates/book/index.html:46
-msgid "Delete selected"
-msgstr "Изтрий избраните"
-
-#: book/templates/book/index.html:51
-msgid "Share selected"
-msgstr "Сподели избраните"
-
-#: book/templates/book/index.html:56
-msgid "Copy selected"
-msgstr "Копирай избраните"
-
-#: book/templates/book/index.html:61
-msgid "Export selected as Epub"
-msgstr "Експортирай избраните като Epub"
-
-#: book/templates/book/index.html:66
-msgid "Export selected as HTML"
-msgstr "Експортирай избраните като HTML"
-
-#: book/templates/book/index.html:71
-msgid "Export selected as LaTeX"
-msgstr "Експортирай избраните като LaTeX"
-
-#: book/templates/book/index.html:76
-msgid "Export selected for Print/PDF"
-msgstr "Експортирай избраните за Печат/PDF"
-
-#: book/templates/book/index.html:84
-msgid "Create New Book"
-msgstr "Нова Книга"
-
-#: book/templates/book/index.html:90
-msgid "Upload Fidus Book"
-msgstr "Качи Fidus Книга"
-
-#: book/templates/book/index.html:100
+#: book/templates/book/index.html:41
 msgid "Title"
 msgstr "Заглавие"
 
-#: book/templates/book/index.html:101
+#: book/templates/book/index.html:42
 msgid "Created"
 msgstr "Създаден"
 
-#: book/templates/book/index.html:102
+#: book/templates/book/index.html:43
 msgid "Last changed"
 msgstr "Последна промяна"
 
-#: book/templates/book/index.html:103
+#: book/templates/book/index.html:44
 msgid "Owner"
 msgstr "Собственик"
 
-#: book/templates/book/index.html:104
+#: book/templates/book/index.html:45
 msgid "Rights"
 msgstr "Права"
 
-#: book/templates/book/index.html:105
+#: book/templates/book/index.html:46
 msgid "Delete"
 msgstr "Изтрий"
 
-#: book/views.py:319
+#: book/views.py:371
 #, fuzzy
 msgid "Untitled"
 msgstr "Подзаглавие"
 
-#: book/views.py:335
+#: book/views.py:387
 #, fuzzy
 msgid "Book shared:"
 msgstr "Документи"
 
-#: book/views.py:364
+#: book/views.py:416
 msgid "Fidus Writer book write access"
 msgstr "Достъп за писане във Fidus Writer книга"
+
+#~ msgid "Delete selected"
+#~ msgstr "Изтрий избраните"
+
+#~ msgid "Share selected"
+#~ msgstr "Сподели избраните"
+
+#~ msgid "Copy selected"
+#~ msgstr "Копирай избраните"
+
+#~ msgid "Export selected as Epub"
+#~ msgstr "Експортирай избраните като Epub"
+
+#~ msgid "Export selected as HTML"
+#~ msgstr "Експортирай избраните като HTML"
+
+#~ msgid "Export selected as LaTeX"
+#~ msgstr "Експортирай избраните като LaTeX"
+
+#~ msgid "Export selected for Print/PDF"
+#~ msgstr "Експортирай избраните за Печат/PDF"
+
+#~ msgid "Create New Book"
+#~ msgstr "Нова Книга"
+
+#~ msgid "Upload Fidus Book"
+#~ msgstr "Качи Fidus Книга"

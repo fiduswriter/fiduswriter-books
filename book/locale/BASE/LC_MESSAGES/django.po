@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 20:33+0000\n"
+"POT-Creation-Date: 2017-09-13 22:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,74 +21,38 @@ msgstr ""
 msgid "Book Overview"
 msgstr ""
 
-#: book/templates/book/index.html:46
-msgid "Delete selected"
-msgstr ""
-
-#: book/templates/book/index.html:51
-msgid "Share selected"
-msgstr ""
-
-#: book/templates/book/index.html:56
-msgid "Copy selected"
-msgstr ""
-
-#: book/templates/book/index.html:61
-msgid "Export selected as Epub"
-msgstr ""
-
-#: book/templates/book/index.html:66
-msgid "Export selected as HTML"
-msgstr ""
-
-#: book/templates/book/index.html:71
-msgid "Export selected as LaTeX"
-msgstr ""
-
-#: book/templates/book/index.html:76
-msgid "Export selected for Print/PDF"
-msgstr ""
-
-#: book/templates/book/index.html:84
-msgid "Create New Book"
-msgstr ""
-
-#: book/templates/book/index.html:90
-msgid "Upload Fidus Book"
-msgstr ""
-
-#: book/templates/book/index.html:100
+#: book/templates/book/index.html:41
 msgid "Title"
 msgstr ""
 
-#: book/templates/book/index.html:101
+#: book/templates/book/index.html:42
 msgid "Created"
 msgstr ""
 
-#: book/templates/book/index.html:102
+#: book/templates/book/index.html:43
 msgid "Last changed"
 msgstr ""
 
-#: book/templates/book/index.html:103
+#: book/templates/book/index.html:44
 msgid "Owner"
 msgstr ""
 
-#: book/templates/book/index.html:104
+#: book/templates/book/index.html:45
 msgid "Rights"
 msgstr ""
 
-#: book/templates/book/index.html:105
+#: book/templates/book/index.html:46
 msgid "Delete"
 msgstr ""
 
-#: book/views.py:319
+#: book/views.py:371
 msgid "Untitled"
 msgstr ""
 
-#: book/views.py:335
+#: book/views.py:387
 msgid "Book shared:"
 msgstr ""
 
-#: book/views.py:364
+#: book/views.py:416
 msgid "Fidus Writer book write access"
 msgstr ""

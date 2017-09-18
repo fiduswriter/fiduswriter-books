@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-04 20:33+0000\n"
+"POT-Creation-Date: 2017-09-13 22:55+0000\n"
 "PO-Revision-Date: 2016-06-17 15:21+0200\n"
 "Last-Translator: Nicolas Rochard <nrochard@gmail.com>\n"
 "Language-Team: français <nrochard@gmail.com>\n"
@@ -22,74 +22,65 @@ msgstr ""
 msgid "Book Overview"
 msgstr "Aperçu du Livre"
 
-#: book/templates/book/index.html:46
-msgid "Delete selected"
-msgstr "Effacer la sélection"
-
-#: book/templates/book/index.html:51
-msgid "Share selected"
-msgstr "Partager la sélection"
-
-#: book/templates/book/index.html:56
-msgid "Copy selected"
-msgstr "Copier la sélection"
-
-#: book/templates/book/index.html:61
-msgid "Export selected as Epub"
-msgstr "Exporter la sélection en Epub"
-
-#: book/templates/book/index.html:66
-msgid "Export selected as HTML"
-msgstr "Exporter la sélection en HTML"
-
-#: book/templates/book/index.html:71
-msgid "Export selected as LaTeX"
-msgstr "Exporter la sélection en LaTex"
-
-#: book/templates/book/index.html:76
-msgid "Export selected for Print/PDF"
-msgstr "Exporter la sélection pour Impression/PDF"
-
-#: book/templates/book/index.html:84
-msgid "Create New Book"
-msgstr "Créer un Nouveau Livre"
-
-#: book/templates/book/index.html:90
-msgid "Upload Fidus Book"
-msgstr "Charger un FidusBook"
-
-#: book/templates/book/index.html:100
+#: book/templates/book/index.html:41
 msgid "Title"
 msgstr "Titre"
 
-#: book/templates/book/index.html:101
+#: book/templates/book/index.html:42
 msgid "Created"
 msgstr "Créé"
 
-#: book/templates/book/index.html:102
+#: book/templates/book/index.html:43
 msgid "Last changed"
 msgstr "Dernière modification"
 
-#: book/templates/book/index.html:103
+#: book/templates/book/index.html:44
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: book/templates/book/index.html:104
+#: book/templates/book/index.html:45
 msgid "Rights"
 msgstr "Droits"
 
-#: book/templates/book/index.html:105
+#: book/templates/book/index.html:46
 msgid "Delete"
 msgstr "Effacer"
 
-#: book/views.py:319
+#: book/views.py:371
 msgid "Untitled"
 msgstr "Sans Titre"
 
-#: book/views.py:335
+#: book/views.py:387
 msgid "Book shared:"
 msgstr "Livre partagé:"
 
-#: book/views.py:364
+#: book/views.py:416
 msgid "Fidus Writer book write access"
 msgstr "Accès en écriture du Livre Fidus Writer"
+
+#~ msgid "Delete selected"
+#~ msgstr "Effacer la sélection"
+
+#~ msgid "Share selected"
+#~ msgstr "Partager la sélection"
+
+#~ msgid "Copy selected"
+#~ msgstr "Copier la sélection"
+
+#~ msgid "Export selected as Epub"
+#~ msgstr "Exporter la sélection en Epub"
+
+#~ msgid "Export selected as HTML"
+#~ msgstr "Exporter la sélection en HTML"
+
+#~ msgid "Export selected as LaTeX"
+#~ msgstr "Exporter la sélection en LaTex"
+
+#~ msgid "Export selected for Print/PDF"
+#~ msgstr "Exporter la sélection pour Impression/PDF"
+
+#~ msgid "Create New Book"
+#~ msgstr "Créer un Nouveau Livre"
+
+#~ msgid "Upload Fidus Book"
+#~ msgstr "Charger un FidusBook"
