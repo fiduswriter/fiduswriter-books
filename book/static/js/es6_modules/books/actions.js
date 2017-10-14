@@ -30,7 +30,7 @@ export class BookActions {
                 xhr.setRequestHeader("X-CSRFToken", csrfToken),
             success: (data, textStatus, jqXHR) => {
                 this.stopBookTable()
-                jQuery('#Book_' + id).detach()
+                jQuery(`#Book_${id}`).detach()
                 this.bookList.bookList = this.bookList.bookList.filter(book => book.id !== id)
                 this.startBookTable()
             },
@@ -92,7 +92,7 @@ export class BookActions {
         )
         let buttons = {}
         buttons[gettext('Delete')] = function () {
-            ids.forEach(id => that.deleteBook(id))
+            ids.forEach(id => that.deleteBook(parseInt(id)))
             jQuery(this).dialog("close")
             addAlert('success', gettext('The book(s) have been deleted'))
         }

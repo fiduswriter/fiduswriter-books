@@ -105,11 +105,25 @@ def get_book_js(request):
                     'title': chapter.text.title,
                     'contents': chapter.text.contents,
                     'part': chapter.part,
-                    'settings': chapter.text.settings,
-                    'metadata': chapter.text.metadata,
                     'owner': chapter.text.owner.id
                 })
             status = 200
+            serializer = PythonWithURLSerializer()
+            document_styles = serializer.serialize(
+                DocumentStyle.objects.all(),
+                use_natural_foreign_keys=True
+            )
+            response['document_styles'] = [
+                obj['fields'] for obj in document_styles
+            ]
+            cit_styles = serializer.serialize(
+                CitationStyle.objects.all()
+            )
+            response['citation_styles'] = [obj['fields'] for obj in cit_styles]
+            cit_locales = serializer.serialize(CitationLocale.objects.all())
+            response['citation_locales'] = [
+                obj['fields'] for obj in cit_locales
+            ]
 
     return JsonResponse(
         response,
@@ -348,12 +362,14 @@ def delete_js(request):
     status = 405
     if request.is_ajax() and request.method == 'POST':
         book_id = int(request.POST['id'])
-        book = Book.objects.get(pk=book_id, owner=request.user)
-        image = book.cover_image
-        book.delete()
-        if image and image.is_deletable():
-            image.delete()
-        status = 200
+        book = Book.objects.filter(pk=book_id, owner=request.user)
+        if len(book) > 0:
+            book = book[0]
+            image = book.cover_image
+            book.delete()
+            if image and image.is_deletable():
+                image.delete()
+            status = 200
     return JsonResponse(
         response,
         status=status

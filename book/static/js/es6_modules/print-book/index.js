@@ -37,8 +37,7 @@ export class PrintBook {
         }
         this.documentOwners = []
         this.printConfig = {
-            flowFromElement : document.getElementById('flow'),
-            enableFrontmatter : true,
+            enableFrontmatter: true,
             sectionStartSelector: 'div.part',
             sectionTitleSelector: 'h1',
             chapterStartSelector: 'div.chapter',
@@ -52,14 +51,21 @@ export class PrintBook {
         this.bindEvents()
     }
 
+    setDocumentStyle() {
+        let docStyle = this.documentStyles.find(
+            docStyle => docStyle.filename === this.book.settings.documentstyle
+        )
+        if (docStyle) {
+            let styleEl = document.createElement('style')
+            styleEl.innerHTML = docStyle.contents
+            document.head.appendChild(styleEl)
+        }
+    }
+
     setTheBook(book) {
         book.settings = JSON.parse(book.settings)
         book.metadata = JSON.parse(book.metadata)
         for (let i = 0; i < book.chapters.length; i++) {
-            book.chapters[i].metadata = JSON.parse(book.chapters[
-                i].metadata)
-            book.chapters[i].settings = JSON.parse(book.chapters[
-                i].settings)
             book.chapters[i].contents = JSON.parse(book.chapters[
                 i].contents)
             if (this.documentOwners.indexOf(book.chapters[i].owner)===-1) {
@@ -67,7 +73,7 @@ export class PrintBook {
             }
         }
         this.book = book
-        this.setDocumentStyle(this.book.settings.documentstyle)
+        this.setDocumentStyle()
 
         this.printConfig['pageHeight'] = this.pageSizes[this.book.settings.papersize].height
         this.printConfig['pageWidth'] = this.pageSizes[this.book.settings.papersize].width
@@ -87,8 +93,12 @@ export class PrintBook {
             crossDomain: false, // obviates need for sameOrigin test
             beforeSend: (xhr, settings) =>
                 xhr.setRequestHeader("X-CSRFToken", csrfToken),
-            success: (response, textStatus, jqXHR) =>
-                this.setTheBook(response.book),
+            success: (response, textStatus, jqXHR) => {
+                this.citationStyles = response.citation_styles
+                this.citationLocales = response.citation_locales
+                this.documentStyles = response.document_styles
+                this.setTheBook(response.book)
+            },
             error: (jqXHR, textStatus, errorThrown) =>
                 addAlert('error', jqXHR.responseText),
             complete: () => deactivateWait()
@@ -96,8 +106,7 @@ export class PrintBook {
     }
 
     fillPrintPage() {
-        jQuery(document.body).addClass(this.book.settings.documentstyle)
-        jQuery('#book')[0].outerHTML = bookPrintTemplate({
+        document.getElementById('book').outerHTML = bookPrintTemplate({
             book: this.book,
             docSchema
         })
@@ -106,6 +115,8 @@ export class PrintBook {
             document.body,
             this.book.settings.citationstyle,
             this.bibDB,
+            this.citationStyles,
+            this.citationLocales,
             true
         )
         this.citRenderer.init().then(
@@ -133,6 +144,8 @@ export class PrintBook {
         this.printConfig['frontmatterContents'] = bookPrintStartTemplate(
             {book: this.book}
         )
+        this.printConfig['flowFromElement'] = document.getElementById('flow')
+        this.printConfig['flowToElement'] = document.getElementById('flow')
 
         let paginator = new PaginateForPrint(this.printConfig)
         paginator.initiate()
@@ -140,19 +153,6 @@ export class PrintBook {
         jQuery('head title').html(jQuery('.article-title').text())
 
     }
-
-    setDocumentStyle() {
-        let theValue = this.book.settings.documentstyle
-        let documentStyleLink = document.getElementById('document-style-link'),
-            newDocumentStyleLink = document.createElement('link')
-        newDocumentStyleLink.setAttribute("rel", "stylesheet")
-        newDocumentStyleLink.setAttribute("type", "text/css")
-        newDocumentStyleLink.setAttribute("id", "document-style-link")
-        newDocumentStyleLink.setAttribute("href", window.staticUrl+'css/document/'+theValue+'.css')
-
-        documentStyleLink.parentElement.replaceChild(newDocumentStyleLink, documentStyleLink)
-    }
-
 
     bindEvents() {
         jQuery(document).ready(() => {
