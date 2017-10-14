@@ -401,18 +401,15 @@ export class BookActions {
 
         jQuery(document).on('click', '#add-chapter', () => {
             jQuery('#book-document-list td.checked').each(function () {
-                let documentId = parseInt(jQuery(this).attr(
-                    'data-id')),
-                    lastChapterNumber = Math.max(
-                        book.chapters.map(chapter => chapter.number)
-                    )
-                if (isNaN(lastChapterNumber)) {
-                    lastChapterNumber = 0
-                }
+                let documentId = parseInt(jQuery(this).attr('data-id')),
+                    chapNums = book.chapters.map(chapter => chapter.number),
+                    number = chapNums.length ?
+                        Math.max.apply(Math, chapNums) + 1:
+                        1
                 book.chapters.push({
                     text: documentId,
                     title: jQuery.trim(this.textContent),
-                    number: lastChapterNumber + 1,
+                    number,
                     part: ''
                 })
             })

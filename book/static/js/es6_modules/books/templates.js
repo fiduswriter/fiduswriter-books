@@ -483,10 +483,10 @@ export let bookChapterListTemplate = ({book, documentList}) => {
                 }
                 ${
                     index + 1 === array.length ?
+                    '<td width="10"></td>' :
                     `<td width="10" class="book-sort-down" data-id="${chapter.text}">
-                        <i class="fa fa-sort-dsc fw-link-text"></i>
-                    </td>` :
-                    '<td width="10"></td>'
+                        <i class="fa fa-sort-desc"></i>
+                    </td>`
                 }
                 <td width="50" align="center">
                     <span class="delete-chapter fw-inline" data-id="${chapter.text}">
