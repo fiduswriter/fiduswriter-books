@@ -5,8 +5,6 @@ import {bookListTemplate,
   } from "./templates"
 import {ImageDB} from "../images/database"
 import {ImageSelectionDialog} from "../images/selection-dialog"
-import {defaultDocumentStyle, documentStyleList} from "../style/documentstyle-list"
-import {defaultCitationStyle, citationDefinitions} from "../style/citation-definitions"
 import {deactivateWait, addAlert, csrfToken} from "../common"
 
 
@@ -310,8 +308,8 @@ export class BookActions {
                     keywords: ''
                 },
                 settings: {
-                    citationstyle: defaultCitationStyle,
-                    documentstyle: defaultDocumentStyle,
+                    citationstyle: this.bookList.styles.citation_styles[0],
+                    documentstyle: this.bookList.styles.document_styles[0],
                     papersize: 'octavo'
                 }
             }
@@ -334,8 +332,8 @@ export class BookActions {
             dialogHeader,
             book,
             documentList: this.bookList.documentList,
-            citationDefinitions,
-            documentStyleList,
+            citationDefinitions: this.bookList.styles.citation_styles,
+            documentStyleList: this.bookList.styles.document_styles,
             imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
         })
         let that = this
