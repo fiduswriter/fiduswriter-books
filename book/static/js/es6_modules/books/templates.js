@@ -171,13 +171,13 @@ let bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
                 }
         >
             ${
-                Object.entries(citationDefinitions.styles).map(([key, citationstyle]) =>
+                Object.entries(citationDefinitions).map(([key, citationstyle]) =>
                     `<option value="${key}" ${
                         key === book.settings.citationstyle ?
                         'selected' :
                         ''
                     }>
-                        ${escapeText(citationstyle.name)}
+                        ${escapeText(citationstyle.title)}
                     </option>`
                 ).join('')
             }
