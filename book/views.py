@@ -232,7 +232,8 @@ def get_booklist_js(request):
     )
 
 
-def add_chapters(book, chapters, user):
+def set_chapters(book, chapters, user):
+    book.chapter_set.all().delete()
     for chapter in chapters:
         new_chapter = Chapter(
             book=book,
@@ -348,7 +349,7 @@ def save_js(request):
         response['added'] = date_obj.strftime(date_format)
         date_obj = dateutil.parser.parse(str(book.updated))
         response['updated'] = date_obj.strftime(date_format)
-        add_chapters(
+        set_chapters(
             book, chapters, request.user)
     return JsonResponse(
         response,
