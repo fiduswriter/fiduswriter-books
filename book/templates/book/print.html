@@ -8,17 +8,12 @@
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/libs/katex/katex.min.css" />
         <script type="text/javascript" src="/jsi18n/"></script>
         <!-- jQuery -->
-        <script type="text/javascript" src="{{ JQUERY_URL }}"></script>
+        <script type="text/javascript" src="{% static "js/libs/jquery.min.js" %}"></script>
         <!-- JS error handling -->
         <script type="text/javascript" src="{% url 'js-error-handler-js' %}"></script>
-    {% compress js %}
-            <script type="text/javascript">
-                var staticUrl = '{{ STATIC_URL }}';
-            </script>
-    {% endcompress %}
 
     <!-- Moving of footnotes-->
-    <script type="text/javascript"  src="{{ STATIC_URL }}js/print-book.es5.js"></script>
+    <script type="text/javascript"  src="{{ STATIC_URL }}js/print-book.mjs"></script>
 
 </head>
 <body class="tex2jax_ignore">
