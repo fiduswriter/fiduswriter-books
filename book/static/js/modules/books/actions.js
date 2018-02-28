@@ -4,7 +4,7 @@ import {bookListTemplate,
     bookEpubDataCoverTemplate
   } from "./templates"
 import {ImageDB} from "../images/database"
-import {ImageSelectionDialog} from "../images/selection-dialog"
+import {ImageSelectionDialog} from "../images/selection_dialog"
 import {deactivateWait, addAlert, csrfToken} from "../common"
 
 

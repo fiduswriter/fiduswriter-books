@@ -1,22 +1,22 @@
 import {katexRender} from "../../../katex"
+import {DOMSerializer} from "prosemirror-model"
+import download from "downloadjs"
 
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
   epubBookCopyrightTemplate} from "./templates"
-import {katexOpfIncludes} from "../../../katex/opf-includes"
+import {katexOpfIncludes} from "../../../katex/opf_includes"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
   containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
 import {docSchema} from "../../../schema/document"
-import {removeHidden} from "../../../exporter/tools/doc-contents"
+import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {findImages} from "../../../exporter/tools/html"
 import {createSlug} from "../../../exporter/tools/file"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
-import download from "downloadjs"
-import {DOMSerializer} from "prosemirror-model"
 
 
 export class EpubBookExporter extends BaseEpubExporter {
