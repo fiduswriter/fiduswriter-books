@@ -289,7 +289,7 @@ export class EpubBookExporter extends BaseEpubExporter {
         if (this.math) {
             includeZips.push({
                 'directory': 'EPUB',
-                'url': `${$StaticUrls.base$}zip/katex-style.zip`
+                'url': `${$StaticUrls.base$}zip/katex-style.zip${$StaticUrls.transpile.version$}`
             })
         }
 
