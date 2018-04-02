@@ -1,5 +1,5 @@
 import {bookCollaboratorsTemplate, bookAccessRightOverviewTemplate} from "./templates"
-import {addDropdownBox, setCheckableLabel, addAlert, csrfToken, cancelPromise} from "../../common"
+import {openDropdownBox, setCheckableLabel, addAlert, csrfToken, cancelPromise, Dialog, postJson, findTarget} from "../../common"
 
 /**
 * Helper functions to deal with the book access rights dialog.
@@ -13,10 +13,8 @@ export class BookAccessRightsDialog {
       }
 
       init() {
-          let dialogHeader = gettext('Share your book with others')
-          let collabObject = {}
 
-          let len = this.accessRights.length
+          let collabObject = {}
 
           this.accessRights.forEach(right => {
               if (this.bookIds.includes(right.book_id)) {
@@ -38,128 +36,116 @@ export class BookAccessRightsDialog {
               collab => collab.count === this.bookIds.length
           )
 
-          let dialogBody = bookAccessRightOverviewTemplate({
-              dialogHeader,
-              contacts: this.teamMembers,
-              collaborators
+          let buttons = []
+          let p = new Promise(resolve => {
+              buttons.push({
+                  text: gettext('Submit'),
+                  classes: "fw-dark",
+                  click: () => {
+                      let collaborators = [], rights = []
+                      document.querySelectorAll('#share-member .collaborator-tr').forEach(el => {
+                          collaborators.push(el.dataset.id)
+                          rights.push(el.dataset.right)
+                      })
+                      this.dialog.close()
+                      resolve({bookIds: this.bookIds, collaborators, rights})
+                  }
+              })
+
+              buttons.push({
+                  type: 'close',
+                  click: () => {
+                      this.dialog.close()
+                      resolve(cancelPromise())
+                  }
+              })
           })
-          jQuery('body').append(dialogBody)
-          let diaButtons = {}
-          let that = this
-          return new Promise(resolve => {
-              diaButtons[gettext('Cancel')] = function () {
-                  jQuery(this).dialog("close")
-                  resolve(cancelPromise())
-              }
-              diaButtons[gettext('Submit')] = function () {
-                  //apply the current state to server
-                  let collaborators = [],
-                      rights = []
-                  jQuery('#share-member .collaborator-tr').each(function () {
-                      collaborators[collaborators.length] = jQuery(this).attr(
-                          'data-id')
-                      rights[rights.length] = jQuery(this).attr('data-right')
-                  })
-                  jQuery(this).dialog('close')
-                  resolve({bookIds: that.bookIds, collaborators, rights})
-              }
-              jQuery('#access-rights-dialog').dialog({
-                  draggable: false,
-                  resizable: false,
-                  top: 10,
-                  width: 820,
-                  height: 540,
-                  modal: true,
-                  buttons: diaButtons,
-                  create: function () {
-                      let theDialog = jQuery(this).closest(".ui-dialog")
-                      theDialog.find(".ui-button:first-child").addClass(
-                          "fw-button fw-dark")
-                      theDialog.find(".ui-button:last").addClass(
-                          "fw-button fw-orange")
-                  },
-                  close: () =>
-                      jQuery('#access-rights-dialog').dialog('destroy').remove()
+
+          this.dialog = new Dialog({
+              width: 820,
+              height: 400,
+              id: 'access-rights-dialog',
+              title: gettext('Share your book with others'),
+              body: bookAccessRightOverviewTemplate({
+                  contacts: this.teamMembers,
+                  collaborators
+              }),
+              buttons
+          })
+          this.dialog.open()
+
+          this.dialog.dialogEl.getElementById('add-share-member').bind('click', () => {
+              let collaborators = []
+              document.querySelectorAll('#my-contacts .fw-checkable.checked').forEach(el => {
+                  let memberId = el.dataset.id
+                  let collaboratorEl = document.getElementById(`collaborator-${memberId}`)
+                  if (!collaboratorEl) {
+                      collaborators.push({
+                          user_id: memberId,
+                          user_name: el.dataset.name,
+                          avatar: el.dataset.avatar,
+                          rights: 'read'
+                      })
+                  } else if ('delete' === collaboratorEl.dataset.right) {
+                      collaboratorEl.classList.remove('delete')
+                      collaboratorEl.classList.add('read')
+                      collaboratorEl.dataset.right = 'read'
+                  }
               })
-              jQuery('.fw-checkable').bind('click', function () {
-                  setCheckableLabel(jQuery(this))
-              })
-              jQuery('#add-share-member').bind('click', () => {
-                  let selectedMembers = jQuery(
-                      '#my-contacts .fw-checkable.checked')
-                  let collaborators = []
-                  selectedMembers.each(function () {
-                      let memberId = jQuery(this).attr('data-id')
-                      let collaborator = jQuery('#collaborator-' + memberId)
-                      if (0 === collaborator.length) {
-                          collaborators.push({
-                              'user_id': memberId,
-                              'user_name': jQuery(this).attr('data-name'),
-                              'avatar': jQuery(this).attr('data-avatar'),
-                              'rights': 'read'
-                          })
-                      } else if ('delete' == collaborator.attr('data-right')) {
-                          collaborator.removeClass('delete').addClass('read').attr(
-                              'data-right', 'read')
-                      }
-                  })
-                  jQuery('#my-contacts .checkable-label.checked').removeClass(
-                      'checked')
-                  jQuery('#share-member table tbody').append(bookCollaboratorsTemplate({
-                      collaborators
-                  }))
-                  this.collaboratorFunctionsEvent()
-              })
-              this.collaboratorFunctionsEvent()
-          }).then(
-              ({bookIds, collaborators, rights}) =>
-                  this.submitAccessRight({bookIds, collaborators, rights})
+
+              document.querySelectorAll('#my-contacts .checkable-label.checked').forEach(el => el.classList.remove('checked'))
+              document.querySelector('#share-member table tbody').insertAdjacentHTML(
+                  'beforeend',
+                  bookCollaboratorsTemplate({collaborators})
+              )
+
+          })
+
+          this.dialog.dialogEl.addEventListener('click', event => {
+              let el = {}, bookId
+                switch (true) {
+                    case findTarget(event, '.fw-checkable', el):
+                        setCheckableLabel(el.target)
+                        break
+                    case findTarget(event, '.edit-right', el):
+                        let box = el.target.parentElement.querySelector('.fw-pulldown')
+                        if(!box.clientWidth) {
+                            openDropdownBox(box)
+                        }
+                        break
+                    case findTarget(event, '.edit-right-wrapper .fw-pulldown-item, .delete-collaborator', el):
+                        let newRight = el.target.dataset.right
+                        let colRow = el.target.closest('.collaborator-tr')
+                        colRow.dataset.right = newRight
+                        colRow.querySelector('.icon-access-right').setAttribute('class', `icon-access-right icon-access-${newRight}`)
+                        break
+                    default:
+                        break
+                }
+
+          })
+
+          return p.then(
+              ({bookIds, collaborators, rights}) => this.submitAccessRight({bookIds, collaborators, rights})
           )
       }
 
-
-      collaboratorFunctionsEvent() {
-          jQuery('.edit-right').unbind('click')
-          jQuery('.edit-right').each(function () {
-              addDropdownBox(jQuery(this), jQuery(this).siblings('.fw-pulldown'))
-          })
-          let spans = jQuery(
-              '.edit-right-wrapper .fw-pulldown-item, .delete-collaborator')
-          spans.unbind('mousedown')
-          spans.bind('mousedown', function () {
-              let newRight = jQuery(this).attr('data-right')
-              let colRow = jQuery(this).closest('.collaborator-tr')
-              colRow.attr('data-right', newRight)
-              colRow.find('.icon-access-right').attr('class',
-                  'icon-access-right icon-access-' + newRight)
-          })
-      }
-
       submitAccessRight({bookIds, collaborators, rights}) {
-          let postData = {
-              'books[]': bookIds,
-              'collaborators[]': collaborators,
-              'rights[]': rights
-          }
-          return new Promise((resolve, reject) => {
-              jQuery.ajax({
-                  url: '/book/accessright/save/',
-                  data: postData,
-                  type: 'POST',
-                  dataType: 'json',
-                  crossDomain: false, // obviates need for sameOrigin test
-                  beforeSend: (xhr, settings) =>
-                      xhr.setRequestHeader("X-CSRFToken", csrfToken),
-                  success: response => {
-                      addAlert('success', gettext('Access rights have been saved'))
-                      resolve(response.access_rights)
-                  },
-                  error: (jqXHR, textStatus, errorThrown) => {
-                      console.error(jqXHR.responseText)
-                      reject()
-                  }
-
-              })
+          return postJson(
+              '/book/accessright/save/',
+              {
+                  'books[]': bookIds,
+                  'collaborators[]': collaborators,
+                  'rights[]': rights
+              }
+          ).catch(
+              error => {
+                  addAlert('error', gettext('Cannot save access rights.'))
+                  throw(error)
+              }
+          ).then(json => {
+              addAlert('success', gettext('Access rights have been saved'))
+              return json.access_rights
           })
 
       }

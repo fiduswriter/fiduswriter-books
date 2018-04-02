@@ -14,35 +14,13 @@
 
     {% endcompress %}
 
-    <!-- jQuery tablesorter -->
-    <script type="text/javascript" src="{% static "js/libs/jquery.dataTables.min.js" %}"></script>
-    <!-- Dropkick JS -->
-    <link type="text/css" rel="stylesheet" href="{% static "css/libs/dropkick.css" %}" />
     <link type="text/css" rel="stylesheet" href="{% static "css/fw_modules/dropkick.css" %}" />
-    <script type="text/javascript" src="{% static "js/libs/dropkick.min.js" %}"></script>
 
     <!-- File export functions -->
-    <script type="text/javascript" src="{% static "js/booklist.mjs" %}"></script>
+    <script type="text/javascript" src="{% static "js/book_overview.mjs" %}"></script>
 
 {% endblock %}
 
 {% block contents %}
     <ul id="fw-overview-menu"></ul>
-    <div class="fw-table-wrapper">
-        <table id="book-table" class="tablesorter fw-document-table">
-            <thead class="fw-document-table-header">
-                <tr>
-                    <td width="20"></td>
-                    <th width="225">{% trans "Title" %}</th>
-                    <th width="115">{% trans "Created" %}</th>
-                    <th width="115">{% trans "Last changed" %}</th>
-                    <th width="170">{% trans "Owner" %}</th>
-                    <td width="60" align="center">{% trans "Rights" %}</td>
-                    <td width="40" align="center">{% trans "Delete" %}</td>
-                </tr>
-            </thead>
-            <tbody class="fw-document-table-body fw-large">
-            </tbody>
-        </table>
-    </div>
 {% endblock %}

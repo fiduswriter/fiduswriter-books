@@ -1,63 +1,5 @@
 import {escapeText} from "../common"
 
-/** A template for the list of books */
-export let bookListTemplate = ({bookList, user}) =>
-    Object.values(bookList).map(book =>
-        `<tr id="Book_${book.id}" ${
-            user.id === book.owner ?
-            'class="owned-by-user"' :
-            ''
-        }>
-            <td width="20">
-                <span class="fw-inline">
-                    <input type="checkbox" class="entry-select"
-                            data-id="${book.id}"
-                            data-owner="${book.owner}"/>
-               </span>
-            </td>
-            <td width="280">
-                <span class="fw-document-table-title fw-inline">
-                    <i class="fa fa-book"></i>
-                    <span class="book-title fw-link-text fw-searchable"
-                            data-id="${book.id}">
-                        ${
-                            book.title.length ?
-                            escapeText(book.title) :
-                            gettext('Untitled')
-                        }
-                    </span>
-                </span>
-            </td>
-            <td width="150">
-                <span class="fw-inline">${book.added}</span>
-            </td>
-            <td width="140">
-                <span class="fw-inline">${book.updated}</span>
-            </td>
-            <td width="210">
-                <span>
-                    <img class="fw-avatar" src="${book.owner_avatar}" />
-                </span>
-                <span class="fw-inline fw-searchable">${escapeText(book.owner_name)}</span>
-            </td>
-            <td width="80" align="center">
-                <span class="rights fw-inline" data-id="<%- aBook.id %>">
-                    <i data-id="${book.id}"
-                            class="icon-access-right icon-access-${book.rights}"></i>
-                </span>
-            </td>
-            <td width="40" align="center">
-                <span class="delete-book fw-inline fw-link-text"
-                        data-id="${book.id}" data-title="${escapeText(book.title)}">
-                    ${
-                        user.id === book.owner ?
-                        '<i class="fa fa-trash-o"></i>' :
-                        ''
-                    }
-               </span>
-           </td>
-       </tr>`
-    ).join('')
 
 
 /** A template for the basic info book template pane */
@@ -162,7 +104,7 @@ let bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
             <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
         </th>
         <td>
-        <select class="entryForm dk" name="book-settings-citationstyle"
+        <select class="entryForm" name="book-settings-citationstyle"
                 id="book-settings-citationstyle"
                 ${
                     book.rights === 'read' ?
@@ -309,48 +251,48 @@ export let bookDialogTemplate = ({
     documentList
 }) =>
     `<div id="book-dialog" title="${dialogHeader}">
-        <div id="bookoptionsTab">
+        <div id="bookoptions-tab">
             <ul>
-                <li>
+                <li class="tab-link">
                     <a href="#optionTab1" class="fw-button fw-large">
                         ${gettext('Basic info')}
                     </a>
                 </li>
-                <li>
+                <li class="tab-link">
                     <a href="#optionTab2" class="fw-button fw-large">
                         ${gettext('Chapters')}
                     </a>
                 </li>
-                <li>
+                <li class="tab-link">
                     <a href="#optionTab3" class="fw-button fw-large">
                         ${gettext('Bibliography')}
                     </a>
                 </li>
-                <li>
+                <li class="tab-link">
                     <a href="#optionTab4" class="fw-button fw-large">
                         ${gettext('Epub')}
                     </a>
                 </li>
-                <li>
+                <li class="tab-link">
                     <a href="#optionTab5" class="fw-button fw-large">
                         ${gettext('Print/PDF')}
                     </a>
                 </li>
             </ul>
-            <div id="optionTab1">
+            <div class="tab-content ui-tabs-panel" id="optionTab1">
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookBasicInfoTemplate({book})}
                     </tbody>
                 </table>
             </div>
-            <div id="optionTab2">
+            <div class="tab-content ui-tabs-panel" id="optionTab2">
                 ${bookDialogChaptersTemplate({
                     book,
                     documentList,
                 })}
             </div>
-            <div id="optionTab3">
+            <div class="tab-content ui-tabs-panel" id="optionTab3">
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookBibliographyDataTemplate({
@@ -360,7 +302,7 @@ export let bookDialogTemplate = ({
                     </tbody>
                 </table>
             </div>
-            <div id="optionTab4">
+            <div class="tab-content ui-tabs-panel" id="optionTab4">
                 <table class="fw-dialog-table fw-media-uploader">
                     <tbody>
                         ${bookEpubDataTemplate({
@@ -370,7 +312,7 @@ export let bookDialogTemplate = ({
                     </tbody>
                 </table>
             </div>
-            <div id="optionTab5">
+            <div class="tab-content ui-tabs-panel" id="optionTab5">
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookPrintDataTemplate({
@@ -522,21 +464,19 @@ export let bookDocumentListTemplate = ({documentList, book}) =>
     ).join('')
 
 /** A template for the chapter dialog for books */
-export let bookChapterDialogTemplate = ({dialogHeader, chapter}) =>
-    `<div id="book-chapter-dialog" title="${dialogHeader}">
-        <table class="fw-dialog-table">
-            <tr>
-                <th>
-                    <h4 title="${
-                        gettext('If this chapter starts a part of the book, specify the title of that part here')
-                    }">
-                        ${gettext('Book part title')}
-                    </h4>
-                </th>
-                <td>
-                    <input type="text" id="book-chapter-part"
-                            value="${escapeText(chapter.part)}">
-                </td>
-           </tr>
-       </table>
-    </div>`
+export let bookChapterDialogTemplate = ({chapter}) =>
+    `<table class="fw-dialog-table">
+        <tr>
+            <th>
+                <h4 title="${
+                    gettext('If this chapter starts a part of the book, specify the title of that part here')
+                }">
+                    ${gettext('Book part title')}
+                </h4>
+            </th>
+            <td>
+                <input type="text" id="book-chapter-part"
+                        value="${escapeText(chapter.part)}">
+            </td>
+       </tr>
+       </table>`
