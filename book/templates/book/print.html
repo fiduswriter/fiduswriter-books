@@ -1,15 +1,16 @@
 {% load i18n %}
 {% load compress %}
+{% load transpile %}
 <!DOCTYPE html>
 <html>
 <head>
 <title></title>
     <!-- KaTeX -->
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/libs/katex/katex.min.css" />
+    <link type="text/css" rel="stylesheet" href="{% static "css/libs/katex/katex.min.css" %}" />
     <script type="text/javascript" src="/jsi18n/"></script>
     <!-- JS error handling -->
     <script type="text/javascript" src="{% url 'js-error-handler-js' %}"></script>
-    <script type="text/javascript"  src="{{ STATIC_URL }}js/print_book.mjs"></script>
+    <script type="text/javascript"  src="{% static "js/print_book.mjs" %}"></script>
 
 </head>
 <body class="tex2jax_ignore">

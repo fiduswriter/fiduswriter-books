@@ -1,7 +1,9 @@
+import DataTable from "vanilla-datatables"
+
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, DataTable, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert} from "../common"
+import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert} from "../common"
 import {SiteMenu} from "../menu"
 import {menuModel} from "./menu"
 
@@ -100,7 +102,7 @@ export class BookOverview {
                 <img class="fw-avatar" src="${book.owner_avatar}" />
             </span>
             <span class="fw-inline fw-searchable">${escapeText(book.owner_name)}</span>`,
-            `<span class="rights fw-inline" data-id="${book.id}">
+            `<span class="${this.user.id === book.owner ? 'owned-by-user ' : ''}rights fw-inline" data-id="${book.id}">
                 <i data-id="${book.id}" class="icon-access-right icon-access-${book.rights}"></i>
             </span>`,
             `<span class="delete-book fw-inline fw-link-text" data-id="${book.id}" data-title="${escapeText(book.title)}">
@@ -154,6 +156,17 @@ export class BookOverview {
         )
     }
 
+    unpackBooks(booksFromServer) {
+        // metadata and settings are stored as a json stirng in a text field on
+        // the server, so they need to be unpacked before being available.
+        return booksFromServer.map(book => {
+            let uBook = Object.assign({}, book)
+            uBook.metadata = JSON.parse(book.metadata)
+            uBook.settings = JSON.parse(book.settings)
+            return uBook
+        })
+    }
+
     bind() {
         whenReady().then(() => this.getBookListData())
         document.addEventListener('click', event => {
@@ -163,7 +176,7 @@ export class BookOverview {
                     bookId = parseInt(el.target.dataset.id)
                     this.mod.actions.deleteBookDialog([bookId])
                     break
-                case findTarget(event, '.owned-by-user .rights', el):
+                case findTarget(event, '.owned-by-user.rights', el):
                     bookId = parseInt(el.target.dataset.id)
                     let accessDialog = new BookAccessRightsDialog(
                         [bookId],

@@ -252,7 +252,7 @@ export let bookDialogTemplate = ({
 }) =>
     `<div id="book-dialog" title="${dialogHeader}">
         <div id="bookoptions-tab">
-            <ul>
+            <ul class="ui-tabs-nav">
                 <li class="tab-link">
                     <a href="#optionTab1" class="fw-button fw-large">
                         ${gettext('Basic info')}
@@ -355,11 +355,11 @@ let bookDialogChaptersTemplate = ({book, documentList}) =>
         <table class="fw-document-table">
             <thead class="fw-document-table-header">
                 <tr>
-                    <th width="242">${gettext("Title")}</th>
-                    <th width="30">${gettext("Sort")}</th>
+                    <th colspan="2">${gettext("Title")}</th>
+                    <th colspan="2">${gettext("Sort")}</th>
                     ${
                         book.rights === "write" ?
-                        `<th width="50">${gettext("Delete")}</th>` :
+                        `<th>&emsp;</th>` :
                         ''
                     }
                 </tr>

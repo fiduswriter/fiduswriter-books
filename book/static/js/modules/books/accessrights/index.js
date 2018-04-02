@@ -74,7 +74,7 @@ export class BookAccessRightsDialog {
           })
           this.dialog.open()
 
-          this.dialog.dialogEl.getElementById('add-share-member').bind('click', () => {
+          this.dialog.dialogEl.querySelector('#add-share-member').addEventListener('click', () => {
               let collaborators = []
               document.querySelectorAll('#my-contacts .fw-checkable.checked').forEach(el => {
                   let memberId = el.dataset.id
@@ -134,9 +134,9 @@ export class BookAccessRightsDialog {
           return postJson(
               '/book/accessright/save/',
               {
-                  'books[]': bookIds,
-                  'collaborators[]': collaborators,
-                  'rights[]': rights
+                  books: bookIds,
+                  collaborators,
+                  rights
               }
           ).catch(
               error => {

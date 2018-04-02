@@ -151,8 +151,7 @@ export class PrintBook {
 
         let paginator = new PaginateForPrint(this.printConfig)
         paginator.initiate()
-        document.getElementById("pagination-contents").classList.add('user-contents')
-        document.querySelector('head title').innerHTML = document.querySelector('.article-title').innerText
+        document.querySelectorAll(".pagination-contents").forEach(el => el.classList.add('user-contents'))
 
     }
 

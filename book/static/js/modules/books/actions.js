@@ -64,17 +64,6 @@ export class BookActions {
         dialog.open()
     }
 
-    unpackBooks(booksFromServer) {
-        // metadata and settings are stored as a json stirng in a text field on
-        // the server, so they need to be unpacked before being available.
-        return booksFromServer.map(book => {
-            let uBook = Object.assign({}, book)
-            uBook.metadata = JSON.parse(book.metadata)
-            uBook.settings = JSON.parse(book.settings)
-            return uBook
-        })
-    }
-
 
     editChapterDialog(chapter, book) {
         let doc = this.bookOverview.documentList.find(doc => doc.id === chapter.text),
@@ -94,7 +83,7 @@ export class BookActions {
                     document.getElementById('book-chapter-list').innerHTML =
                         bookChapterListTemplate({
                             book,
-                            documentList: this.bookList.documentList
+                            documentList: this.bookOverview.documentList
                         })
                     dialog.close()
                 }
@@ -141,6 +130,9 @@ export class BookActions {
                     )
                 }
                 this.bookOverview.bookList.push(book)
+                if (oldBook) {
+                    this.bookOverview.removeTableRows([oldBook.id])
+                }
                 this.bookOverview.addBookToTable(book)
             }
         )
@@ -224,7 +216,7 @@ export class BookActions {
         if (book.rights === 'write') {
             buttons.push({
                 text: gettext('Submit'),
-                classes: "Fw-dark",
+                classes: "fw-dark",
                 click: () => {
                     book.title = document.getElementById('book-title').value
                     book.metadata.author = document.getElementById('book-metadata-author').value
@@ -243,8 +235,8 @@ export class BookActions {
         }
 
         dialog = new Dialog({
-            width: 820,
-            height: 450,
+            width: 840,
+            height: 460,
             title,
             body,
             buttons
@@ -252,17 +244,17 @@ export class BookActions {
         dialog.open()
 
         // Hide all but first tab
-        this.dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-content').forEach((el, index) => {
+        dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-content').forEach((el, index) => {
             if (index) {
                 el.style.display = 'none'
             }
         })
 
         // Handle tab link clicking
-        this.dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-link a').forEach(el => el.addEventListener('click', event => {
+        dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-link a').forEach(el => el.addEventListener('click', event => {
             event.preventDefault()
             let link = el.getAttribute('href')
-            this.dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-content').forEach(el => {
+            dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-content').forEach(el => {
                 if (el.matches(link)) {
                     el.style.display = ''
                 } else {
@@ -293,7 +285,7 @@ export class BookActions {
                     document.getElementById('book-chapter-list').innerHTML =
                         bookChapterListTemplate({
                             book,
-                            documentList: this.bookList.documentList
+                            documentList: this.bookOverview.documentList
                         })
                     break
                 case findTarget(event, '.book-sort-down', el):
@@ -311,7 +303,7 @@ export class BookActions {
                     document.getElementById('book-chapter-list').innerHTML =
                         bookChapterListTemplate({
                             book,
-                            documentList: this.bookList.documentList
+                            documentList: this.bookOverview.documentList
                         })
                     break
                 case findTarget(event, '.delete-chapter', el):
@@ -330,11 +322,11 @@ export class BookActions {
 
                     document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
                         book,
-                        documentList: this.bookList.documentList
+                        documentList: this.bookOverview.documentList
                     })
 
                     document.getElementById('book-document-list').innerHTML = bookDocumentListTemplate({
-                        documentList: this.bookList.documentList,
+                        documentList: this.bookOverview.documentList,
                         book
                     })
                     break
@@ -407,15 +399,15 @@ export class BookActions {
             }
         })
 
-        dialog.dialogEl.getElementById('book-settings-citationstyle').addEventListener('change', event => {
+        dialog.dialogEl.querySelector('#book-settings-citationstyle').addEventListener('change', event => {
             book.settings.citationstyle = event.target.value
         })
 
-        dialog.dialogEl.getElementById('book-settings-documentstyle').addEventListener('change', event => {
+        dialog.dialogEl.querySelector('#book-settings-documentstyle').addEventListener('change', event => {
             book.settings.documentstyle = event.target.value
         })
 
-        dialog.dialogEl.getElementById('book-settings-papersize').addEventListener('change', event => {
+        dialog.dialogEl.querySelector('#book-settings-papersize').addEventListener('change', event => {
             book.settings.papersize = event.target.value
         })
     }
