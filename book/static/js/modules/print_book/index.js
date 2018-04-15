@@ -97,7 +97,7 @@ export class PrintBook {
                 throw(error)
             }
         ).then(
-            json => {
+            ({json}) => {
                 deactivateWait()
                 this.citationStyles = json.citation_styles
                 this.citationLocales = json.citation_locales

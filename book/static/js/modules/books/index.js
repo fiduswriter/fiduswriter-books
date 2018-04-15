@@ -142,13 +142,13 @@ export class BookOverview {
                 throw(error)
             }
         ).then(
-            response => {
-                this.bookList = this.unpackBooks(response.books)
-                this.documentList = response.documents
-                this.teamMembers = response.team_members
-                this.accessRights = response.access_rights
-                this.user = response.user
-                this.styles = response.styles
+            ({json}) => {
+                this.bookList = this.unpackBooks(json.books)
+                this.documentList = json.documents
+                this.teamMembers = json.team_members
+                this.accessRights = json.access_rights
+                this.user = json.user
+                this.styles = json.styles
                 this.initTable()
             }
         ).then(

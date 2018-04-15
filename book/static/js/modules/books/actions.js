@@ -5,7 +5,7 @@ import {bookListTemplate,
   } from "./templates"
 import {ImageDB} from "../images/database"
 import {ImageSelectionDialog} from "../images/selection_dialog"
-import {deactivateWait, addAlert, csrfToken, postJson, post, postJsonStatus, Dialog, findTarget} from "../common"
+import {deactivateWait, addAlert, csrfToken, postJson, post, Dialog, findTarget} from "../common"
 
 
 export class BookActions {
@@ -109,7 +109,7 @@ export class BookActions {
         delete bookData.cover_image_data
 
 
-        return postJsonStatus(
+        return postJson(
             '/book/save/',
             {book: JSON.stringify(bookData)}
         ).catch(
@@ -154,7 +154,7 @@ export class BookActions {
                 throw(error)
             }
         ).then(
-            json => {
+            ({json}) => {
                 book.id = json['new_book_id']
                 this.bookOverview.bookList.push(book)
                 this.bookOverview.addBookToTable(book)

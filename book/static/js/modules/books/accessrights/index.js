@@ -143,7 +143,7 @@ export class BookAccessRightsDialog {
                   addAlert('error', gettext('Cannot save access rights.'))
                   throw(error)
               }
-          ).then(json => {
+          ).then(({json}) => {
               addAlert('success', gettext('Access rights have been saved'))
               return json.access_rights
           })
