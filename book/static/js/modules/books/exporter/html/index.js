@@ -45,9 +45,9 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             let docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
                 contents = serializer.serializeNode(schema.nodeFromJSON(docContents)),
-                equations = [].slice.call(contents.querySelectorAll('.equation')),
-                figureEquations = [].slice.call(contents.querySelectorAll('.figure-equation'))
-            if (equations.length > 0 || figureEquations.length > 0) {
+                equations = contents.querySelectorAll('.equation'),
+                figureEquations = contents.querySelectorAll('.figure-equation')
+            if (equations.length || figureEquations.length) {
                 this.math = true
             }
 

@@ -93,11 +93,11 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             contents = this.addFigureNumbers(contents)
 
-            let equations = [].slice.call(contents.querySelectorAll('.equation'))
+            let equations = contents.querySelectorAll('.equation')
 
-            let figureEquations = [].slice.call(contents.querySelectorAll('.figure-equation'))
+            let figureEquations = contents.querySelectorAll('.figure-equation')
 
-            if (equations.length > 0 || figureEquations.length > 0) {
+            if (equations.length || figureEquations.length) {
                 math = true
                 this.math = true
             }
