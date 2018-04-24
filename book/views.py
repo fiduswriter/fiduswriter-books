@@ -82,18 +82,18 @@ def get_book_js(request):
     if request.is_ajax() and request.method == 'POST':
         book_id = json.loads(request.POST['id'])
         book = Book.objects.filter(id=book_id).filter(
-            Q(owner=request.user) | Q(bookaccessright__user=request.user))
+            Q(owner=request.user) | Q(bookaccessright__user=request.user)
+        ).first()
         # TODO: Is it really enough to check if the number of chapters
         # owned by or with access rights by the current user is smaller
         # than the total number of chapters of a book?
-        if len(book) == 0 or len(
-            book[0].chapters.filter(
+        if book is None or len(
+            book.chapters.filter(
                 Q(owner=request.user) | Q(accessright__user=request.user)
             )
-        ) < len(book[0].chapters.all()):
+        ) < len(book.chapters.all()):
             response['error'] = 'insufficient rights'
         else:
-            book = book[0]
             response['book'] = {
                 'title': book.title,
                 'settings': book.settings,
@@ -363,9 +363,8 @@ def delete_js(request):
     status = 405
     if request.is_ajax() and request.method == 'POST':
         book_id = int(request.POST['id'])
-        book = Book.objects.filter(pk=book_id, owner=request.user)
-        if len(book) > 0:
-            book = book[0]
+        book = Book.objects.filter(pk=book_id, owner=request.user).first()
+        if book:
             image = book.cover_image
             book.delete()
             if image and image.is_deletable():
