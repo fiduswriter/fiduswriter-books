@@ -2,7 +2,7 @@ import {katexRender} from "../../../katex"
 import {getMissingChapterData, getImageAndBibDB, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {docSchema} from "../../../schema/document"
-import {removeHidden} from "../../../exporter/tools/doc-contents"
+import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
 import {createSlug} from "../../../exporter/tools/file"
 import {findImages} from "../../../exporter/tools/html"
@@ -45,9 +45,9 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             let docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
                 contents = serializer.serializeNode(schema.nodeFromJSON(docContents)),
-                equations = [].slice.call(contents.querySelectorAll('.equation')),
-                figureEquations = [].slice.call(contents.querySelectorAll('.figure-equation'))
-            if (equations.length > 0 || figureEquations.length > 0) {
+                equations = contents.querySelectorAll('.equation'),
+                figureEquations = contents.querySelectorAll('.figure-equation')
+            if (equations.length || figureEquations.length) {
                 this.math = true
             }
 
@@ -167,7 +167,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         if (this.math) {
             includeZips.push({
                 'directory': '',
-                'url': window.staticUrl + 'zip/katex-style.zip'
+                'url': `${$StaticUrls.base$}zip/katex-style.zip${$StaticUrls.transpile.version$}`
             })
         }
 

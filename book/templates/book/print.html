@@ -1,24 +1,16 @@
 {% load i18n %}
 {% load compress %}
+{% load transpile %}
 <!DOCTYPE html>
 <html>
 <head>
 <title></title>
-        <!-- KaTeX -->
-        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/libs/katex/katex.min.css" />
-        <script type="text/javascript" src="/jsi18n/"></script>
-        <!-- jQuery -->
-        <script type="text/javascript" src="{{ JQUERY_URL }}"></script>
-        <!-- JS error handling -->
-        <script type="text/javascript" src="{% url 'js-error-handler-js' %}"></script>
-    {% compress js %}
-            <script type="text/javascript">
-                var staticUrl = '{{ STATIC_URL }}';
-            </script>
-    {% endcompress %}
-
-    <!-- Moving of footnotes-->
-    <script type="text/javascript"  src="{{ STATIC_URL }}js/print-book.es5.js"></script>
+    <!-- KaTeX -->
+    <link type="text/css" rel="stylesheet" href="{% static "css/libs/katex/katex.min.css" %}" />
+    <script type="text/javascript" src="/jsi18n/"></script>
+    <!-- JS error handling -->
+    <script type="text/javascript" src="{% url 'js-error-handler-js' %}"></script>
+    <script type="text/javascript"  src="{% static "js/print_book.mjs" %}"></script>
 
 </head>
 <body class="tex2jax_ignore">

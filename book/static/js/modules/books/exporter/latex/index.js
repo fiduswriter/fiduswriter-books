@@ -1,11 +1,12 @@
+import {BibLatexExporter} from "biblatex-csl-converter"
+import download from "downloadjs"
+
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {LatexExporterConvert} from "../../../exporter/latex/convert"
 import {bookTexTemplate} from "./templates"
 import {createSlug} from "../../../exporter/tools/file"
-import {removeHidden} from "../../../exporter/tools/doc-contents"
-import {BibLatexExporter} from "biblatex-csl-converter"
+import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
-import download from "downloadjs"
 
 export class LatexBookExporter {
 

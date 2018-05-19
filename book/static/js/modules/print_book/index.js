@@ -1,9 +1,11 @@
+import {PaginateForPrint} from "paginate-for-print/dist/paginate-for-print"
+
 import {bookPrintStartTemplate, bookPrintTemplate} from "./templates"
 import {docSchema} from "../schema/document"
 import {RenderCitations} from "../citations/render"
 import {BibliographyDB} from "../bibliography/database"
-import {deactivateWait, addAlert, csrfToken} from "../common"
-import {PaginateForPrint} from "paginate-for-print/dist/paginate-for-print"
+import {deactivateWait, addAlert, csrfToken, whenReady, postJson} from "../common"
+
 /**
 * Helper functions for the book print page.
 */
@@ -85,24 +87,24 @@ export class PrintBook {
     }
 
     getBookData(id) {
-        jQuery.ajax({
-            url: '/book/book/',
-            data: {id},
-            type: 'POST',
-            dataType: 'json',
-            crossDomain: false, // obviates need for sameOrigin test
-            beforeSend: (xhr, settings) =>
-                xhr.setRequestHeader("X-CSRFToken", csrfToken),
-            success: (response, textStatus, jqXHR) => {
-                this.citationStyles = response.citation_styles
-                this.citationLocales = response.citation_locales
-                this.documentStyles = response.document_styles
-                this.setTheBook(response.book)
-            },
-            error: (jqXHR, textStatus, errorThrown) =>
-                addAlert('error', jqXHR.responseText),
-            complete: () => deactivateWait()
-        })
+        postJson(
+            '/book/book/',
+            {id}
+        ).catch(
+            error => {
+                deactivateWait()
+                addAlert('error', gettext('Cannot load book data.'))
+                throw(error)
+            }
+        ).then(
+            ({json}) => {
+                deactivateWait()
+                this.citationStyles = json.citation_styles
+                this.citationLocales = json.citation_locales
+                this.documentStyles = json.document_styles
+                this.setTheBook(json.book)
+            }
+        )
     }
 
     fillPrintPage() {
@@ -125,11 +127,11 @@ export class PrintBook {
     }
 
     fillPrintPageTwo() {
-        let bibliography = jQuery('#bibliography')
-        jQuery(bibliography).html(this.citRenderer.fm.bibHTML)
+        let bibliographyEl = document.getElementById('bibliography')
+        bibliographyEl.innerHTML = this.citRenderer.fm.bibHTML
 
-        if (jQuery(bibliography).text().trim().length===0) {
-            jQuery(bibliography).parent().remove()
+        if (bibliographyEl.innerText.trim().length===0) {
+            bibliographyEl.parentElement.parentElement.removeChild(bibliographyEl.parentElement)
         }
 
         // Move the bibliography header text into the HTML, to prevent it getting mangled by the pagination process.
@@ -149,16 +151,14 @@ export class PrintBook {
 
         let paginator = new PaginateForPrint(this.printConfig)
         paginator.initiate()
-        jQuery("#pagination-contents").addClass('user-contents')
-        jQuery('head title').html(jQuery('.article-title').text())
+        document.querySelectorAll(".pagination-contents").forEach(el => el.classList.add('user-contents'))
 
     }
 
     bindEvents() {
-        jQuery(document).ready(() => {
+        whenReady().then(() => {
             let pathnameParts = window.location.pathname.split('/'),
-                bookId = parseInt(pathnameParts[pathnameParts.length -
-                    2], 10)
+                bookId = parseInt(pathnameParts[pathnameParts.length - 2], 10)
 
             this.getBookData(bookId)
         })

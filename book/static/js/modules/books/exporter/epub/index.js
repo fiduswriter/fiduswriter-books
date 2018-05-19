@@ -1,22 +1,22 @@
 import {katexRender} from "../../../katex"
+import {DOMSerializer} from "prosemirror-model"
+import download from "downloadjs"
 
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
   epubBookCopyrightTemplate} from "./templates"
-import {katexOpfIncludes} from "../../../katex/opf-includes"
+import {katexOpfIncludes} from "../../../katex/opf_includes"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
   containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
 import {docSchema} from "../../../schema/document"
-import {removeHidden} from "../../../exporter/tools/doc-contents"
+import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {findImages} from "../../../exporter/tools/html"
 import {createSlug} from "../../../exporter/tools/file"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
-import download from "downloadjs"
-import {DOMSerializer} from "prosemirror-model"
 
 
 export class EpubBookExporter extends BaseEpubExporter {
@@ -93,11 +93,11 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             contents = this.addFigureNumbers(contents)
 
-            let equations = [].slice.call(contents.querySelectorAll('.equation'))
+            let equations = contents.querySelectorAll('.equation')
 
-            let figureEquations = [].slice.call(contents.querySelectorAll('.figure-equation'))
+            let figureEquations = contents.querySelectorAll('.figure-equation')
 
-            if (equations.length > 0 || figureEquations.length > 0) {
+            if (equations.length || figureEquations.length) {
                 math = true
                 this.math = true
             }
@@ -289,7 +289,7 @@ export class EpubBookExporter extends BaseEpubExporter {
         if (this.math) {
             includeZips.push({
                 'directory': 'EPUB',
-                'url': window.staticUrl + 'zip/katex-style.zip'
+                'url': `${$StaticUrls.base$}zip/katex-style.zip${$StaticUrls.transpile.version$}`
             })
         }
 
