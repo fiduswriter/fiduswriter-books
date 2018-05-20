@@ -1,3 +1,6 @@
+from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
+
 from django.db import models
 
 from document.models import Document
@@ -5,6 +8,7 @@ from usermedia.models import Image
 from django.contrib.auth.models import User
 
 
+@python_2_unicode_compatible
 class Book(models.Model):
     title = models.CharField(max_length=128)
     metadata = models.TextField(default='{}')
@@ -16,7 +20,7 @@ class Book(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -32,6 +36,7 @@ RIGHTS_CHOICES = (
 )
 
 
+@python_2_unicode_compatible
 class BookAccessRight(models.Model):
     book = models.ForeignKey(Book)
     user = models.ForeignKey(User)
@@ -43,6 +48,6 @@ class BookAccessRight(models.Model):
     class Meta:
         unique_together = (("book", "user"),)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.readable_name + \
             ' (' + self.rights + ') on ' + self.book.title
