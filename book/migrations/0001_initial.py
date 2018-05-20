@@ -19,8 +19,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=128)),
-                ('metadata', models.TextField(default=b'{}')),
-                ('settings', models.TextField(default=b'{}')),
+                ('metadata', models.TextField(default='{}')),
+                ('settings', models.TextField(default='{}')),
                 ('added', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now_add=True)),
             ],
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             name='BookAccessRight',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('rights', models.CharField(max_length=1, choices=[(b'r', b'read'), (b'w', b'read/write')])),
+                ('rights', models.CharField(max_length=1, choices=[('r', 'read'), ('w', 'read/write')])),
                 ('book', models.ForeignKey(to='book.Book')),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('number', models.IntegerField()),
-                ('part', models.CharField(default=b'', max_length=128, blank=True)),
+                ('part', models.CharField(default='', max_length=128, blank=True)),
                 ('book', models.ForeignKey(to='book.Book')),
                 ('text', models.ForeignKey(to='document.Document')),
             ],
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='book',
             name='chapters',
-            field=models.ManyToManyField(default=None, to=b'document.Document', null=True, through='book.Chapter', blank=True),
+            field=models.ManyToManyField(default=None, to='document.Document', null=True, through='book.Chapter', blank=True),
         ),
         migrations.AddField(
             model_name='book',
