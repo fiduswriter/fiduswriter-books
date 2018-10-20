@@ -16,7 +16,7 @@ export class BookActions {
     }
 
     deleteBook(id) {
-        let book = this.bookOverview.bookList.find(book => book.id === id)
+        const book = this.bookOverview.bookList.find(book => book.id === id)
         if (!book) {
             return
         }
@@ -38,8 +38,7 @@ export class BookActions {
     }
 
     deleteBookDialog(ids) {
-        let dialog
-        let buttons = [
+        const buttons = [
             {
                 text: gettext('Delete'),
                 classes: "fw-dark",
@@ -54,7 +53,7 @@ export class BookActions {
             }
         ]
 
-        dialog = new Dialog({
+        const dialog = new Dialog({
             title: gettext('Confirm deletion'),
             id: 'confirmdeletion',
             icon: 'exclamation-triangle',
@@ -66,15 +65,13 @@ export class BookActions {
 
 
     editChapterDialog(chapter, book) {
-        let doc = this.bookOverview.documentList.find(doc => doc.id === chapter.text),
-            docTitle = doc.title
+        const doc = this.bookOverview.documentList.find(doc => doc.id === chapter.text)
+        let docTitle = doc.title
         if (!docTitle.length) {
             docTitle = gettext('Untitled')
         }
 
-        let dialog
-
-        let buttons = [
+        const buttons = [
             {
                 text: gettext('Submit'),
                 classes: "fw-dark",
@@ -93,7 +90,7 @@ export class BookActions {
             }
         ]
 
-        dialog = new Dialog({
+        const dialog = new Dialog({
             title: `${gettext('Edit Chapter')}: ${chapter.number}. ${docTitle}`,
             body: bookChapterDialogTemplate({chapter}),
             width: 300,
@@ -105,7 +102,7 @@ export class BookActions {
 
     saveBook(book, oldBook = false) {
 
-        let bookData = Object.assign({}, book)
+        const bookData = Object.assign({}, book)
         delete bookData.cover_image_data
 
 
@@ -139,7 +136,7 @@ export class BookActions {
     }
 
     copyBook(oldBook) {
-        let book = Object.assign({}, oldBook)
+        const book = Object.assign({}, oldBook)
         book.is_owner = true
         book.owner_avatar = this.bookOverview.user.avatar
         book.owner_name = this.bookOverview.user.name
@@ -204,7 +201,7 @@ export class BookActions {
             title = gettext('Edit Book')
         }
 
-        let body = bookDialogTemplate({
+        const body = bookDialogTemplate({
             book,
             documentList: this.bookOverview.documentList,
             citationDefinitions: this.bookOverview.styles.citation_styles,
@@ -212,7 +209,7 @@ export class BookActions {
             imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
         })
 
-        let buttons = []
+        const buttons = []
         if (book.rights === 'write') {
             buttons.push({
                 text: gettext('Submit'),
@@ -253,7 +250,7 @@ export class BookActions {
         // Handle tab link clicking
         dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-link a').forEach(el => el.addEventListener('click', event => {
             event.preventDefault()
-            let link = el.getAttribute('href')
+            const link = el.getAttribute('href')
             dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-content').forEach(el => {
                 if (el.matches(link)) {
                     el.style.display = ''
@@ -268,7 +265,7 @@ export class BookActions {
 
     bindBookDialog(dialog, book, imageDB, bookImageDB) {
         dialog.dialogEl.addEventListener('click', event => {
-            let el = {}, chapterId, chapter
+            const el = {}, chapterId, chapter
             switch (true) {
                 case findTarget(event, '.book-sort-up', el):
                     chapterId = parseInt(el.target.dataset.id)
@@ -276,7 +273,7 @@ export class BookActions {
                         chapter => chapter.text === chapterId
                     )
 
-                    let higherChapter = book.chapters.find(
+                    const higherChapter = book.chapters.find(
                         bChapter => bChapter.number === (chapter.number - 1)
                     )
 
@@ -294,7 +291,7 @@ export class BookActions {
                         chapter => chapter.text === chapterId
                     )
 
-                    let lowerChapter = book.chapters.find(
+                    const lowerChapter = book.chapters.find(
                         bChapter => bChapter.number === (chapter.number + 1)
                     )
 
@@ -335,7 +332,7 @@ export class BookActions {
                     break
                 case findTarget(event, '#add-chapter', el):
                     document.querySelectorAll('#book-document-list td.checked').forEach(el =>{
-                        let documentId = parseInt(el.dataset.id),
+                        const documentId = parseInt(el.dataset.id),
                             chapNums = book.chapters.map(chapter => chapter.number),
                             number = chapNums.length ?
                                 Math.max.apply(Math, chapNums) + 1:
@@ -365,7 +362,7 @@ export class BookActions {
                     this.editChapterDialog(chapter, book)
                     break
                 case findTarget(event, '#select-cover-image-button', el):
-                    let imageSelection = new ImageSelectionDialog(
+                    const imageSelection = new ImageSelectionDialog(
                         bookImageDB,
                         imageDB,
                         book.cover_image,

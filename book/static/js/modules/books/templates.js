@@ -3,7 +3,7 @@ import {escapeText} from "../common"
 
 
 /** A template for the basic info book template pane */
-let bookBasicInfoTemplate = ({book}) =>
+const bookBasicInfoTemplate = ({book}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Title")}</h4>
@@ -98,7 +98,7 @@ let bookBasicInfoTemplate = ({book}) =>
     </tr>`
 
 /** A template for the citation style pane of the book dialog */
-let bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
+const bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
@@ -127,7 +127,7 @@ let bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
         </td>
     </tr>`
 
-let paperSizes =
+const paperSizes =
     [
         ["folio", gettext("Folio (15 x 12 inch)")],
         ["quarto", gettext("Quarto (12 × 9 inch)")],
@@ -137,7 +137,7 @@ let paperSizes =
     ]
 
 /** A template for the print related data pane of the book dialog */
-let bookPrintDataTemplate = ({book, documentStyleList}) =>
+const bookPrintDataTemplate = ({book, documentStyleList}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Document style")}</h4>
@@ -196,7 +196,7 @@ let bookPrintDataTemplate = ({book, documentStyleList}) =>
     </tr>`
 
 /** A template for the cover image input on the epub pane of the book dialog. */
-export let bookEpubDataCoverTemplate = ({book, imageDB}) =>
+export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
         `<th class="figure-preview-row">
             <h4 class="fw-tablerow-title">${gettext("Cover image")}</h4>
         </th>
@@ -233,7 +233,7 @@ export let bookEpubDataCoverTemplate = ({book, imageDB}) =>
         }`
 
 /** A template for the epub related data pane of the book dialog */
-let bookEpubDataTemplate = ({book, imageDB}) =>
+const bookEpubDataTemplate = ({book, imageDB}) =>
     `<tr id="figure-preview-row">
         ${bookEpubDataCoverTemplate({
             book,
@@ -242,7 +242,7 @@ let bookEpubDataTemplate = ({book, imageDB}) =>
     </tr>`
 
 /** A template for the book dialog. */
-export let bookDialogTemplate = ({
+export const bookDialogTemplate = ({
     dialogHeader,
     citationDefinitions,
     documentStyleList,
@@ -326,7 +326,7 @@ export let bookDialogTemplate = ({
     </div>`
 
 /** A template for the chapter pane of the book dialog. */
-let bookDialogChaptersTemplate = ({book, documentList}) =>
+const bookDialogChaptersTemplate = ({book, documentList}) =>
     `${
         book.rights === "write" ?
         `<div class="fw-ar-container">
@@ -374,12 +374,12 @@ let bookDialogChaptersTemplate = ({book, documentList}) =>
     </div>`
 
 /** A template for the chapter list on the chapter pane the book dialog. */
-export let bookChapterListTemplate = ({book, documentList}) => {
+export const bookChapterListTemplate = ({book, documentList}) => {
     let partCounter = 1
     return book.chapters.slice().sort(
         (a, b) => a.number > b.number
     ).map((chapter, index, array) => {
-        let doc = documentList.find(doc => doc.id === chapter.text)
+        const doc = documentList.find(doc => doc.id === chapter.text)
         return `<tr
                 ${
                     typeof(doc) === "undefined" ?
@@ -445,7 +445,7 @@ export let bookChapterListTemplate = ({book, documentList}) => {
 }
 
 /** A template for the document list on the chapter pane of the book dialog */
-export let bookDocumentListTemplate = ({documentList, book}) =>
+export const bookDocumentListTemplate = ({documentList, book}) =>
     documentList.filter(
         // filter to only take documents that are NOT a chapter in the book
         doc => !(book.chapters.map(chapter => chapter.text).includes(doc.id))
@@ -464,7 +464,7 @@ export let bookDocumentListTemplate = ({documentList, book}) =>
     ).join('')
 
 /** A template for the chapter dialog for books */
-export let bookChapterDialogTemplate = ({chapter}) =>
+export const bookChapterDialogTemplate = ({chapter}) =>
     `<table class="fw-dialog-table">
         <tr>
             <th>

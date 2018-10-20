@@ -1,7 +1,7 @@
 import {escapeText} from "../../../common"
 
 /** A template for HTML export of a book. */
-export let htmlBookExportTemplate = ({styleSheets, part, contents, title}) =>
+export const htmlBookExportTemplate = ({styleSheets, part, contents, title}) =>
 `<!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +24,7 @@ export let htmlBookExportTemplate = ({styleSheets, part, contents, title}) =>
 </html>`
 
 /** A template to create the book index item. */
-let htmlBookIndexItemTemplate = ({item}) =>
+const htmlBookIndexItemTemplate = ({item}) =>
     `<li>
         <a href="${
             item.link ?
@@ -49,7 +49,7 @@ let htmlBookIndexItemTemplate = ({item}) =>
     </li>`
 
 /** A template to create the book index. */
-export let htmlBookIndexTemplate = ({book, contentItems, language, creator}) =>
+export const htmlBookIndexTemplate = ({book, contentItems, language, creator}) =>
 `<html>
     <head>
         <meta charset="utf-8"></meta>

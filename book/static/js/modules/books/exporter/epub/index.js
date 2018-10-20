@@ -75,13 +75,13 @@ export class EpubBookExporter extends BaseEpubExporter {
             subItems: [],
         })
         this.chapters = this.book.chapters.map(chapter => {
-            let doc = this.docList.find(doc => doc.id === chapter.text),
-                schema = docSchema, math = false
+            const doc = this.docList.find(doc => doc.id === chapter.text),
+                schema = docSchema
             schema.cached.imageDB = {db: doc.images}
-            let docContents = removeHidden(doc.contents),
+            const docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
-                tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents)),
-                contents = document.createElement('body')
+                tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents))
+            let contents = document.createElement('body'), math = false
 
             while (tempNode.firstChild) {
                 contents.appendChild(tempNode.firstChild)
@@ -93,9 +93,9 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             contents = this.addFigureNumbers(contents)
 
-            let equations = contents.querySelectorAll('.equation')
+            const equations = contents.querySelectorAll('.equation')
 
-            let figureEquations = contents.querySelectorAll('.figure-equation')
+            const figureEquations = contents.querySelectorAll('.figure-equation')
 
             if (equations.length || figureEquations.length) {
                 math = true
@@ -103,11 +103,11 @@ export class EpubBookExporter extends BaseEpubExporter {
             }
 
             equations.forEach(el => {
-                let formula = el.getAttribute('data-equation')
+                const formula = el.getAttribute('data-equation')
                 katexRender(formula, el, {throwOnError: false})
             })
             figureEquations.forEach(el => {
-                let formula = el.getAttribute('data-equation')
+                const formula = el.getAttribute('data-equation')
                 katexRender(formula, el, {throwOnError: false, displayMode: true})
             })
 
@@ -135,9 +135,9 @@ export class EpubBookExporter extends BaseEpubExporter {
                 doc
             }
         })
-        let citRendererPromises = this.chapters.map(chapter => {
+        const citRendererPromises = this.chapters.map(chapter => {
             // add bibliographies (asynchronously)
-            let citRenderer = new RenderCitations(
+            const citRenderer = new RenderCitations(
                 chapter.contents,
                 this.book.settings.citationstyle,
                 {db: chapter.doc.bibliography},
@@ -147,7 +147,7 @@ export class EpubBookExporter extends BaseEpubExporter {
             )
             return citRenderer.init().then(
                 () => {
-                    let bibHTML = citRenderer.fm.bibHTML
+                    const bibHTML = citRenderer.fm.bibHTML
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
@@ -160,7 +160,7 @@ export class EpubBookExporter extends BaseEpubExporter {
     }
 
     exportTwo() {
-        let includeZips = [],
+        const includeZips = [],
             httpOutputList = [],
             styleSheets = []
 
@@ -198,7 +198,7 @@ export class EpubBookExporter extends BaseEpubExporter {
 
         this.contentItems = this.orderLinks(this.contentItems)
 
-        let timestamp = this.getTimestamp()
+        const timestamp = this.getTimestamp()
 
         this.images = uniqueObjects(this.images)
 
@@ -214,9 +214,9 @@ export class EpubBookExporter extends BaseEpubExporter {
         if (this.chapters.length) {
             language = this.chapters[0].doc.settings.language
         }
-        let shortLang = language.split('-')[0]
+        const shortLang = language.split('-')[0]
 
-        let opfCode = epubBookOpfTemplate({
+        const opfCode = epubBookOpfTemplate({
             language,
             book: this.book,
             idType: 'fidus',
@@ -231,7 +231,7 @@ export class EpubBookExporter extends BaseEpubExporter {
             user: this.user
         })
 
-        let ncxCode = ncxTemplate({
+        const ncxCode = ncxTemplate({
             shortLang,
             title: this.book.title,
             idType: 'fidus',
@@ -240,7 +240,7 @@ export class EpubBookExporter extends BaseEpubExporter {
             templates: {ncxTemplate, ncxItemTemplate}
         })
 
-        let navCode = navTemplate({
+        const navCode = navTemplate({
             shortLang,
             contentItems: this.contentItems,
             templates: {navTemplate, navItemTemplate}
@@ -293,7 +293,7 @@ export class EpubBookExporter extends BaseEpubExporter {
             })
         }
 
-        let zipper = new ZipFileCreator(
+        const zipper = new ZipFileCreator(
             this.outputList,
             httpOutputList,
             includeZips,

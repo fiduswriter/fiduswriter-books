@@ -4,7 +4,7 @@ import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
 import {addAlert} from "../common"
 
-export let menuModel = {
+export const menuModel = {
     content: [
         {
             type: 'select-action-dropdown',
@@ -12,20 +12,20 @@ export let menuModel = {
             open: false,
             checked: false,
             checkAction: overview => {
-                let checkboxes = document.querySelectorAll('input.entry-select[type=checkbox]')
+                const checkboxes = document.querySelectorAll('input.entry-select[type=checkbox]')
                 checkboxes.forEach(checkbox => checkbox.checked = true)
             },
             uncheckAction: overview => {
-                let checkboxes = document.querySelectorAll('input.entry-select[type=checkbox]')
+                const checkboxes = document.querySelectorAll('input.entry-select[type=checkbox]')
                 checkboxes.forEach(checkbox => checkbox.checked = false)
             },
             content: [
                 {
                     title: gettext('Delete selected'),
                     action: overview => {
-                        let ids = overview.getSelected()
-                        let ownIds = ids.filter(id => {
-                            let book = overview.bookList.find(book => book.id=id)
+                        const ids = overview.getSelected()
+                        const ownIds = ids.filter(id => {
+                            const book = overview.bookList.find(book => book.id=id)
                             return book.is_owner
                         })
                         if (ownIds.length !== ids.length) {
@@ -39,16 +39,16 @@ export let menuModel = {
                 {
                     title: gettext('Share selected'),
                     action: overview => {
-                        let ids = overview.getSelected()
-                        let ownIds = ids.filter(id => {
-                            let book = overview.bookList.find(book => book.id=id)
+                        const ids = overview.getSelected()
+                        const ownIds = ids.filter(id => {
+                            const book = overview.bookList.find(book => book.id=id)
                             return book.is_owner
                         })
                         if (ownIds.length !== ids.length) {
                             addAlert('error', gettext('You cannot share books of other users.'))
                         }
                         if (ownIds.length) {
-                            let accessDialog = new BookAccessRightsDialog(
+                            const accessDialog = new BookAccessRightsDialog(
                                 ownIds,
                                 overview.teamMembers,
                                 overview.accessRights
@@ -62,7 +62,7 @@ export let menuModel = {
                 {
                     title: gettext('Copy selected'),
                     action: overview => {
-                        let ids = overview.getSelected()
+                        const ids = overview.getSelected()
                         ids.forEach(id =>
                             overview.mod.actions.copyBook(
                                 overview.bookList.find(book => book.id===id)
@@ -73,9 +73,9 @@ export let menuModel = {
                 {
                     title: gettext('Export selected as Epub'),
                     action: overview => {
-                        let ids = overview.getSelected()
+                        const ids = overview.getSelected()
                         ids.forEach(id => {
-                            let book = overview.bookList.find(book => book.id===id)
+                            const book = overview.bookList.find(book => book.id===id)
                             addAlert('info', book.title + ': ' + gettext(
                                 'Epub export has been initiated.'))
                             new EpubBookExporter(
@@ -90,9 +90,9 @@ export let menuModel = {
                 {
                     title: gettext('Export selected as HTML'),
                     action: overview => {
-                        let ids = overview.getSelected()
+                        const ids = overview.getSelected()
                         ids.forEach(id => {
-                            let book = overview.bookList.find(book => book.id===id)
+                            const book = overview.bookList.find(book => book.id===id)
                             addAlert('info', book.title + ': ' + gettext(
                                 'HTML export has been initiated.'))
                             new HTMLBookExporter(
@@ -107,9 +107,9 @@ export let menuModel = {
                 {
                     title: gettext('Export selected as LaTeX'),
                     action: overview => {
-                        let ids = overview.getSelected()
+                        const ids = overview.getSelected()
                         ids.forEach(id => {
-                            let book = overview.bookList.find(book => book.id===id)
+                            const book = overview.bookList.find(book => book.id===id)
                             addAlert('info', book.title + ': ' + gettext(
                                 'LaTeX export has been initiated.'))
                             new LatexBookExporter(
@@ -124,7 +124,7 @@ export let menuModel = {
                 {
                     title: gettext('Export selected for print/PDF'),
                     action: overview => {
-                        let ids = overview.getSelected()
+                        const ids = overview.getSelected()
                         ids.forEach(id => {
                             window.open(
                                 `/book/print/${id}/`

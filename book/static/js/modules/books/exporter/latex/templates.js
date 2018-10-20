@@ -1,7 +1,7 @@
 import {noSpaceTmp} from "../../../common"
 
 /** A template to create the latex book.tex file. */
-export let bookTexTemplate = ({preamble, book, epilogue}) =>
+export const bookTexTemplate = ({preamble, book, epilogue}) =>
 `\\documentclass[11pt]{book}
 ${preamble}
 \\usepackage{docmute}

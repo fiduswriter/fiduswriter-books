@@ -3,7 +3,7 @@ import {DOMSerializer} from "prosemirror-model"
 import {escapeText} from "../common"
 
 /** A template for the initial pages of a book before the contents begin. */
-export let bookPrintStartTemplate = ({book}) =>
+export const bookPrintStartTemplate = ({book}) =>
     `<h1 id="document-title">${escapeText(book.title)}</h1>
     ${
         book.metadata.subtitle && book.metadata.subtitle.length ?
@@ -29,14 +29,14 @@ export let bookPrintStartTemplate = ({book}) =>
     <div class="pagination-pagebreak">`
 
 /** A template for the print view of a book. */
-export let bookPrintTemplate = ({book, docSchema}) => {
-    let serializer = DOMSerializer.fromSchema(docSchema)
+export const bookPrintTemplate = ({book, docSchema}) => {
+    const serializer = DOMSerializer.fromSchema(docSchema)
     return book.chapters.map(
         chapter => {
-            let subtitleNode = docSchema.nodeFromJSON(
+            const subtitleNode = docSchema.nodeFromJSON(
                 chapter.contents.content.find(node => node.type==="subtitle")
             )
-            let abstractNode = docSchema.nodeFromJSON(
+            const abstractNode = docSchema.nodeFromJSON(
                 chapter.contents.content.find(node => node.type==="abstract")
             )
 

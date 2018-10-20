@@ -54,11 +54,11 @@ export class PrintBook {
     }
 
     setDocumentStyle() {
-        let docStyle = this.documentStyles.find(
+        const docStyle = this.documentStyles.find(
             docStyle => docStyle.filename === this.book.settings.documentstyle
         )
         if (docStyle) {
-            let styleEl = document.createElement('style')
+            const styleEl = document.createElement('style')
             styleEl.innerHTML = docStyle.contents
             document.head.appendChild(styleEl)
         }
@@ -127,7 +127,7 @@ export class PrintBook {
     }
 
     fillPrintPageTwo() {
-        let bibliographyEl = document.getElementById('bibliography')
+        const bibliographyEl = document.getElementById('bibliography')
         bibliographyEl.innerHTML = this.citRenderer.fm.bibHTML
 
         if (bibliographyEl.innerText.trim().length===0) {
@@ -135,9 +135,9 @@ export class PrintBook {
         }
 
         // Move the bibliography header text into the HTML, to prevent it getting mangled by the pagination process.
-        let bibliographyHeader = document.querySelector('.article-bibliography-header')
+        const bibliographyHeader = document.querySelector('.article-bibliography-header')
         if (bibliographyHeader) {
-            let bibliographyHeaderText = window.getComputedStyle(bibliographyHeader, ':before').getPropertyValue('content').replace(/"/g, '')
+            const bibliographyHeaderText = window.getComputedStyle(bibliographyHeader, ':before').getPropertyValue('content').replace(/"/g, '')
             bibliographyHeader.innerHTML = bibliographyHeaderText
             bibliographyHeader.classList.remove('article-bibliography-header')
         }
@@ -149,7 +149,7 @@ export class PrintBook {
         this.printConfig['flowFromElement'] = document.getElementById('flow')
         this.printConfig['flowToElement'] = document.getElementById('flow')
 
-        let paginator = new PaginateForPrint(this.printConfig)
+        const paginator = new PaginateForPrint(this.printConfig)
         paginator.initiate()
         document.querySelectorAll(".pagination-contents").forEach(el => el.classList.add('user-contents'))
 
@@ -157,7 +157,7 @@ export class PrintBook {
 
     bindEvents() {
         whenReady().then(() => {
-            let pathnameParts = window.location.pathname.split('/'),
+            const pathnameParts = window.location.pathname.split('/'),
                 bookId = parseInt(pathnameParts[pathnameParts.length - 2], 10)
 
             this.getBookData(bookId)

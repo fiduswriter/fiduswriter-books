@@ -27,12 +27,12 @@ export class LatexBookExporter {
 
     init() {
         this.zipFileName = `${createSlug(this.book.title)}.latex.zip`
-        let bibIds = [], imageIds = [], features = {}, combinedBibliography = {}, combinedImages = {}
+        const bibIds = [], imageIds = [], features = {}, combinedBibliography = {}, combinedImages = {}
         this.book.chapters.forEach((chapter, index) => {
-            let doc = this.docList.find(doc => doc.id === chapter.text)
-            let converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography})
-            let chapterContents = removeHidden(doc.contents)
-            let convertedDoc = converter.init(chapterContents)
+            const doc = this.docList.find(doc => doc.id === chapter.text)
+            const converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography})
+            const chapterContents = removeHidden(doc.contents)
+            const convertedDoc = converter.init(chapterContents)
             this.textFiles.push({
                 filename: `chapter-${index+1}.tex`,
                 contents: convertedDoc.latex
@@ -44,7 +44,7 @@ export class LatexBookExporter {
             convertedDoc.imageIds.forEach(imageId => combinedImages[imageId] = doc.images[imageId])
         })
         if (bibIds.length > 0) {
-            let bibExport = new BibLatexExporter(combinedBibliography, bibIds)
+            const bibExport = new BibLatexExporter(combinedBibliography, bibIds)
             this.textFiles.push({filename: 'bibliography.bib', contents: bibExport.output})
         }
         imageIds.forEach(id => {
@@ -55,10 +55,10 @@ export class LatexBookExporter {
         })
         // Start a converter, only for creating a preamble/epilogue that combines
         // the features of all of the contained chapters.
-        let bookConverter = new LatexExporterConvert(this, {db: combinedImages}, {db: combinedBibliography})
+        const bookConverter = new LatexExporterConvert(this, {db: combinedImages}, {db: combinedBibliography})
         bookConverter.features = features
-        let preamble = bookConverter.assemblePreamble()
-        let epilogue = bookConverter.assembleEpilogue()
+        const preamble = bookConverter.assemblePreamble()
+        const epilogue = bookConverter.assembleEpilogue()
         this.textFiles.push({
             filename: 'book.tex',
             contents: bookTexTemplate({
@@ -67,7 +67,7 @@ export class LatexBookExporter {
                 epilogue
             })
         })
-        let zipper = new ZipFileCreator(
+        const zipper = new ZipFileCreator(
             this.textFiles,
             this.httpFiles
         )

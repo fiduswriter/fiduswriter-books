@@ -7,8 +7,8 @@ export let getMissingChapterData = function (book, documentList) {
     )
 
     if (bookDocuments.some(doc => doc === undefined)) {
-        addAlert('error', "Cannot produce book as you lack access rights to its chapters.")
-        return Promise.reject()
+        addAlert('error', gettext("Cannot produce book as you lack access rights to its chapters."))
+        return Promise.reject(new Error("Cannot produce book as you lack access rights to its chapters."))
     }
 
     let docIds = book.chapters.map(chapter => chapter.text)

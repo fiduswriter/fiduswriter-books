@@ -39,10 +39,10 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         this.chapters = this.book.chapters.sort(
             (a,b) => a.number > b.number
         ).map(chapter => {
-            let doc = this.docList.find(doc => doc.id === chapter.text),
+            const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = docSchema
             schema.cached.imageDB = {db: doc.images}
-            let docContents = removeHidden(doc.contents),
+            const docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
                 contents = serializer.serializeNode(schema.nodeFromJSON(docContents)),
                 equations = contents.querySelectorAll('.equation'),
@@ -52,12 +52,12 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             }
 
             equations.forEach(el => {
-                let formula = el.getAttribute('data-equation')
+                const formula = el.getAttribute('data-equation')
                 katexRender(formula, el, {throwOnError: false})
             })
 
             figureEquations.forEach(el => {
-                let formula = el.getAttribute('data-equation')
+                const formula = el.getAttribute('data-equation')
                 katexRender(formula, el, {displayMode: true, throwOnError: false})
             })
 
@@ -68,10 +68,10 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
 
         })
 
-        let citRendererPromises = this.chapters.map(chapter => {
+        const citRendererPromises = this.chapters.map(chapter => {
             // add bibliographies (asynchronously)
 
-            let citRenderer = new RenderCitations(
+            const citRenderer = new RenderCitations(
                 chapter.contents,
                 this.book.settings.citationstyle,
                 {db: chapter.doc.bibliography},
@@ -81,7 +81,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             )
             return citRenderer.init().then(
                 () => {
-                    let bibHTML = citRenderer.fm.bibHTML
+                    const bibHTML = citRenderer.fm.bibHTML
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
@@ -94,13 +94,13 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
     }
 
     exportTwo() {
-        let styleSheets = [],
+        const styleSheets = [],
             contentItems = [],
             images = [],
             includeZips = []
 
-        let outputList = this.chapters.map((chapter, index) => {
-            let contents = chapter.contents,
+        const outputList = this.chapters.map((chapter, index) => {
+            const contents = chapter.contents,
                 doc = chapter.doc,
                 title = doc.title
 
@@ -132,9 +132,9 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
                 this.book.chapters[index].number))
 
 
-            let contentsCode = this.replaceImgSrc(contents.innerHTML)
+            const contentsCode = this.replaceImgSrc(contents.innerHTML)
 
-            let htmlCode = htmlBookExportTemplate({
+            const htmlCode = htmlBookExportTemplate({
                 part: this.book.chapters[index].part,
                 title,
                 metadata: doc.metadata,
@@ -173,7 +173,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
 
         images = uniqueObjects(images)
 
-        let zipper = new ZipFileCreator(
+        const zipper = new ZipFileCreator(
             outputList,
             images,
             includeZips

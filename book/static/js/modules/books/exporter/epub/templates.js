@@ -1,7 +1,7 @@
 import {escapeText} from "../../../common"
 
 /** A template to create the OPF file of book epubs. */
-export let epubBookOpfTemplate = ({
+export const epubBookOpfTemplate = ({
         book,
         language,
         idType,
@@ -112,7 +112,7 @@ export let epubBookOpfTemplate = ({
 
 
 /** A template to create the book epub cover XML. */
-export let epubBookCoverTemplate = ({
+export const epubBookCoverTemplate = ({
         book,
         coverImage
     }) =>
@@ -131,7 +131,7 @@ export let epubBookCoverTemplate = ({
 </html>`
 
 /** A template to create the book epub titlepage XML. */
-export let epubBookTitlepageTemplate = ({
+export const epubBookTitlepageTemplate = ({
         book
     }) =>
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -158,7 +158,7 @@ export let epubBookTitlepageTemplate = ({
 </html>`
 
 /** A template to create the book epub copyright page XML. */
-export let epubBookCopyrightTemplate = ({
+export const epubBookCopyrightTemplate = ({
         book,
         language,
         creator

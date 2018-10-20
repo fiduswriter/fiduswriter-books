@@ -20,7 +20,7 @@ export class BookOverview {
         this.accessRights = []
         this.user = {}
         new BookActions(this)
-        let smenu = new SiteMenu("books")
+        const smenu = new SiteMenu("books")
         smenu.init()
         this.menu = new OverviewMenuView(this, menuModel)
         this.menu.init()
@@ -29,7 +29,7 @@ export class BookOverview {
 
     getImageDB() {
         if (!this.imageDB) {
-            let imageGetter = new ImageDB()
+            const imageGetter = new ImageDB()
             return new Promise((resolve, reject) => {
                 imageGetter.getDB().then(
                     () => {
@@ -45,7 +45,7 @@ export class BookOverview {
 
     /* Initialize the overview table */
     initTable() {
-        let tableEl = document.createElement('table')
+        const tableEl = document.createElement('table')
         tableEl.classList.add('fw-document-table')
         tableEl.classList.add('fw-large')
         document.querySelector('.fw-contents').appendChild(tableEl)
@@ -112,8 +112,8 @@ export class BookOverview {
     }
 
     removeTableRows(ids) {
-        let existingRows = this.table.data.map((data, index) => {
-            let id = parseInt(data.cells[0].textContent)
+        const existingRows = this.table.data.map((data, index) => {
+            const id = parseInt(data.cells[0].textContent)
             if (ids.includes(id)) {
                 return index
             } else {
@@ -160,7 +160,7 @@ export class BookOverview {
         // metadata and settings are stored as a json stirng in a text field on
         // the server, so they need to be unpacked before being available.
         return booksFromServer.map(book => {
-            let uBook = Object.assign({}, book)
+            const uBook = Object.assign({}, book)
             uBook.metadata = JSON.parse(book.metadata)
             uBook.settings = JSON.parse(book.settings)
             return uBook
@@ -170,7 +170,8 @@ export class BookOverview {
     bind() {
         whenReady().then(() => this.getBookListData())
         document.addEventListener('click', event => {
-            let el = {}, bookId
+            const el = {}
+            let bookId
             switch (true) {
                 case findTarget(event, '.delete-book', el):
                     bookId = parseInt(el.target.dataset.id)
@@ -178,7 +179,7 @@ export class BookOverview {
                     break
                 case findTarget(event, '.owned-by-user.rights', el):
                     bookId = parseInt(el.target.dataset.id)
-                    let accessDialog = new BookAccessRightsDialog(
+                    const accessDialog = new BookAccessRightsDialog(
                         [bookId],
                         this.teamMembers,
                         this.accessRights

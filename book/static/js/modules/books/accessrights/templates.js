@@ -1,7 +1,7 @@
 import {escapeText} from "../../common"
 
 /** A template for the book collaboration pane */
-export let bookCollaboratorsTemplate = ({collaborators}) =>
+export const bookCollaboratorsTemplate = ({collaborators}) =>
     collaborators.map(collaborator =>
         `<tr id="collaborator-${collaborator.user_id}" data-id="${collaborator.user_id}"
         class="collaborator-tr" data-right="${collaborator.rights}">
@@ -38,7 +38,7 @@ export let bookCollaboratorsTemplate = ({collaborators}) =>
     ).join('')
 
     /** A template for the book access rights overview */
-    export let bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
+    export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
         `<div id="my-contacts" class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My contacts")}</h3>
             <table class="fw-document-table">
