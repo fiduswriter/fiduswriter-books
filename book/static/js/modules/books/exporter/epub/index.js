@@ -12,7 +12,7 @@ import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
 import {docSchema} from "../../../schema/document"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
-import {findImages} from "../../../exporter/tools/html"
+import {modifyImages} from "../../../exporter/tools/html"
 import {createSlug} from "../../../exporter/tools/file"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
@@ -83,15 +83,11 @@ export class EpubBookExporter extends BaseEpubExporter {
                 serializer = DOMSerializer.fromSchema(schema),
                 tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents))
             let contents = document.createElement('body'), math = false
-
             while (tempNode.firstChild) {
                 contents.appendChild(tempNode.firstChild)
             }
 
-            this.images = this.images.concat(findImages(contents))
-
-            contents = this.cleanHTML(contents)
-
+            this.images = this.images.concat(modifyImages(contents))
             contents = this.addFigureNumbers(contents)
 
             const equations = contents.querySelectorAll('.equation')
@@ -111,7 +107,6 @@ export class EpubBookExporter extends BaseEpubExporter {
                 const formula = el.getAttribute('data-equation')
                 katex.render(formula, el, {throwOnError: false})
             })
-
             if (chapter.part && chapter.part.length) {
                 this.contentItems.push({
                     link: `document-${chapter.number}.xhtml`,
@@ -152,6 +147,7 @@ export class EpubBookExporter extends BaseEpubExporter {
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
+                    chapter.contents = this.cleanHTML(chapter.contents, citRenderer.fm)
                     return Promise.resolve()
                 }
             )
