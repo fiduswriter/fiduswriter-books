@@ -5,7 +5,7 @@ import {docSchema} from "../../../schema/document"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
 import {createSlug} from "../../../exporter/tools/file"
-import {findImages} from "../../../exporter/tools/html"
+import {modifyImages} from "../../../exporter/tools/html"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
@@ -14,12 +14,13 @@ import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends BaseEpubExporter { // extension is correct. Neds orderLinks/setLinks methods from base epub exporter.
-    constructor(book, user, docList, styles) {
+    constructor(book, user, docList, styles, staticUrl) {
         super()
         this.book = book
         this.user = user
         this.docList = docList
         this.styles = styles
+        this.staticUrl = staticUrl
         this.chapters = []
         this.math = false
         if (this.book.chapters.length === 0) {
@@ -85,6 +86,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
+                    chapter.contents = this.cleanHTML(chapter.contents, citRenderer.fm)
                     return Promise.resolve()
                 }
             )
@@ -101,12 +103,11 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             includeZips = []
 
         let outputList = this.chapters.map((chapter, index) => {
-            let contents = chapter.contents
-            const doc = chapter.doc,
+            const contents = chapter.contents,
+                doc = chapter.doc,
                 title = doc.title
 
-            images = images.concat(findImages(contents))
-            contents = this.cleanHTML(contents)
+            images = images.concat(modifyImages(contents))
 
             if (this.book.chapters[index].part && this.book.chapters[index].part !== '') {
                 contentItems.push({
@@ -166,11 +167,13 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         if (this.math) {
             includeZips.push({
                 'directory': '',
-                'url': `${$StaticUrls.base$}zip/katex-style.zip${$StaticUrls.transpile.version$}`
+                'url': `${this.staticUrl}zip/katex-style.zip?v=${$StaticUrls.transpile.version$}`
             })
         }
 
         images = uniqueObjects(images)
+
+        console.log({includeZips})
 
         const zipper = new ZipFileCreator(
             outputList,

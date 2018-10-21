@@ -20,12 +20,13 @@ import {addAlert} from "../../../common"
 
 
 export class EpubBookExporter extends BaseEpubExporter {
-    constructor(book, user, docList, styles) {
+    constructor(book, user, docList, styles, staticUrl) {
         super()
         this.book = book
         this.user = user
         this.docList = docList
         this.styles = styles
+        this.staticUrl = staticUrl
         this.chapters = []
         this.images = []
         this.outputList = []
@@ -289,7 +290,7 @@ export class EpubBookExporter extends BaseEpubExporter {
         if (this.math) {
             includeZips.push({
                 'directory': 'EPUB',
-                'url': `${$StaticUrls.base$}zip/katex-style.zip${$StaticUrls.transpile.version$}`
+                'url': `${this.staticUrl}zip/katex-style.zip?v=${$StaticUrls.transpile.version$}`
             })
         }
 

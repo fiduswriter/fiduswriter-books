@@ -82,7 +82,8 @@ export const menuModel = {
                                 book,
                                 overview.user,
                                 overview.documentList,
-                                overview.styles
+                                overview.styles,
+                                overview.staticUrl
                             )
                         })
                     }
@@ -99,7 +100,8 @@ export const menuModel = {
                                 book,
                                 overview.user,
                                 overview.documentList,
-                                overview.styles
+                                overview.styles,
+                                overview.staticUrl
                             )
                         })
                     }

@@ -32,7 +32,7 @@ const htmlBookIndexItemTemplate = ({item}) =>
             item.docNum ?
             `document-${item.docNum}.html#${item.id}` :
             `document.html#${item.id}`
-        }>
+        }">
             ${escapeText(item.title)}
         </a>
         ${
