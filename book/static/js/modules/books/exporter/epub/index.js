@@ -1,4 +1,4 @@
-import {katexRender} from "../../../katex"
+import katex from "katex"
 import {DOMSerializer} from "prosemirror-model"
 import download from "downloadjs"
 
@@ -104,11 +104,11 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             equations.forEach(el => {
                 const formula = el.getAttribute('data-equation')
-                katexRender(formula, el, {throwOnError: false})
+                katex.render(formula, el, {throwOnError: false})
             })
             figureEquations.forEach(el => {
                 const formula = el.getAttribute('data-equation')
-                katexRender(formula, el, {throwOnError: false, displayMode: true})
+                katex.render(formula, el, {throwOnError: false})
             })
 
             if (chapter.part && chapter.part.length) {

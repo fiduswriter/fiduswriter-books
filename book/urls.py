@@ -1,9 +1,10 @@
 from django.conf.urls import url
 
+from base.views import app
 from . import views
 
 urlpatterns = [
-    url('^$', views.index, name='index'),
+    url('^$', app, name='index'),
     url('^booklist/$', views.get_booklist_js, name='get_booklist_js'),
     url('^save/$', views.save_js, name='save_js'),
     url('^copy/$', views.copy_js, name='copy_js'),

@@ -1,30 +1,57 @@
-import DataTable from "vanilla-datatables"
+import {DataTable} from "simple-datatables"
 
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert} from "../common"
+import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle} from "../common"
 import {SiteMenu} from "../menu"
 import {menuModel} from "./menu"
+import {FeedbackTab} from "../feedback"
 
 export class BookOverview {
     // A class that contains everything that happens on the books page.
     // It is currently not possible to initialize more than one such class, as it
     // contains bindings to menu items, etc. that are uniquely defined.
-    constructor() {
+    constructor({app, user, staticUrl}) {
+        this.app = app
+        this.user = user
+        this.staticUrl = staticUrl
         this.mod = {}
         this.bookList = []
         this.styles = false
         this.documentList = []
         this.teamMembers = []
         this.accessRights = []
-        this.user = {}
-        new BookActions(this)
-        const smenu = new SiteMenu("books")
-        smenu.init()
-        this.menu = new OverviewMenuView(this, menuModel)
-        this.menu.init()
-        this.bind()
+    }
+
+    init() {
+        whenReady().then(() => {
+            this.render()
+            const smenu = new SiteMenu("books")
+            smenu.init()
+            new BookActions(this)
+            this.menu = new OverviewMenuView(this, menuModel)
+            this.menu.init()
+            this.bind()
+            this.getBookListData()
+        })
+    }
+
+    render() {
+        document.body = document.createElement('body')
+        document.body.innerHTML = baseBodyTemplate({
+            contents: '<ul id="fw-overview-menu"></ul>',
+            username: this.user.username,
+            staticUrl: this.staticUrl
+        })
+        ensureCSS([
+            'add_remove_dialog.css',
+            'access_rights_dialog.css',
+            'book.css'
+        ], this.staticUrl)
+        setDocTitle(gettext('Book Overview'))
+        const feedbackTab = new FeedbackTab({staticUrl: this.staticUrl})
+        feedbackTab.init()
     }
 
     getImageDB() {
@@ -147,7 +174,6 @@ export class BookOverview {
                 this.documentList = json.documents
                 this.teamMembers = json.team_members
                 this.accessRights = json.access_rights
-                this.user = json.user
                 this.styles = json.styles
                 this.initTable()
             }
@@ -168,8 +194,7 @@ export class BookOverview {
     }
 
     bind() {
-        whenReady().then(() => this.getBookListData())
-        document.addEventListener('click', event => {
+        document.body.addEventListener('click', event => {
             const el = {}
             let bookId
             switch (true) {
@@ -193,6 +218,12 @@ export class BookOverview {
                     this.getImageDB().then(() => {
                         this.mod.actions.createBookDialog(bookId, this.imageDB)
                     })
+                    break
+                case findTarget(event, 'a', el):
+                    if (el.target.hostname === window.location.hostname && el.target.getAttribute('href')[0] === '/') {
+                        event.preventDefault()
+                        this.app.goTo(el.target.href)
+                    }
                     break
                 default:
                     break

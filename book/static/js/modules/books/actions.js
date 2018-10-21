@@ -138,7 +138,7 @@ export class BookActions {
     copyBook(oldBook) {
         const book = Object.assign({}, oldBook)
         book.is_owner = true
-        book.owner_avatar = this.bookOverview.user.avatar
+        book.owner_avatar = this.bookOverview.user.avatar.url
         book.owner_name = this.bookOverview.user.name
         book.owner = this.bookOverview.user.id
         book.rights = 'write'

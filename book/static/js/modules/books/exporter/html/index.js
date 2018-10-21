@@ -1,4 +1,4 @@
-import {katexRender} from "../../../katex"
+import katex from "katex"
 import {getMissingChapterData, getImageAndBibDB, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {docSchema} from "../../../schema/document"
@@ -53,12 +53,12 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
 
             equations.forEach(el => {
                 const formula = el.getAttribute('data-equation')
-                katexRender(formula, el, {throwOnError: false})
+                katex.render(formula, el, {throwOnError: false})
             })
 
             figureEquations.forEach(el => {
                 const formula = el.getAttribute('data-equation')
-                katexRender(formula, el, {displayMode: true, throwOnError: false})
+                katex.render(formula, el, {displayMode: true, throwOnError: false})
             })
 
             return {

@@ -63,14 +63,6 @@ def get_accessrights(ars):
 
 
 @login_required
-def index(request):
-    response = {}
-    response.update(csrf(request))
-    return render(request, 'book/index.html',
-                  response)
-
-
-@login_required
 def print_book(request):
     response = {}
     response.update(csrf(request))
@@ -207,10 +199,6 @@ def get_booklist_js(request):
             tm_object['name'] = team_member.member.readable_name
             tm_object['avatar'] = avatar_url(team_member.member, 80)
             response['team_members'].append(tm_object)
-        response['user'] = {}
-        response['user']['id'] = request.user.id
-        response['user']['name'] = request.user.readable_name
-        response['user']['avatar'] = avatar_url(request.user, 80)
         response['access_rights'] = get_accessrights(
             BookAccessRight.objects.filter(book__owner=request.user))
         serializer = PythonWithURLSerializer()
