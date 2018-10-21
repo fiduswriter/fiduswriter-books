@@ -9,10 +9,19 @@ class Book(models.Model):
     title = models.CharField(max_length=128)
     metadata = models.TextField(default='{}')
     settings = models.TextField(default='{}')
-    cover_image = models.ForeignKey(Image, blank=True, null=True, default=None)
+    cover_image = models.ForeignKey(
+        Image,
+        blank=True,
+        null=True,
+        default=None,
+        on_delete=models.deletion.CASCADE
+    )
     chapters = models.ManyToManyField(
         Document, through='Chapter', blank=True, default=None)
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.deletion.CASCADE
+    )
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 
@@ -21,8 +30,14 @@ class Book(models.Model):
 
 
 class Chapter(models.Model):
-    text = models.ForeignKey(Document)
-    book = models.ForeignKey(Book)
+    text = models.ForeignKey(
+        Document,
+        on_delete=models.deletion.CASCADE
+    )
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.deletion.CASCADE
+    )
     number = models.IntegerField()
     part = models.CharField(max_length=128, blank=True, default='')
 
@@ -33,8 +48,14 @@ RIGHTS_CHOICES = (
 
 
 class BookAccessRight(models.Model):
-    book = models.ForeignKey(Book)
-    user = models.ForeignKey(User)
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.deletion.CASCADE
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.deletion.CASCADE
+    )
     rights = models.CharField(
         max_length=5,
         choices=RIGHTS_CHOICES,

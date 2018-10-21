@@ -161,8 +161,8 @@ export class EpubBookExporter extends BaseEpubExporter {
 
     exportTwo() {
         const includeZips = [],
-            httpOutputList = [],
             styleSheets = []
+        let httpOutputList = []
 
         this.outputList = this.outputList.concat(
             this.chapters.map(chapter => {

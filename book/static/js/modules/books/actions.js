@@ -265,7 +265,8 @@ export class BookActions {
 
     bindBookDialog(dialog, book, imageDB, bookImageDB) {
         dialog.dialogEl.addEventListener('click', event => {
-            const el = {}, chapterId, chapter
+            const el = {}
+            let chapterId, chapter
             switch (true) {
                 case findTarget(event, '.book-sort-up', el):
                     chapterId = parseInt(el.target.dataset.id)

@@ -27,7 +27,8 @@ export class LatexBookExporter {
 
     init() {
         this.zipFileName = `${createSlug(this.book.title)}.latex.zip`
-        const bibIds = [], imageIds = [], features = {}, combinedBibliography = {}, combinedImages = {}
+        let bibIds = [], imageIds = []
+        const features = {}, combinedBibliography = {}, combinedImages = {}
         this.book.chapters.forEach((chapter, index) => {
             const doc = this.docList.find(doc => doc.id === chapter.text)
             const converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography})

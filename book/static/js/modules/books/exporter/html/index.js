@@ -94,14 +94,15 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
     }
 
     exportTwo() {
+        let contentItems = [],
+            images = []
+
         const styleSheets = [],
-            contentItems = [],
-            images = [],
             includeZips = []
 
-        const outputList = this.chapters.map((chapter, index) => {
-            const contents = chapter.contents,
-                doc = chapter.doc,
+        let outputList = this.chapters.map((chapter, index) => {
+            let contents = chapter.contents
+            const doc = chapter.doc,
                 title = doc.title
 
             images = images.concat(findImages(contents))
@@ -128,9 +129,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             })
 
             // Make links to all H1-3 and create a TOC list of them
-            contentItems = contentItems.concat(this.setLinks(contents,
-                this.book.chapters[index].number))
-
+            contentItems.push(...this.setLinks(contents, this.book.chapters[index].number))
 
             const contentsCode = this.replaceImgSrc(contents.innerHTML)
 

@@ -1,6 +1,6 @@
 from django.db import models, migrations
 from django.conf import settings
-
+import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
@@ -30,8 +30,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('rights', models.CharField(max_length=1, choices=[('r', 'read'), ('w', 'read/write')])),
-                ('book', models.ForeignKey(to='book.Book')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='book.Book')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
@@ -43,8 +43,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('number', models.IntegerField()),
                 ('part', models.CharField(default='', max_length=128, blank=True)),
-                ('book', models.ForeignKey(to='book.Book')),
-                ('text', models.ForeignKey(to='document.Document')),
+                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='book.Book')),
+                ('text', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='document.Document')),
             ],
             options={
             },
@@ -68,13 +68,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='book',
             name='cover_image',
-            field=models.ForeignKey(default=None, blank=True, to='usermedia.Image', null=True),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, default=None, blank=True, to='usermedia.Image', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='book',
             name='owner',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
     ]
