@@ -23,6 +23,11 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         this.staticUrl = staticUrl
         this.chapters = []
         this.math = false
+        this.chapterTemplate = htmlBookExportTemplate
+        this.modifyImages = true
+    }
+
+    init() {
         if (this.book.chapters.length === 0) {
             addAlert('error', gettext('Book cannot be exported due to lack of chapters.'))
             return false
@@ -99,15 +104,16 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         let contentItems = [],
             images = []
 
-        const styleSheets = [],
-            includeZips = []
+        const styleSheets = []
 
         let outputList = this.chapters.map((chapter, index) => {
             const contents = chapter.contents,
                 doc = chapter.doc,
                 title = doc.title
 
-            images = images.concat(modifyImages(contents))
+            if (this.modifyImages) {
+                images = images.concat(modifyImages(contents))
+            }
 
             if (this.book.chapters[index].part && this.book.chapters[index].part !== '') {
                 contentItems.push({
@@ -134,7 +140,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
 
             const contentsCode = this.replaceImgSrc(contents.innerHTML)
 
-            const htmlCode = htmlBookExportTemplate({
+            const htmlCode = this.chapterTemplate({
                 part: this.book.chapters[index].part,
                 title,
                 metadata: doc.metadata,
@@ -164,16 +170,19 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
                 language: gettext('English')
             })
         })
-        if (this.math) {
-            includeZips.push({
-                'directory': '',
-                'url': `${this.staticUrl}zip/katex-style.zip?v=${$StaticUrls.transpile.version$}`
-            })
-        }
 
         images = uniqueObjects(images)
 
-        console.log({includeZips})
+        this.exportThree(outputList, images)
+
+    }
+
+    exportThree(outputList, images) {
+        const includeZips = this.math ?
+            [{
+                'directory': '',
+                'url': `${this.staticUrl}zip/katex-style.zip?v=${$StaticUrls.transpile.version$}`
+            }] : []
 
         const zipper = new ZipFileCreator(
             outputList,

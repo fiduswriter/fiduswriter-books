@@ -169,7 +169,7 @@ export class BookActions {
                 id: 0,
                 chapters: [],
                 is_owner: true,
-                owner_avatar: this.bookOverview.user.avatar,
+                owner_avatar: this.bookOverview.user.avatar.url,
                 owner_name: this.bookOverview.user.name,
                 owner: this.bookOverview.user.id,
                 rights: 'write',
@@ -181,8 +181,8 @@ export class BookActions {
                     keywords: ''
                 },
                 settings: {
-                    citationstyle: this.bookOverview.styles.citation_styles[0],
-                    documentstyle: this.bookOverview.styles.document_styles[0],
+                    citationstyle: this.bookOverview.styles.citation_styles[0].filename,
+                    documentstyle: this.bookOverview.styles.document_styles[0].filename,
                     papersize: 'octavo'
                 }
             }

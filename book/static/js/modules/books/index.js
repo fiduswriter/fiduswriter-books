@@ -110,7 +110,7 @@ export class BookOverview {
 
     createTableRow(book) {
         return [
-            book.id,
+            String(book.id),
             `<input type="checkbox" class="entry-select" data-id="${book.id}">`,
             `<span class="fw-document-table-title fw-inline">
                 <i class="fa fa-book"></i>

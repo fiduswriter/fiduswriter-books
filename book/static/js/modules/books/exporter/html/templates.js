@@ -50,7 +50,8 @@ const htmlBookIndexItemTemplate = ({item}) =>
 
 /** A template to create the book index. */
 export const htmlBookIndexTemplate = ({book, contentItems, language, creator}) =>
-`<html>
+`<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8"></meta>
         <title>${escapeText(book.title)}</title>

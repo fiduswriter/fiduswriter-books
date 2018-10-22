@@ -2,6 +2,7 @@ import {BookAccessRightsDialog} from "./accessrights"
 import {HTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
+import {PrintBookExporter} from "./exporter/print"
 import {addAlert} from "../common"
 
 export const menuModel = {
@@ -96,13 +97,14 @@ export const menuModel = {
                             const book = overview.bookList.find(book => book.id===id)
                             addAlert('info', book.title + ': ' + gettext(
                                 'HTML export has been initiated.'))
-                            new HTMLBookExporter(
+                            const exporter = new HTMLBookExporter(
                                 book,
                                 overview.user,
                                 overview.documentList,
                                 overview.styles,
                                 overview.staticUrl
                             )
+                            exporter.init()
                         })
                     }
                 },
@@ -124,13 +126,21 @@ export const menuModel = {
                     }
                 },
                 {
-                    title: gettext('Export selected for print/PDF'),
+                    title: gettext('Export selected to Print/PDF (experimental)'),
                     action: overview => {
                         const ids = overview.getSelected()
                         ids.forEach(id => {
-                            window.open(
-                                `/book/print/${id}/`
+                            const book = overview.bookList.find(book => book.id===id)
+                            addAlert('info', book.title + ': ' + gettext(
+                                'Print has been initiated.'))
+                            const exporter = new PrintBookExporter(
+                                book,
+                                overview.user,
+                                overview.documentList,
+                                overview.styles,
+                                overview.staticUrl
                             )
+                            exporter.init()
                         })
                     }
                 }
