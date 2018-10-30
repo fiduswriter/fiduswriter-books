@@ -5,7 +5,7 @@ import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
 import {addAlert} from "../common"
 
-export const menuModel = {
+export const menuModel = () => ({
     content: [
         {
             type: 'select-action-dropdown',
@@ -157,4 +157,4 @@ export const menuModel = {
             }
         }
     ]
-}
+})
