@@ -1,11 +1,9 @@
-import {bookListTemplate,
-    bookDialogTemplate,
+import {bookDialogTemplate,
     bookChapterListTemplate, bookDocumentListTemplate, bookChapterDialogTemplate,
     bookEpubDataCoverTemplate
   } from "./templates"
-import {ImageDB} from "../images/database"
 import {ImageSelectionDialog} from "../images/selection_dialog"
-import {deactivateWait, addAlert, csrfToken, postJson, post, Dialog, findTarget} from "../common"
+import {addAlert, postJson, post, Dialog, findTarget} from "../common"
 
 
 export class BookActions {
@@ -27,7 +25,7 @@ export class BookActions {
         ).catch(
             error => {
                 addAlert('error', gettext(`${gettext('Could not delete book')}: '${book.title}'`))
-                throw(error)
+                throw (error)
             }
         ).then(()=> {
             addAlert('success', gettext(`${gettext('Book has been deleted')}: '${book.title}'`))
@@ -95,6 +93,7 @@ export class BookActions {
             body: bookChapterDialogTemplate({chapter}),
             width: 300,
             height: 100,
+            buttons
         })
         dialog.open()
     }
@@ -112,7 +111,7 @@ export class BookActions {
         ).catch(
             error => {
                 addAlert('error', gettext('The book could not be saved'))
-                throw(error)
+                throw (error)
             }
         ).then(
             ({status, json}) => {
@@ -148,7 +147,7 @@ export class BookActions {
         ).catch(
             error => {
                 addAlert('error', gettext('The book could not be copied'))
-                throw(error)
+                throw (error)
             }
         ).then(
             ({json}) => {
@@ -160,7 +159,8 @@ export class BookActions {
     }
 
     createBookDialog(bookId, imageDB) {
-        let title, book, oldBook, bookImageDB = {db:{}}, dialog
+        let title, book, oldBook
+        const bookImageDB = {db:{}}
 
         if (bookId === 0) {
             title = gettext('Create Book')
@@ -231,7 +231,7 @@ export class BookActions {
             buttons.push({type: 'close'})
         }
 
-        dialog = new Dialog({
+        const dialog = new Dialog({
             width: 840,
             height: 460,
             title,
@@ -268,7 +268,7 @@ export class BookActions {
             const el = {}
             let chapterId, chapter
             switch (true) {
-                case findTarget(event, '.book-sort-up', el):
+                case findTarget(event, '.book-sort-up', el): {
                     chapterId = parseInt(el.target.dataset.id)
                     chapter = book.chapters.find(
                         chapter => chapter.text === chapterId
@@ -286,7 +286,8 @@ export class BookActions {
                             documentList: this.bookOverview.documentList
                         })
                     break
-                case findTarget(event, '.book-sort-down', el):
+                }
+                case findTarget(event, '.book-sort-down', el): {
                     chapterId = parseInt(el.target.dataset.id)
                     chapter = book.chapters.find(
                         chapter => chapter.text === chapterId
@@ -304,6 +305,7 @@ export class BookActions {
                             documentList: this.bookOverview.documentList
                         })
                     break
+                }
                 case findTarget(event, '.delete-chapter', el):
                     chapterId = parseInt(el.target.dataset.id)
                     chapter = book.chapters.find(
@@ -336,7 +338,7 @@ export class BookActions {
                         const documentId = parseInt(el.dataset.id),
                             chapNums = book.chapters.map(chapter => chapter.number),
                             number = chapNums.length ?
-                                Math.max.apply(Math, chapNums) + 1:
+                                Math.max(...chapNums) + 1:
                                 1
                         book.chapters.push({
                             text: documentId,
@@ -362,7 +364,7 @@ export class BookActions {
                     )
                     this.editChapterDialog(chapter, book)
                     break
-                case findTarget(event, '#select-cover-image-button', el):
+                case findTarget(event, '#select-cover-image-button', el): {
                     const imageSelection = new ImageSelectionDialog(
                         bookImageDB,
                         imageDB,
@@ -385,6 +387,7 @@ export class BookActions {
                         }
                     )
                     break
+                }
                 case findTarget(event, '#remove-cover-image-button', el):
                     delete book.cover_image
                     document.getElementById('figure-preview-row').innerHTML = bookEpubDataCoverTemplate({

@@ -1,5 +1,3 @@
-from __future__ import unicode_literals
-
 from builtins import str
 import json
 from time import mktime
@@ -30,8 +28,6 @@ from avatar.templatetags.avatar_tags import avatar_url
 
 from django.core.serializers.python import Serializer
 
-
-
 from django.db.models import Q
 import dateutil.parser
 
@@ -41,6 +37,8 @@ class SimpleSerializer(Serializer):
     def end_object(self, obj):
         self._current['id'] = obj._get_pk_val()
         self.objects.append(self._current)
+
+
 serializer = SimpleSerializer()
 
 
@@ -254,11 +252,12 @@ def set_chapters(book, chapters, user):
                 )
     return
 
+
 @login_required
 def copy_js(request):
     # Copy a book
     if not request.is_ajax() or request.method != 'POST':
-        return JsonResponse({},status=405)
+        return JsonResponse({}, status=405)
     book_id = request.POST['book_id']
     book = Book.objects.get(id=book_id)
     if (
@@ -267,7 +266,7 @@ def copy_js(request):
             user=request.user
         ).exists()
     ):
-        return JsonResponse({},status=405)
+        return JsonResponse({}, status=405)
     response = {}
     status = 201
     book.id = None
@@ -288,7 +287,7 @@ def copy_js(request):
 @login_required
 def save_js(request):
     if not request.is_ajax() or request.method != 'POST':
-        return JsonResponse({},status=405)
+        return JsonResponse({}, status=405)
     date_format = '%d/%m/%Y'
     response = {}
     status = 200
@@ -316,7 +315,7 @@ def save_js(request):
     if 'cover_image' not in book_obj:
         book.cover_image = None
         has_coverimage_access = True
-    elif book_obj['cover_image'] == False:
+    elif book_obj['cover_image'] is False:
         book.cover_image = None
         has_coverimage_access = True
     elif (
@@ -452,12 +451,11 @@ def access_right_save_js(request):
                 if tgt_right == 'delete':
                     # Status 'delete' means the access right is marked for
                     # deletion.
-                    try:
-                        access_right = BookAccessRight.objects.get(
-                            book_id=book_id, user_id=collaborator_id)
+                    access_right = BookAccessRight.objects.filter(
+                        book_id=book_id, user_id=collaborator_id
+                    ).first()
+                    if access_right:
                         access_right.delete()
-                    except:
-                        pass
                 else:
                     try:
                         access_right = BookAccessRight.objects.get(

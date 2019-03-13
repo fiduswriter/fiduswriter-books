@@ -41,6 +41,7 @@ class Chapter(models.Model):
     number = models.IntegerField()
     part = models.CharField(max_length=128, blank=True, default='')
 
+
 RIGHTS_CHOICES = (
     ('read', 'Reader'),
     ('write', 'Writer'),

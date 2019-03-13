@@ -133,7 +133,7 @@ const paperSizes =
         ["quarto", gettext("Quarto (12 × 9 inch)")],
         ["octavo", gettext("Octavo (9 x 6 inch)")],
         ["a5", gettext("A5")],
-        ["a4",gettext("A4")]
+        ["a4", gettext("A4")]
     ]
 
 /** A template for the print related data pane of the book dialog */

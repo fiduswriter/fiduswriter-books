@@ -22,7 +22,7 @@ export class PrintBookExporter extends HTMLBookExporter {
 
     exportThree(outputList) {
         const html = outputList.map(({filename, contents}) => {
-            if (filename.slice(0,9) !== 'document-' || filename.slice(-5) !== '.html') {
+            if (filename.slice(0, 9) !== 'document-' || filename.slice(-5) !== '.html') {
                 return ''
             }
             return contents

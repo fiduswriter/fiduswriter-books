@@ -1,5 +1,5 @@
 import katex from "katex"
-import {getMissingChapterData, getImageAndBibDB, uniqueObjects} from "../tools"
+import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
@@ -42,7 +42,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
     exportOne() {
 
         this.chapters = this.book.chapters.sort(
-            (a,b) => a.number > b.number
+            (a, b) => a.number > b.number
         ).map(chapter => {
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema

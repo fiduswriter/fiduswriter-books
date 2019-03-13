@@ -12,11 +12,11 @@ export const menuModel = () => ({
             id: 'contact_selector',
             open: false,
             checked: false,
-            checkAction: overview => {
+            checkAction: _overview => {
                 const checkboxes = document.querySelectorAll('input.entry-select[type=checkbox]')
                 checkboxes.forEach(checkbox => checkbox.checked = true)
             },
-            uncheckAction: overview => {
+            uncheckAction: _overview => {
                 const checkboxes = document.querySelectorAll('input.entry-select[type=checkbox]')
                 checkboxes.forEach(checkbox => checkbox.checked = false)
             },

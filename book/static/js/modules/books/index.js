@@ -61,7 +61,7 @@ export class BookOverview {
     getImageDB() {
         if (!this.imageDB) {
             const imageGetter = new ImageDB()
-            return new Promise((resolve, reject) => {
+            return new Promise(resolve => {
                 imageGetter.getDB().then(
                     () => {
                         this.imageDB = imageGetter
@@ -91,7 +91,7 @@ export class BookOverview {
                 top: ""
             },
             data: {
-                headings: ['','&emsp;&emsp;', gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
+                headings: ['', '&emsp;&emsp;', gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
                 data: this.bookList.map(book => this.createTableRow(book))
             },
             columns: [
@@ -100,7 +100,7 @@ export class BookOverview {
                     hidden: true
                 },
                 {
-                    select: [1,6,7],
+                    select: [1, 6, 7],
                     sortable: false
                 }
             ]
@@ -170,7 +170,7 @@ export class BookOverview {
         ).catch(
             error => {
                 addAlert('error', gettext('Cannot load data of books.'))
-                throw(error)
+                throw (error)
             }
         ).then(
             ({json}) => {
@@ -206,7 +206,7 @@ export class BookOverview {
                     bookId = parseInt(el.target.dataset.id)
                     this.mod.actions.deleteBookDialog([bookId])
                     break
-                case findTarget(event, '.owned-by-user.rights', el):
+                case findTarget(event, '.owned-by-user.rights', el): {
                     bookId = parseInt(el.target.dataset.id)
                     const accessDialog = new BookAccessRightsDialog(
                         [bookId],
@@ -217,6 +217,7 @@ export class BookOverview {
                         accessRights => this.accessRights = accessRights
                     )
                     break
+                }
                 case findTarget(event, '.book-title', el):
                     bookId = parseInt(el.target.dataset.id)
                     this.getImageDB().then(() => {

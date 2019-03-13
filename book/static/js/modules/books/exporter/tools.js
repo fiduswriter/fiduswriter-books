@@ -1,8 +1,8 @@
 import {getMissingDocumentListData} from "../../documents/tools"
 import {addAlert} from "../../common"
 
-export let getMissingChapterData = function (book, documentList) {
-    let bookDocuments = book.chapters.map(chapter =>
+export const getMissingChapterData = function(book, documentList) {
+    const bookDocuments = book.chapters.map(chapter =>
         documentList.find(doc => doc.id === chapter.text)
     )
 
@@ -11,13 +11,13 @@ export let getMissingChapterData = function (book, documentList) {
         return Promise.reject(new Error("Cannot produce book as you lack access rights to its chapters."))
     }
 
-    let docIds = book.chapters.map(chapter => chapter.text)
+    const docIds = book.chapters.map(chapter => chapter.text)
 
     return getMissingDocumentListData(docIds, documentList)
 }
 
-export let uniqueObjects = function (array) {
-    let results = []
+export const uniqueObjects = function(array) {
+    const results = []
 
     for (let i = 0; i < array.length; i++) {
         let willCopy = true

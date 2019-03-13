@@ -1,7 +1,7 @@
 import {BibLatexExporter} from "biblatex-csl-converter"
 import download from "downloadjs"
 
-import {getMissingChapterData, uniqueObjects} from "../tools"
+import {getMissingChapterData} from "../tools"
 import {LatexExporterConvert} from "../../../exporter/latex/convert"
 import {bookTexTemplate} from "./templates"
 import {createSlug} from "../../../exporter/tools/file"
@@ -12,7 +12,7 @@ export class LatexBookExporter {
 
     constructor(book, user, docList) {
         this.book = book
-        this.book.chapters.sort((a,b) => a.number > b.number)
+        this.book.chapters.sort((a, b) => a.number > b.number)
         this.user = user // Not used, but we keep it for consistency
         this.docList = docList
         this.textFiles = []

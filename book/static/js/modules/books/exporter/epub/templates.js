@@ -6,7 +6,6 @@ export const epubBookOpfTemplate = ({
         language,
         idType,
         date,
-        modified,
         styleSheets,
         math,
         images,
