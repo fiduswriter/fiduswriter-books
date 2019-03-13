@@ -7,6 +7,9 @@ import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateW
 import {SiteMenu} from "../menu"
 import {menuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
+import {
+    docSchema
+} from "../schema/document"
 
 export class BookOverview {
     // A class that contains everything that happens on the books page.
@@ -16,6 +19,7 @@ export class BookOverview {
         this.app = app
         this.user = user
         this.staticUrl = staticUrl
+        this.schema = docSchema
         this.mod = {}
         this.bookList = []
         this.styles = false

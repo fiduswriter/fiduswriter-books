@@ -2,3 +2,4 @@
 *~
 dist/
 fiduswriter_book.egg-info/
+__pycache__/

@@ -1,7 +1,6 @@
 import katex from "katex"
 import {getMissingChapterData, getImageAndBibDB, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
-import {docSchema} from "../../../schema/document"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
 import {createSlug} from "../../../exporter/tools/file"
@@ -14,8 +13,8 @@ import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends BaseEpubExporter { // extension is correct. Neds orderLinks/setLinks methods from base epub exporter.
-    constructor(book, user, docList, styles, staticUrl) {
-        super()
+    constructor(schema, book, user, docList, styles, staticUrl) {
+        super(schema)
         this.book = book
         this.user = user
         this.docList = docList
@@ -46,7 +45,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             (a,b) => a.number > b.number
         ).map(chapter => {
             const doc = this.docList.find(doc => doc.id === chapter.text),
-                schema = docSchema
+                schema = this.schema
             schema.cached.imageDB = {db: doc.images}
             const docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
@@ -91,7 +90,10 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
-                    chapter.contents = this.cleanHTML(chapter.contents, citRenderer.fm)
+                    this.contents = chapter.contents
+                    this.cleanHTML(citRenderer.fm)
+                    chapter.contents = this.contents
+                    delete this.contents
                     return Promise.resolve()
                 }
             )
@@ -181,7 +183,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         const includeZips = this.math ?
             [{
                 'directory': '',
-                'url': `${this.staticUrl}zip/katex-style.zip?v=${$StaticUrls.transpile.version$}`
+                'url': `${this.staticUrl}zip/katex_style.zip?v=${$StaticUrls.transpile.version$}`
             }] : []
 
         const zipper = new ZipFileCreator(

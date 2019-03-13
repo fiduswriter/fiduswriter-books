@@ -80,6 +80,7 @@ export const menuModel = () => ({
                             addAlert('info', book.title + ': ' + gettext(
                                 'Epub export has been initiated.'))
                             new EpubBookExporter(
+                                overview.schema,
                                 book,
                                 overview.user,
                                 overview.documentList,
@@ -98,6 +99,7 @@ export const menuModel = () => ({
                             addAlert('info', book.title + ': ' + gettext(
                                 'HTML export has been initiated.'))
                             const exporter = new HTMLBookExporter(
+                                overview.schema,
                                 book,
                                 overview.user,
                                 overview.documentList,
@@ -134,6 +136,7 @@ export const menuModel = () => ({
                             addAlert('info', book.title + ': ' + gettext(
                                 'Print has been initiated.'))
                             const exporter = new PrintBookExporter(
+                                overview.schema,
                                 book,
                                 overview.user,
                                 overview.documentList,

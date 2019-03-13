@@ -10,7 +10,6 @@ import {BaseEpubExporter} from "../../../exporter/epub/base"
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
   containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
-import {docSchema} from "../../../schema/document"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {modifyImages} from "../../../exporter/tools/html"
 import {createSlug} from "../../../exporter/tools/file"
@@ -20,8 +19,8 @@ import {addAlert} from "../../../common"
 
 
 export class EpubBookExporter extends BaseEpubExporter {
-    constructor(book, user, docList, styles, staticUrl) {
-        super()
+    constructor(schema, book, user, docList, styles, staticUrl) {
+        super(schema)
         this.book = book
         this.user = user
         this.docList = docList
@@ -45,7 +44,7 @@ export class EpubBookExporter extends BaseEpubExporter {
     }
 
     exportOne() {
-        this.book.chapters.sort((a, b) => a.number > b.number)
+        this.book.chapters.sort((a, b) => a.number > b.number ? 1 : -1)
 
         if (this.book.cover_image) {
             this.coverImage = this.book.cover_image_data
@@ -77,7 +76,7 @@ export class EpubBookExporter extends BaseEpubExporter {
         })
         this.chapters = this.book.chapters.map(chapter => {
             const doc = this.docList.find(doc => doc.id === chapter.text),
-                schema = docSchema
+                schema = this.schema
             schema.cached.imageDB = {db: doc.images}
             const docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
@@ -147,7 +146,10 @@ export class EpubBookExporter extends BaseEpubExporter {
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
-                    chapter.contents = this.cleanHTML(chapter.contents, citRenderer.fm)
+                    this.contents = chapter.contents
+                    this.cleanHTML(citRenderer.fm)
+                    chapter.contents = this.contents
+                    delete this.contents
                     return Promise.resolve()
                 }
             )
@@ -174,7 +176,6 @@ export class EpubBookExporter extends BaseEpubExporter {
                     body: obj2Node(node2Obj(chapter.contents), 'xhtml').innerHTML,
                     math: chapter.math
                 })
-
                 xhtmlCode = this.replaceImgSrc(xhtmlCode)
 
                 return {
@@ -286,23 +287,23 @@ export class EpubBookExporter extends BaseEpubExporter {
         if (this.math) {
             includeZips.push({
                 'directory': 'EPUB',
-                'url': `${this.staticUrl}zip/katex-style.zip?v=${$StaticUrls.transpile.version$}`
+                'url': `${this.staticUrl}zip/katex_style.zip?v=${$StaticUrls.transpile.version$}`
             })
         }
-
         const zipper = new ZipFileCreator(
             this.outputList,
             httpOutputList,
             includeZips,
             'application/epub+zip'
         )
-
         zipper.init().then(
-            blob => download(
-                blob,
-                createSlug(this.book.title) + '.epub',
-                'application/epub+zip'
-            )
+            blob => {
+                return download(
+                    blob,
+                    createSlug(this.book.title) + '.epub',
+                    'application/epub+zip'
+                )
+            }
         )
 
     }

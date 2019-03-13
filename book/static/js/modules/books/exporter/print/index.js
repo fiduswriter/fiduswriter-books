@@ -13,8 +13,8 @@ const CSS_PAPER_SIZES = {
 
 
 export class PrintBookExporter extends HTMLBookExporter {
-    constructor(book, user, docList, styles, staticUrl) {
-        super(book, user, docList, styles, staticUrl)
+    constructor(schema, book, user, docList, styles, staticUrl) {
+        super(schema, book, user, docList, styles, staticUrl)
         this.chapterTemplate = chapterTemplate
         this.modifyImages = false
     }
@@ -30,7 +30,13 @@ export class PrintBookExporter extends HTMLBookExporter {
             css = this.getBookCSS(),
             title = this.book.title,
             htmlDoc = printHTMLTemplate({css, html, title})
-        vivliostylePrint(htmlDoc, title, `${this.staticUrl}vivliostyle-resources/`)
+        vivliostylePrint(
+            htmlDoc,
+            {
+                title,
+                resourcesUrl: `${this.staticUrl}vivliostyle-resources/`
+            }
+        )
     }
 
     getBookCSS() {
