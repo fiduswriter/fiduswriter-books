@@ -23,8 +23,8 @@ Installation
         'book',
     )
 
-4. Run `python manage.py migrate` to create the needed database tables.
+4. Run ``python manage.py migrate`` to create the needed database tables.
 
-5. Run `python manage.py transpile` to create the needed JavaScript files.
+5. Run ``python manage.py transpile`` to create the needed JavaScript files.
 
 6. (Re)start your Fidus Writer server
