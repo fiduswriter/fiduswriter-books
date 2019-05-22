@@ -53,7 +53,7 @@ export class BookOverview {
             'access_rights_dialog.css',
             'book.css'
         ], this.staticUrl)
-        setDocTitle(gettext('Book Overview'))
+        setDocTitle(gettext('Book Overview'), this.app)
         const feedbackTab = new FeedbackTab({staticUrl: this.staticUrl})
         feedbackTab.init()
     }
