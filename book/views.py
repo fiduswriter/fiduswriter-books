@@ -2,11 +2,9 @@ from builtins import str
 import json
 from time import mktime
 
-from django.shortcuts import render
 from django.http import JsonResponse, HttpRequest
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.template.context_processors import csrf
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
@@ -61,15 +59,7 @@ def get_accessrights(ars):
 
 
 @login_required
-def print_book(request):
-    response = {}
-    response.update(csrf(request))
-    return render(request, 'book/print.html',
-                  response)
-
-
-@login_required
-def get_book_js(request):
+def get_book(request):
     response = {}
     status = 405
     if request.is_ajax() and request.method == 'POST':
@@ -125,7 +115,7 @@ def get_book_js(request):
 
 
 @login_required
-def get_booklist_js(request):
+def get_booklist(request):
     response = {}
     status = 405
     if request.is_ajax() and request.method == 'POST':
@@ -254,7 +244,7 @@ def set_chapters(book, chapters, user):
 
 
 @login_required
-def copy_js(request):
+def copy(request):
     # Copy a book
     if not request.is_ajax() or request.method != 'POST':
         return JsonResponse({}, status=405)
@@ -285,7 +275,7 @@ def copy_js(request):
 
 
 @login_required
-def save_js(request):
+def save(request):
     if not request.is_ajax() or request.method != 'POST':
         return JsonResponse({}, status=405)
     date_format = '%d/%m/%Y'
@@ -348,7 +338,7 @@ def save_js(request):
 
 
 @login_required
-def delete_js(request):
+def delete(request):
     response = {}
     status = 405
     if request.is_ajax() and request.method == 'POST':
@@ -428,7 +418,7 @@ def send_share_upgrade_notification(request, book_id, collaborator_id):
 
 @login_required
 @transaction.atomic
-def access_right_save_js(request):
+def access_right_save(request):
     status = 405
     response = {}
     if request.is_ajax() and request.method == 'POST':

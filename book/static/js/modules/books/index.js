@@ -45,7 +45,7 @@ export class BookOverview {
         document.body = document.createElement('body')
         document.body.innerHTML = baseBodyTemplate({
             contents: '<ul id="fw-overview-menu"></ul>',
-            username: this.user.username,
+            user: this.user,
             staticUrl: this.staticUrl
         })
         ensureCSS([
@@ -166,7 +166,7 @@ export class BookOverview {
     getBookListData() {
         activateWait()
         postJson(
-            '/book/booklist/'
+            '/api/book/booklist/'
         ).catch(
             error => {
                 addAlert('error', gettext('Cannot load data of books.'))

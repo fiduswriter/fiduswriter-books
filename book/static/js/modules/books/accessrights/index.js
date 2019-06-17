@@ -164,7 +164,7 @@ export class BookAccessRightsDialog {
         rights
     }) {
         return postJson(
-            '/book/accessright/save/', {
+            '/api/book/accessright/save/', {
                 books: bookIds,
                 collaborators,
                 rights

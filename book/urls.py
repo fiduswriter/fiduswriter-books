@@ -1,19 +1,16 @@
 from django.conf.urls import url
 
-from base.views import app
 from . import views
 
 urlpatterns = [
-    url('^$', app, name='index'),
-    url('^booklist/$', views.get_booklist_js, name='get_booklist_js'),
-    url('^save/$', views.save_js, name='save_js'),
-    url('^copy/$', views.copy_js, name='copy_js'),
-    url('^delete/$', views.delete_js, name='delete_js'),
-    url('^print/\d+/$', views.print_book, name='print'),
-    url('^book/$', views.get_book_js, name='get_book_js'),
+    url('^booklist/$', views.get_booklist, name='book_get_booklist'),
+    url('^save/$', views.save, name='book_save'),
+    url('^copy/$', views.copy, name='book_copy'),
+    url('^delete/$', views.delete, name='book_delete'),
+    url('^book/$', views.get_book, name='book_get_book'),
     url(
         '^accessright/save/$',
-        views.access_right_save_js,
-        name='access_right_save_js'
+        views.access_right_save,
+        name='access_right_save'
     ),
 ]

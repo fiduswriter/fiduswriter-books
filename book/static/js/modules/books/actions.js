@@ -20,7 +20,7 @@ export class BookActions {
         }
 
         post(
-            '/book/delete/',
+            '/api/book/delete/',
             {id}
         ).catch(
             error => {
@@ -106,7 +106,7 @@ export class BookActions {
 
 
         return postJson(
-            '/book/save/',
+            '/api/book/save/',
             {book: JSON.stringify(bookData)}
         ).catch(
             error => {
@@ -142,7 +142,7 @@ export class BookActions {
         book.owner = this.bookOverview.user.id
         book.rights = 'write'
         return postJson(
-            '/book/copy/',
+            '/api/book/copy/',
             {book_id: book.id}
         ).catch(
             error => {

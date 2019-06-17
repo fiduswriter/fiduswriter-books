@@ -1,4 +1,3 @@
-import katex from "katex"
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
@@ -55,16 +54,6 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             if (equations.length || figureEquations.length) {
                 this.math = true
             }
-
-            equations.forEach(el => {
-                const formula = el.getAttribute('data-equation')
-                katex.render(formula, el, {throwOnError: false})
-            })
-
-            figureEquations.forEach(el => {
-                const formula = el.getAttribute('data-equation')
-                katex.render(formula, el, {displayMode: true, throwOnError: false})
-            })
 
             return {
                 doc,
@@ -183,7 +172,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         const includeZips = this.math ?
             [{
                 'directory': '',
-                'url': `${this.staticUrl}zip/katex_style.zip?v=${$StaticUrls.transpile.version$}`
+                'url': `${this.staticUrl}zip/mathlive_style.zip?v=${process.env.TRANSPILE_VERSION}`
             }] : []
 
         const zipper = new ZipFileCreator(

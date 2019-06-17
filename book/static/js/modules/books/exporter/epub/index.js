@@ -1,11 +1,10 @@
-import katex from "katex"
 import {DOMSerializer} from "prosemirror-model"
 import download from "downloadjs"
 
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
   epubBookCopyrightTemplate} from "./templates"
-import {katexOpfIncludes} from "../../../katex/opf_includes"
+import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {BaseEpubExporter} from "../../../exporter/epub/base"
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
   containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
@@ -98,14 +97,6 @@ export class EpubBookExporter extends BaseEpubExporter {
                 this.math = true
             }
 
-            equations.forEach(el => {
-                const formula = el.getAttribute('data-equation')
-                katex.render(formula, el, {throwOnError: false})
-            })
-            figureEquations.forEach(el => {
-                const formula = el.getAttribute('data-equation')
-                katex.render(formula, el, {throwOnError: false})
-            })
             if (chapter.part && chapter.part.length) {
                 this.contentItems.push({
                     link: `document-${chapter.number}.xhtml`,
@@ -225,7 +216,7 @@ export class EpubBookExporter extends BaseEpubExporter {
             images: this.images,
             chapters: this.chapters,
             coverImage: this.coverImage,
-            katexOpfIncludes,
+            mathliveOpfIncludes,
             user: this.user
         })
 
@@ -287,7 +278,7 @@ export class EpubBookExporter extends BaseEpubExporter {
         if (this.math) {
             includeZips.push({
                 'directory': 'EPUB',
-                'url': `${this.staticUrl}zip/katex_style.zip?v=${$StaticUrls.transpile.version$}`
+                'url': `${this.staticUrl}zip/mathlive_style.zip?v=${process.env.TRANSPILE_VERSION}`
             })
         }
         const zipper = new ZipFileCreator(

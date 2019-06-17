@@ -18,3 +18,12 @@
 b.part {
     font-weight: bold;
 }
+
+#book-dialog div.img {
+  width: calc(80vw - 100px);
+  height: calc(80vh - 200px);
+  max-width: 480px;
+  max-height: 360px;
+  background: transparent no-repeat center;
+  background-size: contain;
+}

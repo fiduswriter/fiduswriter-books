@@ -6,7 +6,10 @@ export class BookAppItem {
     }
 
     init() {
-        this.app.routes['book'] = () => new BookOverview(this.app.config)
+        this.app.routes['book'] = {
+          requireLogin: true,
+          open: () => new BookOverview(this.app.config)
+        }
     }
 
 }

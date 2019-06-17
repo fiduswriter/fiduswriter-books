@@ -201,15 +201,11 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
             <h4 class="fw-tablerow-title">${gettext("Cover image")}</h4>
         </th>
         <td>
-            <div class="figure-preview">
-                <div id="inner-figure-preview">
-                    ${
-                        book.cover_image ?
-                        `<img src="${imageDB.db[book.cover_image].image}">` :
-                        ''
-                    }
-                </div>
-            </div>
+        ${
+            book.cover_image ?
+            `<div class="img" style="background-image: url(${imageDB.db[book.cover_image].image});"></div>` :
+            ''
+        }
         </td>
         ${
             book.rights === "write" ?

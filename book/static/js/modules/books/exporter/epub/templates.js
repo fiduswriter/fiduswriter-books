@@ -11,7 +11,7 @@ export const epubBookOpfTemplate = ({
         images,
         chapters,
         coverImage,
-        katexOpfIncludes,
+        mathliveOpfIncludes,
         user
     }) =>
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -86,7 +86,7 @@ export const epubBookOpfTemplate = ({
         }
         ${
             math ?
-            katexOpfIncludes :
+            mathliveOpfIncludes :
             ''
         }
         <!-- ncx included for 2.0 reading system compatibility: -->
