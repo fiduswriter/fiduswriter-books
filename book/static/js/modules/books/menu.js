@@ -119,6 +119,7 @@ export const menuModel = () => ({
                             addAlert('info', book.title + ': ' + gettext(
                                 'LaTeX export has been initiated.'))
                             new LatexBookExporter(
+                                overview.schema,
                                 book,
                                 overview.user,
                                 overview.documentList,

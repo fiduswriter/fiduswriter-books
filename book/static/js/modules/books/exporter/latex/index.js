@@ -10,7 +10,8 @@ import {ZipFileCreator} from "../../../exporter/tools/zip"
 
 export class LatexBookExporter {
 
-    constructor(book, user, docList) {
+    constructor(schema, book, user, docList) {
+        this.schema = schema
         this.book = book
         this.book.chapters.sort((a, b) => a.number > b.number)
         this.user = user // Not used, but we keep it for consistency
@@ -18,7 +19,7 @@ export class LatexBookExporter {
         this.textFiles = []
         this.httpFiles = []
 
-        getMissingChapterData(this.book, this.docList).then(
+        getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.init()
         ).catch(
             () => {}

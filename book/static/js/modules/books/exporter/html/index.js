@@ -31,7 +31,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             return false
         }
 
-        getMissingChapterData(this.book, this.docList).then(
+        getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
         ).catch(
             () => {}
@@ -68,6 +68,7 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
             const citRenderer = new RenderCitations(
                 chapter.contents,
                 this.book.settings.citationstyle,
+                this.book.settings.bibliography_header,
                 {db: chapter.doc.bibliography},
                 this.styles.citation_styles,
                 this.styles.citation_locales,

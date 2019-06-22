@@ -35,7 +35,7 @@ export class EpubBookExporter extends BaseEpubExporter {
             addAlert('error', gettext('Book cannot be exported due to lack of chapters.'))
             return false
         }
-        getMissingChapterData(this.book, this.docList).then(
+        getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
         ).catch(
             () => {}
@@ -126,6 +126,7 @@ export class EpubBookExporter extends BaseEpubExporter {
             const citRenderer = new RenderCitations(
                 chapter.contents,
                 this.book.settings.citationstyle,
+                this.book.settings.bibliography_header,
                 {db: chapter.doc.bibliography},
                 this.styles.citation_styles,
                 this.styles.citation_locales,

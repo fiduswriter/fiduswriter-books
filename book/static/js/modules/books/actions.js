@@ -181,6 +181,7 @@ export class BookActions {
                     keywords: ''
                 },
                 settings: {
+                    bibliography_header: gettext('Bibliography'),
                     citationstyle: this.bookOverview.styles.citation_styles[0].filename,
                     documentstyle: this.bookOverview.styles.document_styles[0].filename,
                     papersize: 'octavo'
@@ -402,6 +403,10 @@ export class BookActions {
 
         dialog.dialogEl.querySelector('#book-settings-citationstyle').addEventListener('change', event => {
             book.settings.citationstyle = event.target.value
+        })
+
+        dialog.dialogEl.querySelector('#book-settings-bibliography-header').addEventListener('input', event => {
+            book.settings.bibliography_header = event.target.value
         })
 
         dialog.dialogEl.querySelector('#book-settings-documentstyle').addEventListener('change', event => {
