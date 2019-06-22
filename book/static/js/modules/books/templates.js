@@ -104,7 +104,7 @@ const bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
             <h4 class="fw-tablerow-title">${gettext("Bibliography header")}</h4>
         </th>
         <td>
-            <input type="text" id="book-settings-bibliography-header" value="${escapeText(book.settings.bibliography_header || '')}">
+            <input type="text" id="book-settings-bibliography-header" value="${escapeText(book.settings.bibliography_header)}">
         </td>
     </tr>
     <tr>
