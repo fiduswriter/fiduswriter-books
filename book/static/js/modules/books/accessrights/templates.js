@@ -41,13 +41,13 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
     export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
         `<div id="my-contacts" class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My contacts")}</h3>
-            <table class="fw-document-table">
-                <thead class="fw-document-table-header">
+            <table class="fw-data-table">
+                <thead class="fw-data-table-header">
                     <tr>
                         <th width="332">${gettext("Contacts")}</th>
                     </tr>
                 </thead>
-                <tbody class="fw-document-table-body fw-small">
+                <tbody class="fw-data-table-body fw-small">
                     ${
                         contacts.map(contact =>
                             `<tr>
@@ -71,13 +71,13 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
         </span>
         <div id="share-member" class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My collaborators")}</h3>
-            <table class="fw-document-table tablesorter">
-                <thead class="fw-document-table-header"><tr>
+            <table class="fw-data-table tablesorter">
+                <thead class="fw-data-table-header"><tr>
                         <th width="212">${gettext("Collaborators")}</th>
                         <th width="50" align="center">${gettext("Rights")}</th>
                         <th width="50" align="center">${gettext("Delete")}</th>
                 </tr></thead>
-                <tbody class="fw-document-table-body fw-small">${bookCollaboratorsTemplate({
+                <tbody class="fw-data-table-body fw-small">${bookCollaboratorsTemplate({
                     collaborators
                 })}</tbody>
             </table>

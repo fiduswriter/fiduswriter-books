@@ -11,7 +11,7 @@
     width: 486px;
 }
 
-.fw-document-table td.book-sort-up, .fw-document-table td.book-sort-down {
+.fw-data-table td.book-sort-up, .fw-data-table td.book-sort-down {
     padding-right: 0;
 }
 

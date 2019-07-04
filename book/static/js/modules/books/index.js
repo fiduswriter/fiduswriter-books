@@ -78,7 +78,7 @@ export class BookOverview {
     /* Initialize the overview table */
     initTable() {
         const tableEl = document.createElement('table')
-        tableEl.classList.add('fw-document-table')
+        tableEl.classList.add('fw-data-table')
         tableEl.classList.add('fw-large')
         document.querySelector('.fw-contents').appendChild(tableEl)
 
@@ -122,7 +122,7 @@ export class BookOverview {
         return [
             String(book.id),
             `<input type="checkbox" class="entry-select" data-id="${book.id}">`,
-            `<span class="fw-document-table-title fw-inline">
+            `<span class="fw-data-table-title fw-inline">
                 <i class="fa fa-book"></i>
                 <span class="book-title fw-link-text fw-searchable"
                         data-id="${book.id}">
