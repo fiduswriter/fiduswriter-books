@@ -104,7 +104,7 @@ const bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
             <h4 class="fw-tablerow-title">${gettext("Bibliography header")}</h4>
         </th>
         <td>
-            <input type="text" id="book-settings-bibliography-header" value="${escapeText(book.settings.bibliography_header || '')}">
+            <input type="text" id="book-settings-bibliography-header" value="${escapeText(book.settings.bibliography_header)}">
         </td>
     </tr>
     <tr>
@@ -335,13 +335,13 @@ const bookDialogChaptersTemplate = ({book, documentList}) =>
         book.rights === "write" ?
         `<div class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My documents")}</h3>
-            <table class="fw-document-table">
-                <thead class="fw-document-table-header">
+            <table class="fw-data-table">
+                <thead class="fw-data-table-header">
                     <tr>
                         <th width="332">${gettext("Documents")}</th>
                     </tr>
                 </thead>
-                <tbody class="fw-document-table-body fw-small" id="book-document-list">
+                <tbody class="fw-data-table-body fw-small" id="book-document-list">
                     ${bookDocumentListTemplate({
                         book,
                         documentList
@@ -356,8 +356,8 @@ const bookDialogChaptersTemplate = ({book, documentList}) =>
     }
     <div class="fw-ar-container">
         <h3 class="fw-green-title">${gettext("Book chapters")}</h3>
-        <table class="fw-document-table">
-            <thead class="fw-document-table-header">
+        <table class="fw-data-table">
+            <thead class="fw-data-table-header">
                 <tr>
                     <th colspan="2">${gettext("Title")}</th>
                     <th colspan="2">${gettext("Sort")}</th>
@@ -368,7 +368,7 @@ const bookDialogChaptersTemplate = ({book, documentList}) =>
                     }
                 </tr>
             </thead>
-            <tbody class="fw-document-table-body fw-small" id="book-chapter-list">
+            <tbody class="fw-data-table-body fw-small" id="book-chapter-list">
                 ${bookChapterListTemplate({
                     book,
                     documentList

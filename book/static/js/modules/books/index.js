@@ -3,9 +3,9 @@ import {DataTable} from "simple-datatables"
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle} from "../common"
+import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk} from "../common"
 import {SiteMenu} from "../menu"
-import {menuModel} from "./menu"
+import {menuModel, bulkModel} from "./menu"
 import {FeedbackTab} from "../feedback"
 import {
     docSchema
@@ -44,9 +44,10 @@ export class BookOverview {
     render() {
         document.body = document.createElement('body')
         document.body.innerHTML = baseBodyTemplate({
-            contents: '<ul id="fw-overview-menu"></ul>',
+            contents: '',
             user: this.user,
-            staticUrl: this.staticUrl
+            staticUrl: this.staticUrl,
+            hasOverview: true
         })
         ensureCSS([
             'add_remove_dialog.css',
@@ -77,9 +78,12 @@ export class BookOverview {
     /* Initialize the overview table */
     initTable() {
         const tableEl = document.createElement('table')
-        tableEl.classList.add('fw-document-table')
+        tableEl.classList.add('fw-data-table')
         tableEl.classList.add('fw-large')
         document.querySelector('.fw-contents').appendChild(tableEl)
+
+        const dt_bulk = new DatatableBulk(this, bulkModel)
+
         this.table = new DataTable(tableEl, {
             searchable: true,
             paging: false,
@@ -91,7 +95,7 @@ export class BookOverview {
                 top: ""
             },
             data: {
-                headings: ['', '&emsp;&emsp;', gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
+                headings: ['', dt_bulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
                 data: this.bookList.map(book => this.createTableRow(book))
             },
             columns: [
@@ -110,13 +114,15 @@ export class BookOverview {
         this.table.on('datatable.sort', (column, dir) => {
             this.lastSort = {column, dir}
         })
+
+        dt_bulk.init(this.table.table)
     }
 
     createTableRow(book) {
         return [
             String(book.id),
             `<input type="checkbox" class="entry-select" data-id="${book.id}">`,
-            `<span class="fw-document-table-title fw-inline">
+            `<span class="fw-data-table-title fw-inline">
                 <i class="fa fa-book"></i>
                 <span class="book-title fw-link-text fw-searchable"
                         data-id="${book.id}">
