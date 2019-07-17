@@ -80,11 +80,12 @@ export const bulkModel = [
                     'Epub export has been initiated.'))
                 new EpubBookExporter(
                     overview.schema,
+                    overview.styles.citation_styles,
+                    overview.styles.citation_locales,
+                    overview.staticUrl,
                     book,
                     overview.user,
-                    overview.documentList,
-                    overview.styles,
-                    overview.staticUrl
+                    overview.documentList
                 )
             })
         }
@@ -99,11 +100,12 @@ export const bulkModel = [
                     'HTML export has been initiated.'))
                 const exporter = new HTMLBookExporter(
                     overview.schema,
+                    overview.styles.citation_styles,
+                    overview.styles.citation_locales,
+                    overview.staticUrl,
                     book,
                     overview.user,
-                    overview.documentList,
-                    overview.styles,
-                    overview.staticUrl
+                    overview.documentList
                 )
                 exporter.init()
             })

@@ -13,13 +13,11 @@ import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends DOMExporter {
-    constructor(schema, book, user, docList, styles, staticUrl) {
-        super(schema)
+    constructor(schema, citationStyles, citationLocales, staticUrl, book, user, docList) {
+        super(schema, staticUrl, citationStyles, citationLocales)
         this.book = book
         this.user = user
         this.docList = docList
-        this.styles = styles
-        this.staticUrl = staticUrl
         this.chapters = []
         this.math = false
         this.chapterTemplate = htmlBookExportTemplate
@@ -71,8 +69,8 @@ export class HTMLBookExporter extends DOMExporter {
                 this.book.settings.citationstyle,
                 this.book.settings.bibliography_header,
                 {db: chapter.doc.bibliography},
-                this.styles.citation_styles,
-                this.styles.citation_locales,
+                this.citationStyles,
+                this.citationLocales,
                 true
             )
             return citRenderer.init().then(

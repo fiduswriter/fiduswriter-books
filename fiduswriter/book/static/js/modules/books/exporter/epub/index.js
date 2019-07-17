@@ -20,13 +20,11 @@ import {addAlert} from "../../../common"
 
 
 export class EpubBookExporter extends DOMExporter {
-    constructor(schema, book, user, docList, styles, staticUrl) {
-        super(schema)
+    constructor(schema, citationStyles, citationLocales, staticUrl, book, user, docList) {
+        super(schema, staticUrl, citationStyles, citationLocales)
         this.book = book
         this.user = user
         this.docList = docList
-        this.styles = styles
-        this.staticUrl = staticUrl
         this.chapters = []
         this.images = []
         this.outputList = []
@@ -128,8 +126,8 @@ export class EpubBookExporter extends DOMExporter {
                 this.book.settings.citationstyle,
                 this.book.settings.bibliography_header,
                 {db: chapter.doc.bibliography},
-                this.styles.citation_styles,
-                this.styles.citation_locales,
+                this.citationStyles,
+                this.citationLocales,
                 true
             )
             return citRenderer.init().then(
