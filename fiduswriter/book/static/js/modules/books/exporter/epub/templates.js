@@ -6,6 +6,7 @@ export const epubBookOpfTemplate = ({
         language,
         idType,
         date,
+        modified,
         styleSheets,
         math,
         images,
@@ -28,6 +29,7 @@ export const epubBookOpfTemplate = ({
             }
         </dc:creator>
         <dc:language>${language}</dc:language>
+        <meta property="dcterms:modified">${modified}</meta>
         <dc:date>${date}</dc:date>
         ${
             book.metadata.copyright && book.metadata.copyright.length ?
@@ -75,7 +77,7 @@ export const epubBookOpfTemplate = ({
                     image.filename.split(".")[1]==="svg" ?
                     'svg+xml' :
                     'jpeg'
-                }/>`
+                }"/>`
             ).join('')
         }
         ${
@@ -175,7 +177,7 @@ export const epubBookCopyrightTemplate = ({
                     ${escapeText(book.title)}
                     ${
                         book.metadata.author.length ?
-                        `${gettext('by')} ${escapeText(book.metadata.author)}}` :
+                        `${gettext('by')} ${escapeText(book.metadata.author)}` :
                         ''
                     }
                 </p>

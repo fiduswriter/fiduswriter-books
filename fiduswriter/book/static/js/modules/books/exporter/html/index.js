@@ -1,7 +1,8 @@
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
-import {BaseEpubExporter} from "../../../exporter/epub/base"
+import {epubExporterMixin} from "../../../exporter/epub/mixin" // Needs orderLinks/setLinks methods from base epub exporter.
+import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {createSlug} from "../../../exporter/tools/file"
 import {modifyImages} from "../../../exporter/tools/html"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
@@ -11,7 +12,7 @@ import {addAlert} from "../../../common"
 import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
-export class HTMLBookExporter extends BaseEpubExporter { // extension is correct. Neds orderLinks/setLinks methods from base epub exporter.
+export class HTMLBookExporter extends DOMExporter {
     constructor(schema, book, user, docList, styles, staticUrl) {
         super(schema)
         this.book = book
@@ -187,5 +188,6 @@ export class HTMLBookExporter extends BaseEpubExporter { // extension is correct
         )
     }
 
-
 }
+
+Object.assign(HTMLBookExporter.prototype, epubExporterMixin)

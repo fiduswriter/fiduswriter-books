@@ -5,7 +5,9 @@ import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
   epubBookCopyrightTemplate} from "./templates"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
-import {BaseEpubExporter} from "../../../exporter/epub/base"
+import {DOMExporter} from "../../../exporter/tools/dom_export"
+import {epubExporterMixin} from "../../../exporter/epub/mixin"
+
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
   containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
@@ -17,7 +19,7 @@ import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
 
 
-export class EpubBookExporter extends BaseEpubExporter {
+export class EpubBookExporter extends DOMExporter {
     constructor(schema, book, user, docList, styles, staticUrl) {
         super(schema)
         this.book = book
@@ -37,8 +39,6 @@ export class EpubBookExporter extends BaseEpubExporter {
         }
         getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
-        ).catch(
-            () => {}
         )
     }
 
@@ -80,17 +80,17 @@ export class EpubBookExporter extends BaseEpubExporter {
             const docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
                 tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents))
-            let contents = document.createElement('body'), math = false
+            let contentsEl = document.createElement('body'), math = false
             while (tempNode.firstChild) {
-                contents.appendChild(tempNode.firstChild)
+                contentsEl.appendChild(tempNode.firstChild)
             }
 
-            this.images = this.images.concat(modifyImages(contents))
-            contents = this.addFigureNumbers(contents)
+            this.images = this.images.concat(modifyImages(contentsEl))
+            this.addFigureNumbers(contentsEl)
+            this.makeTitleHeading(contentsEl)
+            const equations = contentsEl.querySelectorAll('.equation')
 
-            const equations = contents.querySelectorAll('.equation')
-
-            const figureEquations = contents.querySelectorAll('.figure-equation')
+            const figureEquations = contentsEl.querySelectorAll('.figure-equation')
 
             if (equations.length || figureEquations.length) {
                 math = true
@@ -110,11 +110,11 @@ export class EpubBookExporter extends BaseEpubExporter {
 
             // Make links to all H1-3 and create a TOC list of them
             this.contentItems = this.contentItems.concat(this.setLinks(
-                contents, chapter.number))
+                contentsEl, chapter.number))
 
 
             return {
-                contents,
+                contents: contentsEl,
                 number : chapter.number,
                 part: chapter.part,
                 math,
@@ -301,3 +301,5 @@ export class EpubBookExporter extends BaseEpubExporter {
     }
 
 }
+
+Object.assign(EpubBookExporter.prototype, epubExporterMixin)
