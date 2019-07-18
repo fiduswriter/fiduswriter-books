@@ -7,6 +7,7 @@ export const htmlBookExportTemplate = ({styleSheets, part, contents, title}) =>
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
+        <link type="text/css" rel="stylesheet" href="document.css" />
         ${
             styleSheets.map(sheet =>
                 `<link rel="stylesheet" type="text/css" href="${sheet.filename}" />`

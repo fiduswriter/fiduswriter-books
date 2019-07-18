@@ -22,7 +22,6 @@ export class HTMLBookExporter extends DOMExporter {
         this.chapters = []
         this.math = false
         this.chapterTemplate = htmlBookExportTemplate
-        this.modifyImages = true
     }
 
     init() {
@@ -92,20 +91,20 @@ export class HTMLBookExporter extends DOMExporter {
 
     }
 
-    exportTwo() {
-        let contentItems = [],
-            images = []
+    prepareBinaryFiles(contents) {
+        this.binaryFiles = this.binaryFiles.concat(modifyImages(contents))
+    }
 
-        const styleSheets = []
+    exportTwo() {
+        let contentItems = []
 
         let outputList = this.chapters.map((chapter, index) => {
             const contents = chapter.contents,
                 doc = chapter.doc,
-                title = doc.title
+                title = doc.title,
+                styleSheets = [{filename:this.addDocStyle(doc)}]
 
-            if (this.modifyImages) {
-                images = images.concat(modifyImages(contents))
-            }
+            this.prepareBinaryFiles(contents)
 
             if (this.book.chapters[index].part && this.book.chapters[index].part !== '') {
                 contentItems.push({
@@ -150,8 +149,6 @@ export class HTMLBookExporter extends DOMExporter {
 
         contentItems = orderLinks(contentItems)
 
-        outputList = outputList.concat(styleSheets)
-
         outputList.push({
             filename: 'index.html',
             contents: htmlBookIndexTemplate({
@@ -163,26 +160,37 @@ export class HTMLBookExporter extends DOMExporter {
             })
         })
 
-        images = uniqueObjects(images)
 
-        this.exportThree(outputList, images)
+
+        this.exportThree(outputList)
 
     }
 
-    exportThree(outputList, images) {
+    exportThree(outputList) {
+        this.binaryFiles = uniqueObjects(this.binaryFiles.concat(this.fontFiles))
+        this.styleSheets = uniqueObjects(this.styleSheets)
         const includeZips = this.math ?
             [{
                 'directory': '',
                 'url': `${this.staticUrl}zip/mathlive_style.zip?v=${process.env.TRANSPILE_VERSION}`
             }] : []
 
-        const zipper = new ZipFileCreator(
-            outputList,
-            images,
-            includeZips
-        )
+        this.loadStyles().then(
+            () => {
+                this.styleSheets.forEach(styleSheet => {
+                    if (styleSheet.filename) {
+                        outputList.push(styleSheet)
+                    }
+                })
+                const zipper = new ZipFileCreator(
+                    outputList,
+                    this.binaryFiles,
+                    includeZips
+                )
 
-        zipper.init().then(
+                return zipper.init()
+            }
+        ).then(
             blob => download(blob, createSlug(this.book.title) + '.html.zip', 'application/zip')
         )
     }

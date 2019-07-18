@@ -17,7 +17,11 @@ export class PrintBookExporter extends HTMLBookExporter {
     constructor(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList) {
         super(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList)
         this.chapterTemplate = chapterTemplate
-        this.modifyImages = false
+    }
+
+    // We can ignore preparing binary files in print
+    prepareBinaryFiles() {
+        return []
     }
 
 
