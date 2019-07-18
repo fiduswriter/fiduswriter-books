@@ -30,7 +30,7 @@ export class PrintBookExporter extends HTMLBookExporter {
         }).join(''),
             css = this.getBookCSS(),
             title = this.book.title,
-            htmlDoc = printHTMLTemplate({css, html, title})
+            htmlDoc = printHTMLTemplate({css, html, title, staticUrl: this.staticUrl})
         vivliostylePrint(
             htmlDoc,
             {
@@ -41,7 +41,7 @@ export class PrintBookExporter extends HTMLBookExporter {
     }
 
     getBookCSS() {
-        const css = `a.fn {
+        let css = `a.fn {
             -adapt-template: url(data:application/xml,${
                 encodeURI(
                     '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.pyroxy.com/ns/shadow"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id="footnote"><s:content/><s:include class="footnote-content"/></s:template></body></html>#footnote'
@@ -74,30 +74,17 @@ export class PrintBookExporter extends HTMLBookExporter {
         figure img {
             max-width: 100%;
         }
+        `
+        const docStyle = this.documentStyles.find(style => style.filename === this.book.settings.documentstyle)
+        css += `
+        ${docStyle.fonts.map(font => {
+            return `@font-face {${
+                font[1].replace('[URL]', font[0])
+            }}`
+        }).join('\n')}
+        ${docStyle.contents}
+        `
 
-        body {
-          counter-reset: figure-cat-0 figure-cat-1 figure-cat-2 footnote-counter footnote-marker-counter;
-        }
-        
-        .figure-cat-figure::after {
-            counter-increment: figure-cat-0;
-            content: ' ' counter(figure-cat-0);
-        }
-
-        .figure-cat-photo::after {
-            counter-increment: figure-cat-1;
-            content: ' ' counter(figure-cat-1);
-        }
-
-        .figure-cat-table::after {
-            counter-increment: figure-cat-2;
-            content: ' ' counter(figure-cat-2);
-        }
-
-        .figure-cat-figure + span::before, .figure-cat-photo + span::before, .figure-cat-table + span::before {
-            content: ': ';
-        }
-        ` + this.documentStyles.find(style => style.filename === this.book.settings.documentstyle).contents
         return css
     }
 
