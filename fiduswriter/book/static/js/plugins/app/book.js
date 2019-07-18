@@ -1,4 +1,3 @@
-import {BookOverview} from "../../modules/books"
 // Adds the books overview page to the app routing table
 export class BookAppItem {
     constructor(app) {
@@ -8,7 +7,7 @@ export class BookAppItem {
     init() {
         this.app.routes['book'] = {
           requireLogin: true,
-          open: () => new BookOverview(this.app.config)
+          open: () => import("../../modules/books").then(({BookOverview}) => new BookOverview(this.app.config))
         }
     }
 
