@@ -152,13 +152,11 @@ export class EpubBookExporter extends DOMExporter {
     }
 
     exportTwo() {
-        const includeZips = [],
-            styleSheets = []
-        let httpOutputList = []
 
         this.outputList = this.outputList.concat(
             this.chapters.map(chapter => {
                 chapter.contents = styleEpubFootnotes(chapter.contents)
+                const styleSheets = [{filename: 'document.css'}, {filename: this.addDocStyle(chapter.doc)}]
                 let xhtmlCode = xhtmlTemplate({
                     part: chapter.part,
                     shortLang: chapter.doc.settings.language.split('-')[0],
@@ -177,6 +175,13 @@ export class EpubBookExporter extends DOMExporter {
                 }
             })
         )
+        this.loadStyles().then(
+            () => this.exportThree()
+        )
+    }
+
+    exportThree() {
+        const includeZips = []
 
         this.contentItems.push({
             link: 'copyright.xhtml#copyright',
@@ -192,6 +197,8 @@ export class EpubBookExporter extends DOMExporter {
         const timestamp = getTimestamp()
 
         this.images = uniqueObjects(this.images)
+        this.fontFiles = uniqueObjects(this.fontFiles)
+        this.styleSheets = uniqueObjects(this.styleSheets)
 
         // mark cover image
         if (this.coverImage) {
@@ -211,9 +218,10 @@ export class EpubBookExporter extends DOMExporter {
             idType: 'fidus',
             date: timestamp.slice(0, 10), // TODO: the date should probably be the original document creation date instead
             modified: timestamp,
-            styleSheets,
+            styleSheets: this.styleSheets,
             math: this.math,
             images: this.images,
+            fontFiles: this.fontFiles,
             chapters: this.chapters,
             coverImage: this.coverImage,
             mathliveOpfIncludes,
@@ -262,18 +270,27 @@ export class EpubBookExporter extends DOMExporter {
         }])
 
         this.outputList = this.outputList.concat(
-            styleSheets.map(sheet => ({
+            this.styleSheets.map(sheet => ({
                 filename: `EPUB/${sheet.filename}`,
                 contents: sheet.contents
             }))
         )
 
-        httpOutputList = httpOutputList.concat(
+        this.binaryFiles = this.binaryFiles.concat(
             this.images.map(image => ({
                 filename: `EPUB/${image.filename}`,
                 url: image.url
             }))
         )
+
+        this.fontFiles.forEach(font => {
+            this.binaryFiles.push({
+                filename: 'EPUB/' + font.filename,
+                url: font.url
+            })
+        })
+
+        this.binaryFiles = uniqueObjects(this.binaryFiles)
 
         if (this.math) {
             includeZips.push({
@@ -283,7 +300,7 @@ export class EpubBookExporter extends DOMExporter {
         }
         const zipper = new ZipFileCreator(
             this.outputList,
-            httpOutputList,
+            this.binaryFiles,
             includeZips,
             'application/epub+zip'
         )

@@ -11,6 +11,7 @@ export const epubBookOpfTemplate = ({
         styleSheets,
         math,
         images,
+        fontFiles,
         chapters,
         coverImage,
         mathliveOpfIncludes,
@@ -79,6 +80,19 @@ export const epubBookOpfTemplate = ({
                     'svg+xml' :
                     'jpeg'
                 }"/>`
+            ).join('')
+        }
+        ${
+            fontFiles.map((fontFile, index) =>
+                `<item ${
+                    `id="font${index}"`
+                } href="${
+                    fontFile.filename
+                }" media-type="application/${
+                    fontFile.filename.split(".")[1]==="woff" ?
+                    'font-woff' :
+                    'font-sfnt'
+                }" />`
             ).join('')
         }
         ${

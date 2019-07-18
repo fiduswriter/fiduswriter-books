@@ -102,7 +102,7 @@ export class HTMLBookExporter extends DOMExporter {
             const contents = chapter.contents,
                 doc = chapter.doc,
                 title = doc.title,
-                styleSheets = [{filename:this.addDocStyle(doc)}]
+                styleSheets = [{filename: this.addDocStyle(doc)}]
 
             this.prepareBinaryFiles(contents)
 
