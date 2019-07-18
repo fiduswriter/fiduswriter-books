@@ -1,12 +1,14 @@
 import {DOMSerializer} from "prosemirror-model"
 import download from "downloadjs"
 
+import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
+
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
   epubBookCopyrightTemplate} from "./templates"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
-import {epubExporterMixin} from "../../../exporter/epub/mixin"
+import {setLinks, orderLinks, getTimestamp, styleEpubFootnotes, addFigureLabels} from "../../../exporter/epub/tools"
 
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
   containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
@@ -20,8 +22,8 @@ import {addAlert} from "../../../common"
 
 
 export class EpubBookExporter extends DOMExporter {
-    constructor(schema, citationStyles, citationLocales, staticUrl, book, user, docList) {
-        super(schema, staticUrl, citationStyles, citationLocales)
+    constructor(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList) {
+        super(schema, staticUrl, citationStyles, citationLocales, documentStyles)
         this.book = book
         this.user = user
         this.docList = docList
@@ -84,8 +86,7 @@ export class EpubBookExporter extends DOMExporter {
             }
 
             this.images = this.images.concat(modifyImages(contentsEl))
-            this.addFigureNumbers(contentsEl)
-            this.makeTitleHeading(contentsEl)
+            addFigureLabels(contentsEl, doc.settings.language)
             const equations = contentsEl.querySelectorAll('.equation')
 
             const figureEquations = contentsEl.querySelectorAll('.figure-equation')
@@ -107,7 +108,7 @@ export class EpubBookExporter extends DOMExporter {
             }
 
             // Make links to all H1-3 and create a TOC list of them
-            this.contentItems = this.contentItems.concat(this.setLinks(
+            this.contentItems = this.contentItems.concat(setLinks(
                 contentsEl, chapter.number))
 
 
@@ -120,11 +121,13 @@ export class EpubBookExporter extends DOMExporter {
             }
         })
         const citRendererPromises = this.chapters.map(chapter => {
+
+            const bibliographyHeader = chapter.doc.settings.bibliography_header[chapter.doc.settings.language] || BIBLIOGRAPHY_HEADERS[chapter.doc.settings.language]
             // add bibliographies (asynchronously)
             const citRenderer = new RenderCitations(
                 chapter.contents,
                 this.book.settings.citationstyle,
-                this.book.settings.bibliography_header,
+                bibliographyHeader,
                 {db: chapter.doc.bibliography},
                 this.citationStyles,
                 this.citationLocales,
@@ -155,7 +158,7 @@ export class EpubBookExporter extends DOMExporter {
 
         this.outputList = this.outputList.concat(
             this.chapters.map(chapter => {
-                chapter.contents = this.styleEpubFootnotes(chapter.contents)
+                chapter.contents = styleEpubFootnotes(chapter.contents)
                 let xhtmlCode = xhtmlTemplate({
                     part: chapter.part,
                     shortLang: chapter.doc.settings.language.split('-')[0],
@@ -184,9 +187,9 @@ export class EpubBookExporter extends DOMExporter {
             subItems: [],
         })
 
-        this.contentItems = this.orderLinks(this.contentItems)
+        this.contentItems = orderLinks(this.contentItems)
 
-        const timestamp = this.getTimestamp()
+        const timestamp = getTimestamp()
 
         this.images = uniqueObjects(this.images)
 
@@ -198,10 +201,8 @@ export class EpubBookExporter extends DOMExporter {
         }
 
         // Take language of first chapter.
-        let language = 'en-US'
-        if (this.chapters.length) {
-            language = this.chapters[0].doc.settings.language
-        }
+        const languages = this.chapters.map(chapter => chapter.doc.settings.language)
+        const language = languages[0] || 'en-US'
         const shortLang = language.split('-')[0]
 
         const opfCode = epubBookOpfTemplate({
@@ -256,7 +257,7 @@ export class EpubBookExporter extends DOMExporter {
             contents: epubBookCopyrightTemplate({
                 book: this.book,
                 creator: this.user.name,
-                language
+                languages
             })
         }])
 
@@ -299,5 +300,3 @@ export class EpubBookExporter extends DOMExporter {
     }
 
 }
-
-Object.assign(EpubBookExporter.prototype, epubExporterMixin)

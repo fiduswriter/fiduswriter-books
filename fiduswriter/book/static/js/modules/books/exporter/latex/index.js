@@ -21,8 +21,6 @@ export class LatexBookExporter {
 
         getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.init()
-        ).catch(
-            () => {}
         )
     }
 
@@ -32,7 +30,7 @@ export class LatexBookExporter {
         const features = {}, combinedBibliography = {}, combinedImages = {}
         this.book.chapters.forEach((chapter, index) => {
             const doc = this.docList.find(doc => doc.id === chapter.text)
-            const converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography})
+            const converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography}, doc.settings)
             const chapterContents = removeHidden(doc.contents)
             const convertedDoc = converter.init(chapterContents)
             this.textFiles.push({

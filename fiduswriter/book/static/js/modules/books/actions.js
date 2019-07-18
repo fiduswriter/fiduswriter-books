@@ -405,10 +405,6 @@ export class BookActions {
             book.settings.citationstyle = event.target.value
         })
 
-        dialog.dialogEl.querySelector('#book-settings-bibliography-header').addEventListener('input', event => {
-            book.settings.bibliography_header = event.target.value
-        })
-
         dialog.dialogEl.querySelector('#book-settings-documentstyle').addEventListener('change', event => {
             book.settings.documentstyle = event.target.value
         })

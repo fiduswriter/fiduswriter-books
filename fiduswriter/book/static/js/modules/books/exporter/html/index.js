@@ -1,20 +1,21 @@
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
-import {epubExporterMixin} from "../../../exporter/epub/mixin" // Needs orderLinks/setLinks methods from base epub exporter.
+import {setLinks, orderLinks} from "../../../exporter/epub/tools"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {createSlug} from "../../../exporter/tools/file"
 import {modifyImages} from "../../../exporter/tools/html"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
+import {BIBLIOGRAPHY_HEADERS, FIG_CATS} from "../../../schema/i18n"
 
 import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends DOMExporter {
-    constructor(schema, citationStyles, citationLocales, staticUrl, book, user, docList) {
-        super(schema, staticUrl, citationStyles, citationLocales)
+    constructor(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList) {
+        super(schema, staticUrl, citationStyles, citationLocales, documentStyles)
         this.book = book
         this.user = user
         this.docList = docList
@@ -32,8 +33,6 @@ export class HTMLBookExporter extends DOMExporter {
 
         getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
-        ).catch(
-            () => {}
         )
     }
 
@@ -54,6 +53,8 @@ export class HTMLBookExporter extends DOMExporter {
                 this.math = true
             }
 
+            contents.querySelectorAll('*[class^="figure-cat-"]').forEach(el => el.innerHTML = FIG_CATS[el.dataset.figureCategory][doc.settings.language])
+
             return {
                 doc,
                 contents
@@ -63,11 +64,11 @@ export class HTMLBookExporter extends DOMExporter {
 
         const citRendererPromises = this.chapters.map(chapter => {
             // add bibliographies (asynchronously)
-
+            const bibliographyHeader = chapter.doc.settings.bibliography_header[chapter.doc.settings.language] || BIBLIOGRAPHY_HEADERS[chapter.doc.settings.language]
             const citRenderer = new RenderCitations(
                 chapter.contents,
                 this.book.settings.citationstyle,
-                this.book.settings.bibliography_header,
+                bibliographyHeader,
                 {db: chapter.doc.bibliography},
                 this.citationStyles,
                 this.citationLocales,
@@ -127,7 +128,7 @@ export class HTMLBookExporter extends DOMExporter {
             })
 
             // Make links to all H1-3 and create a TOC list of them
-            contentItems.push(...this.setLinks(contents, this.book.chapters[index].number))
+            contentItems.push(...setLinks(contents, this.book.chapters[index].number))
 
             const contentsCode = this.replaceImgSrc(contents.innerHTML)
 
@@ -147,7 +148,7 @@ export class HTMLBookExporter extends DOMExporter {
             }
         })
 
-        contentItems = this.orderLinks(contentItems)
+        contentItems = orderLinks(contentItems)
 
         outputList = outputList.concat(styleSheets)
 
@@ -187,5 +188,3 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
 }
-
-Object.assign(HTMLBookExporter.prototype, epubExporterMixin)

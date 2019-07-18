@@ -13,8 +13,9 @@ const CSS_PAPER_SIZES = {
 
 
 export class PrintBookExporter extends HTMLBookExporter {
-    constructor(schema, book, user, docList, styles, staticUrl) {
-        super(schema, book, user, docList, styles, staticUrl)
+
+    constructor(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList) {
+        super(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList)
         this.chapterTemplate = chapterTemplate
         this.modifyImages = false
     }
@@ -61,6 +62,9 @@ export class PrintBookExporter extends HTMLBookExporter {
         section:footnote-content {
             display: block;
         }
+        .article-title {
+            page-break-before: right;
+        }
         @page {
             size: ${CSS_PAPER_SIZES[this.book.settings.papersize]};
             @bottom-center {
@@ -70,7 +74,30 @@ export class PrintBookExporter extends HTMLBookExporter {
         figure img {
             max-width: 100%;
         }
-        ` + this.styles.document_styles.find(style => style.filename === this.book.settings.documentstyle).contents
+
+        body {
+          counter-reset: figure-cat-0 figure-cat-1 figure-cat-2 footnote-counter footnote-marker-counter;
+        }
+        
+        .figure-cat-figure::after {
+            counter-increment: figure-cat-0;
+            content: ' ' counter(figure-cat-0);
+        }
+
+        .figure-cat-photo::after {
+            counter-increment: figure-cat-1;
+            content: ' ' counter(figure-cat-1);
+        }
+
+        .figure-cat-table::after {
+            counter-increment: figure-cat-2;
+            content: ' ' counter(figure-cat-2);
+        }
+
+        .figure-cat-figure + span::before, .figure-cat-photo + span::before, .figure-cat-table + span::before {
+            content: ': ';
+        }
+        ` + this.documentStyles.find(style => style.filename === this.book.settings.documentstyle).contents
         return css
     }
 

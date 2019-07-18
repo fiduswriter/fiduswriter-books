@@ -80,9 +80,10 @@ export const bulkModel = [
                     'Epub export has been initiated.'))
                 new EpubBookExporter(
                     overview.schema,
+                    overview.staticUrl,
                     overview.styles.citation_styles,
                     overview.styles.citation_locales,
-                    overview.staticUrl,
+                    overview.styles.document_styles,
                     book,
                     overview.user,
                     overview.documentList
@@ -100,9 +101,10 @@ export const bulkModel = [
                     'HTML export has been initiated.'))
                 const exporter = new HTMLBookExporter(
                     overview.schema,
+                    overview.staticUrl,
                     overview.styles.citation_styles,
                     overview.styles.citation_locales,
-                    overview.staticUrl,
+                    overview.styles.document_styles,
                     book,
                     overview.user,
                     overview.documentList
@@ -130,7 +132,7 @@ export const bulkModel = [
         }
     },
     {
-        title: gettext('Export selected to Print/PDF (experimental)'),
+        title: gettext('Export selected to Print/PDF'),
         action: overview => {
             const ids = overview.getSelected()
             ids.forEach(id => {
@@ -139,11 +141,13 @@ export const bulkModel = [
                     'Print has been initiated.'))
                 const exporter = new PrintBookExporter(
                     overview.schema,
+                    overview.staticUrl,
+                    overview.styles.citation_styles,
+                    overview.styles.citation_locales,
+                    overview.styles.document_styles,
                     book,
                     overview.user,
-                    overview.documentList,
-                    overview.styles,
-                    overview.staticUrl
+                    overview.documentList
                 )
                 exporter.init()
             })

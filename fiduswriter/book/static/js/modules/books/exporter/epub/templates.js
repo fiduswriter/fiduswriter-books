@@ -1,4 +1,5 @@
 import {escapeText} from "../../../common"
+import {LANGUAGES} from "../../../schema/const"
 
 /** A template to create the OPF file of book epubs. */
 export const epubBookOpfTemplate = ({
@@ -161,7 +162,7 @@ export const epubBookTitlepageTemplate = ({
 /** A template to create the book epub copyright page XML. */
 export const epubBookCopyrightTemplate = ({
         book,
-        language,
+        languages,
         creator
     }) =>
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -199,7 +200,11 @@ export const epubBookCopyrightTemplate = ({
                 }
                 <p>${gettext('Last Updated')}: ${book.updated}</p>
                 <p>${gettext('Created')}: ${book.added}</p>
-                <p>${gettext('Language')}: ${language}</p>
+                ${
+                  languages.length ?
+                  `<p>${languages.length === 1 ? gettext('Language') : gettext('Languages')}: ${languages.map(language => LANGUAGES.find(lang => lang[0]===language)[1]).join(', ')}</p>` :
+                  ''
+                }
                 <p>${gettext('Created by')}: ${escapeText(creator)}</p>
             </div>
         </section>
