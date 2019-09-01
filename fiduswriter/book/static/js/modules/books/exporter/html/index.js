@@ -14,8 +14,8 @@ import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends DOMExporter {
-    constructor(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList) {
-        super(schema, staticUrl, citationStyles, citationLocales, documentStyles)
+    constructor(schema, staticUrl, csl, bookStyles, book, user, docList) {
+        super(schema, staticUrl, csl, bookStyles)
         this.book = book
         this.user = user
         this.docList = docList
@@ -33,6 +33,22 @@ export class HTMLBookExporter extends DOMExporter {
         getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
         )
+    }
+
+    addBookStyle(doc) {
+        const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug===this.book.settings.book_style)
+        if (!bookStyle) {
+            return false
+        }
+        // The files will be in the base directory. The filenames of
+        // BookStyleFiles will therefore not need to replaced with their URLs.
+
+        this.styleSheets.push({contents: bookStyle.contents, filename: `${bookStyle.slug}.css`})
+        this.fontFiles = this.fontFiles.concat(bookStyle.bookstylefile_set.map(([url, filename]) => ({
+            filename,
+            url
+        })))
+        return `${bookStyle.slug}.css`
     }
 
     exportOne() {
@@ -69,9 +85,7 @@ export class HTMLBookExporter extends DOMExporter {
                 this.book.settings.citationstyle,
                 bibliographyHeader,
                 {db: chapter.doc.bibliography},
-                this.citationStyles,
-                this.citationLocales,
-                true
+                this.csl
             )
             return citRenderer.init().then(
                 () => {
@@ -96,14 +110,16 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
     exportTwo() {
+        const bookStyle = this.addBookStyle()
         let contentItems = []
-
         let outputList = this.chapters.map((chapter, index) => {
             const contents = chapter.contents,
                 doc = chapter.doc,
                 title = doc.title,
-                styleSheets = [{filename: this.addDocStyle(doc)}]
-
+                styleSheets = []
+            if (bookStyle) {
+                styleSheets.push({filename: bookStyle})
+            }
             this.prepareBinaryFiles(contents)
 
             if (this.book.chapters[index].part && this.book.chapters[index].part !== '') {

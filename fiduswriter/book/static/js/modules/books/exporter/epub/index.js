@@ -22,8 +22,8 @@ import {addAlert} from "../../../common"
 
 
 export class EpubBookExporter extends DOMExporter {
-    constructor(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList) {
-        super(schema, staticUrl, citationStyles, citationLocales, documentStyles)
+    constructor(schema, staticUrl, csl, bookStyles, book, user, docList) {
+        super(schema, staticUrl, csl, bookStyles)
         this.book = book
         this.user = user
         this.docList = docList
@@ -40,6 +40,22 @@ export class EpubBookExporter extends DOMExporter {
         getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
         )
+    }
+
+    addBookStyle(doc) {
+        const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug===this.book.settings.book_style)
+        if (!bookStyle) {
+            return false
+        }
+        // The files will be in the base directory. The filenames of
+        // BookStyleFiles will therefore not need to replaced with their URLs.
+
+        this.styleSheets.push({contents: bookStyle.contents, filename: `${bookStyle.slug}.css`})
+        this.fontFiles = this.fontFiles.concat(bookStyle.bookstylefile_set.map(([url, filename]) => ({
+            filename,
+            url
+        })))
+        return `${bookStyle.slug}.css`
     }
 
     exportOne() {
@@ -129,9 +145,7 @@ export class EpubBookExporter extends DOMExporter {
                 this.book.settings.citationstyle,
                 bibliographyHeader,
                 {db: chapter.doc.bibliography},
-                this.citationStyles,
-                this.citationLocales,
-                true
+                this.csl
             )
             return citRenderer.init().then(
                 () => {
@@ -152,11 +166,14 @@ export class EpubBookExporter extends DOMExporter {
     }
 
     exportTwo() {
-
+        const bookStyle = this.addBookStyle()
         this.outputList = this.outputList.concat(
             this.chapters.map(chapter => {
                 chapter.contents = styleEpubFootnotes(chapter.contents)
-                const styleSheets = [{filename: 'document.css'}, {filename: this.addDocStyle(chapter.doc)}]
+                const styleSheets = [{filename: 'document.css'}]
+                if (bookStyle) {
+                    styleSheets.push({filename: bookStyle})
+                }
                 let xhtmlCode = xhtmlTemplate({
                     part: chapter.part,
                     shortLang: chapter.doc.settings.language.split('-')[0],

@@ -13,9 +13,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 from document.helpers.serializers import PythonWithURLSerializer
-from book.models import Book, BookAccessRight, Chapter
-
-from style.models import DocumentStyle, CitationStyle, CitationLocale
+from .models import Book, BookAccessRight, Chapter, BookStyle
 
 from document.models import AccessRight
 from document.views import documents_list
@@ -92,20 +90,13 @@ def get_book(request):
                 })
             status = 200
             serializer = PythonWithURLSerializer()
-            document_styles = serializer.serialize(
-                DocumentStyle.objects.all(),
-                use_natural_foreign_keys=True
+            book_styles = serializer.serialize(
+                BookStyle.objects.all(),
+                use_natural_foreign_keys=True,
+                fields=['title', 'slug', 'contents', 'bookstylefile_set']
             )
-            response['document_styles'] = [
-                obj['fields'] for obj in document_styles
-            ]
-            cit_styles = serializer.serialize(
-                CitationStyle.objects.all()
-            )
-            response['citation_styles'] = [obj['fields'] for obj in cit_styles]
-            cit_locales = serializer.serialize(CitationLocale.objects.all())
-            response['citation_locales'] = [
-                obj['fields'] for obj in cit_locales
+            response['book_styles'] = [
+                obj['fields'] for obj in book_styles
             ]
 
     return JsonResponse(
@@ -115,7 +106,7 @@ def get_book(request):
 
 
 @login_required
-def get_booklist(request):
+def list(request):
     response = {}
     status = 405
     if request.is_ajax() and request.method == 'POST':
@@ -134,11 +125,9 @@ def get_booklist(request):
                     user=request.user,
                     book=book
                 ).rights
-            date_format = '%d/%m/%Y'
-            date_obj = dateutil.parser.parse(str(book.added))
-            added = date_obj.strftime(date_format)
-            date_obj = dateutil.parser.parse(str(book.updated))
-            updated = date_obj.strftime(date_format)
+            date_format = '%Y-%m-%d'
+            added = book.added.strftime(date_format)
+            updated = book.updated.strftime(date_format)
             is_owner = False
             if book.owner == request.user:
                 is_owner = True
@@ -190,21 +179,12 @@ def get_booklist(request):
         response['access_rights'] = get_accessrights(
             BookAccessRight.objects.filter(book__owner=request.user))
         serializer = PythonWithURLSerializer()
-        document_styles = serializer.serialize(
-            DocumentStyle.objects.all(),
-            use_natural_foreign_keys=True
+        book_styles = serializer.serialize(
+            BookStyle.objects.all(),
+            use_natural_foreign_keys=True,
+            fields=['title', 'slug', 'contents', 'bookstylefile_set']
         )
-        cite_styles = serializer.serialize(
-            CitationStyle.objects.all()
-        )
-        cite_locales = serializer.serialize(
-            CitationLocale.objects.all()
-        )
-        response['styles'] = {
-            'document_styles': [obj['fields'] for obj in document_styles],
-            'citation_styles': [obj['fields'] for obj in cite_styles],
-            'citation_locales': [obj['fields'] for obj in cite_locales],
-        }
+        response['styles'] = [obj['fields'] for obj in book_styles]
     return JsonResponse(
         response,
         status=status

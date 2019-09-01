@@ -14,8 +14,8 @@ const CSS_PAPER_SIZES = {
 
 export class PrintBookExporter extends HTMLBookExporter {
 
-    constructor(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList) {
-        super(schema, staticUrl, citationStyles, citationLocales, documentStyles, book, user, docList)
+    constructor(schema, staticUrl, csl, documentStyles, book, user, docList) {
+        super(schema, staticUrl, csl, documentStyles, book, user, docList)
         this.chapterTemplate = chapterTemplate
     }
 
@@ -79,15 +79,17 @@ export class PrintBookExporter extends HTMLBookExporter {
             max-width: 100%;
         }
         `
-        const docStyle = this.documentStyles.find(style => style.filename === this.book.settings.documentstyle)
-        css += `
-        ${docStyle.fonts.map(font => {
-            return `@font-face {${
-                font[1].replace('[URL]', font[0])
-            }}`
-        }).join('\n')}
-        ${docStyle.contents}
-        `
+        const bookStyle = this.documentStyles.find(style => style.slug === this.book.settings.book_style)
+        if (bookStyle) {
+            let contents = bookStyle.contents
+            bookStyle.bookstylefile_set.forEach(
+                ([url, filename]) => contents = contents.replace(
+                    new RegExp(filename, 'g'),
+                    url
+                )
+            )
+            css += contents
+        }
 
         return css
     }

@@ -29,7 +29,7 @@ export class BookOverview {
     }
 
     init() {
-        whenReady().then(() => {
+        return whenReady().then(() => {
             this.render()
             const smenu = new SiteMenu("books")
             smenu.init()
@@ -37,7 +37,7 @@ export class BookOverview {
             this.menu = new OverviewMenuView(this, menuModel)
             this.menu.init()
             this.bind()
-            this.getBookListData()
+            return this.getBookListData()
         })
     }
 
@@ -143,7 +143,7 @@ export class BookOverview {
                 <i data-id="${book.id}" class="icon-access-right icon-access-${book.rights}"></i>
             </span>`,
             `<span class="delete-book fw-inline fw-link-text" data-id="${book.id}" data-title="${escapeText(book.title)}">
-                ${this.user.id === book.owner ? '<i class="fa fa-trash-o"></i>' : ''}
+                ${this.user.id === book.owner ? '<i class="fa fa-trash-alt"></i>' : ''}
            </span>`
         ]
     }
@@ -171,8 +171,8 @@ export class BookOverview {
 
     getBookListData() {
         activateWait()
-        postJson(
-            '/api/book/booklist/'
+        return postJson(
+            '/api/book/list/'
         ).catch(
             error => {
                 addAlert('error', gettext('Cannot load data of books.'))
@@ -185,6 +185,7 @@ export class BookOverview {
                 this.teamMembers = json.team_members
                 this.accessRights = json.access_rights
                 this.styles = json.styles
+
                 this.initTable()
             }
         ).then(
@@ -206,14 +207,14 @@ export class BookOverview {
     bind() {
         document.body.addEventListener('click', event => {
             const el = {}
-            let bookId
             switch (true) {
-                case findTarget(event, '.delete-book', el):
-                    bookId = parseInt(el.target.dataset.id)
+                case findTarget(event, '.delete-book', el): {
+                    const bookId = parseInt(el.target.dataset.id)
                     this.mod.actions.deleteBookDialog([bookId])
                     break
+                }
                 case findTarget(event, '.owned-by-user.rights', el): {
-                    bookId = parseInt(el.target.dataset.id)
+                    const bookId = parseInt(el.target.dataset.id)
                     const accessDialog = new BookAccessRightsDialog(
                         [bookId],
                         this.teamMembers,
@@ -224,12 +225,13 @@ export class BookOverview {
                     )
                     break
                 }
-                case findTarget(event, '.book-title', el):
-                    bookId = parseInt(el.target.dataset.id)
+                case findTarget(event, '.book-title', el): {
+                    const bookId = parseInt(el.target.dataset.id)
                     this.getImageDB().then(() => {
                         this.mod.actions.createBookDialog(bookId, this.imageDB)
                     })
                     break
+                }
                 case findTarget(event, 'a', el):
                     if (el.target.hostname === window.location.hostname && el.target.getAttribute('href')[0] === '/') {
                         event.preventDefault()

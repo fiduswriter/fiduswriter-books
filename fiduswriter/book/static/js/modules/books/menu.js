@@ -81,9 +81,8 @@ export const bulkModel = [
                 new EpubBookExporter(
                     overview.schema,
                     overview.staticUrl,
-                    overview.styles.citation_styles,
-                    overview.styles.citation_locales,
-                    overview.styles.document_styles,
+                    overview.app.csl,
+                    overview.styles,
                     book,
                     overview.user,
                     overview.documentList
@@ -102,9 +101,8 @@ export const bulkModel = [
                 const exporter = new HTMLBookExporter(
                     overview.schema,
                     overview.staticUrl,
-                    overview.styles.citation_styles,
-                    overview.styles.citation_locales,
-                    overview.styles.document_styles,
+                    overview.app.csl,
+                    overview.styles,
                     book,
                     overview.user,
                     overview.documentList
@@ -125,8 +123,7 @@ export const bulkModel = [
                     overview.schema,
                     book,
                     overview.user,
-                    overview.documentList,
-                    overview.styles
+                    overview.documentList
                 )
             })
         }
@@ -142,9 +139,8 @@ export const bulkModel = [
                 const exporter = new PrintBookExporter(
                     overview.schema,
                     overview.staticUrl,
-                    overview.styles.citation_styles,
-                    overview.styles.citation_locales,
-                    overview.styles.document_styles,
+                    overview.app.csl,
+                    overview.styles,
                     book,
                     overview.user,
                     overview.documentList

@@ -68,3 +68,57 @@ class BookAccessRight(models.Model):
     def __str__(self):
         return self.user.readable_name + \
             ' (' + self.rights + ') on ' + self.book.title
+
+
+class BookStyle(models.Model):
+    title = models.CharField(
+        max_length=128,
+        help_text='The human readable title.',
+        default='Default'
+    )
+    slug = models.SlugField(
+        max_length=20,
+        help_text='The base of the filenames the style occupies.',
+        default='default',
+        unique=True
+    )
+    contents = models.TextField(
+        help_text='The CSS style definiton.',
+        default=''
+    )
+
+    def __str__(self):
+        return self.title
+
+
+def bookstylefile_location(instance, filename):
+    # preserve the original filename
+    instance.filename = filename
+    return '/'.join(['book-style-files', filename])
+
+
+class BookStyleFile(models.Model):
+    file = models.FileField(
+        upload_to=bookstylefile_location,
+        help_text=(
+            'A file references in the style. The filename will be replaced '
+            'with the final url of the file in the style.'
+        )
+    )
+    filename = models.CharField(
+        max_length=255,
+        help_text='The original filename.'
+    )
+    style = models.ForeignKey(
+        'BookStyle',
+        on_delete=models.deletion.CASCADE
+    )
+
+    def __str__(self):
+        return self.filename + ' of ' + self.style.title
+
+    def natural_key(self):
+        return (self.file.url, self.filename)
+
+    class Meta(object):
+        unique_together = (("filename", "style"),)

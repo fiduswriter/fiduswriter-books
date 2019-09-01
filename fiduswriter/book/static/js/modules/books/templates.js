@@ -1,5 +1,5 @@
 import {escapeText} from "../common"
-
+import {styles} from "citeproc-plus"
 
 
 /** A template for the basic info book template pane */
@@ -98,13 +98,14 @@ const bookBasicInfoTemplate = ({book}) =>
     </tr>`
 
 /** A template for the citation style pane of the book dialog */
-const bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
+const bookBibliographyDataTemplate = ({book}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
         </th>
         <td>
         <select class="entryForm" name="book-settings-citationstyle"
+                title="${gettext("Select citation style for the book")}"
                 id="book-settings-citationstyle"
                 ${
                     book.rights === 'read' ?
@@ -113,13 +114,13 @@ const bookBibliographyDataTemplate = ({book, citationDefinitions}) =>
                 }
         >
             ${
-                Object.entries(citationDefinitions).map(([key, citationstyle]) =>
+                Object.entries(styles).map(([key, value]) =>
                     `<option value="${key}" ${
                         key === book.settings.citationstyle ?
                         'selected' :
                         ''
                     }>
-                        ${escapeText(citationstyle.title)}
+                        ${value}
                     </option>`
                 ).join('')
             }
@@ -137,30 +138,31 @@ const paperSizes =
     ]
 
 /** A template for the print related data pane of the book dialog */
-const bookPrintDataTemplate = ({book, documentStyleList}) =>
+const bookPrintDataTemplate = ({book, bookStyleList}) =>
     `<tr>
         <th>
-            <h4 class="fw-tablerow-title">${gettext("Document style")}</h4>
+            <h4 class="fw-tablerow-title">${gettext("Book style")}</h4>
         </th>
         <td>
-            <select class="entryForm dk" name="book-settings-documentstyle"
-                    id="book-settings-documentstyle"
+            <select class="entryForm dk" name="book-settings-bookstyle"
+                    title="${gettext("Select stylesheet for the book")}"
+                    id="book-settings-bookstyle"
                     ${
-                        book.rights === 'read' ?
+                        book.rights === 'read' || !bookStyleList.length ?
                         'disabled="disabled"' :
                         ''
                     }
             >
                 ${
-                    documentStyleList.map(docStyle =>
-                        `<option value="${docStyle.filename}"
+                    bookStyleList.map(bookStyle =>
+                        `<option value="${bookStyle.slug}"
                                 ${
-                                    docStyle.filename === book.settings.documentstyle ?
+                                    bookStyle.slug === book.settings.book_style ?
                                     'selected' :
                                     ''
                                 }
                         >
-                            ${escapeText(docStyle.title)}
+                            ${escapeText(bookStyle.title)}
                         </option>`
                     ).join('')
                 }
@@ -173,6 +175,7 @@ const bookPrintDataTemplate = ({book, documentStyleList}) =>
         </th>
         <td>
         <select class="entryForm dk" name="book-settings-papersize"
+                title="${gettext("Select paper size for the book")}"
                 id="book-settings-papersize"
                 ${
                     book.rights === 'read' ?
@@ -203,7 +206,7 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
         <td>
         ${
             book.cover_image ?
-            `<div class="img" style="background-image: url(${imageDB.db[book.cover_image].image});"></div>` :
+            `<div class="img" style="background-image: url(${imageDB.db[book.cover_image].image});" title="${gettext('Cover image')}"></div>` :
             ''
         }
         </td>
@@ -212,14 +215,14 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
             `<td class="figure-preview-row">
                 <button type="button" class="ui-button ui-widget ui-state-default
                         ui-corner-all ui-button-text-only fw-button fw-dark"
-                        id="select-cover-image-button" role="button" aria-disabled="false">
+                        id="select-cover-image-button" role="button" aria-disabled="false" title="${gettext('Select a cover image')}">
                     <span class="ui-button-text">${gettext('Select Image')}</span>
                 </button>
                 ${
                     book.cover_image ?
                     `<button type="button" class="ui-button ui-widget ui-state-default
                             ui-corner-all ui-button-text-only fw-button fw-orange"
-                            id="remove-cover-image-button" role="button" aria-disabled="false">
+                            id="remove-cover-image-button" role="button" aria-disabled="false"  title="${gettext('Remove cover image')}">
                         <span class="ui-button-text">${gettext('Remove Image')}</span>
                     </button>` :
                     ''
@@ -240,8 +243,7 @@ const bookEpubDataTemplate = ({book, imageDB}) =>
 /** A template for the book dialog. */
 export const bookDialogTemplate = ({
     dialogHeader,
-    citationDefinitions,
-    documentStyleList,
+    bookStyleList,
     imageDB,
     book,
     documentList
@@ -250,27 +252,27 @@ export const bookDialogTemplate = ({
         <div id="bookoptions-tab">
             <ul class="ui-tabs-nav">
                 <li class="tab-link">
-                    <a href="#optionTab1" class="fw-button fw-large">
+                    <a href="#optionTab1" class="fw-button fw-large" title="${gettext('Basic book information')}">
                         ${gettext('Basic info')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab2" class="fw-button fw-large">
+                    <a href="#optionTab2" class="fw-button fw-large" title="${gettext('Documents assigned as chapters')}">
                         ${gettext('Chapters')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab3" class="fw-button fw-large">
+                    <a href="#optionTab3" class="fw-button fw-large" title="${gettext('Bibliography related settings')}">
                         ${gettext('Bibliography')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab4" class="fw-button fw-large">
+                    <a href="#optionTab4" class="fw-button fw-large" title="${gettext('Epub related settings')}">
                         ${gettext('Epub')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab5" class="fw-button fw-large">
+                    <a href="#optionTab5" class="fw-button fw-large" title="${gettext('Print related settings')}">
                         ${gettext('Print/PDF')}
                     </a>
                 </li>
@@ -292,8 +294,7 @@ export const bookDialogTemplate = ({
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookBibliographyDataTemplate({
-                            book,
-                            citationDefinitions
+                            book
                         })}
                     </tbody>
                 </table>
@@ -313,7 +314,7 @@ export const bookDialogTemplate = ({
                     <tbody>
                         ${bookPrintDataTemplate({
                             book,
-                            documentStyleList
+                            bookStyleList
                         })}
                     </tbody>
                 </table>

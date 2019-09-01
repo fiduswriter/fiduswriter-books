@@ -24,11 +24,11 @@ export class BookActions {
             {id}
         ).catch(
             error => {
-                addAlert('error', gettext(`${gettext('Could not delete book')}: '${book.title}'`))
+                addAlert('error', `${gettext('Could not delete book')}: '${book.title}'`)
                 throw (error)
             }
         ).then(()=> {
-            addAlert('success', gettext(`${gettext('Book has been deleted')}: '${book.title}'`))
+            addAlert('success', `${gettext('Book has been deleted')}: '${book.title}'`)
             this.bookOverview.removeTableRows([id])
             this.bookOverview.bookList = this.bookOverview.bookList.filter(book => book.id !== id)
         })
@@ -42,7 +42,7 @@ export class BookActions {
                 classes: "fw-dark",
                 click: () => {
                     ids.forEach(id => this.deleteBook(parseInt(id)))
-                    addAlert('success', gettext('The book(s) have been deleted'))
+                    addAlert('success', ids.length > 1 ? gettext('The books have been deleted') : gettext('The book has been deleted'))
                     dialog.close()
                 }
             },
@@ -55,7 +55,7 @@ export class BookActions {
             title: gettext('Confirm deletion'),
             id: 'confirmdeletion',
             icon: 'exclamation-triangle',
-            body: `<p>${gettext('Delete the book(s)?')}</p>`,
+            body: `<p>${ids.length > 1 ? gettext('Delete the books?') : gettext('Delete the book?')}</p>`,
             buttons
         })
         dialog.open()
@@ -182,8 +182,8 @@ export class BookActions {
                 },
                 settings: {
                     bibliography_header: gettext('Bibliography'),
-                    citationstyle: this.bookOverview.styles.citation_styles[0].filename,
-                    documentstyle: this.bookOverview.styles.document_styles[0].filename,
+                    citationstyle: 'apa',
+                    book_style: this.bookOverview.styles[0] ? this.bookOverview.styles[0].slug : false,
                     papersize: 'octavo'
                 }
             }
@@ -206,7 +206,7 @@ export class BookActions {
             book,
             documentList: this.bookOverview.documentList,
             citationDefinitions: this.bookOverview.styles.citation_styles,
-            documentStyleList: this.bookOverview.styles.document_styles,
+            bookStyleList: this.bookOverview.styles,
             imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
         })
 
@@ -405,8 +405,8 @@ export class BookActions {
             book.settings.citationstyle = event.target.value
         })
 
-        dialog.dialogEl.querySelector('#book-settings-documentstyle').addEventListener('change', event => {
-            book.settings.documentstyle = event.target.value
+        dialog.dialogEl.querySelector('#book-settings-bookstyle').addEventListener('change', event => {
+            book.settings.book_style = event.target.value
         })
 
         dialog.dialogEl.querySelector('#book-settings-papersize').addEventListener('change', event => {
