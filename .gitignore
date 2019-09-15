@@ -1,6 +1,7 @@
 *.pyc
 *~
 dist/
+build/
 fiduswriter_book.egg-info/
 fiduswriter_books.egg-info/
 __pycache__/
