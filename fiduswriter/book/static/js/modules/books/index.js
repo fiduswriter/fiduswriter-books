@@ -42,13 +42,14 @@ export class BookOverview {
     }
 
     render() {
-        document.body = document.createElement('body')
-        document.body.innerHTML = baseBodyTemplate({
+        this.dom = document.createElement('body')
+        this.dom.innerHTML = baseBodyTemplate({
             contents: '',
             user: this.user,
             staticUrl: this.staticUrl,
             hasOverview: true
         })
+        document.body = this.dom
         ensureCSS([
             'add_remove_dialog.css',
             'access_rights_dialog.css',
@@ -80,9 +81,9 @@ export class BookOverview {
         const tableEl = document.createElement('table')
         tableEl.classList.add('fw-data-table')
         tableEl.classList.add('fw-large')
-        document.querySelector('.fw-contents').appendChild(tableEl)
+        this.dom.querySelector('.fw-contents').appendChild(tableEl)
 
-        const dt_bulk = new DatatableBulk(this, bulkModel)
+        const dtBulk = new DatatableBulk(this, bulkModel)
 
         this.table = new DataTable(tableEl, {
             searchable: true,
@@ -95,7 +96,7 @@ export class BookOverview {
                 top: ""
             },
             data: {
-                headings: ['', dt_bulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
+                headings: ['', dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
                 data: this.bookList.map(book => this.createTableRow(book))
             },
             columns: [
@@ -115,7 +116,7 @@ export class BookOverview {
             this.lastSort = {column, dir}
         })
 
-        dt_bulk.init(this.table.table)
+        dtBulk.init(this.table.table)
     }
 
     createTableRow(book) {
@@ -205,7 +206,7 @@ export class BookOverview {
     }
 
     bind() {
-        document.body.addEventListener('click', event => {
+        this.dom.addEventListener('click', event => {
             const el = {}
             switch (true) {
                 case findTarget(event, '.delete-book', el): {
@@ -246,7 +247,7 @@ export class BookOverview {
 
     getSelected() {
         return Array.from(
-            document.querySelectorAll('.entry-select:checked:not(:disabled)')
+            this.dom.querySelectorAll('.entry-select:checked:not(:disabled)')
         ).map(el => parseInt(el.getAttribute('data-id')))
     }
 }
