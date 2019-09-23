@@ -29,16 +29,23 @@ export class BookOverview {
     }
 
     init() {
-        return whenReady().then(() => {
-            this.render()
-            const smenu = new SiteMenu("books")
-            smenu.init()
-            new BookActions(this)
-            this.menu = new OverviewMenuView(this, menuModel)
-            this.menu.init()
-            this.bind()
-            return this.getBookListData()
-        })
+        return this.app.csl.getStyles().then(
+            styles => {
+                this.citationStyles = styles
+                return whenReady()
+            }
+        ).then(
+            () => {
+                this.render()
+                const smenu = new SiteMenu("books")
+                smenu.init()
+                new BookActions(this)
+                this.menu = new OverviewMenuView(this, menuModel)
+                this.menu.init()
+                this.bind()
+                return this.getBookListData()
+          }
+      )
     }
 
     render() {

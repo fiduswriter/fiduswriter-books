@@ -205,7 +205,7 @@ export class BookActions {
         const body = bookDialogTemplate({
             book,
             documentList: this.bookOverview.documentList,
-            citationDefinitions: this.bookOverview.styles.citation_styles,
+            citationStyles: this.bookOverview.citationStyles,
             bookStyleList: this.bookOverview.styles,
             imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
         })

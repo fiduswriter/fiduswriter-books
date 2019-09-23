@@ -1,5 +1,4 @@
 import {escapeText} from "../common"
-import {styles} from "citeproc-plus"
 
 
 /** A template for the basic info book template pane */
@@ -98,7 +97,7 @@ const bookBasicInfoTemplate = ({book}) =>
     </tr>`
 
 /** A template for the citation style pane of the book dialog */
-const bookBibliographyDataTemplate = ({book}) =>
+const bookBibliographyDataTemplate = ({book, citationStyles}) =>
     `<tr>
         <th>
             <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
@@ -114,7 +113,7 @@ const bookBibliographyDataTemplate = ({book}) =>
                 }
         >
             ${
-                Object.entries(styles).map(([key, value]) =>
+                Object.entries(citationStyles).map(([key, value]) =>
                     `<option value="${key}" ${
                         key === book.settings.citationstyle ?
                         'selected' :
@@ -246,7 +245,8 @@ export const bookDialogTemplate = ({
     bookStyleList,
     imageDB,
     book,
-    documentList
+    documentList,
+    citationStyles
 }) =>
     `<div id="book-dialog" title="${dialogHeader}">
         <div id="bookoptions-tab">
@@ -294,7 +294,8 @@ export const bookDialogTemplate = ({
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookBibliographyDataTemplate({
-                            book
+                            book,
+                            citationStyles
                         })}
                     </tbody>
                 </table>
