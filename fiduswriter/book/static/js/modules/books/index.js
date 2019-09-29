@@ -131,7 +131,7 @@ export class BookOverview {
             String(book.id),
             `<input type="checkbox" class="entry-select" data-id="${book.id}">`,
             `<span class="fw-data-table-title fw-inline">
-                <i class="fa fa-book"></i>
+                <i class="fas fa-book"></i>
                 <span class="book-title fw-link-text fw-searchable"
                         data-id="${book.id}">
                     ${
@@ -151,7 +151,7 @@ export class BookOverview {
                 <i data-id="${book.id}" class="icon-access-right icon-access-${book.rights}"></i>
             </span>`,
             `<span class="delete-book fw-inline fw-link-text" data-id="${book.id}" data-title="${escapeText(book.title)}">
-                ${this.user.id === book.owner ? '<i class="fa fa-trash-alt"></i>' : ''}
+                ${this.user.id === book.owner ? '<i class="fas fa-trash-alt"></i>' : ''}
            </span>`
         ]
     }

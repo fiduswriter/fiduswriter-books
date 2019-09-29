@@ -344,7 +344,7 @@ const bookDialogChaptersTemplate = ({book, documentList}) =>
             </table>
         </div>
         <span id="add-chapter" class="fw-button fw-large fw-square fw-light fw-ar-button">
-            <i class="fa fa-caret-right"></i>
+            <i class="fas fa-caret-right"></i>
         </span>` :
         ''
     }
@@ -375,7 +375,7 @@ const bookDialogChaptersTemplate = ({book, documentList}) =>
 export const bookChapterListTemplate = ({book, documentList}) => {
     let partCounter = 1
     return book.chapters.slice().sort(
-        (a, b) => a.number > b.number
+        (a, b) => a.number - b.number
     ).map((chapter, index, array) => {
         const doc = documentList.find(doc => doc.id === chapter.text)
         return `<tr
@@ -389,7 +389,7 @@ export const bookChapterListTemplate = ({book, documentList}) => {
                 <span class="fw-inline">
                     ${
                         typeof(doc) === "undefined" ?
-                        '<i class="fa fa-minus-circle"></i>' :
+                        '<i class="fas fa-minus-circle"></i>' :
                         ''
                     }
                     ${
@@ -412,25 +412,25 @@ export const bookChapterListTemplate = ({book, documentList}) => {
             ${
                 book.rights === "write" ?
                 `<td width="30" data-id="${chapter.text}" class="edit-chapter">
-                    <i class="fa fa-pencil fw-link-text"></i>
+                    <i class="fas fa-pencil-alt fw-link-text"></i>
                 </td>
                 ${
                     index === 0 ?
                     '<td width="10"></td>' :
                     `<td width="10" class="book-sort-up" data-id="${chapter.text}">
-                        <i class="fa fa-sort-asc"></i>
+                        <i class="fas fa-sort-up"></i>
                     </td>`
                 }
                 ${
                     index + 1 === array.length ?
                     '<td width="10"></td>' :
                     `<td width="10" class="book-sort-down" data-id="${chapter.text}">
-                        <i class="fa fa-sort-desc"></i>
+                        <i class="fas fa-sort-down"></i>
                     </td>`
                 }
                 <td width="50" align="center">
                     <span class="delete-chapter fw-inline" data-id="${chapter.text}">
-                        <i class="fa fa-trash-o fw-link-text"></i>
+                        <i class="fas fa-trash-alt fw-link-text"></i>
                     </span>
                 </td>` :
                 `<td width="30"></td>

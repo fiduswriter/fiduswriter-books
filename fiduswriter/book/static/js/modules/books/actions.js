@@ -278,7 +278,7 @@ export class BookActions {
                     const higherChapter = book.chapters.find(
                         bChapter => bChapter.number === (chapter.number - 1)
                     )
-
+                    console.log({higherChapter, chapter, number: chapter.number, book})
                     chapter.number--
                     higherChapter.number++
                     document.getElementById('book-chapter-list').innerHTML =

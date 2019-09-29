@@ -12,7 +12,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
             <td width="50" align="center">
                 <div class="fw-inline edit-right-wrapper">
                     <i class="icon-access-right icon-access-${collaborator.rights}"></i>
-                    <i class="fa fa-caret-down edit-right"></i>
+                    <i class="fas fa-caret-down edit-right"></i>
                     <div class="fw-pulldown fw-left">
                         <ul>
                             <li>
@@ -31,7 +31,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
             </td>
             <td width="50" align="center">
                 <span class="delete-collaborator fw-inline" data-right="delete">
-                    <i class="fa fa-trash-o fw-link-text"></i>
+                    <i class="fas fa-trash-alt fw-link-text"></i>
                 </span>
             </td>
         </tr>`
@@ -67,7 +67,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
             </table>
         </div>
         <span id="add-share-member" class="fw-button fw-large fw-square fw-light fw-ar-button">
-            <i class="fa fa-caret-right"></i>
+            <i class="fas fa-caret-right"></i>
         </span>
         <div id="share-member" class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My collaborators")}</h3>
