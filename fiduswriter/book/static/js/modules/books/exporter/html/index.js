@@ -35,7 +35,7 @@ export class HTMLBookExporter extends DOMExporter {
         )
     }
 
-    addBookStyle(doc) {
+    addBookStyle() {
         const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug===this.book.settings.book_style)
         if (!bookStyle) {
             return false
@@ -112,7 +112,7 @@ export class HTMLBookExporter extends DOMExporter {
     exportTwo() {
         const bookStyle = this.addBookStyle()
         let contentItems = []
-        let outputList = this.chapters.map((chapter, index) => {
+        const outputList = this.chapters.map((chapter, index) => {
             const contents = chapter.contents,
                 doc = chapter.doc,
                 title = doc.title,
