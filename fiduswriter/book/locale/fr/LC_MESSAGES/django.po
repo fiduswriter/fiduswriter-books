@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-13 22:55+0000\n"
+"POT-Creation-Date: 2019-12-16 21:51+0000\n"
 "PO-Revision-Date: 2016-06-17 15:21+0200\n"
 "Last-Translator: Nicolas Rochard <nrochard@gmail.com>\n"
 "Language-Team: français <nrochard@gmail.com>\n"
@@ -18,45 +18,38 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: book/templates/book/index.html:6
-msgid "Book Overview"
-msgstr "Aperçu du Livre"
-
-#: book/templates/book/index.html:41
-msgid "Title"
-msgstr "Titre"
-
-#: book/templates/book/index.html:42
-msgid "Created"
-msgstr "Créé"
-
-#: book/templates/book/index.html:43
-msgid "Last changed"
-msgstr "Dernière modification"
-
-#: book/templates/book/index.html:44
-msgid "Owner"
-msgstr "Propriétaire"
-
-#: book/templates/book/index.html:45
-msgid "Rights"
-msgstr "Droits"
-
-#: book/templates/book/index.html:46
-msgid "Delete"
-msgstr "Effacer"
-
-#: book/views.py:371
+#: book/views.py:347
 msgid "Untitled"
 msgstr "Sans Titre"
 
-#: book/views.py:387
+#: book/views.py:363
 msgid "Book shared:"
 msgstr "Livre partagé:"
 
-#: book/views.py:416
+#: book/views.py:392
 msgid "Fidus Writer book write access"
 msgstr "Accès en écriture du Livre Fidus Writer"
+
+#~ msgid "Book Overview"
+#~ msgstr "Aperçu du Livre"
+
+#~ msgid "Title"
+#~ msgstr "Titre"
+
+#~ msgid "Created"
+#~ msgstr "Créé"
+
+#~ msgid "Last changed"
+#~ msgstr "Dernière modification"
+
+#~ msgid "Owner"
+#~ msgstr "Propriétaire"
+
+#~ msgid "Rights"
+#~ msgstr "Droits"
+
+#~ msgid "Delete"
+#~ msgstr "Effacer"
 
 #~ msgid "Delete selected"
 #~ msgstr "Effacer la sélection"
