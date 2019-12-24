@@ -10,7 +10,8 @@ export class BookMenuItem {
             id: "books",
             title: gettext('compose books'),
             url: "/book/",
-            text: gettext('Books')
+            text: gettext('Books'),
+	    order: 5
         })
     }
 
