@@ -1,79 +1,21 @@
-# Bulgarian translation for Fidus Writer
-# Copyright (C) 2013 Vladimir Vitkov
-# This file is distributed under the same license as Fidus Writer.
-# Vladimir Vitkov <vvitkov@linux-bg.org>, 2013
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-16 21:51+0000\n"
-"PO-Revision-Date: 2013-09-18 08:54+0200\n"
-"Last-Translator: Vladimir Vitkov <vvitkov@linux-bg.org>\n"
-"Language-Team: Bulgarian <vvitkov@linux-bg.org>\n"
-"Language: BG\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books backend\n"
+"Language: bg\n"
 
 #: book/views.py:347
-#, fuzzy
 msgid "Untitled"
-msgstr "Подзаглавие"
+msgstr "неозаглавен"
 
 #: book/views.py:363
-#, fuzzy
 msgid "Book shared:"
-msgstr "Документи"
+msgstr "Книгата е споделена:"
 
 #: book/views.py:392
 msgid "Fidus Writer book write access"
 msgstr "Достъп за писане във Fidus Writer книга"
 
-#~ msgid "Book Overview"
-#~ msgstr "Обзор на Книгата"
-
-#~ msgid "Title"
-#~ msgstr "Заглавие"
-
-#~ msgid "Created"
-#~ msgstr "Създаден"
-
-#~ msgid "Last changed"
-#~ msgstr "Последна промяна"
-
-#~ msgid "Owner"
-#~ msgstr "Собственик"
-
-#~ msgid "Rights"
-#~ msgstr "Права"
-
-#~ msgid "Delete"
-#~ msgstr "Изтрий"
-
-#~ msgid "Delete selected"
-#~ msgstr "Изтрий избраните"
-
-#~ msgid "Share selected"
-#~ msgstr "Сподели избраните"
-
-#~ msgid "Copy selected"
-#~ msgstr "Копирай избраните"
-
-#~ msgid "Export selected as Epub"
-#~ msgstr "Експортирай избраните като Epub"
-
-#~ msgid "Export selected as HTML"
-#~ msgstr "Експортирай избраните като HTML"
-
-#~ msgid "Export selected as LaTeX"
-#~ msgstr "Експортирай избраните като LaTeX"
-
-#~ msgid "Export selected for Print/PDF"
-#~ msgstr "Експортирай избраните за Печат/PDF"
-
-#~ msgid "Create New Book"
-#~ msgstr "Нова Книга"
-
-#~ msgid "Upload Fidus Book"
-#~ msgstr "Качи Fidus Книга"
