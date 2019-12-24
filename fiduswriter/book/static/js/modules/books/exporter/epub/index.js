@@ -42,7 +42,7 @@ export class EpubBookExporter extends DOMExporter {
         )
     }
 
-    addBookStyle(doc) {
+    addBookStyle() {
         const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug===this.book.settings.book_style)
         if (!bookStyle) {
             return false
@@ -96,7 +96,7 @@ export class EpubBookExporter extends DOMExporter {
             const docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
                 tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents))
-            let contentsEl = document.createElement('body'), math = false
+            const contentsEl = document.createElement('body'), math = false
             while (tempNode.firstChild) {
                 contentsEl.appendChild(tempNode.firstChild)
             }

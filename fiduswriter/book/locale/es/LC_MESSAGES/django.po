@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-13 22:55+0000\n"
+"POT-Creation-Date: 2019-12-16 21:51+0000\n"
 "PO-Revision-Date: 2013-03-03 12:18-0700\n"
 "Last-Translator: Ana Vera Resquín <ani.tavr77@gmail.com>\n"
 "Language-Team: Spanish <ani.tavr77@gmail.com>\n"
@@ -17,46 +17,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: book/templates/book/index.html:6
-msgid "Book Overview"
-msgstr "Lista de Libros"
-
-#: book/templates/book/index.html:41
-msgid "Title"
-msgstr "Título"
-
-#: book/templates/book/index.html:42
-msgid "Created"
-msgstr "Creado"
-
-#: book/templates/book/index.html:43
-msgid "Last changed"
-msgstr "Último cambio"
-
-#: book/templates/book/index.html:44
-msgid "Owner"
-msgstr "Propietario"
-
-#: book/templates/book/index.html:45
-msgid "Rights"
-msgstr "Derechos"
-
-#: book/templates/book/index.html:46
-msgid "Delete"
-msgstr "Borrar"
-
-#: book/views.py:371
+#: book/views.py:347
 msgid "Untitled"
 msgstr "Sin título"
 
-#: book/views.py:387
+#: book/views.py:363
 msgid "Book shared:"
 msgstr "Libro compartido:"
 
-#: book/views.py:416
+#: book/views.py:392
 #, fuzzy
 msgid "Fidus Writer book write access"
 msgstr "Fidus Writer libro accesso a editor"
+
+#~ msgid "Book Overview"
+#~ msgstr "Lista de Libros"
+
+#~ msgid "Title"
+#~ msgstr "Título"
+
+#~ msgid "Created"
+#~ msgstr "Creado"
+
+#~ msgid "Last changed"
+#~ msgstr "Último cambio"
+
+#~ msgid "Owner"
+#~ msgstr "Propietario"
+
+#~ msgid "Rights"
+#~ msgstr "Derechos"
+
+#~ msgid "Delete"
+#~ msgstr "Borrar"
 
 #~ msgid "Delete selected"
 #~ msgstr "Borrar lo seleccionado"

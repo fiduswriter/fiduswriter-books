@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-13 22:55+0000\n"
+"POT-Creation-Date: 2019-12-16 21:51+0000\n"
 "PO-Revision-Date: 2013-09-18 08:54+0200\n"
 "Last-Translator: Vladimir Vitkov <vvitkov@linux-bg.org>\n"
 "Language-Team: Bulgarian <vvitkov@linux-bg.org>\n"
@@ -16,47 +16,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: book/templates/book/index.html:6
-msgid "Book Overview"
-msgstr "Обзор на Книгата"
-
-#: book/templates/book/index.html:41
-msgid "Title"
-msgstr "Заглавие"
-
-#: book/templates/book/index.html:42
-msgid "Created"
-msgstr "Създаден"
-
-#: book/templates/book/index.html:43
-msgid "Last changed"
-msgstr "Последна промяна"
-
-#: book/templates/book/index.html:44
-msgid "Owner"
-msgstr "Собственик"
-
-#: book/templates/book/index.html:45
-msgid "Rights"
-msgstr "Права"
-
-#: book/templates/book/index.html:46
-msgid "Delete"
-msgstr "Изтрий"
-
-#: book/views.py:371
+#: book/views.py:347
 #, fuzzy
 msgid "Untitled"
 msgstr "Подзаглавие"
 
-#: book/views.py:387
+#: book/views.py:363
 #, fuzzy
 msgid "Book shared:"
 msgstr "Документи"
 
-#: book/views.py:416
+#: book/views.py:392
 msgid "Fidus Writer book write access"
 msgstr "Достъп за писане във Fidus Writer книга"
+
+#~ msgid "Book Overview"
+#~ msgstr "Обзор на Книгата"
+
+#~ msgid "Title"
+#~ msgstr "Заглавие"
+
+#~ msgid "Created"
+#~ msgstr "Създаден"
+
+#~ msgid "Last changed"
+#~ msgstr "Последна промяна"
+
+#~ msgid "Owner"
+#~ msgstr "Собственик"
+
+#~ msgid "Rights"
+#~ msgstr "Права"
+
+#~ msgid "Delete"
+#~ msgstr "Изтрий"
 
 #~ msgid "Delete selected"
 #~ msgstr "Изтрий избраните"
