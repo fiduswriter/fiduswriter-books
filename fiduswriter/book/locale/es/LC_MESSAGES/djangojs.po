@@ -1,27 +1,17 @@
-# Spanish translation for Fidus Writer
-# Copyright (C) 2012 Ana Vera Resquín
-# This file is distributed under the same license as Fidus Writer.
-# Ana Vera Resquín <ani.tavr77@gmail.com>, 2013.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-16 21:51+0000\n"
-"PO-Revision-Date: 2013-03-03 12:18-0700\n"
-"Last-Translator: Ana Vera Resquín <ani.tavr77@gmail.com>\n"
-"Language-Team: Spanish <ani.tavr77@gmail.com>\n"
-"Language: Spanish \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books\n"
+"Language: es\n"
 
 #: book/static/js/modules/books/accessrights/index.js:36
 #: book/static/js/modules/books/actions.js:60
 #: book/static/js/modules/books/actions.js:199
 msgid "Submit"
-msgstr "Añadir"
+msgstr "Enviar"
 
 #: book/static/js/modules/books/accessrights/index.js:65
 msgid "Share your book with others"
@@ -29,21 +19,19 @@ msgstr "Compartir tu libro con otros"
 
 #: book/static/js/modules/books/accessrights/index.js:150
 msgid "Cannot save access rights."
-msgstr ""
+msgstr "No se pueden guardar los derechos de acceso."
 
 #: book/static/js/modules/books/accessrights/index.js:155
 msgid "Access rights have been saved"
-msgstr "Derechos de accesso han sido guardado"
+msgstr "Los derechos de accesso han sido guardados"
 
 #: book/static/js/modules/books/accessrights/templates.js:6
 msgid "Write"
-msgstr ""
+msgstr "Escribir"
 
 #: book/static/js/modules/books/accessrights/templates.js:6
-#, fuzzy
-#| msgid "Read only"
 msgid "Read"
-msgstr "Solo lectura"
+msgstr "Leer"
 
 #: book/static/js/modules/books/accessrights/templates.js:12
 msgid "My contacts"
@@ -69,47 +57,35 @@ msgstr "Derechos"
 #: book/static/js/modules/books/accessrights/templates.js:12
 #: book/static/js/modules/books/actions.js:31
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #: book/static/js/modules/books/actions.js:20
-#, fuzzy
-#| msgid "You cannot delete or share: "
 msgid "Could not delete book"
-msgstr "No puedes borrar o compartir: "
+msgstr "No se pudo eliminar el libro."
 
 #: book/static/js/modules/books/actions.js:23
-#, fuzzy
-#| msgid "The book(s) have been deleted"
 msgid "Book has been deleted"
-msgstr "El/los documento(s) han sido borrado(s)"
+msgstr "El libro ha sido eliminado"
 
 #: book/static/js/modules/books/actions.js:35
-#, fuzzy
-#| msgid "The book(s) have been deleted"
 msgid "The books have been deleted"
-msgstr "El/los documento(s) han sido borrado(s)"
+msgstr "Los libros han sido eliminados"
 
 #: book/static/js/modules/books/actions.js:35
-#, fuzzy
-#| msgid "The book(s) have been deleted"
 msgid "The book has been deleted"
-msgstr "El/los documento(s) han sido borrado(s)"
+msgstr "El libro ha sido eliminado"
 
 #: book/static/js/modules/books/actions.js:42
 msgid "Confirm deletion"
-msgstr "Confirmar acción"
+msgstr "¿Realmente quiere borrar los libros?"
 
 #: book/static/js/modules/books/actions.js:45
-#, fuzzy
-#| msgid "Delete the book(s)?"
 msgid "Delete the books?"
-msgstr "¿Borrar el/los libro(s)?"
+msgstr "¿Eliminar los libros?"
 
 #: book/static/js/modules/books/actions.js:45
-#, fuzzy
-#| msgid "Delete the book(s)?"
 msgid "Delete the book?"
-msgstr "¿Borrar el/los libro(s)?"
+msgstr "¿Eliminar el libro?"
 
 #: book/static/js/modules/books/actions.js:56
 #: book/static/js/modules/books/index.js:123
@@ -124,17 +100,15 @@ msgstr "Editar Capítulo"
 
 #: book/static/js/modules/books/actions.js:91
 msgid "The book could not be saved"
-msgstr ""
+msgstr "El libro no se pudo guardar."
 
 #: book/static/js/modules/books/actions.js:128
 msgid "The book could not be copied"
-msgstr ""
+msgstr "El libro no se pudo copiar"
 
 #: book/static/js/modules/books/actions.js:146
-#, fuzzy
-#| msgid "Created"
 msgid "Create Book"
-msgstr "Creado"
+msgstr "Crear libro"
 
 #: book/static/js/modules/books/actions.js:164
 #: book/static/js/modules/books/templates.js:48
@@ -143,20 +117,20 @@ msgstr "Bibliografía"
 
 #: book/static/js/modules/books/actions.js:183
 msgid "Edit Book"
-msgstr ""
+msgstr "Editar libro"
 
 #: book/static/js/modules/books/exporter/epub/index.js:31
 #: book/static/js/modules/books/exporter/html/index.js:27
 msgid "Book cannot be exported due to lack of chapters."
-msgstr ""
+msgstr "El libro no se puede exportar debido a la falta de capítulos."
 
 #: book/static/js/modules/books/exporter/epub/index.js:76
 msgid "Cover"
-msgstr "Tapada"
+msgstr "Página de portada"
 
 #: book/static/js/modules/books/exporter/epub/index.js:86
 msgid "Title page"
-msgstr "Página de título"
+msgstr "Página del título"
 
 #: book/static/js/modules/books/exporter/epub/index.js:199
 msgid "Copyright"
@@ -164,7 +138,7 @@ msgstr "Copyright"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:25
 msgid "Cover Image"
-msgstr "Imagen de Tapada"
+msgstr "Imagen de Portada"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:30
 #: book/static/js/modules/books/exporter/epub/templates.js:37
@@ -187,7 +161,7 @@ msgstr "Autor"
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:27
 msgid "Published by"
-msgstr "Publicado port"
+msgstr "Publicado por"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:27
@@ -206,10 +180,8 @@ msgid "Language"
 msgstr "Idioma"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
-#, fuzzy
-#| msgid "Language"
 msgid "Languages"
-msgstr "Idioma"
+msgstr "Idiomas"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:27
@@ -218,97 +190,88 @@ msgstr "Creado por"
 
 #: book/static/js/modules/books/exporter/html/index.js:165
 msgid "English"
-msgstr "Español"
+msgstr "Inglés"
 
 #: book/static/js/modules/books/exporter/tools.js:7
 msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr ""
+msgstr "No se puede producir un libro porque no tiene derechos de acceso a sus capítulos."
 
 #: book/static/js/modules/books/index.js:57
+#, fuzzy
 msgid "Book Overview"
-msgstr ""
+msgstr "Resumen del libro"
 
 #: book/static/js/modules/books/index.js:91
 msgid "No books available"
-msgstr ""
+msgstr "No hay libros disponibles."
 
 #: book/static/js/modules/books/index.js:98
-#, fuzzy
-#| msgid "Last Updated"
 msgid "Last changed"
 msgstr "Último cambio"
 
 #: book/static/js/modules/books/index.js:98
 msgid "Owner"
-msgstr ""
+msgstr "Propietario"
 
 #: book/static/js/modules/books/index.js:155
 msgid "Cannot load data of books."
-msgstr ""
+msgstr "No se pueden cargar los datos de los libros."
 
 #: book/static/js/modules/books/menu.js:10
-#, fuzzy
-#| msgid "Created by"
 msgid "Create new book"
-msgstr "Creado por"
+msgstr "Crear nuevo libro"
 
 #: book/static/js/modules/books/menu.js:19
 msgid "Delete selected"
-msgstr ""
+msgstr "Eliminar lo seleccionado"
 
 #: book/static/js/modules/books/menu.js:28
-#, fuzzy
-#| msgid "You cannot delete or share: "
 msgid "You cannot delete books of other users."
-msgstr "No puedes borrar o compartir: "
+msgstr "No puede eliminar los libros de otros usuarios."
 
 #: book/static/js/modules/books/menu.js:36
 msgid "Share selected"
-msgstr ""
+msgstr "Compartir los seleccionado"
 
 #: book/static/js/modules/books/menu.js:45
 msgid "You cannot share books of other users."
-msgstr ""
+msgstr "No puede compartir libros de otros usuarios."
 
 #: book/static/js/modules/books/menu.js:56
 msgid "Copy selected"
-msgstr ""
+msgstr "Copia seleccionada"
 
 #: book/static/js/modules/books/menu.js:62
 msgid "Export selected as Epub"
-msgstr ""
+msgstr "Exportar lo seleccionado como Epub"
 
 #: book/static/js/modules/books/menu.js:67
 msgid "Epub export has been initiated."
-msgstr "Exportación del archivo Epub ha sido iniciado."
+msgstr ":a exportación del archivo Epub ha sido iniciada."
 
 #: book/static/js/modules/books/menu.js:72
 msgid "Export selected as HTML"
-msgstr ""
+msgstr "Exportar lo seleccionado como HTML"
 
 #: book/static/js/modules/books/menu.js:77
 msgid "HTML export has been initiated."
-msgstr "Exportación del archivo HTML ha sido iniciado."
+msgstr "La exportación del archivo HTML ha sido iniciada."
 
 #: book/static/js/modules/books/menu.js:83
 msgid "Export selected as LaTeX"
-msgstr ""
+msgstr "Exportar lo seleccionado como LaTeX"
 
 #: book/static/js/modules/books/menu.js:88
-#, fuzzy
-#| msgid "Latex export has been initiated."
 msgid "LaTeX export has been initiated."
-msgstr "Exportación del archivo Latex ha sido iniciado."
+msgstr "Se ha iniciado la exportación de LaTeX."
 
 #: book/static/js/modules/books/menu.js:93
 msgid "Export selected to Print/PDF"
-msgstr ""
+msgstr "Exportar lo seleccionado a Imprimir / PDF"
 
 #: book/static/js/modules/books/menu.js:98
-#, fuzzy
-#| msgid "Epub export has been initiated."
 msgid "Print has been initiated."
-msgstr "Exportación del archivo Epub ha sido iniciado."
+msgstr "La impresión ha sido iniciada."
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Subtitle"
@@ -336,7 +299,7 @@ msgstr "Estilo de citas"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "Select citation style for the book"
-msgstr ""
+msgstr "Seleccionar estilo de cita para el libro"
 
 #: book/static/js/modules/books/templates.js:15
 msgid "Folio (15 x 12 inch)"
@@ -359,14 +322,12 @@ msgid "A4"
 msgstr "A4"
 
 #: book/static/js/modules/books/templates.js:21
-#, fuzzy
-#| msgid "Book"
 msgid "Book style"
-msgstr "Libro"
+msgstr "Estilo de libro"
 
 #: book/static/js/modules/books/templates.js:21
 msgid "Select stylesheet for the book"
-msgstr ""
+msgstr "Seleccionar etilo CSS del libro"
 
 #: book/static/js/modules/books/templates.js:21
 msgid "Paper size"
@@ -374,37 +335,31 @@ msgstr "Tamaño del papel"
 
 #: book/static/js/modules/books/templates.js:21
 msgid "Select paper size for the book"
-msgstr ""
+msgstr "Seleccionar el tamaño de papel para el libro."
 
 #: book/static/js/modules/books/templates.js:28
 msgid "Cover image"
 msgstr "Imagen de tapada"
 
 #: book/static/js/modules/books/templates.js:28
-#, fuzzy
-#| msgid "Select Image"
 msgid "Select a cover image"
-msgstr "Seleccionar Imagen"
+msgstr "Seleccionar una imagen de portada"
 
 #: book/static/js/modules/books/templates.js:28
 msgid "Select Image"
 msgstr "Seleccionar Imagen"
 
 #: book/static/js/modules/books/templates.js:28
-#, fuzzy
-#| msgid "Remove Image"
 msgid "Remove cover image"
-msgstr "Borrar Imagen"
+msgstr "Eliminar imagen de portada"
 
 #: book/static/js/modules/books/templates.js:28
 msgid "Remove Image"
 msgstr "Borrar Imagen"
 
 #: book/static/js/modules/books/templates.js:48
-#, fuzzy
-#| msgid "Basic info"
 msgid "Basic book information"
-msgstr "Info básico"
+msgstr "Información básica del libro"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Basic info"
@@ -412,7 +367,7 @@ msgstr "Info básico"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Documents assigned as chapters"
-msgstr ""
+msgstr "Documentos asignados como capítulos"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Chapters"
@@ -420,11 +375,11 @@ msgstr "Capítulos"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Bibliography related settings"
-msgstr ""
+msgstr "Configuración de biografía"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Epub related settings"
-msgstr ""
+msgstr "Configuración de Epub"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Epub"
@@ -432,7 +387,7 @@ msgstr "Epub"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Print related settings"
-msgstr ""
+msgstr "Configuración de impresión"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Print/PDF"
@@ -459,12 +414,8 @@ msgid "Book part"
 msgstr "Parte de libro"
 
 #: book/static/js/modules/books/templates.js:99
-msgid ""
-"If this chapter starts a part of the book, specify the title of that part "
-"here"
-msgstr ""
-"Si ese capítulo empieza una parte del libro, especifica el título de esa "
-"parte acáhere"
+msgid "If this chapter starts a part of the book, specify the title of that part here"
+msgstr "Si ese capítulo empieza una parte del libro, especifica el título de esa parte acáhere"
 
 #: book/static/js/modules/books/templates.js:99
 msgid "Book part title"
@@ -472,35 +423,9 @@ msgstr "Título de la parte del libro"
 
 #: book/static/js/plugins/menu/book.js:10
 msgid "compose books"
-msgstr ""
+msgstr "componer libros"
 
 #: book/static/js/plugins/menu/book.js:12
-#, fuzzy
-#| msgid "Book"
 msgid "Books"
-msgstr "Libro"
+msgstr "Libros"
 
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Search for Book Title"
-#~ msgstr "Buscar Título de Libro"
-
-#, fuzzy
-#~| msgid "The image has been uploaded"
-#~ msgid "The image has been uploaded."
-#~ msgstr "El imagen ha sido subido"
-
-#, fuzzy
-#~| msgid "Some errors are found. Please examine the form."
-#~ msgid "Some errors were found. Please examine the form."
-#~ msgstr "Encontramos algunos errores. Por favor examina el formulario."
-
-#~ msgid "en"
-#~ msgstr "es"
-
-#~ msgid "en-US"
-#~ msgstr "es-ES"
-
-#~ msgid "Document style"
-#~ msgstr "Estilo de documento"
