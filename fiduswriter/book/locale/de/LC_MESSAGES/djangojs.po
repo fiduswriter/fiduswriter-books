@@ -218,7 +218,7 @@ msgstr "Daten von Büchern können nicht geladen werden."
 
 #: book/static/js/modules/books/menu.js:10
 msgid "Create new book"
-msgstr "Erstelle ein neues Buch"
+msgstr "Neues Buch erstellen"
 
 #: book/static/js/modules/books/menu.js:19
 msgid "Delete selected"
