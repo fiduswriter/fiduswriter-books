@@ -197,9 +197,8 @@ msgid "Cannot produce book as you lack access rights to its chapters."
 msgstr "No se puede producir un libro porque no tiene derechos de acceso a sus capítulos."
 
 #: book/static/js/modules/books/index.js:57
-#, fuzzy
 msgid "Book Overview"
-msgstr "Resumen del libro"
+msgstr "Vista de libros"
 
 #: book/static/js/modules/books/index.js:91
 msgid "No books available"
@@ -339,7 +338,7 @@ msgstr "Seleccionar el tamaño de papel para el libro."
 
 #: book/static/js/modules/books/templates.js:28
 msgid "Cover image"
-msgstr "Imagen de tapada"
+msgstr "Imagen de portada"
 
 #: book/static/js/modules/books/templates.js:28
 msgid "Select a cover image"
