@@ -83,19 +83,36 @@ export class BookOverview {
         }
     }
 
+    onResize() {
+        if (!this.table) {
+            return
+        }
+        this.initTable()
+    }
+
     /* Initialize the overview table */
     initTable() {
         const tableEl = document.createElement('table')
         tableEl.classList.add('fw-data-table')
         tableEl.classList.add('fw-large')
+        this.dom.querySelector('.fw-contents').innerHTML = ''
         this.dom.querySelector('.fw-contents').appendChild(tableEl)
 
         const dtBulk = new DatatableBulk(this, bulkModel)
 
+        const hiddenCols = [0]
+
+        if (window.innerWidth < 500) {
+            hiddenCols.push(3)
+            if (window.innerWidth < 400) {
+                hiddenCols.push(7)
+            }
+        }
+
         this.table = new DataTable(tableEl, {
             searchable: true,
             paging: false,
-            scrollY: "calc(100vh - 320px)",
+            scrollY: `${Math.max(window.innerHeight - 360, 100)}px`,
             labels: {
                 noRows: gettext("No books available") // Message shown when there are no search results
             },
@@ -108,7 +125,7 @@ export class BookOverview {
             },
             columns: [
                 {
-                    select: 0,
+                    select: hiddenCols,
                     hidden: true
                 },
                 {
