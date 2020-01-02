@@ -103,9 +103,9 @@ export class BookOverview {
         const hiddenCols = [0]
 
         if (window.innerWidth < 500) {
-            hiddenCols.push(3)
+            hiddenCols.push(1)
             if (window.innerWidth < 400) {
-                hiddenCols.push(7)
+                hiddenCols.push(3)
             }
         }
 
