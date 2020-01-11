@@ -96,7 +96,8 @@ export class EpubBookExporter extends DOMExporter {
             const docContents = removeHidden(doc.contents),
                 serializer = DOMSerializer.fromSchema(schema),
                 tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents))
-            const contentsEl = document.createElement('body'), math = false
+            const contentsEl = document.createElement('body')
+            let math = false
             while (tempNode.firstChild) {
                 contentsEl.appendChild(tempNode.firstChild)
             }
