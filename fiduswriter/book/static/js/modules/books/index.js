@@ -5,7 +5,7 @@ import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
 import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk} from "../common"
 import {SiteMenu} from "../menu"
-import {menuModel, bulkModel} from "./menu"
+import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
 import {
     docSchema
@@ -98,7 +98,7 @@ export class BookOverview {
         this.dom.querySelector('.fw-contents').innerHTML = ''
         this.dom.querySelector('.fw-contents').appendChild(tableEl)
 
-        const dtBulk = new DatatableBulk(this, bulkModel)
+        this.dtBulk = new DatatableBulk(this, bulkMenuModel())
 
         const hiddenCols = [0]
 
@@ -120,7 +120,7 @@ export class BookOverview {
                 top: ""
             },
             data: {
-                headings: ['', dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
+                headings: ['', this.dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
                 data: this.bookList.map(book => this.createTableRow(book))
             },
             columns: [
@@ -140,7 +140,7 @@ export class BookOverview {
             this.lastSort = {column, dir}
         })
 
-        dtBulk.init(this.table.table)
+        this.dtBulk.init(this.table.table)
     }
 
     createTableRow(book) {
