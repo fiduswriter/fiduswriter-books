@@ -15,10 +15,9 @@ export class BookOverview {
     // A class that contains everything that happens on the books page.
     // It is currently not possible to initialize more than one such class, as it
     // contains bindings to menu items, etc. that are uniquely defined.
-    constructor({app, user, staticUrl}) {
+    constructor({app, user}) {
         this.app = app
         this.user = user
-        this.staticUrl = staticUrl
         this.schema = docSchema
         this.mod = {}
         this.bookList = []
@@ -53,7 +52,6 @@ export class BookOverview {
         this.dom.innerHTML = baseBodyTemplate({
             contents: '',
             user: this.user,
-            staticUrl: this.staticUrl,
             hasOverview: true
         })
         document.body = this.dom
@@ -61,9 +59,9 @@ export class BookOverview {
             'add_remove_dialog.css',
             'access_rights_dialog.css',
             'book.css'
-        ], this.staticUrl)
+        ])
         setDocTitle(gettext('Book Overview'), this.app)
-        const feedbackTab = new FeedbackTab({staticUrl: this.staticUrl})
+        const feedbackTab = new FeedbackTab()
         feedbackTab.init()
     }
 

@@ -14,8 +14,8 @@ import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends DOMExporter {
-    constructor(schema, staticUrl, csl, bookStyles, book, user, docList) {
-        super(schema, staticUrl, csl, bookStyles)
+    constructor(schema, csl, bookStyles, book, user, docList) {
+        super(schema, csl, bookStyles)
         this.book = book
         this.user = user
         this.docList = docList
@@ -188,7 +188,7 @@ export class HTMLBookExporter extends DOMExporter {
         const includeZips = this.math ?
             [{
                 'directory': '',
-                'url': `${this.staticUrl}zip/mathlive_style.zip?v=${process.env.TRANSPILE_VERSION}`
+                'url': `${settings.STATIC_URL}zip/mathlive_style.zip?v=${transpile.VERSION}`
             }] : []
 
         this.loadStyles().then(

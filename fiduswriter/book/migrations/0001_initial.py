@@ -5,9 +5,9 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('document', '0001_initial'),
+        ('document', '0001_squashed_20200219'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('usermedia', '0001_initial'),
+        ('usermedia', '0001_squashed_0009_auto_20170908_0953'),
     ]
 
     operations = [

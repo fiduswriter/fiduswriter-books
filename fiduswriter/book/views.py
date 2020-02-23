@@ -11,7 +11,9 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.core.mail import send_mail
+from django.views.decorators.http import require_POST
 
+from base.decorators import ajax_required
 from document.helpers.serializers import PythonWithURLSerializer
 from .models import Book, BookAccessRight, Chapter, BookStyle
 
@@ -57,47 +59,48 @@ def get_accessrights(ars):
 
 
 @login_required
+@require_POST
+@ajax_required
 def get_book(request):
     response = {}
     status = 405
-    if request.is_ajax() and request.method == 'POST':
-        book_id = json.loads(request.POST['id'])
-        book = Book.objects.filter(id=book_id).filter(
-            Q(owner=request.user) | Q(bookaccessright__user=request.user)
-        ).first()
-        # TODO: Is it really enough to check if the number of chapters
-        # owned by or with access rights by the current user is smaller
-        # than the total number of chapters of a book?
-        if book is None or len(
-            book.chapters.filter(
-                Q(owner=request.user) | Q(accessright__user=request.user)
-            )
-        ) < len(book.chapters.all()):
-            response['error'] = 'insufficient rights'
-        else:
-            response['book'] = {
-                'title': book.title,
-                'settings': book.settings,
-                'metadata': book.metadata,
-                'chapters': []
-            }
-            for chapter in book.chapter_set.all().order_by('number'):
-                response['book']['chapters'].append({
-                    'title': chapter.text.title,
-                    'contents': chapter.text.contents,
-                    'part': chapter.part,
-                    'owner': chapter.text.owner.id
-                })
-            status = 200
-            serializer = PythonWithURLSerializer()
-            book_styles = serializer.serialize(
-                BookStyle.objects.all(),
-                use_natural_foreign_keys=True,
-                fields=['title', 'slug', 'contents', 'bookstylefile_set']
-            )
-            response['book_styles'] = [
-                obj['fields'] for obj in book_styles
-            ]
+    book_id = json.loads(request.POST['id'])
+    book = Book.objects.filter(id=book_id).filter(
+        Q(owner=request.user) | Q(bookaccessright__user=request.user)
+    ).first()
+    # TODO: Is it really enough to check if the number of chapters
+    # owned by or with access rights by the current user is smaller
+    # than the total number of chapters of a book?
+    if book is None or len(
+        book.chapters.filter(
+            Q(owner=request.user) | Q(accessright__user=request.user)
+        )
+    ) < len(book.chapters.all()):
+        response['error'] = 'insufficient rights'
+    else:
+        response['book'] = {
+            'title': book.title,
+            'settings': book.settings,
+            'metadata': book.metadata,
+            'chapters': []
+        }
+        for chapter in book.chapter_set.all().order_by('number'):
+            response['book']['chapters'].append({
+                'title': chapter.text.title,
+                'contents': chapter.text.contents,
+                'part': chapter.part,
+                'owner': chapter.text.owner.id
+            })
+        status = 200
+        serializer = PythonWithURLSerializer()
+        book_styles = serializer.serialize(
+            BookStyle.objects.all(),
+            use_natural_foreign_keys=True,
+            fields=['title', 'slug', 'contents', 'bookstylefile_set']
+        )
+        response['book_styles'] = [
+            obj['fields'] for obj in book_styles
+        ]
 
     return JsonResponse(
         response,
@@ -106,85 +109,85 @@ def get_book(request):
 
 
 @login_required
+@require_POST
+@ajax_required
 def list(request):
     response = {}
-    status = 405
-    if request.is_ajax() and request.method == 'POST':
-        status = 200
-        response['documents'] = documents_list(request)
-        books = Book.objects.filter(
-            Q(owner=request.user) |
-            Q(bookaccessright__user=request.user)
-        ).distinct().order_by('-updated')
-        response['books'] = []
-        for book in books:
-            if book.owner == request.user:
-                access_right = 'write'
-            else:
-                access_right = BookAccessRight.objects.get(
-                    user=request.user,
-                    book=book
-                ).rights
-            date_format = '%Y-%m-%d'
-            added = book.added.strftime(date_format)
-            updated = book.updated.strftime(date_format)
-            is_owner = False
-            if book.owner == request.user:
-                is_owner = True
-            chapters = []
-            for chapter in book.chapter_set.all():
-                chapters.append({'text': chapter.text_id,
-                                 'number': chapter.number,
-                                 'part': chapter.part,
-                                 'title': chapter.text.title})
-            book_data = {
-                'id': book.id,
-                'title': book.title,
-                'is_owner': is_owner,
-                'owner': book.owner.id,
-                'owner_name': book.owner.readable_name,
-                'owner_avatar': avatar_url(book.owner, 80),
-                'added': added,
-                'updated': updated,
-                'rights': access_right,
-                'chapters': chapters,
-                'metadata': book.metadata,
-                'settings': book.settings
+    status = 200
+    response['documents'] = documents_list(request)
+    books = Book.objects.filter(
+        Q(owner=request.user) |
+        Q(bookaccessright__user=request.user)
+    ).distinct().order_by('-updated')
+    response['books'] = []
+    for book in books:
+        if book.owner == request.user:
+            access_right = 'write'
+        else:
+            access_right = BookAccessRight.objects.get(
+                user=request.user,
+                book=book
+            ).rights
+        date_format = '%Y-%m-%d'
+        added = book.added.strftime(date_format)
+        updated = book.updated.strftime(date_format)
+        is_owner = False
+        if book.owner == request.user:
+            is_owner = True
+        chapters = []
+        for chapter in book.chapter_set.all():
+            chapters.append({'text': chapter.text_id,
+                             'number': chapter.number,
+                             'part': chapter.part,
+                             'title': chapter.text.title})
+        book_data = {
+            'id': book.id,
+            'title': book.title,
+            'is_owner': is_owner,
+            'owner': book.owner.id,
+            'owner_name': book.owner.readable_name,
+            'owner_avatar': avatar_url(book.owner, 80),
+            'added': added,
+            'updated': updated,
+            'rights': access_right,
+            'chapters': chapters,
+            'metadata': book.metadata,
+            'settings': book.settings
+        }
+        if book.cover_image:
+            image = book.cover_image
+            book_data['cover_image'] = image.id
+            field_obj = {
+                'id': image.id,
+                'added': mktime(image.added.timetuple()) * 1000,
+                'checksum': image.checksum,
+                'file_type': image.file_type,
+                'title': '',
+                'cats': '',
+                'image': image.image.url
             }
-            if book.cover_image:
-                image = book.cover_image
-                book_data['cover_image'] = image.id
-                field_obj = {
-                    'id': image.id,
-                    'added': mktime(image.added.timetuple()) * 1000,
-                    'checksum': image.checksum,
-                    'file_type': image.file_type,
-                    'title': '',
-                    'cats': '',
-                    'image': image.image.url
-                }
-                if image.thumbnail:
-                    field_obj['thumbnail'] = image.thumbnail.url
-                    field_obj['height'] = image.height
-                    field_obj['width'] = image.width
-                book_data['cover_image_data'] = field_obj
-            response['books'].append(book_data)
-        response['team_members'] = []
-        for team_member in request.user.leader.all():
-            tm_object = {}
-            tm_object['id'] = team_member.member.id
-            tm_object['name'] = team_member.member.readable_name
-            tm_object['avatar'] = avatar_url(team_member.member, 80)
-            response['team_members'].append(tm_object)
-        response['access_rights'] = get_accessrights(
-            BookAccessRight.objects.filter(book__owner=request.user))
-        serializer = PythonWithURLSerializer()
-        book_styles = serializer.serialize(
-            BookStyle.objects.all(),
-            use_natural_foreign_keys=True,
-            fields=['title', 'slug', 'contents', 'bookstylefile_set']
-        )
-        response['styles'] = [obj['fields'] for obj in book_styles]
+            if image.thumbnail:
+                field_obj['thumbnail'] = image.thumbnail.url
+                field_obj['height'] = image.height
+                field_obj['width'] = image.width
+            book_data['cover_image_data'] = field_obj
+        response['books'].append(book_data)
+    response['team_members'] = []
+    for team_member in request.user.leader.all():
+        tm_object = {}
+        tm_object['id'] = team_member.member.id
+        tm_object['name'] = team_member.member.readable_name
+        tm_object['avatar'] = avatar_url(team_member.member, 80)
+        response['team_members'].append(tm_object)
+    response['access_rights'] = get_accessrights(
+        BookAccessRight.objects.filter(book__owner=request.user))
+    serializer = PythonWithURLSerializer()
+    book_styles = serializer.serialize(
+        BookStyle.objects.all(),
+        use_natural_foreign_keys=True,
+        fields=['title', 'slug', 'contents', 'bookstylefile_set']
+    )
+    response['styles'] = [obj['fields'] for obj in book_styles]
     return JsonResponse(
         response,
         status=status
@@ -224,10 +227,10 @@ def set_chapters(book, chapters, user):
 
 
 @login_required
+@require_POST
+@ajax_required
 def copy(request):
     # Copy a book
-    if not request.is_ajax() or request.method != 'POST':
-        return JsonResponse({}, status=405)
     book_id = request.POST['book_id']
     book = Book.objects.get(id=book_id)
     if (
@@ -255,9 +258,9 @@ def copy(request):
 
 
 @login_required
+@require_POST
+@ajax_required
 def save(request):
-    if not request.is_ajax() or request.method != 'POST':
-        return JsonResponse({}, status=405)
     date_format = '%d/%m/%Y'
     response = {}
     status = 200
@@ -318,18 +321,19 @@ def save(request):
 
 
 @login_required
+@require_POST
+@ajax_required
 def delete(request):
     response = {}
     status = 405
-    if request.is_ajax() and request.method == 'POST':
-        book_id = int(request.POST['id'])
-        book = Book.objects.filter(pk=book_id, owner=request.user).first()
-        if book:
-            image = book.cover_image
-            book.delete()
-            if image and image.is_deletable():
-                image.delete()
-            status = 200
+    book_id = int(request.POST['id'])
+    book = Book.objects.filter(pk=book_id, owner=request.user).first()
+    if book:
+        image = book.cover_image
+        book.delete()
+        if image and image.is_deletable():
+            image.delete()
+        status = 200
     return JsonResponse(
         response,
         status=status
@@ -397,72 +401,72 @@ def send_share_upgrade_notification(request, book_id, collaborator_id):
 
 
 @login_required
+@require_POST
+@ajax_required
 @transaction.atomic
 def access_right_save(request):
-    status = 405
     response = {}
-    if request.is_ajax() and request.method == 'POST':
-        tgt_books = request.POST.getlist('books[]')
-        tgt_users = request.POST.getlist('collaborators[]')
-        tgt_rights = request.POST.getlist('rights[]')
-        for tgt_book in tgt_books:
-            book_id = int(tgt_book)
+    tgt_books = request.POST.getlist('books[]')
+    tgt_users = request.POST.getlist('collaborators[]')
+    tgt_rights = request.POST.getlist('rights[]')
+    for tgt_book in tgt_books:
+        book_id = int(tgt_book)
+        try:
+            book = Book.objects.get(pk=book_id, owner=request.user)
+        except ObjectDoesNotExist:
+            continue
+        x = 0
+        for tgt_user in tgt_users:
+            collaborator_id = int(tgt_user)
             try:
-                book = Book.objects.get(pk=book_id, owner=request.user)
-            except ObjectDoesNotExist:
-                continue
-            x = 0
-            for tgt_user in tgt_users:
-                collaborator_id = int(tgt_user)
+                tgt_right = tgt_rights[x]
+            except IndexError:
+                tgt_right = 'read'
+            if tgt_right == 'delete':
+                # Status 'delete' means the access right is marked for
+                # deletion.
+                access_right = BookAccessRight.objects.filter(
+                    book_id=book_id, user_id=collaborator_id
+                ).first()
+                if access_right:
+                    access_right.delete()
+            else:
                 try:
-                    tgt_right = tgt_rights[x]
-                except IndexError:
-                    tgt_right = 'read'
-                if tgt_right == 'delete':
-                    # Status 'delete' means the access right is marked for
-                    # deletion.
-                    access_right = BookAccessRight.objects.filter(
-                        book_id=book_id, user_id=collaborator_id
-                    ).first()
-                    if access_right:
-                        access_right.delete()
-                else:
-                    try:
-                        access_right = BookAccessRight.objects.get(
-                            book_id=book_id, user_id=collaborator_id)
-                        if access_right.rights != tgt_right:
-                            access_right.rights = tgt_right
-                            if tgt_right == 'write':
-                                send_share_upgrade_notification(
-                                    request, book_id, collaborator_id)
-                    except ObjectDoesNotExist:
-                        access_right = BookAccessRight.objects.create(
-                            book_id=book_id,
-                            user_id=collaborator_id,
-                            rights=tgt_right,
+                    access_right = BookAccessRight.objects.get(
+                        book_id=book_id, user_id=collaborator_id)
+                    if access_right.rights != tgt_right:
+                        access_right.rights = tgt_right
+                        if tgt_right == 'write':
+                            send_share_upgrade_notification(
+                                request, book_id, collaborator_id)
+                except ObjectDoesNotExist:
+                    access_right = BookAccessRight.objects.create(
+                        book_id=book_id,
+                        user_id=collaborator_id,
+                        rights=tgt_right,
+                    )
+                    send_share_notification(
+                        request, book_id, collaborator_id, tgt_right)
+                access_right.save()
+                for text in book.chapters.all():
+                    # If one shares a book with another user and that user
+                    # has no access rights on the chapters that belong to
+                    # the current user, give read access to the chapter
+                    # documents to the collaborator.
+                    if text.owner == request.user and len(
+                        text.accessright_set.filter(
+                            user_id=collaborator_id
                         )
-                        send_share_notification(
-                            request, book_id, collaborator_id, tgt_right)
-                    access_right.save()
-                    for text in book.chapters.all():
-                        # If one shares a book with another user and that user
-                        # has no access rights on the chapters that belong to
-                        # the current user, give read access to the chapter
-                        # documents to the collaborator.
-                        if text.owner == request.user and len(
-                            text.accessright_set.filter(
-                                user_id=collaborator_id
-                            )
-                        ) == 0:
-                            AccessRight.objects.create(
-                                document_id=text.id,
-                                user_id=collaborator_id,
-                                rights='read',
-                            )
-                x += 1
-        response['access_rights'] = get_accessrights(
-            BookAccessRight.objects.filter(book__owner=request.user))
-        status = 201
+                    ) == 0:
+                        AccessRight.objects.create(
+                            document_id=text.id,
+                            user_id=collaborator_id,
+                            rights='read',
+                        )
+            x += 1
+    response['access_rights'] = get_accessrights(
+        BookAccessRight.objects.filter(book__owner=request.user))
+    status = 201
     return JsonResponse(
         response,
         status=status

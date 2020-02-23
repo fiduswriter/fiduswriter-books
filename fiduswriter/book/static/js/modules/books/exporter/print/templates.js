@@ -8,12 +8,12 @@ export const chapterTemplate = ({part, contents}) => `
     }
     ${contents}`
 
-export const printHTMLTemplate = ({css, html, title, staticUrl}) => `<!DOCTYPE html>
+export const printHTMLTemplate = ({css, html, title}) => `<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
-        <link type="text/css" rel="stylesheet" href="${staticUrl}css/document.css?v=${process.env.TRANSPILE_VERSION}" />
+        <link type="text/css" rel="stylesheet" href="${settings.STATIC_URL}css/document.css?v=${transpile.VERSION}" />
         <style>
             ${css}
         </style>

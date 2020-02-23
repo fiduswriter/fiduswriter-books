@@ -88,7 +88,6 @@ export const bulkMenuModel = () => ({
                         'Epub export has been initiated.'))
                     new EpubBookExporter(
                         overview.schema,
-                        overview.staticUrl,
                         overview.app.csl,
                         overview.styles,
                         book,
@@ -110,7 +109,6 @@ export const bulkMenuModel = () => ({
                         'HTML export has been initiated.'))
                     const exporter = new HTMLBookExporter(
                         overview.schema,
-                        overview.staticUrl,
                         overview.app.csl,
                         overview.styles,
                         book,
@@ -152,7 +150,6 @@ export const bulkMenuModel = () => ({
                         'Print has been initiated.'))
                     const exporter = new PrintBookExporter(
                         overview.schema,
-                        overview.staticUrl,
                         overview.app.csl,
                         overview.styles,
                         book,

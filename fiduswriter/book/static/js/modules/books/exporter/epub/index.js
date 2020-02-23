@@ -22,8 +22,8 @@ import {addAlert} from "../../../common"
 
 
 export class EpubBookExporter extends DOMExporter {
-    constructor(schema, staticUrl, csl, bookStyles, book, user, docList) {
-        super(schema, staticUrl, csl, bookStyles)
+    constructor(schema, csl, bookStyles, book, user, docList) {
+        super(schema, csl, bookStyles)
         this.book = book
         this.user = user
         this.docList = docList
@@ -313,7 +313,7 @@ export class EpubBookExporter extends DOMExporter {
         if (this.math) {
             includeZips.push({
                 'directory': 'EPUB',
-                'url': `${this.staticUrl}zip/mathlive_style.zip?v=${process.env.TRANSPILE_VERSION}`
+                'url': `${settings.STATIC_URL}zip/mathlive_style.zip?v=${transpile.VERSION}`
             })
         }
         const zipper = new ZipFileCreator(
