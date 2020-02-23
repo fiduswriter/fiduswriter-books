@@ -1,0 +1,38 @@
+language: python
+python:
+  - "3.7"
+node_js:
+  - "10"
+
+dist: bionic
+sudo: required
+
+addons:
+  chrome: stable
+
+before_script:
+  - LATEST_CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"`
+  - curl "https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
+  - unzip chromedriver_linux64.zip -d ~/bin
+
+install:
+  - if grep version setup.py | grep -q "\-dev";
+    then pip3 install https://github.com/fiduswriter/fiduswriter/archive/develop.zip;
+    else pip3 install https://github.com/fiduswriter/fiduswriter/archive/master.zip;
+    fi
+  - pip3 install ./
+  - mkdir project
+  - cd project
+  - mv ../travis/configuration.py ./
+  - pip3 install requests[security]
+  - pip3 install coverage
+  - pip3 install coveralls
+  - coverage run fiduswriter setup --no-static
+
+script:
+    - travis_retry coverage run --concurrency=multiprocessing fiduswriter test book
+    - coverage combine
+
+after_success:
+  - coverage report
+  - coveralls
