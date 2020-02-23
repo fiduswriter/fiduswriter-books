@@ -29,6 +29,7 @@ install:
   - mkdir project
   - cd project
   - mv ../travis/configuration.py ./
+  - mv ../travis/.coveragerc ./
   - pip3 install requests[security]
   - pip3 install coverage
   - pip3 install coveralls
