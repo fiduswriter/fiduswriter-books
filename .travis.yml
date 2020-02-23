@@ -15,6 +15,9 @@ before_script:
   - curl "https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
   - unzip chromedriver_linux64.zip -d ~/bin
 
+before_install:
+  - sudo apt-get -y install libjpeg-dev python3-dev python3-pip python3-distutils gettext zlib1g-dev wget build-essential libmagic1
+
 install:
   - pip3 install wheel
   - pip3 install pip --upgrade
@@ -29,7 +32,7 @@ install:
   - pip3 install requests[security]
   - pip3 install coverage
   - pip3 install coveralls
-  - coverage run fiduswriter setup --no-static
+  - fiduswriter setup --no-static
 
 script:
     - travis_retry coverage run --concurrency=multiprocessing fiduswriter test book
