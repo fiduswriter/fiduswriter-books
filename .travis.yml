@@ -33,6 +33,7 @@ install:
   - pip3 install requests[security]
   - pip3 install coverage
   - pip3 install coveralls
+  - pip3 install selenium
   - coverage run $(which fiduswriter) setup --no-static
 
 script:
