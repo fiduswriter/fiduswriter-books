@@ -25,9 +25,7 @@ install:
     then pip3 install https://github.com/fiduswriter/fiduswriter/archive/develop.zip;
     else pip3 install https://github.com/fiduswriter/fiduswriter/archive/master.zip;
     fi
-  - pip3 install ./
-  - mkdir project
-  - cd project
+  - cd fiduswriter
   - mv ../travis/configuration.py ./
   - mv ../travis/.coveragerc ./
   - pip3 install requests[security]
