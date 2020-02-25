@@ -142,5 +142,100 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR,
             'button[title="Create new book"]'
         ).click()
+        self.driver.find_element(
+            By.ID,
+            'book-title'
+        ).send_keys('My book')
+        self.driver.find_element(
+            By.ID,
+            'book-metadata-author'
+        ).send_keys('Author 1')
+        self.driver.find_element(
+            By.ID,
+            'book-metadata-subtitle'
+        ).send_keys('My very first book')
+        self.driver.find_element(
+            By.ID,
+            'book-metadata-publisher'
+        ).send_keys('Publishers United')
+        self.driver.find_element(
+            By.ID,
+            'book-metadata-copyright'
+        ).send_keys('Publishers United, 2000')
+        self.driver.find_element(
+            By.ID,
+            'book-metadata-keywords'
+        ).send_keys('Fishing, Testing, Heating')
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'a[href="#optionTab2"]'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#book-document-list > tr'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#book-document-list > tr:nth-child(2)'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#book-document-list > tr:nth-child(3)'
+        ).click()
+        self.driver.find_element(
+            By.ID,
+            'add-chapter'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'a[href="#optionTab4"]'
+        ).click()
+        self.driver.find_element(
+            By.ID,
+            'select-cover-image-button'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'button > i.fa-plus-circle'
+        ).click()
+        image_path = os.path.join(
+            settings.PROJECT_PATH,
+            'document/tests/uploads/image.png'
+        )
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'input.fw-media-file-input'
+        ).send_keys(image_path)
+        self.driver.find_element_by_xpath(
+            '//*[contains(@class, "ui-button") and normalize-space()="Upload"]'
+        ).click()
+        time.sleep(1)
+        self.driver.find_element_by_xpath(
+            '//*[contains(@class, "ui-button") and normalize-space()="Use image"]'
+        ).click()
+        self.driver.find_element_by_xpath(
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        ).click()
+        time.sleep(1)
+        self.assertEqual(
+            len(self.driver.find_elements_by_css_selector(
+                '.book-title'
+            )),
+            1
+        )
+        self.driver.refresh()
+        self.assertEqual(
+            len(self.driver.find_elements_by_css_selector(
+                '.book-title'
+            )),
+            1
+        )
+
+
+
+
+
+
+
 
 
