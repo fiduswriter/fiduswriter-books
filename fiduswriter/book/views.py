@@ -263,7 +263,7 @@ def copy(request):
 def save(request):
     date_format = '%d/%m/%Y'
     response = {}
-    status = 200
+    status = 403
     book_obj = json.loads(request.POST['book'])
     chapters = book_obj.pop('chapters')
     has_book_write_access = False
@@ -291,6 +291,8 @@ def save(request):
     elif book_obj['cover_image'] is False:
         book.cover_image = None
         has_coverimage_access = True
+    elif book_obj['cover_image'] == book.cover_image_id:
+        has_coverimage_access = True
     elif (
         book_obj['cover_image'] == book.cover_image or
         UserImage.objects.filter(
@@ -300,7 +302,6 @@ def save(request):
     ):
         book.cover_image_id = book_obj['cover_image']
         has_coverimage_access = True
-
     if has_book_write_access and has_coverimage_access:
         book.metadata = json.dumps(book_obj['metadata'])
         book.settings = json.dumps(book_obj['settings'])

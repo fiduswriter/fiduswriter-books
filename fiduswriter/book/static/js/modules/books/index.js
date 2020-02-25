@@ -144,7 +144,7 @@ export class BookOverview {
     createTableRow(book) {
         return [
             String(book.id),
-            `<input type="checkbox" class="entry-select" data-id="${book.id}">`,
+            `<input type="checkbox" class="entry-select fw-check" data-id="${book.id}" id="book-${book.id}"><label for="book-${book.id}"></label>`,
             `<span class="fw-data-table-title fw-inline">
                 <i class="fas fa-book"></i>
                 <span class="book-title fw-link-text fw-searchable"
