@@ -200,7 +200,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         image_path = os.path.join(
             settings.PROJECT_PATH,
-            'document/tests/uploads/image.png'
+            'book/tests/uploads/image.png'
         )
         self.driver.find_element(
             By.CSS_SELECTOR,
