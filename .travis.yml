@@ -32,8 +32,9 @@ install:
   - pip3 install coverage
   - pip3 install coveralls
   - pip3 install selenium
-  - fiduswriter lint
+  - pip3 install flake8
   - coverage run $(which fiduswriter) setup --no-static
+  - fiduswriter lint
 
 script:
     - travis_retry coverage run --concurrency=multiprocessing $(which fiduswriter) test book

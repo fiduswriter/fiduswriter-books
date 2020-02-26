@@ -5,3 +5,9 @@ build/
 fiduswriter_book.egg-info/
 fiduswriter_books.egg-info/
 __pycache__/
+venv/
+fiduswriter/.transpile
+fiduswriter/static-libs
+fiduswriter/.coveragerc
+fiduswriter/configuration.py
+fiduswriter/fiduswriter.sql
