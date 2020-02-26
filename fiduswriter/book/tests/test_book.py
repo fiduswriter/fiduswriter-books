@@ -2,7 +2,6 @@ import time
 import os
 from tempfile import mkdtemp
 
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -10,9 +9,7 @@ from testing.testcases import LiveTornadoTestCase
 from testing.selenium_helper import SeleniumHelper
 from selenium.common.exceptions import StaleElementReferenceException
 
-from django.core import mail
 from django.conf import settings
-from django.contrib.auth.models import User
 
 
 class BookTest(LiveTornadoTestCase, SeleniumHelper):
@@ -21,7 +18,6 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         'initial_styles.json',
         'initial_book_data.json'
     ]
-
 
     @classmethod
     def setUpClass(cls):
@@ -272,9 +268,10 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             '//*[contains(@class, "ui-button") and normalize-space()="Upload"]'
         ).click()
         time.sleep(1)
-        self.driver.find_element_by_xpath(
-            '//*[contains(@class, "ui-button") and normalize-space()="Use image"]'
-        ).click()
+        self.driver.find_element_by_xpath((
+            '//*[contains(@class, "ui-button") '
+            'and normalize-space()="Use image"]'
+        )).click()
         self.driver.find_element_by_xpath(
             '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
         ).click()
@@ -576,15 +573,3 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             )),
             1
         )
-
-
-
-
-
-
-
-
-
-
-
-
