@@ -61,56 +61,6 @@ def get_accessrights(ars):
 @login_required
 @require_POST
 @ajax_required
-def get_book(request):
-    response = {}
-    status = 405
-    book_id = json.loads(request.POST['id'])
-    book = Book.objects.filter(id=book_id).filter(
-        Q(owner=request.user) | Q(bookaccessright__user=request.user)
-    ).first()
-    # TODO: Is it really enough to check if the number of chapters
-    # owned by or with access rights by the current user is smaller
-    # than the total number of chapters of a book?
-    if book is None or len(
-        book.chapters.filter(
-            Q(owner=request.user) | Q(accessright__user=request.user)
-        )
-    ) < len(book.chapters.all()):
-        response['error'] = 'insufficient rights'
-    else:
-        response['book'] = {
-            'title': book.title,
-            'settings': book.settings,
-            'metadata': book.metadata,
-            'chapters': []
-        }
-        for chapter in book.chapter_set.all().order_by('number'):
-            response['book']['chapters'].append({
-                'title': chapter.text.title,
-                'contents': chapter.text.contents,
-                'part': chapter.part,
-                'owner': chapter.text.owner.id
-            })
-        status = 200
-        serializer = PythonWithURLSerializer()
-        book_styles = serializer.serialize(
-            BookStyle.objects.all(),
-            use_natural_foreign_keys=True,
-            fields=['title', 'slug', 'contents', 'bookstylefile_set']
-        )
-        response['book_styles'] = [
-            obj['fields'] for obj in book_styles
-        ]
-
-    return JsonResponse(
-        response,
-        status=status
-    )
-
-
-@login_required
-@require_POST
-@ajax_required
 def list(request):
     response = {}
     status = 200

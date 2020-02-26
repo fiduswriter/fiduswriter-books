@@ -19,6 +19,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
     fixtures = [
         'initial_documenttemplates.json',
         'initial_styles.json',
+        'initial_book_data.json'
     ]
 
 

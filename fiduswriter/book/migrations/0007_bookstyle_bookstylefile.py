@@ -7,7 +7,7 @@ from django.core.management import call_command
 
 
 fixture_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../fixtures'))
-fixture_filename = 'initial_data.json'
+fixture_filename = 'initial_book_data.json'
 
 
 def load_fixture(apps, schema_editor):
