@@ -7,7 +7,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from testing.testcases import LiveTornadoTestCase
 from testing.selenium_helper import SeleniumHelper
-from selenium.common.exceptions import StaleElementReferenceException
 
 from django.conf import settings
 
@@ -37,8 +36,6 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         super().tearDownClass()
 
     def setUp(self):
-        self.verificationErrors = []
-        self.accept_next_alert = True
         self.user = self.create_user(
             username='Yeti',
             email='yeti@snowman.com',
@@ -54,29 +51,6 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             email='yeti3@snowman.com',
             passtext='otter1'
         )
-
-    def tearDown(self):
-        self.assertEqual([], self.verificationErrors)
-
-    def assertInfoAlert(self, message):
-        i = 0
-        message_found = False
-        while(i < 100):
-            i = i + 1
-            try:
-                if self.driver.find_element(
-                    By.CSS_SELECTOR,
-                    "body #alerts-outer-wrapper .alerts-info"
-                ).text == message:
-                    message_found = True
-                    break
-                else:
-                    time.sleep(0.1)
-                    continue
-            except StaleElementReferenceException:
-                time.sleep(0.1)
-                continue
-        self.assertTrue(message_found)
 
     def test_books(self):
         self.login_user(self.user, self.driver, self.client)
