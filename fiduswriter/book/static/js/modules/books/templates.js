@@ -251,46 +251,46 @@ export const bookDialogTemplate = ({
     `<div id="book-dialog" title="${dialogHeader}">
         <div id="bookoptions-tab">
             <ul class="ui-tabs-nav">
-                <li class="tab-link">
-                    <a href="#optionTab1" class="fw-button fw-large" title="${gettext('Basic book information')}">
+                <li class="tab-link current-tab">
+                    <a href="#optionTab1" class="tab-link-inner" title="${gettext('Basic book information')}">
                         ${gettext('Basic info')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab2" class="fw-button fw-large" title="${gettext('Documents assigned as chapters')}">
+                    <a href="#optionTab2" class="tab-link-inner" title="${gettext('Documents assigned as chapters')}">
                         ${gettext('Chapters')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab3" class="fw-button fw-large" title="${gettext('Bibliography related settings')}">
+                    <a href="#optionTab3" class="tab-link-inner" title="${gettext('Bibliography related settings')}">
                         ${gettext('Bibliography')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab4" class="fw-button fw-large" title="${gettext('Epub related settings')}">
+                    <a href="#optionTab4" class="tab-link-inner" title="${gettext('Epub related settings')}">
                         ${gettext('Epub')}
                     </a>
                 </li>
                 <li class="tab-link">
-                    <a href="#optionTab5" class="fw-button fw-large" title="${gettext('Print related settings')}">
+                    <a href="#optionTab5" class="tab-link-inner" title="${gettext('Print related settings')}">
                         ${gettext('Print/PDF')}
                     </a>
                 </li>
             </ul>
-            <div class="tab-content ui-tabs-panel" id="optionTab1">
+            <div class="tab-content ui-tabs-panel" id="optionTab1" title="${gettext('Basic book information')}">
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookBasicInfoTemplate({book})}
                     </tbody>
                 </table>
             </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab2">
+            <div class="tab-content ui-tabs-panel" id="optionTab2" title="${gettext('Documents assigned as chapters')}">
                 ${bookDialogChaptersTemplate({
                     book,
                     documentList,
                 })}
             </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab3">
+            <div class="tab-content ui-tabs-panel" id="optionTab3" title="${gettext('Bibliography related settings')}">
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookBibliographyDataTemplate({
@@ -300,7 +300,7 @@ export const bookDialogTemplate = ({
                     </tbody>
                 </table>
             </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab4">
+            <div class="tab-content ui-tabs-panel" id="optionTab4" title="${gettext('Epub related settings')}">
                 <table class="fw-dialog-table fw-media-uploader">
                     <tbody>
                         ${bookEpubDataTemplate({
@@ -310,7 +310,7 @@ export const bookDialogTemplate = ({
                     </tbody>
                 </table>
             </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab5">
+            <div class="tab-content ui-tabs-panel" id="optionTab5" title="${gettext('Print related settings')}">
                 <table class="fw-dialog-table">
                     <tbody>
                         ${bookPrintDataTemplate({

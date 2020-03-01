@@ -1,8 +1,10 @@
-#book-dialog td .dk-selected, #book-dialog td .dk-select-options {
+#book-dialog td .dk-selected,
+#book-dialog td .dk-select-options {
     width: 486px !important;
 }
 
-#book-dialog th .dk-selected, #book-dialog th .dk-select-options {
+#book-dialog th .dk-selected,
+#book-dialog th .dk-select-options {
     width: 140px !important;
 }
 
@@ -11,7 +13,8 @@
     width: 486px;
 }
 
-.fw-data-table td.book-sort-up, .fw-data-table td.book-sort-down {
+.fw-data-table td.book-sort-up,
+.fw-data-table td.book-sort-down {
     padding-right: 0;
 }
 
@@ -20,10 +23,10 @@ b.part {
 }
 
 #book-dialog div.img {
-  width: calc(80vw - 100px);
-  height: calc(80vh - 200px);
-  max-width: 480px;
-  max-height: 360px;
-  background: transparent no-repeat center;
-  background-size: contain;
+    width: calc(80vw - 100px);
+    height: calc(80vh - 200px);
+    max-width: 480px;
+    max-height: 360px;
+    background: transparent no-repeat center;
+    background-size: contain;
 }

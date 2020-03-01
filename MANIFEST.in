@@ -4,3 +4,7 @@ recursive-include fiduswriter/book/static *
 recursive-include fiduswriter/book/fixtures *
 recursive-include fiduswriter/book/templates *
 recursive-include fiduswriter/book/locale *
+prune travis
+prune fiduswriter/venv
+prune venv
+prune fiduswriter/configuration.py

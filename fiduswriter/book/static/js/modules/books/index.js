@@ -5,7 +5,7 @@ import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
 import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk} from "../common"
 import {SiteMenu} from "../menu"
-import {menuModel, bulkModel} from "./menu"
+import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
 import {
     docSchema
@@ -15,10 +15,9 @@ export class BookOverview {
     // A class that contains everything that happens on the books page.
     // It is currently not possible to initialize more than one such class, as it
     // contains bindings to menu items, etc. that are uniquely defined.
-    constructor({app, user, staticUrl}) {
+    constructor({app, user}) {
         this.app = app
         this.user = user
-        this.staticUrl = staticUrl
         this.schema = docSchema
         this.mod = {}
         this.bookList = []
@@ -53,7 +52,6 @@ export class BookOverview {
         this.dom.innerHTML = baseBodyTemplate({
             contents: '',
             user: this.user,
-            staticUrl: this.staticUrl,
             hasOverview: true
         })
         document.body = this.dom
@@ -61,9 +59,9 @@ export class BookOverview {
             'add_remove_dialog.css',
             'access_rights_dialog.css',
             'book.css'
-        ], this.staticUrl)
+        ])
         setDocTitle(gettext('Book Overview'), this.app)
-        const feedbackTab = new FeedbackTab({staticUrl: this.staticUrl})
+        const feedbackTab = new FeedbackTab()
         feedbackTab.init()
     }
 
@@ -83,19 +81,36 @@ export class BookOverview {
         }
     }
 
+    onResize() {
+        if (!this.table) {
+            return
+        }
+        this.initTable()
+    }
+
     /* Initialize the overview table */
     initTable() {
         const tableEl = document.createElement('table')
         tableEl.classList.add('fw-data-table')
         tableEl.classList.add('fw-large')
+        this.dom.querySelector('.fw-contents').innerHTML = ''
         this.dom.querySelector('.fw-contents').appendChild(tableEl)
 
-        const dtBulk = new DatatableBulk(this, bulkModel)
+        this.dtBulk = new DatatableBulk(this, bulkMenuModel())
+
+        const hiddenCols = [0]
+
+        if (window.innerWidth < 500) {
+            hiddenCols.push(1)
+            if (window.innerWidth < 400) {
+                hiddenCols.push(3)
+            }
+        }
 
         this.table = new DataTable(tableEl, {
             searchable: true,
             paging: false,
-            scrollY: "calc(100vh - 320px)",
+            scrollY: `${Math.max(window.innerHeight - 360, 100)}px`,
             labels: {
                 noRows: gettext("No books available") // Message shown when there are no search results
             },
@@ -103,12 +118,12 @@ export class BookOverview {
                 top: ""
             },
             data: {
-                headings: ['', dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
+                headings: ['', this.dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
                 data: this.bookList.map(book => this.createTableRow(book))
             },
             columns: [
                 {
-                    select: 0,
+                    select: hiddenCols,
                     hidden: true
                 },
                 {
@@ -123,13 +138,13 @@ export class BookOverview {
             this.lastSort = {column, dir}
         })
 
-        dtBulk.init(this.table.table)
+        this.dtBulk.init(this.table.table)
     }
 
     createTableRow(book) {
         return [
             String(book.id),
-            `<input type="checkbox" class="entry-select" data-id="${book.id}">`,
+            `<input type="checkbox" class="entry-select fw-check" data-id="${book.id}" id="book-${book.id}"><label for="book-${book.id}"></label>`,
             `<span class="fw-data-table-title fw-inline">
                 <i class="fas fa-book"></i>
                 <span class="book-title fw-link-text fw-searchable"
