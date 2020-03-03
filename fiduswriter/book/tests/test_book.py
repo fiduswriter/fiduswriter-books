@@ -452,7 +452,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element_by_xpath(
             '//*[normalize-space()="Export selected as Epub"]'
         ).click()
-        time.sleep(1)
+        time.sleep(3)
         assert os.path.isfile(
             os.path.join(self.download_dir, 'my-book-extra.epub')
         )
