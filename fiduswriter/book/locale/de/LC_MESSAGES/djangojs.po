@@ -438,25 +438,25 @@ msgstr "Ausgewählte Bücher löschen."
 
 #: book/static/js/modules/books/menu.js:40
 msgid "Share selected books."
-msgstr "Teilen Sie ausgewählte Bücher."
+msgstr "Teilen Sie die ausgewählten Bücher."
 
 #: book/static/js/modules/books/menu.js:62
 msgid "Copy selected books."
-msgstr "Kopieren Sie ausgewählte Bücher."
+msgstr "Kopieren Sie die ausgewählten Bücher."
 
 #: book/static/js/modules/books/menu.js:70
 msgid "Export selected books as Epub."
-msgstr "Exportieren Sie ausgewählte Bücher als Epub."
+msgstr "Exportieren Sie die ausgewählten Bücher als Epub."
 
 #: book/static/js/modules/books/menu.js:82
 msgid "Export selected books as HTML."
-msgstr "Exportieren Sie ausgewählte Bücher als HTML."
+msgstr "Exportieren Sie die ausgewählten Bücher als HTML."
 
 #: book/static/js/modules/books/menu.js:95
 msgid "Export selected books as LaTeX."
-msgstr "Exportieren Sie ausgewählte Bücher als LaTeX."
+msgstr "Exportieren Sie die ausgewählten Bücher als LaTeX."
 
 #: book/static/js/modules/books/menu.js:107
 msgid "Export selected books to the print dialog."
-msgstr "Exportieren Sie ausgewählte Bücher in den Druckdialog."
+msgstr "Exportieren Sie die ausgewählten Bücher in den Druckdialog."
 
