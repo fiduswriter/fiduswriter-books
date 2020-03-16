@@ -188,7 +188,7 @@ export class HTMLBookExporter extends DOMExporter {
         const includeZips = this.math ?
             [{
                 'directory': '',
-                'url': `${settings.STATIC_URL}zip/mathlive_style.zip?v=${transpile.VERSION}`
+                'url': `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
             }] : []
 
         this.loadStyles().then(
