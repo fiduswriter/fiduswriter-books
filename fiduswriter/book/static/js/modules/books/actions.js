@@ -1,4 +1,5 @@
-import {bookDialogTemplate,
+import {bookBasicInfoTemplate, bookDialogChaptersTemplate, bookBibliographyDataTemplate,
+    bookEpubDataTemplate, bookPrintDataTemplate,
     bookChapterListTemplate, bookDocumentListTemplate, bookChapterDialogTemplate,
     bookEpubDataCoverTemplate
   } from "./templates"
@@ -11,6 +12,34 @@ export class BookActions {
     constructor(bookOverview) {
         bookOverview.mod.actions = this
         this.bookOverview = bookOverview
+        this.onSave = []
+        this.dialogParts = [
+            {
+                title: gettext('Basic info'),
+                description: gettext('Basic book information'),
+                template: bookBasicInfoTemplate
+            },
+            {
+                title: gettext('Chapters'),
+                description: gettext('Documents assigned as chapters'),
+                template: bookDialogChaptersTemplate
+            },
+            {
+                title: gettext('Bibliography'),
+                description: gettext('Bibliography related settings'),
+                template: bookBibliographyDataTemplate
+            },
+            {
+                title: gettext('Epub'),
+                description: gettext('Epub related settings'),
+                template: bookEpubDataTemplate
+            },
+            {
+                title: gettext('Print/PDF'),
+                description: gettext('Print related settings'),
+                template: bookPrintDataTemplate
+            }
+        ]
     }
 
     deleteBook(id) {
@@ -130,6 +159,7 @@ export class BookActions {
                     this.bookOverview.removeTableRows([oldBook.id])
                 }
                 this.bookOverview.addBookToTable(book)
+                this.onSave.forEach(method => method(book))
             }
         )
     }
@@ -203,11 +233,15 @@ export class BookActions {
         }
 
         const body = bookDialogTemplate({
-            book,
-            documentList: this.bookOverview.documentList,
-            citationStyles: this.bookOverview.citationStyles,
-            bookStyleList: this.bookOverview.styles,
-            imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
+            title,
+            dialogParts: this.dialogParts,
+            bookInfo: {
+                book,
+                documentList: this.bookOverview.documentList,
+                citationStyles: this.bookOverview.citationStyles,
+                bookStyleList: this.bookOverview.styles,
+                imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
+            }
         })
 
         const buttons = []
@@ -222,7 +256,7 @@ export class BookActions {
                     book.metadata.copyright = document.getElementById('book-metadata-copyright').value
                     book.metadata.publisher = document.getElementById('book-metadata-publisher').value
                     book.metadata.keywords = document.getElementById('book-metadata-keywords').value
-                    this.saveBook(book, oldBook).then(
+                    return this.saveBook(book, oldBook).then(
                         () => dialog.close()
                     )
                 }
@@ -266,6 +300,8 @@ export class BookActions {
         }))
         this.bindBookDialog(dialog, book, imageDB, bookImageDB)
     }
+
+
 
     bindBookDialog(dialog, book, imageDB, bookImageDB) {
         dialog.dialogEl.addEventListener('click', event => {

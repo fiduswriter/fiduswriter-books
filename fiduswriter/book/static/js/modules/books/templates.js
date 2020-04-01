@@ -2,130 +2,139 @@ import {escapeText} from "../common"
 
 
 /** A template for the basic info book template pane */
-const bookBasicInfoTemplate = ({book}) =>
-    `<tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Title")}</h4>
-        </th>
-        <td>
-            <input class="entryForm" type="text" id="book-title"
-                    value="${escapeText(book.title)}"
-                    ${
-                        book.rights === 'read' ?
-                        'disabled="disabled"' :
-                        ''
-                    }
-            >
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Author")}</h4>
-        </th>
-        <td>
-            <input class="entryForm" type="text" id="book-metadata-author"
-                    value="${escapeText(book.metadata.author)}"
-                    ${
-                        book.rights === 'read' ?
-                        'disabled="disabled"' :
-                        ''
-                    }
-            >
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Subtitle")}</h4>
-        </th>
-        <td>
-            <input class="entryForm" type="text" id="book-metadata-subtitle"
-                    value="${escapeText(book.metadata.subtitle)}"
-                    ${
-                        book.rights === 'read' ?
-                        'disabled="disabled"' :
-                        ''
-                    }
-            >
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Publisher")}</h4>
-        </th>
-        <td>
-            <input class="entryForm" type="text" id="book-metadata-publisher"
-                    value="${escapeText(book.metadata.publisher)}"
-                    ${
-                        book.rights === 'read' ?
-                        'disabled="disabled"' :
-                        ''
-                    }
-            >
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Copyright notice")}</h4>
-        </th>
-        <td>
-            <input class="entryForm" type="text" id="book-metadata-copyright"
-                    value="${escapeText(book.metadata.copyright)}"
-                    ${
-                        book.rights === 'read' ?
-                        'disabled="disabled"' :
-                        ''
-                    }
-            >
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <h4 class="fw-tablerow-title" title="${gettext("Comma separated keywords")}">
-                ${gettext("Keywords")}
-            </h4>
-        </th>
-        <td>
-            <input class="entryForm" type="text" id="book-metadata-keywords"
-                    value="${book.metadata.keywords}"
-                    ${
-                        book.rights === 'read' ?
-                        'disabled="disabled"' :
-                        ''
-                    }
-            >
-        </td>
-    </tr>`
+export const bookBasicInfoTemplate = ({book}) =>
+    `<table class="fw-dialog-table">
+        <tbody>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Title")}</h4>
+                </th>
+                <td>
+                    <input class="entryForm" type="text" id="book-title"
+                            value="${escapeText(book.title)}"
+                            ${
+                                book.rights === 'read' ?
+                                'disabled="disabled"' :
+                                ''
+                            }
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Author")}</h4>
+                </th>
+                <td>
+                    <input class="entryForm" type="text" id="book-metadata-author"
+                            value="${escapeText(book.metadata.author)}"
+                            ${
+                                book.rights === 'read' ?
+                                'disabled="disabled"' :
+                                ''
+                            }
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Subtitle")}</h4>
+                </th>
+                <td>
+                    <input class="entryForm" type="text" id="book-metadata-subtitle"
+                            value="${escapeText(book.metadata.subtitle)}"
+                            ${
+                                book.rights === 'read' ?
+                                'disabled="disabled"' :
+                                ''
+                            }
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Publisher")}</h4>
+                </th>
+                <td>
+                    <input class="entryForm" type="text" id="book-metadata-publisher"
+                            value="${escapeText(book.metadata.publisher)}"
+                            ${
+                                book.rights === 'read' ?
+                                'disabled="disabled"' :
+                                ''
+                            }
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Copyright notice")}</h4>
+                </th>
+                <td>
+                    <input class="entryForm" type="text" id="book-metadata-copyright"
+                            value="${escapeText(book.metadata.copyright)}"
+                            ${
+                                book.rights === 'read' ?
+                                'disabled="disabled"' :
+                                ''
+                            }
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title" title="${gettext("Comma separated keywords")}">
+                        ${gettext("Keywords")}
+                    </h4>
+                </th>
+                <td>
+                    <input class="entryForm" type="text" id="book-metadata-keywords"
+                            value="${book.metadata.keywords}"
+                            ${
+                                book.rights === 'read' ?
+                                'disabled="disabled"' :
+                                ''
+                            }
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>`
+
 
 /** A template for the citation style pane of the book dialog */
-const bookBibliographyDataTemplate = ({book, citationStyles}) =>
-    `<tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
-        </th>
-        <td>
-        <select class="entryForm" name="book-settings-citationstyle"
-                title="${gettext("Select citation style for the book")}"
-                id="book-settings-citationstyle"
-                ${
-                    book.rights === 'read' ?
-                    'disabled="disabled"' :
-                    ''
-                }
-        >
-            ${
-                Object.entries(citationStyles).map(([key, value]) =>
-                    `<option value="${key}" ${
-                        key === book.settings.citationstyle ?
-                        'selected' :
-                        ''
-                    }>
-                        ${value}
-                    </option>`
-                ).join('')
-            }
-        </select>
-        </td>
-    </tr>`
+export const bookBibliographyDataTemplate = ({book, citationStyles}) =>
+    `<table class="fw-dialog-table">
+        <tbody>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
+                </th>
+                <td>
+                    <select class="entryForm" name="book-settings-citationstyle"
+                        title="${gettext("Select citation style for the book")}"
+                        id="book-settings-citationstyle"
+                        ${
+                            book.rights === 'read' ?
+                            'disabled="disabled"' :
+                            ''
+                        }
+                    >
+                    ${
+                        Object.entries(citationStyles).map(([key, value]) =>
+                            `<option value="${key}" ${
+                                key === book.settings.citationstyle ?
+                                'selected' :
+                                ''
+                            }>
+                                ${value}
+                            </option>`
+                        ).join('')
+                    }
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>`
 
 const paperSizes =
     [
@@ -137,65 +146,69 @@ const paperSizes =
     ]
 
 /** A template for the print related data pane of the book dialog */
-const bookPrintDataTemplate = ({book, bookStyleList}) =>
-    `<tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Book style")}</h4>
-        </th>
-        <td>
-            <select class="entryForm dk" name="book-settings-bookstyle"
-                    title="${gettext("Select stylesheet for the book")}"
-                    id="book-settings-bookstyle"
+export const bookPrintDataTemplate = ({book, bookStyleList}) =>
+    `<table class="fw-dialog-table">
+        <tbody>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Book style")}</h4>
+                </th>
+                <td>
+                    <select class="entryForm dk" name="book-settings-bookstyle"
+                            title="${gettext("Select stylesheet for the book")}"
+                            id="book-settings-bookstyle"
+                            ${
+                                book.rights === 'read' || !bookStyleList.length ?
+                                'disabled="disabled"' :
+                                ''
+                            }
+                    >
+                        ${
+                            bookStyleList.map(bookStyle =>
+                                `<option value="${bookStyle.slug}"
+                                        ${
+                                            bookStyle.slug === book.settings.book_style ?
+                                            'selected' :
+                                            ''
+                                        }
+                                >
+                                    ${escapeText(bookStyle.title)}
+                                </option>`
+                            ).join('')
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Paper size")}</h4>
+                </th>
+                <td>
+                <select class="entryForm dk" name="book-settings-papersize"
+                        title="${gettext("Select paper size for the book")}"
+                        id="book-settings-papersize"
+                        ${
+                            book.rights === 'read' ?
+                            'disabled="disabled"' :
+                            ''
+                        }
+                >
                     ${
-                        book.rights === 'read' || !bookStyleList.length ?
-                        'disabled="disabled"' :
-                        ''
+                        paperSizes.map(size =>
+                            `<option value="${size[0]}" ${
+                                size[0] === book.settings.papersize ?
+                                'selected' :
+                                ''
+                            }>
+                                ${size[1]}
+                            </option>`
+                        ).join('')
                     }
-            >
-                ${
-                    bookStyleList.map(bookStyle =>
-                        `<option value="${bookStyle.slug}"
-                                ${
-                                    bookStyle.slug === book.settings.book_style ?
-                                    'selected' :
-                                    ''
-                                }
-                        >
-                            ${escapeText(bookStyle.title)}
-                        </option>`
-                    ).join('')
-                }
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <h4 class="fw-tablerow-title">${gettext("Paper size")}</h4>
-        </th>
-        <td>
-        <select class="entryForm dk" name="book-settings-papersize"
-                title="${gettext("Select paper size for the book")}"
-                id="book-settings-papersize"
-                ${
-                    book.rights === 'read' ?
-                    'disabled="disabled"' :
-                    ''
-                }
-        >
-            ${
-                paperSizes.map(size =>
-                    `<option value="${size[0]}" ${
-                        size[0] === book.settings.papersize ?
-                        'selected' :
-                        ''
-                    }>
-                        ${size[1]}
-                    </option>`
-                ).join('')
-            }
-        </select>
-        </td>
-    </tr>`
+                </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>`
 
 /** A template for the cover image input on the epub pane of the book dialog. */
 export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
@@ -231,95 +244,46 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
         }`
 
 /** A template for the epub related data pane of the book dialog */
-const bookEpubDataTemplate = ({book, imageDB}) =>
-    `<tr id="figure-preview-row">
-        ${bookEpubDataCoverTemplate({
-            book,
-            imageDB
-        })}
-    </tr>`
+export const bookEpubDataTemplate = ({book, imageDB}) =>
+    `<table class="fw-dialog-table fw-media-uploader">
+        <tbody>
+            <tr id="figure-preview-row">
+                ${bookEpubDataCoverTemplate({
+                    book,
+                    imageDB
+                })}
+            </tr>
+        </tbody>
+    </table>`
 
 /** A template for the book dialog. */
 export const bookDialogTemplate = ({
-    dialogHeader,
-    bookStyleList,
-    imageDB,
-    book,
-    documentList,
-    citationStyles
+    title,
+    bookInfo
+    dialogParts
 }) =>
-    `<div id="book-dialog" title="${dialogHeader}">
+    `<div id="book-dialog" title="${title}">
         <div id="bookoptions-tab">
             <ul class="ui-tabs-nav">
-                <li class="tab-link current-tab">
-                    <a href="#optionTab1" class="tab-link-inner" title="${gettext('Basic book information')}">
-                        ${gettext('Basic info')}
-                    </a>
-                </li>
-                <li class="tab-link">
-                    <a href="#optionTab2" class="tab-link-inner" title="${gettext('Documents assigned as chapters')}">
-                        ${gettext('Chapters')}
-                    </a>
-                </li>
-                <li class="tab-link">
-                    <a href="#optionTab3" class="tab-link-inner" title="${gettext('Bibliography related settings')}">
-                        ${gettext('Bibliography')}
-                    </a>
-                </li>
-                <li class="tab-link">
-                    <a href="#optionTab4" class="tab-link-inner" title="${gettext('Epub related settings')}">
-                        ${gettext('Epub')}
-                    </a>
-                </li>
-                <li class="tab-link">
-                    <a href="#optionTab5" class="tab-link-inner" title="${gettext('Print related settings')}">
-                        ${gettext('Print/PDF')}
-                    </a>
-                </li>
+                ${
+                    dialogParts.map(
+                        (part, index) =>
+                            `<li class="tab-link current-tab">
+                                <a href="#optionTab${index}" class="tab-link-inner" title="${escapeText(part.description)}">
+                                    ${escapeText(part.title)}
+                                    </a>
+                            </li>`
+                    ).join('')
+                }
             </ul>
-            <div class="tab-content ui-tabs-panel" id="optionTab1" title="${gettext('Basic book information')}">
-                <table class="fw-dialog-table">
-                    <tbody>
-                        ${bookBasicInfoTemplate({book})}
-                    </tbody>
-                </table>
-            </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab2" title="${gettext('Documents assigned as chapters')}">
-                ${bookDialogChaptersTemplate({
-                    book,
-                    documentList,
-                })}
-            </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab3" title="${gettext('Bibliography related settings')}">
-                <table class="fw-dialog-table">
-                    <tbody>
-                        ${bookBibliographyDataTemplate({
-                            book,
-                            citationStyles
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab4" title="${gettext('Epub related settings')}">
-                <table class="fw-dialog-table fw-media-uploader">
-                    <tbody>
-                        ${bookEpubDataTemplate({
-                            book,
-                            imageDB
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <div class="tab-content ui-tabs-panel" id="optionTab5" title="${gettext('Print related settings')}">
-                <table class="fw-dialog-table">
-                    <tbody>
-                        ${bookPrintDataTemplate({
-                            book,
-                            bookStyleList
-                        })}
-                    </tbody>
-                </table>
-            </div>
+            ${
+                dialogParts.map(
+                    (part, index) =>
+                        `<div class="tab-content ui-tabs-panel" id="optionTab${index}" title="${escapeText(part.description)}">
+                            ${part.template(bookInfo)}
+                        </div>`
+                ).join('')
+            }
         </div>
     </div>`
 

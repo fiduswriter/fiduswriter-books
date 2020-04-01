@@ -1,5 +1,6 @@
 import {DataTable} from "simple-datatables"
 
+import * as plugins from "../../plugins/books_overview"
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
@@ -41,10 +42,24 @@ export class BookOverview {
                 new BookActions(this)
                 this.menu = new OverviewMenuView(this, menuModel)
                 this.menu.init()
+                this.dtBulkModel = bulkMenuModel()
+                this.activateFidusPlugins()
                 this.bind()
                 return this.getBookListData()
-          }
-      )
+            }
+        )
+    }
+
+    activateFidusPlugins() {
+        // Add plugins.
+        this.plugins = {}
+
+        Object.keys(plugins).forEach(plugin => {
+            if (typeof plugins[plugin] === 'function') {
+                this.plugins[plugin] = new plugins[plugin](this)
+                this.plugins[plugin].init()
+            }
+        })
     }
 
     render() {
@@ -96,7 +111,7 @@ export class BookOverview {
         this.dom.querySelector('.fw-contents').innerHTML = ''
         this.dom.querySelector('.fw-contents').appendChild(tableEl)
 
-        this.dtBulk = new DatatableBulk(this, bulkMenuModel())
+        this.dtBulk = new DatatableBulk(this, this.dtBulkModel)
 
         const hiddenCols = [0]
 

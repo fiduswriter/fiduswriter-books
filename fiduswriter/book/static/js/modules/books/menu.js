@@ -86,7 +86,7 @@ export const bulkMenuModel = () => ({
                     const book = overview.bookList.find(book => book.id===id)
                     addAlert('info', book.title + ': ' + gettext(
                         'Epub export has been initiated.'))
-                    new EpubBookExporter(
+                    const exporter = new EpubBookExporter(
                         overview.schema,
                         overview.app.csl,
                         overview.styles,
@@ -94,6 +94,7 @@ export const bulkMenuModel = () => ({
                         overview.user,
                         overview.documentList
                     )
+                    exporter.init()
                 })
             },
             disabled: overview => !overview.getSelected().length

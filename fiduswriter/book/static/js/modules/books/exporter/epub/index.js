@@ -33,6 +33,9 @@ export class EpubBookExporter extends DOMExporter {
         this.math = false
         this.coverImage = false
         this.contentItems = []
+    }
+
+    init() {
         if (this.book.chapters.length === 0) {
             addAlert('error', gettext('Book cannot be exported due to lack of chapters.'))
             return false
@@ -322,16 +325,18 @@ export class EpubBookExporter extends DOMExporter {
             includeZips,
             'application/epub+zip'
         )
-        zipper.init().then(
-            blob => {
-                return download(
-                    blob,
-                    createSlug(this.book.title) + '.epub',
-                    'application/epub+zip'
-                )
-            }
+        return zipper.init().then(
+            blob => this.download(blob)
         )
 
+    }
+
+    download(blob) {
+        return download(
+            blob,
+            createSlug(this.book.title) + '.epub',
+            'application/epub+zip'
+        )
     }
 
 }
