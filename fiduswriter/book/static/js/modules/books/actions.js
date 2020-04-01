@@ -1,4 +1,4 @@
-import {bookBasicInfoTemplate, bookDialogChaptersTemplate, bookBibliographyDataTemplate,
+import {bookDialogTemplate, bookBasicInfoTemplate, bookDialogChaptersTemplate, bookBibliographyDataTemplate,
     bookEpubDataTemplate, bookPrintDataTemplate,
     bookChapterListTemplate, bookDocumentListTemplate, bookChapterDialogTemplate,
     bookEpubDataCoverTemplate
