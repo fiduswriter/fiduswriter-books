@@ -259,7 +259,7 @@ export const bookEpubDataTemplate = ({book, imageDB}) =>
 /** A template for the book dialog. */
 export const bookDialogTemplate = ({
     title,
-    bookInfo
+    bookInfo,
     dialogParts
 }) =>
     `<div id="book-dialog" title="${title}">
@@ -288,7 +288,7 @@ export const bookDialogTemplate = ({
     </div>`
 
 /** A template for the chapter pane of the book dialog. */
-const bookDialogChaptersTemplate = ({book, documentList}) =>
+export const bookDialogChaptersTemplate = ({book, documentList}) =>
     `${
         book.rights === "write" ?
         `<div class="fw-ar-container">
