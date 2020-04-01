@@ -200,7 +200,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).send_keys('Fishing, Testing, Heating')
         self.driver.find_element(
             By.CSS_SELECTOR,
-            'a[href="#optionTab2"]'
+            'a[href="#optionTab1"]'
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
@@ -220,7 +220,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            'a[href="#optionTab4"]'
+            'a[href="#optionTab3"]'
         ).click()
         self.driver.find_element(
             By.ID,
@@ -343,7 +343,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).send_keys(' EXTRA')
         self.driver.find_element(
             By.CSS_SELECTOR,
-            'a[href="#optionTab2"]'
+            'a[href="#optionTab1"]'
         ).click()
         self.assertEqual(
             self.driver.find_element_by_css_selector(
@@ -417,7 +417,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         )
         self.driver.find_element(
             By.CSS_SELECTOR,
-            'a[href="#optionTab2"]'
+            'a[href="#optionTab1"]'
         ).click()
         self.assertEqual(
             self.driver.find_element_by_css_selector(
