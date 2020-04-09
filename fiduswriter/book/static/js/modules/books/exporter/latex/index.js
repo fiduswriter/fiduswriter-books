@@ -69,6 +69,11 @@ export class LatexBookExporter {
                 epilogue
             })
         })
+
+        return this.createZip()
+    }
+
+    createZip() {
         const zipper = new ZipFileCreator(
             this.textFiles,
             this.httpFiles,
@@ -77,8 +82,12 @@ export class LatexBookExporter {
             this.updated
         )
 
-        zipper.init().then(
-            blob => download(blob, this.zipFileName, 'application/zip')
+        return zipper.init().then(
+            blob => this.download(blob)
         )
+    }
+
+    download(blob) {
+        return download(blob, this.zipFileName, 'application/zip')
     }
 }

@@ -22,6 +22,8 @@ export class HTMLBookExporter extends DOMExporter {
         this.updated = updated
 
         this.chapters = []
+        this.includeZips = []
+        this.outputList = []
         this.math = false
         this.chapterTemplate = htmlBookExportTemplate
     }
@@ -114,7 +116,7 @@ export class HTMLBookExporter extends DOMExporter {
     exportTwo() {
         const bookStyle = this.addBookStyle()
         let contentItems = []
-        const outputList = this.chapters.map((chapter, index) => {
+        this.chapters.forEach((chapter, index) => {
             const contents = chapter.contents,
                 doc = chapter.doc,
                 title = doc.title,
@@ -159,15 +161,15 @@ export class HTMLBookExporter extends DOMExporter {
                 math: this.math
             })
 
-            return {
+            this.outputList.push({
                 filename: `document-${this.book.chapters[index].number}.html`,
                 contents: htmlCode
-            }
+            })
         })
 
         contentItems = orderLinks(contentItems)
 
-        outputList.push({
+        this.outputList.push({
             filename: 'index.html',
             contents: htmlBookIndexTemplate({
                 contentItems,
@@ -180,39 +182,47 @@ export class HTMLBookExporter extends DOMExporter {
 
 
 
-        this.exportThree(outputList)
+        this.exportThree()
 
     }
 
-    exportThree(outputList) {
+    exportThree() {
         this.binaryFiles = uniqueObjects(this.binaryFiles.concat(this.fontFiles))
         this.styleSheets = uniqueObjects(this.styleSheets)
-        const includeZips = this.math ?
-            [{
+        if (this.math) {
+            this.includeZips.push({
                 'directory': '',
                 'url': `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
-            }] : []
+            })
+        }
 
         this.loadStyles().then(
             () => {
                 this.styleSheets.forEach(styleSheet => {
                     if (styleSheet.filename) {
-                        outputList.push(styleSheet)
+                        this.outputList.push(styleSheet)
                     }
                 })
-                const zipper = new ZipFileCreator(
-                    outputList,
-                    this.binaryFiles,
-                    includeZips,
-                    null,
-                    this.updated
-                )
-
-                return zipper.init()
+                return this.createZip()
             }
-        ).then(
-            blob => download(blob, createSlug(this.book.title) + '.html.zip', 'application/zip')
         )
+    }
+
+    createZip() {
+        const zipper = new ZipFileCreator(
+            this.outputList,
+            this.binaryFiles,
+            this.includeZips,
+            null,
+            this.updated
+        )
+        return zipper.init().then(
+            blob => this.download(blob)
+        )
+    }
+
+    download(blob) {
+        return download(blob, createSlug(this.book.title) + '.html.zip', 'application/zip')
     }
 
 }

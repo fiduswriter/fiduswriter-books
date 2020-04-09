@@ -32,6 +32,7 @@ export class EpubBookExporter extends DOMExporter {
         this.chapters = []
         this.images = []
         this.outputList = []
+        this.includeZips = []
         this.math = false
         this.coverImage = false
         this.contentItems = []
@@ -204,7 +205,6 @@ export class EpubBookExporter extends DOMExporter {
     }
 
     exportThree() {
-        const includeZips = []
 
         this.contentItems.push({
             link: 'copyright.xhtml#copyright',
@@ -316,22 +316,25 @@ export class EpubBookExporter extends DOMExporter {
         this.binaryFiles = uniqueObjects(this.binaryFiles)
 
         if (this.math) {
-            includeZips.push({
+            this.includeZips.push({
                 'directory': 'EPUB',
                 'url': `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
             })
         }
+        return this.createZip()
+    }
+
+    createZip() {
         const zipper = new ZipFileCreator(
             this.outputList,
             this.binaryFiles,
-            includeZips,
+            this.includeZips,
             'application/epub+zip',
             this.updated
         )
         return zipper.init().then(
             blob => this.download(blob)
         )
-
     }
 
     download(blob) {
