@@ -213,7 +213,7 @@ export class HTMLBookExporter extends DOMExporter {
             this.outputList,
             this.binaryFiles,
             this.includeZips,
-            null,
+            undefined,
             this.updated
         )
         return zipper.init().then(

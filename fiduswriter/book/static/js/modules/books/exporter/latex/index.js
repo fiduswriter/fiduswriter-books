@@ -77,8 +77,8 @@ export class LatexBookExporter {
         const zipper = new ZipFileCreator(
             this.textFiles,
             this.httpFiles,
-            null,
-            null,
+            undefined,
+            undefined,
             this.updated
         )
 
