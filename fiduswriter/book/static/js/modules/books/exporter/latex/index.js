@@ -10,12 +10,14 @@ import {ZipFileCreator} from "../../../exporter/tools/zip"
 
 export class LatexBookExporter {
 
-    constructor(schema, book, user, docList) {
+    constructor(schema, book, user, docList, updated) {
         this.schema = schema
         this.book = book
         this.book.chapters.sort((a, b) => a.number > b.number)
         this.user = user // Not used, but we keep it for consistency
         this.docList = docList
+        this.updated = updated
+
         this.textFiles = []
         this.httpFiles = []
 
@@ -69,7 +71,10 @@ export class LatexBookExporter {
         })
         const zipper = new ZipFileCreator(
             this.textFiles,
-            this.httpFiles
+            this.httpFiles,
+            null,
+            null,
+            this.updated
         )
 
         zipper.init().then(

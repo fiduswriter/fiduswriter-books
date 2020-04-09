@@ -1,6 +1,6 @@
 from builtins import str
 import json
-from time import mktime
+import time
 
 from django.http import JsonResponse, HttpRequest
 from django.utils import timezone
@@ -78,9 +78,8 @@ def list(request):
                 user=request.user,
                 book=book
             ).rights
-        date_format = '%Y-%m-%d'
-        added = book.added.strftime(date_format)
-        updated = book.updated.strftime(date_format)
+        added = time.mktime(book.added.utctimetuple())
+        updated = time.mktime(book.updated.utctimetuple())
         is_owner = False
         if book.owner == request.user:
             is_owner = True
@@ -90,6 +89,9 @@ def list(request):
                              'number': chapter.number,
                              'part': chapter.part,
                              'title': chapter.text.title})
+            chapter_updated = time.mktime(chapter.text.updated.utctimetuple())
+            if chapter_updated > updated:
+                updated = chapter_updated
         book_data = {
             'id': book.id,
             'title': book.title,
@@ -109,7 +111,7 @@ def list(request):
             book_data['cover_image'] = image.id
             field_obj = {
                 'id': image.id,
-                'added': mktime(image.added.timetuple()) * 1000,
+                'added': time.mktime(image.added.utctimetuple()) * 1000,
                 'checksum': image.checksum,
                 'file_type': image.file_type,
                 'title': '',
@@ -211,7 +213,6 @@ def copy(request):
 @require_POST
 @ajax_required
 def save(request):
-    date_format = '%d/%m/%Y'
     response = {}
     status = 403
     book_obj = json.loads(request.POST['book'])
@@ -259,10 +260,8 @@ def save(request):
         book.save()
         status = 201
         response['id'] = book.id
-        date_obj = dateutil.parser.parse(str(book.added))
-        response['added'] = date_obj.strftime(date_format)
-        date_obj = dateutil.parser.parse(str(book.updated))
-        response['updated'] = date_obj.strftime(date_format)
+        response['added'] = time.mktime(book.added.utctimetuple())
+        response['updated'] = time.mktime(book.updated.utctimetuple())
         set_chapters(
             book, chapters, request.user)
     return JsonResponse(

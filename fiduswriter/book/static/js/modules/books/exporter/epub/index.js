@@ -22,11 +22,13 @@ import {addAlert} from "../../../common"
 
 
 export class EpubBookExporter extends DOMExporter {
-    constructor(schema, csl, bookStyles, book, user, docList) {
+    constructor(schema, csl, bookStyles, book, user, docList, updated) {
         super(schema, csl, bookStyles)
         this.book = book
         this.user = user
         this.docList = docList
+        this.updated = updated
+
         this.chapters = []
         this.images = []
         this.outputList = []
@@ -215,7 +217,7 @@ export class EpubBookExporter extends DOMExporter {
 
         this.contentItems = orderLinks(this.contentItems)
 
-        const timestamp = getTimestamp()
+        const timestamp = getTimestamp(this.updated)
 
         this.images = uniqueObjects(this.images)
         this.fontFiles = uniqueObjects(this.fontFiles)
@@ -237,7 +239,7 @@ export class EpubBookExporter extends DOMExporter {
             language,
             book: this.book,
             idType: 'fidus',
-            date: timestamp.slice(0, 10), // TODO: the date should probably be the original document creation date instead
+            date: timestamp.slice(0, 10),
             modified: timestamp,
             styleSheets: this.styleSheets,
             math: this.math,
@@ -323,7 +325,8 @@ export class EpubBookExporter extends DOMExporter {
             this.outputList,
             this.binaryFiles,
             includeZips,
-            'application/epub+zip'
+            'application/epub+zip',
+            this.updated
         )
         return zipper.init().then(
             blob => this.download(blob)

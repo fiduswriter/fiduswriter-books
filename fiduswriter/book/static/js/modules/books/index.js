@@ -4,7 +4,7 @@ import * as plugins from "../../plugins/books_overview"
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk} from "../common"
+import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, localizeDate} from "../common"
 import {SiteMenu} from "../menu"
 import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
@@ -171,8 +171,8 @@ export class BookOverview {
                     }
                 </span>
             </span>`,
-            book.added, // format?
-            book.updated, // format ?
+            `<span class="date">${localizeDate(book.added*1000, 'sortable-date')}</span>`,
+            `<span class="date">${localizeDate(book.updated*1000, 'sortable-date')}</span>`,
             `<span>
                 <img class="fw-avatar" src="${book.owner_avatar}" />
             </span>

@@ -92,7 +92,8 @@ export const bulkMenuModel = () => ({
                         overview.styles,
                         book,
                         overview.user,
-                        overview.documentList
+                        overview.documentList,
+                        new Date(book.updated * 1000)
                     )
                     exporter.init()
                 })
@@ -114,7 +115,8 @@ export const bulkMenuModel = () => ({
                         overview.styles,
                         book,
                         overview.user,
-                        overview.documentList
+                        overview.documentList,
+                        new Date(book.updated * 1000)
                     )
                     exporter.init()
                 })
@@ -134,7 +136,8 @@ export const bulkMenuModel = () => ({
                         overview.schema,
                         book,
                         overview.user,
-                        overview.documentList
+                        overview.documentList,
+                        new Date(book.updated * 1000)
                     )
                 })
             },

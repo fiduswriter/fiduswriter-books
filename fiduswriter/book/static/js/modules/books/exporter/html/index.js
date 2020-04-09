@@ -14,11 +14,13 @@ import download from "downloadjs"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends DOMExporter {
-    constructor(schema, csl, bookStyles, book, user, docList) {
+    constructor(schema, csl, bookStyles, book, user, docList, updated) {
         super(schema, csl, bookStyles)
         this.book = book
         this.user = user
         this.docList = docList
+        this.updated = updated
+
         this.chapters = []
         this.math = false
         this.chapterTemplate = htmlBookExportTemplate
@@ -201,7 +203,9 @@ export class HTMLBookExporter extends DOMExporter {
                 const zipper = new ZipFileCreator(
                     outputList,
                     this.binaryFiles,
-                    includeZips
+                    includeZips,
+                    null,
+                    this.updated
                 )
 
                 return zipper.init()
