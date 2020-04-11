@@ -1,4 +1,3 @@
-from builtins import str
 import json
 import time
 
@@ -27,7 +26,6 @@ from avatar.templatetags.avatar_tags import avatar_url
 from django.core.serializers.python import Serializer
 
 from django.db.models import Q
-import dateutil.parser
 
 
 class SimpleSerializer(Serializer):
