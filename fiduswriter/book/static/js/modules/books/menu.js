@@ -132,13 +132,14 @@ export const bulkMenuModel = () => ({
                     const book = overview.bookList.find(book => book.id===id)
                     addAlert('info', book.title + ': ' + gettext(
                         'LaTeX export has been initiated.'))
-                    new LatexBookExporter(
+                    const exporter = new LatexBookExporter(
                         overview.schema,
                         book,
                         overview.user,
                         overview.documentList,
                         new Date(book.updated * 1000)
                     )
+                    return exporter.init()
                 })
             },
             disabled: overview => !overview.getSelected().length

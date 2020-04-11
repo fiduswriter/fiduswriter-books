@@ -20,13 +20,15 @@ export class LatexBookExporter {
 
         this.textFiles = []
         this.httpFiles = []
-
-        getMissingChapterData(this.book, this.docList, this.schema).then(
-            () => this.init()
-        )
     }
 
     init() {
+        return getMissingChapterData(this.book, this.docList, this.schema).then(
+            () => this.export()
+        )
+    }
+
+    export() {
         this.zipFileName = `${createSlug(this.book.title)}.latex.zip`
         let bibIds = [], imageIds = []
         const features = {}, combinedBibliography = {}, combinedImages = {}

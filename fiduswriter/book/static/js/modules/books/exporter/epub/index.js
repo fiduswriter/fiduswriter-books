@@ -43,7 +43,7 @@ export class EpubBookExporter extends DOMExporter {
             addAlert('error', gettext('Book cannot be exported due to lack of chapters.'))
             return false
         }
-        getMissingChapterData(this.book, this.docList, this.schema).then(
+        return getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
         )
     }
@@ -168,8 +168,7 @@ export class EpubBookExporter extends DOMExporter {
                 }
             )
         })
-        Promise.all(citRendererPromises).then(() => this.exportTwo())
-
+        return Promise.all(citRendererPromises).then(() => this.exportTwo())
     }
 
     exportTwo() {
@@ -199,7 +198,7 @@ export class EpubBookExporter extends DOMExporter {
                 }
             })
         )
-        this.loadStyles().then(
+        return this.loadStyles().then(
             () => this.exportThree()
         )
     }

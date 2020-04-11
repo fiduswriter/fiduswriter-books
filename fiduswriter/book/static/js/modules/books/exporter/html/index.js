@@ -34,7 +34,7 @@ export class HTMLBookExporter extends DOMExporter {
             return false
         }
 
-        getMissingChapterData(this.book, this.docList, this.schema).then(
+        return getMissingChapterData(this.book, this.docList, this.schema).then(
             () => this.exportOne()
         )
     }
@@ -105,7 +105,7 @@ export class HTMLBookExporter extends DOMExporter {
                 }
             )
         })
-        Promise.all(citRendererPromises).then(() => this.exportTwo())
+        return Promise.all(citRendererPromises).then(() => this.exportTwo())
 
     }
 
@@ -180,9 +180,7 @@ export class HTMLBookExporter extends DOMExporter {
             })
         })
 
-
-
-        this.exportThree()
+        return this.exportThree()
 
     }
 
@@ -196,7 +194,7 @@ export class HTMLBookExporter extends DOMExporter {
             })
         }
 
-        this.loadStyles().then(
+        return this.loadStyles().then(
             () => {
                 this.styleSheets.forEach(styleSheet => {
                     if (styleSheet.filename) {
