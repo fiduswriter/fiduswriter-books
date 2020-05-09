@@ -11,6 +11,7 @@ import {addAlert} from "../../../common"
 import {BIBLIOGRAPHY_HEADERS, FIG_CATS} from "../../../schema/i18n"
 
 import download from "downloadjs"
+import pretty from "pretty"
 import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends DOMExporter {
@@ -46,13 +47,20 @@ export class HTMLBookExporter extends DOMExporter {
         }
         // The files will be in the base directory. The filenames of
         // BookStyleFiles will therefore not need to replaced with their URLs.
+        let contents = bookStyle.contents
+        bookStyle.bookstylefile_set.forEach(
+            ([_url, filename]) => contents = contents.replace(
+                new RegExp(filename, 'g'),
+                `media/${filename}`
+            )
+        )
 
-        this.styleSheets.push({contents: bookStyle.contents, filename: `${bookStyle.slug}.css`})
+        this.styleSheets.push({contents, filename: `css/${bookStyle.slug}.css`})
         this.fontFiles = this.fontFiles.concat(bookStyle.bookstylefile_set.map(([url, filename]) => ({
-            filename,
+            filename: `css/media/${filename}`,
             url
         })))
-        return `${bookStyle.slug}.css`
+        return `css/${bookStyle.slug}.css`
     }
 
     exportOne() {
@@ -116,6 +124,7 @@ export class HTMLBookExporter extends DOMExporter {
     exportTwo() {
         const bookStyle = this.addBookStyle()
         let contentItems = []
+        let currentPart = false
         this.chapters.forEach((chapter, index) => {
             const contents = chapter.contents,
                 doc = chapter.doc,
@@ -135,6 +144,7 @@ export class HTMLBookExporter extends DOMExporter {
                     level: -1,
                     subItems: []
                 })
+                currentPart = this.book.chapters[index].part
             }
 
             contentItems.push({
@@ -153,6 +163,7 @@ export class HTMLBookExporter extends DOMExporter {
 
             const htmlCode = this.chapterTemplate({
                 part: this.book.chapters[index].part,
+                currentPart,
                 title,
                 metadata: doc.metadata,
                 settings: doc.settings,
@@ -163,7 +174,7 @@ export class HTMLBookExporter extends DOMExporter {
 
             this.outputList.push({
                 filename: `document-${this.book.chapters[index].number}.html`,
-                contents: htmlCode
+                contents: pretty(htmlCode, {ocd: true})
             })
         })
 
@@ -171,13 +182,13 @@ export class HTMLBookExporter extends DOMExporter {
 
         this.outputList.push({
             filename: 'index.html',
-            contents: htmlBookIndexTemplate({
+            contents: pretty(htmlBookIndexTemplate({
                 contentItems,
                 book: this.book,
                 creator: this.user.name,
                 // TODO: specify a book language rather than using the current users UI language
                 language: gettext('English')
-            })
+            }), {ocd: true})
         })
 
         return this.exportThree()
@@ -189,7 +200,7 @@ export class HTMLBookExporter extends DOMExporter {
         this.styleSheets = uniqueObjects(this.styleSheets)
         if (this.math) {
             this.includeZips.push({
-                'directory': '',
+                'directory': 'css',
                 'url': `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
             })
         }

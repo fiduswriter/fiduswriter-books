@@ -1,5 +1,6 @@
 import {DOMSerializer} from "prosemirror-model"
 import download from "downloadjs"
+import pretty from "pretty"
 
 import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
 
@@ -55,13 +56,20 @@ export class EpubBookExporter extends DOMExporter {
         }
         // The files will be in the base directory. The filenames of
         // BookStyleFiles will therefore not need to replaced with their URLs.
+        let contents = bookStyle.contents
+        bookStyle.bookstylefile_set.forEach(
+            ([_url, filename]) => contents = contents.replace(
+                new RegExp(filename, 'g'),
+                `media/${filename}`
+            )
+        )
 
-        this.styleSheets.push({contents: bookStyle.contents, filename: `${bookStyle.slug}.css`})
+        this.styleSheets.push({contents, filename: `css/${bookStyle.slug}.css`})
         this.fontFiles = this.fontFiles.concat(bookStyle.bookstylefile_set.map(([url, filename]) => ({
-            filename,
+            filename: `css/media/${filename}`,
             url
         })))
-        return `${bookStyle.slug}.css`
+        return `css/${bookStyle.slug}.css`
     }
 
     exportOne() {
@@ -95,6 +103,7 @@ export class EpubBookExporter extends DOMExporter {
             level: 0,
             subItems: [],
         })
+        let currentPart = false
         this.chapters = this.book.chapters.map(chapter => {
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
@@ -128,6 +137,7 @@ export class EpubBookExporter extends DOMExporter {
                     level: -1,
                     subItems: [],
                 })
+                currentPart = chapter.part
             }
 
             // Make links to all H1-3 and create a TOC list of them
@@ -138,6 +148,7 @@ export class EpubBookExporter extends DOMExporter {
             return {
                 contents: contentsEl,
                 number : chapter.number,
+                currentPart,
                 part: chapter.part,
                 math,
                 doc
@@ -176,12 +187,13 @@ export class EpubBookExporter extends DOMExporter {
         this.outputList = this.outputList.concat(
             this.chapters.map(chapter => {
                 chapter.contents = styleEpubFootnotes(chapter.contents)
-                const styleSheets = [{filename: 'document.css'}]
+                const styleSheets = [{filename: 'css/document.css'}]
                 if (bookStyle) {
                     styleSheets.push({filename: bookStyle})
                 }
                 let xhtmlCode = xhtmlTemplate({
                     part: chapter.part,
+                    currentPart: chapter.currentPart,
                     shortLang: chapter.doc.settings.language.split('-')[0],
                     title: chapter.doc.title,
                     metadata: chapter.doc.metadata,
@@ -194,7 +206,7 @@ export class EpubBookExporter extends DOMExporter {
 
                 return {
                     filename: `EPUB/document-${chapter.number}.xhtml`,
-                    contents: xhtmlCode
+                    contents: pretty(xhtmlCode, {ocd: true})
                 }
             })
         )
@@ -267,28 +279,28 @@ export class EpubBookExporter extends DOMExporter {
 
         this.outputList = this.outputList.concat([{
             filename: 'META-INF/container.xml',
-            contents: containerTemplate({})
+            contents: pretty(containerTemplate({}), {ocd: true})
         }, {
             filename: 'EPUB/document.opf',
-            contents: opfCode
+            contents: pretty(opfCode, {ocd: true})
         }, {
             filename: 'EPUB/document.ncx',
-            contents: ncxCode
+            contents: pretty(ncxCode, {ocd: true})
         }, {
             filename: 'EPUB/document-nav.xhtml',
-            contents: navCode
+            contents: pretty(navCode, {ocd: true})
         }, {
             filename: 'EPUB/titlepage.xhtml',
-            contents: epubBookTitlepageTemplate({
+            contents: pretty(epubBookTitlepageTemplate({
                 book: this.book
-            })
+            }), {ocd: true})
         }, {
             filename: 'EPUB/copyright.xhtml',
-            contents: epubBookCopyrightTemplate({
+            contents: pretty(epubBookCopyrightTemplate({
                 book: this.book,
                 creator: this.user.name,
                 languages
-            })
+            }), {ocd: true})
         }])
 
         this.outputList = this.outputList.concat(
@@ -307,7 +319,7 @@ export class EpubBookExporter extends DOMExporter {
 
         this.fontFiles.forEach(font => {
             this.binaryFiles.push({
-                filename: 'EPUB/' + font.filename,
+                filename: `EPUB/${font.filename}`,
                 url: font.url
             })
         })
@@ -316,7 +328,7 @@ export class EpubBookExporter extends DOMExporter {
 
         if (this.math) {
             this.includeZips.push({
-                'directory': 'EPUB',
+                'directory': 'EPUB/css',
                 'url': `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
             })
         }

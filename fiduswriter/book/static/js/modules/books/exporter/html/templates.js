@@ -1,20 +1,20 @@
 import {escapeText} from "../../../common"
 
 /** A template for HTML export of a book. */
-export const htmlBookExportTemplate = ({styleSheets, part, contents, title}) =>
+export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents, title}) =>
 `<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
-        <link type="text/css" rel="stylesheet" href="document.css" />
+        <link type="text/css" rel="stylesheet" href="css/document.css" />
         ${
             styleSheets.map(sheet =>
-                `<link rel="stylesheet" type="text/css" href="${sheet.filename}" />`
+                `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
             ).join('')
         }
     </head>
-    <body>
+    <body${currentPart && currentPart.length ? ` class="${currentPart.toLowerCase().replace(/[^a-z]/g, '')}"` : ''}>
         ${
             part && part.length ?
             `<h1 class="part">${escapeText(part)}</h1>` :

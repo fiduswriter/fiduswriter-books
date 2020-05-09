@@ -88,10 +88,12 @@ export const epubBookOpfTemplate = ({
                     `id="font${index}"`
                 } href="${
                     fontFile.filename
-                }" media-type="application/${
+                }" media-type="font/${
                     fontFile.filename.split(".")[1]==="woff" ?
-                    'font-woff' :
-                    'font-sfnt'
+                    'woff' :
+                    fontFile.filename.split(".")[1]==="woff2" ?
+                    'woff2' :
+                    'sfnt'
                 }" />`
             ).join('')
         }
