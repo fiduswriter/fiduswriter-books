@@ -1,4 +1,4 @@
-import {vivliostylePrint} from "vivliostyle-print"
+import {printHTML} from '@vivliostyle/print'
 
 import {printHTMLTemplate, chapterTemplate} from "./templates"
 import {HTMLBookExporter} from "../html"
@@ -24,9 +24,8 @@ export class PrintBookExporter extends HTMLBookExporter {
         return []
     }
 
-
-    exportThree(outputList) {
-        const html = outputList.map(({filename, contents}) => {
+    exportThree() {
+        const html = this.outputList.map(({filename, contents}) => {
             if (filename.slice(0, 9) !== 'document-' || filename.slice(-5) !== '.html') {
                 return ''
             }
@@ -35,12 +34,13 @@ export class PrintBookExporter extends HTMLBookExporter {
             css = this.getBookCSS(),
             title = this.book.title,
             htmlDoc = printHTMLTemplate({css, html, title})
-        vivliostylePrint(
+        printHTML(
             htmlDoc,
             {
                 title
             }
         )
+
     }
 
     getBookCSS() {
@@ -52,24 +52,65 @@ export class PrintBookExporter extends HTMLBookExporter {
             });
             text-decoration: none;
             color: inherit;
-            vertical-align: super;
+            vertical-align: baseline;
             font-size: 70%;
+            position: relative;
+            top: -0.3em;
+
+        }
+        .article-title, section[role=doc-footnotes] {
+            counter-reset: figure-cat-0 figure-cat-1 figure-cat-2 footnote-counter footnote-marker-counter;
         }
         section[role=doc-footnote] > *:first-child:before {
             counter-increment: footnote-counter;
             content: counter(footnote-counter) ". ";
+        }
+        section[role=doc-footnote] .figure-cat-figure::after {
+            content: ' ' counter(figure-cat-0) 'A';
+        }
+        section[role=doc-footnote] .figure-cat-photo::after {
+            content: ' ' counter(figure-cat-1) 'A';
+        }
+        section[role=doc-footnote] .figure-cat-table::after {
+            content: ' ' counter(figure-cat-2) 'A';
         }
         section.fnlist {
             display: none;
         }
         section:footnote-content {
             display: block;
+            font-style:normal;
+            font-weight:normal;
+            text-decoration:none;
         }
-        .article-title {
-            page-break-before: right;
+        .table-of-contents a {
+            display: inline-flex;
+            width: 100%;
+            text-decoration: none;
+            color: currentColor;
+            break-inside: avoid;
+            align-items: baseline;
+        }
+        .table-of-contents a::before {
+            margin-left: 1px;
+            margin-right: 1px;
+            border-bottom: solid 1px lightgray;
+            content: "";
+            order: 1;
+            flex: auto;
+        }
+        .table-of-contents a::after {
+            text-align: right;
+            content: target-counter(attr(href, url), page);
+            align-self: flex-end;
+            flex: none;
+            order: 2;
         }
         @page {
             size: ${CSS_PAPER_SIZES[this.book.settings.papersize]};
+            @top-center {
+                content: env(doc-title);
+            }
             @bottom-center {
                 content: counter(page);
             }
@@ -77,7 +118,12 @@ export class PrintBookExporter extends HTMLBookExporter {
         figure img {
             max-width: 100%;
         }
-        `
+        .article-title {
+            page-break-before: right;
+        }
+        h1.part {
+            page-break-before: right;
+        }`
         const bookStyle = this.documentStyles.find(style => style.slug === this.book.settings.book_style)
         if (bookStyle) {
             let contents = bookStyle.contents

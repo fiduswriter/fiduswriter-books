@@ -80,7 +80,8 @@ export class HTMLBookExporter extends DOMExporter {
                 this.math = true
             }
 
-            contents.querySelectorAll('*[class^="figure-cat-"]').forEach(el => el.innerHTML = FIG_CATS[el.dataset.figureCategory][doc.settings.language])
+            contents.querySelectorAll('*[class^="figure-cat-"]').forEach(
+                el => el.innerHTML = FIG_CATS[el.dataset.figureCategory][doc.settings.language])
 
             return {
                 doc,
