@@ -136,7 +136,7 @@ export class HTMLBookExporter extends DOMExporter {
             }
             this.prepareBinaryFiles(contents)
 
-            if (this.book.chapters[index].part && this.book.chapters[index].part !== '') {
+            if (this.book.chapters[index].part !== '') {
                 contentItems.push({
                     link: `document-${this.book.chapters[index].number}.html`,
                     title: this.book.chapters[index].part,

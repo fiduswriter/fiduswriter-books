@@ -128,7 +128,7 @@ export class EpubBookExporter extends DOMExporter {
                 this.math = true
             }
 
-            if (chapter.part && chapter.part.length) {
+            if (chapter.part?.length) {
                 this.contentItems.push({
                     link: `document-${chapter.number}.xhtml`,
                     title: chapter.part,
