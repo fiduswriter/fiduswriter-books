@@ -26,11 +26,11 @@ export class PrintBookExporter extends HTMLBookExporter {
 
     exportThree() {
         const html = this.outputList.map(({filename, contents}) => {
-            if (filename.slice(0, 9) !== 'document-' || filename.slice(-5) !== '.html') {
-                return ''
-            }
-            return contents
-        }).join(''),
+                if (filename.slice(0, 9) !== 'document-' || filename.slice(-5) !== '.html') {
+                    return ''
+                }
+                return contents
+            }).join(''),
             css = this.getBookCSS(),
             title = this.book.title,
             htmlDoc = printHTMLTemplate({css, html, title})
@@ -46,10 +46,10 @@ export class PrintBookExporter extends HTMLBookExporter {
     getBookCSS() {
         let css = `a.fn {
             -adapt-template: url(data:application/xml,${
-                encodeURI(
-                    '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.pyroxy.com/ns/shadow"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id="footnote"><s:content/><s:include class="footnote-content"/></s:template></body></html>#footnote'
-                )
-            });
+    encodeURI(
+        '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.pyroxy.com/ns/shadow"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id="footnote"><s:content/><s:include class="footnote-content"/></s:template></body></html>#footnote'
+    )
+});
             text-decoration: none;
             color: inherit;
             vertical-align: baseline;

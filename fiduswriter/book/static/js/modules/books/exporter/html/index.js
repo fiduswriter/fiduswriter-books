@@ -41,7 +41,7 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
     addBookStyle() {
-        const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug===this.book.settings.book_style)
+        const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug === this.book.settings.book_style)
         if (!bookStyle) {
             return false
         }

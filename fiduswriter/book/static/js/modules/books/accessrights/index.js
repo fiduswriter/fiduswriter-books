@@ -122,25 +122,25 @@ export class BookAccessRightsDialog {
         this.dialog.dialogEl.addEventListener('click', event => {
             const el = {}
             switch (true) {
-                case findTarget(event, '.fw-checkable', el):
-                    setCheckableLabel(el.target)
-                    break
-                case findTarget(event, '.edit-right', el): {
-                    const box = el.target.parentElement.querySelector('.fw-pulldown')
-                    if (!box.clientWidth) {
-                        openDropdownBox(box)
-                    }
-                    break
+            case findTarget(event, '.fw-checkable', el):
+                setCheckableLabel(el.target)
+                break
+            case findTarget(event, '.edit-right', el): {
+                const box = el.target.parentElement.querySelector('.fw-pulldown')
+                if (!box.clientWidth) {
+                    openDropdownBox(box)
                 }
-                case findTarget(event, '.edit-right-wrapper .fw-pulldown-item, .delete-collaborator', el): {
-                    const newRight = el.target.dataset.right
-                    const colRow = el.target.closest('.collaborator-tr')
-                    colRow.dataset.right = newRight
-                    colRow.querySelector('.icon-access-right').setAttribute('class', `icon-access-right icon-access-${newRight}`)
-                    break
-                }
-                default:
-                    break
+                break
+            }
+            case findTarget(event, '.edit-right-wrapper .fw-pulldown-item, .delete-collaborator', el): {
+                const newRight = el.target.dataset.right
+                const colRow = el.target.closest('.collaborator-tr')
+                colRow.dataset.right = newRight
+                colRow.querySelector('.icon-access-right').setAttribute('class', `icon-access-right icon-access-${newRight}`)
+                break
+            }
+            default:
+                break
             }
 
         })

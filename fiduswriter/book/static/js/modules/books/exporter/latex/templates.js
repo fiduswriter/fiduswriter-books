@@ -1,6 +1,6 @@
 /** A template to create the latex book.tex file. */
 export const bookTexTemplate = ({preamble, book, epilogue}) =>
-`\\documentclass[11pt]{book}
+    `\\documentclass[11pt]{book}
 ${preamble}
 \\usepackage{docmute}
 \\title{${book.title}}
@@ -13,8 +13,8 @@ ${
     book.chapters.map(chapter =>
         `${
             chapter.part && chapter.part.length ?
-            `\n\\part{${chapter.part}}` :
-            ''
+                `\n\\part{${chapter.part}}` :
+                ''
         }
         \\input{chapter-${chapter.number}}
         `

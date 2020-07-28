@@ -38,7 +38,7 @@ export class LatexBookExporter {
             const chapterContents = removeHidden(doc.contents)
             const convertedDoc = converter.init(chapterContents)
             this.textFiles.push({
-                filename: `chapter-${index+1}.tex`,
+                filename: `chapter-${index + 1}.tex`,
                 contents: convertedDoc.latex
             })
             bibIds = [...new Set(bibIds.concat(Object.keys(convertedDoc.usedBibDB)))]

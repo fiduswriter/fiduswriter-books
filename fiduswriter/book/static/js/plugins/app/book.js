@@ -6,8 +6,8 @@ export class BookAppItem {
 
     init() {
         this.app.routes['book'] = {
-          requireLogin: true,
-          open: () => import("../../modules/books").then(({BookOverview}) => new BookOverview(this.app.config))
+            requireLogin: true,
+            open: () => import("../../modules/books").then(({BookOverview}) => new BookOverview(this.app.config))
         }
     }
 
