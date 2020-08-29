@@ -14,7 +14,7 @@ import {setLinks, orderLinks, getTimestamp, styleEpubFootnotes, addFigureLabels}
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
     containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
-import {removeHidden} from "../../../exporter/tools/doc_contents"
+import {removeHidden} from "../../../exporter/tools/doc_content"
 import {modifyImages} from "../../../exporter/tools/html"
 import {createSlug} from "../../../exporter/tools/file"
 import {ZipFileCreator} from "../../../exporter/tools/zip"

@@ -1,6 +1,6 @@
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
-import {removeHidden} from "../../../exporter/tools/doc_contents"
+import {removeHidden} from "../../../exporter/tools/doc_content"
 import {setLinks, orderLinks} from "../../../exporter/epub/tools"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {createSlug} from "../../../exporter/tools/file"

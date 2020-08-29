@@ -5,7 +5,7 @@ import {getMissingChapterData} from "../tools"
 import {LatexExporterConvert} from "../../../exporter/latex/convert"
 import {bookTexTemplate} from "./templates"
 import {createSlug} from "../../../exporter/tools/file"
-import {removeHidden} from "../../../exporter/tools/doc_contents"
+import {removeHidden} from "../../../exporter/tools/doc_content"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 
 export class LatexBookExporter {
