@@ -9,10 +9,13 @@ venv/
 .envrc
 .direnv/
 fiduswriter/.transpile
+.transpile
 fiduswriter/media
 fiduswriter/static-libs
+static-libs/
 fiduswriter/static-transpile
 fiduswriter/static-collected
 fiduswriter/.coveragerc
 fiduswriter/configuration.py
 fiduswriter/fiduswriter.sql
+fiduswriter.sql

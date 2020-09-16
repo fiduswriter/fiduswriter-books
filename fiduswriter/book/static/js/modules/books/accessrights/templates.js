@@ -37,9 +37,9 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
         </tr>`
     ).join('')
 
-    /** A template for the book access rights overview */
-    export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
-        `<div id="my-contacts" class="fw-ar-container">
+/** A template for the book access rights overview */
+export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
+    `<div id="my-contacts" class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My contacts")}</h3>
             <table class="fw-data-table">
                 <thead class="fw-data-table-header">
@@ -49,8 +49,8 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
                 </thead>
                 <tbody class="fw-data-table-body fw-small">
                     ${
-                        contacts.map(contact =>
-                            `<tr>
+    contacts.map(contact =>
+        `<tr>
                                 <td width="332" data-id="${contact.id}"
                                         data-avatar="${contact.avatar}"
                                         data-name="${escapeText(contact.name)}"
@@ -61,8 +61,8 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
                                     <span class="fw-inline">${escapeText(contact.name)}</span>
                                 </td>
                             </tr>`
-                        ).join('')
-                    }
+    ).join('')
+}
                 </tbody>
             </table>
         </div>
@@ -78,7 +78,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
                         <th width="50" align="center">${gettext("Delete")}</th>
                 </tr></thead>
                 <tbody class="fw-data-table-body fw-small">${bookCollaboratorsTemplate({
-                    collaborators
-                })}</tbody>
+        collaborators
+    })}</tbody>
             </table>
         </div>`

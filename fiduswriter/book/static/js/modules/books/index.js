@@ -165,14 +165,14 @@ export class BookOverview {
                 <span class="book-title fw-link-text fw-searchable"
                         data-id="${book.id}">
                     ${
-                        book.title.length ?
-                        escapeText(book.title) :
-                        gettext('Untitled')
-                    }
+    book.title.length ?
+        escapeText(book.title) :
+        gettext('Untitled')
+}
                 </span>
             </span>`,
-            `<span class="date">${localizeDate(book.added*1000, 'sortable-date')}</span>`,
-            `<span class="date">${localizeDate(book.updated*1000, 'sortable-date')}</span>`,
+            `<span class="date">${localizeDate(book.added * 1000, 'sortable-date')}</span>`,
+            `<span class="date">${localizeDate(book.updated * 1000, 'sortable-date')}</span>`,
             `<span>
                 <img class="fw-avatar" src="${book.owner_avatar}" />
             </span>
@@ -246,38 +246,38 @@ export class BookOverview {
         this.dom.addEventListener('click', event => {
             const el = {}
             switch (true) {
-                case findTarget(event, '.delete-book', el): {
-                    const bookId = parseInt(el.target.dataset.id)
-                    this.mod.actions.deleteBookDialog([bookId])
-                    break
+            case findTarget(event, '.delete-book', el): {
+                const bookId = parseInt(el.target.dataset.id)
+                this.mod.actions.deleteBookDialog([bookId])
+                break
+            }
+            case findTarget(event, '.owned-by-user.rights', el): {
+                const bookId = parseInt(el.target.dataset.id)
+                const accessDialog = new BookAccessRightsDialog(
+                    [bookId],
+                    this.teamMembers,
+                    this.accessRights
+                )
+                accessDialog.init().then(
+                    accessRights => this.accessRights = accessRights
+                )
+                break
+            }
+            case findTarget(event, '.book-title', el): {
+                const bookId = parseInt(el.target.dataset.id)
+                this.getImageDB().then(() => {
+                    this.mod.actions.createBookDialog(bookId, this.imageDB)
+                })
+                break
+            }
+            case findTarget(event, 'a', el):
+                if (el.target.hostname === window.location.hostname && el.target.getAttribute('href')[0] === '/') {
+                    event.preventDefault()
+                    this.app.goTo(el.target.href)
                 }
-                case findTarget(event, '.owned-by-user.rights', el): {
-                    const bookId = parseInt(el.target.dataset.id)
-                    const accessDialog = new BookAccessRightsDialog(
-                        [bookId],
-                        this.teamMembers,
-                        this.accessRights
-                    )
-                    accessDialog.init().then(
-                        accessRights => this.accessRights = accessRights
-                    )
-                    break
-                }
-                case findTarget(event, '.book-title', el): {
-                    const bookId = parseInt(el.target.dataset.id)
-                    this.getImageDB().then(() => {
-                        this.mod.actions.createBookDialog(bookId, this.imageDB)
-                    })
-                    break
-                }
-                case findTarget(event, 'a', el):
-                    if (el.target.hostname === window.location.hostname && el.target.getAttribute('href')[0] === '/') {
-                        event.preventDefault()
-                        this.app.goTo(el.target.href)
-                    }
-                    break
-                default:
-                    break
+                break
+            default:
+                break
             }
         })
     }

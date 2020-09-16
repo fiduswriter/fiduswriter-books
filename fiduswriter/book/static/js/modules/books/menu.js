@@ -27,7 +27,7 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 const ownIds = ids.filter(id => {
-                    const book = overview.bookList.find(book => book.id=id)
+                    const book = overview.bookList.find(book => book.id = id)
                     return book.is_owner
                 })
                 if (ownIds.length !== ids.length) {
@@ -45,7 +45,7 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 const ownIds = ids.filter(id => {
-                    const book = overview.bookList.find(book => book.id=id)
+                    const book = overview.bookList.find(book => book.id = id)
                     return book.is_owner
                 })
                 if (ownIds.length !== ids.length) {
@@ -71,7 +71,7 @@ export const bulkMenuModel = () => ({
                 const ids = overview.getSelected()
                 ids.forEach(id =>
                     overview.mod.actions.copyBook(
-                        overview.bookList.find(book => book.id===id)
+                        overview.bookList.find(book => book.id === id)
                     )
                 )
             },
@@ -83,7 +83,7 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
-                    const book = overview.bookList.find(book => book.id===id)
+                    const book = overview.bookList.find(book => book.id === id)
                     addAlert('info', book.title + ': ' + gettext(
                         'Epub export has been initiated.'))
                     const exporter = new EpubBookExporter(
@@ -106,7 +106,7 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
-                    const book = overview.bookList.find(book => book.id===id)
+                    const book = overview.bookList.find(book => book.id === id)
                     addAlert('info', book.title + ': ' + gettext(
                         'HTML export has been initiated.'))
                     const exporter = new HTMLBookExporter(
@@ -129,7 +129,7 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
-                    const book = overview.bookList.find(book => book.id===id)
+                    const book = overview.bookList.find(book => book.id === id)
                     addAlert('info', book.title + ': ' + gettext(
                         'LaTeX export has been initiated.'))
                     const exporter = new LatexBookExporter(
@@ -150,7 +150,7 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
-                    const book = overview.bookList.find(book => book.id===id)
+                    const book = overview.bookList.find(book => book.id === id)
                     addAlert('info', book.title + ': ' + gettext(
                         'Print has been initiated.'))
                     const exporter = new PrintBookExporter(

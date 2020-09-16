@@ -2,10 +2,10 @@ import {escapeText} from "../../../common"
 
 export const chapterTemplate = ({part, contents}) => `
     ${
-        part && part.length ?
+    part && part.length ?
         `<h1 class="part">${escapeText(part)}</h1>` :
         ''
-    }
+}
     ${contents}`
 
 export const printHTMLTemplate = ({css, html, title}) => `<!DOCTYPE html>

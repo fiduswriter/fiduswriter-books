@@ -2,7 +2,7 @@ import {bookDialogTemplate, bookBasicInfoTemplate, bookDialogChaptersTemplate, b
     bookEpubDataTemplate, bookPrintDataTemplate,
     bookChapterListTemplate, bookDocumentListTemplate, bookChapterDialogTemplate,
     bookEpubDataCoverTemplate
-  } from "./templates"
+} from "./templates"
 import {ImageSelectionDialog} from "../images/selection_dialog"
 import {addAlert, postJson, post, Dialog, findTarget} from "../common"
 
@@ -218,7 +218,7 @@ export class BookActions {
                 }
             }
         } else {
-            oldBook = this.bookOverview.bookList.find(book => book.id===bookId)
+            oldBook = this.bookOverview.bookList.find(book => book.id === bookId)
             book = Object.assign({}, oldBook)
 
             if (book.cover_image && !imageDB.db[book.cover_image]) {
@@ -308,135 +308,135 @@ export class BookActions {
             const el = {}
             let chapterId, chapter
             switch (true) {
-                case findTarget(event, '.book-sort-up', el): {
-                    chapterId = parseInt(el.target.dataset.id)
-                    chapter = book.chapters.find(
-                        chapter => chapter.text === chapterId
-                    )
+            case findTarget(event, '.book-sort-up', el): {
+                chapterId = parseInt(el.target.dataset.id)
+                chapter = book.chapters.find(
+                    chapter => chapter.text === chapterId
+                )
 
-                    const higherChapter = book.chapters.find(
-                        bChapter => bChapter.number === (chapter.number - 1)
-                    )
-                    console.log({higherChapter, chapter, number: chapter.number, book})
-                    chapter.number--
-                    higherChapter.number++
-                    document.getElementById('book-chapter-list').innerHTML =
+                const higherChapter = book.chapters.find(
+                    bChapter => bChapter.number === (chapter.number - 1)
+                )
+                console.log({higherChapter, chapter, number: chapter.number, book})
+                chapter.number--
+                higherChapter.number++
+                document.getElementById('book-chapter-list').innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
                         })
-                    break
-                }
-                case findTarget(event, '.book-sort-down', el): {
-                    chapterId = parseInt(el.target.dataset.id)
-                    chapter = book.chapters.find(
-                        chapter => chapter.text === chapterId
-                    )
+                break
+            }
+            case findTarget(event, '.book-sort-down', el): {
+                chapterId = parseInt(el.target.dataset.id)
+                chapter = book.chapters.find(
+                    chapter => chapter.text === chapterId
+                )
 
-                    const lowerChapter = book.chapters.find(
-                        bChapter => bChapter.number === (chapter.number + 1)
-                    )
+                const lowerChapter = book.chapters.find(
+                    bChapter => bChapter.number === (chapter.number + 1)
+                )
 
-                    chapter.number++
-                    lowerChapter.number--
-                    document.getElementById('book-chapter-list').innerHTML =
+                chapter.number++
+                lowerChapter.number--
+                document.getElementById('book-chapter-list').innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
                         })
-                    break
-                }
-                case findTarget(event, '.delete-chapter', el):
-                    chapterId = parseInt(el.target.dataset.id)
-                    chapter = book.chapters.find(
-                        chapter => chapter.text === chapterId
-                    )
+                break
+            }
+            case findTarget(event, '.delete-chapter', el):
+                chapterId = parseInt(el.target.dataset.id)
+                chapter = book.chapters.find(
+                    chapter => chapter.text === chapterId
+                )
 
-                    book.chapters.forEach(bChapter => {
-                        if (bChapter.number > chapter.number) {
-                            bChapter.number--
+                book.chapters.forEach(bChapter => {
+                    if (bChapter.number > chapter.number) {
+                        bChapter.number--
+                    }
+                })
+
+                book.chapters = book.chapters.filter(bChapter => bChapter !== chapter)
+
+                document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
+                    book,
+                    documentList: this.bookOverview.documentList
+                })
+
+                document.getElementById('book-document-list').innerHTML = bookDocumentListTemplate({
+                    documentList: this.bookOverview.documentList,
+                    book
+                })
+                break
+            case findTarget(event, '#book-document-list td', el):
+                el.target.classList.toggle('checked')
+                break
+            case findTarget(event, '#add-chapter', el):
+                document.querySelectorAll('#book-document-list td.checked').forEach(el =>{
+                    const documentId = parseInt(el.dataset.id),
+                        chapNums = book.chapters.map(chapter => chapter.number),
+                        number = chapNums.length ?
+                            Math.max(...chapNums) + 1 :
+                            1
+                    book.chapters.push({
+                        text: documentId,
+                        title: el.textContent.trim(),
+                        number,
+                        part: ''
+                    })
+                })
+
+                document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
+                    book,
+                    documentList: this.bookOverview.documentList
+                })
+                document.getElementById('book-document-list').innerHTML = bookDocumentListTemplate({
+                    documentList: this.bookOverview.documentList,
+                    book
+                })
+                break
+            case findTarget(event, '.edit-chapter', el):
+                chapterId = parseInt(el.target.dataset.id)
+                chapter = book.chapters.find(
+                    chapter => chapter.text === chapterId
+                )
+                this.editChapterDialog(chapter, book)
+                break
+            case findTarget(event, '#select-cover-image-button', el): {
+                const imageSelection = new ImageSelectionDialog(
+                    bookImageDB,
+                    imageDB,
+                    book.cover_image,
+                    book.owner)
+
+                imageSelection.init().then(
+                    image => {
+                        if (!image) {
+                            delete book.cover_image
+                        } else {
+                            book.cover_image = image.id
+                            book.cover_image_data = image.db === 'user' ?
+                                imageDB.db[image.id] : bookImageDB.db[image.id]
                         }
-                    })
-
-                    book.chapters = book.chapters.filter(bChapter => bChapter !== chapter)
-
-                    document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
-                        book,
-                        documentList: this.bookOverview.documentList
-                    })
-
-                    document.getElementById('book-document-list').innerHTML = bookDocumentListTemplate({
-                        documentList: this.bookOverview.documentList,
-                        book
-                    })
-                    break
-                case findTarget(event, '#book-document-list td', el):
-                    el.target.classList.toggle('checked')
-                    break
-                case findTarget(event, '#add-chapter', el):
-                    document.querySelectorAll('#book-document-list td.checked').forEach(el =>{
-                        const documentId = parseInt(el.dataset.id),
-                            chapNums = book.chapters.map(chapter => chapter.number),
-                            number = chapNums.length ?
-                                Math.max(...chapNums) + 1:
-                                1
-                        book.chapters.push({
-                            text: documentId,
-                            title: el.textContent.trim(),
-                            number,
-                            part: ''
-                        })
-                    })
-
-                    document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
-                            book,
-                            documentList: this.bookOverview.documentList
-                        })
-                    document.getElementById('book-document-list').innerHTML = bookDocumentListTemplate({
-                            documentList: this.bookOverview.documentList,
+                        document.getElementById('figure-preview-row').innerHTML = bookEpubDataCoverTemplate({
+                            imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)},
                             book
                         })
-                    break
-                case findTarget(event, '.edit-chapter', el):
-                    chapterId = parseInt(el.target.dataset.id)
-                    chapter = book.chapters.find(
-                        chapter => chapter.text === chapterId
-                    )
-                    this.editChapterDialog(chapter, book)
-                    break
-                case findTarget(event, '#select-cover-image-button', el): {
-                    const imageSelection = new ImageSelectionDialog(
-                        bookImageDB,
-                        imageDB,
-                        book.cover_image,
-                        book.owner)
-
-                    imageSelection.init().then(
-                        image => {
-                            if (!image) {
-                                delete book.cover_image
-                            } else {
-                                book.cover_image = image.id
-                                book.cover_image_data = image.db === 'user' ?
-                                    imageDB.db[image.id] : bookImageDB.db[image.id]
-                            }
-                            document.getElementById('figure-preview-row').innerHTML = bookEpubDataCoverTemplate({
-                                    imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)},
-                                    book
-                                })
-                        }
-                    )
-                    break
-                }
-                case findTarget(event, '#remove-cover-image-button', el):
-                    delete book.cover_image
-                    document.getElementById('figure-preview-row').innerHTML = bookEpubDataCoverTemplate({
-                            book,
-                            imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
-                        })
-                    break
-                default:
-                    break
+                    }
+                )
+                break
+            }
+            case findTarget(event, '#remove-cover-image-button', el):
+                delete book.cover_image
+                document.getElementById('figure-preview-row').innerHTML = bookEpubDataCoverTemplate({
+                    book,
+                    imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
+                })
+                break
+            default:
+                break
             }
         })
 

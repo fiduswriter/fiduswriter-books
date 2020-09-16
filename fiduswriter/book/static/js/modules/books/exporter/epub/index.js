@@ -6,13 +6,13 @@ import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
 
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
-  epubBookCopyrightTemplate} from "./templates"
+    epubBookCopyrightTemplate} from "./templates"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {setLinks, orderLinks, getTimestamp, styleEpubFootnotes, addFigureLabels} from "../../../exporter/epub/tools"
 
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
-  containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
+    containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
 import {removeHidden} from "../../../exporter/tools/doc_contents"
 import {modifyImages} from "../../../exporter/tools/html"
@@ -50,7 +50,7 @@ export class EpubBookExporter extends DOMExporter {
     }
 
     addBookStyle() {
-        const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug===this.book.settings.book_style)
+        const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug === this.book.settings.book_style)
         if (!bookStyle) {
             return false
         }
