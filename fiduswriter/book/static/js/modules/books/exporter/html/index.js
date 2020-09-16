@@ -64,9 +64,8 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
     exportOne() {
-
         this.chapters = this.book.chapters.sort(
-            (a, b) => a.number > b.number
+            (a, b) => a.number > b.number ? 1 : -1
         ).map(chapter => {
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
