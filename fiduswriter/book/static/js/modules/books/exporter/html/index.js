@@ -8,7 +8,7 @@ import {modifyImages} from "../../../exporter/tools/html"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
-import {BIBLIOGRAPHY_HEADERS, FIG_CATS} from "../../../schema/i18n"
+import {BIBLIOGRAPHY_HEADERS, CATS} from "../../../schema/i18n"
 
 import download from "downloadjs"
 import pretty from "pretty"
@@ -79,8 +79,8 @@ export class HTMLBookExporter extends DOMExporter {
                 this.math = true
             }
 
-            contents.querySelectorAll('*[class^="figure-cat-"]').forEach(
-                el => el.innerHTML = FIG_CATS[el.dataset.figureCategory][doc.settings.language])
+            contents.querySelectorAll('*[class^="cat-"]').forEach(
+                el => el.innerHTML = CATS[el.dataset.figureCategory][doc.settings.language])
 
             return {
                 doc,

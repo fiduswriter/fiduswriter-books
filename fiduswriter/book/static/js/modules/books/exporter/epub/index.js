@@ -9,7 +9,7 @@ import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
     epubBookCopyrightTemplate} from "./templates"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
-import {setLinks, orderLinks, getTimestamp, styleEpubFootnotes, addFigureLabels} from "../../../exporter/epub/tools"
+import {setLinks, orderLinks, getTimestamp, styleEpubFootnotes, addCategoryLabels} from "../../../exporter/epub/tools"
 
 import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
     containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
@@ -118,7 +118,7 @@ export class EpubBookExporter extends DOMExporter {
             }
 
             this.images = this.images.concat(modifyImages(contentsEl))
-            addFigureLabels(contentsEl, doc.settings.language)
+            addCategoryLabels(contentsEl, doc.settings.language)
             const equations = contentsEl.querySelectorAll('.equation')
 
             const figureEquations = contentsEl.querySelectorAll('.figure-equation')
