@@ -404,11 +404,11 @@ export class BookActions {
                 break
             case findTarget(event, '#select-cover-image-button', el): {
                 const imageSelection = new ImageSelectionDialog(
-                      bookImageDB,
-                      imageDB,
-                      book.cover_image,
-                      this.bookOverview
-                  )
+                    bookImageDB,
+                    imageDB,
+                    book.cover_image,
+                    this.bookOverview
+                )
 
                 imageSelection.init().then(
                     image => {
