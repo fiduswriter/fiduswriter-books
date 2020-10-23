@@ -35,8 +35,8 @@ export class LatexBookExporter {
         this.book.chapters.forEach((chapter, index) => {
             const doc = this.docList.find(doc => doc.id === chapter.text)
             const converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography}, doc.settings)
-            const chapterContents = removeHidden(doc.contents)
-            const convertedDoc = converter.init(chapterContents)
+            const chapterContent = removeHidden(doc.content)
+            const convertedDoc = converter.init(chapterContent)
             this.textFiles.push({
                 filename: `chapter-${index + 1}.tex`,
                 contents: convertedDoc.latex

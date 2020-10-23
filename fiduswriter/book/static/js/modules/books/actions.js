@@ -316,7 +316,6 @@ export class BookActions {
                 const higherChapter = book.chapters.find(
                     bChapter => bChapter.number === (chapter.number - 1)
                 )
-                console.log({higherChapter, chapter, number: chapter.number, book})
                 chapter.number--
                 higherChapter.number++
                 document.getElementById('book-chapter-list').innerHTML =
@@ -405,10 +404,11 @@ export class BookActions {
                 break
             case findTarget(event, '#select-cover-image-button', el): {
                 const imageSelection = new ImageSelectionDialog(
-                    bookImageDB,
-                    imageDB,
-                    book.cover_image,
-                    book.owner)
+                      bookImageDB,
+                      imageDB,
+                      book.cover_image,
+                      this.bookOverview
+                  )
 
                 imageSelection.init().then(
                     image => {

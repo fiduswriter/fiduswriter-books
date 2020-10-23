@@ -70,9 +70,9 @@ export class HTMLBookExporter extends DOMExporter {
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
             schema.cached.imageDB = {db: doc.images}
-            const docContents = removeHidden(doc.contents),
+            const docContent = removeHidden(doc.content),
                 serializer = DOMSerializer.fromSchema(schema),
-                contents = serializer.serializeNode(schema.nodeFromJSON(docContents)),
+                contents = serializer.serializeNode(schema.nodeFromJSON(docContent)),
                 equations = contents.querySelectorAll('.equation'),
                 figureEquations = contents.querySelectorAll('.figure-equation')
             if (equations.length || figureEquations.length) {
@@ -105,10 +105,10 @@ export class HTMLBookExporter extends DOMExporter {
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
-                    this.contents = chapter.contents
+                    this.content = chapter.contents
                     this.cleanHTML(citRenderer.fm)
-                    chapter.contents = this.contents
-                    delete this.contents
+                    chapter.contents = this.content
+                    delete this.content
                     return Promise.resolve()
                 }
             )
