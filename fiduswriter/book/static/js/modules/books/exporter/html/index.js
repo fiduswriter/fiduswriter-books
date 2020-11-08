@@ -79,8 +79,8 @@ export class HTMLBookExporter extends DOMExporter {
                 this.math = true
             }
 
-            contents.querySelectorAll('*[class^="cat-"]').forEach(
-                el => el.innerHTML = CATS[el.dataset.figureCategory][doc.settings.language])
+            contents.querySelectorAll('figcaption span.label,caption span.label').forEach(
+                el => el.innerHTML = CATS[el.parentElement.parentElement.dataset.figureCategory][doc.settings.language])
 
             return {
                 doc,
