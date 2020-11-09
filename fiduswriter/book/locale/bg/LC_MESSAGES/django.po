@@ -2,21 +2,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books backend\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 15:07+0000\n"
+"POT-Creation-Date: 2020-11-09 21:56+0000\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 
-#: book/views.py:302
+#: book/views.py:299
 msgid "Untitled"
 msgstr "неозаглавен"
 
-#: book/views.py:318
+#: book/views.py:315
 msgid "Book shared:"
 msgstr "Книгата е споделена:"
 
-#: book/views.py:347
+#: book/views.py:344
 msgid "Fidus Writer book write access"
 msgstr "Достъп за писане във Fidus Writer книга"

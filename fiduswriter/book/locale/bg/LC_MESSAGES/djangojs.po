@@ -2,235 +2,237 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 15:07+0000\n"
+"POT-Creation-Date: 2020-11-09 21:56+0000\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 
-#: book/static/js/modules/books/accessrights/index.js:44
-#: book/static/js/modules/books/actions.js:92
-#: book/static/js/modules/books/actions.js:236
+#: book/static/js/modules/books/accessrights/index.js:36
+#: book/static/js/modules/books/actions.js:82
+#: book/static/js/modules/books/actions.js:226
 msgid "Submit"
 msgstr "Изпрати"
 
-#: book/static/js/modules/books/accessrights/index.js:73
+#: book/static/js/modules/books/accessrights/index.js:65
 msgid "Share your book with others"
 msgstr "Сподели твоята книга с други"
 
-#: book/static/js/modules/books/accessrights/index.js:158
-msgid "Cannot save access rights."
-msgstr "Правата за достъп не могат да се запазят."
-
-#: book/static/js/modules/books/accessrights/index.js:163
-msgid "Access rights have been saved"
-msgstr "Правата за достъп бяха запазени"
-
-#: book/static/js/modules/books/accessrights/templates.js:13
+#: book/static/js/modules/books/accessrights/index.js:152
+#: book/static/js/modules/books/accessrights/index.js:154
 msgid "Write"
 msgstr "Напиши"
 
-#: book/static/js/modules/books/accessrights/templates.js:13
+#: book/static/js/modules/books/accessrights/index.js:161
+#: book/static/js/modules/books/accessrights/index.js:163
 msgid "Read"
 msgstr "Прочети"
 
-#: book/static/js/modules/books/accessrights/templates.js:22
+#: book/static/js/modules/books/accessrights/index.js:182
+msgid "Cannot save access rights."
+msgstr "Правата за достъп не могат да се запазят."
+
+#: book/static/js/modules/books/accessrights/index.js:187
+msgid "Access rights have been saved"
+msgstr "Правата за достъп бяха запазени"
+
+#: book/static/js/modules/books/accessrights/templates.js:12
 msgid "My contacts"
 msgstr "Моите контакти"
 
-#: book/static/js/modules/books/accessrights/templates.js:22
+#: book/static/js/modules/books/accessrights/templates.js:12
 msgid "Contacts"
 msgstr "Контакти"
 
-#: book/static/js/modules/books/accessrights/templates.js:22
+#: book/static/js/modules/books/accessrights/templates.js:12
 msgid "My collaborators"
 msgstr "Моите приноси"
 
-#: book/static/js/modules/books/accessrights/templates.js:22
+#: book/static/js/modules/books/accessrights/templates.js:12
 msgid "Collaborators"
 msgstr "Сътрудници"
 
-#: book/static/js/modules/books/accessrights/templates.js:22
+#: book/static/js/modules/books/accessrights/templates.js:12
 #: book/static/js/modules/books/index.js:147
 msgid "Rights"
 msgstr "Права"
 
-#: book/static/js/modules/books/accessrights/templates.js:22
-#: book/static/js/modules/books/actions.js:63
+#: book/static/js/modules/books/accessrights/templates.js:12
+#: book/static/js/modules/books/actions.js:53
 msgid "Delete"
 msgstr "Изтрий"
 
-#: book/static/js/modules/books/actions.js:20
+#: book/static/js/modules/books/actions.js:10
 msgid "Basic info"
 msgstr "Основна информация"
 
-#: book/static/js/modules/books/actions.js:21
+#: book/static/js/modules/books/actions.js:11
 msgid "Basic book information"
 msgstr "Основна информация за книгата"
 
-#: book/static/js/modules/books/actions.js:24
+#: book/static/js/modules/books/actions.js:14
 msgid "Chapters"
 msgstr "Глави"
 
-#: book/static/js/modules/books/actions.js:25
+#: book/static/js/modules/books/actions.js:15
 msgid "Documents assigned as chapters"
 msgstr "Документи, определени като глави"
 
-#: book/static/js/modules/books/actions.js:28
-#: book/static/js/modules/books/actions.js:197
+#: book/static/js/modules/books/actions.js:18
+#: book/static/js/modules/books/actions.js:187
 msgid "Bibliography"
 msgstr "Библиография"
 
-#: book/static/js/modules/books/actions.js:29
+#: book/static/js/modules/books/actions.js:19
 msgid "Bibliography related settings"
 msgstr "Настройки, свързани с библиографията"
 
-#: book/static/js/modules/books/actions.js:32
+#: book/static/js/modules/books/actions.js:22
 msgid "Epub"
 msgstr "Epub"
 
-#: book/static/js/modules/books/actions.js:33
+#: book/static/js/modules/books/actions.js:23
 msgid "Epub related settings"
 msgstr "Настройки, свързани с Epub"
 
-#: book/static/js/modules/books/actions.js:36
+#: book/static/js/modules/books/actions.js:26
 msgid "Print/PDF"
 msgstr "Печат/PDF"
 
-#: book/static/js/modules/books/actions.js:37
+#: book/static/js/modules/books/actions.js:27
 msgid "Print related settings"
 msgstr "Настройки за печат"
 
-#: book/static/js/modules/books/actions.js:52
+#: book/static/js/modules/books/actions.js:42
 msgid "Could not delete book"
 msgstr "Книгата не можа да бъде изтрита"
 
-#: book/static/js/modules/books/actions.js:55
+#: book/static/js/modules/books/actions.js:45
 msgid "Book has been deleted"
 msgstr "Книгата е изтрита"
 
-#: book/static/js/modules/books/actions.js:67
+#: book/static/js/modules/books/actions.js:57
 msgid "The books have been deleted"
 msgstr "Книгите бяха изтрити"
 
-#: book/static/js/modules/books/actions.js:67
+#: book/static/js/modules/books/actions.js:57
 msgid "The book has been deleted"
 msgstr "Книгата е изтрита"
 
-#: book/static/js/modules/books/actions.js:74
+#: book/static/js/modules/books/actions.js:64
 msgid "Confirm deletion"
 msgstr "Потвърди изтриването"
 
-#: book/static/js/modules/books/actions.js:77
+#: book/static/js/modules/books/actions.js:67
 msgid "Delete the books?"
 msgstr "Да се изтрият ли книгите?"
 
-#: book/static/js/modules/books/actions.js:77
+#: book/static/js/modules/books/actions.js:67
 msgid "Delete the book?"
 msgstr "Да изтриете ли книгата?"
 
-#: book/static/js/modules/books/actions.js:88
+#: book/static/js/modules/books/actions.js:78
 #: book/static/js/modules/books/index.js:172
-#: book/static/js/modules/books/templates.js:90
-#: book/static/js/modules/books/templates.js:102
+#: book/static/js/modules/books/templates.js:63
+#: book/static/js/modules/books/templates.js:72
 msgid "Untitled"
 msgstr "Неозаглавен"
 
-#: book/static/js/modules/books/actions.js:106
+#: book/static/js/modules/books/actions.js:96
 msgid "Edit Chapter"
 msgstr "Редактирай глава"
 
-#: book/static/js/modules/books/actions.js:123
+#: book/static/js/modules/books/actions.js:113
 msgid "The book could not be saved"
 msgstr "Книгата не можа да бъде запазена"
 
-#: book/static/js/modules/books/actions.js:161
+#: book/static/js/modules/books/actions.js:151
 msgid "The book could not be copied"
 msgstr "Книгата не можа да бъде копирана"
 
-#: book/static/js/modules/books/actions.js:179
+#: book/static/js/modules/books/actions.js:169
 msgid "Create Book"
 msgstr "Създайте книга"
 
-#: book/static/js/modules/books/actions.js:216
+#: book/static/js/modules/books/actions.js:206
 msgid "Edit Book"
 msgstr "Редактиране на книга"
 
-#: book/static/js/modules/books/exporter/epub/index.js:58
-#: book/static/js/modules/books/exporter/html/index.js:49
+#: book/static/js/modules/books/exporter/epub/index.js:36
+#: book/static/js/modules/books/exporter/html/index.js:31
 msgid "Book cannot be exported due to lack of chapters."
 msgstr "Книгата не може да бъде експортирана поради липса на глави."
 
-#: book/static/js/modules/books/exporter/epub/index.js:103
+#: book/static/js/modules/books/exporter/epub/index.js:83
 msgid "Cover"
 msgstr "Обложка"
 
-#: book/static/js/modules/books/exporter/epub/index.js:113
+#: book/static/js/modules/books/exporter/epub/index.js:93
 msgid "Title page"
 msgstr "Заглавна страница"
 
-#: book/static/js/modules/books/exporter/epub/index.js:228
+#: book/static/js/modules/books/exporter/epub/index.js:211
 msgid "Copyright"
 msgstr "Авторски права"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:36
+#: book/static/js/modules/books/exporter/epub/templates.js:25
 msgid "Cover Image"
 msgstr "Изображение за корица"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:44
-#: book/static/js/modules/books/exporter/epub/templates.js:54
-#: book/static/js/modules/books/exporter/html/templates.js:35
+#: book/static/js/modules/books/exporter/epub/templates.js:30
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:26
 msgid "by"
 msgstr "от"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
+#: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/index.js:147
-#: book/static/js/modules/books/templates.js:13
-#: book/static/js/modules/books/templates.js:74
+#: book/static/js/modules/books/templates.js:6
+#: book/static/js/modules/books/templates.js:50
 msgid "Title"
 msgstr "Заглавие"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
-#: book/static/js/modules/books/templates.js:13
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/templates.js:6
 msgid "Author"
 msgstr "Автор"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
-#: book/static/js/modules/books/exporter/html/templates.js:37
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:28
 msgid "Published by"
 msgstr "Издадено от"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
-#: book/static/js/modules/books/exporter/html/templates.js:37
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:28
 msgid "Last Updated"
 msgstr "Последно обновен"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
-#: book/static/js/modules/books/exporter/html/templates.js:37
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:28
 #: book/static/js/modules/books/index.js:147
 msgid "Created"
 msgstr "Създаден"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
-#: book/static/js/modules/books/exporter/html/templates.js:37
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:28
 msgid "Language"
 msgstr "Език"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
+#: book/static/js/modules/books/exporter/epub/templates.js:37
 msgid "Languages"
 msgstr "Езици"
 
-#: book/static/js/modules/books/exporter/epub/templates.js:54
-#: book/static/js/modules/books/exporter/html/templates.js:37
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:28
 msgid "Created by"
 msgstr "Създадено от"
 
-#: book/static/js/modules/books/exporter/html/index.js:188
+#: book/static/js/modules/books/exporter/html/index.js:176
 msgid "English"
 msgstr "Английски"
 
-#: book/static/js/modules/books/exporter/tools.js:16
+#: book/static/js/modules/books/exporter/tools.js:7
 msgid "Cannot produce book as you lack access rights to its chapters."
 msgstr ""
 "Не можете да създадете книга, тъй като ви липсват права за достъп до нейните "
@@ -252,213 +254,213 @@ msgstr "Последна промяна"
 msgid "Owner"
 msgstr "собственик"
 
-#: book/static/js/modules/books/index.js:204
+#: book/static/js/modules/books/index.js:209
 msgid "Cannot load data of books."
 msgstr "Данните за книги не могат да се заредят."
 
-#: book/static/js/modules/books/menu.js:23
+#: book/static/js/modules/books/menu.js:10
 msgid "Create new book"
 msgstr "Създайте нова книга"
 
-#: book/static/js/modules/books/menu.js:36
+#: book/static/js/modules/books/menu.js:20
 msgid "Delete selected"
 msgstr "Изтрий избраното"
 
-#: book/static/js/modules/books/menu.js:37
+#: book/static/js/modules/books/menu.js:21
 msgid "Delete selected books."
 msgstr "Изтрийте избраните книги."
 
-#: book/static/js/modules/books/menu.js:46
+#: book/static/js/modules/books/menu.js:30
 msgid "You cannot delete books of other users."
 msgstr "Не можете да изтриете книги от други потребители."
 
-#: book/static/js/modules/books/menu.js:55
+#: book/static/js/modules/books/menu.js:39
 msgid "Share selected"
 msgstr "Споделянето е избрано"
 
-#: book/static/js/modules/books/menu.js:56
+#: book/static/js/modules/books/menu.js:40
 msgid "Share selected books."
 msgstr "Споделете избрани книги."
 
-#: book/static/js/modules/books/menu.js:65
+#: book/static/js/modules/books/menu.js:49
 msgid "You cannot share books of other users."
 msgstr "Не можете да споделяте книги на други потребители."
 
-#: book/static/js/modules/books/menu.js:77
+#: book/static/js/modules/books/menu.js:61
 msgid "Copy selected"
 msgstr "Копиране избрано"
 
-#: book/static/js/modules/books/menu.js:78
+#: book/static/js/modules/books/menu.js:62
 msgid "Copy selected books."
 msgstr "Копирайте избрани книги."
 
-#: book/static/js/modules/books/menu.js:85
+#: book/static/js/modules/books/menu.js:69
 msgid "Export selected as Epub"
 msgstr "Износът е избран като Epub"
 
-#: book/static/js/modules/books/menu.js:86
+#: book/static/js/modules/books/menu.js:70
 msgid "Export selected books as Epub."
 msgstr "Експортирайте избрани книги като Epub."
 
-#: book/static/js/modules/books/menu.js:91
+#: book/static/js/modules/books/menu.js:75
 msgid "Epub export has been initiated."
 msgstr "Започнат бе Epub експорт."
 
-#: book/static/js/modules/books/menu.js:98
+#: book/static/js/modules/books/menu.js:82
 msgid "Export selected as HTML"
 msgstr "Експортът е избран като HTML"
 
-#: book/static/js/modules/books/menu.js:99
+#: book/static/js/modules/books/menu.js:83
 msgid "Export selected books as HTML."
 msgstr "Експортирайте избрани книги като HTML."
 
-#: book/static/js/modules/books/menu.js:104
+#: book/static/js/modules/books/menu.js:88
 msgid "HTML export has been initiated."
 msgstr "Започнат бе HTML експорт."
 
-#: book/static/js/modules/books/menu.js:111
+#: book/static/js/modules/books/menu.js:95
 msgid "Export selected as LaTeX"
 msgstr "Експортът е избран като LaTeX"
 
-#: book/static/js/modules/books/menu.js:112
+#: book/static/js/modules/books/menu.js:96
 msgid "Export selected books as LaTeX."
 msgstr "Експортирайте избрани книги като LaTeX."
 
-#: book/static/js/modules/books/menu.js:117
+#: book/static/js/modules/books/menu.js:101
 msgid "LaTeX export has been initiated."
 msgstr "Иницииран е експорт на LaTeX."
 
-#: book/static/js/modules/books/menu.js:123
+#: book/static/js/modules/books/menu.js:108
 msgid "Export selected to Print/PDF"
 msgstr "Износът е избран за печат / PDF"
 
-#: book/static/js/modules/books/menu.js:124
+#: book/static/js/modules/books/menu.js:109
 msgid "Export selected books to the print dialog."
 msgstr "Експортирайте избрани книги в диалоговия прозорец за печат."
 
-#: book/static/js/modules/books/menu.js:129
+#: book/static/js/modules/books/menu.js:114
 msgid "Print has been initiated."
 msgstr "Печатът е иницииран."
 
-#: book/static/js/modules/books/templates.js:13
+#: book/static/js/modules/books/templates.js:6
 msgid "Subtitle"
 msgstr "Подзаглавие"
 
-#: book/static/js/modules/books/templates.js:13
+#: book/static/js/modules/books/templates.js:6
 msgid "Publisher"
 msgstr "Издател"
 
-#: book/static/js/modules/books/templates.js:13
+#: book/static/js/modules/books/templates.js:6
 msgid "Copyright notice"
 msgstr "Бележка за Авторските Права"
 
-#: book/static/js/modules/books/templates.js:13
+#: book/static/js/modules/books/templates.js:6
 msgid "Comma separated keywords"
 msgstr "Ключови думи разделени със запетаи"
 
-#: book/static/js/modules/books/templates.js:13
+#: book/static/js/modules/books/templates.js:6
 msgid "Keywords"
 msgstr "Ключови думи"
 
-#: book/static/js/modules/books/templates.js:22
+#: book/static/js/modules/books/templates.js:12
 msgid "Citation style"
 msgstr "Стил на цитатите"
 
-#: book/static/js/modules/books/templates.js:22
+#: book/static/js/modules/books/templates.js:12
 msgid "Select citation style for the book"
 msgstr "Изберете стил на цитиране за книгата"
 
-#: book/static/js/modules/books/templates.js:25
+#: book/static/js/modules/books/templates.js:13
 msgid "Folio (15 x 12 inch)"
 msgstr "Folio (15 x 12 inch)"
 
-#: book/static/js/modules/books/templates.js:25
+#: book/static/js/modules/books/templates.js:13
 msgid "Quarto (12 × 9 inch)"
 msgstr "Quarto (12 × 9 inch)"
 
-#: book/static/js/modules/books/templates.js:25
+#: book/static/js/modules/books/templates.js:13
 msgid "Octavo (9 x 6 inch)"
 msgstr "Octavo (9 x 6 inch)"
 
-#: book/static/js/modules/books/templates.js:25
+#: book/static/js/modules/books/templates.js:13
 msgid "A5"
 msgstr "A5"
 
-#: book/static/js/modules/books/templates.js:25
+#: book/static/js/modules/books/templates.js:13
 msgid "A4"
 msgstr "A4"
 
-#: book/static/js/modules/books/templates.js:31
+#: book/static/js/modules/books/templates.js:19
 msgid "Book style"
 msgstr "Книжен стил"
 
-#: book/static/js/modules/books/templates.js:31
+#: book/static/js/modules/books/templates.js:19
 msgid "Select stylesheet for the book"
 msgstr "Изберете таблицата със стилове за книгата"
 
-#: book/static/js/modules/books/templates.js:31
+#: book/static/js/modules/books/templates.js:19
 msgid "Paper size"
 msgstr "Размер на листите"
 
-#: book/static/js/modules/books/templates.js:31
+#: book/static/js/modules/books/templates.js:19
 msgid "Select paper size for the book"
 msgstr "Изберете размер на хартията за книгата"
 
-#: book/static/js/modules/books/templates.js:40
+#: book/static/js/modules/books/templates.js:25
 msgid "Cover image"
 msgstr "Изображение за корица"
 
-#: book/static/js/modules/books/templates.js:40
+#: book/static/js/modules/books/templates.js:25
 msgid "Select a cover image"
 msgstr "Изберете изображение на корицата"
 
-#: book/static/js/modules/books/templates.js:40
+#: book/static/js/modules/books/templates.js:25
 msgid "Select Image"
 msgstr "Избор на изображение"
 
-#: book/static/js/modules/books/templates.js:40
+#: book/static/js/modules/books/templates.js:25
 msgid "Remove cover image"
 msgstr "Премахване на изображението на корицата"
 
-#: book/static/js/modules/books/templates.js:40
+#: book/static/js/modules/books/templates.js:25
 msgid "Remove Image"
 msgstr "Изтрий изображение:"
 
-#: book/static/js/modules/books/templates.js:71
+#: book/static/js/modules/books/templates.js:47
 msgid "My documents"
 msgstr "Моите документи"
 
-#: book/static/js/modules/books/templates.js:71
+#: book/static/js/modules/books/templates.js:47
 msgid "Documents"
 msgstr "Документи"
 
-#: book/static/js/modules/books/templates.js:74
+#: book/static/js/modules/books/templates.js:50
 msgid "Book chapters"
 msgstr "Глави на книгата"
 
-#: book/static/js/modules/books/templates.js:74
+#: book/static/js/modules/books/templates.js:50
 msgid "Sort"
 msgstr "Сортиране"
 
-#: book/static/js/modules/books/templates.js:90
+#: book/static/js/modules/books/templates.js:63
 msgid "Book part"
 msgstr "Част от Книгата"
 
-#: book/static/js/modules/books/templates.js:110
+#: book/static/js/modules/books/templates.js:77
 msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
 msgstr ""
 "Ако тази глава започва част от книга, въведете заглавието на тази част тук"
 
-#: book/static/js/modules/books/templates.js:110
+#: book/static/js/modules/books/templates.js:77
 msgid "Book part title"
 msgstr "Заглавие на част от книгата"
 
-#: book/static/js/plugins/menu/book.js:17
+#: book/static/js/plugins/menu/book.js:10
 msgid "compose books"
 msgstr "съставя книги"
 
-#: book/static/js/plugins/menu/book.js:19
+#: book/static/js/plugins/menu/book.js:12
 msgid "Books"
 msgstr "Книги"
