@@ -9,12 +9,11 @@ import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
     epubBookCopyrightTemplate} from "./templates"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
-import {setLinks, orderLinks, getTimestamp, styleEpubFootnotes, addFigureLabels} from "../../../exporter/epub/tools"
+import {setLinks, orderLinks, getTimestamp, styleEpubFootnotes, addCategoryLabels} from "../../../exporter/epub/tools"
 
-import {ncxTemplate, ncxItemTemplate, navTemplate, navItemTemplate,
-    containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
+import {ncxTemplate, ncxItemTemplate, navTemplate, containerTemplate, xhtmlTemplate} from "../../../exporter/epub/templates"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
-import {removeHidden} from "../../../exporter/tools/doc_contents"
+import {removeHidden} from "../../../exporter/tools/doc_content"
 import {modifyImages} from "../../../exporter/tools/html"
 import {createSlug} from "../../../exporter/tools/file"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
@@ -108,9 +107,9 @@ export class EpubBookExporter extends DOMExporter {
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
             schema.cached.imageDB = {db: doc.images}
-            const docContents = removeHidden(doc.contents),
+            const docContent = removeHidden(doc.content),
                 serializer = DOMSerializer.fromSchema(schema),
-                tempNode = serializer.serializeNode(schema.nodeFromJSON(docContents))
+                tempNode = serializer.serializeNode(schema.nodeFromJSON(docContent))
             const contentsEl = document.createElement('body')
             let math = false
             while (tempNode.firstChild) {
@@ -118,7 +117,7 @@ export class EpubBookExporter extends DOMExporter {
             }
 
             this.images = this.images.concat(modifyImages(contentsEl))
-            addFigureLabels(contentsEl, doc.settings.language)
+            addCategoryLabels(contentsEl, doc.settings.language)
             const equations = contentsEl.querySelectorAll('.equation')
 
             const figureEquations = contentsEl.querySelectorAll('.figure-equation')
@@ -128,7 +127,7 @@ export class EpubBookExporter extends DOMExporter {
                 this.math = true
             }
 
-            if (chapter.part && chapter.part.length) {
+            if (chapter.part?.length) {
                 this.contentItems.push({
                     link: `document-${chapter.number}.xhtml`,
                     title: chapter.part,
@@ -147,7 +146,7 @@ export class EpubBookExporter extends DOMExporter {
 
             return {
                 contents: contentsEl,
-                number : chapter.number,
+                number: chapter.number,
                 currentPart,
                 part: chapter.part,
                 math,
@@ -171,10 +170,10 @@ export class EpubBookExporter extends DOMExporter {
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
-                    this.contents = chapter.contents
+                    this.content = chapter.contents
                     this.cleanHTML(citRenderer.fm)
-                    chapter.contents = this.contents
-                    delete this.contents
+                    chapter.contents = this.content
+                    delete this.content
                     return Promise.resolve()
                 }
             )
@@ -206,7 +205,7 @@ export class EpubBookExporter extends DOMExporter {
 
                 return {
                     filename: `EPUB/document-${chapter.number}.xhtml`,
-                    contents: pretty(xhtmlCode, {ocd: true})
+                    content: pretty(xhtmlCode, {ocd: true})
                 }
             })
         )
@@ -274,7 +273,7 @@ export class EpubBookExporter extends DOMExporter {
         const navCode = navTemplate({
             shortLang,
             contentItems: this.contentItems,
-            templates: {navTemplate, navItemTemplate}
+            styleSheets: this.styleSheets
         })
 
         this.outputList = this.outputList.concat([{

@@ -26,9 +26,13 @@ export class BookOverview {
         this.documentList = []
         this.teamMembers = []
         this.accessRights = []
+        this.citationStyles = []
     }
 
     init() {
+        if (this.app.isOffline()) {
+            return whenReady().then(() => this.showCached())
+        }
         return this.app.csl.getStyles().then(
             styles => {
                 this.citationStyles = styles
@@ -37,7 +41,7 @@ export class BookOverview {
         ).then(
             () => {
                 this.render()
-                const smenu = new SiteMenu("books")
+                const smenu = new SiteMenu(this.app, "books")
                 smenu.init()
                 new BookActions(this)
                 this.menu = new OverviewMenuView(this, menuModel)
@@ -48,6 +52,22 @@ export class BookOverview {
                 return this.getBookListData()
             }
         )
+    }
+
+    showCached() {
+        // We only show an empty page with a warning for now
+        // TODO: implement actual caching
+        this.render()
+        const smenu = new SiteMenu("books")
+        smenu.init()
+        new BookActions(this)
+        this.menu = new OverviewMenuView(this, menuModel)
+        this.menu.init()
+        this.dtBulkModel = bulkMenuModel()
+        this.activateFidusPlugins()
+        this.bind()
+        this.initTable()
+        deactivateWait()
     }
 
     activateFidusPlugins() {
@@ -208,13 +228,20 @@ export class BookOverview {
     }
 
     getBookListData() {
+        if (this.app.isOffline()) {
+            return this.showCached()
+        }
         activateWait()
         return postJson(
             '/api/book/list/'
         ).catch(
             error => {
-                addAlert('error', gettext('Cannot load data of books.'))
-                throw (error)
+                if (this.app.isOffline()) {
+                    return this.showCached()
+                } else {
+                    addAlert('error', gettext('Cannot load data of books.'))
+                    throw (error)
+                }
             }
         ).then(
             ({json}) => {

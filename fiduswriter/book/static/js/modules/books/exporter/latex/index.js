@@ -5,7 +5,7 @@ import {getMissingChapterData} from "../tools"
 import {LatexExporterConvert} from "../../../exporter/latex/convert"
 import {bookTexTemplate} from "./templates"
 import {createSlug} from "../../../exporter/tools/file"
-import {removeHidden} from "../../../exporter/tools/doc_contents"
+import {removeHidden} from "../../../exporter/tools/doc_content"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 
 export class LatexBookExporter {
@@ -35,8 +35,8 @@ export class LatexBookExporter {
         this.book.chapters.forEach((chapter, index) => {
             const doc = this.docList.find(doc => doc.id === chapter.text)
             const converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography}, doc.settings)
-            const chapterContents = removeHidden(doc.contents)
-            const convertedDoc = converter.init(chapterContents)
+            const chapterContent = removeHidden(doc.content)
+            const convertedDoc = converter.init(chapterContent)
             this.textFiles.push({
                 filename: `chapter-${index + 1}.tex`,
                 contents: convertedDoc.latex

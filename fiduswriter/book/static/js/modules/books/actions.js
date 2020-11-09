@@ -56,7 +56,7 @@ export class BookActions {
                 addAlert('error', `${gettext('Could not delete book')}: '${book.title}'`)
                 throw (error)
             }
-        ).then(()=> {
+        ).then(() => {
             addAlert('success', `${gettext('Book has been deleted')}: '${book.title}'`)
             this.bookOverview.removeTableRows([id])
             this.bookOverview.bookList = this.bookOverview.bookList.filter(book => book.id !== id)
@@ -190,7 +190,7 @@ export class BookActions {
 
     createBookDialog(bookId, imageDB) {
         let title, book, oldBook
-        const bookImageDB = {db:{}}
+        const bookImageDB = {db: {}}
 
         if (bookId === 0) {
             title = gettext('Create Book')
@@ -302,7 +302,6 @@ export class BookActions {
     }
 
 
-
     bindBookDialog(dialog, book, imageDB, bookImageDB) {
         dialog.dialogEl.addEventListener('click', event => {
             const el = {}
@@ -317,7 +316,6 @@ export class BookActions {
                 const higherChapter = book.chapters.find(
                     bChapter => bChapter.number === (chapter.number - 1)
                 )
-                console.log({higherChapter, chapter, number: chapter.number, book})
                 chapter.number--
                 higherChapter.number++
                 document.getElementById('book-chapter-list').innerHTML =
@@ -374,7 +372,7 @@ export class BookActions {
                 el.target.classList.toggle('checked')
                 break
             case findTarget(event, '#add-chapter', el):
-                document.querySelectorAll('#book-document-list td.checked').forEach(el =>{
+                document.querySelectorAll('#book-document-list td.checked').forEach(el => {
                     const documentId = parseInt(el.dataset.id),
                         chapNums = book.chapters.map(chapter => chapter.number),
                         number = chapNums.length ?
@@ -409,7 +407,8 @@ export class BookActions {
                     bookImageDB,
                     imageDB,
                     book.cover_image,
-                    book.owner)
+                    this.bookOverview
+                )
 
                 imageSelection.init().then(
                     image => {

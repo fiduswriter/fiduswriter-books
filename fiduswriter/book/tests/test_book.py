@@ -122,8 +122,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.ID, 'preferences-btn'))
         ).click()
-        self.driver.find_element_by_css_selector(
-            "a[href='/user/team/']"
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Contacts"]'
         ).click()
         self.assertEqual(
             len(self.driver.find_elements_by_css_selector(
@@ -284,9 +284,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR,
             '.fa-caret-down.edit-right'
         ).click()
-        self.driver.find_element(
-            By.CSS_SELECTOR,
-            '[data-right="write"]'
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Write"]'
         ).click()
         self.driver.find_element_by_xpath(
             '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'

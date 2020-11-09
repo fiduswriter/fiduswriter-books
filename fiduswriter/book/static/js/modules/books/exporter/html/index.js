@@ -1,6 +1,6 @@
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
-import {removeHidden} from "../../../exporter/tools/doc_contents"
+import {removeHidden} from "../../../exporter/tools/doc_content"
 import {setLinks, orderLinks} from "../../../exporter/epub/tools"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {createSlug} from "../../../exporter/tools/file"
@@ -8,7 +8,7 @@ import {modifyImages} from "../../../exporter/tools/html"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
-import {BIBLIOGRAPHY_HEADERS, FIG_CATS} from "../../../schema/i18n"
+import {BIBLIOGRAPHY_HEADERS, CATS} from "../../../schema/i18n"
 
 import download from "downloadjs"
 import pretty from "pretty"
@@ -70,17 +70,17 @@ export class HTMLBookExporter extends DOMExporter {
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
             schema.cached.imageDB = {db: doc.images}
-            const docContents = removeHidden(doc.contents),
+            const docContent = removeHidden(doc.content),
                 serializer = DOMSerializer.fromSchema(schema),
-                contents = serializer.serializeNode(schema.nodeFromJSON(docContents)),
+                contents = serializer.serializeNode(schema.nodeFromJSON(docContent)),
                 equations = contents.querySelectorAll('.equation'),
                 figureEquations = contents.querySelectorAll('.figure-equation')
             if (equations.length || figureEquations.length) {
                 this.math = true
             }
 
-            contents.querySelectorAll('*[class^="figure-cat-"]').forEach(
-                el => el.innerHTML = FIG_CATS[el.dataset.figureCategory][doc.settings.language])
+            contents.querySelectorAll('figcaption span.label,caption span.label').forEach(
+                el => el.innerHTML = CATS[el.parentElement.parentElement.dataset.figureCategory][doc.settings.language])
 
             return {
                 doc,
@@ -105,10 +105,10 @@ export class HTMLBookExporter extends DOMExporter {
                     if (bibHTML.length > 0) {
                         chapter.contents.innerHTML += bibHTML
                     }
-                    this.contents = chapter.contents
+                    this.content = chapter.contents
                     this.cleanHTML(citRenderer.fm)
-                    chapter.contents = this.contents
-                    delete this.contents
+                    chapter.contents = this.content
+                    delete this.content
                     return Promise.resolve()
                 }
             )
@@ -135,7 +135,7 @@ export class HTMLBookExporter extends DOMExporter {
             }
             this.prepareBinaryFiles(contents)
 
-            if (this.book.chapters[index].part && this.book.chapters[index].part !== '') {
+            if (this.book.chapters[index].part !== '') {
                 contentItems.push({
                     link: `document-${this.book.chapters[index].number}.html`,
                     title: this.book.chapters[index].part,
