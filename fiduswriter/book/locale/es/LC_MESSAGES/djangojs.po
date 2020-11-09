@@ -1,13 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Fidus Writer books\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-09 21:56+0000\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books\n"
+"Language: es\n"
 
 #: book/static/js/modules/books/accessrights/index.js:36
 #: book/static/js/modules/books/actions.js:82
@@ -19,6 +17,14 @@ msgstr "Enviar"
 msgid "Share your book with others"
 msgstr "Compartir tu libro con otros"
 
+#: book/static/js/modules/books/accessrights/index.js:182
+msgid "Cannot save access rights."
+msgstr "No se pueden guardar los derechos de acceso."
+
+#: book/static/js/modules/books/accessrights/index.js:187
+msgid "Access rights have been saved"
+msgstr "Los derechos de accesso han sido guardados"
+
 #: book/static/js/modules/books/accessrights/index.js:152
 #: book/static/js/modules/books/accessrights/index.js:154
 msgid "Write"
@@ -28,14 +34,6 @@ msgstr "Escribir"
 #: book/static/js/modules/books/accessrights/index.js:163
 msgid "Read"
 msgstr "Leer"
-
-#: book/static/js/modules/books/accessrights/index.js:182
-msgid "Cannot save access rights."
-msgstr "No se pueden guardar los derechos de acceso."
-
-#: book/static/js/modules/books/accessrights/index.js:187
-msgid "Access rights have been saved"
-msgstr "Los derechos de accesso han sido guardados"
 
 #: book/static/js/modules/books/accessrights/templates.js:12
 msgid "My contacts"
@@ -62,47 +60,6 @@ msgstr "Derechos"
 #: book/static/js/modules/books/actions.js:53
 msgid "Delete"
 msgstr "Eliminar"
-
-#: book/static/js/modules/books/actions.js:10
-msgid "Basic info"
-msgstr "Info básico"
-
-#: book/static/js/modules/books/actions.js:11
-msgid "Basic book information"
-msgstr "Información básica del libro"
-
-#: book/static/js/modules/books/actions.js:14
-msgid "Chapters"
-msgstr "Capítulos"
-
-#: book/static/js/modules/books/actions.js:15
-msgid "Documents assigned as chapters"
-msgstr "Documentos asignados como capítulos"
-
-#: book/static/js/modules/books/actions.js:18
-#: book/static/js/modules/books/actions.js:187
-msgid "Bibliography"
-msgstr "Bibliografía"
-
-#: book/static/js/modules/books/actions.js:19
-msgid "Bibliography related settings"
-msgstr "Configuración de biografía"
-
-#: book/static/js/modules/books/actions.js:22
-msgid "Epub"
-msgstr "Epub"
-
-#: book/static/js/modules/books/actions.js:23
-msgid "Epub related settings"
-msgstr "Configuración de Epub"
-
-#: book/static/js/modules/books/actions.js:26
-msgid "Print/PDF"
-msgstr "Impresion/PDF"
-
-#: book/static/js/modules/books/actions.js:27
-msgid "Print related settings"
-msgstr "Configuración de impresión"
 
 #: book/static/js/modules/books/actions.js:42
 msgid "Could not delete book"
@@ -154,6 +111,11 @@ msgstr "El libro no se pudo copiar"
 #: book/static/js/modules/books/actions.js:169
 msgid "Create Book"
 msgstr "Crear libro"
+
+#: book/static/js/modules/books/actions.js:18
+#: book/static/js/modules/books/actions.js:187
+msgid "Bibliography"
+msgstr "Bibliografía"
 
 #: book/static/js/modules/books/actions.js:206
 msgid "Edit Book"
@@ -234,9 +196,7 @@ msgstr "Inglés"
 
 #: book/static/js/modules/books/exporter/tools.js:7
 msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr ""
-"No se puede producir un libro porque no tiene derechos de acceso a sus "
-"capítulos."
+msgstr "No se puede producir un libro porque no tiene derechos de acceso a sus capítulos."
 
 #: book/static/js/modules/books/index.js:89
 msgid "Book Overview"
@@ -266,10 +226,6 @@ msgstr "Crear nuevo libro"
 msgid "Delete selected"
 msgstr "Eliminar lo seleccionado"
 
-#: book/static/js/modules/books/menu.js:21
-msgid "Delete selected books."
-msgstr "Eliminar los libros seleccionados."
-
 #: book/static/js/modules/books/menu.js:30
 msgid "You cannot delete books of other users."
 msgstr "No puede eliminar los libros de otros usuarios."
@@ -277,10 +233,6 @@ msgstr "No puede eliminar los libros de otros usuarios."
 #: book/static/js/modules/books/menu.js:39
 msgid "Share selected"
 msgstr "Compartir los seleccionado"
-
-#: book/static/js/modules/books/menu.js:40
-msgid "Share selected books."
-msgstr "Compartir los libros seleccionados."
 
 #: book/static/js/modules/books/menu.js:49
 msgid "You cannot share books of other users."
@@ -290,17 +242,9 @@ msgstr "No puede compartir libros de otros usuarios."
 msgid "Copy selected"
 msgstr "Copia seleccionada"
 
-#: book/static/js/modules/books/menu.js:62
-msgid "Copy selected books."
-msgstr "Copiar los libros seleccionados."
-
 #: book/static/js/modules/books/menu.js:69
 msgid "Export selected as Epub"
 msgstr "Exportar lo seleccionado como Epub"
-
-#: book/static/js/modules/books/menu.js:70
-msgid "Export selected books as Epub."
-msgstr "Exportar los libros seleccionados como Epub."
 
 #: book/static/js/modules/books/menu.js:75
 msgid "Epub export has been initiated."
@@ -310,10 +254,6 @@ msgstr ":a exportación del archivo Epub ha sido iniciada."
 msgid "Export selected as HTML"
 msgstr "Exportar lo seleccionado como HTML"
 
-#: book/static/js/modules/books/menu.js:83
-msgid "Export selected books as HTML."
-msgstr "Exportar los libros seleccionados como HTML."
-
 #: book/static/js/modules/books/menu.js:88
 msgid "HTML export has been initiated."
 msgstr "La exportación del archivo HTML ha sido iniciada."
@@ -322,10 +262,6 @@ msgstr "La exportación del archivo HTML ha sido iniciada."
 msgid "Export selected as LaTeX"
 msgstr "Exportar lo seleccionado como LaTeX"
 
-#: book/static/js/modules/books/menu.js:96
-msgid "Export selected books as LaTeX."
-msgstr "Exportar los libros seleccionados como LaTeX."
-
 #: book/static/js/modules/books/menu.js:101
 msgid "LaTeX export has been initiated."
 msgstr "Se ha iniciado la exportación de LaTeX."
@@ -333,10 +269,6 @@ msgstr "Se ha iniciado la exportación de LaTeX."
 #: book/static/js/modules/books/menu.js:108
 msgid "Export selected to Print/PDF"
 msgstr "Exportar lo seleccionado a Imprimir / PDF"
-
-#: book/static/js/modules/books/menu.js:109
-msgid "Export selected books to the print dialog."
-msgstr "Exportar los libros seleccionados al cuadro de diálogo de impresión."
 
 #: book/static/js/modules/books/menu.js:114
 msgid "Print has been initiated."
@@ -426,6 +358,42 @@ msgstr "Eliminar imagen de portada"
 msgid "Remove Image"
 msgstr "Borrar Imagen"
 
+#: book/static/js/modules/books/actions.js:11
+msgid "Basic book information"
+msgstr "Información básica del libro"
+
+#: book/static/js/modules/books/actions.js:10
+msgid "Basic info"
+msgstr "Info básico"
+
+#: book/static/js/modules/books/actions.js:15
+msgid "Documents assigned as chapters"
+msgstr "Documentos asignados como capítulos"
+
+#: book/static/js/modules/books/actions.js:14
+msgid "Chapters"
+msgstr "Capítulos"
+
+#: book/static/js/modules/books/actions.js:19
+msgid "Bibliography related settings"
+msgstr "Configuración de biografía"
+
+#: book/static/js/modules/books/actions.js:23
+msgid "Epub related settings"
+msgstr "Configuración de Epub"
+
+#: book/static/js/modules/books/actions.js:22
+msgid "Epub"
+msgstr "Epub"
+
+#: book/static/js/modules/books/actions.js:27
+msgid "Print related settings"
+msgstr "Configuración de impresión"
+
+#: book/static/js/modules/books/actions.js:26
+msgid "Print/PDF"
+msgstr "Impresion/PDF"
+
 #: book/static/js/modules/books/templates.js:47
 msgid "My documents"
 msgstr "Mis documentos"
@@ -447,12 +415,8 @@ msgid "Book part"
 msgstr "Parte de libro"
 
 #: book/static/js/modules/books/templates.js:77
-msgid ""
-"If this chapter starts a part of the book, specify the title of that part "
-"here"
-msgstr ""
-"Si ese capítulo empieza una parte del libro, especifica el título de esa "
-"parte acáhere"
+msgid "If this chapter starts a part of the book, specify the title of that part here"
+msgstr "Si ese capítulo empieza una parte del libro, especifica el título de esa parte acáhere"
 
 #: book/static/js/modules/books/templates.js:77
 msgid "Book part title"
@@ -465,3 +429,32 @@ msgstr "componer libros"
 #: book/static/js/plugins/menu/book.js:12
 msgid "Books"
 msgstr "Libros"
+
+#: book/static/js/modules/books/menu.js:21
+msgid "Delete selected books."
+msgstr "Eliminar los libros seleccionados."
+
+#: book/static/js/modules/books/menu.js:40
+msgid "Share selected books."
+msgstr "Compartir los libros seleccionados."
+
+#: book/static/js/modules/books/menu.js:62
+msgid "Copy selected books."
+msgstr "Copiar los libros seleccionados."
+
+#: book/static/js/modules/books/menu.js:70
+msgid "Export selected books as Epub."
+msgstr "Exportar los libros seleccionados como Epub."
+
+#: book/static/js/modules/books/menu.js:83
+msgid "Export selected books as HTML."
+msgstr "Exportar los libros seleccionados como HTML."
+
+#: book/static/js/modules/books/menu.js:96
+msgid "Export selected books as LaTeX."
+msgstr "Exportar los libros seleccionados como LaTeX."
+
+#: book/static/js/modules/books/menu.js:109
+msgid "Export selected books to the print dialog."
+msgstr "Exportar los libros seleccionados al cuadro de diálogo de impresión."
+
