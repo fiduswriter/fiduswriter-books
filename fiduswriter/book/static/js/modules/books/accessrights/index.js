@@ -3,7 +3,7 @@ import {
     bookAccessRightOverviewTemplate
 } from "./templates"
 import {
-    openDropdownBox,
+    ContentMenu,
     setCheckableLabel,
     addAlert,
     cancelPromise,
@@ -126,17 +126,27 @@ export class BookAccessRightsDialog {
                 setCheckableLabel(el.target)
                 break
             case findTarget(event, '.edit-right', el): {
-                const box = el.target.parentElement.querySelector('.fw-pulldown')
-                if (!box.clientWidth) {
-                    openDropdownBox(box)
-                }
+                const colRow = el.target.closest('.collaborator-tr,.invite-tr')
+                const currentRight = colRow.dataset.right
+                const menu = this.getDropdownMenu(currentRight, newRight => {
+                    colRow.dataset.right = newRight
+                    colRow.querySelector('.icon-access-right').setAttribute(
+                        'class',
+                        `icon-access-right icon-access-${newRight}`
+                    )
+                })
+                const contentMenu = new ContentMenu({
+                    menu,
+                    menuPos: {X: event.pageX, Y: event.pageY},
+                    width: 200
+                })
+                contentMenu.open()
                 break
             }
-            case findTarget(event, '.edit-right-wrapper .fw-pulldown-item, .delete-collaborator', el): {
-                const newRight = el.target.dataset.right
+            case findTarget(event, '.delete-collaborator', el): {
                 const colRow = el.target.closest('.collaborator-tr')
-                colRow.dataset.right = newRight
-                colRow.querySelector('.icon-access-right').setAttribute('class', `icon-access-right icon-access-${newRight}`)
+                colRow.dataset.right = 'delete'
+                colRow.querySelector('.icon-access-right').setAttribute('class', 'icon-access-right icon-access-delete')
                 break
             }
             default:
@@ -156,6 +166,19 @@ export class BookAccessRightsDialog {
                 rights
             })
         )
+    }
+
+    getDropdownMenu(currentRight, onChange) {
+        return {
+            content: [
+                {type: 'action', title: gettext('Write'), icon: 'pencil-alt', tooltip: gettext("Write"), action: () => {
+                    onChange('write')
+                }, selected: currentRight === 'write'},
+                {type: 'action', title: gettext('Read'), icon: 'eye', tooltip: gettext("Read"), action: () => {
+                    onChange('read')
+                }, selected: currentRight === 'read'}
+            ]
+        }
     }
 
     submitAccessRight({

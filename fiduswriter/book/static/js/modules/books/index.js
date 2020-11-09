@@ -41,7 +41,7 @@ export class BookOverview {
         ).then(
             () => {
                 this.render()
-                const smenu = new SiteMenu("books")
+                const smenu = new SiteMenu(this.app, "books")
                 smenu.init()
                 new BookActions(this)
                 this.menu = new OverviewMenuView(this, menuModel)

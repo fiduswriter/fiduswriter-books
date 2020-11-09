@@ -13,24 +13,10 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
                 <div class="fw-inline edit-right-wrapper">
                     <i class="icon-access-right icon-access-${collaborator.rights}"></i>
                     <i class="fas fa-caret-down edit-right"></i>
-                    <div class="fw-pulldown fw-left">
-                        <ul>
-                            <li>
-                                <span class="fw-pulldown-item" data-right="write">
-                                    <i class="icon-access-write" ></i>${gettext("Write")}
-                                </span>
-                            </li>
-                            <li>
-                                <span class="fw-pulldown-item" data-right="read">
-                                    <i class="icon-access-read"></i>${gettext("Read")}
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </td>
             <td width="50" align="center">
-                <span class="delete-collaborator fw-inline" data-right="delete">
+                <span class="delete-collaborator fw-inline">
                     <i class="fas fa-trash-alt fw-link-text"></i>
                 </span>
             </td>
