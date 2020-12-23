@@ -79,17 +79,17 @@ export class HTMLBookExporter extends DOMExporter {
                 this.math = true
             }
             contents.querySelectorAll("figure[data-category='figure'] figcaption span.label").forEach(
-                (el, index) => {
+                el => {
                     el.innerHTML = CATS['figure'][doc.settings.language]
                 }
             )
             contents.querySelectorAll("figure[data-category='photo'] figcaption span.label").forEach(
-                (el, index) => {
+                el => {
                     el.innerHTML = CATS['photo'][doc.settings.language]
                 }
             )
             contents.querySelectorAll("figure[data-category='table'] figcaption span.label,table[data-category='table'] caption span.label").forEach(
-                (el, index) => {
+                el => {
                     el.innerHTML = CATS['table'][doc.settings.language]
                 }
             )
