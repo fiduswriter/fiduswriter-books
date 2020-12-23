@@ -78,9 +78,21 @@ export class HTMLBookExporter extends DOMExporter {
             if (equations.length || figureEquations.length) {
                 this.math = true
             }
-
-            contents.querySelectorAll('figcaption span.label,caption span.label').forEach(
-                el => el.innerHTML = CATS[el.parentElement.parentElement.dataset.figureCategory][doc.settings.language])
+            contents.querySelectorAll("figure[data-category='figure'] figcaption span.label").forEach(
+                (el, index) => {
+                    el.innerHTML = CATS['figure'][doc.settings.language]
+                }
+            )
+            contents.querySelectorAll("figure[data-category='photo'] figcaption span.label").forEach(
+                (el, index) => {
+                    el.innerHTML = CATS['photo'][doc.settings.language]
+                }
+            )
+            contents.querySelectorAll("figure[data-category='table'] figcaption span.label,table[data-category='table'] caption span.label").forEach(
+                (el, index) => {
+                    el.innerHTML = CATS['table'][doc.settings.language]
+                }
+            )
 
             return {
                 doc,
