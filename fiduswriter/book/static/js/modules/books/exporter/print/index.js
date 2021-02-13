@@ -34,11 +34,29 @@ export class PrintBookExporter extends HTMLBookExporter {
             css = this.getBookCSS(),
             title = this.book.title,
             htmlDoc = printHTMLTemplate({css, html, title})
+
+            const config = {title}
+
+            if (navigator.userAgent.includes('Gecko/')) {
+                // Firefox has issues printing images when in iframe. This workaround can be
+                // removed once that has been fixed. TODO: Add gecko bug number if there is one.
+                config.printCallback = iframeWin => {
+                    const oldBody = document.body
+                    document.body.parentElement.dataset.vivliostylePaginated = true
+                    document.body = iframeWin.document.body
+                    iframeWin.document.querySelectorAll('style').forEach(el => document.body.appendChild(el))
+                    const backgroundStyle = document.createElement('style')
+                    backgroundStyle.innerHTML = 'body {background-color: white;}'
+                    document.body.appendChild(backgroundStyle)
+                    window.print()
+                    document.body = oldBody
+                    delete document.body.parentElement.dataset.vivliostylePaginated
+                }
+            }
+
         printHTML(
             htmlDoc,
-            {
-                title
-            }
+            config
         )
 
     }
@@ -57,6 +75,9 @@ export class PrintBookExporter extends HTMLBookExporter {
             position: relative;
             top: -0.3em;
 
+        }
+        body {
+                background-color: white;
         }
         .article-title, section[role=doc-footnotes] {
             counter-reset: cat-0 cat-1 cat-2 footnote-counter footnote-marker-counter;
