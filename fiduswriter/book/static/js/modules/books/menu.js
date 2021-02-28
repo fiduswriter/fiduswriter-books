@@ -3,7 +3,7 @@ import {HTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
-import {addAlert} from "../common"
+import {addAlert, FileDialog} from "../common"
 
 export const menuModel = () => ({
     content: [
@@ -21,6 +21,29 @@ export const menuModel = () => ({
 
 export const bulkMenuModel = () => ({
     content: [
+        {
+            title: gettext('Move selected'),
+            tooltip: gettext('Move the books that have been selected.'),
+            action: overview => {
+                const ids = overview.getSelected()
+                const books = ids.map(id => overview.bookList.find(book => book.id === id))
+                if (books.length) {
+                    const dialog = new FileDialog({
+                        title: books.length > 1 ? gettext('Move books') : gettext('Move book'),
+                        movingFiles: books,
+                        allFiles: overview.bookList,
+                        moveUrl: '/api/book/move/',
+                        successMessage: gettext('Book has been moved'),
+                        errorMessage: gettext('Could not move book'),
+                        succcessCallback: (file, path) => {
+                            file.path = path
+                            overview.initTable()
+                        }
+                    })
+                    dialog.init()
+                }
+            }
+        },
         {
             title: gettext('Delete selected'),
             tooltip: gettext('Delete selected books.'),

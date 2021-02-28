@@ -7,6 +7,7 @@ urlpatterns = [
     url('^save/$', views.save, name='book_save'),
     url('^copy/$', views.copy, name='book_copy'),
     url('^delete/$', views.delete, name='book_delete'),
+    url('^move/$', views.move, name='book_move'),
     url(
         '^accessright/save/$',
         views.access_right_save,

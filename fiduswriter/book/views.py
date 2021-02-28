@@ -71,11 +71,13 @@ def list(request):
     for book in books:
         if book.owner == request.user:
             access_right = 'write'
+            path = book.path
         else:
             access_right = BookAccessRight.objects.get(
                 user=request.user,
                 book=book
             ).rights
+            path = access_right.path
         added = time.mktime(book.added.utctimetuple())
         updated = time.mktime(book.updated.utctimetuple())
         is_owner = False
@@ -93,6 +95,7 @@ def list(request):
         book_data = {
             'id': book.id,
             'title': book.title,
+            'path': path,
             'is_owner': is_owner,
             'owner': book.owner.id,
             'owner_name': book.owner.readable_name,
@@ -282,6 +285,38 @@ def delete(request):
         if image and image.is_deletable():
             image.delete()
         status = 200
+    return JsonResponse(
+        response,
+        status=status
+    )
+
+
+@login_required
+@ajax_required
+@require_POST
+def move(request):
+    response = {}
+    status = 200
+    book_id = int(request.POST['id'])
+    path = request.POST['path']
+    book = Book.objects.filter(pk=book_id).first()
+    if not book:
+        response['done'] = False
+    elif book.owner == request.user:
+        book.path = path
+        book.save(update_fields=['path', ])
+        response['done'] = True
+    else:
+        access_right = BookAccessRight.objects.filter(
+            book=book,
+            user=request.user
+        ).first()
+        if not access_right:
+            response['done'] = False
+        else:
+            access_right.path = path
+            access_right.save()
+            response['done'] = True
     return JsonResponse(
         response,
         status=status
