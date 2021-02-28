@@ -1,10 +1,10 @@
 import {bookDialogTemplate, bookBasicInfoTemplate, bookDialogChaptersTemplate, bookBibliographyDataTemplate,
     bookEpubDataTemplate, bookPrintDataTemplate,
-    bookChapterListTemplate, bookDocumentListTemplate, bookChapterDialogTemplate,
+    bookChapterListTemplate, bookChapterDialogTemplate,
     bookEpubDataCoverTemplate
 } from "./templates"
 import {ImageSelectionDialog} from "../images/selection_dialog"
-import {addAlert, postJson, post, Dialog, findTarget} from "../common"
+import {addAlert, postJson, post, Dialog, findTarget, FileSelector} from "../common"
 
 
 export class BookActions {
@@ -231,7 +231,6 @@ export class BookActions {
             }
             title = gettext('Edit Book')
         }
-
         const body = bookDialogTemplate({
             title,
             dialogParts: this.dialogParts,
@@ -281,6 +280,14 @@ export class BookActions {
                 el.style.display = 'none'
             }
         })
+        const fileSelector = new FileSelector({
+            dom: dialog.dialogEl.querySelector('#book-document-list'),
+            files: this.bookOverview.documentList,
+            multiSelect: true,
+            selectFolders: false,
+        })
+        fileSelector.init()
+
         // Handle tab link clicking
         dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-link a').forEach(el => el.addEventListener('click', event => {
             event.preventDefault()
@@ -298,11 +305,11 @@ export class BookActions {
             })
 
         }))
-        this.bindBookDialog(dialog, book, imageDB, bookImageDB)
+        this.bindBookDialog(dialog, book, fileSelector, imageDB, bookImageDB)
     }
 
 
-    bindBookDialog(dialog, book, imageDB, bookImageDB) {
+    bindBookDialog(dialog, book, fileSelector, imageDB, bookImageDB) {
         dialog.dialogEl.addEventListener('click', event => {
             const el = {}
             let chapterId, chapter
@@ -363,38 +370,27 @@ export class BookActions {
                     documentList: this.bookOverview.documentList
                 })
 
-                document.getElementById('book-document-list').innerHTML = bookDocumentListTemplate({
-                    documentList: this.bookOverview.documentList,
-                    book
-                })
                 break
-            case findTarget(event, '#book-document-list td', el):
-                el.target.classList.toggle('checked')
-                break
-            case findTarget(event, '#add-chapter', el):
-                document.querySelectorAll('#book-document-list td.checked').forEach(el => {
-                    const documentId = parseInt(el.dataset.id),
-                        chapNums = book.chapters.map(chapter => chapter.number),
+            case findTarget(event, '#add-chapter', el): {
+                fileSelector.selected.forEach(entry => {
+                    const chapNums = book.chapters.map(chapter => chapter.number),
                         number = chapNums.length ?
                             Math.max(...chapNums) + 1 :
                             1
                     book.chapters.push({
-                        text: documentId,
-                        title: el.textContent.trim(),
+                        text: entry.file.id,
                         number,
                         part: ''
                     })
                 })
+                fileSelector.deselectAll()
 
                 document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
                     book,
                     documentList: this.bookOverview.documentList
                 })
-                document.getElementById('book-document-list').innerHTML = bookDocumentListTemplate({
-                    documentList: this.bookOverview.documentList,
-                    book
-                })
                 break
+            }
             case findTarget(event, '.edit-chapter', el):
                 chapterId = parseInt(el.target.dataset.id)
                 chapter = book.chapters.find(
