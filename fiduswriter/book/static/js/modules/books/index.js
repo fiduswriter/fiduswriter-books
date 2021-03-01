@@ -18,7 +18,6 @@ export class BookOverview {
     // It is currently not possible to initialize more than one such class,
     // as it contains bindings to menu items, etc. that are uniquely defined.
     constructor({app, user}, path = '/') {
-        console.log({path})
         this.app = app
         this.user = user
         this.path = path
@@ -50,7 +49,6 @@ export class BookOverview {
                     styles => {
                         this.citationStyles = styles
                         return deactivateWait()
-                        console.log('ALL')
                     }
                 )
             )
@@ -59,7 +57,6 @@ export class BookOverview {
 
     showCached() {
         return this.loaddatafromIndexedDB().then(json => {
-            console.log({m: 'showCached', json})
             if (!json) {
                 activateWait(true)
                 return
@@ -309,11 +306,9 @@ export class BookOverview {
             '/api/book/list/'
         ).then(
             ({json}) => {
-                console.log({json})
                 return cachedPromise.then(
                     () => this.loaddatafromIndexedDB()
                 ).then(oldJson => {
-                    console.log({oldJson})
                     if (!deepEqual(json, oldJson)) {
                         this.updateIndexedDB(json)
                         this.initializeView(json)
@@ -347,7 +342,6 @@ export class BookOverview {
     loaddatafromIndexedDB() {
         return this.app.indexedDB.readAllData("books_data").then(
             response => {
-                console.log({response})
                 if (!response.length) {
                     return false
                 }
