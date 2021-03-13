@@ -4,7 +4,7 @@ import {bookDialogTemplate, bookBasicInfoTemplate, bookDialogChaptersTemplate, b
     bookEpubDataCoverTemplate
 } from "./templates"
 import {ImageSelectionDialog} from "../images/selection_dialog"
-import {addAlert, postJson, post, Dialog, findTarget, FileSelector} from "../common"
+import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath} from "../common"
 
 
 export class BookActions {
@@ -167,13 +167,12 @@ export class BookActions {
     copyBook(oldBook) {
         const book = Object.assign({}, oldBook)
         book.is_owner = true
-        book.owner_avatar = this.bookOverview.user.avatar.url
-        book.owner_name = this.bookOverview.user.name
-        book.owner = this.bookOverview.user.id
+        book.owner = this.bookOverview.user
         book.rights = 'write'
+        const path = longFilePath(oldBook.title, oldBook.path, `${gettext('Copy of')} `)
         return postJson(
             '/api/book/copy/',
-            {book_id: book.id}
+            {id: book.id, path}
         ).catch(
             error => {
                 addAlert('error', gettext('The book could not be copied'))
@@ -181,7 +180,8 @@ export class BookActions {
             }
         ).then(
             ({json}) => {
-                book.id = json['new_book_id']
+                book.id = json['id']
+                book.path = json['path']
                 this.bookOverview.bookList.push(book)
                 this.bookOverview.addBookToTable(book)
             }
@@ -199,9 +199,7 @@ export class BookActions {
                 id: 0,
                 chapters: [],
                 is_owner: true,
-                owner_avatar: this.bookOverview.user.avatar.url,
-                owner_name: this.bookOverview.user.name,
-                owner: this.bookOverview.user.id,
+                owner: this.bookOverview.user,
                 rights: 'write',
                 metadata: {
                     author: '',
@@ -255,6 +253,7 @@ export class BookActions {
                     book.metadata.copyright = document.getElementById('book-metadata-copyright').value
                     book.metadata.publisher = document.getElementById('book-metadata-publisher').value
                     book.metadata.keywords = document.getElementById('book-metadata-keywords').value
+                    book.path = oldBook?.path || this.bookOverview.path
                     return this.saveBook(book, oldBook).then(
                         () => dialog.close()
                     )

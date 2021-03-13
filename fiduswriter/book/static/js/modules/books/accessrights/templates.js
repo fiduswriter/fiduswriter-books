@@ -3,11 +3,11 @@ import {escapeText} from "../../common"
 /** A template for the book collaboration pane */
 export const bookCollaboratorsTemplate = ({collaborators}) =>
     collaborators.map(collaborator =>
-        `<tr id="collaborator-${collaborator.user_id}" data-id="${collaborator.user_id}"
+        `<tr id="collaborator-${collaborator.user.id}" data-id="${collaborator.user.id}"
         class="collaborator-tr" data-right="${collaborator.rights}">
             <td width="212">
-                <span><img class="fw-avatar" src="${collaborator.avatar}" /></span>
-                <span class="fw-inline">${escapeText(collaborator.user_name)}</span>
+                <span>${collaborator.avatar.html}</span>
+                <span class="fw-inline">${escapeText(collaborator.name)}</span>
             </td>
             <td width="50" align="center">
                 <div class="fw-inline edit-right-wrapper">
@@ -38,11 +38,10 @@ export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
     contacts.map(contact =>
         `<tr>
                                 <td width="332" data-id="${contact.id}"
-                                        data-avatar="${contact.avatar}"
                                         data-name="${escapeText(contact.name)}"
                                         class="fw-checkable fw-checkable-td">
                                     <span>
-                                        <img class="fw-avatar" src="${contact.avatar}" />
+                                        ${contact.avatar.html}
                                     </span>
                                     <span class="fw-inline">${escapeText(contact.name)}</span>
                                 </td>

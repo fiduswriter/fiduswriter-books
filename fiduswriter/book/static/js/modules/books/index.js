@@ -224,7 +224,7 @@ export class BookOverview {
                     this.subdirs[subdir].added = book.added
                     this.subdirs[subdir].row[5] = `<span class="date">${localizeDate(book.added * 1000, 'sortable-date')}</span>`
                 }
-                if (doc.updated > this.subdirs[subdir].updated) {
+                if (book.updated > this.subdirs[subdir].updated) {
                     this.subdirs[subdir].updated = book.updated
                     this.subdirs[subdir].row[6] = `<span class="date">${localizeDate(book.updated * 1000, 'sortable-date')}</span>`
                 }
@@ -263,15 +263,13 @@ export class BookOverview {
             </span>`,
             `<span class="date">${localizeDate(book.added * 1000, 'sortable-date')}</span>`,
             `<span class="date">${localizeDate(book.updated * 1000, 'sortable-date')}</span>`,
-            `<span>
-                <img class="fw-avatar" src="${book.owner_avatar}" />
-            </span>
-            <span class="fw-inline fw-searchable">${escapeText(book.owner_name)}</span>`,
-            `<span class="${this.user.id === book.owner ? 'owned-by-user ' : ''}rights fw-inline" data-id="${book.id}">
+            `<span>${book.owner.avatar.html}</span>
+            <span class="fw-inline fw-searchable">${escapeText(book.owner.name)}</span>`,
+            `<span class="${this.user.id === book.owner.id ? 'owned-by-user ' : ''}rights fw-inline" data-id="${book.id}">
                 <i data-id="${book.id}" class="icon-access-right icon-access-${book.rights}"></i>
             </span>`,
             `<span class="delete-book fw-inline fw-link-text" data-id="${book.id}" data-title="${escapeText(book.title)}">
-                ${this.user.id === book.owner ? '<i class="fas fa-trash-alt"></i>' : ''}
+                ${this.user.id === book.owner.id ? '<i class="fas fa-trash-alt"></i>' : ''}
            </span>`
         ]
     }
@@ -304,6 +302,15 @@ export class BookOverview {
         }
         return postJson(
             '/api/book/list/'
+        ).catch(
+            error => {
+                if (this.app.isOffline()) {
+                    return cachedPromise
+                } else {
+                    addAlert('error', gettext('Cannot load data of books.'))
+                    throw (error)
+                }
+            }
         ).then(
             ({json}) => {
                 return cachedPromise.then(
@@ -314,15 +321,6 @@ export class BookOverview {
                         this.initializeView(json)
                     }
                 })
-            }
-        ).catch(
-            error => {
-                if (this.app.isOffline()) {
-                    return cachedPromise
-                } else {
-                    addAlert('error', gettext('Cannot load data of books.'))
-                    throw (error)
-                }
             }
         ).then(
             () => deactivateWait()
