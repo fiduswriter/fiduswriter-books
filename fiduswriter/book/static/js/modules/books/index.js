@@ -159,14 +159,18 @@ export class BookOverview {
         ).filter(row => !!row)
 
         if (this.path !== '/') {
+            const pathParts = this.path.split('/')
+            pathParts.pop()
+            pathParts.pop()
+            const parentPath = pathParts.join('/') + '/'
             fileList.unshift([
                 '-1',
                 'top',
                 '',
-                `<span class="fw-data-table-title fw-link-text parentdir">
+                `<a class="fw-data-table-title fw-link-text parentdir" href="/books${parentPath}" data-path="${parentPath}">
                     <i class="fas fa-folder"></i>
                     <span>..</span>
-                </span>`,
+                </a>`,
                 '',
                 '',
                 '',
@@ -251,10 +255,10 @@ export class BookOverview {
                 '0',
                 'folder',
                 '',
-                `<span class="fw-data-table-title fw-link-text subdir" data-subdir="${escapeText(subdir)}">
+                `<a class="fw-data-table-title fw-link-text subdir" href="/books${this.path}${subdir}/" data-path="${this.path}${subdir}/">
                     <i class="fas fa-folder"></i>
                     <span>${escapeText(subdir)}</span>
-                </span>`,
+                </a>`,
                 `<span class="date">${dateCell({date: book.added})}</span>`,
                 `<span class="date">${dateCell({date: book.updated})}</span>`,
                 '',
@@ -418,20 +422,12 @@ export class BookOverview {
                 )
                 break
             }
-            case findTarget(event, '.fw-data-table-title.subdir', el):
-                this.path += el.target.dataset.subdir + '/'
-                window.history.pushState({}, "", '/books' + this.path)
+            case findTarget(event, 'a.fw-data-table-title.subdir, a.fw-data-table-title.parentdir', el):
+                event.preventDefault()
+                this.path = el.target.dataset.path
+                window.history.pushState({}, "", el.target.getAttribute('href'))
                 this.initTable()
                 break
-            case findTarget(event, '.fw-data-table-title.parentdir', el): {
-                const pathParts = this.path.split('/')
-                pathParts.pop()
-                pathParts.pop()
-                this.path = pathParts.join('/') + '/'
-                window.history.pushState({}, "", '/books' + this.path)
-                this.initTable()
-                break
-            }
             case findTarget(event, '.fw-data-table-title', el): {
                 const bookId = parseInt(el.target.dataset.id)
                 this.getImageDB().then(() => {
