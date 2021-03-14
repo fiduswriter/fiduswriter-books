@@ -5,13 +5,17 @@ import * as plugins from "../../plugins/books_overview"
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, localizeDate, shortFileTitle} from "../common"
+import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, shortFileTitle} from "../common"
 import {SiteMenu} from "../menu"
 import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
 import {
     docSchema
 } from "../schema/document"
+import {
+  dateCell,
+  deleteFolderCell
+} from "./templates"
 
 export class BookOverview {
     // A class that contains everything that happens on the books page.
@@ -129,8 +133,15 @@ export class BookOverview {
         const tableEl = document.createElement('table')
         tableEl.classList.add('fw-data-table')
         tableEl.classList.add('fw-large')
-        this.dom.querySelector('.fw-contents').innerHTML = ''
-        this.dom.querySelector('.fw-contents').appendChild(tableEl)
+        const contentsEl = document.querySelector('.fw-contents')
+        contentsEl.innerHTML = ''
+        contentsEl.appendChild(tableEl)
+
+        if (this.path !== '/') {
+            const headerEl = document.createElement('h1')
+            headerEl.innerHTML = escapeText(this.path)
+            contentsEl.insertBefore(headerEl, tableEl)
+        }
 
         this.dtBulk = new DatatableBulk(this, this.dtBulkModel)
 
@@ -152,9 +163,9 @@ export class BookOverview {
                 '-1',
                 'top',
                 '',
-                `<span class="fw-data-table-title">
+                `<span class="fw-data-table-title fw-link-text parentdir">
                     <i class="fas fa-folder"></i>
-                    <span class="fw-link-text parentdir">..</span>
+                    <span>..</span>
                 </span>`,
                 '',
                 '',
@@ -222,30 +233,35 @@ export class BookOverview {
                 // We only update the update/added columns if needed.
                 if (book.added < this.subdirs[subdir].added) {
                     this.subdirs[subdir].added = book.added
-                    this.subdirs[subdir].row[5] = `<span class="date">${localizeDate(book.added * 1000, 'sortable-date')}</span>`
+                    this.subdirs[subdir].row[5] = dateCell({date: book.added})
                 }
                 if (book.updated > this.subdirs[subdir].updated) {
                     this.subdirs[subdir].updated = book.updated
-                    this.subdirs[subdir].row[6] = `<span class="date">${localizeDate(book.updated * 1000, 'sortable-date')}</span>`
+                    this.subdirs[subdir].row[6] = dateCell({date: book.updated})
+                }
+                if (this.user.id === book.owner.id) {
+                    this.subdirs[subdir].ownedIds.push(book.id)
+                    this.subdirs[subdir].row[8] = deleteFolderCell({subdir, ids: this.subdirs[subdir].ownedIds})
                 }
                 return false
             }
+            const ownedIds = this.user.id === book.owner.id ? [book.id] : []
             // Display subdir
             const row = [
                 '0',
                 'folder',
                 '',
-                `<span class="fw-data-table-title">
+                `<span class="fw-data-table-title fw-link-text subdir" data-subdir="${escapeText(subdir)}">
                     <i class="fas fa-folder"></i>
-                    <span class="fw-link-text subdir" data-subdir="${escapeText(subdir)}">${escapeText(subdir)}</span>
+                    <span>${escapeText(subdir)}</span>
                 </span>`,
-                `<span class="date">${localizeDate(book.added * 1000, 'sortable-date')}</span>`,
-                `<span class="date">${localizeDate(book.updated * 1000, 'sortable-date')}</span>`,
+                `<span class="date">${dateCell({date: book.added})}</span>`,
+                `<span class="date">${dateCell({date: book.updated})}</span>`,
                 '',
                 '',
-                ''
+                ownedIds.length ? deleteFolderCell({subdir, ids: ownedIds}) : ''
             ]
-            this.subdirs[subdir] = {row, added: book.added, updated: book.updated}
+            this.subdirs[subdir] = {row, added: book.added, updated: book.updated, ownedIds}
             return row
         }
 
@@ -254,15 +270,14 @@ export class BookOverview {
             String(book.id),
             'file',
             `<input type="checkbox" class="entry-select fw-check" data-id="${book.id}" id="book-${book.id}"><label for="book-${book.id}"></label>`,
-            `<span class="fw-data-table-title fw-inline">
+            `<span class="fw-data-table-title fw-inline fw-link-text" data-id="${book.id}">
                 <i class="fas fa-book"></i>
-                <span class="book-title fw-link-text fw-searchable"
-                        data-id="${book.id}">
+                <span class="book-title fw-searchable">
                     ${shortFileTitle(book.title, book.path)}
                 </span>
             </span>`,
-            `<span class="date">${localizeDate(book.added * 1000, 'sortable-date')}</span>`,
-            `<span class="date">${localizeDate(book.updated * 1000, 'sortable-date')}</span>`,
+            `<span class="date">${dateCell({date: book.added})}</span>`,
+            `<span class="date">${dateCell({date: book.updated})}</span>`,
             `<span>${book.owner.avatar.html}</span>
             <span class="fw-inline fw-searchable">${escapeText(book.owner.name)}</span>`,
             `<span class="${this.user.id === book.owner.id ? 'owned-by-user ' : ''}rights fw-inline" data-id="${book.id}">
@@ -375,10 +390,22 @@ export class BookOverview {
             const el = {}
             switch (true) {
             case findTarget(event, '.delete-book', el): {
-                const bookId = parseInt(el.target.dataset.id)
-                this.mod.actions.deleteBookDialog([bookId])
+                if (this.app.isOffline()) {
+                    addAlert('info', gettext("You cannot delete books while you are offline."))
+                } else {
+                    const bookId = parseInt(el.target.dataset.id)
+                    this.mod.actions.deleteBookDialog([bookId])
+                }
                 break
             }
+            case findTarget(event, '.delete-folder', el):
+                if (this.app.isOffline()) {
+                    addAlert('info', gettext("You cannot delete books while you are offline."))
+                } else {
+                    const ids = el.target.dataset.ids.split(',').map(id => parseInt(id))
+                    this.mod.actions.deleteBookDialog(ids)
+                }
+                break
             case findTarget(event, '.owned-by-user.rights', el): {
                 const bookId = parseInt(el.target.dataset.id)
                 const accessDialog = new BookAccessRightsDialog(
@@ -391,25 +418,25 @@ export class BookOverview {
                 )
                 break
             }
-            case findTarget(event, '.book-title', el): {
-                const bookId = parseInt(el.target.dataset.id)
-                this.getImageDB().then(() => {
-                    this.mod.actions.createBookDialog(bookId, this.imageDB)
-                })
-                break
-            }
-            case findTarget(event, '.fw-data-table-title .subdir', el):
+            case findTarget(event, '.fw-data-table-title.subdir', el):
                 this.path += el.target.dataset.subdir + '/'
                 window.history.pushState({}, "", '/books' + this.path)
                 this.initTable()
                 break
-            case findTarget(event, '.fw-data-table-title .parentdir', el): {
+            case findTarget(event, '.fw-data-table-title.parentdir', el): {
                 const pathParts = this.path.split('/')
                 pathParts.pop()
                 pathParts.pop()
                 this.path = pathParts.join('/') + '/'
                 window.history.pushState({}, "", '/books' + this.path)
                 this.initTable()
+                break
+            }
+            case findTarget(event, '.fw-data-table-title', el): {
+                const bookId = parseInt(el.target.dataset.id)
+                this.getImageDB().then(() => {
+                    this.mod.actions.createBookDialog(bookId, this.imageDB)
+                })
                 break
             }
             case findTarget(event, 'a', el):

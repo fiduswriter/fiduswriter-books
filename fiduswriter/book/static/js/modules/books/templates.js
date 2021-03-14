@@ -1,4 +1,4 @@
-import {escapeText, longFilePath} from "../common"
+import {escapeText, longFilePath, localizeDate} from "../common"
 
 
 /** A template for the basic info book template pane */
@@ -403,3 +403,12 @@ export const bookChapterDialogTemplate = ({chapter}) =>
             </td>
        </tr>
        </table>`
+
+ export const deleteFolderCell = ({subdir, ids}) =>
+     `<span class="delete-folder fw-link-text" data-ids="${ids.join(',')}"
+         data-title="${escapeText(subdir)}">
+         '<i class="fa fa-trash-alt"></i>
+ </span>`
+
+ export const dateCell = ({date}) =>
+     `<span class="date">${localizeDate(date * 1000, 'sortable-date')}</span>`

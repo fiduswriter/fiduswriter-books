@@ -4,7 +4,7 @@ import {bookDialogTemplate, bookBasicInfoTemplate, bookDialogChaptersTemplate, b
     bookEpubDataCoverTemplate
 } from "./templates"
 import {ImageSelectionDialog} from "../images/selection_dialog"
-import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath} from "../common"
+import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath, escapeText} from "../common"
 
 
 export class BookActions {
@@ -45,19 +45,19 @@ export class BookActions {
     deleteBook(id) {
         const book = this.bookOverview.bookList.find(book => book.id === id)
         if (!book) {
-            return
+            return Promise.return()
         }
 
-        post(
+        return post(
             '/api/book/delete/',
             {id}
         ).catch(
             error => {
-                addAlert('error', `${gettext('Could not delete book')}: '${book.title}'`)
+                addAlert('error', `${gettext('Could not delete book')}: '${longFilePath(book.title, book.path)}'`)
                 throw (error)
             }
         ).then(() => {
-            addAlert('success', `${gettext('Book has been deleted')}: '${book.title}'`)
+            addAlert('success', `${gettext('Book has been deleted')}: '${longFilePath(book.title, book.path)}'`)
             this.bookOverview.removeTableRows([id])
             this.bookOverview.bookList = this.bookOverview.bookList.filter(book => book.id !== id)
         })
@@ -65,14 +65,21 @@ export class BookActions {
     }
 
     deleteBookDialog(ids) {
+        const bookPaths = ids.map(id => {
+            const book = this.bookOverview.bookList.find(book => book.id === id)
+            return escapeText(longFilePath(book.title, book.path))
+        })
         const buttons = [
             {
                 text: gettext('Delete'),
                 classes: "fw-dark",
                 click: () => {
-                    ids.forEach(id => this.deleteBook(parseInt(id)))
-                    addAlert('success', ids.length > 1 ? gettext('The books have been deleted') : gettext('The book has been deleted'))
-                    dialog.close()
+                  Promise.all(ids.map(id => this.deleteBook(id))).then(
+                          () => {
+                              dialog.close()
+                              this.bookOverview.initTable()
+                          }
+                    )
                 }
             },
             {
@@ -84,7 +91,15 @@ export class BookActions {
             title: gettext('Confirm deletion'),
             id: 'confirmdeletion',
             icon: 'exclamation-triangle',
-            body: `<p>${ids.length > 1 ? gettext('Delete the books?') : gettext('Delete the book?')}</p>`,
+            height: Math.min(50 + 15 * ids.length, 500),
+            body: `<p>${
+              ids.length > 1 ?
+              gettext('Do you really want to delete the following books?') :
+              gettext('Do you really want to delete the following book?')
+            }</p>
+            <p>
+                ${bookPaths.join('<br>')}
+            </p>`,
             buttons
         })
         dialog.open()

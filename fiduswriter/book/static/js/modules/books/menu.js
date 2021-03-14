@@ -3,7 +3,7 @@ import {HTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
-import {addAlert, FileDialog} from "../common"
+import {addAlert, FileDialog, NewFolderDialog} from "../common"
 
 export const menuModel = () => ({
     content: [
@@ -14,8 +14,22 @@ export const menuModel = () => ({
                 overview.getImageDB().then(() => {
                     overview.mod.actions.createBookDialog(0, overview.imageDB)
                 })
-            }
-        }
+            },
+            order: 1
+        },
+        {
+            type: 'text',
+            title: gettext('Create new folder'),
+            action: overview => {
+                const dialog = new NewFolderDialog(folderName => {
+                    overview.path = overview.path + folderName + '/'
+                    window.history.pushState({}, "", '/books' + overview.path)
+                    overview.initTable()
+                })
+                dialog.open()
+            },
+            order: 2
+        },
     ]
 })
 
