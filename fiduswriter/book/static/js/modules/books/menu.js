@@ -5,6 +5,8 @@ import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
 import {addAlert, FileDialog, NewFolderDialog} from "../common"
 
+let currentlySearching = false
+
 export const menuModel = () => ({
     content: [
         {
@@ -30,6 +32,28 @@ export const menuModel = () => ({
             },
             order: 2
         },
+        {
+            type: 'search',
+            icon: 'search',
+            title: gettext('Search books'),
+            input: (overview, text) => {
+                if (text.length && !currentlySearching) {
+                    overview.initTable(true)
+                    currentlySearching = true
+                    overview.table.on(
+                        'datatable.init',
+                        () => overview.table.search(text)
+                    )
+                } else if (!text.length && currentlySearching) {
+                    overview.initTable(false)
+                    currentlySearching = false
+                } else if (text.length) {
+                    overview.table.search(text)
+                }
+
+            },
+            order: 3
+        }
     ]
 })
 

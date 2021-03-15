@@ -33,7 +33,6 @@ export class BookOverview {
         this.teamMembers = []
         this.accessRights = []
         this.citationStyles = []
-        this.subdirs = {}
         this.lastSort = {column: 0, dir: 'asc'}
     }
 
@@ -124,12 +123,12 @@ export class BookOverview {
     }
 
     /* Initialize the overview table */
-    initTable() {
+    initTable(searching = false) {
         if (this.table) {
             this.table.destroy()
             this.table = false
         }
-        this.subdirs = {}
+        const subdirs = {}
         const tableEl = document.createElement('table')
         tableEl.classList.add('fw-data-table')
         tableEl.classList.add('fw-large')
@@ -155,10 +154,10 @@ export class BookOverview {
         }
 
         const fileList = this.bookList.map(
-            book => this.createTableRow(book)
+            book => this.createTableRow(book, subdirs, searching)
         ).filter(row => !!row)
 
-        if (this.path !== '/') {
+        if (!searching && this.path !== '/') {
             const pathParts = this.path.split('/')
             pathParts.pop()
             pathParts.pop()
@@ -180,7 +179,7 @@ export class BookOverview {
         }
 
         this.table = new DataTable(tableEl, {
-            searchable: true,
+            searchable: searching,
             paging: false,
             scrollY: `${Math.max(window.innerHeight - 360, 100)}px`,
             labels: {
@@ -216,7 +215,7 @@ export class BookOverview {
         this.dtBulk.init(this.table.table)
     }
 
-    createTableRow(book) {
+    createTableRow(book, subdirs, searching) {
         let path = book.path
         if (!path.startsWith('/')) {
             path = '/' + path
@@ -229,23 +228,23 @@ export class BookOverview {
         }
 
         const currentPath = path.slice(this.path.length)
-        if (currentPath.includes('/')) {
+        if (!searching && currentPath.includes('/')) {
             // There is a subdir
             const subdir = currentPath.split('/').shift()
-            if (this.subdirs[subdir]) {
+            if (subdirs[subdir]) {
                 // subdir has been covered already
                 // We only update the update/added columns if needed.
-                if (book.added < this.subdirs[subdir].added) {
-                    this.subdirs[subdir].added = book.added
-                    this.subdirs[subdir].row[5] = dateCell({date: book.added})
+                if (book.added < subdirs[subdir].added) {
+                    subdirs[subdir].added = book.added
+                    subdirs[subdir].row[5] = dateCell({date: book.added})
                 }
-                if (book.updated > this.subdirs[subdir].updated) {
-                    this.subdirs[subdir].updated = book.updated
-                    this.subdirs[subdir].row[6] = dateCell({date: book.updated})
+                if (book.updated > subdirs[subdir].updated) {
+                    subdirs[subdir].updated = book.updated
+                    subdirs[subdir].row[6] = dateCell({date: book.updated})
                 }
                 if (this.user.id === book.owner.id) {
-                    this.subdirs[subdir].ownedIds.push(book.id)
-                    this.subdirs[subdir].row[8] = deleteFolderCell({subdir, ids: this.subdirs[subdir].ownedIds})
+                    subdirs[subdir].ownedIds.push(book.id)
+                    subdirs[subdir].row[8] = deleteFolderCell({subdir, ids: subdirs[subdir].ownedIds})
                 }
                 return false
             }
@@ -265,7 +264,7 @@ export class BookOverview {
                 '',
                 ownedIds.length ? deleteFolderCell({subdir, ids: ownedIds}) : ''
             ]
-            this.subdirs[subdir] = {row, added: book.added, updated: book.updated, ownedIds}
+            subdirs[subdir] = {row, added: book.added, updated: book.updated, ownedIds}
             return row
         }
 
@@ -291,27 +290,6 @@ export class BookOverview {
                 ${this.user.id === book.owner.id ? '<i class="fas fa-trash-alt"></i>' : ''}
            </span>`
         ]
-    }
-
-    removeTableRows(ids) {
-        const existingRows = this.table.data.map((data, index) => {
-            const id = parseInt(data.cells[0].textContent)
-            if (ids.includes(id)) {
-                return index
-            } else {
-                return false
-            }
-        }).filter(rowIndex => rowIndex !== false)
-
-        if (existingRows.length) {
-            this.table.rows().remove(existingRows)
-        }
-    }
-
-    addBookToTable(book) {
-        this.table.insert({data: [this.createTableRow(book)]})
-        // Redo last sort
-        this.table.columns().sort(this.lastSort.column, this.lastSort.dir)
     }
 
     getBookListData() {

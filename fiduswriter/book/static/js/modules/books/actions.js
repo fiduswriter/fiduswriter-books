@@ -58,8 +58,8 @@ export class BookActions {
             }
         ).then(() => {
             addAlert('success', `${gettext('Book has been deleted')}: '${longFilePath(book.title, book.path)}'`)
-            this.bookOverview.removeTableRows([id])
             this.bookOverview.bookList = this.bookOverview.bookList.filter(book => book.id !== id)
+            this.bookOverview.initTable()
         })
 
     }
@@ -170,10 +170,7 @@ export class BookActions {
                     )
                 }
                 this.bookOverview.bookList.push(book)
-                if (oldBook) {
-                    this.bookOverview.removeTableRows([oldBook.id])
-                }
-                this.bookOverview.addBookToTable(book)
+                this.bookOverview.initTable()
                 this.onSave.forEach(method => method(book))
             }
         )
@@ -198,7 +195,7 @@ export class BookActions {
                 book.id = json['id']
                 book.path = json['path']
                 this.bookOverview.bookList.push(book)
-                this.bookOverview.addBookToTable(book)
+                this.bookOverview.initTable()
             }
         )
     }
