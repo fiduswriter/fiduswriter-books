@@ -167,7 +167,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # Go to book section
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located(
-                (By.CSS_SELECTOR, 'a[href="/book/"]')
+                (By.CSS_SELECTOR, 'a[href="/books/"]')
             )
         ).click()
         # Create a new book
