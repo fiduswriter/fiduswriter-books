@@ -17,10 +17,11 @@ import {
  */
 
 export class BookAccessRightsDialog {
-    constructor(bookIds, teamMembers, accessRights) {
+    constructor(bookIds, contacts, accessRights) {
         this.bookIds = bookIds
-        this.teamMembers = teamMembers
+        this.contacts = contacts
         this.accessRights = accessRights
+        console.log({bookIds, contacts, accessRights})//: JSON.parse(JSON.stringify(accessRights))})
     }
 
     init() {
@@ -29,19 +30,21 @@ export class BookAccessRightsDialog {
 
         this.accessRights.forEach(right => {
             if (this.bookIds.includes(right.book_id)) {
-                if (right.user_id in collabObject) {
-                    if (collabObject[right.user_id].rights !== right.rights) {
+                if (right.user.id in collabObject) {
+                    if (collabObject[right.user.id].rights !== right.rights) {
                         // different rights to different books, so we fall back to read
                         // rights
-                        collabObject[right.user_id].rights = 'read'
+                        collabObject[right.user.id].rights = 'read'
                     }
-                    collabObject[right.user_id].count += 1
+                    collabObject[right.user.id].count += 1
                 } else {
-                    collabObject[right.user_id] = right
-                    collabObject[right.user_id].count = 1
+                    collabObject[right.user.id] = JSON.parse(JSON.stringify(right))
+                    collabObject[right.user.id].count = 1
                 }
             }
         })
+
+
 
         const collaborators = Object.values(collabObject).filter(
             collab => collab.count === this.bookIds.length
@@ -83,7 +86,7 @@ export class BookAccessRightsDialog {
             id: 'access-rights-dialog',
             title: gettext('Share your book with others'),
             body: bookAccessRightOverviewTemplate({
-                contacts: this.teamMembers,
+                contacts: this.contacts,
                 collaborators
             }),
             buttons
@@ -91,21 +94,23 @@ export class BookAccessRightsDialog {
         this.dialog.open()
 
         this.dialog.dialogEl.querySelector('#add-share-member').addEventListener('click', () => {
-            const collaborators = []
+            const selectData = []
             document.querySelectorAll('#my-contacts .fw-checkable.checked').forEach(el => {
-                const memberId = el.dataset.id
+                const memberId = parseInt(el.dataset.id)
+
                 const collaboratorEl = document.getElementById(`collaborator-${memberId}`)
-                if (!collaboratorEl) {
-                    collaborators.push({
-                        user_id: memberId,
-                        user_name: el.dataset.name,
-                        avatar: el.dataset.avatar,
+                if (collaboratorEl) {
+                    if (collaboratorEl.dataset.right === 'delete') {
+                        collaboratorEl.classList.remove('delete')
+                        collaboratorEl.classList.add('read')
+                        collaboratorEl.dataset.right = 'read'
+                    }
+                } else {
+                    const collaborator = this.contacts.find(contact => contact.id === memberId)
+                    selectData.push({
+                        user: collaborator,
                         rights: 'read'
                     })
-                } else if ('delete' === collaboratorEl.dataset.right) {
-                    collaboratorEl.classList.remove('delete')
-                    collaboratorEl.classList.add('read')
-                    collaboratorEl.dataset.right = 'read'
                 }
             })
 
@@ -113,7 +118,7 @@ export class BookAccessRightsDialog {
             document.querySelector('#share-member table tbody').insertAdjacentHTML(
                 'beforeend',
                 bookCollaboratorsTemplate({
-                    collaborators
+                    'collaborators': selectData
                 })
             )
 

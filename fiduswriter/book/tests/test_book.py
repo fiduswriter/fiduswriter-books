@@ -205,15 +205,15 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            '#book-document-list > tr'
+            '#book-document-list .file .file-name'
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            '#book-document-list > tr:nth-child(2)'
+            '#book-document-list .file:nth-child(2) .file-name'
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            '#book-document-list > tr:nth-child(3)'
+            '#book-document-list .file:nth-child(3) .file-name'
         ).click()
         self.driver.find_element(
             By.ID,
@@ -345,6 +345,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR,
             'a[href="#optionTab1"]'
         ).click()
+        time.sleep(1000)
         self.assertEqual(
             self.driver.find_element_by_css_selector(
                 '.fw-ar-container:nth-child(3) tr .fw-inline'

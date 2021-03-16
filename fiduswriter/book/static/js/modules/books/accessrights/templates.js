@@ -1,13 +1,14 @@
 import {escapeText} from "../../common"
 
 /** A template for the book collaboration pane */
-export const bookCollaboratorsTemplate = ({collaborators}) =>
-    collaborators.map(collaborator =>
+export const bookCollaboratorsTemplate = ({collaborators}) => {
+    console.log({collaborators})
+    return collaborators.map(collaborator =>
         `<tr id="collaborator-${collaborator.user.id}" data-id="${collaborator.user.id}"
         class="collaborator-tr" data-right="${collaborator.rights}">
             <td width="212">
-                <span>${collaborator.avatar.html}</span>
-                <span class="fw-inline">${escapeText(collaborator.name)}</span>
+                <span>${collaborator.user.avatar.html}</span>
+                <span class="fw-inline">${escapeText(collaborator.user.name)}</span>
             </td>
             <td width="50" align="center">
                 <div class="fw-inline edit-right-wrapper">
@@ -22,6 +23,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
             </td>
         </tr>`
     ).join('')
+}
 
 /** A template for the book access rights overview */
 export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>

@@ -69,11 +69,12 @@ def list(request):
             access_right = 'write'
             path = book.path
         else:
-            access_right = BookAccessRight.objects.get(
+            access_right_object = BookAccessRight.objects.get(
                 user=request.user,
                 book=book
-            ).rights
-            path = access_right.path
+            )
+            access_right = access_right_object.rights
+            path = access_right_object.path
         added = time.mktime(book.added.utctimetuple())
         updated = time.mktime(book.updated.utctimetuple())
         is_owner = False
