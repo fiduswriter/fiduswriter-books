@@ -74,11 +74,11 @@ export class BookActions {
                 text: gettext('Delete'),
                 classes: "fw-dark",
                 click: () => {
-                  Promise.all(ids.map(id => this.deleteBook(id))).then(
-                          () => {
-                              dialog.close()
-                              this.bookOverview.initTable()
-                          }
+                    Promise.all(ids.map(id => this.deleteBook(id))).then(
+                        () => {
+                            dialog.close()
+                            this.bookOverview.initTable()
+                        }
                     )
                 }
             },
@@ -93,9 +93,9 @@ export class BookActions {
             icon: 'exclamation-triangle',
             height: Math.min(50 + 15 * ids.length, 500),
             body: `<p>${
-              ids.length > 1 ?
-              gettext('Do you really want to delete the following books?') :
-              gettext('Do you really want to delete the following book?')
+                ids.length > 1 ?
+                    gettext('Do you really want to delete the following books?') :
+                    gettext('Do you really want to delete the following book?')
             }</p>
             <p>
                 ${bookPaths.join('<br>')}

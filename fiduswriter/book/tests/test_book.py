@@ -1,6 +1,7 @@
 import time
 import os
 from tempfile import mkdtemp
+from urllib.parse import urlparse
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -545,4 +546,192 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
                 '.book-title'
             )),
             1
+        )
+
+    def test_path(self):
+        self.login_user(self.user, self.driver, self.client)
+        self.driver.get(self.base_url + "/books/")
+        # Create a new book
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.CSS_SELECTOR,
+                    'button[title="Create new book"]'
+                )
+            )
+        ).click()
+        self.driver.find_element_by_css_selector(
+            '#book-title'
+        ).click()
+        self.driver.find_element_by_css_selector(
+            '#book-title'
+        ).send_keys('Book 1')
+        self.driver.find_element_by_xpath(
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        ).click()
+        time.sleep(1)
+        self.assertEqual(
+            len(self.driver.find_elements_by_css_selector(
+                '.fw-contents tbody tr .fw-data-table-title'
+            )),
+            1
+        )
+        # Create new folder 'Releases' and enter
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'button[title="Create new folder"]'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#new-folder-name'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#new-folder-name'
+        ).send_keys('Releases')
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'button.fw-dark'
+        ).click()
+        time.sleep(1)
+        trs = self.driver.find_elements_by_css_selector(
+            '.fw-contents tbody tr .fw-data-table-title'
+        )
+        self.assertEqual(
+            len(trs),
+            1
+        )
+        self.assertEqual(
+            trs[0].text,
+            '..'
+        )
+        self.assertEqual(
+            urlparse(self.driver.current_url).path,
+            '/books/Releases/'
+        )
+        self.assertEqual(
+            self.driver.find_element(
+                By.CSS_SELECTOR,
+                ".fw-contents h1"
+            ).text,
+            "/Releases/"
+        )
+        # Create second book inside of Releases folder
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.CSS_SELECTOR,
+                    'button[title="Create new book"]'
+                )
+            )
+        ).click()
+        self.driver.find_element_by_css_selector(
+            '#book-title'
+        ).click()
+        self.driver.find_element_by_css_selector(
+            '#book-title'
+        ).send_keys('Book 2')
+        self.driver.find_element_by_xpath(
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        ).click()
+        time.sleep(1)
+        trs = self.driver.find_elements_by_css_selector(
+            '.fw-contents tbody tr .fw-data-table-title'
+        )
+        self.assertEqual(
+            len(trs),
+            2
+        )
+        self.assertEqual(
+            trs[0].text,
+            '..'
+        )
+        self.assertEqual(
+            trs[1].text,
+            'Book 2'
+        )
+        # Go to top folder
+        trs[0].click()
+        time.sleep(1)
+        trs = self.driver.find_elements_by_css_selector(
+            '.fw-contents tbody tr .fw-data-table-title'
+        )
+        self.assertEqual(
+            len(trs),
+            2
+        )
+        self.assertEqual(
+            trs[0].text,
+            'Releases'
+        )
+        self.assertEqual(
+            trs[1].text,
+            'Book 1'
+        )
+        # Move Book 1 into Releases folder.
+        self.driver.find_element_by_css_selector(
+            'tr:nth-child(2) > td > label'
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, '.dt-bulk-dropdown'))
+        ).click()
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Move selected"]'
+        ).click()
+        time.sleep(1)
+        self.assertEqual(
+            self.driver.find_element(
+                By.CSS_SELECTOR,
+                'input[placeholder="Insert path"]'
+            ).get_attribute('value'),
+            "/Book 1"
+        )
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#move-dialog .folder-content .folder-name"
+        ).click()
+        time.sleep(1)
+        self.assertEqual(
+            self.driver.find_element(
+                By.CSS_SELECTOR,
+                'input[placeholder="Insert path"]'
+            ).get_attribute('value'),
+            "/Releases/Book 1"
+        )
+        self.driver.find_element_by_xpath(
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        ).click()
+        time.sleep(1)
+        trs = self.driver.find_elements_by_css_selector(
+            '.fw-contents tbody tr .fw-data-table-title'
+        )
+        self.assertEqual(
+            len(trs),
+            1
+        )
+        self.assertEqual(
+            trs[0].text,
+            'Releases'
+        )
+        trs[0].click()
+        time.sleep(1)
+        trs = self.driver.find_elements_by_css_selector(
+            '.fw-contents tbody tr .fw-data-table-title'
+        )
+        time.sleep(1)
+        self.assertEqual(
+            len(trs),
+            3
+        )
+        self.assertEqual(
+            trs[0].text,
+            '..'
+        )
+        self.assertEqual(
+            trs[1].text,
+            'Book 1'
+        )
+        self.assertEqual(
+            trs[2].text,
+            'Book 2'
         )

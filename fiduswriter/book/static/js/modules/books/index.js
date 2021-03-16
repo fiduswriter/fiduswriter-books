@@ -13,8 +13,8 @@ import {
     docSchema
 } from "../schema/document"
 import {
-  dateCell,
-  deleteFolderCell
+    dateCell,
+    deleteFolderCell
 } from "./templates"
 
 export class BookOverview {

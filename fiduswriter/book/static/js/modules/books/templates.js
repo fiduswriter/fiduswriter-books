@@ -334,8 +334,8 @@ export const bookChapterListTemplate = ({book, documentList}) => {
                 ${doc ? '' : 'class="noaccess"'}
             >
                 <td width="222" data-id="${chapter.text}" class="fw-checkable-td" ${
-                    doc ? `title="${longFilePath(doc.title, doc.path)}"` : ''
-                }>
+    doc ? `title="${longFilePath(doc.title, doc.path)}"` : ''
+}>
                 <span class="fw-inline">
                     ${doc ? '' : '<i class="fas fa-minus-circle"></i>'}
                     ${
@@ -404,11 +404,11 @@ export const bookChapterDialogTemplate = ({chapter}) =>
        </tr>
        </table>`
 
- export const deleteFolderCell = ({subdir, ids}) =>
-     `<span class="delete-folder fw-link-text" data-ids="${ids.join(',')}"
+export const deleteFolderCell = ({subdir, ids}) =>
+    `<span class="delete-folder fw-link-text" data-ids="${ids.join(',')}"
          data-title="${escapeText(subdir)}">
          '<i class="fa fa-trash-alt"></i>
  </span>`
 
- export const dateCell = ({date}) =>
-     `<span class="date">${localizeDate(date * 1000, 'sortable-date')}</span>`
+export const dateCell = ({date}) =>
+    `<span class="date">${localizeDate(date * 1000, 'sortable-date')}</span>`
