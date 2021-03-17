@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 class Book(models.Model):
     title = models.CharField(max_length=128)
+    path = models.TextField(default='', blank=True)
     metadata = models.TextField(default='{}')
     settings = models.TextField(default='{}')
     cover_image = models.ForeignKey(
@@ -49,6 +50,7 @@ RIGHTS_CHOICES = (
 
 
 class BookAccessRight(models.Model):
+    path = models.TextField(default='', blank=True)
     book = models.ForeignKey(
         Book,
         on_delete=models.deletion.CASCADE

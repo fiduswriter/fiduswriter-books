@@ -3,7 +3,9 @@ import {HTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
-import {addAlert} from "../common"
+import {addAlert, FileDialog, NewFolderDialog} from "../common"
+
+let currentlySearching = false
 
 export const menuModel = () => ({
     content: [
@@ -14,13 +16,72 @@ export const menuModel = () => ({
                 overview.getImageDB().then(() => {
                     overview.mod.actions.createBookDialog(0, overview.imageDB)
                 })
-            }
+            },
+            order: 1
+        },
+        {
+            type: 'text',
+            title: gettext('Create new folder'),
+            action: overview => {
+                const dialog = new NewFolderDialog(folderName => {
+                    overview.path = overview.path + folderName + '/'
+                    window.history.pushState({}, "", '/books' + overview.path)
+                    overview.initTable()
+                })
+                dialog.open()
+            },
+            order: 2
+        },
+        {
+            type: 'search',
+            icon: 'search',
+            title: gettext('Search books'),
+            input: (overview, text) => {
+                if (text.length && !currentlySearching) {
+                    overview.initTable(true)
+                    currentlySearching = true
+                    overview.table.on(
+                        'datatable.init',
+                        () => overview.table.search(text)
+                    )
+                } else if (!text.length && currentlySearching) {
+                    overview.initTable(false)
+                    currentlySearching = false
+                } else if (text.length) {
+                    overview.table.search(text)
+                }
+
+            },
+            order: 3
         }
     ]
 })
 
 export const bulkMenuModel = () => ({
     content: [
+        {
+            title: gettext('Move selected'),
+            tooltip: gettext('Move the books that have been selected.'),
+            action: overview => {
+                const ids = overview.getSelected()
+                const books = ids.map(id => overview.bookList.find(book => book.id === id))
+                if (books.length) {
+                    const dialog = new FileDialog({
+                        title: books.length > 1 ? gettext('Move books') : gettext('Move book'),
+                        movingFiles: books,
+                        allFiles: overview.bookList,
+                        moveUrl: '/api/book/move/',
+                        successMessage: gettext('Book has been moved'),
+                        errorMessage: gettext('Could not move book'),
+                        succcessCallback: (file, path) => {
+                            file.path = path
+                            overview.initTable()
+                        }
+                    })
+                    dialog.init()
+                }
+            }
+        },
         {
             title: gettext('Delete selected'),
             tooltip: gettext('Delete selected books.'),

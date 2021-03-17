@@ -20,8 +20,7 @@ from document.models import AccessRight
 from document.views import documents_list
 from usermedia.models import UserImage
 
-from avatar.utils import get_primary_avatar, get_default_avatar_url
-from avatar.templatetags.avatar_tags import avatar_url
+from user.util import get_user_avatar_url
 
 from django.core.serializers.python import Serializer
 
@@ -41,17 +40,14 @@ serializer = SimpleSerializer()
 def get_accessrights(ars):
     ret = []
     for ar in ars:
-        the_avatar = get_primary_avatar(ar.user, 80)
-        if the_avatar:
-            the_avatar = the_avatar.avatar_url(80)
-        else:
-            the_avatar = get_default_avatar_url()
         ret.append({
             'book_id': ar.book.id,
-            'user_id': ar.user.id,
-            'user_name': ar.user.readable_name,
+            'user': {
+                'id': ar.user.id,
+                'name': ar.user.readable_name,
+                'avatar': get_user_avatar_url(ar.user),
+            },
             'rights': ar.rights,
-            'avatar': the_avatar
         })
     return ret
 
@@ -71,11 +67,14 @@ def list(request):
     for book in books:
         if book.owner == request.user:
             access_right = 'write'
+            path = book.path
         else:
-            access_right = BookAccessRight.objects.get(
+            access_right_object = BookAccessRight.objects.get(
                 user=request.user,
                 book=book
-            ).rights
+            )
+            access_right = access_right_object.rights
+            path = access_right_object.path
         added = time.mktime(book.added.utctimetuple())
         updated = time.mktime(book.updated.utctimetuple())
         is_owner = False
@@ -93,10 +92,13 @@ def list(request):
         book_data = {
             'id': book.id,
             'title': book.title,
+            'path': path,
             'is_owner': is_owner,
-            'owner': book.owner.id,
-            'owner_name': book.owner.readable_name,
-            'owner_avatar': avatar_url(book.owner, 80),
+            'owner': {
+                'id': book.owner.id,
+                'name': book.owner.readable_name,
+                'avatar': get_user_avatar_url(book.owner)
+            },
             'added': added,
             'updated': updated,
             'rights': access_right,
@@ -124,11 +126,11 @@ def list(request):
         response['books'].append(book_data)
     response['team_members'] = []
     for team_member in request.user.leader.all():
-        tm_object = {}
-        tm_object['id'] = team_member.member.id
-        tm_object['name'] = team_member.member.readable_name
-        tm_object['avatar'] = avatar_url(team_member.member, 80)
-        response['team_members'].append(tm_object)
+        response['team_members'].append({
+            'id': team_member.member.id,
+            'name': team_member.member.readable_name,
+            'avatar': get_user_avatar_url(team_member.member),
+        })
     response['access_rights'] = get_accessrights(
         BookAccessRight.objects.filter(book__owner=request.user))
     serializer = PythonWithURLSerializer()
@@ -181,7 +183,7 @@ def set_chapters(book, chapters, user):
 @ajax_required
 def copy(request):
     # Copy a book
-    book_id = request.POST['book_id']
+    book_id = request.POST['id']
     book = Book.objects.get(id=book_id)
     if (
         book.owner != request.user and not
@@ -190,17 +192,32 @@ def copy(request):
         ).exists()
     ):
         return JsonResponse({}, status=405)
+    path = request.POST['path']
+    if len(path):
+        counter = 0
+        base_path = path
+        while (
+            Book.objects.filter(owner=request.user, path=path).first() or
+            BookAccessRight.objects.filter(
+                user=request.user,
+                path=path
+            ).first()
+        ):
+            counter += 1
+            path = base_path + ' ' + str(counter)
     response = {}
     status = 201
     book.id = None
     book.owner = request.user
+    book.path = path
     book.save()
     # Copy chapters
     for chapter in Chapter.objects.filter(book_id=book_id):
         chapter.id = None
         chapter.book_id = book.id
         chapter.save()
-    response['new_book_id'] = book.id
+    response['id'] = book.id
+    response['path'] = book.path
     return JsonResponse(
         response,
         status=status
@@ -221,18 +238,24 @@ def save(request):
         # ID.
         book = Book()
         book.owner = request.user
+        book.path = book_obj['path']
         has_book_write_access = True
     else:
         book = Book.objects.get(id=book_obj['id'])
-        if (
-            book.owner == request.user or
-            book.bookaccessright_set.filter(
-                user=request.user,
-                rights='write'
-            ).exists()
-        ):
+        if book.owner == request.user:
             has_book_write_access = True
             book.updated = timezone.now()
+            book.path = book_obj['path']
+        else:
+            access_right = book.bookaccessright_set.filter(
+                user=request.user,
+                rights='write'
+            ).first()
+            if access_right:
+                has_book_write_access = True
+                book.updated = timezone.now()
+                access_right.path = book_obj['path']
+                access_right.save()
     has_coverimage_access = False
     if 'cover_image' not in book_obj:
         book.cover_image = None
@@ -282,6 +305,38 @@ def delete(request):
         if image and image.is_deletable():
             image.delete()
         status = 200
+    return JsonResponse(
+        response,
+        status=status
+    )
+
+
+@login_required
+@ajax_required
+@require_POST
+def move(request):
+    response = {}
+    status = 200
+    book_id = int(request.POST['id'])
+    path = request.POST['path']
+    book = Book.objects.filter(pk=book_id).first()
+    if not book:
+        response['done'] = False
+    elif book.owner == request.user:
+        book.path = path
+        book.save(update_fields=['path', ])
+        response['done'] = True
+    else:
+        access_right = BookAccessRight.objects.filter(
+            book=book,
+            user=request.user
+        ).first()
+        if not access_right:
+            response['done'] = False
+        else:
+            access_right.path = path
+            access_right.save()
+            response['done'] = True
     return JsonResponse(
         response,
         status=status
