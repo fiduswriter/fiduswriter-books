@@ -44,8 +44,6 @@ export class BookAccessRightsDialog {
             }
         })
 
-
-
         const collaborators = Object.values(collabObject).filter(
             collab => collab.count === this.bookIds.length
         )
