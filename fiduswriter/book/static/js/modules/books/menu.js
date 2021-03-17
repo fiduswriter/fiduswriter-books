@@ -246,20 +246,6 @@ export const bulkMenuModel = () => ({
     ]
 })
 
-{
-    content: [
-        {
-            type: 'action',
-            title: gettext('Epub'),
-            tooltip: gettext("Export as epub"),
-            action: () => {
-            }
-        }
-    ]
-}
-
-
-
 export const exportMenuModel = () => ({
     content: [
         {
