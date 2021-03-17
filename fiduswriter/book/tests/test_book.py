@@ -293,6 +293,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         # Check that access rights are listed
         self.driver.refresh()
+        time.sleep(1)
         self.driver.find_element(
             By.CSS_SELECTOR,
             '.icon-access-right.icon-access-write'
@@ -383,6 +384,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             'My book EXTRA'
         )
         self.driver.refresh()
+        time.sleep(1)
         self.assertEqual(
             self.driver.find_element_by_css_selector(
                 '.book-title'
