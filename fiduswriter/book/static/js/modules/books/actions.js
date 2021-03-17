@@ -291,13 +291,16 @@ export class BookActions {
                 el.style.display = 'none'
             }
         })
-        const fileSelector = new FileSelector({
-            dom: dialog.dialogEl.querySelector('#book-document-list'),
-            files: this.bookOverview.documentList,
-            multiSelect: true,
-            selectFolders: false,
-        })
-        fileSelector.init()
+        let fileSelector
+        if (book.rights === 'write') {
+            fileSelector = new FileSelector({
+                dom: dialog.dialogEl.querySelector('#book-document-list'),
+                files: this.bookOverview.documentList,
+                multiSelect: true,
+                selectFolders: false,
+            })
+            fileSelector.init()
+        }
 
         // Handle tab link clicking
         dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-link a').forEach(el => el.addEventListener('click', event => {

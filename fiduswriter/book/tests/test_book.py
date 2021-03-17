@@ -312,7 +312,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element_by_xpath(
             '//*[contains(@class, "ui-button") and normalize-space()="Close"]'
         ).click()
-        # Login as user 2 and check that write access are there and usable
+        # Login as user 2 and check that write access is there and usable
         self.login_user(self.user2, self.driver, self.client)
         self.driver.refresh()
         self.assertEqual(
@@ -345,12 +345,11 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR,
             'a[href="#optionTab1"]'
         ).click()
-        time.sleep(1000)
         self.assertEqual(
             self.driver.find_element_by_css_selector(
                 '.fw-ar-container:nth-child(3) tr .fw-inline'
             ).text,
-            '1 Chapter 3'
+            '1 Chapter 1'
         )
         self.assertEqual(
             self.driver.find_element_by_css_selector(
@@ -362,7 +361,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             self.driver.find_element_by_css_selector(
                 '.fw-ar-container:nth-child(3) tr:nth-child(3) .fw-inline'
             ).text,
-            '3 Chapter 1'
+            '3 Chapter 3'
         )
         self.driver.find_element_by_css_selector(
             '.fw-ar-container:nth-child(3) tr .book-sort-down'
@@ -424,7 +423,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             self.driver.find_element_by_css_selector(
                 '.fw-ar-container tr .fw-inline'
             ).text,
-            '1 Chapter 1'
+            '1 Chapter 3'
         )
         self.assertEqual(
             self.driver.find_element_by_css_selector(
@@ -436,7 +435,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             self.driver.find_element_by_css_selector(
                 '.fw-ar-container tr:nth-child(3) .fw-inline'
             ).text,
-            '3 Chapter 3'
+            '3 Chapter 1'
         )
         self.driver.find_element_by_xpath(
             '//*[contains(@class, "ui-button") and normalize-space()="Close"]'
@@ -525,7 +524,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             self.driver.find_elements_by_css_selector(
                 '.book-title'
             )[1].text,
-            'My book EXTRA'
+            'Copy of My book EXTRA'
         )
         # Delete the second book
         self.driver.find_element_by_css_selector(
