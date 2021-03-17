@@ -3,8 +3,9 @@ import {bookDialogTemplate, bookBasicInfoTemplate, bookDialogChaptersTemplate, b
     bookChapterListTemplate, bookChapterDialogTemplate,
     bookEpubDataCoverTemplate
 } from "./templates"
+import {exportMenuModel} from "./menu"
 import {ImageSelectionDialog} from "../images/selection_dialog"
-import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath, escapeText} from "../common"
+import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath, escapeText, ContentMenu} from "../common"
 
 
 export class BookActions {
@@ -12,6 +13,7 @@ export class BookActions {
     constructor(bookOverview) {
         bookOverview.mod.actions = this
         this.bookOverview = bookOverview
+        this.exportMenu = exportMenuModel()
         this.onSave = []
         this.dialogParts = [
             {
@@ -253,20 +255,42 @@ export class BookActions {
             }
         })
 
+        const saveBook = book.rights === 'write' ? () => {
+            book.title = document.getElementById('book-title').value
+            book.metadata.author = document.getElementById('book-metadata-author').value
+            book.metadata.subtitle = document.getElementById('book-metadata-subtitle').value
+            book.metadata.copyright = document.getElementById('book-metadata-copyright').value
+            book.metadata.publisher = document.getElementById('book-metadata-publisher').value
+            book.metadata.keywords = document.getElementById('book-metadata-keywords').value
+            book.path = oldBook?.path || this.bookOverview.path
+            return this.saveBook(book, oldBook)
+        } : () => {}
+
         const buttons = []
+        buttons.push({
+            text: gettext('Export'),
+            dropdown: true,
+            classes: "fw-dark",
+            click: event => {
+                const contentMenu = new ContentMenu({
+                    page: {
+                        saveBook,
+                        book,
+                        overview: this.bookOverview
+                    },
+                    menu: this.exportMenu,
+                    menuPos: {X: event.pageX, Y: event.pageY},
+                    width: 200
+                })
+                return contentMenu.open()
+            }
+        })
         if (book.rights === 'write') {
             buttons.push({
                 text: gettext('Submit'),
                 classes: "fw-dark",
                 click: () => {
-                    book.title = document.getElementById('book-title').value
-                    book.metadata.author = document.getElementById('book-metadata-author').value
-                    book.metadata.subtitle = document.getElementById('book-metadata-subtitle').value
-                    book.metadata.copyright = document.getElementById('book-metadata-copyright').value
-                    book.metadata.publisher = document.getElementById('book-metadata-publisher').value
-                    book.metadata.keywords = document.getElementById('book-metadata-keywords').value
-                    book.path = oldBook?.path || this.bookOverview.path
-                    return this.saveBook(book, oldBook).then(
+                    return saveBook().then(
                         () => dialog.close()
                     )
                 }
