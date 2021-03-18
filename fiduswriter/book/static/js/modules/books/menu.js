@@ -253,9 +253,9 @@ export const exportMenuModel = () => ({
             title: gettext('Export as Epub'),
             tooltip: gettext('Export book as Epub.'),
             action: ({saveBook, book, overview}) => {
-              saveBook().then(
-                  () => exportEpub(book, overview)
-              )
+                saveBook().then(
+                    () => exportEpub(book, overview)
+                )
             }
         },
         {
