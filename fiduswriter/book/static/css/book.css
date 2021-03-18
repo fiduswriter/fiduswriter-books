@@ -40,6 +40,7 @@ b.part {
     background-color: var(--error-background-color);
 }
 
-#book-dialog .errorlist li, #book-dialog .warninglist li {
+#book-dialog .errorlist li,
+#book-dialog .warninglist li {
     padding: 6px;
 }
