@@ -35,7 +35,6 @@ export const bookSanityCheck = (book, documentList, schema) => {
                 warnings: [],
                 errors: []
             }
-            console.log({book, documentList, schema, messages})
             book.chapters.forEach(chapter => {
                 const doc = documentList.find(doc => doc.id === chapter.text)
                 if (!doc.rawContent) {
