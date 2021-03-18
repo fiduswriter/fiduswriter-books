@@ -30,3 +30,16 @@ b.part {
     background: transparent no-repeat center;
     background-size: contain;
 }
+
+
+#book-dialog .warninglist {
+    background-color: rgba(var(--warning-background-color));
+}
+
+#book-dialog .errorlist {
+    background-color: var(--error-background-color);
+}
+
+#book-dialog .errorlist li, #book-dialog .warninglist li {
+    padding: 6px;
+}

@@ -1,9 +1,10 @@
 import {bookDialogTemplate, bookBasicInfoTemplate, bookDialogChaptersTemplate, bookBibliographyDataTemplate,
     bookEpubDataTemplate, bookPrintDataTemplate,
     bookChapterListTemplate, bookChapterDialogTemplate,
-    bookEpubDataCoverTemplate
+    bookEpubDataCoverTemplate, bookSanityCheckTemplate
 } from "./templates"
 import {exportMenuModel} from "./menu"
+import {bookSanityCheck} from "./sanity_check"
 import {ImageSelectionDialog} from "../images/selection_dialog"
 import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath, escapeText, ContentMenu} from "../common"
 
@@ -40,6 +41,11 @@ export class BookActions {
                 title: gettext('Print/PDF'),
                 description: gettext('Print related settings'),
                 template: bookPrintDataTemplate
+            },
+            {
+                title: gettext('Sanity check'),
+                description: gettext('Perform sanity check on book'),
+                template: bookSanityCheckTemplate
             }
         ]
     }
@@ -144,9 +150,17 @@ export class BookActions {
         dialog.open()
     }
 
-
     saveBook(book, oldBook = false) {
-
+        if (book.rights !== 'write') {
+            return Promise.resolve()
+        }
+        book.title = document.getElementById('book-title').value
+        book.metadata.author = document.getElementById('book-metadata-author').value
+        book.metadata.subtitle = document.getElementById('book-metadata-subtitle').value
+        book.metadata.copyright = document.getElementById('book-metadata-copyright').value
+        book.metadata.publisher = document.getElementById('book-metadata-publisher').value
+        book.metadata.keywords = document.getElementById('book-metadata-keywords').value
+        book.path = oldBook?.path || this.bookOverview.path
         const bookData = Object.assign({}, book)
         delete bookData.cover_image_data
 
@@ -255,17 +269,6 @@ export class BookActions {
             }
         })
 
-        const saveBook = book.rights === 'write' ? () => {
-            book.title = document.getElementById('book-title').value
-            book.metadata.author = document.getElementById('book-metadata-author').value
-            book.metadata.subtitle = document.getElementById('book-metadata-subtitle').value
-            book.metadata.copyright = document.getElementById('book-metadata-copyright').value
-            book.metadata.publisher = document.getElementById('book-metadata-publisher').value
-            book.metadata.keywords = document.getElementById('book-metadata-keywords').value
-            book.path = oldBook?.path || this.bookOverview.path
-            return this.saveBook(book, oldBook)
-        } : () => {}
-
         const buttons = []
         buttons.push({
             text: gettext('Export'),
@@ -274,7 +277,7 @@ export class BookActions {
             click: event => {
                 const contentMenu = new ContentMenu({
                     page: {
-                        saveBook,
+                        saveBook: () => this.saveBook(book, oldBook),
                         book,
                         overview: this.bookOverview
                     },
@@ -290,7 +293,7 @@ export class BookActions {
                 text: gettext('Submit'),
                 classes: "fw-dark",
                 click: () => {
-                    return saveBook().then(
+                    return this.saveBook(book, oldBook).then(
                         () => dialog.close()
                     )
                 }
@@ -343,11 +346,7 @@ export class BookActions {
             })
 
         }))
-        this.bindBookDialog(dialog, book, fileSelector, imageDB, bookImageDB)
-    }
 
-
-    bindBookDialog(dialog, book, fileSelector, imageDB, bookImageDB) {
         dialog.dialogEl.addEventListener('click', event => {
             const el = {}
             let chapterId, chapter
@@ -468,6 +467,14 @@ export class BookActions {
                     imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
                 })
                 break
+            case findTarget(event, '#perform-sanity-check-button', el): {
+                this.saveBook(book, oldBook).then(
+                    () => bookSanityCheck(book, this.bookOverview.documentList, this.bookOverview.schema)
+                ).then(
+                    sanityCheckOutputHTML => document.getElementById('sanity-check-output').innerHTML = sanityCheckOutputHTML
+                )
+                break
+            }
             default:
                 break
             }

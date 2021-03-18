@@ -21,7 +21,6 @@ export class BookAccessRightsDialog {
         this.bookIds = bookIds
         this.contacts = contacts
         this.accessRights = accessRights
-        console.log({bookIds, contacts, accessRights})//: JSON.parse(JSON.stringify(accessRights))})
     }
 
     init() {

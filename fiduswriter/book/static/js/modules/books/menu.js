@@ -253,8 +253,9 @@ export const exportMenuModel = () => ({
             title: gettext('Export as Epub'),
             tooltip: gettext('Export book as Epub.'),
             action: ({saveBook, book, overview}) => {
-                saveBook()
-                exportEpub(book, overview)
+              saveBook().then(
+                  () => exportEpub(book, overview)
+              )
             }
         },
         {
@@ -262,8 +263,9 @@ export const exportMenuModel = () => ({
             title: gettext('Export as HTML'),
             tooltip: gettext('Export book as HTML.'),
             action: ({saveBook, book, overview}) => {
-                saveBook()
-                exportHTML(book, overview)
+                saveBook().then(
+                    () => exportHTML(book, overview)
+                )
             }
         },
         {
@@ -271,8 +273,9 @@ export const exportMenuModel = () => ({
             title: gettext('Export as LaTeX'),
             tooltip: gettext('Export book as LaTeX.'),
             action: ({saveBook, book, overview}) => {
-                saveBook()
-                exportLatex(book, overview)
+                saveBook().then(
+                    () => exportLatex(book, overview)
+                )
             }
         },
         {
@@ -280,8 +283,9 @@ export const exportMenuModel = () => ({
             title: gettext('Export to Print/PDF'),
             tooltip: gettext('Export book to the print dialog.'),
             action: ({saveBook, book, overview}) => {
-                saveBook()
-                exportPrint(book, overview)
+                saveBook().then(
+                    () => exportPrint(book, overview)
+                )
             }
         }
     ]
