@@ -80,20 +80,23 @@ export class PrintBookExporter extends HTMLBookExporter {
                 background-color: white;
         }
         .article-title, section[role=doc-footnotes] {
-            counter-reset: cat-0 cat-1 cat-2 footnote-counter footnote-marker-counter;
+            counter-reset: cat-figure cat-equation cat-photo cat-table footnote-counter footnote-marker-counter;
         }
         section[role=doc-footnote] > *:first-child:before {
             counter-increment: footnote-counter;
             content: counter(footnote-counter) ". ";
         }
         section[role=doc-footnote] .cat-figure::after {
-            content: ' ' counter(cat-0) 'A';
+            content: ' ' counter(cat-figure) 'A';
+        }
+        section[role=doc-footnote] .cat-equation::after {
+            content: ' ' counter(cat-equation) 'A';
         }
         section[role=doc-footnote] .cat-photo::after {
-            content: ' ' counter(cat-1) 'A';
+            content: ' ' counter(cat-photo) 'A';
         }
         section[role=doc-footnote] .cat-table::after {
-            content: ' ' counter(cat-2) 'A';
+            content: ' ' counter(cat-table) 'A';
         }
         section.fnlist {
             display: none;
