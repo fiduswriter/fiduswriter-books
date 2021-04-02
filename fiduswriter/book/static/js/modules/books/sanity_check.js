@@ -1,27 +1,28 @@
-import {escapeText} from "../common"
+import {longFilePath} from "../common"
 
 import {getMissingChapterData} from "./exporter/tools"
 
 
-const labelChapter = chapter => `(${gettext('Chapter')} ${chapter.number}, ${escapeText(chapter.title || '')})`
+const labelChapter = (chapter, doc) => `(${gettext('Chapter')} ${chapter.number}, ${longFilePath(doc.title, doc.path)})`
 
 function findContentIssues(node, chapter, doc, messages) {
+    console.log({chapter, doc})
     if (node.attrs?.track?.length) {
-        messages.warnings.push(`${gettext('Unresolved tracked changes')} ${labelChapter(chapter)}`)
+        messages.warnings.push(`${gettext('Unresolved tracked changes')} ${labelChapter(chapter, doc)}`)
     }
     if (node.marks) {
         node.marks.forEach(mark => {
             if (mark.type == 'link' && mark.attrs.href.charAt(0) === '#' && !mark.attrs.title) {
-                messages.warnings.push(`${gettext('Internal links without target')} ${labelChapter(chapter)}`)
+                messages.warnings.push(`${gettext('Internal links without target')} ${labelChapter(chapter, doc)}`)
             } else if (mark.type == 'comment' && doc.comments[parseInt(mark.attrs.id)].resolved === false) {
-                messages.warnings.push(`${gettext('Unresolved comments')} ${labelChapter(chapter)}`)
+                messages.warnings.push(`${gettext('Unresolved comments')} ${labelChapter(chapter, doc)}`)
             } else if (mark.type === 'deletion' || (mark.type === 'insertion' && mark.attrs.approved === false)) {
-                messages.warnings.push(`${gettext('Unresolved tracked changes')} ${labelChapter(chapter)}`)
+                messages.warnings.push(`${gettext('Unresolved tracked changes')} ${labelChapter(chapter, doc)}`)
             }
         })
     }
     if (node.type === 'cross_reference' && !node.attrs.title) {
-        messages.warnings.push(`${gettext('Cross references without targets')} ${labelChapter(chapter)}`)
+        messages.warnings.push(`${gettext('Cross references without targets')} ${labelChapter(chapter, doc)}`)
     }
 
     if (node.content) {
@@ -47,11 +48,11 @@ export const bookSanityCheck = (book, documentList, schema) => {
             book.chapters.forEach(chapter => {
                 const doc = documentList.find(doc => doc.id === chapter.text)
                 if (!doc || !doc.rawContent) {
-                    messages.errors.push(`${gettext('No access')} ${labelChapter(chapter)}`)
+                    messages.errors.push(`${gettext('No access')} ${labelChapter(chapter, doc)}`)
                     return
                 }
                 if (!doc.title || !doc.title.length) {
-                    messages.warnings.push(`${gettext('No chapter title')} ${labelChapter(chapter)}`)
+                    messages.warnings.push(`${gettext('No chapter title')} ${labelChapter(chapter, doc)}`)
                 }
                 findContentIssues(doc.rawContent, chapter, doc, messages)
             })

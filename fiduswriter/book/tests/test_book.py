@@ -4,8 +4,10 @@ from tempfile import mkdtemp
 from urllib.parse import urlparse
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 from testing.testcases import LiveTornadoTestCase
 from testing.selenium_helper import SeleniumHelper
 
@@ -736,4 +738,338 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.assertEqual(
             trs[2].text,
             'Book 2'
+        )
+
+    def test_sanity_check(self):
+        self.login_user(self.user, self.driver, self.client)
+        self.driver.get(self.base_url + "/")
+        # Create chapter one doc - with a leftover track change and comment
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.CSS_SELECTOR,
+                    ".new_document button"
+                )
+            )
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located((By.CLASS_NAME, 'editor-toolbar'))
+        )
+        self.driver.find_element(By.CSS_SELECTOR, ".article-title").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-title").send_keys(
+            "Chapter 1"
+        )
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+            "Some content"
+        )
+        # Add a comment
+        ActionChains(self.driver).key_down(
+            Keys.SHIFT
+        ).send_keys(
+            Keys.LEFT
+        ).send_keys(
+            Keys.LEFT
+        ).send_keys(
+            Keys.LEFT
+        ).send_keys(
+            Keys.LEFT
+        ).key_up(
+            Keys.SHIFT
+        ).perform()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "button .fa-comment"
+        ).click()
+        ActionChains(self.driver).send_keys(
+            'This needs to be reviewed!'
+        ).perform()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".comment-btns .submit"
+        ).click()
+        time.sleep(1)
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".header-menu:nth-child(5) > .header-nav-item"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "li:nth-child(1) > .fw-pulldown-item"
+        ).click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+            "\nTracked content"
+        )
+        time.sleep(1)
+        self.driver.find_element(
+            By.ID,
+            "close-document-top"
+        ).click()
+        # Create chapter two doc - with an internal link and reference with
+        # a missing target.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.CSS_SELECTOR,
+                    ".new_document button"
+                )
+            )
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located((By.CLASS_NAME, 'editor-toolbar'))
+        )
+        self.driver.find_element(By.CSS_SELECTOR, ".article-title").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-title").send_keys(
+            "Chapter 2"
+        )
+        # We enable the abstract
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#header-navigation > div:nth-child(3) > span"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            (
+                "#header-navigation > div:nth-child(3) > div "
+                "> ul > li:nth-child(1) > span"
+            )
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            (
+                "#header-navigation > div:nth-child(3) > div "
+                "> ul > li:nth-child(1) > div > ul > li:nth-child(3) > span"
+            )
+        ).click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
+        ActionChains(self.driver).send_keys(
+            Keys.LEFT
+        ).send_keys(
+            "An abstract title"
+        ).perform()
+        time.sleep(1)
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#toolbar > div > div > div:nth-child(3) > div"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            (
+                "#toolbar > div > div > div:nth-child(3) > div > div > "
+                "ul > li:nth-child(4) > span > label"
+            )
+        ).click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+            "Some content\n"
+        )
+        # We add a cross reference for the heading
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#toolbar > div > div > div:nth-child(9) > button > span > i"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#edit-link > div:nth-child(2) > select"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#edit-link > div:nth-child(2) > select > option:nth-child(2)"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            (
+                "body > div.ui-dialog.ui-corner-all.ui-widget."
+                "ui-widget-content.ui-front.ui-dialog-buttons > "
+                "div.ui-dialog-buttonpane.ui-widget-content."
+                "ui-helper-clearfix > div > button.fw-dark."
+                "fw-button.ui-button.ui-corner-all.ui-widget"
+            )
+        ).click()
+        cross_reference = self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".article-body .cross-reference"
+        )
+        assert cross_reference.text == 'An abstract title'
+        # We add an internal link
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#toolbar > div > div > div:nth-child(9) > button > span > i"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#edit-link > div:nth-child(5) > select"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            "#edit-link > div:nth-child(5) > select > option:nth-child(2)"
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            (
+                "body > div.ui-dialog.ui-corner-all.ui-widget."
+                "ui-widget-content.ui-front.ui-dialog-buttons > "
+                "div.ui-dialog-buttonpane.ui-widget-content."
+                "ui-helper-clearfix > div > button.fw-dark."
+                "fw-button.ui-button.ui-corner-all.ui-widget"
+            )
+        ).click()
+        internal_link = self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".article-body a"
+        )
+        assert internal_link.text == 'An abstract title'
+        # We delete the contents from the heading
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".article-abstract h3"
+        ).click()
+        ActionChains(self.driver).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
+            Keys.BACKSPACE
+        ).perform()
+        cross_reference = self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".article-body .cross-reference.missing-target"
+        )
+        assert cross_reference.text == 'MISSING TARGET'
+        internal_link = self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".article-body a.missing-target"
+        )
+        assert internal_link.get_attribute("title") == 'Missing target'
+        self.assertEqual(
+            len(self.driver.find_elements_by_css_selector(
+                '.margin-box.warning'
+            )),
+            2
+        )
+        time.sleep(1)
+        self.driver.find_element(
+            By.ID,
+            "close-document-top"
+        ).click()
+        # Create chapter three doc - without a title
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.CSS_SELECTOR,
+                    ".new_document button"
+                )
+            )
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located((By.CLASS_NAME, 'editor-toolbar'))
+        )
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+            "Chapter 3"
+        )
+        time.sleep(1)
+        self.driver.find_element(
+            By.ID,
+            "close-document-top"
+        ).click()
+        # Create a book with these three chapters and run the sanity check.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, 'a[href="/books/"]')
+            )
+        ).click()
+        # Create a new book
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'button[title="Create new book"]'
+        ).click()
+        self.driver.find_element(
+            By.ID,
+            'book-title'
+        ).send_keys('My book')
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'a[href="#optionTab1"]'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#book-document-list .file .file-name'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#book-document-list .file:nth-child(2) .file-name'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#book-document-list .file:nth-child(3) .file-name'
+        ).click()
+        self.driver.find_element(
+            By.ID,
+            'add-chapter'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            'a[href="#optionTab5"]'
+        ).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            '#perform-sanity-check-button'
+        ).click()
+        warnings = self.driver.find_elements(
+            By.CSS_SELECTOR,
+            '#sanity-check-output li'
+        )
+        self.assertEqual(
+            len(warnings),
+            5
+        )
+        self.assertEqual(
+            warnings[0].text,
+            'Unresolved comments (Chapter 1, /Chapter 1)'
+        )
+        self.assertEqual(
+            warnings[1].text,
+            'Unresolved tracked changes (Chapter 1, /Chapter 1)'
+        )
+        self.assertEqual(
+            warnings[2].text,
+            'Cross references without targets (Chapter 2, /Chapter 2)'
+        )
+        self.assertEqual(
+            warnings[3].text,
+            'Internal links without target (Chapter 2, /Chapter 2)'
+        )
+        self.assertEqual(
+            warnings[4].text,
+            'No chapter title (Chapter 3, /Untitled)'
         )
