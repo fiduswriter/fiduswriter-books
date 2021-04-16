@@ -14,7 +14,7 @@ export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents
     ).join('')
 }
     </head>
-    <body${currentPart && currentPart.length ? ` class="${currentPart.toLowerCase().replace(/[^a-z]/g, '')}"` : ''}>
+    <body class="book-chapter${currentPart && currentPart.length ? ` ${currentPart.toLowerCase().replace(/[^a-z]/g, '')}` : ''}">
         ${
     part && part.length ?
         `<h1 class="part">${escapeText(part)}</h1>` :
@@ -50,14 +50,20 @@ const htmlBookIndexItemTemplate = ({item}) =>
     </li>`
 
 /** A template to create the book index. */
-export const htmlBookIndexTemplate = ({book, contentItems, language, creator}) =>
+export const htmlBookIndexTemplate = ({book, contentItems, language, creator, styleSheets}) =>
     `<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8"></meta>
         <title>${escapeText(book.title)}</title>
+        <link type="text/css" rel="stylesheet" href="css/document.css" />
+        ${
+    styleSheets.map(sheet =>
+        `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
+    ).join('')
+}
     </head>
-    <body>
+    <body class="book-index">
         <h1>${escapeText(book.title)}</h1>
         ${
     book.metadata.subtitle.length ?
@@ -69,13 +75,13 @@ export const htmlBookIndexTemplate = ({book, contentItems, language, creator}) =
         `<h3>${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
         ''
 }
-        <ol>
+        <nav role="doc-toc"><ol>
             ${
     contentItems.map(item =>
         htmlBookIndexItemTemplate({item})
     ).join('')
 }
-        </ol>
+        </ol></nav>
         ${
     book.metadata.publisher && book.metadata.publisher.length ?
         `<p>${gettext('Published by')}: ${escapeText(book.metadata.publisher)}</p>` :
