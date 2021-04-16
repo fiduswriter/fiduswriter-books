@@ -159,15 +159,6 @@ export class HTMLBookExporter extends DOMExporter {
                 currentPart = this.book.chapters[index].part
             }
 
-            contentItems.push({
-                link: `document-${this.book.chapters[index].number}.html`,
-                title,
-                docNum: this.book.chapters[index].number,
-                id: 0,
-                level: 0,
-                subItems: []
-            })
-
             // Make links to all H1-3 and create a TOC list of them
             contentItems.push(...setLinks(contents, this.book.chapters[index].number))
 
@@ -198,6 +189,7 @@ export class HTMLBookExporter extends DOMExporter {
                 contentItems,
                 book: this.book,
                 creator: this.user.name,
+                styleSheets: [{filename: bookStyle}],
                 // TODO: specify a book language rather than using the current users UI language
                 language: gettext('English')
             }), {ocd: true})
