@@ -2,7 +2,7 @@ from django.db import models
 
 from document.models import Document
 from usermedia.models import Image
-from django.contrib.auth.models import User
+from django.conf import settings as django_settings
 
 
 class Book(models.Model):
@@ -20,7 +20,7 @@ class Book(models.Model):
     chapters = models.ManyToManyField(
         Document, through='Chapter', blank=True, default=None)
     owner = models.ForeignKey(
-        User,
+        django_settings.AUTH_USER_MODEL,
         on_delete=models.deletion.CASCADE
     )
     added = models.DateTimeField(auto_now_add=True)
@@ -56,7 +56,7 @@ class BookAccessRight(models.Model):
         on_delete=models.deletion.CASCADE
     )
     user = models.ForeignKey(
-        User,
+        django_settings.AUTH_USER_MODEL,
         on_delete=models.deletion.CASCADE
     )
     rights = models.CharField(

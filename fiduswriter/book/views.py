@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.core.mail import send_mail
@@ -346,6 +346,7 @@ def move(request):
 def send_share_notification(request, book_id, collaborator_id, right):
     owner = request.user.readable_name
     book = Book.objects.get(id=book_id)
+    User = get_user_model()
     collaborator = User.objects.get(id=collaborator_id)
     collaborator_name = collaborator.readable_name
     collaborator_email = collaborator.email
@@ -379,6 +380,7 @@ def send_share_notification(request, book_id, collaborator_id, right):
 def send_share_upgrade_notification(request, book_id, collaborator_id):
     owner = request.user.readable_name
     book = Book.objects.get(id=book_id)
+    User = get_user_model()
     collaborator = User.objects.get(id=collaborator_id)
     collaborator_name = collaborator.readable_name
     collaborator_email = collaborator.email

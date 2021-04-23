@@ -205,7 +205,7 @@ export class EpubBookExporter extends DOMExporter {
 
                 return {
                     filename: `EPUB/document-${chapter.number}.xhtml`,
-                    content: pretty(xhtmlCode, {ocd: true})
+                    contents: pretty(xhtmlCode, {ocd: true})
                 }
             })
         )
