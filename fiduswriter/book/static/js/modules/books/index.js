@@ -30,7 +30,7 @@ export class BookOverview {
         this.bookList = []
         this.styles = false
         this.documentList = []
-        this.teamMembers = []
+        this.contacts = []
         this.accessRights = []
         this.citationStyles = []
         this.lastSort = {column: 0, dir: 'asc'}
@@ -327,7 +327,7 @@ export class BookOverview {
     initializeView(json) {
         this.bookList = this.unpackBooks(json.books)
         this.documentList = json.documents
-        this.teamMembers = json.team_members
+        this.contacts = json.contacts
         this.accessRights = json.access_rights
         this.styles = json.styles
 
@@ -392,7 +392,7 @@ export class BookOverview {
                 const bookId = parseInt(el.target.dataset.id)
                 const accessDialog = new BookAccessRightsDialog(
                     [bookId],
-                    this.teamMembers,
+                    this.contacts,
                     this.accessRights
                 )
                 accessDialog.init().then(

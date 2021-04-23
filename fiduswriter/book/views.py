@@ -20,8 +20,6 @@ from document.models import AccessRight
 from document.views import documents_list
 from usermedia.models import UserImage
 
-from user.util import get_user_avatar_url
-
 from django.core.serializers.python import Serializer
 
 from django.db.models import Q
@@ -45,7 +43,7 @@ def get_accessrights(ars):
             'user': {
                 'id': ar.user.id,
                 'name': ar.user.readable_name,
-                'avatar': get_user_avatar_url(ar.user),
+                'avatar': ar.user.avatar_url,
             },
             'rights': ar.rights,
         })
@@ -97,7 +95,7 @@ def list(request):
             'owner': {
                 'id': book.owner.id,
                 'name': book.owner.readable_name,
-                'avatar': get_user_avatar_url(book.owner)
+                'avatar': book.owner.avatar_url
             },
             'added': added,
             'updated': updated,
@@ -124,12 +122,12 @@ def list(request):
                 field_obj['width'] = image.width
             book_data['cover_image_data'] = field_obj
         response['books'].append(book_data)
-    response['team_members'] = []
-    for team_member in request.user.leader.all():
-        response['team_members'].append({
-            'id': team_member.member.id,
-            'name': team_member.member.readable_name,
-            'avatar': get_user_avatar_url(team_member.member),
+    response['contacts'] = []
+    for contact in request.user.contacts.all():
+        response['contacts'].append({
+            'id': contact.id,
+            'name': contact.readable_name,
+            'avatar': contact.avatar_url,
         })
     response['access_rights'] = get_accessrights(
         BookAccessRight.objects.filter(book__owner=request.user))

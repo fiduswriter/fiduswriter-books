@@ -172,7 +172,7 @@ export const bulkMenuModel = () => ({
                 if (ownIds.length) {
                     const accessDialog = new BookAccessRightsDialog(
                         ownIds,
-                        overview.teamMembers,
+                        overview.contacts,
                         overview.accessRights
                     )
                     accessDialog.init().then(accessRights => {
