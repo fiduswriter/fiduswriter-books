@@ -57,6 +57,63 @@ export const menuModel = () => ({
     ]
 })
 
+const exportEpub = (book, overview) => {
+    addAlert('info', book.title + ': ' + gettext(
+        'Epub export has been initiated.'))
+    const exporter = new EpubBookExporter(
+        overview.schema,
+        overview.app.csl,
+        overview.styles,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
+}
+
+const exportHTML = (book, overview) => {
+    addAlert('info', book.title + ': ' + gettext(
+        'HTML export has been initiated.'))
+    const exporter = new HTMLBookExporter(
+        overview.schema,
+        overview.app.csl,
+        overview.styles,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
+}
+
+const exportLatex = (book, overview) => {
+    addAlert('info', book.title + ': ' + gettext(
+        'LaTeX export has been initiated.'))
+    const exporter = new LatexBookExporter(
+        overview.schema,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
+}
+
+const exportPrint = (book, overview) => {
+    addAlert('info', book.title + ': ' + gettext(
+        'Print has been initiated.'))
+    const exporter = new PrintBookExporter(
+        overview.schema,
+        overview.app.csl,
+        overview.styles,
+        book,
+        overview.user,
+        overview.documentList
+    )
+    exporter.init()
+}
+
 export const bulkMenuModel = () => ({
     content: [
         {
@@ -145,18 +202,7 @@ export const bulkMenuModel = () => ({
                 const ids = overview.getSelected()
                 ids.forEach(id => {
                     const book = overview.bookList.find(book => book.id === id)
-                    addAlert('info', book.title + ': ' + gettext(
-                        'Epub export has been initiated.'))
-                    const exporter = new EpubBookExporter(
-                        overview.schema,
-                        overview.app.csl,
-                        overview.styles,
-                        book,
-                        overview.user,
-                        overview.documentList,
-                        new Date(book.updated * 1000)
-                    )
-                    exporter.init()
+                    exportEpub(book, overview)
                 })
             },
             disabled: overview => !overview.getSelected().length
@@ -168,18 +214,7 @@ export const bulkMenuModel = () => ({
                 const ids = overview.getSelected()
                 ids.forEach(id => {
                     const book = overview.bookList.find(book => book.id === id)
-                    addAlert('info', book.title + ': ' + gettext(
-                        'HTML export has been initiated.'))
-                    const exporter = new HTMLBookExporter(
-                        overview.schema,
-                        overview.app.csl,
-                        overview.styles,
-                        book,
-                        overview.user,
-                        overview.documentList,
-                        new Date(book.updated * 1000)
-                    )
-                    exporter.init()
+                    exportHTML(book, overview)
                 })
             },
             disabled: overview => !overview.getSelected().length
@@ -191,16 +226,7 @@ export const bulkMenuModel = () => ({
                 const ids = overview.getSelected()
                 ids.forEach(id => {
                     const book = overview.bookList.find(book => book.id === id)
-                    addAlert('info', book.title + ': ' + gettext(
-                        'LaTeX export has been initiated.'))
-                    const exporter = new LatexBookExporter(
-                        overview.schema,
-                        book,
-                        overview.user,
-                        overview.documentList,
-                        new Date(book.updated * 1000)
-                    )
-                    return exporter.init()
+                    exportLatex(book, overview)
                 })
             },
             disabled: overview => !overview.getSelected().length
@@ -212,20 +238,55 @@ export const bulkMenuModel = () => ({
                 const ids = overview.getSelected()
                 ids.forEach(id => {
                     const book = overview.bookList.find(book => book.id === id)
-                    addAlert('info', book.title + ': ' + gettext(
-                        'Print has been initiated.'))
-                    const exporter = new PrintBookExporter(
-                        overview.schema,
-                        overview.app.csl,
-                        overview.styles,
-                        book,
-                        overview.user,
-                        overview.documentList
-                    )
-                    exporter.init()
+                    exportPrint(book, overview)
                 })
             },
             disabled: overview => !overview.getSelected().length
+        }
+    ]
+})
+
+export const exportMenuModel = () => ({
+    content: [
+        {
+            type: 'action',
+            title: gettext('Export as Epub'),
+            tooltip: gettext('Export book as Epub.'),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(
+                    () => exportEpub(book, overview)
+                )
+            }
+        },
+        {
+            type: 'action',
+            title: gettext('Export as HTML'),
+            tooltip: gettext('Export book as HTML.'),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(
+                    () => exportHTML(book, overview)
+                )
+            }
+        },
+        {
+            type: 'action',
+            title: gettext('Export as LaTeX'),
+            tooltip: gettext('Export book as LaTeX.'),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(
+                    () => exportLatex(book, overview)
+                )
+            }
+        },
+        {
+            type: 'action',
+            title: gettext('Export to Print/PDF'),
+            tooltip: gettext('Export book to the print dialog.'),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(
+                    () => exportPrint(book, overview)
+                )
+            }
         }
     ]
 })

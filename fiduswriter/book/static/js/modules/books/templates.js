@@ -256,6 +256,19 @@ export const bookEpubDataTemplate = ({book, imageDB}) =>
         </tbody>
     </table>`
 
+
+export const bookSanityCheckTemplate = () =>
+    `<table class="fw-dialog-table">
+        <tbody>
+            <tr>
+                <th>
+                    <button type="button" id="perform-sanity-check-button" class="ui-button fw-button fw-dark">${gettext('Perform sanity check')}</button>
+                </th>
+                <td id="sanity-check-output"></td>
+            </tr>
+        </tbody>
+    </table>`
+
 /** A template for the book dialog. */
 export const bookDialogTemplate = ({
     title,
