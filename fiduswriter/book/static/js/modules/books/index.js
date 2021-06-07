@@ -310,9 +310,7 @@ export class BookOverview {
             }
         ).then(
             ({json}) => {
-                return cachedPromise.then(
-                    () => this.loaddatafromIndexedDB()
-                ).then(oldJson => {
+                return cachedPromise.then(oldJson => {
                     if (!deepEqual(json, oldJson)) {
                         this.updateIndexedDB(json)
                         this.initializeView(json)
@@ -332,6 +330,7 @@ export class BookOverview {
         this.styles = json.styles
 
         this.initTable()
+        return json
     }
 
     loaddatafromIndexedDB() {
