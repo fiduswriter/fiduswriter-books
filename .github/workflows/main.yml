@@ -3,11 +3,11 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
       - develop
   pull_request:
     branches:
-      - master
+      - main
       - develop
 
   # Allows you to run this workflow manually from the Actions tab
@@ -24,14 +24,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
+          python-version: 3.9
       - name: Install Python dependencies
         run: |
           pip install wheel
           pip install pip --upgrade
           if grep version setup.py | grep -q "dev";
             then pip install https://github.com/fiduswriter/fiduswriter/archive/develop.zip;
-            else pip install https://github.com/fiduswriter/fiduswriter/archive/master.zip;
+            else pip install https://github.com/fiduswriter/fiduswriter/archive/main.zip;
           fi
           cd fiduswriter
           mv ../ci/configuration.py ./
@@ -58,7 +58,6 @@ jobs:
       - name: Coveralls
         run: |
             cd fiduswriter
-            coverage combine
             coveralls --service=github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
