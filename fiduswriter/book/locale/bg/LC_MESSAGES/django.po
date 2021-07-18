@@ -1,21 +1,45 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: Fidus Writer books backend\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-18 18:44+0000\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Fidus Writer books backend\n"
-"Language: bg\n"
 
-#: book/views.py:299
+#: book/emails.py:18
 msgid "Untitled"
 msgstr "неозаглавен"
 
-#: book/views.py:315
-msgid "Book shared:"
+#: book/emails.py:97
+#, fuzzy
+#| msgid "Book shared:"
+msgid "shared"
 msgstr "Книгата е споделена:"
 
-#: book/views.py:344
-msgid "Fidus Writer book write access"
-msgstr "Достъп за писане във Fidus Writer книга"
+#: book/emails.py:99
+msgid "Book"
+msgstr ""
 
+#: book/emails.py:101
+msgid "Editor"
+msgstr ""
+
+#: book/emails.py:103
+msgid "Access Rights"
+msgstr ""
+
+#: book/emails.py:106
+msgid "Access books"
+msgstr ""
+
+#: book/emails.py:109
+#, fuzzy, python-format
+#| msgid "Book shared:"
+msgid "Book shared: %(book_title)s"
+msgstr "Книгата е споделена:"
+
+#~ msgid "Fidus Writer book write access"
+#~ msgstr "Достъп за писане във Fidus Writer книга"
