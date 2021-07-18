@@ -55,7 +55,7 @@ jobs:
           retry_on: error
           command: |
             cd fiduswriter
-            coverage run --concurrency=multiprocessing $(which fiduswriter) test book
+            coverage run $(which fiduswriter) test book
       - name: Coveralls
         run: |
             cd fiduswriter
