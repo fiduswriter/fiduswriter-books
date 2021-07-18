@@ -19,8 +19,8 @@ def send_share_notification(
     if change:
         message_text = _(
             (
-                "Hey %(collaborator_name)s,\n%(owner)s has changed your access "
-                "rights to %(rights)s on the book '%(book_title)s'. "
+                "Hey %(collaborator_name)s,\n%(owner)s has changed your "
+                "access rights to %(rights)s on the book '%(book_title)s'. "
                 "\nSee books: %(link)s"
             )
         ) % {
@@ -32,8 +32,8 @@ def send_share_notification(
         }
         body_html_intro = _(
             (
-                "<p>Hey %(collaborator_name)s,<br>%(owner)s has changed your "
-                "access rights to %(rights)s on the book "
+                "<p>Hey %(collaborator_name)s,<br>%(owner)s has changed "
+                "your access rights to %(rights)s on the book "
                 "'%(book_title)s'.</p>"
             )
         ) % {
