@@ -2,79 +2,154 @@ from django.db import models, migrations
 from django.conf import settings
 import django.db.models.deletion
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('document', '0001_squashed_20200219'),
+        ("document", "0001_squashed_20200219"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('usermedia', '0001_squashed_0009_auto_20170908_0953'),
+        ("usermedia", "0001_squashed_0009_auto_20170908_0953"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('title', models.CharField(max_length=128)),
-                ('metadata', models.TextField(default='{}')),
-                ('settings', models.TextField(default='{}')),
-                ('added', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("title", models.CharField(max_length=128)),
+                ("metadata", models.TextField(default="{}")),
+                ("settings", models.TextField(default="{}")),
+                ("added", models.DateTimeField(auto_now_add=True)),
+                ("updated", models.DateTimeField(auto_now_add=True)),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='BookAccessRight',
+            name="BookAccessRight",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('rights', models.CharField(max_length=1, choices=[('r', 'read'), ('w', 'read/write')])),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='book.Book')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                (
+                    "rights",
+                    models.CharField(
+                        max_length=1,
+                        choices=[("r", "read"), ("w", "read/write")],
+                    ),
+                ),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="book.Book",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Chapter',
+            name="Chapter",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('number', models.IntegerField()),
-                ('part', models.CharField(default='', max_length=128, blank=True)),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='book.Book')),
-                ('text', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='document.Document')),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("number", models.IntegerField()),
+                (
+                    "part",
+                    models.CharField(default="", max_length=128, blank=True),
+                ),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="book.Book",
+                    ),
+                ),
+                (
+                    "text",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="document.Document",
+                    ),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.AlterUniqueTogether(
-            name='bookaccessright',
-            unique_together=set([('book', 'user')]),
+            name="bookaccessright",
+            unique_together=set([("book", "user")]),
         ),
         migrations.AddField(
-            model_name='book',
-            name='chapters',
-            field=models.ManyToManyField(to='document.Document', null=True, through='book.Chapter', blank=True),
+            model_name="book",
+            name="chapters",
+            field=models.ManyToManyField(
+                to="document.Document",
+                null=True,
+                through="book.Chapter",
+                blank=True,
+            ),
             preserve_default=True,
         ),
         migrations.AlterField(
-            model_name='book',
-            name='chapters',
-            field=models.ManyToManyField(default=None, to='document.Document', null=True, through='book.Chapter', blank=True),
+            model_name="book",
+            name="chapters",
+            field=models.ManyToManyField(
+                default=None,
+                to="document.Document",
+                null=True,
+                through="book.Chapter",
+                blank=True,
+            ),
         ),
         migrations.AddField(
-            model_name='book',
-            name='cover_image',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, default=None, blank=True, to='usermedia.Image', null=True),
+            model_name="book",
+            name="cover_image",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                default=None,
+                blank=True,
+                to="usermedia.Image",
+                null=True,
+            ),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='book',
-            name='owner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="book",
+            name="owner",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
             preserve_default=True,
         ),
     ]

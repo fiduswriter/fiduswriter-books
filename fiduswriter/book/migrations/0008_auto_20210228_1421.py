@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('book', '0007_bookstyle_bookstylefile'),
+        ("book", "0007_bookstyle_bookstylefile"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='book',
-            name='path',
-            field=models.TextField(blank=True, default=''),
+            model_name="book",
+            name="path",
+            field=models.TextField(blank=True, default=""),
         ),
         migrations.AddField(
-            model_name='bookaccessright',
-            name='path',
-            field=models.TextField(blank=True, default=''),
+            model_name="bookaccessright",
+            name="path",
+            field=models.TextField(blank=True, default=""),
         ),
     ]
