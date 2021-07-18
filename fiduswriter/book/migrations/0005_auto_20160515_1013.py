@@ -5,13 +5,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('book', '0004_auto_20160515_1008'),
+        ("book", "0004_auto_20160515_1008"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bookaccessright',
-            name='rights',
-            field=models.CharField(choices=[('read', 'Reader'), ('write', 'Writer')], max_length=5),
+            model_name="bookaccessright",
+            name="rights",
+            field=models.CharField(
+                choices=[("read", "Reader"), ("write", "Writer")], max_length=5
+            ),
         ),
     ]

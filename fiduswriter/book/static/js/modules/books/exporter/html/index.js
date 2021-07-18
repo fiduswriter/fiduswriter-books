@@ -83,6 +83,11 @@ export class HTMLBookExporter extends DOMExporter {
                     el.innerHTML = CATS['figure'][doc.settings.language]
                 }
             )
+            contents.querySelectorAll("figure[data-category='equation'] figcaption span.label").forEach(
+                el => {
+                    el.innerHTML = CATS['equation'][doc.settings.language]
+                }
+            )
             contents.querySelectorAll("figure[data-category='photo'] figcaption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['photo'][doc.settings.language]

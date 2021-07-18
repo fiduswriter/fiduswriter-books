@@ -1,13 +1,18 @@
 import {escapeText} from "../../common"
 
 /** A template for the book collaboration pane */
-export const bookCollaboratorsTemplate = ({collaborators}) =>
-    collaborators.map(collaborator =>
-        `<tr id="collaborator-${collaborator.user_id}" data-id="${collaborator.user_id}"
-        class="collaborator-tr" data-right="${collaborator.rights}">
+export const bookCollaboratorsTemplate = ({collaborators}) => {
+    return collaborators.map(collaborator =>
+        `<tr id="collaborator-${collaborator.holder.type}-${collaborator.holder.id}"
+        data-type="${collaborator.holder.type}" data-id="${collaborator.holder.id}"
+        class="collaborator-tr" data-rights="${collaborator.rights}">
             <td width="212">
-                <span><img class="fw-avatar" src="${collaborator.avatar}" /></span>
-                <span class="fw-inline">${escapeText(collaborator.user_name)}</span>
+                <span>${collaborator.holder.avatar.html}</span>
+                <span class="fw-inline">${
+    collaborator.holder.type === 'userinvite' ?
+        `${gettext('Invite')}: ` :
+        ''
+}${escapeText(collaborator.holder.name)}</span>
             </td>
             <td width="50" align="center">
                 <div class="fw-inline edit-right-wrapper">
@@ -22,6 +27,26 @@ export const bookCollaboratorsTemplate = ({collaborators}) =>
             </td>
         </tr>`
     ).join('')
+}
+
+export const bookContactsTemplate = ({contacts}) =>
+    contacts.map(contact =>
+        `<tr>
+            <td width="337" data-id="${contact.id}" data-type="${contact.type}" class="fw-checkable fw-checkable-td">
+                <span>${contact.avatar.html}</span>
+                <span class="fw-inline">
+                ${
+    contact.type === 'userinvite' ?
+        `${gettext('Invite')}:&nbsp;` :
+        ''
+}
+                    ${escapeText(contact.name)}
+
+                </span>
+            </td>
+        </tr>`
+    ).join('')
+
 
 /** A template for the book access rights overview */
 export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
@@ -34,28 +59,14 @@ export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
                     </tr>
                 </thead>
                 <tbody class="fw-data-table-body fw-small">
-                    ${
-    contacts.map(contact =>
-        `<tr>
-                                <td width="332" data-id="${contact.id}"
-                                        data-avatar="${contact.avatar}"
-                                        data-name="${escapeText(contact.name)}"
-                                        class="fw-checkable fw-checkable-td">
-                                    <span>
-                                        <img class="fw-avatar" src="${contact.avatar}" />
-                                    </span>
-                                    <span class="fw-inline">${escapeText(contact.name)}</span>
-                                </td>
-                            </tr>`
-    ).join('')
-}
+                    ${bookContactsTemplate({contacts})}
                 </tbody>
             </table>
         </div>
-        <span id="add-share-member" class="fw-button fw-large fw-square fw-light fw-ar-button">
+        <span id="add-share-contact" class="fw-button fw-large fw-square fw-light fw-ar-button">
             <i class="fas fa-caret-right"></i>
         </span>
-        <div id="share-member" class="fw-ar-container">
+        <div id="share-contact" class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My collaborators")}</h3>
             <table class="fw-data-table tablesorter">
                 <thead class="fw-data-table-header"><tr>

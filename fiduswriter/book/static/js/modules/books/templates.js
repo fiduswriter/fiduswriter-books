@@ -1,4 +1,4 @@
-import {escapeText} from "../common"
+import {escapeText, longFilePath, localizeDate} from "../common"
 
 
 /** A template for the basic info book template pane */
@@ -256,6 +256,19 @@ export const bookEpubDataTemplate = ({book, imageDB}) =>
         </tbody>
     </table>`
 
+
+export const bookSanityCheckTemplate = () =>
+    `<table class="fw-dialog-table">
+        <tbody>
+            <tr>
+                <th>
+                    <button type="button" id="perform-sanity-check-button" class="ui-button fw-button fw-dark">${gettext('Perform sanity check')}</button>
+                </th>
+                <td id="sanity-check-output"></td>
+            </tr>
+        </tbody>
+    </table>`
+
 /** A template for the book dialog. */
 export const bookDialogTemplate = ({
     title,
@@ -293,19 +306,7 @@ export const bookDialogChaptersTemplate = ({book, documentList}) =>
         book.rights === "write" ?
             `<div class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My documents")}</h3>
-            <table class="fw-data-table">
-                <thead class="fw-data-table-header">
-                    <tr>
-                        <th width="332">${gettext("Documents")}</th>
-                    </tr>
-                </thead>
-                <tbody class="fw-data-table-body fw-small" id="book-document-list">
-                    ${bookDocumentListTemplate({
-        book,
-        documentList
-    })}
-                </tbody>
-            </table>
+            <div id="book-document-list"></div>
         </div>
         <span id="add-chapter" class="fw-button fw-large fw-square fw-light fw-ar-button">
             <i class="fas fa-caret-right"></i>
@@ -343,19 +344,13 @@ export const bookChapterListTemplate = ({book, documentList}) => {
     ).map((chapter, index, array) => {
         const doc = documentList.find(doc => doc.id === chapter.text)
         return `<tr
-                ${
-    typeof(doc) === "undefined" ?
-        'class="noaccess"' :
-        ''
-}
+                ${doc ? '' : 'class="noaccess"'}
             >
-                <td width="222" data-id="${chapter.text}" class="fw-checkable-td">
+                <td width="222" data-id="${chapter.text}" class="fw-checkable-td" ${
+    doc ? `title="${longFilePath(doc.title, doc.path)}"` : ''
+}>
                 <span class="fw-inline">
-                    ${
-    typeof(doc) === "undefined" ?
-        '<i class="fas fa-minus-circle"></i>' :
-        ''
-}
+                    ${doc ? '' : '<i class="fas fa-minus-circle"></i>'}
                     ${
     chapter.part.length ?
         `<b class="part">
@@ -367,9 +362,7 @@ export const bookChapterListTemplate = ({book, documentList}) => {
 }
                     ${chapter.number}
                     ${
-    doc.title.length ?
-        escapeText(doc.title) :
-        gettext('Untitled')
+    doc ? doc.title ? doc.title : gettext('Untitled') : gettext('No access')
 }
                 </span>
             </td>
@@ -406,25 +399,6 @@ export const bookChapterListTemplate = ({book, documentList}) => {
     }).join('')
 }
 
-/** A template for the document list on the chapter pane of the book dialog */
-export const bookDocumentListTemplate = ({documentList, book}) =>
-    documentList.filter(
-        // filter to only take documents that are NOT a chapter in the book
-        doc => !(book.chapters.map(chapter => chapter.text).includes(doc.id))
-    ).map(doc =>
-        `<tr>
-            <td width="332" data-id="${doc.id}" class="fw-checkable fw-checkable-td">
-                <span class="fw-inline">
-                    ${
-    doc.title.length ?
-        escapeText(doc.title) :
-        gettext('Untitled')
-}
-                </span>
-            </td>
-        </tr>`
-    ).join('')
-
 /** A template for the chapter dialog for books */
 export const bookChapterDialogTemplate = ({chapter}) =>
     `<table class="fw-dialog-table">
@@ -442,3 +416,12 @@ export const bookChapterDialogTemplate = ({chapter}) =>
             </td>
        </tr>
        </table>`
+
+export const deleteFolderCell = ({subdir, ids}) =>
+    `<span class="delete-folder fw-link-text" data-ids="${ids.join(',')}"
+         data-title="${escapeText(subdir)}">
+         '<i class="fa fa-trash-alt"></i>
+ </span>`
+
+export const dateCell = ({date}) =>
+    `<span class="date">${localizeDate(date * 1000, 'sortable-date')}</span>`
