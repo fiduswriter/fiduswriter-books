@@ -1,45 +1,37 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Fidus Writer books backend\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-18 18:44+0000\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books backend\n"
+"Language: de\n"
 
 #: book/emails.py:18
 msgid "Untitled"
 msgstr "Ohne Titel"
 
 #: book/emails.py:97
-#, fuzzy
-#| msgid "Book shared:"
 msgid "shared"
-msgstr "Buch geteilt:"
+msgstr "geteilt"
 
 #: book/emails.py:99
 msgid "Book"
-msgstr ""
+msgstr "Buch"
 
 #: book/emails.py:101
 msgid "Editor"
-msgstr ""
+msgstr "Editor"
 
 #: book/emails.py:103
 msgid "Access Rights"
-msgstr ""
+msgstr "Zugangsrechte"
 
 #: book/emails.py:106
 msgid "Access books"
-msgstr ""
+msgstr "Auf Bücher zugreifen"
 
 #: book/emails.py:109
-#, fuzzy, python-format
-#| msgid "Book shared:"
 msgid "Book shared: %(book_title)s"
-msgstr "Buch geteilt:"
+msgstr "Geteiltes Buch: %(book_title)s"
 
-#~ msgid "Fidus Writer book write access"
-#~ msgstr "Fidus Writer Buch Schreibzugang"
