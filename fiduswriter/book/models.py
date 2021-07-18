@@ -3,6 +3,10 @@ from django.db import models
 from document.models import Document
 from usermedia.models import Image
 from django.conf import settings as django_settings
+from django.contrib.contenttypes.fields import (
+    GenericForeignKey, GenericRelation
+)
+from django.contrib.contenttypes.models import ContentType
 
 
 class Book(models.Model):
@@ -55,21 +59,25 @@ class BookAccessRight(models.Model):
         Book,
         on_delete=models.deletion.CASCADE
     )
-    user = models.ForeignKey(
-        django_settings.AUTH_USER_MODEL,
-        on_delete=models.deletion.CASCADE
+    holder_choices = models.Q(app_label='user', model='user') | \
+        models.Q(app_label='user', model='userinvite')
+    holder_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.CASCADE,
+        limit_choices_to=holder_choices
     )
+    holder_id = models.PositiveIntegerField()
+    holder_obj = GenericForeignKey('holder_type', 'holder_id')
     rights = models.CharField(
         max_length=5,
         choices=RIGHTS_CHOICES,
         blank=False)
 
     class Meta(object):
-        unique_together = (("book", "user"),)
+        unique_together = (("book", "holder_id", "holder_type"),)
 
     def __str__(self):
-        return self.user.readable_name + \
-            ' (' + self.rights + ') on ' + self.book.title
+        return f"{self.user.readable_name} {self.rights} on {self.book.title}"
 
 
 class BookStyle(models.Model):
@@ -117,7 +125,7 @@ class BookStyleFile(models.Model):
     )
 
     def __str__(self):
-        return self.filename + ' of ' + self.style.title
+        return f"{self.filename} of {self.style.title}"
 
     def natural_key(self):
         return (self.file.url, self.filename)

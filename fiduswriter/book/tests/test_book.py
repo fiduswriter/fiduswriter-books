@@ -130,15 +130,15 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         self.assertEqual(
             len(self.driver.find_elements_by_css_selector(
-                '#team-table .entry-select'
+                '.contacts-table .entry-select'
             )),
             0
         )
         self.driver.find_element_by_css_selector(
-            "button[title='Add new contact']"
+            "button[title='Invite contact']"
         ).click()
         self.driver.find_element_by_id(
-            "new-member-user-string"
+            "new-contact-user-string"
         ).send_keys('yeti2@snowman.com')
         self.driver.find_element_by_css_selector(
             "button.fw-dark"
@@ -146,15 +146,15 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         time.sleep(1)
         self.assertEqual(
             len(self.driver.find_elements_by_css_selector(
-                '#team-table .entry-select'
+                '.contacts-table .entry-select'
             )),
             1
         )
         self.driver.find_element_by_css_selector(
-            "button[title='Add new contact']"
+            "button[title='Invite contact']"
         ).click()
         self.driver.find_element_by_id(
-            "new-member-user-string"
+            "new-contact-user-string"
         ).send_keys('Yeti3')
         self.driver.find_element_by_css_selector(
             "button.fw-dark"
@@ -162,7 +162,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         time.sleep(1)
         self.assertEqual(
             len(self.driver.find_elements_by_css_selector(
-                '#team-table .entry-select'
+                '.contacts-table .entry-select'
             )),
             2
         )
@@ -266,6 +266,25 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             )),
             1
         )
+        # Accept invite for user 3
+        self.login_user(self.user3, self.driver, self.client)
+        self.driver.refresh()
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Go to contacts"]'
+        ).click()
+        self.driver.find_element_by_css_selector(
+            'button.respond-invite'
+        ).click()
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Accept invite"]'
+        ).click()
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Books"]'
+        ).click()
+        # Login as user 1 again.
+        self.login_user(self.user, self.driver, self.client)
+        self.driver.refresh()
+        time.sleep(1)
         # Add access rights for user 2 (write) + 3 (read)
         self.driver.find_element(
             By.CSS_SELECTOR,
@@ -281,12 +300,12 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         self.driver.find_element(
             By.ID,
-            'add-share-member'
+            'add-share-contact'
         ).click()
-        self.driver.find_element(
+        self.driver.find_elements(
             By.CSS_SELECTOR,
             '.fa-caret-down.edit-right'
-        ).click()
+        )[1].click()
         self.driver.find_element_by_xpath(
             '//*[normalize-space()="Write"]'
         ).click()
@@ -302,13 +321,13 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         self.assertEqual(
             len(self.driver.find_elements_by_css_selector(
-                'tr.collaborator-tr[data-right="write"]'
+                'tr.collaborator-tr[data-rights="write"]'
             )),
             1
         )
         self.assertEqual(
             len(self.driver.find_elements_by_css_selector(
-                'tr.collaborator-tr[data-right="read"]'
+                'tr.collaborator-tr[data-rights="read"]'
             )),
             1
         )
@@ -318,6 +337,18 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # Login as user 2 and check that write access is there and usable
         self.login_user(self.user2, self.driver, self.client)
         self.driver.refresh()
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Go to contacts"]'
+        ).click()
+        self.driver.find_element_by_css_selector(
+            'button.respond-invite'
+        ).click()
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Accept invite"]'
+        ).click()
+        self.driver.find_element_by_xpath(
+            '//*[normalize-space()="Books"]'
+        ).click()
         self.assertEqual(
             len(self.driver.find_elements_by_css_selector(
                 '.book-title'

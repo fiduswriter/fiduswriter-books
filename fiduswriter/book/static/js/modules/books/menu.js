@@ -173,11 +173,9 @@ export const bulkMenuModel = () => ({
                     const accessDialog = new BookAccessRightsDialog(
                         ownIds,
                         overview.contacts,
-                        overview.accessRights
+                        memberDetails => overview.contacts.push(memberDetails)
                     )
-                    accessDialog.init().then(accessRights => {
-                        overview.accessRights = accessRights
-                    })
+                    accessDialog.init()
                 }
             },
             disabled: overview => !overview.getSelected().length

@@ -6,7 +6,6 @@ import {getMissingChapterData} from "./exporter/tools"
 const labelChapter = (chapter, doc) => `(${gettext('Chapter')} ${chapter.number}, ${longFilePath(doc.title, doc.path)})`
 
 function findContentIssues(node, chapter, doc, messages) {
-    console.log({chapter, doc})
     if (node.attrs?.track?.length) {
         messages.warnings.push(`${gettext('Unresolved tracked changes')} ${labelChapter(chapter, doc)}`)
     }

@@ -9,8 +9,13 @@ urlpatterns = [
     url('^delete/$', views.delete, name='book_delete'),
     url('^move/$', views.move, name='book_move'),
     url(
-        '^accessright/save/$',
-        views.access_right_save,
-        name='access_right_save'
+        '^access_rights/get/$',
+        views.get_access_rights,
+        name='get_access_rights'
+    ),
+    url(
+        '^access_rights/save/$',
+        views.save_access_rights,
+        name='save_access_rights'
     ),
 ]

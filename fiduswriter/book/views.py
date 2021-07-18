@@ -9,45 +9,50 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 from django.conf import settings
-from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
 
 from base.decorators import ajax_required
 from document.helpers.serializers import PythonWithURLSerializer
 from .models import Book, BookAccessRight, Chapter, BookStyle
+from . import emails
 
 from document.models import AccessRight
 from document.views import documents_list
 from usermedia.models import UserImage
+from user.models import UserInvite
 
 from django.core.serializers.python import Serializer
 
 from django.db.models import Q
 
 
-class SimpleSerializer(Serializer):
-
-    def end_object(self, obj):
-        self._current['id'] = obj._get_pk_val()
-        self.objects.append(self._current)
-
-
-serializer = SimpleSerializer()
-
-
-def get_accessrights(ars):
-    ret = []
-    for ar in ars:
-        ret.append({
+@login_required
+@ajax_required
+@require_POST
+def get_access_rights(request):
+    response = {}
+    status = 200
+    ar_qs = BookAccessRight.objects.filter(book__owner=request.user)
+    book_ids = request.POST.getlist('book_ids[]')
+    if len(book_ids) > 0:
+        ar_qs = ar_qs.filter(book_id__in=book_ids)
+    access_rights = []
+    for ar in ar_qs:
+        access_rights.append({
             'book_id': ar.book.id,
-            'user': {
-                'id': ar.user.id,
-                'name': ar.user.readable_name,
-                'avatar': ar.user.avatar_url,
-            },
             'rights': ar.rights,
+            'holder': {
+                'id': ar.holder_id,
+                'type': ar.holder_type.model,
+                'name': ar.holder_obj.readable_name,
+                'avatar': ar.holder_obj.avatar_url
+            }
         })
-    return ret
+    response['access_rights'] = access_rights
+    return JsonResponse(
+        response,
+        status=status
+    )
 
 
 @login_required
@@ -59,7 +64,10 @@ def list(request):
     response['documents'] = documents_list(request)
     books = Book.objects.filter(
         Q(owner=request.user) |
-        Q(bookaccessright__user=request.user)
+        Q(
+            bookaccessright__holder_id=request.user.id,
+            bookaccessright__holder_type__model="user"
+        )
     ).distinct().order_by('-updated')
     response['books'] = []
     for book in books:
@@ -68,7 +76,8 @@ def list(request):
             path = book.path
         else:
             access_right_object = BookAccessRight.objects.get(
-                user=request.user,
+                holder_id=request.user.id,
+                holder_type__model="user",
                 book=book
             )
             access_right = access_right_object.rights
@@ -124,13 +133,25 @@ def list(request):
         response['books'].append(book_data)
     response['contacts'] = []
     for contact in request.user.contacts.all():
-        response['contacts'].append({
+        contact_object = {
             'id': contact.id,
             'name': contact.readable_name,
+            'username': contact.get_username(),
             'avatar': contact.avatar_url,
-        })
-    response['access_rights'] = get_accessrights(
-        BookAccessRight.objects.filter(book__owner=request.user))
+            'type': 'user'
+        }
+        response['contacts'].append(contact_object)
+    for contact in request.user.invites_by.all():
+        contact_object = {
+            'id': contact.id,
+            'name': contact.username,
+            'username': contact.username,
+            'avatar': contact.avatar_url,
+            'type': 'userinvite'
+        }
+        response['contacts'].append(
+            contact_object
+        )
     serializer = PythonWithURLSerializer()
     book_styles = serializer.serialize(
         BookStyle.objects.all(),
@@ -186,7 +207,8 @@ def copy(request):
     if (
         book.owner != request.user and not
         book.bookaccessright_set.filter(
-            user=request.user
+            holder_type__model='user',
+            holder_id=request.user.id
         ).exists()
     ):
         return JsonResponse({}, status=405)
@@ -197,12 +219,13 @@ def copy(request):
         while (
             Book.objects.filter(owner=request.user, path=path).first() or
             BookAccessRight.objects.filter(
-                user=request.user,
+                holder_id=request.user.id,
+                holder_type__model="user",
                 path=path
             ).first()
         ):
             counter += 1
-            path = base_path + ' ' + str(counter)
+            path = f"{base_path} {counter}"
     response = {}
     status = 201
     book.id = None
@@ -246,7 +269,8 @@ def save(request):
             book.path = book_obj['path']
         else:
             access_right = book.bookaccessright_set.filter(
-                user=request.user,
+                holder_type__model='user',
+                holder_id=request.user.id,
                 rights='write'
             ).first()
             if access_right:
@@ -327,7 +351,8 @@ def move(request):
     else:
         access_right = BookAccessRight.objects.filter(
             book=book,
-            user=request.user
+            holder_id=request.user.id,
+            holder_type__model="user"
         ).first()
         if not access_right:
             response['done'] = False
@@ -341,134 +366,111 @@ def move(request):
     )
 
 
-def send_share_notification(request, book_id, collaborator_id, right):
-    owner = request.user.readable_name
-    book = Book.objects.get(id=book_id)
-    User = get_user_model()
-    collaborator = User.objects.get(id=collaborator_id)
-    collaborator_name = collaborator.readable_name
-    collaborator_email = collaborator.email
-    book_title = book.title
-    if len(book_title) == 0:
-        book_title = _('Untitled')
-    link = HttpRequest.build_absolute_uri(request, '/book/')
-    message_body = _(
-        (
-            'Hey %(collaborator_name)s,\n%(owner)s has shared the book '
-            '\'%(book)s\' on Fidus Writer with you and given you %(right)s '
-            'access rights.\nFind the book in your book overview: %(link)s'
-        )
-    ) % {
-        'owner': owner,
-        'right': right,
-        'collaborator_name': collaborator_name,
-        'link': link,
-        'book': book_title
-    }
-    send_mail(
-        _('Book shared:') +
-        ' ' +
-        book_title,
-        message_body,
-        settings.DEFAULT_FROM_EMAIL,
-        [collaborator_email],
-        fail_silently=True)
-
-
-def send_share_upgrade_notification(request, book_id, collaborator_id):
-    owner = request.user.readable_name
-    book = Book.objects.get(id=book_id)
-    User = get_user_model()
-    collaborator = User.objects.get(id=collaborator_id)
-    collaborator_name = collaborator.readable_name
-    collaborator_email = collaborator.email
-    link = HttpRequest.build_absolute_uri(request, '/book/')
-    message_body = _(
-        (
-            'Hey %(collaborator_name)s,\n%(owner)s has given you write access '
-            'rights to the book \'%(book)s\' on Fidus Writer.\nFind the book '
-            'in your book overview: %(link)s'
-        )
-    ) % {
-        'owner': owner,
-        'collaborator_name': collaborator_name,
-        'link': link,
-        'book': book.title
-    }
-    send_mail(
-        _('Fidus Writer book write access'),
-        message_body,
-        settings.DEFAULT_FROM_EMAIL,
-        [collaborator_email],
-        fail_silently=True)
-
-
 @login_required
 @require_POST
 @ajax_required
 @transaction.atomic
-def access_right_save(request):
+def save_access_rights(request):
+    User = get_user_model()
     response = {}
-    tgt_books = request.POST.getlist('books[]')
-    tgt_users = request.POST.getlist('collaborators[]')
-    tgt_rights = request.POST.getlist('rights[]')
-    for tgt_book in tgt_books:
-        book_id = int(tgt_book)
-        try:
-            book = Book.objects.get(pk=book_id, owner=request.user)
-        except ObjectDoesNotExist:
+    book_ids = json.loads(request.POST['book_ids'])
+    rights = json.loads(request.POST['access_rights'])
+    for book_id in book_ids:
+        book = Book.objects.filter(
+            pk=book_id,
+            owner=request.user
+        ).first()
+        if not book:
             continue
-        x = 0
-        for tgt_user in tgt_users:
-            collaborator_id = int(tgt_user)
-            try:
-                tgt_right = tgt_rights[x]
-            except IndexError:
-                tgt_right = 'read'
-            if tgt_right == 'delete':
+        for right in rights:
+            if right['rights'] == 'delete':
                 # Status 'delete' means the access right is marked for
                 # deletion.
-                access_right = BookAccessRight.objects.filter(
-                    book_id=book_id, user_id=collaborator_id
-                ).first()
-                if access_right:
-                    access_right.delete()
+                BookAccessRight.objects.filter(**{
+                    'book_id': book_id,
+                    'holder_id': right['holder']['id'],
+                    'holder_type__model': right['holder']['type']
+                }).delete()
             else:
-                try:
-                    access_right = BookAccessRight.objects.get(
-                        book_id=book_id, user_id=collaborator_id)
-                    if access_right.rights != tgt_right:
-                        access_right.rights = tgt_right
-                        if tgt_right == 'write':
-                            send_share_upgrade_notification(
-                                request, book_id, collaborator_id)
-                except ObjectDoesNotExist:
+                owner = request.user.readable_name
+                link = HttpRequest.build_absolute_uri(
+                    request,
+                    '/books/'
+                )
+                access_right = BookAccessRight.objects.filter(**{
+                    'book_id': book_id,
+                    'holder_id': right['holder']['id'],
+                    'holder_type__model': right['holder']['type']
+                }).first()
+                book_title = book.title
+                if access_right:
+                    if access_right.rights != right['rights']:
+                        access_right.rights = right['rights']
+                        if right['holder']['type'] == 'user':
+                            collaborator = User.objects.get(
+                                id=right['holder']['id']
+                            )
+                            collaborator_name = collaborator.readable_name
+                            collaborator_email = collaborator.email
+                            emails.send_share_notification(
+                                book_title,
+                                owner,
+                                link,
+                                collaborator_name,
+                                collaborator_email,
+                                right['rights'],
+                                True
+                            )
+                else:
+                    # Make the shared path "/filename" or ""
+                    path = '/%(last_path_part)s' % {
+                        'last_path_part': book.path.split('/').pop()
+                    }
+                    if len(path) == 1:
+                        path = ''
+                    if right['holder']['type'] == 'userinvite':
+                        holder = UserInvite.objects.get(
+                            id=right['holder']['id']
+                        )
+                    else:
+                        holder = User.objects.get(
+                            id=right['holder']['id']
+                        )
                     access_right = BookAccessRight.objects.create(
                         book_id=book_id,
-                        user_id=collaborator_id,
-                        rights=tgt_right,
+                        holder_obj=holder,
+                        rights=right['rights'],
+                        path=path
                     )
-                    send_share_notification(
-                        request, book_id, collaborator_id, tgt_right)
+                    if right['holder']['id'] == 'user':
+                        collaborator_name = holder.readable_name
+                        collaborator_email = holder.email
+                        emails.send_share_notification(
+                            document_title,
+                            owner,
+                            link,
+                            collaborator_name,
+                            collaborator_email,
+                            right['rights'],
+                            False
+                        )
                 access_right.save()
                 for text in book.chapters.all():
                     # If one shares a book with another user and that user
                     # has no access rights on the chapters that belong to
                     # the current user, give read access to the chapter
                     # documents to the collaborator.
-                    if text.owner == request.user and len(
-                        text.accessright_set.filter(
-                            user_id=collaborator_id
-                        )
-                    ) == 0:
+                    if text.owner == request.user and \
+                        not text.accessright_set.filter(
+                            holder_type=access_right.holder_type,
+                            holder_id=access_right.holder_id
+                        ).first():
                         AccessRight.objects.create(
                             document_id=text.id,
-                            user_id=collaborator_id,
+                            holder_id=access_right.holder_id,
+                            holder_type=access_right.holder_type,
                             rights='read',
                         )
-            x += 1
-    response['access_rights'] = get_accessrights(
-        BookAccessRight.objects.filter(book__owner=request.user))
     status = 201
     return JsonResponse(
         response,

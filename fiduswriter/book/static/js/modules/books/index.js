@@ -31,7 +31,6 @@ export class BookOverview {
         this.styles = false
         this.documentList = []
         this.contacts = []
-        this.accessRights = []
         this.citationStyles = []
         this.lastSort = {column: 0, dir: 'asc'}
     }
@@ -326,7 +325,6 @@ export class BookOverview {
         this.bookList = this.unpackBooks(json.books)
         this.documentList = json.documents
         this.contacts = json.contacts
-        this.accessRights = json.access_rights
         this.styles = json.styles
 
         this.initTable()
@@ -392,11 +390,9 @@ export class BookOverview {
                 const accessDialog = new BookAccessRightsDialog(
                     [bookId],
                     this.contacts,
-                    this.accessRights
+                    memberDetails => this.contacts.push(memberDetails)
                 )
-                accessDialog.init().then(
-                    accessRights => this.accessRights = accessRights
-                )
+                accessDialog.init()
                 break
             }
             case findTarget(event, 'a.fw-data-table-title.subdir, a.fw-data-table-title.parentdir', el):
