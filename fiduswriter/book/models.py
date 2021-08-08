@@ -64,7 +64,7 @@ class BookAccessRight(models.Model):
         unique_together = (("book", "holder_id", "holder_type"),)
 
     def __str__(self):
-        return f"{self.user.readable_name} {self.rights} on {self.book.title}"
+        return f"{self.holder_obj.readable_name} {self.rights} on {self.book.title}"
 
 
 class BookStyle(models.Model):

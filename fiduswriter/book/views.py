@@ -174,12 +174,18 @@ def set_chapters(book, chapters, user):
         if user == new_chapter.text.owner:
             for bar in BookAccessRight.objects.filter(book=book):
                 if (
-                    len(new_chapter.text.accessright_set.filter(user=bar.user))
+                    len(
+                        new_chapter.text.accessright_set.filter(
+                            holder_id=bar.holder_id,
+                            holder_type=bar.holder_type,
+                        )
+                    )
                     == 0
                 ):
                     AccessRight.objects.create(
                         document_id=new_chapter.text.id,
-                        user_id=bar.user.id,
+                        holder_id=bar.holder_id,
+                        holder_type=bar.holder_type,
                         rights="read",
                     )
             if (
@@ -444,7 +450,7 @@ def save_access_rights(request):
                     if (
                         text.owner == request.user
                         and not text.accessright_set.filter(
-                            holder_type=access_right.holder_type,
+                            holder_type__model=access_right.holder_type.model,
                             holder_id=access_right.holder_id,
                         ).first()
                     ):
