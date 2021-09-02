@@ -1,5 +1,5 @@
 import {BookAccessRightsDialog} from "./accessrights"
-import {HTMLBookExporter} from "./exporter/html"
+import {HTMLBookExporter, SingleFileHTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
@@ -76,6 +76,21 @@ const exportHTML = (book, overview) => {
     addAlert('info', book.title + ': ' + gettext(
         'HTML export has been initiated.'))
     const exporter = new HTMLBookExporter(
+        overview.schema,
+        overview.app.csl,
+        overview.styles,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
+}
+
+const exportSingleHTML = (book, overview) => {
+    addAlert('info', book.title + ': ' + gettext(
+        'Unified HTML export has been initiated.'))
+    const exporter = new SingleFileHTMLBookExporter(
         overview.schema,
         overview.app.csl,
         overview.styles,
@@ -218,6 +233,18 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
+            title: gettext('Export selected as Unified HTML'),
+            tooltip: gettext('Export selected books as Single-file HTML.'),
+            action: overview => {
+                const ids = overview.getSelected()
+                ids.forEach(id => {
+                    const book = overview.bookList.find(book => book.id === id)
+                    exportSingleHTML(book, overview)
+                })
+            },
+            disabled: overview => !overview.getSelected().length
+        },
+        {
             title: gettext('Export selected as LaTeX'),
             tooltip: gettext('Export selected books as LaTeX.'),
             action: overview => {
@@ -263,6 +290,16 @@ export const exportMenuModel = () => ({
             action: ({saveBook, book, overview}) => {
                 saveBook().then(
                     () => exportHTML(book, overview)
+                )
+            }
+        },
+        {
+            type: 'action',
+            title: gettext('Export as Unified HTML'),
+            tooltip: gettext('Export book as Single-file HTML.'),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(
+                    () => exportSingleHTML(book, overview)
                 )
             }
         },

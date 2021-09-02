@@ -283,7 +283,7 @@ export class BookActions {
                     },
                     menu: this.exportMenu,
                     menuPos: {X: event.pageX, Y: event.pageY},
-                    width: 200
+                    width: 250
                 })
                 return contentMenu.open()
             }

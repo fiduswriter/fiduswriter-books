@@ -25,14 +25,16 @@ export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents
 </html>`
 
 /** A template to create the book index item. */
-const htmlBookIndexItemTemplate = ({item}) =>
+const htmlBookIndexItemTemplate = ({item, multiDoc}) =>
     `<li>
         <a href="${
     item.link ?
         item.link :
-        item.docNum ?
-            `document-${item.docNum}.html#${item.id}` :
-            `document.html#${item.id}`
+        multiDoc ?
+            item.docNum ?
+                `document-${item.docNum}.html#${item.id}` :
+                `document.html#${item.id}` :
+            `#${item.id}`
 }">
             ${escapeText(item.title)}
         </a>
@@ -41,7 +43,7 @@ const htmlBookIndexItemTemplate = ({item}) =>
         `<ol>
                 ${
     item.subItems.map(subItem =>
-        htmlBookIndexItemTemplate({item: subItem})
+        htmlBookIndexItemTemplate({item: subItem, multiDoc})
     ).join('')
 }
             </ol>` :
@@ -50,21 +52,8 @@ const htmlBookIndexItemTemplate = ({item}) =>
     </li>`
 
 /** A template to create the book index. */
-export const htmlBookIndexTemplate = ({book, contentItems, language, creator, styleSheets}) =>
-    `<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"></meta>
-        <title>${escapeText(book.title)}</title>
-        <link type="text/css" rel="stylesheet" href="css/document.css" />
-        ${
-    styleSheets.map(sheet =>
-        `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
-    ).join('')
-}
-    </head>
-    <body class="book-index">
-        <h1>${escapeText(book.title)}</h1>
+export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator, multiDoc}) =>
+    `<h1>${escapeText(book.title)}</h1>
         ${
     book.metadata.subtitle.length ?
         `<h2>${escapeText(book.metadata.subtitle)}</h2>` :
@@ -78,7 +67,7 @@ export const htmlBookIndexTemplate = ({book, contentItems, language, creator, st
         <nav role="doc-toc"><ol>
             ${
     contentItems.map(item =>
-        htmlBookIndexItemTemplate({item})
+        htmlBookIndexItemTemplate({item, multiDoc})
     ).join('')
 }
         </ol></nav>
@@ -90,6 +79,23 @@ export const htmlBookIndexTemplate = ({book, contentItems, language, creator, st
         <p>${gettext('Last Updated')}: ${book.updated}</p>
         <p>${gettext('Created')}: ${book.added}</p>
         <p>${gettext('Language')}: ${language}</p>
-        <p>${gettext('Created by')}: ${escapeText(creator)}</p>
+        <p>${gettext('Created by')}: ${escapeText(creator)}</p>`
+
+/** A template to create the book index. */
+export const htmlBookIndexTemplate = ({book, contentItems, language, creator, styleSheets, multiDoc}) =>
+    `<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>${escapeText(book.title)}</title>
+        <link type="text/css" rel="stylesheet" href="css/document.css" />
+        ${
+    styleSheets.map(sheet =>
+        `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
+    ).join('')
+}
+    </head>
+    <body class="book-index">
+        ${htmlBookIndexBodyTemplate({book, contentItems, language, creator, styleSheets, multiDoc})}
     </body>
 </html>`

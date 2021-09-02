@@ -1,7 +1,6 @@
-import {printHTML} from '@vivliostyle/print'
-
-import {printHTMLTemplate, chapterTemplate} from "./templates"
-import {HTMLBookExporter, htmlBookIndexBodyTemplate} from "../html"
+import {printHTMLTemplate, chapterTemplate} from "../print/templates"
+import {htmlBookIndexBodyTemplate} from "./templates"
+import {HTMLBookExporter} from "./multifile"
 
 const CSS_PAPER_SIZES = {
     folio: "12in 15in",
@@ -12,24 +11,19 @@ const CSS_PAPER_SIZES = {
 }
 
 
-export class PrintBookExporter extends HTMLBookExporter {
+export class SingleFileHTMLBookExporter extends HTMLBookExporter {
 
     constructor(schema, csl, documentStyles, book, user, docList) {
         super(schema, csl, documentStyles, book, user, docList)
         this.chapterTemplate = chapterTemplate
         this.indexTemplate = htmlBookIndexBodyTemplate
         this.multiDoc = false
-    }
 
-    // We can ignore preparing binary files in print
-    prepareBinaryFiles() {
-        return []
     }
 
     exportThree() {
-        const html = this.outputList.filter(
-            ({filename}) => filename.slice(-5) === '.html'
-        ).sort(
+        let html = ''
+        this.outputList = this.outputList.sort(
             (a, b) => {
                 if (a.filename === 'index.html') {
                     return -1
@@ -40,36 +34,25 @@ export class PrintBookExporter extends HTMLBookExporter {
                 if(a.filename < b.filename) { return -1 }
                 if(a.filename > b.filename) { return 1 }
                 return 0
-        }).map(({contents}) => contents).join(''),
-            css = this.getBookCSS(),
+        }).filter(({filename, contents}) => {
+            if (filename.slice(-5) !== '.html') {
+                return true
+            }
+            html += contents
+            return false
+        })
+        const css = this.getBookCSS(),
             title = this.book.title,
             htmlDoc = printHTMLTemplate({css, html, title})
 
-        const config = {title}
 
-        if (navigator.userAgent.includes('Gecko/')) {
-            // Firefox has issues printing images when in iframe. This workaround can be
-            // removed once that has been fixed. TODO: Add gecko bug number if there is one.
-            config.printCallback = iframeWin => {
-                const oldBody = document.body
-                document.body.parentElement.dataset.vivliostylePaginated = true
-                document.body = iframeWin.document.body
-                iframeWin.document.querySelectorAll('style').forEach(el => document.body.appendChild(el))
-                const backgroundStyle = document.createElement('style')
-                backgroundStyle.innerHTML = 'body {background-color: white;}'
-                document.body.appendChild(backgroundStyle)
-                window.print()
-                document.body = oldBody
-                delete document.body.parentElement.dataset.vivliostylePaginated
-            }
-        }
+        this.outputList.push({filename: 'index.html', contents: htmlDoc})
 
-        printHTML(
-            htmlDoc,
-            config
-        )
+        super.exportThree()
 
     }
+
+
 
     getBookCSS() {
         let css = `a.fn {
