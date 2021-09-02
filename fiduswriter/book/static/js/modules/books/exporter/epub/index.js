@@ -71,6 +71,31 @@ export class EpubBookExporter extends DOMExporter {
         return `css/${bookStyle.slug}.css`
     }
 
+    addFootnotes(contentsEl) {
+        // Replace the footnote markers with anchors and put footnotes with contents
+        // at the back of the document.
+        // Also, link the footnote anchor with the footnote according to
+        // https://rawgit.com/essepuntato/rash/master/documentation/index.html#footnotes.
+        const footnotes = contentsEl.querySelectorAll('.footnote-marker')
+        const footnotesContainer = document.createElement('section')
+        footnotesContainer.classList.add('fnlist')
+        footnotesContainer.setAttribute('role', 'doc-footnotes')
+
+        footnotes.forEach(
+            (footnote, index) => {
+                const counter = index + 1
+                const footnoteAnchor = this.getFootnoteAnchor(counter)
+                footnote.parentNode.replaceChild(footnoteAnchor, footnote)
+                const newFootnote = document.createElement('section')
+                newFootnote.id = 'fn' + counter
+                newFootnote.setAttribute('role', 'doc-footnote')
+                newFootnote.innerHTML = footnote.dataset.footnote
+                footnotesContainer.appendChild(newFootnote)
+            }
+        )
+        contentsEl.appendChild(footnotesContainer)
+    }
+
     exportOne() {
         this.book.chapters.sort((a, b) => a.number > b.number ? 1 : -1)
 
@@ -107,7 +132,7 @@ export class EpubBookExporter extends DOMExporter {
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
             schema.cached.imageDB = {db: doc.images}
-            const docContent = removeHidden(doc.content),
+            const docContent = removeHidden(doc.content, false),
                 serializer = DOMSerializer.fromSchema(schema),
                 tempNode = serializer.serializeNode(schema.nodeFromJSON(docContent))
             const contentsEl = document.createElement('body')
@@ -115,6 +140,7 @@ export class EpubBookExporter extends DOMExporter {
             while (tempNode.firstChild) {
                 contentsEl.appendChild(tempNode.firstChild)
             }
+            this.addFootnotes(contentsEl)
 
             this.images = this.images.concat(modifyImages(contentsEl))
             addCategoryLabels(contentsEl, doc.settings.language)
