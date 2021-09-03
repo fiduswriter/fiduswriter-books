@@ -31,10 +31,14 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
                 if (b.filename === 'index.html') {
                     return 1
                 }
-                if(a.filename < b.filename) { return -1 }
-                if(a.filename > b.filename) { return 1 }
+                if (a.filename < b.filename) {
+                    return -1
+                }
+                if (a.filename > b.filename) {
+                    return 1
+                }
                 return 0
-        }).filter(({filename, contents}) => {
+            }).filter(({filename, contents}) => {
             if (filename.slice(-5) !== '.html') {
                 return true
             }
@@ -51,7 +55,6 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         super.exportThree()
 
     }
-
 
 
     getBookCSS() {

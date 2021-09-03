@@ -28,19 +28,23 @@ export class PrintBookExporter extends HTMLBookExporter {
 
     exportThree() {
         const html = this.outputList.filter(
-            ({filename}) => filename.slice(-5) === '.html'
-        ).sort(
-            (a, b) => {
-                if (a.filename === 'index.html') {
-                    return -1
-                }
-                if (b.filename === 'index.html') {
-                    return 1
-                }
-                if(a.filename < b.filename) { return -1 }
-                if(a.filename > b.filename) { return 1 }
-                return 0
-        }).map(({contents}) => contents).join(''),
+                ({filename}) => filename.slice(-5) === '.html'
+            ).sort(
+                (a, b) => {
+                    if (a.filename === 'index.html') {
+                        return -1
+                    }
+                    if (b.filename === 'index.html') {
+                        return 1
+                    }
+                    if (a.filename < b.filename) {
+                        return -1
+                    }
+                    if (a.filename > b.filename) {
+                        return 1
+                    }
+                    return 0
+                }).map(({contents}) => contents).join(''),
             css = this.getBookCSS(),
             title = this.book.title,
             htmlDoc = printHTMLTemplate({css, html, title})
