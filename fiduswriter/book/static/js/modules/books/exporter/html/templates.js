@@ -53,24 +53,20 @@ const htmlBookIndexItemTemplate = ({item, multiDoc}) =>
 
 /** A template to create the book index. */
 export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator, multiDoc}) =>
-    `<h1>${escapeText(book.title)}</h1>
+    `<div class="titlepage frontmatter">
+        <h1 class="booktitle">${escapeText(book.title)}</h1>
         ${
     book.metadata.subtitle.length ?
-        `<h2>${escapeText(book.metadata.subtitle)}</h2>` :
+        `<h2 class="booksubtitle">${escapeText(book.metadata.subtitle)}</h2>` :
         ''
 }
         ${
     book.metadata.author.length ?
-        `<h3>${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
+        `<h3 class="bookauthor">${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
         ''
 }
-        <nav role="doc-toc"><ol>
-            ${
-    contentItems.map(item =>
-        htmlBookIndexItemTemplate({item, multiDoc})
-    ).join('')
-}
-        </ol></nav>
+    </div>
+    <div class="copyrightpage frontmatter">
         ${
     book.metadata.publisher && book.metadata.publisher.length ?
         `<p>${gettext('Published by')}: ${escapeText(book.metadata.publisher)}</p>` :
@@ -79,7 +75,17 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
         <p>${gettext('Last Updated')}: ${book.updated}</p>
         <p>${gettext('Created')}: ${book.added}</p>
         <p>${gettext('Language')}: ${language}</p>
-        <p>${gettext('Created by')}: ${escapeText(creator)}</p>`
+        <p>${gettext('Created by')}: ${escapeText(creator)}</p>
+    </div>
+    <div class="tocpage frontmatter">
+        <nav role="doc-toc"><ol>
+            ${
+    contentItems.map(item =>
+        htmlBookIndexItemTemplate({item, multiDoc})
+    ).join('')
+}
+        </ol></nav>
+    </div>`
 
 /** A template to create the book index. */
 export const htmlBookIndexTemplate = ({book, contentItems, language, creator, styleSheets, multiDoc}) =>
@@ -119,8 +125,8 @@ export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets}) => `
             ${css}
         </style>
         ${styleSheets.map(sheet =>
-            `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
-        ).join('')}
+        sheet.filename ? `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />` : ''
+    ).join('')}
     </head>
     <body class="user-contents">
         ${html}

@@ -187,7 +187,7 @@ export class BookActions {
                 }
                 this.bookOverview.bookList.push(book)
                 this.bookOverview.initTable()
-                this.onSave.forEach(method => method(book))
+                return Promise.all(this.onSave.map(method => method(book)))
             }
         )
     }

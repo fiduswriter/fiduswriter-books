@@ -153,6 +153,10 @@ export class PrintBookExporter extends HTMLBookExporter {
                 content: counter(page);
             }
         }
+        @page :first {
+	          @bottom-center { content: normal; }
+	          @top-center { content: normal; }
+        }
         figure img {
             max-width: 100%;
         }
@@ -161,6 +165,15 @@ export class PrintBookExporter extends HTMLBookExporter {
         }
         h1.part {
             page-break-before: right;
+        }
+        .copyrightpage {
+            page-break-before: left;
+        }
+        .tocpage {
+            page-break-before: right;
+        }
+        .booktitle {
+            text-align: center;
         }`
         const bookStyle = this.documentStyles.find(style => style.slug === this.book.settings.book_style)
         if (bookStyle) {

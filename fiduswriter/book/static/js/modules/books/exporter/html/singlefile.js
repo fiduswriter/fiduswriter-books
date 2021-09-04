@@ -1,5 +1,6 @@
-import {singleFileHTMLBookTemplate, singleFileHTMLBookChapterTemplate} from "./templates"
-import {htmlBookIndexBodyTemplate} from "./templates"
+import pretty from "pretty"
+
+import {singleFileHTMLBookTemplate, singleFileHTMLBookChapterTemplate, htmlBookIndexBodyTemplate} from "./templates"
 import {HTMLBookExporter} from "./multifile"
 
 const CSS_PAPER_SIZES = {
@@ -50,7 +51,7 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
             htmlDoc = singleFileHTMLBookTemplate({css, html, title, styleSheets: this.styleSheets})
 
 
-        this.outputList.push({filename: 'index.html', contents: htmlDoc})
+        this.outputList.push({filename: 'index.html', contents: pretty(htmlDoc, {ocd: true})})
 
         return super.exportThree()
 
@@ -58,7 +59,7 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
 
 
     getBookCSS() {
-        let css = `a.fn {
+        const css = `a.fn {
             -adapt-template: url(data:application/xml,${
     encodeURI(
         '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.pyroxy.com/ns/shadow"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id="footnote"><s:content/><s:include class="footnote-content"/></s:template></body></html>#footnote'
@@ -135,6 +136,10 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
                 content: counter(page);
             }
         }
+        @page :first {
+	          @bottom-center { content: normal; }
+	          @top-center { content: normal; }
+        }
         figure img {
             max-width: 100%;
         }
@@ -143,6 +148,15 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         }
         h1.part {
             page-break-before: right;
+        }
+        .copyrightpage {
+            page-break-before: left;
+        }
+        .tocpage {
+            page-break-before: right;
+        }
+        .booktitle {
+            text-align: center;
         }`
 
         return css

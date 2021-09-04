@@ -160,15 +160,15 @@ export const epubBookTitlepageTemplate = ({
    </head>
    <body style="text-align: center;">
       <div id="title" epub:type="frontmatter titlepage">
-          <h1>${escapeText(book.title)}</h1>
+          <h1 class="booktitle">${escapeText(book.title)}</h1>
           ${
     book.metadata.subtitle.length ?
-        `<h2>${escapeText(book.metadata.subtitle)}</h2>` :
+        `<h2 class="booksubtitle">${escapeText(book.metadata.subtitle)}</h2>` :
         ''
 }
           ${
     book.metadata.author.length ?
-        `<h3>${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
+        `<h3 class="bookauthor">${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
         ''
 }
       </div>

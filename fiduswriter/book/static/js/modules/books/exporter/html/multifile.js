@@ -1,3 +1,7 @@
+import download from "downloadjs"
+import pretty from "pretty"
+import {DOMSerializer} from "prosemirror-model"
+
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
 import {removeHidden} from "../../../exporter/tools/doc_content"
@@ -9,10 +13,6 @@ import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
 import {BIBLIOGRAPHY_HEADERS, CATS} from "../../../schema/i18n"
-
-import download from "downloadjs"
-import pretty from "pretty"
-import {DOMSerializer} from "prosemirror-model"
 
 export class HTMLBookExporter extends DOMExporter {
     constructor(schema, csl, bookStyles, book, user, docList, updated) {
@@ -65,7 +65,7 @@ export class HTMLBookExporter extends DOMExporter {
         return `css/${bookStyle.slug}.css`
     }
 
-    addFootnotes(contentsEl) {
+    addFootnotes(contentsEl, offset) {
         // Replace the footnote markers with anchors and put footnotes with contents
         // at the back of the document.
         // Also, link the footnote anchor with the footnote according to
@@ -77,7 +77,7 @@ export class HTMLBookExporter extends DOMExporter {
 
         footnotes.forEach(
             (footnote, index) => {
-                const counter = index + 1
+                const counter = offset + index + 1
                 const footnoteAnchor = this.getFootnoteAnchor(counter)
                 footnote.parentNode.replaceChild(footnoteAnchor, footnote)
                 const newFootnote = document.createElement('section')
@@ -88,9 +88,11 @@ export class HTMLBookExporter extends DOMExporter {
             }
         )
         contentsEl.appendChild(footnotesContainer)
+        return offset + footnotes.length
     }
 
     exportOne() {
+        let footnoteCounter = 0
         this.chapters = this.book.chapters.sort(
             (a, b) => a.number > b.number ? 1 : -1
         ).map(chapter => {
@@ -102,7 +104,7 @@ export class HTMLBookExporter extends DOMExporter {
                 contents = serializer.serializeNode(schema.nodeFromJSON(docContent)),
                 equations = contents.querySelectorAll('.equation'),
                 figureEquations = contents.querySelectorAll('.figure-equation')
-            this.addFootnotes(contents)
+            footnoteCounter = this.addFootnotes(contents, footnoteCounter)
             if (equations.length || figureEquations.length) {
                 this.math = true
             }
