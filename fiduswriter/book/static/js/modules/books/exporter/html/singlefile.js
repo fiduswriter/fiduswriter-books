@@ -1,4 +1,4 @@
-import {printHTMLTemplate, chapterTemplate} from "../print/templates"
+import {singleFileHTMLBookTemplate, singleFileHTMLBookChapterTemplate} from "./templates"
 import {htmlBookIndexBodyTemplate} from "./templates"
 import {HTMLBookExporter} from "./multifile"
 
@@ -15,7 +15,7 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
 
     constructor(schema, csl, documentStyles, book, user, docList) {
         super(schema, csl, documentStyles, book, user, docList)
-        this.chapterTemplate = chapterTemplate
+        this.chapterTemplate = singleFileHTMLBookChapterTemplate
         this.indexTemplate = htmlBookIndexBodyTemplate
         this.multiDoc = false
 
@@ -47,12 +47,12 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         })
         const css = this.getBookCSS(),
             title = this.book.title,
-            htmlDoc = printHTMLTemplate({css, html, title})
+            htmlDoc = singleFileHTMLBookTemplate({css, html, title, styleSheets: this.styleSheets})
 
 
         this.outputList.push({filename: 'index.html', contents: htmlDoc})
 
-        super.exportThree()
+        return super.exportThree()
 
     }
 
@@ -144,17 +144,6 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         h1.part {
             page-break-before: right;
         }`
-        const bookStyle = this.documentStyles.find(style => style.slug === this.book.settings.book_style)
-        if (bookStyle) {
-            let contents = bookStyle.contents
-            bookStyle.bookstylefile_set.forEach(
-                ([url, filename]) => contents = contents.replace(
-                    new RegExp(filename, 'g'),
-                    url
-                )
-            )
-            css += contents
-        }
 
         return css
     }

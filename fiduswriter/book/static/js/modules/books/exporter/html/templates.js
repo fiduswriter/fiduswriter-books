@@ -96,6 +96,33 @@ export const htmlBookIndexTemplate = ({book, contentItems, language, creator, st
 }
     </head>
     <body class="book-index">
-        ${htmlBookIndexBodyTemplate({book, contentItems, language, creator, styleSheets, multiDoc})}
+        ${htmlBookIndexBodyTemplate({book, contentItems, language, creator, multiDoc})}
+    </body>
+</html>`
+
+
+export const singleFileHTMLBookChapterTemplate = ({part, contents}) => `
+    ${
+    part && part.length ?
+        `<h1 class="part">${escapeText(part)}</h1>` :
+        ''
+}
+    ${contents}`
+
+export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets}) => `<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>${title}</title>
+        <link type="text/css" rel="stylesheet" href="css/document.css" />
+        <style>
+            ${css}
+        </style>
+        ${styleSheets.map(sheet =>
+            `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
+        ).join('')}
+    </head>
+    <body class="user-contents">
+        ${html}
     </body>
 </html>`
