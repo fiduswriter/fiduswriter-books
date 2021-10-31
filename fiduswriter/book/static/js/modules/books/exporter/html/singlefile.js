@@ -22,6 +22,10 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
 
     }
 
+    getChapterLink(chapterNumber) {
+        return `#_${chapterNumber}_0`
+    }
+
     exportThree() {
         let html = ''
         this.outputList = this.outputList.sort(
@@ -162,10 +166,5 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         return css
     }
 
-    getFootnoteAnchor(counter) {
-        const footnoteAnchor = super.getFootnoteAnchor(counter)
-        // Add the counter directly into the footnote.
-        footnoteAnchor.innerHTML = counter
-        return footnoteAnchor
-    }
+
 }

@@ -67,7 +67,6 @@ export class PrintBookExporter extends HTMLBookExporter {
                 delete document.body.parentElement.dataset.vivliostylePaginated
             }
         }
-
         printHTML(
             htmlDoc,
             config
@@ -93,12 +92,11 @@ export class PrintBookExporter extends HTMLBookExporter {
         body {
                 background-color: white;
         }
-        .article-title, section[role=doc-footnotes] {
-            counter-reset: cat-figure cat-equation cat-photo cat-table footnote-counter footnote-marker-counter;
+        .article-title {
+            counter-reset: cat-figure cat-equation cat-photo cat-table;
         }
-        section[role=doc-footnote] > *:first-child:before {
-            counter-increment: footnote-counter;
-            content: counter(footnote-counter) ". ";
+        .footnote-counter:after {
+            content: attr(data-book-counter) ". ";
         }
         section[role=doc-footnote] .cat-figure::after {
             content: ' ' counter(cat-figure) 'A';
@@ -188,12 +186,5 @@ export class PrintBookExporter extends HTMLBookExporter {
         }
 
         return css
-    }
-
-    getFootnoteAnchor(counter) {
-        const footnoteAnchor = super.getFootnoteAnchor(counter)
-        // Add the counter directly into the footnote.
-        footnoteAnchor.innerHTML = counter
-        return footnoteAnchor
     }
 }

@@ -65,7 +65,22 @@ export class HTMLBookExporter extends DOMExporter {
         return `css/${bookStyle.slug}.css`
     }
 
-    addFootnotes(contentsEl, offset) {
+
+    getBookFootnoteAnchor(chapterCounter, bookCounter) {
+        const footnoteAnchor = document.createElement('a')
+        footnoteAnchor.setAttribute('href', '#fn' + bookCounter)
+        // RASH 0.5 doesn't mark the footnote anchors, so we add this class
+        footnoteAnchor.classList.add('fn')
+        footnoteAnchor.classList.add('footnote-counter')
+        footnoteAnchor.dataset.chapterCounter = chapterCounter
+        footnoteAnchor.dataset.bookCounter = bookCounter
+        return footnoteAnchor
+    }
+
+    addFootnotes(
+        contentsEl,
+        offset // Offset for continous footnote counting throughout book.
+    ) {
         // Replace the footnote markers with anchors and put footnotes with contents
         // at the back of the document.
         // Also, link the footnote anchor with the footnote according to
@@ -77,18 +92,34 @@ export class HTMLBookExporter extends DOMExporter {
 
         footnotes.forEach(
             (footnote, index) => {
-                const counter = offset + index + 1
-                const footnoteAnchor = this.getFootnoteAnchor(counter)
+                const chapterCounter = index + 1
+                const bookCounter = offset + chapterCounter
+                const footnoteAnchor = this.getBookFootnoteAnchor(chapterCounter, bookCounter)
                 footnote.parentNode.replaceChild(footnoteAnchor, footnote)
                 const newFootnote = document.createElement('section')
-                newFootnote.id = 'fn' + counter
+                newFootnote.id = 'fn' + bookCounter
                 newFootnote.setAttribute('role', 'doc-footnote')
+                newFootnote.dataset.chapterCounter = chapterCounter
+                newFootnote.dataset.bookCounter = bookCounter
                 newFootnote.innerHTML = footnote.dataset.footnote
+                const newFootnoteCounter = document.createElement('span')
+                newFootnoteCounter.classList.add('footnote-counter')
+                newFootnoteCounter.dataset.chapterCounter = chapterCounter
+                newFootnoteCounter.dataset.bookCounter = bookCounter
+                if (['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(newFootnote.firstElementChild?.tagName)) {
+                    newFootnote.firstElementChild.prepend(newFootnoteCounter)
+                } else {
+                    newFootnote.prepend(newFootnoteCounter)
+                }
                 footnotesContainer.appendChild(newFootnote)
             }
         )
         contentsEl.appendChild(footnotesContainer)
         return offset + footnotes.length
+    }
+
+    getChapterLink(chapterNumber) {
+        return `document-${chapterNumber}.html`
     }
 
     exportOne() {
@@ -184,7 +215,7 @@ export class HTMLBookExporter extends DOMExporter {
 
             if (this.book.chapters[index].part !== '') {
                 contentItems.push({
-                    link: `document-${this.book.chapters[index].number}.html`,
+                    link: this.getChapterLink(this.book.chapters[index].number),
                     title: this.book.chapters[index].part,
                     docNum: this.book.chapters[index].number,
                     id: 0,
