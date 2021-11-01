@@ -150,7 +150,10 @@ export class BookActions {
         dialog.open()
     }
 
-    saveBook(book, oldBook = false) {
+    saveBook(book, oldBookId = false) {
+        const oldBook = oldBookId ? this.bookOverview.bookList.find(
+            book => book.id === oldBookId
+        ) : false
         if (book.rights !== 'write') {
             return Promise.resolve()
         }
@@ -180,9 +183,9 @@ export class BookActions {
                     book.added = json.added
                 }
                 book.updated = json.updated
-                if (oldBook) {
+                if (oldBookId) {
                     this.bookOverview.bookList = this.bookOverview.bookList.filter(
-                        book => book !== oldBook
+                        book => book.id !== oldBookId
                     )
                 }
                 this.bookOverview.bookList.push(book)
@@ -217,7 +220,7 @@ export class BookActions {
     }
 
     createBookDialog(bookId, imageDB) {
-        let title, book, oldBook
+        let title, book, oldBookId
         const bookImageDB = {db: {}}
 
         if (bookId === 0) {
@@ -244,8 +247,9 @@ export class BookActions {
                 }
             }
         } else {
-            oldBook = this.bookOverview.bookList.find(book => book.id === bookId)
+            const oldBook = this.bookOverview.bookList.find(book => book.id === bookId)
             book = Object.assign({}, oldBook)
+            oldBookId = oldBook.id
 
             if (book.cover_image && !imageDB.db[book.cover_image]) {
                 // The cover image is not in the current user's image DB --
@@ -277,7 +281,7 @@ export class BookActions {
             click: event => {
                 const contentMenu = new ContentMenu({
                     page: {
-                        saveBook: () => this.saveBook(book, oldBook),
+                        saveBook: () => this.saveBook(book, oldBookId),
                         book,
                         overview: this.bookOverview
                     },
@@ -293,7 +297,7 @@ export class BookActions {
                 text: gettext('Submit'),
                 classes: "fw-dark",
                 click: () => {
-                    return this.saveBook(book, oldBook).then(
+                    return this.saveBook(book, oldBookId).then(
                         () => dialog.close()
                     )
                 }
@@ -468,7 +472,7 @@ export class BookActions {
                 })
                 break
             case findTarget(event, '#perform-sanity-check-button', el): {
-                this.saveBook(book, oldBook).then(
+                this.saveBook(book, oldBookId).then(
                     () => bookSanityCheck(book, this.bookOverview.documentList, this.bookOverview.schema)
                 ).then(
                     sanityCheckOutputHTML => document.getElementById('sanity-check-output').innerHTML = sanityCheckOutputHTML
