@@ -67,6 +67,7 @@ export class PrintBookExporter extends HTMLBookExporter {
                 delete document.body.parentElement.dataset.vivliostylePaginated
             }
         }
+
         printHTML(
             htmlDoc,
             config
@@ -95,8 +96,11 @@ export class PrintBookExporter extends HTMLBookExporter {
         .article-title {
             counter-reset: cat-figure cat-equation cat-photo cat-table;
         }
-        .footnote-counter:after {
-            content: attr(data-book-counter) ". ";
+        .footnote-counter:before {
+            content: attr(data-book-counter);
+        }
+        section[role=doc-footnote] .footnote-counter:after {
+            content: ". ";
         }
         section[role=doc-footnote] .cat-figure::after {
             content: ' ' counter(cat-figure) 'A';

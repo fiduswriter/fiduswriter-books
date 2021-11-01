@@ -81,11 +81,13 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
                 background-color: white;
         }
         .article-title, section[role=doc-footnotes] {
-            counter-reset: cat-figure cat-equation cat-photo cat-table footnote-counter footnote-marker-counter;
+            counter-reset: cat-figure cat-equation cat-photo cat-table;
         }
-        section[role=doc-footnote] > *:first-child:before {
-            counter-increment: footnote-counter;
-            content: counter(footnote-counter) ". ";
+        .footnote-counter:before {
+            content: attr(data-book-counter);
+        }
+        section[role=doc-footnote] .footnote-counter:after {
+            content: ". ";
         }
         section[role=doc-footnote] .cat-figure::after {
             content: ' ' counter(cat-figure) 'A';

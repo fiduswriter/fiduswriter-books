@@ -71,9 +71,7 @@ export class HTMLBookExporter extends DOMExporter {
         footnoteAnchor.setAttribute('href', '#fn' + bookCounter)
         // RASH 0.5 doesn't mark the footnote anchors, so we add this class
         footnoteAnchor.classList.add('fn')
-        footnoteAnchor.classList.add('footnote-counter')
-        footnoteAnchor.dataset.chapterCounter = chapterCounter
-        footnoteAnchor.dataset.bookCounter = bookCounter
+        footnoteAnchor.innerHTML = `<span class="footnote-counter" data-chapter-counter="${chapterCounter}" data-book-counter="${bookCounter}"></span>`
         return footnoteAnchor
     }
 
