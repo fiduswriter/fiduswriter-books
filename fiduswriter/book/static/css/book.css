@@ -1,13 +1,16 @@
 /* Footnote and figure/table labeling */
 
-span.label-counter::after, a.reference-counter::after {
+span.label-counter::after,
+a.reference-counter::after {
     content: ' ' attr(data-book-counter); /* or data-chapter-counter */
 }
-.footnote-counter:before {
+
+.footnote-counter::before {
     content: attr(data-book-counter); /* or data-chapter-counter */
 }
-section[role=doc-footnote] .footnote-counter:after {
-    content: ". ";
+
+section[role=doc-footnote] .footnote-counter::after {
+    content: '. ';
 }
 
 /* CSL */
