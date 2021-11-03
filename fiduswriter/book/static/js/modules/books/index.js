@@ -83,7 +83,7 @@ export class BookOverview {
         ensureCSS([
             'add_remove_dialog.css',
             'access_rights_dialog.css',
-            'book.css'
+            'book_dialog.css'
         ])
         this.dom = document.createElement('body')
         this.dom.innerHTML = baseBodyTemplate({

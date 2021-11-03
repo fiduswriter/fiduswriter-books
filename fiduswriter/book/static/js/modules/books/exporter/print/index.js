@@ -96,24 +96,6 @@ export class PrintBookExporter extends HTMLBookExporter {
         .article-title {
             counter-reset: cat-figure cat-equation cat-photo cat-table;
         }
-        .footnote-counter:before {
-            content: attr(data-book-counter);
-        }
-        section[role=doc-footnote] .footnote-counter:after {
-            content: ". ";
-        }
-        section[role=doc-footnote] .cat-figure::after {
-            content: ' ' counter(cat-figure) 'A';
-        }
-        section[role=doc-footnote] .cat-equation::after {
-            content: ' ' counter(cat-equation) 'A';
-        }
-        section[role=doc-footnote] .cat-photo::after {
-            content: ' ' counter(cat-photo) 'A';
-        }
-        section[role=doc-footnote] .cat-table::after {
-            content: ' ' counter(cat-table) 'A';
-        }
         section.fnlist {
             display: none;
         }

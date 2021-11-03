@@ -7,7 +7,7 @@ export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
-        <link type="text/css" rel="stylesheet" href="css/document.css" />
+        <link type="text/css" rel="stylesheet" href="css/book.css" />
         ${
     styleSheets.map(sheet =>
         `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
@@ -94,7 +94,7 @@ export const htmlBookIndexTemplate = ({book, contentItems, language, creator, st
     <head>
         <meta charset="utf-8"></meta>
         <title>${escapeText(book.title)}</title>
-        <link type="text/css" rel="stylesheet" href="css/document.css" />
+        <link type="text/css" rel="stylesheet" href="css/book.css" />
         ${
     styleSheets.map(sheet =>
         `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
@@ -120,7 +120,7 @@ export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets}) => `
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
-        <link type="text/css" rel="stylesheet" href="css/document.css" />
+        <link type="text/css" rel="stylesheet" href="css/book.css" />
         <style>
             ${css}
         </style>

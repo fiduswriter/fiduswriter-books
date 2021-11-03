@@ -29,6 +29,9 @@ export class HTMLBookExporter extends DOMExporter {
         this.math = false
         this.chapterTemplate = htmlBookExportTemplate
         this.indexTemplate = htmlBookIndexTemplate
+        this.styleSheets = [
+            {url: `${settings_STATIC_URL}css/book.css?v=${transpile_VERSION}`}
+        ]
     }
 
     init() {
@@ -121,10 +124,14 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
     exportOne() {
-        let footnoteCounter = 0
+        let footnoteCounter = 0, figureCounter = 0, equationCounter = 0,
+            photoCounter = 0, tableCounter = 0
+
         this.chapters = this.book.chapters.sort(
             (a, b) => a.number > b.number ? 1 : -1
         ).map(chapter => {
+            let chapterFigureCounter = 0, chapterEquationCounter = 0,
+                chapterPhotoCounter = 0, chapterTableCounter = 0
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
             schema.cached.imageDB = {db: doc.images}
@@ -140,21 +147,47 @@ export class HTMLBookExporter extends DOMExporter {
             contents.querySelectorAll("figure[data-category='figure'] figcaption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['figure'][doc.settings.language]
+                    el.dataset.bookCounter = ++figureCounter
+                    el.dataset.chapterCounter = ++chapterFigureCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
                 }
             )
             contents.querySelectorAll("figure[data-category='equation'] figcaption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['equation'][doc.settings.language]
+                    el.dataset.bookCounter = ++equationCounter
+                    el.dataset.chapterCounter = ++chapterEquationCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
                 }
             )
             contents.querySelectorAll("figure[data-category='photo'] figcaption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['photo'][doc.settings.language]
+                    el.dataset.bookCounter = ++photoCounter
+                    el.dataset.chapterCounter = ++chapterPhotoCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
                 }
             )
             contents.querySelectorAll("figure[data-category='table'] figcaption span.label,table[data-category='table'] caption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['table'][doc.settings.language]
+                    el.dataset.bookCounter = ++tableCounter
+                    el.dataset.chapterCounter = ++chapterTableCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
+                }
+            )
+            contents.querySelectorAll(".cross-reference").forEach(
+                el => {
+                    const rEl = contents.querySelector(`#${el.dataset.id} .label-counter`)
+                    if (!rEl) {
+                        return
+                    }
+                    el.innerHTML = `<a href="#${el.dataset.id}" class="reference-counter" data-chapter-counter="${rEl.dataset.chapterCounter}" data-book-counter="${rEl.dataset.bookCounter}">${rEl.innerHTML}</a>`
+                    delete el.dataset.title
                 }
             )
 
