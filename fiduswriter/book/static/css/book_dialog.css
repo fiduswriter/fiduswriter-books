@@ -1,0 +1,46 @@
+#book-dialog td .dk-selected,
+#book-dialog td .dk-select-options {
+    width: 486px !important;
+}
+
+#book-dialog th .dk-selected,
+#book-dialog th .dk-select-options {
+    width: 140px !important;
+}
+
+#book-dialog input.entryForm,
+#book-dialog input.fw-input {
+    width: 486px;
+}
+
+.fw-data-table td.book-sort-up,
+.fw-data-table td.book-sort-down {
+    padding-right: 0;
+}
+
+b.part {
+    font-weight: bold;
+}
+
+#book-dialog div.img {
+    width: calc(80vw - 100px);
+    height: calc(80vh - 200px);
+    max-width: 480px;
+    max-height: 360px;
+    background: transparent no-repeat center;
+    background-size: contain;
+}
+
+
+#book-dialog .warninglist {
+    background-color: rgba(var(--warning-background-color));
+}
+
+#book-dialog .errorlist {
+    background-color: var(--error-background-color);
+}
+
+#book-dialog .errorlist li,
+#book-dialog .warninglist li {
+    padding: 6px;
+}

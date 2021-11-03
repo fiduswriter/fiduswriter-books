@@ -93,24 +93,8 @@ export class PrintBookExporter extends HTMLBookExporter {
         body {
                 background-color: white;
         }
-        .article-title, section[role=doc-footnotes] {
-            counter-reset: cat-figure cat-equation cat-photo cat-table footnote-counter footnote-marker-counter;
-        }
-        section[role=doc-footnote] > *:first-child:before {
-            counter-increment: footnote-counter;
-            content: counter(footnote-counter) ". ";
-        }
-        section[role=doc-footnote] .cat-figure::after {
-            content: ' ' counter(cat-figure) 'A';
-        }
-        section[role=doc-footnote] .cat-equation::after {
-            content: ' ' counter(cat-equation) 'A';
-        }
-        section[role=doc-footnote] .cat-photo::after {
-            content: ' ' counter(cat-photo) 'A';
-        }
-        section[role=doc-footnote] .cat-table::after {
-            content: ' ' counter(cat-table) 'A';
+        .article-title {
+            counter-reset: cat-figure cat-equation cat-photo cat-table;
         }
         section.fnlist {
             display: none;
@@ -188,12 +172,5 @@ export class PrintBookExporter extends HTMLBookExporter {
         }
 
         return css
-    }
-
-    getFootnoteAnchor(counter) {
-        const footnoteAnchor = super.getFootnoteAnchor(counter)
-        // Add the counter directly into the footnote.
-        footnoteAnchor.innerHTML = counter
-        return footnoteAnchor
     }
 }

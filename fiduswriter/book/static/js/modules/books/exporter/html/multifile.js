@@ -29,6 +29,9 @@ export class HTMLBookExporter extends DOMExporter {
         this.math = false
         this.chapterTemplate = htmlBookExportTemplate
         this.indexTemplate = htmlBookIndexTemplate
+        this.styleSheets = [
+            {url: `${settings_STATIC_URL}css/book.css?v=${transpile_VERSION}`}
+        ]
     }
 
     init() {
@@ -65,7 +68,20 @@ export class HTMLBookExporter extends DOMExporter {
         return `css/${bookStyle.slug}.css`
     }
 
-    addFootnotes(contentsEl, offset) {
+
+    getBookFootnoteAnchor(chapterCounter, bookCounter) {
+        const footnoteAnchor = document.createElement('a')
+        footnoteAnchor.setAttribute('href', '#fn' + bookCounter)
+        // RASH 0.5 doesn't mark the footnote anchors, so we add this class
+        footnoteAnchor.classList.add('fn')
+        footnoteAnchor.innerHTML = `<span class="footnote-counter" data-chapter-counter="${chapterCounter}" data-book-counter="${bookCounter}"></span>`
+        return footnoteAnchor
+    }
+
+    addFootnotes(
+        contentsEl,
+        offset // Offset for continous footnote counting throughout book.
+    ) {
         // Replace the footnote markers with anchors and put footnotes with contents
         // at the back of the document.
         // Also, link the footnote anchor with the footnote according to
@@ -77,13 +93,25 @@ export class HTMLBookExporter extends DOMExporter {
 
         footnotes.forEach(
             (footnote, index) => {
-                const counter = offset + index + 1
-                const footnoteAnchor = this.getFootnoteAnchor(counter)
+                const chapterCounter = index + 1
+                const bookCounter = offset + chapterCounter
+                const footnoteAnchor = this.getBookFootnoteAnchor(chapterCounter, bookCounter)
                 footnote.parentNode.replaceChild(footnoteAnchor, footnote)
                 const newFootnote = document.createElement('section')
-                newFootnote.id = 'fn' + counter
+                newFootnote.id = 'fn' + bookCounter
                 newFootnote.setAttribute('role', 'doc-footnote')
+                newFootnote.dataset.chapterCounter = chapterCounter
+                newFootnote.dataset.bookCounter = bookCounter
                 newFootnote.innerHTML = footnote.dataset.footnote
+                const newFootnoteCounter = document.createElement('span')
+                newFootnoteCounter.classList.add('footnote-counter')
+                newFootnoteCounter.dataset.chapterCounter = chapterCounter
+                newFootnoteCounter.dataset.bookCounter = bookCounter
+                if (['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(newFootnote.firstElementChild?.tagName)) {
+                    newFootnote.firstElementChild.prepend(newFootnoteCounter)
+                } else {
+                    newFootnote.prepend(newFootnoteCounter)
+                }
                 footnotesContainer.appendChild(newFootnote)
             }
         )
@@ -91,11 +119,19 @@ export class HTMLBookExporter extends DOMExporter {
         return offset + footnotes.length
     }
 
+    getChapterLink(chapterNumber) {
+        return `document-${chapterNumber}.html`
+    }
+
     exportOne() {
-        let footnoteCounter = 0
+        let footnoteCounter = 0, figureCounter = 0, equationCounter = 0,
+            photoCounter = 0, tableCounter = 0
+
         this.chapters = this.book.chapters.sort(
             (a, b) => a.number > b.number ? 1 : -1
         ).map(chapter => {
+            let chapterFigureCounter = 0, chapterEquationCounter = 0,
+                chapterPhotoCounter = 0, chapterTableCounter = 0
             const doc = this.docList.find(doc => doc.id === chapter.text),
                 schema = this.schema
             schema.cached.imageDB = {db: doc.images}
@@ -111,21 +147,47 @@ export class HTMLBookExporter extends DOMExporter {
             contents.querySelectorAll("figure[data-category='figure'] figcaption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['figure'][doc.settings.language]
+                    el.dataset.bookCounter = ++figureCounter
+                    el.dataset.chapterCounter = ++chapterFigureCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
                 }
             )
             contents.querySelectorAll("figure[data-category='equation'] figcaption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['equation'][doc.settings.language]
+                    el.dataset.bookCounter = ++equationCounter
+                    el.dataset.chapterCounter = ++chapterEquationCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
                 }
             )
             contents.querySelectorAll("figure[data-category='photo'] figcaption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['photo'][doc.settings.language]
+                    el.dataset.bookCounter = ++photoCounter
+                    el.dataset.chapterCounter = ++chapterPhotoCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
                 }
             )
             contents.querySelectorAll("figure[data-category='table'] figcaption span.label,table[data-category='table'] caption span.label").forEach(
                 el => {
                     el.innerHTML = CATS['table'][doc.settings.language]
+                    el.dataset.bookCounter = ++tableCounter
+                    el.dataset.chapterCounter = ++chapterTableCounter
+                    el.classList.add('label-counter')
+                    el.classList.remove('label')
+                }
+            )
+            contents.querySelectorAll(".cross-reference").forEach(
+                el => {
+                    const rEl = contents.querySelector(`#${el.dataset.id} .label-counter`)
+                    if (!rEl) {
+                        return
+                    }
+                    el.innerHTML = `<a href="#${el.dataset.id}" class="reference-counter" data-chapter-counter="${rEl.dataset.chapterCounter}" data-book-counter="${rEl.dataset.bookCounter}">${rEl.innerHTML}</a>`
+                    delete el.dataset.title
                 }
             )
 
@@ -184,7 +246,7 @@ export class HTMLBookExporter extends DOMExporter {
 
             if (this.book.chapters[index].part !== '') {
                 contentItems.push({
-                    link: `document-${this.book.chapters[index].number}.html`,
+                    link: this.getChapterLink(this.book.chapters[index].number),
                     title: this.book.chapters[index].part,
                     docNum: this.book.chapters[index].number,
                     id: 0,
