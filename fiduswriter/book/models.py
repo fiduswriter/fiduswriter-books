@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.conf import settings as django_settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
@@ -30,6 +31,34 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__original_title = self.title
+        self.__original_path = self.path
+        self.__original_metadata = self.metadata
+        self.__original_settings = self.settings
+        self.__orignal_cover_image = self.cover_image
+        self.__original_chapters = self.chapters
+        self.__owner = self.owner
+
+    def has_changed(self):
+        if (
+            self.__original_title != self.title or
+            self.__original_metadata != self.metadata or
+            self.__original_settings != self.settings or
+            self.__orignal_cover_image != self.cover_image or
+            self.__original_chapters != self.chapters or
+            self.__owner != self.owner
+        ):
+            return True
+        else:
+            return False
+
+    def save(self, *args, **kwargs):
+        if self.has_changed():
+            self.updated = timezone.now()
+        return super().save(*args, **kwargs)
 
 
 class Chapter(models.Model):

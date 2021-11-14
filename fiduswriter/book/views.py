@@ -2,7 +2,6 @@ import json
 import time
 
 from django.http import JsonResponse, HttpRequest
-from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib.auth import get_user_model
@@ -265,7 +264,6 @@ def save(request):
         book = Book.objects.get(id=book_obj["id"])
         if book.owner == request.user:
             has_book_write_access = True
-            book.updated = timezone.now()
             book.path = book_obj["path"]
         else:
             access_right = book.bookaccessright_set.filter(
@@ -275,7 +273,6 @@ def save(request):
             ).first()
             if access_right:
                 has_book_write_access = True
-                book.updated = timezone.now()
                 access_right.path = book_obj["path"]
                 access_right.save()
     has_coverimage_access = False
