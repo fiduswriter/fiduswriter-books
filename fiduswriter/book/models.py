@@ -44,12 +44,12 @@ class Book(models.Model):
 
     def has_changed(self):
         if (
-            self.__original_title != self.title or
-            self.__original_metadata != self.metadata or
-            self.__original_settings != self.settings or
-            self.__orignal_cover_image != self.cover_image or
-            self.__original_chapters != self.chapters or
-            self.__owner != self.owner
+            self.__original_title != self.title
+            or self.__original_metadata != self.metadata
+            or self.__original_settings != self.settings
+            or self.__orignal_cover_image != self.cover_image
+            or self.__original_chapters != self.chapters
+            or self.__owner != self.owner
         ):
             return True
         else:
