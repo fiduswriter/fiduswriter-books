@@ -182,7 +182,8 @@ export class BookOverview {
             paging: false,
             scrollY: `${Math.max(window.innerHeight - 360, 100)}px`,
             labels: {
-                noRows: gettext("No books available") // Message shown when there are no search results
+                noRows: gettext("No books available"),
+                noResults: gettext("No books found") // Message shown when there are no search results
             },
             layout: {
                 top: ""
