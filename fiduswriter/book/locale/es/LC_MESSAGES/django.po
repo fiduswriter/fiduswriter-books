@@ -1,13 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Fidus Writer books backend\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-17 22:03+0000\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books backend\n"
+"Language: es\n"
 
 #: book/emails.py:18
 msgid "Untitled"
@@ -34,6 +32,6 @@ msgid "Access books"
 msgstr "Acceso a libros"
 
 #: book/emails.py:109
-#, python-format
 msgid "Book shared: %(book_title)s"
 msgstr "Libro compartido: %(book_title)s"
+
