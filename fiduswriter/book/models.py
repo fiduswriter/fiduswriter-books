@@ -32,31 +32,32 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.__original_title = self.title
-        self.__original_path = self.path
-        self.__original_metadata = self.metadata
-        self.__original_settings = self.settings
-        self.__orignal_cover_image = self.cover_image
-        self.__original_chapters = self.chapters
-        self.__owner = self.owner
+    @classmethod
+    def from_db(cls, db, field_names, values):
+        instance = super().from_db(db, field_names, values)
+        instance._loaded_values = dict(zip(field_names, values))
+        return instance
 
     def has_changed(self):
         if (
-            self.__original_title != self.title
-            or self.__original_metadata != self.metadata
-            or self.__original_settings != self.settings
-            or self.__orignal_cover_image != self.cover_image
-            or self.__original_chapters != self.chapters
-            or self.__owner != self.owner
+            self._loaded_values['title'] != self.title
+            or self._loaded_values['metadata'] != self.metadata
+            or self._loaded_values['settings'] != self.settings
+            or self._loaded_values['cover_image_id'] != self.cover_image_id
+            or self._loaded_values['owner_id'] != self.owner_id
         ):
             return True
         else:
             return False
 
     def save(self, *args, **kwargs):
-        if self.has_changed():
+        if (
+            'force_update' in kwargs and
+            kwargs['force_update']
+        ) or (
+            not self._state.adding and
+            self.has_changed()
+        ):
             self.updated = timezone.now()
         return super().save(*args, **kwargs)
 

@@ -159,7 +159,22 @@ def list(request):
 
 
 def set_chapters(book, chapters, user):
-    book.chapter_set.all().delete()
+    changed = False
+    current_chapters = book.chapter_set.all().order_by('number')
+    if len(current_chapters) != len(chapters):
+        changed = True
+    else:
+        for i, cur_chap in enumerate(current_chapters):
+            if (
+                cur_chap.text_id != chapters[i]['text'] or
+                cur_chap.number != chapters[i]['number'] or
+                cur_chap.part != chapters[i]['part']
+            ):
+                changed = True
+                break
+    if not changed:
+        return
+    current_chapters.delete()
     for chapter in chapters:
         new_chapter = Chapter(
             book=book,
@@ -199,6 +214,7 @@ def set_chapters(book, chapters, user):
                     user_id=book.owner.id,
                     rights="read",
                 )
+        book.save(force_update=True)
     return
 
 
