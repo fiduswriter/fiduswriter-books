@@ -40,23 +40,19 @@ class Book(models.Model):
 
     def has_changed(self):
         if (
-            self._loaded_values['title'] != self.title
-            or self._loaded_values['metadata'] != self.metadata
-            or self._loaded_values['settings'] != self.settings
-            or self._loaded_values['cover_image_id'] != self.cover_image_id
-            or self._loaded_values['owner_id'] != self.owner_id
+            self._loaded_values["title"] != self.title
+            or self._loaded_values["metadata"] != self.metadata
+            or self._loaded_values["settings"] != self.settings
+            or self._loaded_values["cover_image_id"] != self.cover_image_id
+            or self._loaded_values["owner_id"] != self.owner_id
         ):
             return True
         else:
             return False
 
     def save(self, *args, **kwargs):
-        if (
-            'force_update' in kwargs and
-            kwargs['force_update']
-        ) or (
-            not self._state.adding and
-            self.has_changed()
+        if ("force_update" in kwargs and kwargs["force_update"]) or (
+            not self._state.adding and self.has_changed()
         ):
             self.updated = timezone.now()
         return super().save(*args, **kwargs)
