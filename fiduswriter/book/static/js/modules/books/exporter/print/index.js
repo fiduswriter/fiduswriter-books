@@ -37,10 +37,10 @@ export class PrintBookExporter extends HTMLBookExporter {
                     if (b.filename === 'index.html') {
                         return 1
                     }
-                    if (a.filename < b.filename) {
+                    if (parseInt(a.filename.match(/\d+/g)) < parseInt(b.filename.match(/\d+/g))) {
                         return -1
                     }
-                    if (a.filename > b.filename) {
+                    if (parseInt(a.filename.match(/\d+/g)) > parseInt(b.filename.match(/\d+/g))) {
                         return 1
                     }
                     return 0

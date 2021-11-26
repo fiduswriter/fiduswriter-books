@@ -1,4 +1,4 @@
-import {escapeText} from "../../../common"
+import {escapeText, localizeDate} from "../../../common"
 
 /** A template for HTML export of a book. */
 export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents, title}) =>
@@ -72,8 +72,8 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
         `<p>${gettext('Published by')}: ${escapeText(book.metadata.publisher)}</p>` :
         ''
 }
-        <p>${gettext('Last Updated')}: ${book.updated}</p>
-        <p>${gettext('Created')}: ${book.added}</p>
+        <p>${gettext('Last Updated')}: ${localizeDate(book.updated * 1000, 'sortable-date')}</p>
+        <p>${gettext('Created')}: ${localizeDate(book.added * 1000, 'sortable-date')}</p>
         <p>${gettext('Language')}: ${language}</p>
         <p>${gettext('Created by')}: ${escapeText(creator)}</p>
     </div>
