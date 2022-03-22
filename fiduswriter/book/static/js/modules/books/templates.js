@@ -52,6 +52,21 @@ export const bookBasicInfoTemplate = ({book}) =>
             </tr>
             <tr>
                 <th>
+                    <h4 class="fw-tablerow-title">${gettext("Version")}</h4>
+                </th>
+                <td>
+                    <input class="entryForm" type="text" id="book-metadata-version"
+                            value="${escapeText(book.metadata.version)}"
+                            ${
+    book.rights === 'read' ?
+        'disabled="disabled"' :
+        ''
+}
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
                     <h4 class="fw-tablerow-title">${gettext("Publisher")}</h4>
                 </th>
                 <td>

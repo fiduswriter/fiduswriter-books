@@ -167,6 +167,11 @@ export const epubBookTitlepageTemplate = ({
         ''
 }
           ${
+    book.metadata.version?.length ?
+        `<h4 class="bookversion">${escapeText(book.metadata.version)}</h4>` :
+        ''
+}
+          ${
     book.metadata.author.length ?
         `<h3 class="bookauthor">${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
         ''

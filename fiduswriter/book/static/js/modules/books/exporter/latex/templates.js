@@ -5,6 +5,7 @@ ${preamble}
 \\usepackage{docmute}
 \\title{${book.title}}
 \\author{${book.metadata.author}}
+${book.metadata.version?.length ? `\\date{${book.metadata.version}}`: ''}
 \\begin{document}
 \\maketitle
 \\def\\title#1{\\chapter{#1}}

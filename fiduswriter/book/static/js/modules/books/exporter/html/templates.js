@@ -65,6 +65,11 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
         `<h3 class="bookauthor">${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
         ''
 }
+        ${
+    book.metadata.version?.length ?
+        `<h4 class="bookversion">${escapeText(book.metadata.version)}</h4>` :
+        ''
+}
     </div>
     <div class="copyrightpage frontmatter">
         ${

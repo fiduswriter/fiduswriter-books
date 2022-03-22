@@ -9,6 +9,17 @@ import {ImageSelectionDialog} from "../images/selection_dialog"
 import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath, escapeText, ContentMenu} from "../common"
 
 
+function emptyMetadata() {
+    return {
+        author: '',
+        subtitle: '',
+        version: '',
+        publisher: '',
+        copyright: '',
+        keywords: ''
+    }
+}
+
 export class BookActions {
 
     constructor(bookOverview) {
@@ -160,6 +171,7 @@ export class BookActions {
         book.title = document.getElementById('book-title').value
         book.metadata.author = document.getElementById('book-metadata-author').value
         book.metadata.subtitle = document.getElementById('book-metadata-subtitle').value
+        book.metadata.version = document.getElementById('book-metadata-version').value
         book.metadata.copyright = document.getElementById('book-metadata-copyright').value
         book.metadata.publisher = document.getElementById('book-metadata-publisher').value
         book.metadata.keywords = document.getElementById('book-metadata-keywords').value
@@ -232,13 +244,7 @@ export class BookActions {
                 is_owner: true,
                 owner: this.bookOverview.user,
                 rights: 'write',
-                metadata: {
-                    author: '',
-                    subtitle: '',
-                    publisher: '',
-                    copyright: '',
-                    keywords: ''
-                },
+                metadata: emptyMetadata(),
                 settings: {
                     bibliography_header: gettext('Bibliography'),
                     citationstyle: 'apa',
@@ -249,6 +255,7 @@ export class BookActions {
         } else {
             const oldBook = this.bookOverview.bookList.find(book => book.id === bookId)
             book = Object.assign({}, oldBook)
+            book.metadata = Object.assign(emptyMetadata(), oldBook.metadata)
             oldBookId = oldBook.id
 
             if (book.cover_image && !imageDB.db[book.cover_image]) {
@@ -309,7 +316,7 @@ export class BookActions {
 
         const dialog = new Dialog({
             width: 840,
-            height: 460,
+            height: 480,
             title,
             body,
             buttons
