@@ -5,7 +5,7 @@ import * as plugins from "../../plugins/books_overview"
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, shortFileTitle} from "../common"
+import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, shortFileTitle, Dialog} from "../common"
 import {SiteMenu} from "../menu"
 import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
@@ -165,7 +165,7 @@ export class BookOverview {
                 '-1',
                 'top',
                 '',
-                `<a class="fw-data-table-title fw-link-text parentdir" href="/books${parentPath}" data-path="${parentPath}">
+                `<a class="fw-data-table-title fw-link-text parentdir" href="/books${encodeURI(parentPath)}" data-path="${parentPath}">
                     <i class="fas fa-folder"></i>
                     <span>..</span>
                 </a>`,
@@ -254,7 +254,7 @@ export class BookOverview {
                 '0',
                 'folder',
                 '',
-                `<a class="fw-data-table-title fw-link-text subdir" href="/books${this.path}${subdir}/" data-path="${this.path}${subdir}/">
+                `<a class="fw-data-table-title fw-link-text subdir" href="/books${encodeURI(this.path + subdir)}/" data-path="${this.path}${subdir}/">
                     <i class="fas fa-folder"></i>
                     <span>${escapeText(subdir)}</span>
                 </a>`,
@@ -396,10 +396,46 @@ export class BookOverview {
                 accessDialog.init()
                 break
             }
-            case findTarget(event, 'a.fw-data-table-title.subdir, a.fw-data-table-title.parentdir', el):
+            case findTarget(event, 'a.fw-data-table-title.parentdir', el):
+                event.preventDefault()
+                if (this.table.data.length > 1) {
+                    this.path = el.target.dataset.path
+                    window.history.pushState({}, "", el.target.getAttribute('href'))
+                    this.initTable()
+                } else {
+                    const confirmFolderDeletionDialog = new Dialog({
+                        title: gettext('Confirm deletion'),
+                        body: `<p>
+                    ${gettext('Leaving an empty folder will delete it. Do you really want to delete this folder?')}
+                            </p>`,
+                        id: 'confirmfolderdeletion',
+                        icon: 'exclamation-triangle',
+                        buttons: [
+                            {
+                                text: gettext('Delete'),
+                                classes: "fw-dark delete-folder",
+                                height: 70,
+                                click: () => {
+                                    confirmFolderDeletionDialog.close()
+                                    this.path = el.target.dataset.path
+                                    window.history.pushState({}, "", el.target.getAttribute('href'))
+                                    this.initTable()
+                                }
+                            },
+                            {
+                                type: 'cancel'
+                            }
+                        ]
+                    })
+
+                    confirmFolderDeletionDialog.open()
+                }
+
+                break
+            case findTarget(event, 'a.fw-data-table-title.subdir', el):
                 event.preventDefault()
                 this.path = el.target.dataset.path
-                window.history.pushState({}, "", encodeURI(el.target.getAttribute('href')))
+                window.history.pushState({}, "", el.target.getAttribute('href'))
                 this.initTable()
                 break
             case findTarget(event, '.fw-data-table-title', el): {
