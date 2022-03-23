@@ -1,29 +1,35 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: Fidus Writer books\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-23 05:59+0000\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Fidus Writer books\n"
-"Language: bg\n"
+
+#: book/static/js/modules/books/accessrights/index.js:19
+msgid "Cannot load book access data."
+msgstr "Данните за достъп до книга не могат да се заредят."
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact or invite new user"
+msgstr "Добавете контакт или поканете нов потребител"
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact"
+msgstr "Добави контакт"
 
 #: book/static/js/modules/books/accessrights/index.js:81
-#: book/static/js/modules/books/actions.js:95
-#: book/static/js/modules/books/actions.js:268
+#: book/static/js/modules/books/actions.js:107
+#: book/static/js/modules/books/actions.js:276
 msgid "Submit"
 msgstr "Изпрати"
 
 #: book/static/js/modules/books/accessrights/index.js:107
 msgid "Share your book with others"
 msgstr "Сподели твоята книга с други"
-
-#: book/static/js/modules/books/accessrights/index.js:222
-msgid "Cannot save access rights."
-msgstr "Правата за достъп не могат да се запазят."
-
-#: book/static/js/modules/books/accessrights/index.js:225
-msgid "Access rights have been saved"
-msgstr "Правата за достъп бяха запазени"
 
 #: book/static/js/modules/books/accessrights/index.js:197
 #: book/static/js/modules/books/accessrights/index.js:199
@@ -34,6 +40,19 @@ msgstr "Напиши"
 #: book/static/js/modules/books/accessrights/index.js:208
 msgid "Read"
 msgstr "Прочети"
+
+#: book/static/js/modules/books/accessrights/index.js:222
+msgid "Cannot save access rights."
+msgstr "Правата за достъп не могат да се запазят."
+
+#: book/static/js/modules/books/accessrights/index.js:225
+msgid "Access rights have been saved"
+msgstr "Правата за достъп бяха запазени"
+
+#: book/static/js/modules/books/accessrights/templates.js:7
+#: book/static/js/modules/books/accessrights/templates.js:11
+msgid "Invite"
+msgstr "Поканете"
 
 #: book/static/js/modules/books/accessrights/templates.js:17
 msgid "My contacts"
@@ -57,51 +76,113 @@ msgid "Rights"
 msgstr "Права"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
-#: book/static/js/modules/books/actions.js:64
+#: book/static/js/modules/books/actions.js:76
+#: book/static/js/modules/books/index.js:381
 msgid "Delete"
 msgstr "Изтрий"
 
-#: book/static/js/modules/books/actions.js:49
+#: book/static/js/modules/books/actions.js:25
+msgid "Basic info"
+msgstr "Основна информация"
+
+#: book/static/js/modules/books/actions.js:26
+msgid "Basic book information"
+msgstr "Основна информация за книгата"
+
+#: book/static/js/modules/books/actions.js:29
+msgid "Chapters"
+msgstr "Глави"
+
+#: book/static/js/modules/books/actions.js:30
+msgid "Documents assigned as chapters"
+msgstr "Документи, определени като глави"
+
+#: book/static/js/modules/books/actions.js:33
+#: book/static/js/modules/books/actions.js:214
+msgid "Bibliography"
+msgstr "Библиография"
+
+#: book/static/js/modules/books/actions.js:34
+msgid "Bibliography related settings"
+msgstr "Настройки, свързани с библиографията"
+
+#: book/static/js/modules/books/actions.js:37
+msgid "Epub"
+msgstr "Epub"
+
+#: book/static/js/modules/books/actions.js:38
+msgid "Epub related settings"
+msgstr "Настройки, свързани с Epub"
+
+#: book/static/js/modules/books/actions.js:41
+msgid "Print/PDF"
+msgstr "Печат/PDF"
+
+#: book/static/js/modules/books/actions.js:42
+msgid "Print related settings"
+msgstr "Настройки за печат"
+
+#: book/static/js/modules/books/actions.js:45
+msgid "Sanity check"
+msgstr "Проверка на здравия разум"
+
+#: book/static/js/modules/books/actions.js:46
+msgid "Perform sanity check on book"
+msgstr "Извършете проверка на здравословното състояние на книгата"
+
+#: book/static/js/modules/books/actions.js:61
 msgid "Could not delete book"
 msgstr "Книгата не можа да бъде изтрита"
 
-#: book/static/js/modules/books/actions.js:52
+#: book/static/js/modules/books/actions.js:64
 msgid "Book has been deleted"
 msgstr "Книгата е изтрита"
 
-#: book/static/js/modules/books/actions.js:76
+#: book/static/js/modules/books/actions.js:88
+#: book/static/js/modules/books/index.js:376
 msgid "Confirm deletion"
 msgstr "Потвърди изтриването"
 
-#: book/static/js/modules/books/actions.js:91
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following books?"
+msgstr "Наистина ли искате да изтриете следните книги?"
+
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following book?"
+msgstr "Наистина ли искате да изтриете следната книга?"
+
+#: book/static/js/modules/books/actions.js:103
 #: book/static/js/modules/books/templates.js:61
 msgid "Untitled"
 msgstr "Неозаглавен"
 
-#: book/static/js/modules/books/actions.js:109
+#: book/static/js/modules/books/actions.js:121
 msgid "Edit Chapter"
 msgstr "Редактирай глава"
 
-#: book/static/js/modules/books/actions.js:139
+#: book/static/js/modules/books/actions.js:152
 msgid "The book could not be saved"
 msgstr "Книгата не можа да бъде запазена"
 
-#: book/static/js/modules/books/actions.js:172
+#: book/static/js/modules/books/actions.js:180
+msgid "Copy of"
+msgstr "Копие на"
+
+#: book/static/js/modules/books/actions.js:185
 msgid "The book could not be copied"
 msgstr "Книгата не можа да бъде копирана"
 
-#: book/static/js/modules/books/actions.js:191
+#: book/static/js/modules/books/actions.js:204
 msgid "Create Book"
 msgstr "Създайте книга"
 
-#: book/static/js/modules/books/actions.js:21
-#: book/static/js/modules/books/actions.js:207
-msgid "Bibliography"
-msgstr "Библиография"
-
-#: book/static/js/modules/books/actions.js:227
+#: book/static/js/modules/books/actions.js:235
 msgid "Edit Book"
 msgstr "Редактиране на книга"
+
+#: book/static/js/modules/books/actions.js:253
+msgid "Export"
+msgstr "Износ"
 
 #: book/static/js/modules/books/exporter/epub/index.js:36
 #: book/static/js/modules/books/exporter/html/multifile.js:36
@@ -178,7 +259,9 @@ msgstr "Английски"
 
 #: book/static/js/modules/books/exporter/tools.js:7
 msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "Не можете да създадете книга, тъй като ви липсват права за достъп до нейните глави."
+msgstr ""
+"Не можете да създадете книга, тъй като ви липсват права за достъп до нейните "
+"глави."
 
 #: book/static/js/modules/books/index.js:86
 msgid "Book Overview"
@@ -187,6 +270,10 @@ msgstr "Преглед на книгите"
 #: book/static/js/modules/books/index.js:161
 msgid "No books available"
 msgstr "Няма налични книги"
+
+#: book/static/js/modules/books/index.js:162
+msgid "No books found"
+msgstr "Няма намерени книги"
 
 #: book/static/js/modules/books/index.js:169
 msgid "Last changed"
@@ -200,13 +287,80 @@ msgstr "собственик"
 msgid "Cannot load data of books."
 msgstr "Данните за книги не могат да се заредят."
 
+#: book/static/js/modules/books/index.js:340
+#: book/static/js/modules/books/index.js:351
+msgid "You cannot delete books while you are offline."
+msgstr "Не можете да изтривате книги, докато сте офлайн."
+
+#: book/static/js/modules/books/index.js:377
+msgid ""
+"Leaving an empty folder will delete it. Do you really want to delete this "
+"folder?"
+msgstr ""
+
 #: book/static/js/modules/books/menu.js:11
 msgid "Create new book"
 msgstr "Създайте нова книга"
 
+#: book/static/js/modules/books/menu.js:20
+msgid "Create new folder"
+msgstr "Създайте нова папка"
+
+#: book/static/js/modules/books/menu.js:33
+msgid "Search books"
+msgstr "Търсене на книги"
+
+#: book/static/js/modules/books/menu.js:51
+msgid "Epub export has been initiated."
+msgstr "Започнат бе Epub експорт."
+
+#: book/static/js/modules/books/menu.js:57
+msgid "HTML export has been initiated."
+msgstr "Започнат бе HTML експорт."
+
+#: book/static/js/modules/books/menu.js:63
+msgid "Unified HTML export has been initiated."
+msgstr "Експортирането на унифициран HTML е стартирано."
+
+#: book/static/js/modules/books/menu.js:69
+msgid "LaTeX export has been initiated."
+msgstr "Иницииран е експорт на LaTeX."
+
+#: book/static/js/modules/books/menu.js:75
+msgid "Print has been initiated."
+msgstr "Печатът е иницииран."
+
+#: book/static/js/modules/books/menu.js:82
+msgid "Move selected"
+msgstr "Преместване на избраното"
+
+#: book/static/js/modules/books/menu.js:83
+msgid "Move the books that have been selected."
+msgstr "Преместете избраните книги."
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move books"
+msgstr "Преместване на книги"
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move book"
+msgstr "Преместване на книга"
+
+#: book/static/js/modules/books/menu.js:94
+msgid "Book has been moved"
+msgstr "Книгата е преместена"
+
+#: book/static/js/modules/books/menu.js:95
+msgid "Could not move book"
+msgstr "Книгата не можа да се премести"
+
 #: book/static/js/modules/books/menu.js:105
 msgid "Delete selected"
 msgstr "Изтрий избраното"
+
+#: book/static/js/modules/books/menu.js:106
+msgid "Delete selected books."
+msgstr "Изтрийте избраните книги."
 
 #: book/static/js/modules/books/menu.js:115
 msgid "You cannot delete books of other users."
@@ -216,6 +370,10 @@ msgstr "Не можете да изтриете книги от други по�
 msgid "Share selected"
 msgstr "Споделянето е избрано"
 
+#: book/static/js/modules/books/menu.js:125
+msgid "Share selected books."
+msgstr "Споделете избрани книги."
+
 #: book/static/js/modules/books/menu.js:134
 msgid "You cannot share books of other users."
 msgstr "Не можете да споделяте книги на други потребители."
@@ -224,41 +382,159 @@ msgstr "Не можете да споделяте книги на други п�
 msgid "Copy selected"
 msgstr "Копиране избрано"
 
+#: book/static/js/modules/books/menu.js:145
+msgid "Copy selected books."
+msgstr "Копирайте избрани книги."
+
 #: book/static/js/modules/books/menu.js:152
 msgid "Export selected as Epub"
 msgstr "Износът е избран като Epub"
 
-#: book/static/js/modules/books/menu.js:51
-msgid "Epub export has been initiated."
-msgstr "Започнат бе Epub експорт."
+#: book/static/js/modules/books/menu.js:153
+msgid "Export selected books as Epub."
+msgstr "Експортирайте избрани книги като Epub."
 
 #: book/static/js/modules/books/menu.js:163
 msgid "Export selected as HTML"
 msgstr "Експортът е избран като HTML"
 
-#: book/static/js/modules/books/menu.js:57
-msgid "HTML export has been initiated."
-msgstr "Започнат бе HTML експорт."
+#: book/static/js/modules/books/menu.js:164
+msgid "Export selected books as HTML."
+msgstr "Експортирайте избрани книги като HTML."
+
+#: book/static/js/modules/books/menu.js:174
+msgid "Export selected as Unified HTML"
+msgstr "Експортиране е избрано като Unified HTML"
+
+#: book/static/js/modules/books/menu.js:175
+msgid "Export selected books as Single-file HTML."
+msgstr "Експортирайте избраните книги като HTML с един файл."
 
 #: book/static/js/modules/books/menu.js:185
 msgid "Export selected as LaTeX"
 msgstr "Експортът е избран като LaTeX"
 
-#: book/static/js/modules/books/menu.js:69
-msgid "LaTeX export has been initiated."
-msgstr "Иницииран е експорт на LaTeX."
+#: book/static/js/modules/books/menu.js:186
+msgid "Export selected books as LaTeX."
+msgstr "Експортирайте избрани книги като LaTeX."
 
 #: book/static/js/modules/books/menu.js:196
 msgid "Export selected to Print/PDF"
 msgstr "Износът е избран за печат / PDF"
 
-#: book/static/js/modules/books/menu.js:75
-msgid "Print has been initiated."
-msgstr "Печатът е иницииран."
+#: book/static/js/modules/books/menu.js:197
+msgid "Export selected books to the print dialog."
+msgstr "Експортирайте избрани книги в диалоговия прозорец за печат."
+
+#: book/static/js/modules/books/menu.js:211
+msgid "Export as Epub"
+msgstr "Експортиране като Epub"
+
+#: book/static/js/modules/books/menu.js:212
+msgid "Export book as Epub."
+msgstr "Експортиране на книга като Epub."
+
+#: book/static/js/modules/books/menu.js:222
+msgid "Export as HTML"
+msgstr "Експортиране като HTML"
+
+#: book/static/js/modules/books/menu.js:223
+msgid "Export book as HTML."
+msgstr "Експортиране на книга като HTML."
+
+#: book/static/js/modules/books/menu.js:233
+msgid "Export as Unified HTML"
+msgstr "Експортиране като Unified HTML"
+
+#: book/static/js/modules/books/menu.js:234
+msgid "Export book as Single-file HTML."
+msgstr "Експортирайте книгата като еднофайлов HTML."
+
+#: book/static/js/modules/books/menu.js:244
+msgid "Export as LaTeX"
+msgstr "Експортирайте като LaTeX"
+
+#: book/static/js/modules/books/menu.js:245
+msgid "Export book as LaTeX."
+msgstr "Експортирайте книга като LaTeX."
+
+#: book/static/js/modules/books/menu.js:255
+msgid "Export to Print/PDF"
+msgstr "Експортиране в печат / PDF"
+
+#: book/static/js/modules/books/menu.js:256
+msgid "Export book to the print dialog."
+msgstr "Експортирайте книга в диалоговия прозорец за печат."
+
+#: book/static/js/modules/books/sanity_check.js:4
+msgid "Chapter"
+msgstr "Глава"
+
+#: book/static/js/modules/books/sanity_check.js:8
+#: book/static/js/modules/books/sanity_check.js:18
+msgid "Unresolved tracked changes"
+msgstr "Нерешени проследени промени"
+
+#: book/static/js/modules/books/sanity_check.js:14
+msgid "Internal links without target"
+msgstr "Вътрешни връзки без цел"
+
+#: book/static/js/modules/books/sanity_check.js:16
+msgid "Unresolved comments"
+msgstr "Нерешени коментари"
+
+#: book/static/js/modules/books/sanity_check.js:24
+msgid "Cross references without targets"
+msgstr "Кръстосани референции без цели"
+
+#: book/static/js/modules/books/sanity_check.js:34
+msgid "The book contains no chapters."
+msgstr "Книгата не съдържа глави."
+
+#: book/static/js/modules/books/sanity_check.js:46
+#: book/static/js/modules/books/templates.js:61
+msgid "No access"
+msgstr "Няма достъп"
+
+#: book/static/js/modules/books/sanity_check.js:51
+msgid "No chapter title"
+msgstr "Няма заглавие на глава"
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "No issues were found:"
+msgstr "Не бяха открити проблеми:"
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "The book contains chapters."
+msgstr "Книгата съдържа глави."
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "Each chapter has a title."
+msgstr "Всяка глава има заглавие."
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "There are no unresolved tracked changes."
+msgstr "Няма неразрешени проследени промени."
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "There are no unresolved comments."
+msgstr "Няма нерешени коментари."
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "All cross references have working targets."
+msgstr "Всички кръстосани препратки имат работещи цели."
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "All internal links have working targets."
+msgstr "Всички вътрешни връзки имат работещи цели."
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Subtitle"
 msgstr "Подзаглавие"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Version"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Publisher"
@@ -340,41 +616,9 @@ msgstr "Премахване на изображението на корицат
 msgid "Remove Image"
 msgstr "Изтрий изображение:"
 
-#: book/static/js/modules/books/actions.js:14
-msgid "Basic book information"
-msgstr "Основна информация за книгата"
-
-#: book/static/js/modules/books/actions.js:13
-msgid "Basic info"
-msgstr "Основна информация"
-
-#: book/static/js/modules/books/actions.js:18
-msgid "Documents assigned as chapters"
-msgstr "Документи, определени като глави"
-
-#: book/static/js/modules/books/actions.js:17
-msgid "Chapters"
-msgstr "Глави"
-
-#: book/static/js/modules/books/actions.js:22
-msgid "Bibliography related settings"
-msgstr "Настройки, свързани с библиографията"
-
-#: book/static/js/modules/books/actions.js:26
-msgid "Epub related settings"
-msgstr "Настройки, свързани с Epub"
-
-#: book/static/js/modules/books/actions.js:25
-msgid "Epub"
-msgstr "Epub"
-
-#: book/static/js/modules/books/actions.js:30
-msgid "Print related settings"
-msgstr "Настройки за печат"
-
-#: book/static/js/modules/books/actions.js:29
-msgid "Print/PDF"
-msgstr "Печат/PDF"
+#: book/static/js/modules/books/templates.js:35
+msgid "Perform sanity check"
+msgstr "Извършете проверка на здравословното състояние"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "My documents"
@@ -393,8 +637,11 @@ msgid "Book part"
 msgstr "Част от Книгата"
 
 #: book/static/js/modules/books/templates.js:68
-msgid "If this chapter starts a part of the book, specify the title of that part here"
-msgstr "Ако тази глава започва част от книга, въведете заглавието на тази част тук"
+msgid ""
+"If this chapter starts a part of the book, specify the title of that part "
+"here"
+msgstr ""
+"Ако тази глава започва част от книга, въведете заглавието на тази част тук"
 
 #: book/static/js/modules/books/templates.js:68
 msgid "Book part title"
@@ -407,232 +654,3 @@ msgstr "съставя книги"
 #: book/static/js/plugins/menu/books.js:12
 msgid "Books"
 msgstr "Книги"
-
-#: book/static/js/modules/books/menu.js:106
-msgid "Delete selected books."
-msgstr "Изтрийте избраните книги."
-
-#: book/static/js/modules/books/menu.js:125
-msgid "Share selected books."
-msgstr "Споделете избрани книги."
-
-#: book/static/js/modules/books/menu.js:145
-msgid "Copy selected books."
-msgstr "Копирайте избрани книги."
-
-#: book/static/js/modules/books/menu.js:153
-msgid "Export selected books as Epub."
-msgstr "Експортирайте избрани книги като Epub."
-
-#: book/static/js/modules/books/menu.js:164
-msgid "Export selected books as HTML."
-msgstr "Експортирайте избрани книги като HTML."
-
-#: book/static/js/modules/books/menu.js:186
-msgid "Export selected books as LaTeX."
-msgstr "Експортирайте избрани книги като LaTeX."
-
-#: book/static/js/modules/books/menu.js:197
-msgid "Export selected books to the print dialog."
-msgstr "Експортирайте избрани книги в диалоговия прозорец за печат."
-
-#: book/static/js/modules/books/accessrights/index.js:19
-msgid "Cannot load book access data."
-msgstr "Данните за достъп до книга не могат да се заредят."
-
-#: book/static/js/modules/books/accessrights/index.js:52
-msgid "Add contact or invite new user"
-msgstr "Добавете контакт или поканете нов потребител"
-
-#: book/static/js/modules/books/accessrights/index.js:52
-msgid "Add contact"
-msgstr "Добави контакт"
-
-#: book/static/js/modules/books/accessrights/templates.js:7
-#: book/static/js/modules/books/accessrights/templates.js:11
-msgid "Invite"
-msgstr "Поканете"
-
-#: book/static/js/modules/books/actions.js:33
-msgid "Sanity check"
-msgstr "Проверка на здравия разум"
-
-#: book/static/js/modules/books/actions.js:34
-msgid "Perform sanity check on book"
-msgstr "Извършете проверка на здравословното състояние на книгата"
-
-#: book/static/js/modules/books/actions.js:80
-msgid "Do you really want to delete the following books?"
-msgstr "Наистина ли искате да изтриете следните книги?"
-
-#: book/static/js/modules/books/actions.js:80
-msgid "Do you really want to delete the following book?"
-msgstr "Наистина ли искате да изтриете следната книга?"
-
-#: book/static/js/modules/books/actions.js:167
-msgid "Copy of"
-msgstr "Копие на"
-
-#: book/static/js/modules/books/actions.js:245
-msgid "Export"
-msgstr "Износ"
-
-#: book/static/js/modules/books/index.js:340
-#: book/static/js/modules/books/index.js:351
-msgid "You cannot delete books while you are offline."
-msgstr "Не можете да изтривате книги, докато сте офлайн."
-
-#: book/static/js/modules/books/menu.js:20
-msgid "Create new folder"
-msgstr "Създайте нова папка"
-
-#: book/static/js/modules/books/menu.js:33
-msgid "Search books"
-msgstr "Търсене на книги"
-
-#: book/static/js/modules/books/menu.js:82
-msgid "Move selected"
-msgstr "Преместване на избраното"
-
-#: book/static/js/modules/books/menu.js:83
-msgid "Move the books that have been selected."
-msgstr "Преместете избраните книги."
-
-#: book/static/js/modules/books/menu.js:90
-msgid "Move books"
-msgstr "Преместване на книги"
-
-#: book/static/js/modules/books/menu.js:90
-msgid "Move book"
-msgstr "Преместване на книга"
-
-#: book/static/js/modules/books/menu.js:94
-msgid "Book has been moved"
-msgstr "Книгата е преместена"
-
-#: book/static/js/modules/books/menu.js:95
-msgid "Could not move book"
-msgstr "Книгата не можа да се премести"
-
-#: book/static/js/modules/books/menu.js:211
-msgid "Export as Epub"
-msgstr "Експортиране като Epub"
-
-#: book/static/js/modules/books/menu.js:212
-msgid "Export book as Epub."
-msgstr "Експортиране на книга като Epub."
-
-#: book/static/js/modules/books/menu.js:222
-msgid "Export as HTML"
-msgstr "Експортиране като HTML"
-
-#: book/static/js/modules/books/menu.js:223
-msgid "Export book as HTML."
-msgstr "Експортиране на книга като HTML."
-
-#: book/static/js/modules/books/menu.js:244
-msgid "Export as LaTeX"
-msgstr "Експортирайте като LaTeX"
-
-#: book/static/js/modules/books/menu.js:245
-msgid "Export book as LaTeX."
-msgstr "Експортирайте книга като LaTeX."
-
-#: book/static/js/modules/books/menu.js:255
-msgid "Export to Print/PDF"
-msgstr "Експортиране в печат / PDF"
-
-#: book/static/js/modules/books/menu.js:256
-msgid "Export book to the print dialog."
-msgstr "Експортирайте книга в диалоговия прозорец за печат."
-
-#: book/static/js/modules/books/sanity_check.js:4
-msgid "Chapter"
-msgstr "Глава"
-
-#: book/static/js/modules/books/sanity_check.js:8
-#: book/static/js/modules/books/sanity_check.js:18
-msgid "Unresolved tracked changes"
-msgstr "Нерешени проследени промени"
-
-#: book/static/js/modules/books/sanity_check.js:14
-msgid "Internal links without target"
-msgstr "Вътрешни връзки без цел"
-
-#: book/static/js/modules/books/sanity_check.js:16
-msgid "Unresolved comments"
-msgstr "Нерешени коментари"
-
-#: book/static/js/modules/books/sanity_check.js:24
-msgid "Cross references without targets"
-msgstr "Кръстосани референции без цели"
-
-#: book/static/js/modules/books/sanity_check.js:34
-msgid "The book contains no chapters."
-msgstr "Книгата не съдържа глави."
-
-#: book/static/js/modules/books/sanity_check.js:46
-#: book/static/js/modules/books/templates.js:61
-msgid "No access"
-msgstr "Няма достъп"
-
-#: book/static/js/modules/books/sanity_check.js:51
-msgid "No chapter title"
-msgstr "Няма заглавие на глава"
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "No issues were found:"
-msgstr "Не бяха открити проблеми:"
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "The book contains chapters."
-msgstr "Книгата съдържа глави."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "Each chapter has a title."
-msgstr "Всяка глава има заглавие."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "There are no unresolved tracked changes."
-msgstr "Няма неразрешени проследени промени."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "There are no unresolved comments."
-msgstr "Няма нерешени коментари."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "All cross references have working targets."
-msgstr "Всички кръстосани препратки имат работещи цели."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "All internal links have working targets."
-msgstr "Всички вътрешни връзки имат работещи цели."
-
-#: book/static/js/modules/books/templates.js:35
-msgid "Perform sanity check"
-msgstr "Извършете проверка на здравословното състояние"
-
-#: book/static/js/modules/books/index.js:162
-msgid "No books found"
-msgstr "Няма намерени книги"
-
-#: book/static/js/modules/books/menu.js:63
-msgid "Unified HTML export has been initiated."
-msgstr "Експортирането на унифициран HTML е стартирано."
-
-#: book/static/js/modules/books/menu.js:174
-msgid "Export selected as Unified HTML"
-msgstr "Експортиране е избрано като Unified HTML"
-
-#: book/static/js/modules/books/menu.js:175
-msgid "Export selected books as Single-file HTML."
-msgstr "Експортирайте избраните книги като HTML с един файл."
-
-#: book/static/js/modules/books/menu.js:233
-msgid "Export as Unified HTML"
-msgstr "Експортиране като Unified HTML"
-
-#: book/static/js/modules/books/menu.js:234
-msgid "Export book as Single-file HTML."
-msgstr "Експортирайте книгата като еднофайлов HTML."
-
