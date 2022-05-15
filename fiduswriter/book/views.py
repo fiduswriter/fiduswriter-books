@@ -75,7 +75,7 @@ def list(request):
         .prefetch_related(
             Prefetch(
                 "owner__avatar_set",
-                queryset=Avatar.objects.filter(primary=True)
+                queryset=Avatar.objects.filter(primary=True),
             )
         )
         .distinct()
@@ -150,10 +150,7 @@ def list(request):
         response["books"].append(book_data)
     response["contacts"] = []
     for contact in request.user.contacts.all().prefetch_related(
-        Prefetch(
-            "avatar_set",
-            queryset=Avatar.objects.filter(primary=True)
-        )
+        Prefetch("avatar_set", queryset=Avatar.objects.filter(primary=True))
     ):
         avatars = contact.avatar_set.all()
         contact_object = {
@@ -166,20 +163,12 @@ def list(request):
             "type": "user",
         }
         response["contacts"].append(contact_object)
-    for contact in request.user.invites_by.all().prefetch_related(
-        Prefetch(
-            "avatar_set",
-            queryset=Avatar.objects.filter(primary=True)
-        )
-    ):
-        avatars = contact.avatar_set.all()
+    for contact in request.user.invites_by.all():
         contact_object = {
             "id": contact.id,
             "name": contact.username,
             "username": contact.username,
-            "avatar": avatars[0].avatar_url(AVATAR_SIZE)
-            if len(avatars)
-            else None,
+            "avatar": None,
             "type": "userinvite",
         }
         response["contacts"].append(contact_object)
