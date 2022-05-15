@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST
 from django.db.models import Q, Prefetch
 
+from avatar.models import Avatar
+
 from base.decorators import ajax_required
 from document.helpers.serializers import PythonWithURLSerializer
 from .models import Book, BookAccessRight, Chapter, BookStyle
@@ -159,8 +161,8 @@ def list(request):
             "name": contact.readable_name,
             "username": contact.get_username(),
             "avatar": avatars[0].avatar_url(AVATAR_SIZE)
-                if len(avatars)
-                else None,
+            if len(avatars)
+            else None,
             "type": "user",
         }
         response["contacts"].append(contact_object)
@@ -176,8 +178,8 @@ def list(request):
             "name": contact.username,
             "username": contact.username,
             "avatar": avatars[0].avatar_url(AVATAR_SIZE)
-                if len(avatars)
-                else None,
+            if len(avatars)
+            else None,
             "type": "userinvite",
         }
         response["contacts"].append(contact_object)
