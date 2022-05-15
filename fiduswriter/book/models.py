@@ -95,6 +95,7 @@ class BookAccessRight(models.Model):
         else:
             return f"{self.holder_type.model} {self.holder_id} {self.rights} on {self.book.title}"
 
+
 class BookStyle(models.Model):
     title = models.CharField(
         max_length=128,
