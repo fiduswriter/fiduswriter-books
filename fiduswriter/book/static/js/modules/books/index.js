@@ -5,7 +5,7 @@ import * as plugins from "../../plugins/books_overview"
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, shortFileTitle, Dialog} from "../common"
+import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, shortFileTitle, Dialog, avatarTemplate} from "../common"
 import {SiteMenu} from "../menu"
 import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
@@ -281,7 +281,7 @@ export class BookOverview {
             </span>`,
             `<span class="date">${dateCell({date: book.added})}</span>`,
             `<span class="date">${dateCell({date: book.updated})}</span>`,
-            `<span>${book.owner.avatar.html}</span>
+            `<span>${avatarTemplate({user: book.owner})}</span>
             <span class="fw-inline fw-searchable">${escapeText(book.owner.name)}</span>`,
             `<span class="${this.user.id === book.owner.id ? 'owned-by-user ' : ''}rights fw-inline" data-id="${book.id}">
                 <i data-id="${book.id}" class="icon-access-right icon-access-${book.rights}"></i>
@@ -327,8 +327,9 @@ export class BookOverview {
         this.documentList = json.documents
         this.contacts = json.contacts
         this.styles = json.styles
-
-        this.initTable()
+        if (this.app.page === this) {
+            this.initTable()
+        }
         return json
     }
 
