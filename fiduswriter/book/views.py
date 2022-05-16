@@ -6,16 +6,14 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST
-from django.db.models import Q, Prefetch
-
-from avatar.models import Avatar
+from django.db.models import Q
 
 from base.decorators import ajax_required
 from document.helpers.serializers import PythonWithURLSerializer
 from .models import Book, BookAccessRight, Chapter, BookStyle
 from . import emails
 
-from user.models import AVATAR_SIZE
+from user.helpers import Avatars
 
 from document.models import AccessRight
 from document.views import documents_list
@@ -29,6 +27,7 @@ from user.models import UserInvite
 def get_access_rights(request):
     response = {}
     status = 200
+    avatars = Avatars()
     ar_qs = BookAccessRight.objects.filter(book__owner=request.user)
     book_ids = request.POST.getlist("book_ids[]")
     if len(book_ids) > 0:
@@ -36,9 +35,9 @@ def get_access_rights(request):
     access_rights = []
     for ar in ar_qs:
         if ar.holder_type.model == "user":
-            avatars = ar.holder_obj.avatar_set.all()
+            avatar = avatars.get_url(ar.holder_obj)
         else:
-            avatars = []
+            avatar = None
         access_rights.append(
             {
                 "book_id": ar.book.id,
@@ -47,9 +46,7 @@ def get_access_rights(request):
                     "id": ar.holder_id,
                     "type": ar.holder_type.model,
                     "name": ar.holder_obj.readable_name,
-                    "avatar": avatars[0].avatar_url(AVATAR_SIZE)
-                    if len(avatars)
-                    else None,
+                    "avatar": avatar,
                 },
             }
         )
@@ -63,6 +60,7 @@ def get_access_rights(request):
 def list(request):
     response = {}
     status = 200
+    avatars = Avatars()
     response["documents"] = documents_list(request)
     books = (
         Book.objects.filter(
@@ -72,18 +70,12 @@ def list(request):
                 bookaccessright__holder_type__model="user",
             )
         )
-        .prefetch_related(
-            Prefetch(
-                "owner__avatar_set",
-                queryset=Avatar.objects.filter(primary=True),
-            )
-        )
+        .select_related("owner")
         .distinct()
         .order_by("-updated")
     )
     response["books"] = []
     for book in books:
-        avatars = book.owner.avatar_set.all()
         if book.owner == request.user:
             access_right = "write"
             path = book.path
@@ -119,9 +111,7 @@ def list(request):
             "owner": {
                 "id": book.owner.id,
                 "name": book.owner.readable_name,
-                "avatar": avatars[0].avatar_url(AVATAR_SIZE)
-                if len(avatars)
-                else None,
+                "avatar": avatars.get_url(book.owner),
             },
             "added": added,
             "updated": updated,
@@ -149,17 +139,12 @@ def list(request):
             book_data["cover_image_data"] = field_obj
         response["books"].append(book_data)
     response["contacts"] = []
-    for contact in request.user.contacts.all().prefetch_related(
-        Prefetch("avatar_set", queryset=Avatar.objects.filter(primary=True))
-    ):
-        avatars = contact.avatar_set.all()
+    for contact in request.user.contacts.all():
         contact_object = {
             "id": contact.id,
             "name": contact.readable_name,
             "username": contact.get_username(),
-            "avatar": avatars[0].avatar_url(AVATAR_SIZE)
-            if len(avatars)
-            else None,
+            "avatar": avatars.get_url(contact),
             "type": "user",
         }
         response["contacts"].append(contact_object)
