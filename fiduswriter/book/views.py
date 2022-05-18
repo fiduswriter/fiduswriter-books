@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 
 from base.decorators import ajax_required
 from document.helpers.serializers import PythonWithURLSerializer
@@ -71,12 +71,39 @@ def list(request):
             )
         )
         .select_related("owner")
-        .distinct()
+        .prefetch_related(
+            Prefetch(
+                "chapter_set",
+                queryset=Chapter.objects.select_related("text").only(
+                    "id",
+                    "number",
+                    "part",
+                    "text_id",
+                    "text__title",
+                    "text__updated",
+                ),
+            )
+        )
+        .only(
+            "id",
+            "title",
+            "path",
+            "added",
+            "updated",
+            "metadata",
+            "settings",
+            "cover_image",
+            "owner_id",
+            "owner__first_name",
+            "owner__last_name",
+            "owner__username",
+        )
         .order_by("-updated")
+        .distinct()
     )
     response["books"] = []
     for book in books:
-        if book.owner == request.user:
+        if book.owner_id == request.user.id:
             access_right = "write"
             path = book.path
         else:
@@ -88,7 +115,7 @@ def list(request):
         added = time.mktime(book.added.utctimetuple())
         updated = time.mktime(book.updated.utctimetuple())
         is_owner = False
-        if book.owner == request.user:
+        if book.owner_id == request.user.id:
             is_owner = True
         chapters = []
         for chapter in book.chapter_set.all():
@@ -109,7 +136,7 @@ def list(request):
             "path": path,
             "is_owner": is_owner,
             "owner": {
-                "id": book.owner.id,
+                "id": book.owner_id,
                 "name": book.owner.readable_name,
                 "avatar": avatars.get_url(book.owner),
             },
@@ -164,6 +191,7 @@ def list(request):
         fields=["title", "slug", "contents", "bookstylefile_set"],
     )
     response["styles"] = [obj["fields"] for obj in book_styles]
+
     return JsonResponse(response, status=status)
 
 
