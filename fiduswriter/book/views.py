@@ -6,12 +6,14 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 
 from base.decorators import ajax_required
 from document.helpers.serializers import PythonWithURLSerializer
 from .models import Book, BookAccessRight, Chapter, BookStyle
 from . import emails
+
+from user.helpers import Avatars
 
 from document.models import AccessRight
 from document.views import documents_list
@@ -25,12 +27,17 @@ from user.models import UserInvite
 def get_access_rights(request):
     response = {}
     status = 200
+    avatars = Avatars()
     ar_qs = BookAccessRight.objects.filter(book__owner=request.user)
     book_ids = request.POST.getlist("book_ids[]")
     if len(book_ids) > 0:
         ar_qs = ar_qs.filter(book_id__in=book_ids)
     access_rights = []
     for ar in ar_qs:
+        if ar.holder_type.model == "user":
+            avatar = avatars.get_url(ar.holder_obj)
+        else:
+            avatar = None
         access_rights.append(
             {
                 "book_id": ar.book.id,
@@ -39,7 +46,7 @@ def get_access_rights(request):
                     "id": ar.holder_id,
                     "type": ar.holder_type.model,
                     "name": ar.holder_obj.readable_name,
-                    "avatar": ar.holder_obj.avatar_url,
+                    "avatar": avatar,
                 },
             }
         )
@@ -53,6 +60,7 @@ def get_access_rights(request):
 def list(request):
     response = {}
     status = 200
+    avatars = Avatars()
     response["documents"] = documents_list(request)
     books = (
         Book.objects.filter(
@@ -62,12 +70,40 @@ def list(request):
                 bookaccessright__holder_type__model="user",
             )
         )
-        .distinct()
+        .select_related("owner")
+        .prefetch_related(
+            Prefetch(
+                "chapter_set",
+                queryset=Chapter.objects.select_related("text").only(
+                    "id",
+                    "number",
+                    "part",
+                    "text_id",
+                    "text__title",
+                    "text__updated",
+                ),
+            )
+        )
+        .only(
+            "id",
+            "title",
+            "path",
+            "added",
+            "updated",
+            "metadata",
+            "settings",
+            "cover_image",
+            "owner_id",
+            "owner__first_name",
+            "owner__last_name",
+            "owner__username",
+        )
         .order_by("-updated")
+        .distinct()
     )
     response["books"] = []
     for book in books:
-        if book.owner == request.user:
+        if book.owner_id == request.user.id:
             access_right = "write"
             path = book.path
         else:
@@ -79,7 +115,7 @@ def list(request):
         added = time.mktime(book.added.utctimetuple())
         updated = time.mktime(book.updated.utctimetuple())
         is_owner = False
-        if book.owner == request.user:
+        if book.owner_id == request.user.id:
             is_owner = True
         chapters = []
         for chapter in book.chapter_set.all():
@@ -100,9 +136,9 @@ def list(request):
             "path": path,
             "is_owner": is_owner,
             "owner": {
-                "id": book.owner.id,
+                "id": book.owner_id,
                 "name": book.owner.readable_name,
-                "avatar": book.owner.avatar_url,
+                "avatar": avatars.get_url(book.owner),
             },
             "added": added,
             "updated": updated,
@@ -135,7 +171,7 @@ def list(request):
             "id": contact.id,
             "name": contact.readable_name,
             "username": contact.get_username(),
-            "avatar": contact.avatar_url,
+            "avatar": avatars.get_url(contact),
             "type": "user",
         }
         response["contacts"].append(contact_object)
@@ -144,7 +180,7 @@ def list(request):
             "id": contact.id,
             "name": contact.username,
             "username": contact.username,
-            "avatar": contact.avatar_url,
+            "avatar": None,
             "type": "userinvite",
         }
         response["contacts"].append(contact_object)
@@ -155,6 +191,7 @@ def list(request):
         fields=["title", "slug", "contents", "bookstylefile_set"],
     )
     response["styles"] = [obj["fields"] for obj in book_styles]
+
     return JsonResponse(response, status=status)
 
 

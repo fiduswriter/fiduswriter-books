@@ -1,4 +1,4 @@
-import {escapeText} from "../../common"
+import {avatarTemplate, escapeText} from "../../common"
 
 /** A template for the book collaboration pane */
 export const bookCollaboratorsTemplate = ({collaborators}) => {
@@ -7,7 +7,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) => {
         data-type="${collaborator.holder.type}" data-id="${collaborator.holder.id}"
         class="collaborator-tr" data-rights="${collaborator.rights}">
             <td width="212">
-                <span>${collaborator.holder.avatar.html}</span>
+                <span>${avatarTemplate({user: collaborator.holder})}</span>
                 <span class="fw-inline">${
     collaborator.holder.type === 'userinvite' ?
         `${gettext('Invite')}: ` :
@@ -33,7 +33,7 @@ export const bookContactsTemplate = ({contacts}) =>
     contacts.map(contact =>
         `<tr>
             <td width="337" data-id="${contact.id}" data-type="${contact.type}" class="fw-checkable fw-checkable-td">
-                <span>${contact.avatar.html}</span>
+                <span>${avatarTemplate({user: contact})}</span>
                 <span class="fw-inline">
                 ${
     contact.type === 'userinvite' ?
