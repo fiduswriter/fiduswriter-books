@@ -9,7 +9,7 @@ a.reference-counter::after {
     content: attr(data-book-counter); /* or data-chapter-counter */
 }
 
-section[role=doc-footnote] .footnote-counter::after {
+section[role='doc-footnote'] .footnote-counter::after {
     content: '. ';
 }
 
