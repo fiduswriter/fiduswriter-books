@@ -101,19 +101,19 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.ID, "preferences-btn"))
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Contacts"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Contacts"]'
         ).click()
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".contacts-table .entry-select"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, ".contacts-table .entry-select"
                 )
             ),
             0,
         )
-        self.driver.find_element(By.CSS_SELECTOR,
-            "button[title='Invite contact']"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "button[title='Invite contact']"
         ).click()
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "yeti2@snowman.com"
@@ -122,14 +122,14 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         time.sleep(1)
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".contacts-table .entry-select"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, ".contacts-table .entry-select"
                 )
             ),
             1,
         )
-        self.driver.find_element(By.CSS_SELECTOR,
-            "button[title='Invite contact']"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "button[title='Invite contact']"
         ).click()
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "Yeti3"
@@ -138,8 +138,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         time.sleep(1)
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".contacts-table .entry-select"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, ".contacts-table .entry-select"
                 )
             ),
             2,
@@ -198,18 +198,21 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(
             By.CSS_SELECTOR, "input.fw-media-file-input"
         ).send_keys(image_path)
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Upload"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Upload"]',
         ).click()
         time.sleep(1)
-        self.driver.find_element(By.XPATH,
+        self.driver.find_element(
+            By.XPATH,
             (
                 '//*[contains(@class, "ui-button") '
                 'and normalize-space()="Use image"]'
-            )
+            ),
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -222,17 +225,17 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # Accept invite for user 3
         self.login_user(self.user3, self.driver, self.client)
         self.driver.refresh()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Go to contacts"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Go to contacts"]'
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR,
-            "button.respond-invite"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "button.respond-invite"
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Accept invite"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Accept invite"]'
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Books"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Books"]'
         ).click()
         # Login as user 1 again.
         self.login_user(self.user, self.driver, self.client)
@@ -253,11 +256,12 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_elements(
             By.CSS_SELECTOR, ".fa-caret-down.edit-right"
         )[1].click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Write"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Write"]'
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
         ).click()
         # Check that access rights are listed
         self.driver.refresh()
@@ -267,37 +271,38 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).click()
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    'tr.collaborator-tr[data-rights="write"]'
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, 'tr.collaborator-tr[data-rights="write"]'
                 )
             ),
             1,
         )
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    'tr.collaborator-tr[data-rights="read"]'
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, 'tr.collaborator-tr[data-rights="read"]'
                 )
             ),
             1,
         )
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Close"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Close"]',
         ).click()
         # Login as user 2 and check that write access is there and usable
         self.login_user(self.user2, self.driver, self.client)
         self.driver.refresh()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Go to contacts"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Go to contacts"]'
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR,
-            "button.respond-invite"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "button.respond-invite"
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Accept invite"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Accept invite"]'
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Books"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Books"]'
         ).click()
         self.assertEqual(
             len(self.driver.find_elements(By.CSS_SELECTOR, ".book-title")), 1
@@ -305,8 +310,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # check write access
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".icon-access-right.icon-access-write"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, ".icon-access-right.icon-access-write"
                 )
             ),
             1,
@@ -314,8 +319,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # check that user cannot change access rights
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".owned-by-user .icon-access-right.icon-access-write"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR,
+                    ".owned-by-user .icon-access-right.icon-access-write",
                 )
             ),
             0,
@@ -326,34 +332,39 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR, 'a[href="#optionTab1"]'
         ).click()
         self.assertEqual(
-            self.driver.find_element(By.CSS_SELECTOR,
-                ".fw-ar-container:nth-child(3) tr .fw-inline"
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".fw-ar-container:nth-child(3) tr .fw-inline"
             ).text,
             "1 Chapter 1",
         )
         self.assertEqual(
-            self.driver.find_element(By.CSS_SELECTOR,
-                ".fw-ar-container:nth-child(3) tr:nth-child(2) .fw-inline"
+            self.driver.find_element(
+                By.CSS_SELECTOR,
+                ".fw-ar-container:nth-child(3) tr:nth-child(2) .fw-inline",
             ).text,
             "2 Chapter 2",
         )
         self.assertEqual(
-            self.driver.find_element(By.CSS_SELECTOR,
-                ".fw-ar-container:nth-child(3) tr:nth-child(3) .fw-inline"
+            self.driver.find_element(
+                By.CSS_SELECTOR,
+                ".fw-ar-container:nth-child(3) tr:nth-child(3) .fw-inline",
             ).text,
             "3 Chapter 3",
         )
-        self.driver.find_element(By.CSS_SELECTOR,
-            ".fw-ar-container:nth-child(3) tr .book-sort-down"
+        self.driver.find_element(
+            By.CSS_SELECTOR, ".fw-ar-container:nth-child(3) tr .book-sort-down"
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR,
-            ".fw-ar-container:nth-child(3) tr:nth-child(3) .book-sort-up"
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".fw-ar-container:nth-child(3) tr:nth-child(3) .book-sort-up",
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR,
-            ".fw-ar-container:nth-child(3) tr:nth-child(2) .book-sort-up"
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".fw-ar-container:nth-child(3) tr:nth-child(2) .book-sort-up",
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -375,8 +386,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # check read access
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".icon-access-right.icon-access-read"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, ".icon-access-right.icon-access-read"
                 )
             ),
             1,
@@ -385,8 +396,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(By.CSS_SELECTOR, ".book-title").click()
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    "#book-title[disabled]"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, "#book-title[disabled]"
                 )
             ),
             1,
@@ -395,37 +406,38 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR, 'a[href="#optionTab1"]'
         ).click()
         self.assertEqual(
-            self.driver.find_element(By.CSS_SELECTOR,
-                ".fw-ar-container tr .fw-inline"
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".fw-ar-container tr .fw-inline"
             ).text,
             "1 Chapter 3",
         )
         self.assertEqual(
-            self.driver.find_element(By.CSS_SELECTOR,
-                ".fw-ar-container tr:nth-child(2) .fw-inline"
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".fw-ar-container tr:nth-child(2) .fw-inline"
             ).text,
             "2 Chapter 2",
         )
         self.assertEqual(
-            self.driver.find_element(By.CSS_SELECTOR,
-                ".fw-ar-container tr:nth-child(3) .fw-inline"
+            self.driver.find_element(
+                By.CSS_SELECTOR, ".fw-ar-container tr:nth-child(3) .fw-inline"
             ).text,
             "3 Chapter 1",
         )
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Close"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Close"]',
         ).click()
 
         # We export the book
         # Epub
-        self.driver.find_element(By.CSS_SELECTOR,
-            "tr:nth-child(1) > td > label"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "tr:nth-child(1) > td > label"
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Export selected as Epub"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Export selected as Epub"]'
         ).click()
         time.sleep(3)
         assert os.path.isfile(
@@ -434,14 +446,14 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         os.remove(os.path.join(self.download_dir, "my-book-extra.epub"))
         # HTML
         self.driver.refresh()
-        self.driver.find_element(By.CSS_SELECTOR,
-            "tr:nth-child(1) > td > label"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "tr:nth-child(1) > td > label"
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Export selected as HTML"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Export selected as HTML"]'
         ).click()
         time.sleep(1)
         assert os.path.isfile(
@@ -450,14 +462,14 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         os.remove(os.path.join(self.download_dir, "my-book-extra.html.zip"))
         # LaTeX
         self.driver.refresh()
-        self.driver.find_element(By.CSS_SELECTOR,
-            "tr:nth-child(1) > td > label"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "tr:nth-child(1) > td > label"
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Export selected as LaTeX"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Export selected as LaTeX"]'
         ).click()
         time.sleep(1)
         assert os.path.isfile(
@@ -467,20 +479,21 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
 
         # Copy document
         self.driver.refresh()
-        self.driver.find_element(By.CSS_SELECTOR,
-            "tr:nth-child(1) > td > label"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "tr:nth-child(1) > td > label"
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Copy selected"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Copy selected"]'
         ).click()
         # Check access rights for new instance
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".owned-by-user .icon-access-right.icon-access-write"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR,
+                    ".owned-by-user .icon-access-right.icon-access-write",
                 )
             ),
             1,
@@ -498,8 +511,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         )
         # Delete the second book
         self.driver.find_element(By.CSS_SELECTOR, ".delete-book i").click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Delete"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Delete"]'
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -523,14 +536,16 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys(
             "Book 1"
         )
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".fw-contents tbody tr .fw-data-table-title"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR,
+                    ".fw-contents tbody tr .fw-data-table-title",
                 )
             ),
             1,
@@ -545,8 +560,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         ).send_keys("Releases")
         self.driver.find_element(By.CSS_SELECTOR, "button.fw-dark").click()
         time.sleep(1)
-        trs = self.driver.find_elements(By.CSS_SELECTOR,
-            ".fw-contents tbody tr .fw-data-table-title"
+        trs = self.driver.find_elements(
+            By.CSS_SELECTOR, ".fw-contents tbody tr .fw-data-table-title"
         )
         self.assertEqual(len(trs), 1)
         self.assertEqual(trs[0].text, "..")
@@ -567,12 +582,13 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys(
             "Book 2"
         )
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
-        trs = self.driver.find_elements(By.CSS_SELECTOR,
-            ".fw-contents tbody tr .fw-data-table-title"
+        trs = self.driver.find_elements(
+            By.CSS_SELECTOR, ".fw-contents tbody tr .fw-data-table-title"
         )
         self.assertEqual(len(trs), 2)
         self.assertEqual(trs[0].text, "..")
@@ -580,21 +596,21 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # Go to top folder
         trs[0].click()
         time.sleep(1)
-        trs = self.driver.find_elements(By.CSS_SELECTOR,
-            ".fw-contents tbody tr .fw-data-table-title"
+        trs = self.driver.find_elements(
+            By.CSS_SELECTOR, ".fw-contents tbody tr .fw-data-table-title"
         )
         self.assertEqual(len(trs), 2)
         self.assertEqual(trs[0].text, "Releases")
         self.assertEqual(trs[1].text, "Book 1")
         # Move Book 1 into Releases folder.
-        self.driver.find_element(By.CSS_SELECTOR,
-            "tr:nth-child(2) > td > label"
+        self.driver.find_element(
+            By.CSS_SELECTOR, "tr:nth-child(2) > td > label"
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
         ).click()
-        self.driver.find_element(By.XPATH,
-            '//*[normalize-space()="Move selected"]'
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Move selected"]'
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -613,19 +629,20 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             ).get_attribute("value"),
             "/Releases/Book 1",
         )
-        self.driver.find_element(By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]'
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
-        trs = self.driver.find_elements(By.CSS_SELECTOR,
-            ".fw-contents tbody tr .fw-data-table-title"
+        trs = self.driver.find_elements(
+            By.CSS_SELECTOR, ".fw-contents tbody tr .fw-data-table-title"
         )
         self.assertEqual(len(trs), 1)
         self.assertEqual(trs[0].text, "Releases")
         trs[0].click()
         time.sleep(1)
-        trs = self.driver.find_elements(By.CSS_SELECTOR,
-            ".fw-contents tbody tr .fw-data-table-title"
+        trs = self.driver.find_elements(
+            By.CSS_SELECTOR, ".fw-contents tbody tr .fw-data-table-title"
         )
         time.sleep(1)
         self.assertEqual(len(trs), 3)
@@ -827,8 +844,8 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         assert internal_link.get_attribute("title") == "Missing target"
         self.assertEqual(
             len(
-                self.driver.find_elements(By.CSS_SELECTOR,
-                    ".margin-box.warning"
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, ".margin-box.warning"
                 )
             ),
             2,
