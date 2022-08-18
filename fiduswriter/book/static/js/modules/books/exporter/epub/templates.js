@@ -140,7 +140,7 @@ export const epubBookCoverTemplate = ({
         <title>${book.title}</title>
         <meta charset="utf-8"/>
     </head>
-    <body>
+    <body class="epub cover">
         <div id="cover">
             <img src="${coverImage.image.split("/").pop().split("?")[0]}"
                     alt="${gettext('Cover Image')}" title="Cover Image"/>
@@ -158,7 +158,7 @@ export const epubBookTitlepageTemplate = ({
       <title>${escapeText(book.title)}</title>
       <meta charset="utf-8"/>
    </head>
-   <body style="text-align: center;">
+   <body class="epub titlepage">
       <div id="title" epub:type="frontmatter titlepage">
           <h1 class="booktitle">${escapeText(book.title)}</h1>
           ${
@@ -192,7 +192,7 @@ export const epubBookCopyrightTemplate = ({
         <title>${escapeText(book.title)}</title>
         <meta charset="utf-8"/>
     </head>
-    <body>
+    <body class="epub copyrightpage">
         <section epub:type="frontmatter copyright-page">
             <div id="copyright">
                 <p>
