@@ -31,7 +31,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name="fiduswriter-books",
-    version="3.10.13",
+    version="3.10.14",
     packages=find_namespace_packages(),
     exclude_package_data={"": ["configuration.py", "django-admin.py", "build/*"]},
     include_package_data=True,
