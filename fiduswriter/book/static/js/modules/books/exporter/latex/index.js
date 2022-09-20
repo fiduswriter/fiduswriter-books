@@ -49,22 +49,22 @@ export class LatexBookExporter {
         })
         if (bibIds.length > 0) {
             const bibExport = new BibLatexExporter(combinedBibliography, bibIds)
-            this.textFiles.push({filename: 'bibliography.bib', contents: bibExport.output})
+            this.textFiles.push({filename: "bibliography.bib", contents: bibExport.output})
         }
         imageIds.forEach(id => {
             this.httpFiles.push({
-                filename: combinedImages[id].image.split('/').pop(),
+                filename: combinedImages[id].image.split("/").pop(),
                 url: combinedImages[id].image
             })
         })
         // Start a converter, only for creating a preamble/epilogue that combines
         // the features of all of the contained chapters.
-        const bookConverter = new LatexExporterConvert(this, {db: combinedImages}, {db: combinedBibliography}, {language: 'en-US', bibliography_header: {}})
+        const bookConverter = new LatexExporterConvert(this, {db: combinedImages}, {db: combinedBibliography}, {language: "en-US", bibliography_header: {}})
         bookConverter.features = features
         const preamble = bookConverter.assemblePreamble()
         const epilogue = bookConverter.assembleEpilogue()
         this.textFiles.push({
-            filename: 'book.tex',
+            filename: "book.tex",
             contents: bookTexTemplate({
                 book: this.book,
                 preamble,
@@ -90,6 +90,6 @@ export class LatexBookExporter {
     }
 
     download(blob) {
-        return download(blob, this.zipFileName, 'application/zip')
+        return download(blob, this.zipFileName, "application/zip")
     }
 }

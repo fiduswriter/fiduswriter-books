@@ -36,7 +36,7 @@ export class HTMLBookExporter extends DOMExporter {
 
     init() {
         if (this.book.chapters.length === 0) {
-            addAlert('error', gettext('Book cannot be exported due to lack of chapters.'))
+            addAlert("error", gettext("Book cannot be exported due to lack of chapters."))
             return false
         }
 
@@ -55,7 +55,7 @@ export class HTMLBookExporter extends DOMExporter {
         let contents = bookStyle.contents
         bookStyle.bookstylefile_set.forEach(
             ([_url, filename]) => contents = contents.replace(
-                new RegExp(filename, 'g'),
+                new RegExp(filename, "g"),
                 `media/${filename}`
             )
         )
@@ -70,10 +70,10 @@ export class HTMLBookExporter extends DOMExporter {
 
 
     getBookFootnoteAnchor(chapterCounter, bookCounter) {
-        const footnoteAnchor = document.createElement('a')
-        footnoteAnchor.setAttribute('href', '#fn' + bookCounter)
+        const footnoteAnchor = document.createElement("a")
+        footnoteAnchor.setAttribute("href", "#fn" + bookCounter)
         // RASH 0.5 doesn't mark the footnote anchors, so we add this class
-        footnoteAnchor.classList.add('fn')
+        footnoteAnchor.classList.add("fn")
         footnoteAnchor.innerHTML = `<span class="footnote-counter" data-chapter-counter="${chapterCounter}" data-book-counter="${bookCounter}"></span>`
         return footnoteAnchor
     }
@@ -86,10 +86,10 @@ export class HTMLBookExporter extends DOMExporter {
         // at the back of the document.
         // Also, link the footnote anchor with the footnote according to
         // https://rawgit.com/essepuntato/rash/master/documentation/index.html#footnotes.
-        const footnotes = contentsEl.querySelectorAll('.footnote-marker')
-        const footnotesContainer = document.createElement('section')
-        footnotesContainer.classList.add('fnlist')
-        footnotesContainer.setAttribute('role', 'doc-footnotes')
+        const footnotes = contentsEl.querySelectorAll(".footnote-marker")
+        const footnotesContainer = document.createElement("section")
+        footnotesContainer.classList.add("fnlist")
+        footnotesContainer.setAttribute("role", "doc-footnotes")
 
         footnotes.forEach(
             (footnote, index) => {
@@ -97,17 +97,17 @@ export class HTMLBookExporter extends DOMExporter {
                 const bookCounter = offset + chapterCounter
                 const footnoteAnchor = this.getBookFootnoteAnchor(chapterCounter, bookCounter)
                 footnote.parentNode.replaceChild(footnoteAnchor, footnote)
-                const newFootnote = document.createElement('section')
-                newFootnote.id = 'fn' + bookCounter
-                newFootnote.setAttribute('role', 'doc-footnote')
+                const newFootnote = document.createElement("section")
+                newFootnote.id = "fn" + bookCounter
+                newFootnote.setAttribute("role", "doc-footnote")
                 newFootnote.dataset.chapterCounter = chapterCounter
                 newFootnote.dataset.bookCounter = bookCounter
                 newFootnote.innerHTML = footnote.dataset.footnote
-                const newFootnoteCounter = document.createElement('span')
-                newFootnoteCounter.classList.add('footnote-counter')
+                const newFootnoteCounter = document.createElement("span")
+                newFootnoteCounter.classList.add("footnote-counter")
                 newFootnoteCounter.dataset.chapterCounter = chapterCounter
                 newFootnoteCounter.dataset.bookCounter = bookCounter
-                if (['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(newFootnote.firstElementChild?.tagName)) {
+                if (["P", "H1", "H2", "H3", "H4", "H5", "H6"].includes(newFootnote.firstElementChild?.tagName)) {
                     newFootnote.firstElementChild.prepend(newFootnoteCounter)
                 } else {
                     newFootnote.prepend(newFootnoteCounter)
@@ -138,46 +138,46 @@ export class HTMLBookExporter extends DOMExporter {
             const docContent = removeHidden(doc.content, false),
                 serializer = DOMSerializer.fromSchema(schema),
                 contents = serializer.serializeNode(schema.nodeFromJSON(docContent)),
-                equations = contents.querySelectorAll('.equation'),
-                figureEquations = contents.querySelectorAll('.figure-equation')
+                equations = contents.querySelectorAll(".equation"),
+                figureEquations = contents.querySelectorAll(".figure-equation")
             footnoteCounter = this.addFootnotes(contents, footnoteCounter)
             if (equations.length || figureEquations.length) {
                 this.math = true
             }
             contents.querySelectorAll("figure[data-category='figure'] figcaption span.label").forEach(
                 el => {
-                    el.innerHTML = CATS['figure'][doc.settings.language]
+                    el.innerHTML = CATS["figure"][doc.settings.language]
                     el.dataset.bookCounter = ++figureCounter
                     el.dataset.chapterCounter = ++chapterFigureCounter
-                    el.classList.add('label-counter')
-                    el.classList.remove('label')
+                    el.classList.add("label-counter")
+                    el.classList.remove("label")
                 }
             )
             contents.querySelectorAll("figure[data-category='equation'] figcaption span.label").forEach(
                 el => {
-                    el.innerHTML = CATS['equation'][doc.settings.language]
+                    el.innerHTML = CATS["equation"][doc.settings.language]
                     el.dataset.bookCounter = ++equationCounter
                     el.dataset.chapterCounter = ++chapterEquationCounter
-                    el.classList.add('label-counter')
-                    el.classList.remove('label')
+                    el.classList.add("label-counter")
+                    el.classList.remove("label")
                 }
             )
             contents.querySelectorAll("figure[data-category='photo'] figcaption span.label").forEach(
                 el => {
-                    el.innerHTML = CATS['photo'][doc.settings.language]
+                    el.innerHTML = CATS["photo"][doc.settings.language]
                     el.dataset.bookCounter = ++photoCounter
                     el.dataset.chapterCounter = ++chapterPhotoCounter
-                    el.classList.add('label-counter')
-                    el.classList.remove('label')
+                    el.classList.add("label-counter")
+                    el.classList.remove("label")
                 }
             )
             contents.querySelectorAll("figure[data-category='table'] figcaption span.label,table[data-category='table'] caption span.label").forEach(
                 el => {
-                    el.innerHTML = CATS['table'][doc.settings.language]
+                    el.innerHTML = CATS["table"][doc.settings.language]
                     el.dataset.bookCounter = ++tableCounter
                     el.dataset.chapterCounter = ++chapterTableCounter
-                    el.classList.add('label-counter')
-                    el.classList.remove('label')
+                    el.classList.add("label-counter")
+                    el.classList.remove("label")
                 }
             )
             contents.querySelectorAll(".cross-reference").forEach(
@@ -244,7 +244,7 @@ export class HTMLBookExporter extends DOMExporter {
             }
             this.prepareBinaryFiles(contents)
 
-            if (this.book.chapters[index].part !== '') {
+            if (this.book.chapters[index].part !== "") {
                 contentItems.push({
                     link: this.getChapterLink(this.book.chapters[index].number),
                     title: this.book.chapters[index].part,
@@ -281,14 +281,14 @@ export class HTMLBookExporter extends DOMExporter {
         contentItems = orderLinks(contentItems)
 
         this.outputList.push({
-            filename: 'index.html',
+            filename: "index.html",
             contents: pretty(this.indexTemplate({
                 contentItems,
                 book: this.book,
                 creator: this.user.name,
                 styleSheets: [{filename: bookStyle}],
                 // TODO: specify a book language rather than using the current users UI language
-                language: gettext('English'),
+                language: gettext("English"),
                 multiDoc: this.multiDoc
             }), {ocd: true})
         })
@@ -302,8 +302,8 @@ export class HTMLBookExporter extends DOMExporter {
         this.styleSheets = uniqueObjects(this.styleSheets)
         if (this.math) {
             this.includeZips.push({
-                'directory': 'css',
-                'url': `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
+                "directory": "css",
+                "url": `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
             })
         }
 
@@ -333,7 +333,7 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
     download(blob) {
-        return download(blob, createSlug(this.book.title) + '.html.zip', 'application/zip')
+        return download(blob, createSlug(this.book.title) + ".html.zip", "application/zip")
     }
 
 }

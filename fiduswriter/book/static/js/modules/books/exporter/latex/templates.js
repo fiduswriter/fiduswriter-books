@@ -5,7 +5,7 @@ ${preamble}
 \\usepackage{docmute}
 \\title{${book.title}}
 \\author{${book.metadata.author}}
-${book.metadata.version?.length ? `\\date{${book.metadata.version}}` : ''}
+${book.metadata.version?.length ? `\\date{${book.metadata.version}}` : ""}
 \\begin{document}
 \\maketitle
 \\def\\title#1{\\chapter{#1}}
@@ -15,11 +15,11 @@ ${
         `${
             chapter.part && chapter.part.length ?
                 `\n\\part{${chapter.part}}` :
-                ''
+                ""
         }
         \\input{chapter-${chapter.number}}
         `
-    ).join('')
+    ).join("")
 }
 ${epilogue}
 \\end{document}`

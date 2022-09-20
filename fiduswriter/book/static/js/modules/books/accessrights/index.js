@@ -25,11 +25,11 @@ export class BookAccessRightsDialog {
 
     init() {
         postJson(
-            '/api/book/access_rights/get/',
+            "/api/book/access_rights/get/",
             {book_ids: this.bookIds}
         ).catch(
             error => {
-                addAlert('error', gettext('Cannot load book access data.'))
+                addAlert("error", gettext("Cannot load book access data."))
                 throw error
             }
         ).then(
@@ -50,7 +50,7 @@ export class BookAccessRightsDialog {
             if (bookCollabs[holderIdent]) {
                 if (bookCollabs[holderIdent].rights != ar.rights) {
                     // We use read rights if the user has different rights on different docs.
-                    bookCollabs[holderIdent].rights = 'read'
+                    bookCollabs[holderIdent].rights = "read"
                 }
                 bookCollabs[holderIdent].count += 1
             } else {
@@ -65,7 +65,7 @@ export class BookAccessRightsDialog {
 
         const buttons = [
             {
-                text: (settings_REGISTRATION_OPEN || settings_SOCIALACCOUNT_OPEN) ? gettext('Add contact or invite new user') : gettext('Add contact'),
+                text: (settings_REGISTRATION_OPEN || settings_SOCIALACCOUNT_OPEN) ? gettext("Add contact or invite new user") : gettext("Add contact"),
                 classes: "fw-light fw-add-button",
                 click: () => {
                     const dialog = new AddContactDialog()
@@ -74,24 +74,24 @@ export class BookAccessRightsDialog {
                             contactsData.forEach(
                                 contactData => {
                                     if (contactData.id) {
-                                        document.querySelector('#my-contacts .fw-data-table-body').insertAdjacentHTML(
-                                            'beforeend',
+                                        document.querySelector("#my-contacts .fw-data-table-body").insertAdjacentHTML(
+                                            "beforeend",
                                             bookContactsTemplate({contacts: [contactData]})
                                         )
-                                        document.querySelector('#share-contact table tbody').insertAdjacentHTML(
-                                            'beforeend',
-                                            bookCollaboratorsTemplate({'collaborators': [{
+                                        document.querySelector("#share-contact table tbody").insertAdjacentHTML(
+                                            "beforeend",
+                                            bookCollaboratorsTemplate({"collaborators": [{
                                                 holder: contactData,
-                                                rights: 'read'
+                                                rights: "read"
                                             }]})
                                         )
                                         this.newContactCall(contactData)
                                     } else {
-                                        document.querySelector('#share-contact table tbody').insertAdjacentHTML(
-                                            'beforeend',
-                                            bookCollaboratorsTemplate({'collaborators': [{
+                                        document.querySelector("#share-contact table tbody").insertAdjacentHTML(
+                                            "beforeend",
+                                            bookCollaboratorsTemplate({"collaborators": [{
                                                 holder: contactData,
-                                                rights: 'read'
+                                                rights: "read"
                                             }]})
                                         )
                                     }
@@ -102,11 +102,11 @@ export class BookAccessRightsDialog {
                 }
             },
             {
-                text: gettext('Submit'),
+                text: gettext("Submit"),
                 classes: "fw-dark",
                 click: () => {
                     const accessRights = []
-                    document.querySelectorAll('#share-contact .collaborator-tr').forEach(el => {
+                    document.querySelectorAll("#share-contact .collaborator-tr").forEach(el => {
                         accessRights.push({
                             holder: {
                                 id: parseInt(el.dataset.id),
@@ -120,7 +120,7 @@ export class BookAccessRightsDialog {
                 }
             },
             {
-                type: 'close',
+                type: "close",
                 click: () => {
                     this.dialog.close()
                 }
@@ -130,8 +130,8 @@ export class BookAccessRightsDialog {
         this.dialog = new Dialog({
             width: 820,
             height: 400,
-            id: 'access-rights-dialog',
-            title: gettext('Share your book with others'),
+            id: "access-rights-dialog",
+            title: gettext("Share your book with others"),
             body: bookAccessRightOverviewTemplate({
                 contacts: this.contacts,
                 collaborators
@@ -140,16 +140,16 @@ export class BookAccessRightsDialog {
         })
         this.dialog.open()
 
-        this.dialog.dialogEl.querySelector('#add-share-contact').addEventListener('click', () => {
+        this.dialog.dialogEl.querySelector("#add-share-contact").addEventListener("click", () => {
             const selectedData = []
-            document.querySelectorAll('#my-contacts .fw-checkable.checked').forEach(el => {
+            document.querySelectorAll("#my-contacts .fw-checkable.checked").forEach(el => {
                 const collaboratorEl = document.getElementById(`collaborator-${el.dataset.type}-${el.dataset.id}`)
                 if (collaboratorEl) {
-                    if (collaboratorEl.dataset.rights === 'delete') {
-                        collaboratorEl.dataset.rights = 'read'
-                        const accessRightIcon = collaboratorEl.querySelector('.icon-access-right')
-                        accessRightIcon.classList.remove('icon-access-delete')
-                        accessRightIcon.classList.add('icon-access-read')
+                    if (collaboratorEl.dataset.rights === "delete") {
+                        collaboratorEl.dataset.rights = "read"
+                        const accessRightIcon = collaboratorEl.querySelector(".icon-access-right")
+                        accessRightIcon.classList.remove("icon-access-delete")
+                        accessRightIcon.classList.add("icon-access-read")
                     }
                 } else {
                     const collaborator = this.contacts.find(
@@ -166,34 +166,34 @@ export class BookAccessRightsDialog {
                             name: collaborator.name,
                             avatar: collaborator.avatar,
                         },
-                        rights: 'read'
+                        rights: "read"
                     })
                 }
             })
 
-            document.querySelectorAll('#my-contacts .checkable-label.checked').forEach(el => el.classList.remove('checked'))
-            document.querySelector('#share-contact table tbody').insertAdjacentHTML(
-                'beforeend',
+            document.querySelectorAll("#my-contacts .checkable-label.checked").forEach(el => el.classList.remove("checked"))
+            document.querySelector("#share-contact table tbody").insertAdjacentHTML(
+                "beforeend",
                 bookCollaboratorsTemplate({
-                    'collaborators': selectedData
+                    "collaborators": selectedData
                 })
             )
 
         })
 
-        this.dialog.dialogEl.addEventListener('click', event => {
+        this.dialog.dialogEl.addEventListener("click", event => {
             const el = {}
             switch (true) {
-            case findTarget(event, '.fw-checkable', el):
+            case findTarget(event, ".fw-checkable", el):
                 setCheckableLabel(el.target)
                 break
-            case findTarget(event, '.edit-right', el): {
-                const colRow = el.target.closest('.collaborator-tr,.invite-tr')
+            case findTarget(event, ".edit-right", el): {
+                const colRow = el.target.closest(".collaborator-tr,.invite-tr")
                 const currentRight = colRow.dataset.rights
                 const menu = this.getDropdownMenu(currentRight, newRight => {
                     colRow.dataset.rights = newRight
-                    colRow.querySelector('.icon-access-right').setAttribute(
-                        'class',
+                    colRow.querySelector(".icon-access-right").setAttribute(
+                        "class",
                         `icon-access-right icon-access-${newRight}`
                     )
                 })
@@ -205,10 +205,10 @@ export class BookAccessRightsDialog {
                 contentMenu.open()
                 break
             }
-            case findTarget(event, '.delete-collaborator', el): {
-                const colRow = el.target.closest('.collaborator-tr')
-                colRow.dataset.right = 'delete'
-                colRow.querySelector('.icon-access-right').setAttribute('class', 'icon-access-right icon-access-delete')
+            case findTarget(event, ".delete-collaborator", el): {
+                const colRow = el.target.closest(".collaborator-tr")
+                colRow.dataset.right = "delete"
+                colRow.querySelector(".icon-access-right").setAttribute("class", "icon-access-right icon-access-delete")
                 break
             }
             default:
@@ -222,29 +222,29 @@ export class BookAccessRightsDialog {
     getDropdownMenu(currentRight, onChange) {
         return {
             content: [
-                {type: 'action', title: gettext('Write'), icon: 'pencil-alt', tooltip: gettext("Write"), action: () => {
-                    onChange('write')
-                }, selected: currentRight === 'write'},
-                {type: 'action', title: gettext('Read'), icon: 'eye', tooltip: gettext("Read"), action: () => {
-                    onChange('read')
-                }, selected: currentRight === 'read'}
+                {type: "action", title: gettext("Write"), icon: "pencil-alt", tooltip: gettext("Write"), action: () => {
+                    onChange("write")
+                }, selected: currentRight === "write"},
+                {type: "action", title: gettext("Read"), icon: "eye", tooltip: gettext("Read"), action: () => {
+                    onChange("read")
+                }, selected: currentRight === "read"}
             ]
         }
     }
 
     submitAccessRight(newAccessRights) {
         return postJson(
-            '/api/book/access_rights/save/', {
+            "/api/book/access_rights/save/", {
                 book_ids: JSON.stringify(this.bookIds),
                 access_rights: JSON.stringify(newAccessRights),
             }
         ).catch(
             error => {
-                addAlert('error', gettext('Cannot save access rights.'))
+                addAlert("error", gettext("Cannot save access rights."))
                 throw (error)
             }
         ).then(() => {
-            addAlert('success', gettext('Access rights have been saved'))
+            addAlert("success", gettext("Access rights have been saved"))
         })
     }
 

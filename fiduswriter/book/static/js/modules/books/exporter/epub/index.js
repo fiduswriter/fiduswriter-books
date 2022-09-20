@@ -40,7 +40,7 @@ export class EpubBookExporter extends DOMExporter {
 
     init() {
         if (this.book.chapters.length === 0) {
-            addAlert('error', gettext('Book cannot be exported due to lack of chapters.'))
+            addAlert("error", gettext("Book cannot be exported due to lack of chapters."))
             return false
         }
         return getMissingChapterData(this.book, this.docList, this.schema).then(
@@ -58,7 +58,7 @@ export class EpubBookExporter extends DOMExporter {
         let contents = bookStyle.contents
         bookStyle.bookstylefile_set.forEach(
             ([_url, filename]) => contents = contents.replace(
-                new RegExp(filename, 'g'),
+                new RegExp(filename, "g"),
                 `media/${filename}`
             )
         )
@@ -76,19 +76,19 @@ export class EpubBookExporter extends DOMExporter {
         // at the back of the document.
         // Also, link the footnote anchor with the footnote according to
         // https://rawgit.com/essepuntato/rash/master/documentation/index.html#footnotes.
-        const footnotes = contentsEl.querySelectorAll('.footnote-marker')
-        const footnotesContainer = document.createElement('section')
-        footnotesContainer.classList.add('fnlist')
-        footnotesContainer.setAttribute('role', 'doc-footnotes')
+        const footnotes = contentsEl.querySelectorAll(".footnote-marker")
+        const footnotesContainer = document.createElement("section")
+        footnotesContainer.classList.add("fnlist")
+        footnotesContainer.setAttribute("role", "doc-footnotes")
 
         footnotes.forEach(
             (footnote, index) => {
                 const counter = index + 1
                 const footnoteAnchor = this.getFootnoteAnchor(counter)
                 footnote.parentNode.replaceChild(footnoteAnchor, footnote)
-                const newFootnote = document.createElement('section')
-                newFootnote.id = 'fn' + counter
-                newFootnote.setAttribute('role', 'doc-footnote')
+                const newFootnote = document.createElement("section")
+                newFootnote.id = "fn" + counter
+                newFootnote.setAttribute("role", "doc-footnote")
                 newFootnote.innerHTML = footnote.dataset.footnote
                 footnotesContainer.appendChild(newFootnote)
             }
@@ -102,17 +102,17 @@ export class EpubBookExporter extends DOMExporter {
         if (this.book.cover_image) {
             this.coverImage = this.book.cover_image_data
             this.images.push({
-                url: this.coverImage.image.split('?')[0],
-                filename: this.coverImage.image.split('/').pop().split('?')[0]
+                url: this.coverImage.image.split("?")[0],
+                filename: this.coverImage.image.split("/").pop().split("?")[0]
             })
 
             this.outputList.push({
-                filename: 'EPUB/cover.xhtml',
+                filename: "EPUB/cover.xhtml",
                 contents: epubBookCoverTemplate({book: this.book, coverImage: this.coverImage})
             })
             this.contentItems.push({
-                link: 'cover.xhtml#cover',
-                title: gettext('Cover'),
+                link: "cover.xhtml#cover",
+                title: gettext("Cover"),
                 docNum: 0,
                 id: 0,
                 level: 0,
@@ -120,8 +120,8 @@ export class EpubBookExporter extends DOMExporter {
             })
         }
         this.contentItems.push({
-            link: 'titlepage.xhtml#title',
-            title: gettext('Title page'),
+            link: "titlepage.xhtml#title",
+            title: gettext("Title page"),
             docNum: 0,
             id: 1,
             level: 0,
@@ -135,7 +135,7 @@ export class EpubBookExporter extends DOMExporter {
             const docContent = removeHidden(doc.content, false),
                 serializer = DOMSerializer.fromSchema(schema),
                 tempNode = serializer.serializeNode(schema.nodeFromJSON(docContent))
-            const contentsEl = document.createElement('body')
+            const contentsEl = document.createElement("body")
             let math = false
             while (tempNode.firstChild) {
                 contentsEl.appendChild(tempNode.firstChild)
@@ -144,9 +144,9 @@ export class EpubBookExporter extends DOMExporter {
 
             this.images = this.images.concat(modifyImages(contentsEl))
             addCategoryLabels(contentsEl, doc.settings.language)
-            const equations = contentsEl.querySelectorAll('.equation')
+            const equations = contentsEl.querySelectorAll(".equation")
 
-            const figureEquations = contentsEl.querySelectorAll('.figure-equation')
+            const figureEquations = contentsEl.querySelectorAll(".figure-equation")
 
             if (equations.length || figureEquations.length) {
                 math = true
@@ -212,19 +212,19 @@ export class EpubBookExporter extends DOMExporter {
         this.outputList = this.outputList.concat(
             this.chapters.map(chapter => {
                 chapter.contents = styleEpubFootnotes(chapter.contents)
-                const styleSheets = [{filename: 'css/document.css'}]
+                const styleSheets = [{filename: "css/document.css"}]
                 if (bookStyle) {
                     styleSheets.push({filename: bookStyle})
                 }
                 let xhtmlCode = xhtmlTemplate({
                     part: chapter.part,
                     currentPart: chapter.currentPart,
-                    shortLang: chapter.doc.settings.language.split('-')[0],
+                    shortLang: chapter.doc.settings.language.split("-")[0],
                     title: chapter.doc.title,
                     metadata: chapter.doc.metadata,
                     settings: chapter.doc.settings,
                     styleSheets,
-                    body: obj2Node(node2Obj(chapter.contents), 'xhtml').innerHTML,
+                    body: obj2Node(node2Obj(chapter.contents), "xhtml").innerHTML,
                     math: chapter.math
                 })
                 xhtmlCode = this.replaceImgSrc(xhtmlCode)
@@ -243,8 +243,8 @@ export class EpubBookExporter extends DOMExporter {
     exportThree() {
 
         this.contentItems.push({
-            link: 'copyright.xhtml#copyright',
-            title: gettext('Copyright'),
+            link: "copyright.xhtml#copyright",
+            title: gettext("Copyright"),
             docNum: 0,
             id: 2,
             level: 0,
@@ -262,19 +262,19 @@ export class EpubBookExporter extends DOMExporter {
         // mark cover image
         if (this.coverImage) {
             this.images.find(
-                image => image.url === this.coverImage.image.split('?')[0]
+                image => image.url === this.coverImage.image.split("?")[0]
             ).coverImage = true
         }
 
         // Take language of first chapter.
         const languages = this.chapters.map(chapter => chapter.doc.settings.language)
-        const language = languages[0] || 'en-US'
-        const shortLang = language.split('-')[0]
+        const language = languages[0] || "en-US"
+        const shortLang = language.split("-")[0]
 
         const opfCode = epubBookOpfTemplate({
             language,
             book: this.book,
-            idType: 'fidus',
+            idType: "fidus",
             date: timestamp.slice(0, 10),
             modified: timestamp,
             styleSheets: this.styleSheets,
@@ -290,7 +290,7 @@ export class EpubBookExporter extends DOMExporter {
         const ncxCode = ncxTemplate({
             shortLang,
             title: this.book.title,
-            idType: 'fidus',
+            idType: "fidus",
             id: this.book.id,
             contentItems: this.contentItems,
             templates: {ncxTemplate, ncxItemTemplate}
@@ -303,24 +303,24 @@ export class EpubBookExporter extends DOMExporter {
         })
 
         this.outputList = this.outputList.concat([{
-            filename: 'META-INF/container.xml',
+            filename: "META-INF/container.xml",
             contents: pretty(containerTemplate({}), {ocd: true})
         }, {
-            filename: 'EPUB/document.opf',
+            filename: "EPUB/document.opf",
             contents: pretty(opfCode, {ocd: true})
         }, {
-            filename: 'EPUB/document.ncx',
+            filename: "EPUB/document.ncx",
             contents: pretty(ncxCode, {ocd: true})
         }, {
-            filename: 'EPUB/document-nav.xhtml',
+            filename: "EPUB/document-nav.xhtml",
             contents: pretty(navCode, {ocd: true})
         }, {
-            filename: 'EPUB/titlepage.xhtml',
+            filename: "EPUB/titlepage.xhtml",
             contents: pretty(epubBookTitlepageTemplate({
                 book: this.book
             }), {ocd: true})
         }, {
-            filename: 'EPUB/copyright.xhtml',
+            filename: "EPUB/copyright.xhtml",
             contents: pretty(epubBookCopyrightTemplate({
                 book: this.book,
                 creator: this.user.name,
@@ -353,8 +353,8 @@ export class EpubBookExporter extends DOMExporter {
 
         if (this.math) {
             this.includeZips.push({
-                'directory': 'EPUB/css',
-                'url': `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
+                "directory": "EPUB/css",
+                "url": `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
             })
         }
         return this.createZip()
@@ -365,7 +365,7 @@ export class EpubBookExporter extends DOMExporter {
             this.outputList,
             this.binaryFiles,
             this.includeZips,
-            'application/epub+zip',
+            "application/epub+zip",
             this.updated
         )
         return zipper.init().then(
@@ -376,8 +376,8 @@ export class EpubBookExporter extends DOMExporter {
     download(blob) {
         return download(
             blob,
-            createSlug(this.book.title) + '.epub',
-            'application/epub+zip'
+            createSlug(this.book.title) + ".epub",
+            "application/epub+zip"
         )
     }
 

@@ -11,12 +11,12 @@ import {addAlert, postJson, post, Dialog, findTarget, FileSelector, longFilePath
 
 function emptyMetadata() {
     return {
-        author: '',
-        subtitle: '',
-        version: '',
-        publisher: '',
-        copyright: '',
-        keywords: ''
+        author: "",
+        subtitle: "",
+        version: "",
+        publisher: "",
+        copyright: "",
+        keywords: ""
     }
 }
 
@@ -29,33 +29,33 @@ export class BookActions {
         this.onSave = []
         this.dialogParts = [
             {
-                title: gettext('Basic info'),
-                description: gettext('Basic book information'),
+                title: gettext("Basic info"),
+                description: gettext("Basic book information"),
                 template: bookBasicInfoTemplate
             },
             {
-                title: gettext('Chapters'),
-                description: gettext('Documents assigned as chapters'),
+                title: gettext("Chapters"),
+                description: gettext("Documents assigned as chapters"),
                 template: bookDialogChaptersTemplate
             },
             {
-                title: gettext('Bibliography'),
-                description: gettext('Bibliography related settings'),
+                title: gettext("Bibliography"),
+                description: gettext("Bibliography related settings"),
                 template: bookBibliographyDataTemplate
             },
             {
-                title: gettext('Epub'),
-                description: gettext('Epub related settings'),
+                title: gettext("Epub"),
+                description: gettext("Epub related settings"),
                 template: bookEpubDataTemplate
             },
             {
-                title: gettext('Print/PDF'),
-                description: gettext('Print related settings'),
+                title: gettext("Print/PDF"),
+                description: gettext("Print related settings"),
                 template: bookPrintDataTemplate
             },
             {
-                title: gettext('Sanity check'),
-                description: gettext('Perform sanity check on book'),
+                title: gettext("Sanity check"),
+                description: gettext("Perform sanity check on book"),
                 template: bookSanityCheckTemplate
             }
         ]
@@ -68,15 +68,15 @@ export class BookActions {
         }
 
         return post(
-            '/api/book/delete/',
+            "/api/book/delete/",
             {id}
         ).catch(
             error => {
-                addAlert('error', `${gettext('Could not delete book')}: '${longFilePath(book.title, book.path)}'`)
+                addAlert("error", `${gettext("Could not delete book")}: '${longFilePath(book.title, book.path)}'`)
                 throw (error)
             }
         ).then(() => {
-            addAlert('success', `${gettext('Book has been deleted')}: '${longFilePath(book.title, book.path)}'`)
+            addAlert("success", `${gettext("Book has been deleted")}: '${longFilePath(book.title, book.path)}'`)
             this.bookOverview.bookList = this.bookOverview.bookList.filter(book => book.id !== id)
             this.bookOverview.initTable()
         })
@@ -90,7 +90,7 @@ export class BookActions {
         })
         const buttons = [
             {
-                text: gettext('Delete'),
+                text: gettext("Delete"),
                 classes: "fw-dark",
                 click: () => {
                     Promise.all(ids.map(id => this.deleteBook(id))).then(
@@ -102,22 +102,22 @@ export class BookActions {
                 }
             },
             {
-                type: 'close'
+                type: "close"
             }
         ]
 
         const dialog = new Dialog({
-            title: gettext('Confirm deletion'),
-            id: 'confirmdeletion',
-            icon: 'exclamation-triangle',
+            title: gettext("Confirm deletion"),
+            id: "confirmdeletion",
+            icon: "exclamation-triangle",
             height: Math.min(50 + 15 * ids.length, 500),
             body: `<p>${
                 ids.length > 1 ?
-                    gettext('Do you really want to delete the following books?') :
-                    gettext('Do you really want to delete the following book?')
+                    gettext("Do you really want to delete the following books?") :
+                    gettext("Do you really want to delete the following book?")
             }</p>
             <p>
-                ${bookPaths.join('<br>')}
+                ${bookPaths.join("<br>")}
             </p>`,
             buttons
         })
@@ -129,16 +129,16 @@ export class BookActions {
         const doc = this.bookOverview.documentList.find(doc => doc.id === chapter.text)
         let docTitle = doc.title
         if (!docTitle.length) {
-            docTitle = gettext('Untitled')
+            docTitle = gettext("Untitled")
         }
 
         const buttons = [
             {
-                text: gettext('Submit'),
+                text: gettext("Submit"),
                 classes: "fw-dark",
                 click: () => {
-                    chapter.part = document.getElementById('book-chapter-part').value
-                    document.getElementById('book-chapter-list').innerHTML =
+                    chapter.part = document.getElementById("book-chapter-part").value
+                    document.getElementById("book-chapter-list").innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
@@ -147,12 +147,12 @@ export class BookActions {
                 }
             },
             {
-                type: 'cancel'
+                type: "cancel"
             }
         ]
 
         const dialog = new Dialog({
-            title: `${gettext('Edit Chapter')}: ${chapter.number}. ${docTitle}`,
+            title: `${gettext("Edit Chapter")}: ${chapter.number}. ${docTitle}`,
             body: bookChapterDialogTemplate({chapter}),
             width: 300,
             height: 100,
@@ -165,27 +165,27 @@ export class BookActions {
         const oldBook = oldBookId ? this.bookOverview.bookList.find(
             book => book.id === oldBookId
         ) : false
-        if (book.rights !== 'write') {
+        if (book.rights !== "write") {
             return Promise.resolve()
         }
-        book.title = document.getElementById('book-title').value
-        book.metadata.author = document.getElementById('book-metadata-author').value
-        book.metadata.subtitle = document.getElementById('book-metadata-subtitle').value
-        book.metadata.version = document.getElementById('book-metadata-version').value
-        book.metadata.copyright = document.getElementById('book-metadata-copyright').value
-        book.metadata.publisher = document.getElementById('book-metadata-publisher').value
-        book.metadata.keywords = document.getElementById('book-metadata-keywords').value
+        book.title = document.getElementById("book-title").value
+        book.metadata.author = document.getElementById("book-metadata-author").value
+        book.metadata.subtitle = document.getElementById("book-metadata-subtitle").value
+        book.metadata.version = document.getElementById("book-metadata-version").value
+        book.metadata.copyright = document.getElementById("book-metadata-copyright").value
+        book.metadata.publisher = document.getElementById("book-metadata-publisher").value
+        book.metadata.keywords = document.getElementById("book-metadata-keywords").value
         book.path = oldBook?.path || this.bookOverview.path
         const bookData = Object.assign({}, book)
         delete bookData.cover_image_data
 
 
         return postJson(
-            '/api/book/save/',
+            "/api/book/save/",
             {book: JSON.stringify(bookData)}
         ).catch(
             error => {
-                addAlert('error', gettext('The book could not be saved'))
+                addAlert("error", gettext("The book could not be saved"))
                 throw (error)
             }
         ).then(
@@ -211,20 +211,20 @@ export class BookActions {
         const book = Object.assign({}, oldBook)
         book.is_owner = true
         book.owner = this.bookOverview.user
-        book.rights = 'write'
-        const path = longFilePath(oldBook.title, oldBook.path, `${gettext('Copy of')} `)
+        book.rights = "write"
+        const path = longFilePath(oldBook.title, oldBook.path, `${gettext("Copy of")} `)
         return postJson(
-            '/api/book/copy/',
+            "/api/book/copy/",
             {id: book.id, path}
         ).catch(
             error => {
-                addAlert('error', gettext('The book could not be copied'))
+                addAlert("error", gettext("The book could not be copied"))
                 throw (error)
             }
         ).then(
             ({json}) => {
-                book.id = json['id']
-                book.path = json['path']
+                book.id = json["id"]
+                book.path = json["path"]
                 this.bookOverview.bookList.push(book)
                 this.bookOverview.initTable()
             }
@@ -236,20 +236,20 @@ export class BookActions {
         const bookImageDB = {db: {}}
 
         if (bookId === 0) {
-            title = gettext('Create Book')
+            title = gettext("Create Book")
             book = {
-                title: '',
+                title: "",
                 id: 0,
                 chapters: [],
                 is_owner: true,
                 owner: this.bookOverview.user,
-                rights: 'write',
+                rights: "write",
                 metadata: emptyMetadata(),
                 settings: {
-                    bibliography_header: gettext('Bibliography'),
-                    citationstyle: 'apa',
+                    bibliography_header: gettext("Bibliography"),
+                    citationstyle: "apa",
                     book_style: this.bookOverview.styles[0] ? this.bookOverview.styles[0].slug : false,
-                    papersize: 'octavo'
+                    papersize: "octavo"
                 }
             }
         } else {
@@ -266,7 +266,7 @@ export class BookActions {
                 // selection works as expected.
                 bookImageDB.db[book.cover_image] = book.cover_image_data
             }
-            title = gettext('Edit Book')
+            title = gettext("Edit Book")
         }
         const body = bookDialogTemplate({
             title,
@@ -282,7 +282,7 @@ export class BookActions {
 
         const buttons = []
         buttons.push({
-            text: gettext('Export'),
+            text: gettext("Export"),
             dropdown: true,
             classes: "fw-dark",
             click: event => {
@@ -299,9 +299,9 @@ export class BookActions {
                 return contentMenu.open()
             }
         })
-        if (book.rights === 'write') {
+        if (book.rights === "write") {
             buttons.push({
-                text: gettext('Submit'),
+                text: gettext("Submit"),
                 classes: "fw-dark",
                 click: () => {
                     return this.saveBook(book, oldBookId).then(
@@ -309,9 +309,9 @@ export class BookActions {
                     )
                 }
             })
-            buttons.push({type: 'cancel'})
+            buttons.push({type: "cancel"})
         } else {
-            buttons.push({type: 'close'})
+            buttons.push({type: "close"})
         }
 
         const dialog = new Dialog({
@@ -324,15 +324,15 @@ export class BookActions {
         dialog.open()
 
         // Hide all but first tab
-        dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-content').forEach((el, index) => {
+        dialog.dialogEl.querySelectorAll("#bookoptions-tab .tab-content").forEach((el, index) => {
             if (index) {
-                el.style.display = 'none'
+                el.style.display = "none"
             }
         })
         let fileSelector
-        if (book.rights === 'write') {
+        if (book.rights === "write") {
             fileSelector = new FileSelector({
-                dom: dialog.dialogEl.querySelector('#book-document-list'),
+                dom: dialog.dialogEl.querySelector("#book-document-list"),
                 files: this.bookOverview.documentList,
                 multiSelect: true,
                 selectFolders: false,
@@ -341,28 +341,28 @@ export class BookActions {
         }
 
         // Handle tab link clicking
-        dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-link a').forEach(el => el.addEventListener('click', event => {
+        dialog.dialogEl.querySelectorAll("#bookoptions-tab .tab-link a").forEach(el => el.addEventListener("click", event => {
             event.preventDefault()
 
-            el.parentNode.parentNode.querySelectorAll('.tab-link.current-tab').forEach(el => el.classList.remove('current-tab'))
-            el.parentNode.classList.add('current-tab')
+            el.parentNode.parentNode.querySelectorAll(".tab-link.current-tab").forEach(el => el.classList.remove("current-tab"))
+            el.parentNode.classList.add("current-tab")
 
-            const link = el.getAttribute('href')
-            dialog.dialogEl.querySelectorAll('#bookoptions-tab .tab-content').forEach(el => {
+            const link = el.getAttribute("href")
+            dialog.dialogEl.querySelectorAll("#bookoptions-tab .tab-content").forEach(el => {
                 if (el.matches(link)) {
-                    el.style.display = ''
+                    el.style.display = ""
                 } else {
-                    el.style.display = 'none'
+                    el.style.display = "none"
                 }
             })
 
         }))
 
-        dialog.dialogEl.addEventListener('click', event => {
+        dialog.dialogEl.addEventListener("click", event => {
             const el = {}
             let chapterId, chapter
             switch (true) {
-            case findTarget(event, '.book-sort-up', el): {
+            case findTarget(event, ".book-sort-up", el): {
                 chapterId = parseInt(el.target.dataset.id)
                 chapter = book.chapters.find(
                     chapter => chapter.text === chapterId
@@ -373,14 +373,14 @@ export class BookActions {
                 )
                 chapter.number--
                 higherChapter.number++
-                document.getElementById('book-chapter-list').innerHTML =
+                document.getElementById("book-chapter-list").innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
                         })
                 break
             }
-            case findTarget(event, '.book-sort-down', el): {
+            case findTarget(event, ".book-sort-down", el): {
                 chapterId = parseInt(el.target.dataset.id)
                 chapter = book.chapters.find(
                     chapter => chapter.text === chapterId
@@ -392,14 +392,14 @@ export class BookActions {
 
                 chapter.number++
                 lowerChapter.number--
-                document.getElementById('book-chapter-list').innerHTML =
+                document.getElementById("book-chapter-list").innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
                         })
                 break
             }
-            case findTarget(event, '.delete-chapter', el):
+            case findTarget(event, ".delete-chapter", el):
                 chapterId = parseInt(el.target.dataset.id)
                 chapter = book.chapters.find(
                     chapter => chapter.text === chapterId
@@ -413,13 +413,13 @@ export class BookActions {
 
                 book.chapters = book.chapters.filter(bChapter => bChapter !== chapter)
 
-                document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
+                document.getElementById("book-chapter-list").innerHTML = bookChapterListTemplate({
                     book,
                     documentList: this.bookOverview.documentList
                 })
 
                 break
-            case findTarget(event, '#add-chapter', el): {
+            case findTarget(event, "#add-chapter", el): {
                 fileSelector.selected.forEach(entry => {
                     const chapNums = book.chapters.map(chapter => chapter.number),
                         number = chapNums.length ?
@@ -428,25 +428,25 @@ export class BookActions {
                     book.chapters.push({
                         text: entry.file.id,
                         number,
-                        part: ''
+                        part: ""
                     })
                 })
                 fileSelector.deselectAll()
 
-                document.getElementById('book-chapter-list').innerHTML = bookChapterListTemplate({
+                document.getElementById("book-chapter-list").innerHTML = bookChapterListTemplate({
                     book,
                     documentList: this.bookOverview.documentList
                 })
                 break
             }
-            case findTarget(event, '.edit-chapter', el):
+            case findTarget(event, ".edit-chapter", el):
                 chapterId = parseInt(el.target.dataset.id)
                 chapter = book.chapters.find(
                     chapter => chapter.text === chapterId
                 )
                 this.editChapterDialog(chapter, book)
                 break
-            case findTarget(event, '#select-cover-image-button', el): {
+            case findTarget(event, "#select-cover-image-button", el): {
                 const imageSelection = new ImageSelectionDialog(
                     bookImageDB,
                     imageDB,
@@ -460,10 +460,10 @@ export class BookActions {
                             delete book.cover_image
                         } else {
                             book.cover_image = image.id
-                            book.cover_image_data = image.db === 'user' ?
+                            book.cover_image_data = image.db === "user" ?
                                 imageDB.db[image.id] : bookImageDB.db[image.id]
                         }
-                        document.getElementById('figure-preview-row').innerHTML = bookEpubDataCoverTemplate({
+                        document.getElementById("figure-preview-row").innerHTML = bookEpubDataCoverTemplate({
                             imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)},
                             book
                         })
@@ -471,18 +471,18 @@ export class BookActions {
                 )
                 break
             }
-            case findTarget(event, '#remove-cover-image-button', el):
+            case findTarget(event, "#remove-cover-image-button", el):
                 delete book.cover_image
-                document.getElementById('figure-preview-row').innerHTML = bookEpubDataCoverTemplate({
+                document.getElementById("figure-preview-row").innerHTML = bookEpubDataCoverTemplate({
                     book,
                     imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
                 })
                 break
-            case findTarget(event, '#perform-sanity-check-button', el): {
+            case findTarget(event, "#perform-sanity-check-button", el): {
                 this.saveBook(book, oldBookId).then(
                     () => bookSanityCheck(book, this.bookOverview.documentList, this.bookOverview.schema)
                 ).then(
-                    sanityCheckOutputHTML => document.getElementById('sanity-check-output').innerHTML = sanityCheckOutputHTML
+                    sanityCheckOutputHTML => document.getElementById("sanity-check-output").innerHTML = sanityCheckOutputHTML
                 )
                 break
             }
@@ -491,15 +491,15 @@ export class BookActions {
             }
         })
 
-        dialog.dialogEl.querySelector('#book-settings-citationstyle').addEventListener('change', event => {
+        dialog.dialogEl.querySelector("#book-settings-citationstyle").addEventListener("change", event => {
             book.settings.citationstyle = event.target.value
         })
 
-        dialog.dialogEl.querySelector('#book-settings-bookstyle').addEventListener('change', event => {
+        dialog.dialogEl.querySelector("#book-settings-bookstyle").addEventListener("change", event => {
             book.settings.book_style = event.target.value
         })
 
-        dialog.dialogEl.querySelector('#book-settings-papersize').addEventListener('change', event => {
+        dialog.dialogEl.querySelector("#book-settings-papersize").addEventListener("change", event => {
             book.settings.papersize = event.target.value
         })
     }
