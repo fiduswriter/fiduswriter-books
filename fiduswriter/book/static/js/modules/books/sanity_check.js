@@ -13,7 +13,7 @@ function findContentIssues(node, chapter, doc, messages) {
         node.marks.forEach(mark => {
             if (mark.type == "link" && mark.attrs.href.charAt(0) === "#" && !mark.attrs.title) {
                 messages.warnings.push(`${gettext("Internal links without target")} ${labelChapter(chapter, doc)}`)
-            } else if (mark.type == "comment" && doc.comments[parseInt(mark.attrs.id)].resolved === false) {
+            } else if (mark.type == "comment" && doc.comments[parseInt(mark.attrs.id)]?.resolved === false) {
                 messages.warnings.push(`${gettext("Unresolved comments")} ${labelChapter(chapter, doc)}`)
             } else if (mark.type === "deletion" || (mark.type === "insertion" && mark.attrs.approved === false)) {
                 messages.warnings.push(`${gettext("Unresolved tracked changes")} ${labelChapter(chapter, doc)}`)
