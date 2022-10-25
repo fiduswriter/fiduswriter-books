@@ -13,6 +13,7 @@ import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
 import {BIBLIOGRAPHY_HEADERS, CATS} from "../../../schema/i18n"
+import {LANGUAGES} from "../../../schema/const"
 
 export class HTMLBookExporter extends DOMExporter {
     constructor(schema, csl, bookStyles, book, user, docList, updated) {
@@ -287,8 +288,7 @@ export class HTMLBookExporter extends DOMExporter {
                 book: this.book,
                 creator: this.user.name,
                 styleSheets: [{filename: bookStyle}],
-                // TODO: specify a book language rather than using the current users UI language
-                language: gettext("English"),
+                language: LANGUAGES.find(lang => lang[0] === this.book.settings.language)[1],
                 multiDoc: this.multiDoc
             }), {ocd: true})
         })

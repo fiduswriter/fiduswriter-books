@@ -175,6 +175,7 @@ export class BookActions {
         book.metadata.copyright = document.getElementById("book-metadata-copyright").value
         book.metadata.publisher = document.getElementById("book-metadata-publisher").value
         book.metadata.keywords = document.getElementById("book-metadata-keywords").value
+        book.settings.language = document.getElementById("book-settings-language").value
         book.path = oldBook?.path || this.bookOverview.path
         const bookData = Object.assign({}, book)
         delete bookData.cover_image_data
@@ -249,7 +250,9 @@ export class BookActions {
                     bibliography_header: gettext("Bibliography"),
                     citationstyle: "apa",
                     book_style: this.bookOverview.styles[0] ? this.bookOverview.styles[0].slug : false,
-                    papersize: "octavo"
+                    papersize: "octavo",
+                    language: "en-US"
+
                 }
             }
         } else {
@@ -316,7 +319,7 @@ export class BookActions {
 
         const dialog = new Dialog({
             width: 840,
-            height: 480,
+            height: 520,
             title,
             body,
             buttons

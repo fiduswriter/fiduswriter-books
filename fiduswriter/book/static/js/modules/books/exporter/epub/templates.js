@@ -183,7 +183,7 @@ export const epubBookTitlepageTemplate = ({
 /** A template to create the book epub copyright page XML. */
 export const epubBookCopyrightTemplate = ({
     book,
-    languages,
+    language,
     creator
 }) =>
     `<?xml version="1.0" encoding="UTF-8"?>
@@ -221,11 +221,7 @@ export const epubBookCopyrightTemplate = ({
 }
                 <p>${gettext("Last Updated")}: ${book.updated}</p>
                 <p>${gettext("Created")}: ${book.added}</p>
-                ${
-    languages.length ?
-        `<p>${languages.length === 1 ? gettext("Language") : gettext("Languages")}: ${languages.map(language => LANGUAGES.find(lang => lang[0] === language)[1]).join(", ")}</p>` :
-        ""
-}
+                <p>${gettext("Language")}: ${LANGUAGES.find(lang => lang[0] === language)[1]}</p>
                 <p>${gettext("Created by")}: ${escapeText(creator)}</p>
             </div>
         </section>

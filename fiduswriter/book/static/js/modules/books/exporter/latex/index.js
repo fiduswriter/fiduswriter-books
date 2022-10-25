@@ -59,7 +59,7 @@ export class LatexBookExporter {
         })
         // Start a converter, only for creating a preamble/epilogue that combines
         // the features of all of the contained chapters.
-        const bookConverter = new LatexExporterConvert(this, {db: combinedImages}, {db: combinedBibliography}, {language: "en-US", bibliography_header: {}})
+        const bookConverter = new LatexExporterConvert(this, {db: combinedImages}, {db: combinedBibliography}, {language: this.book.settings.language, bibliography_header: {}})
         bookConverter.features = features
         const preamble = bookConverter.assemblePreamble()
         const epilogue = bookConverter.assembleEpilogue()

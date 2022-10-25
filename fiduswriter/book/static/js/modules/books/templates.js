@@ -1,5 +1,5 @@
 import {escapeText, longFilePath, localizeDate} from "../common"
-
+import {LANGUAGES} from "../schema/const"
 
 /** A template for the basic info book template pane */
 export const bookBasicInfoTemplate = ({book}) =>
@@ -63,6 +63,36 @@ export const bookBasicInfoTemplate = ({book}) =>
         ""
 }
                     >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Language")}</h4>
+                </th>
+                <td>
+                    <select class="entryForm dk" name="book-settings-language"
+                            title="${gettext("Select language")}"
+                            id="book-settings-language"
+                            ${
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
+}
+                    >
+                        ${
+    LANGUAGES.map(language =>
+        `<option value="${language[0]}"
+                                        ${
+    language[0] === book.settings.language ?
+        "selected" :
+        ""
+}
+                                >
+                                    ${escapeText(language[1])}
+                                </option>`
+    ).join("")
+}
+                    </select>
                 </td>
             </tr>
             <tr>

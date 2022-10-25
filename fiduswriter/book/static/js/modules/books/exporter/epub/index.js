@@ -266,9 +266,7 @@ export class EpubBookExporter extends DOMExporter {
             ).coverImage = true
         }
 
-        // Take language of first chapter.
-        const languages = this.chapters.map(chapter => chapter.doc.settings.language)
-        const language = languages[0] || "en-US"
+        const language = this.book.settings.language
         const shortLang = language.split("-")[0]
 
         const opfCode = epubBookOpfTemplate({
@@ -324,7 +322,7 @@ export class EpubBookExporter extends DOMExporter {
             contents: pretty(epubBookCopyrightTemplate({
                 book: this.book,
                 creator: this.user.name,
-                languages
+                language
             }), {ocd: true})
         }])
 

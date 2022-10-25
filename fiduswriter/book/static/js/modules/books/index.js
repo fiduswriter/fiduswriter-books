@@ -324,7 +324,7 @@ export class BookOverview {
     }
 
     initializeView(json) {
-        this.bookList = this.unpackBooks(json.books)
+        this.bookList = json.books
         this.documentList = json.documents
         this.contacts = json.contacts
         this.styles = json.styles
@@ -353,18 +353,6 @@ export class BookOverview {
         return this.app.indexedDB.clearData("books_data").then(
             () => this.app.indexedDB.insertData("books_data", [json])
         )
-    }
-
-
-    unpackBooks(booksFromServer) {
-        // metadata and settings are stored as a json stirng in a text field on
-        // the server, so they need to be unpacked before being available.
-        return booksFromServer.map(book => {
-            const uBook = Object.assign({}, book)
-            uBook.metadata = JSON.parse(book.metadata)
-            uBook.settings = JSON.parse(book.settings)
-            return uBook
-        })
     }
 
     bind() {

@@ -11,8 +11,8 @@ from usermedia.models import Image
 class Book(models.Model):
     title = models.CharField(max_length=128)
     path = models.TextField(default="", blank=True)
-    metadata = models.TextField(default="{}")
-    settings = models.TextField(default="{}")
+    metadata = models.JSONField(default=dict, blank=True)
+    settings = models.JSONField(default=dict, blank=True)
     cover_image = models.ForeignKey(
         Image,
         blank=True,
