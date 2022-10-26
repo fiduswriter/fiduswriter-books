@@ -1,4 +1,4 @@
-import {printHTML} from '@vivliostyle/print'
+import {printHTML} from "@vivliostyle/print"
 
 import {printHTMLTemplate, chapterTemplate} from "./templates"
 import {HTMLBookExporter, htmlBookIndexBodyTemplate} from "../html"
@@ -28,13 +28,13 @@ export class PrintBookExporter extends HTMLBookExporter {
 
     exportThree() {
         const html = this.outputList.filter(
-                ({filename}) => filename.slice(-5) === '.html'
+                ({filename}) => filename.slice(-5) === ".html"
             ).sort(
                 (a, b) => {
-                    if (a.filename === 'index.html') {
+                    if (a.filename === "index.html") {
                         return -1
                     }
-                    if (b.filename === 'index.html') {
+                    if (b.filename === "index.html") {
                         return 1
                     }
                     if (parseInt(a.filename.match(/\d+/g)) < parseInt(b.filename.match(/\d+/g))) {
@@ -44,23 +44,24 @@ export class PrintBookExporter extends HTMLBookExporter {
                         return 1
                     }
                     return 0
-                }).map(({contents}) => contents).join(''),
+                }).map(({contents}) => contents).join(""),
             css = this.getBookCSS(),
             title = this.book.title,
-            htmlDoc = printHTMLTemplate({css, html, title})
+            settings = this.book.settings,
+            htmlDoc = printHTMLTemplate({css, html, title, settings})
 
         const config = {title}
 
-        if (navigator.userAgent.includes('Gecko/')) {
+        if (navigator.userAgent.includes("Gecko/")) {
             // Firefox has issues printing images when in iframe. This workaround can be
             // removed once that has been fixed. TODO: Add gecko bug number if there is one.
             config.printCallback = iframeWin => {
                 const oldBody = document.body
                 document.body.parentElement.dataset.vivliostylePaginated = true
                 document.body = iframeWin.document.body
-                iframeWin.document.querySelectorAll('style').forEach(el => document.body.appendChild(el))
-                const backgroundStyle = document.createElement('style')
-                backgroundStyle.innerHTML = 'body {background-color: white;}'
+                iframeWin.document.querySelectorAll("style").forEach(el => document.body.appendChild(el))
+                const backgroundStyle = document.createElement("style")
+                backgroundStyle.innerHTML = "body {background-color: white;}"
                 document.body.appendChild(backgroundStyle)
                 window.print()
                 document.body = oldBody
@@ -79,7 +80,7 @@ export class PrintBookExporter extends HTMLBookExporter {
         let css = `a.fn {
             -adapt-template: url(data:application/xml,${
     encodeURI(
-        '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.pyroxy.com/ns/shadow"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id="footnote"><s:content/><s:include class="footnote-content"/></s:template></body></html>#footnote'
+        "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:s=\"http://www.pyroxy.com/ns/shadow\"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id=\"footnote\"><s:content/><s:include class=\"footnote-content\"/></s:template></body></html>#footnote"
     )
 });
             text-decoration: none;
@@ -164,7 +165,7 @@ export class PrintBookExporter extends HTMLBookExporter {
             let contents = bookStyle.contents
             bookStyle.bookstylefile_set.forEach(
                 ([url, filename]) => contents = contents.replace(
-                    new RegExp(filename, 'g'),
+                    new RegExp(filename, "g"),
                     url
                 )
             )

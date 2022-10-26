@@ -1,5 +1,5 @@
 import {escapeText, longFilePath, localizeDate} from "../common"
-
+import {LANGUAGES} from "../schema/const"
 
 /** A template for the basic info book template pane */
 export const bookBasicInfoTemplate = ({book}) =>
@@ -13,9 +13,9 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <input class="entryForm" type="text" id="book-title"
                             value="${escapeText(book.title)}"
                             ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                 </td>
@@ -28,9 +28,9 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <input class="entryForm" type="text" id="book-metadata-author"
                             value="${escapeText(book.metadata.author)}"
                             ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                 </td>
@@ -43,9 +43,9 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <input class="entryForm" type="text" id="book-metadata-subtitle"
                             value="${escapeText(book.metadata.subtitle)}"
                             ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                 </td>
@@ -58,11 +58,41 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <input class="entryForm" type="text" id="book-metadata-version"
                             value="${escapeText(book.metadata.version)}"
                             ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Language")}</h4>
+                </th>
+                <td>
+                    <select class="entryForm dk" name="book-settings-language"
+                            title="${gettext("Select language")}"
+                            id="book-settings-language"
+                            ${
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
+}
+                    >
+                        ${
+    LANGUAGES.map(language =>
+        `<option value="${language[0]}"
+                                        ${
+    language[0] === book.settings.language ?
+        "selected" :
+        ""
+}
+                                >
+                                    ${escapeText(language[1])}
+                                </option>`
+    ).join("")
+}
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -73,9 +103,9 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <input class="entryForm" type="text" id="book-metadata-publisher"
                             value="${escapeText(book.metadata.publisher)}"
                             ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                 </td>
@@ -88,9 +118,9 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <input class="entryForm" type="text" id="book-metadata-copyright"
                             value="${escapeText(book.metadata.copyright)}"
                             ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                 </td>
@@ -105,9 +135,9 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <input class="entryForm" type="text" id="book-metadata-keywords"
                             value="${book.metadata.keywords}"
                             ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                 </td>
@@ -129,21 +159,21 @@ export const bookBibliographyDataTemplate = ({book, citationStyles}) =>
                         title="${gettext("Select citation style for the book")}"
                         id="book-settings-citationstyle"
                         ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                     ${
     Object.entries(citationStyles).map(([key, value]) =>
         `<option value="${key}" ${
             key === book.settings.citationstyle ?
-                'selected' :
-                ''
+                "selected" :
+                ""
         }>
                                 ${value}
                             </option>`
-    ).join('')
+    ).join("")
 }
                     </select>
                 </td>
@@ -173,9 +203,9 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                             title="${gettext("Select stylesheet for the book")}"
                             id="book-settings-bookstyle"
                             ${
-    book.rights === 'read' || !bookStyleList.length ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" || !bookStyleList.length ?
+        "disabled=\"disabled\"" :
+        ""
 }
                     >
                         ${
@@ -183,13 +213,13 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
         `<option value="${bookStyle.slug}"
                                         ${
     bookStyle.slug === book.settings.book_style ?
-        'selected' :
-        ''
+        "selected" :
+        ""
 }
                                 >
                                     ${escapeText(bookStyle.title)}
                                 </option>`
-    ).join('')
+    ).join("")
 }
                     </select>
                 </td>
@@ -203,21 +233,21 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                         title="${gettext("Select paper size for the book")}"
                         id="book-settings-papersize"
                         ${
-    book.rights === 'read' ?
-        'disabled="disabled"' :
-        ''
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
 }
                 >
                     ${
     paperSizes.map(size =>
         `<option value="${size[0]}" ${
             size[0] === book.settings.papersize ?
-                'selected' :
-                ''
+                "selected" :
+                ""
         }>
                                 ${size[1]}
                             </option>`
-    ).join('')
+    ).join("")
 }
                 </select>
                 </td>
@@ -233,8 +263,8 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
         <td>
         ${
     book.cover_image ?
-        `<div class="img" style="background-image: url(${imageDB.db[book.cover_image].image});" title="${gettext('Cover image')}"></div>` :
-        ''
+        `<div class="img" style="background-image: url(${imageDB.db[book.cover_image].image});" title="${gettext("Cover image")}"></div>` :
+        ""
 }
         </td>
         ${
@@ -242,20 +272,20 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
         `<td class="figure-preview-row">
                 <button type="button" class="ui-button ui-widget ui-state-default
                         ui-corner-all ui-button-text-only fw-button fw-dark"
-                        id="select-cover-image-button" role="button" aria-disabled="false" title="${gettext('Select a cover image')}">
-                    <span class="ui-button-text">${gettext('Select Image')}</span>
+                        id="select-cover-image-button" role="button" aria-disabled="false" title="${gettext("Select a cover image")}">
+                    <span class="ui-button-text">${gettext("Select Image")}</span>
                 </button>
                 ${
     book.cover_image ?
         `<button type="button" class="ui-button ui-widget ui-state-default
                             ui-corner-all ui-button-text-only fw-button fw-orange"
-                            id="remove-cover-image-button" role="button" aria-disabled="false"  title="${gettext('Remove cover image')}">
-                        <span class="ui-button-text">${gettext('Remove Image')}</span>
+                            id="remove-cover-image-button" role="button" aria-disabled="false"  title="${gettext("Remove cover image")}">
+                        <span class="ui-button-text">${gettext("Remove Image")}</span>
                     </button>` :
-        ''
+        ""
 }
             </td>` :
-        ''
+        ""
 }`
 
 /** A template for the epub related data pane of the book dialog */
@@ -277,7 +307,7 @@ export const bookSanityCheckTemplate = () =>
         <tbody>
             <tr>
                 <th>
-                    <button type="button" id="perform-sanity-check-button" class="ui-button fw-button fw-dark">${gettext('Perform sanity check')}</button>
+                    <button type="button" id="perform-sanity-check-button" class="ui-button fw-button fw-dark">${gettext("Perform sanity check")}</button>
                 </th>
                 <td id="sanity-check-output"></td>
             </tr>
@@ -301,7 +331,7 @@ export const bookDialogTemplate = ({
                                     ${escapeText(part.title)}
                                     </a>
                             </li>`
-    ).join('')
+    ).join("")
 }
             </ul>
             ${
@@ -310,7 +340,7 @@ export const bookDialogTemplate = ({
             `<div class="tab-content ui-tabs-panel" id="optionTab${index}" title="${escapeText(part.description)}">
                             ${part.template(bookInfo)}
                         </div>`
-    ).join('')
+    ).join("")
 }
         </div>
     </div>`
@@ -326,7 +356,7 @@ export const bookDialogChaptersTemplate = ({book, documentList}) =>
         <span id="add-chapter" class="fw-button fw-large fw-square fw-light fw-ar-button">
             <i class="fas fa-caret-right"></i>
         </span>` :
-            ''
+            ""
     }
     <div class="fw-ar-container">
         <h3 class="fw-green-title">${gettext("Book chapters")}</h3>
@@ -337,8 +367,8 @@ export const bookDialogChaptersTemplate = ({book, documentList}) =>
                     <th colspan="2">${gettext("Sort")}</th>
                     ${
     book.rights === "write" ?
-        `<th>&emsp;</th>` :
-        ''
+        "<th>&emsp;</th>" :
+        ""
 }
                 </tr>
             </thead>
@@ -359,25 +389,25 @@ export const bookChapterListTemplate = ({book, documentList}) => {
     ).map((chapter, index, array) => {
         const doc = documentList.find(doc => doc.id === chapter.text)
         return `<tr
-                ${doc ? '' : 'class="noaccess"'}
+                ${doc ? "" : "class=\"noaccess\""}
             >
                 <td width="222" data-id="${chapter.text}" class="fw-checkable-td" ${
-    doc ? `title="${longFilePath(doc.title, doc.path)}"` : ''
+    doc ? `title="${longFilePath(doc.title, doc.path)}"` : ""
 }>
                 <span class="fw-inline">
-                    ${doc ? '' : '<i class="fas fa-minus-circle"></i>'}
+                    ${doc ? "" : "<i class=\"fas fa-minus-circle\"></i>"}
                     ${
     chapter.part.length ?
         `<b class="part">
-                            ${partCounter++}. ${gettext('Book part')}:
+                            ${partCounter++}. ${gettext("Book part")}:
                             ${escapeText(chapter.part)}
                         </b>
                         <br>` :
-        ''
+        ""
 }
                     ${chapter.number}
                     ${
-    doc ? doc.title ? doc.title : gettext('Untitled') : gettext('No access')
+    doc ? doc.title ? doc.title : gettext("Untitled") : gettext("No access")
 }
                 </span>
             </td>
@@ -388,14 +418,14 @@ export const bookChapterListTemplate = ({book, documentList}) => {
                 </td>
                 ${
     index === 0 ?
-        '<td width="10"></td>' :
+        "<td width=\"10\"></td>" :
         `<td width="10" class="book-sort-up" data-id="${chapter.text}">
                         <i class="fas fa-sort-up"></i>
                     </td>`
 }
                 ${
     index + 1 === array.length ?
-        '<td width="10"></td>' :
+        "<td width=\"10\"></td>" :
         `<td width="10" class="book-sort-down" data-id="${chapter.text}">
                         <i class="fas fa-sort-down"></i>
                     </td>`
@@ -411,7 +441,7 @@ export const bookChapterListTemplate = ({book, documentList}) => {
                 <td width="50"></td>`
 }
         </tr>`
-    }).join('')
+    }).join("")
 }
 
 /** A template for the chapter dialog for books */
@@ -420,9 +450,9 @@ export const bookChapterDialogTemplate = ({chapter}) =>
         <tr>
             <th>
                 <h4 title="${
-    gettext('If this chapter starts a part of the book, specify the title of that part here')
+    gettext("If this chapter starts a part of the book, specify the title of that part here")
 }">
-                    ${gettext('Book part title')}
+                    ${gettext("Book part title")}
                 </h4>
             </th>
             <td>
@@ -433,10 +463,10 @@ export const bookChapterDialogTemplate = ({chapter}) =>
        </table>`
 
 export const deleteFolderCell = ({subdir, ids}) =>
-    `<span class="delete-folder fw-link-text" data-ids="${ids.join(',')}"
+    `<span class="delete-folder fw-link-text" data-ids="${ids.join(",")}"
          data-title="${escapeText(subdir)}">
          '<i class="fa fa-trash-alt"></i>
  </span>`
 
 export const dateCell = ({date}) =>
-    `<span class="date">${localizeDate(date * 1000, 'sortable-date')}</span>`
+    `<span class="date">${localizeDate(date * 1000, "sortable-date")}</span>`

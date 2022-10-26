@@ -27,13 +27,13 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
     }
 
     exportThree() {
-        let html = ''
+        let html = ""
         this.outputList = this.outputList.sort(
             (a, b) => {
-                if (a.filename === 'index.html') {
+                if (a.filename === "index.html") {
                     return -1
                 }
-                if (b.filename === 'index.html') {
+                if (b.filename === "index.html") {
                     return 1
                 }
                 if (parseInt(a.filename.match(/\d+/g)) < parseInt(b.filename.match(/\d+/g))) {
@@ -44,7 +44,7 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
                 }
                 return 0
             }).filter(({filename, contents}) => {
-            if (filename.slice(-5) !== '.html') {
+            if (filename.slice(-5) !== ".html") {
                 return true
             }
             html += contents
@@ -52,10 +52,11 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         })
         const css = this.getBookCSS(),
             title = this.book.title,
-            htmlDoc = singleFileHTMLBookTemplate({css, html, title, styleSheets: this.styleSheets})
+            settings = this.book.settings,
+            htmlDoc = singleFileHTMLBookTemplate({css, html, title, styleSheets: this.styleSheets, settings})
 
 
-        this.outputList.push({filename: 'index.html', contents: pretty(htmlDoc, {ocd: true})})
+        this.outputList.push({filename: "index.html", contents: pretty(htmlDoc, {ocd: true})})
 
         return super.exportThree()
 
@@ -66,7 +67,7 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         const css = `a.fn {
             -adapt-template: url(data:application/xml,${
     encodeURI(
-        '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.pyroxy.com/ns/shadow"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id="footnote"><s:content/><s:include class="footnote-content"/></s:template></body></html>#footnote'
+        "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:s=\"http://www.pyroxy.com/ns/shadow\"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id=\"footnote\"><s:content/><s:include class=\"footnote-content\"/></s:template></body></html>#footnote"
     )
 });
             text-decoration: none;

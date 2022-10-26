@@ -1,9 +1,9 @@
 import {escapeText, localizeDate} from "../../../common"
-
+import {bookTerm} from "../../i18n"
 /** A template for HTML export of a book. */
-export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents, title}) =>
+export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents, title, settings}) =>
     `<!DOCTYPE html>
-<html>
+<html lang="${settings.language.split("-")[0]}">
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
@@ -11,14 +11,14 @@ export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents
         ${
     styleSheets.map(sheet =>
         `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
-    ).join('')
+    ).join("")
 }
     </head>
-    <body class="book-chapter${currentPart && currentPart.length ? ` ${currentPart.toLowerCase().replace(/[^a-z]/g, '')}` : ''}">
+    <body class="book-chapter${currentPart && currentPart.length ? ` ${currentPart.toLowerCase().replace(/[^a-z]/g, "")}` : ""}">
         ${
     part && part.length ?
         `<h1 class="part">${escapeText(part)}</h1>` :
-        ''
+        ""
 }
         ${contents}
     </body>
@@ -44,10 +44,10 @@ const htmlBookIndexItemTemplate = ({item, multiDoc}) =>
                 ${
     item.subItems.map(subItem =>
         htmlBookIndexItemTemplate({item: subItem, multiDoc})
-    ).join('')
+    ).join("")
 }
             </ol>` :
-        ''
+        ""
 }
     </li>`
 
@@ -58,36 +58,36 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
         ${
     book.metadata.subtitle.length ?
         `<h2 class="booksubtitle">${escapeText(book.metadata.subtitle)}</h2>` :
-        ''
+        ""
 }
         ${
     book.metadata.author.length ?
-        `<h3 class="bookauthor">${gettext('by')} ${escapeText(book.metadata.author)}</h3>` :
-        ''
+        `<h3 class="bookauthor">${bookTerm("by", book.settings.language)} ${escapeText(book.metadata.author)}</h3>` :
+        ""
 }
         ${
     book.metadata.version?.length ?
         `<h4 class="bookversion">${escapeText(book.metadata.version)}</h4>` :
-        ''
+        ""
 }
     </div>
     <div class="copyrightpage frontmatter">
         ${
     book.metadata.publisher && book.metadata.publisher.length ?
-        `<p>${gettext('Published by')}: ${escapeText(book.metadata.publisher)}</p>` :
-        ''
+        `<p>${bookTerm("Published by", book.settings.language)}: ${escapeText(book.metadata.publisher)}</p>` :
+        ""
 }
-        <p>${gettext('Last Updated')}: ${localizeDate(book.updated * 1000, 'sortable-date')}</p>
-        <p>${gettext('Created')}: ${localizeDate(book.added * 1000, 'sortable-date')}</p>
-        <p>${gettext('Language')}: ${language}</p>
-        <p>${gettext('Created by')}: ${escapeText(creator)}</p>
+        <p>${bookTerm("Last updated", book.settings.language)}: ${localizeDate(book.updated * 1000, "sortable-date")}</p>
+        <p>${bookTerm("Created", book.settings.language)}: ${localizeDate(book.added * 1000, "sortable-date")}</p>
+        <p>${bookTerm("Language", book.settings.language)}: ${language}</p>
+        <p>${bookTerm("Created by", book.settings.language)}: ${escapeText(creator)}</p>
     </div>
     <div class="tocpage frontmatter">
         <nav role="doc-toc"><ol>
             ${
     contentItems.map(item =>
         htmlBookIndexItemTemplate({item, multiDoc})
-    ).join('')
+    ).join("")
 }
         </ol></nav>
     </div>`
@@ -95,7 +95,7 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
 /** A template to create the book index. */
 export const htmlBookIndexTemplate = ({book, contentItems, language, creator, styleSheets, multiDoc}) =>
     `<!DOCTYPE html>
-<html>
+<html lang="${book.settings.language.split("-")[0]}">
     <head>
         <meta charset="utf-8"></meta>
         <title>${escapeText(book.title)}</title>
@@ -103,7 +103,7 @@ export const htmlBookIndexTemplate = ({book, contentItems, language, creator, st
         ${
     styleSheets.map(sheet =>
         `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />`
-    ).join('')
+    ).join("")
 }
     </head>
     <body class="book-index">
@@ -116,12 +116,12 @@ export const singleFileHTMLBookChapterTemplate = ({part, contents}) => `
     ${
     part && part.length ?
         `<h1 class="part">${escapeText(part)}</h1>` :
-        ''
+        ""
 }
     ${contents}`
 
-export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets}) => `<!DOCTYPE html>
-<html>
+export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets, settings}) => `<!DOCTYPE html>
+<html lang="${settings.language.split("-")[0]}">
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
@@ -130,8 +130,8 @@ export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets}) => `
             ${css}
         </style>
         ${styleSheets.map(sheet =>
-        sheet.filename ? `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />` : ''
-    ).join('')}
+        sheet.filename ? `<link type="text/css" rel="stylesheet" href="${sheet.filename}" />` : ""
+    ).join("")}
     </head>
     <body class="user-contents">
         ${html}

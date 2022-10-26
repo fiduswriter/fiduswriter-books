@@ -7,7 +7,7 @@ export const getMissingChapterData = function(book, documentList, schema, rawCon
     )
 
     if (bookDocuments.some(doc => doc === undefined)) {
-        addAlert('error', gettext("Cannot produce book as you lack access rights to its chapters."))
+        addAlert("error", gettext("Cannot produce book as you lack access rights to its chapters."))
         return Promise.reject(new Error("Cannot produce book as you lack access rights to its chapters."))
     }
 

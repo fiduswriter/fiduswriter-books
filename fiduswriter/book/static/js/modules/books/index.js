@@ -21,7 +21,7 @@ export class BookOverview {
     // A class that contains everything that happens on the books page.
     // It is currently not possible to initialize more than one such class,
     // as it contains bindings to menu items, etc. that are uniquely defined.
-    constructor({app, user}, path = '/') {
+    constructor({app, user}, path = "/") {
         this.app = app
         this.user = user
         this.path = path
@@ -32,7 +32,7 @@ export class BookOverview {
         this.documentList = []
         this.contacts = []
         this.citationStyles = []
-        this.lastSort = {column: 0, dir: 'asc'}
+        this.lastSort = {column: 0, dir: "asc"}
     }
 
     init() {
@@ -72,7 +72,7 @@ export class BookOverview {
         this.plugins = {}
 
         Object.keys(plugins).forEach(plugin => {
-            if (typeof plugins[plugin] === 'function') {
+            if (typeof plugins[plugin] === "function") {
                 this.plugins[plugin] = new plugins[plugin](this)
                 this.plugins[plugin].init()
             }
@@ -81,20 +81,20 @@ export class BookOverview {
 
     render() {
         ensureCSS([
-            'add_remove_dialog.css',
-            'access_rights_dialog.css',
-            'book_dialog.css'
+            "add_remove_dialog.css",
+            "access_rights_dialog.css",
+            "book_dialog.css"
         ])
-        this.dom = document.createElement('body')
+        this.dom = document.createElement("body")
         this.dom.innerHTML = baseBodyTemplate({
-            contents: '',
+            contents: "",
             user: this.user,
             hasOverview: true,
             app: this.app
         })
         document.body = this.dom
 
-        setDocTitle(gettext('Book Overview'), this.app)
+        setDocTitle(gettext("Book Overview"), this.app)
         const feedbackTab = new FeedbackTab()
         feedbackTab.init()
     }
@@ -129,15 +129,15 @@ export class BookOverview {
             this.table = false
         }
         const subdirs = {}
-        const tableEl = document.createElement('table')
-        tableEl.classList.add('fw-data-table')
-        tableEl.classList.add('fw-large')
-        const contentsEl = document.querySelector('.fw-contents')
-        contentsEl.innerHTML = ''
+        const tableEl = document.createElement("table")
+        tableEl.classList.add("fw-data-table")
+        tableEl.classList.add("fw-large")
+        const contentsEl = document.querySelector(".fw-contents")
+        contentsEl.innerHTML = ""
         contentsEl.appendChild(tableEl)
 
-        if (this.path !== '/') {
-            const headerEl = document.createElement('h1')
+        if (this.path !== "/") {
+            const headerEl = document.createElement("h1")
             headerEl.innerHTML = escapeText(this.path)
             contentsEl.insertBefore(headerEl, tableEl)
         }
@@ -157,24 +157,24 @@ export class BookOverview {
             book => this.createTableRow(book, subdirs, searching)
         ).filter(row => !!row)
 
-        if (!searching && this.path !== '/') {
-            const pathParts = this.path.split('/')
+        if (!searching && this.path !== "/") {
+            const pathParts = this.path.split("/")
             pathParts.pop()
             pathParts.pop()
-            const parentPath = pathParts.join('/') + '/'
+            const parentPath = pathParts.join("/") + "/"
             fileList.unshift([
-                '-1',
-                'top',
-                '',
+                "-1",
+                "top",
+                "",
                 `<a class="fw-data-table-title fw-link-text parentdir" href="/books${encodeURI(parentPath)}" data-path="${parentPath}">
                     <i class="fas fa-folder"></i>
                     <span>..</span>
                 </a>`,
-                '',
-                '',
-                '',
-                '',
-                ''
+                "",
+                "",
+                "",
+                "",
+                ""
             ])
         }
 
@@ -190,7 +190,7 @@ export class BookOverview {
                 top: ""
             },
             data: {
-                headings: ['', '', this.dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ''],
+                headings: ["", "", this.dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ""],
                 data: fileList
             },
             columns: [
@@ -209,7 +209,7 @@ export class BookOverview {
             ]
         })
 
-        this.table.on('datatable.sort', (column, dir) => {
+        this.table.on("datatable.sort", (column, dir) => {
             this.lastSort = {column, dir}
         })
 
@@ -218,20 +218,20 @@ export class BookOverview {
 
     createTableRow(book, subdirs, searching) {
         let path = book.path
-        if (!path.startsWith('/')) {
-            path = '/' + path
+        if (!path.startsWith("/")) {
+            path = "/" + path
         }
         if (!path.startsWith(this.path)) {
             return false
         }
-        if (path.endsWith('/')) {
-            path += book.title.replace(/\//g, '')
+        if (path.endsWith("/")) {
+            path += book.title.replace(/\//g, "")
         }
 
         const currentPath = path.slice(this.path.length)
-        if (!searching && currentPath.includes('/')) {
+        if (!searching && currentPath.includes("/")) {
             // There is a subdir
-            const subdir = currentPath.split('/').shift()
+            const subdir = currentPath.split("/").shift()
             if (subdirs[subdir]) {
                 // subdir has been covered already
                 // We only update the update/added columns if needed.
@@ -252,18 +252,18 @@ export class BookOverview {
             const ownedIds = this.user.id === book.owner.id ? [book.id] : []
             // Display subdir
             const row = [
-                '0',
-                'folder',
-                '',
+                "0",
+                "folder",
+                "",
                 `<a class="fw-data-table-title fw-link-text subdir" href="/books${encodeURI(this.path + subdir)}/" data-path="${this.path}${subdir}/">
                     <i class="fas fa-folder"></i>
                     <span>${escapeText(subdir)}</span>
                 </a>`,
                 `<span class="date">${dateCell({date: book.added})}</span>`,
                 `<span class="date">${dateCell({date: book.updated})}</span>`,
-                '',
-                '',
-                ownedIds.length ? deleteFolderCell({subdir, ids: ownedIds}) : ''
+                "",
+                "",
+                ownedIds.length ? deleteFolderCell({subdir, ids: ownedIds}) : ""
             ]
             subdirs[subdir] = {row, added: book.added, updated: book.updated, ownedIds}
             return row
@@ -272,7 +272,7 @@ export class BookOverview {
         // This is the folder of the file. Return the file.
         return [
             String(book.id),
-            'file',
+            "file",
             `<input type="checkbox" class="entry-select fw-check" data-id="${book.id}" id="book-${book.id}"><label for="book-${book.id}"></label>`,
             `<span class="fw-data-table-title fw-inline fw-link-text" data-id="${book.id}">
                 <i class="fas fa-book"></i>
@@ -284,11 +284,11 @@ export class BookOverview {
             `<span class="date">${dateCell({date: book.updated})}</span>`,
             `<span>${avatarTemplate({user: book.owner})}</span>
             <span class="fw-inline fw-searchable">${escapeText(book.owner.name)}</span>`,
-            `<span class="${this.user.id === book.owner.id ? 'owned-by-user ' : ''}rights fw-inline" data-id="${book.id}">
+            `<span class="${this.user.id === book.owner.id ? "owned-by-user " : ""}rights fw-inline" data-id="${book.id}">
                 <i data-id="${book.id}" class="icon-access-right icon-access-${book.rights}"></i>
             </span>`,
             `<span class="delete-book fw-inline fw-link-text" data-id="${book.id}" data-title="${escapeText(book.title)}">
-                ${this.user.id === book.owner.id ? '<i class="fas fa-trash-alt"></i>' : ''}
+                ${this.user.id === book.owner.id ? "<i class=\"fas fa-trash-alt\"></i>" : ""}
            </span>`
         ]
     }
@@ -299,13 +299,13 @@ export class BookOverview {
             return cachedPromise
         }
         return postJson(
-            '/api/book/list/'
+            "/api/book/list/"
         ).catch(
             error => {
                 if (this.app.isOffline()) {
                     return cachedPromise
                 } else {
-                    addAlert('error', gettext('Cannot load data of books.'))
+                    addAlert("error", gettext("Cannot load data of books."))
                     throw (error)
                 }
             }
@@ -324,7 +324,7 @@ export class BookOverview {
     }
 
     initializeView(json) {
-        this.bookList = this.unpackBooks(json.books)
+        this.bookList = json.books
         this.documentList = json.documents
         this.contacts = json.contacts
         this.styles = json.styles
@@ -355,40 +355,28 @@ export class BookOverview {
         )
     }
 
-
-    unpackBooks(booksFromServer) {
-        // metadata and settings are stored as a json stirng in a text field on
-        // the server, so they need to be unpacked before being available.
-        return booksFromServer.map(book => {
-            const uBook = Object.assign({}, book)
-            uBook.metadata = JSON.parse(book.metadata)
-            uBook.settings = JSON.parse(book.settings)
-            return uBook
-        })
-    }
-
     bind() {
-        this.dom.addEventListener('click', event => {
+        this.dom.addEventListener("click", event => {
             const el = {}
             switch (true) {
-            case findTarget(event, '.delete-book', el): {
+            case findTarget(event, ".delete-book", el): {
                 if (this.app.isOffline()) {
-                    addAlert('info', gettext("You cannot delete books while you are offline."))
+                    addAlert("info", gettext("You cannot delete books while you are offline."))
                 } else {
                     const bookId = parseInt(el.target.dataset.id)
                     this.mod.actions.deleteBookDialog([bookId])
                 }
                 break
             }
-            case findTarget(event, '.delete-folder', el):
+            case findTarget(event, ".delete-folder", el):
                 if (this.app.isOffline()) {
-                    addAlert('info', gettext("You cannot delete books while you are offline."))
+                    addAlert("info", gettext("You cannot delete books while you are offline."))
                 } else {
-                    const ids = el.target.dataset.ids.split(',').map(id => parseInt(id))
+                    const ids = el.target.dataset.ids.split(",").map(id => parseInt(id))
                     this.mod.actions.deleteBookDialog(ids)
                 }
                 break
-            case findTarget(event, '.owned-by-user.rights', el): {
+            case findTarget(event, ".owned-by-user.rights", el): {
                 const bookId = parseInt(el.target.dataset.id)
                 const accessDialog = new BookAccessRightsDialog(
                     [bookId],
@@ -398,34 +386,34 @@ export class BookOverview {
                 accessDialog.init()
                 break
             }
-            case findTarget(event, 'a.fw-data-table-title.parentdir', el):
+            case findTarget(event, "a.fw-data-table-title.parentdir", el):
                 event.preventDefault()
                 if (this.table.data.length > 1) {
                     this.path = el.target.dataset.path
-                    window.history.pushState({}, "", el.target.getAttribute('href'))
+                    window.history.pushState({}, "", el.target.getAttribute("href"))
                     this.initTable()
                 } else {
                     const confirmFolderDeletionDialog = new Dialog({
-                        title: gettext('Confirm deletion'),
+                        title: gettext("Confirm deletion"),
                         body: `<p>
-                    ${gettext('Leaving an empty folder will delete it. Do you really want to delete this folder?')}
+                    ${gettext("Leaving an empty folder will delete it. Do you really want to delete this folder?")}
                             </p>`,
-                        id: 'confirmfolderdeletion',
-                        icon: 'exclamation-triangle',
+                        id: "confirmfolderdeletion",
+                        icon: "exclamation-triangle",
                         buttons: [
                             {
-                                text: gettext('Delete'),
+                                text: gettext("Delete"),
                                 classes: "fw-dark delete-folder",
                                 height: 70,
                                 click: () => {
                                     confirmFolderDeletionDialog.close()
                                     this.path = el.target.dataset.path
-                                    window.history.pushState({}, "", el.target.getAttribute('href'))
+                                    window.history.pushState({}, "", el.target.getAttribute("href"))
                                     this.initTable()
                                 }
                             },
                             {
-                                type: 'cancel'
+                                type: "cancel"
                             }
                         ]
                     })
@@ -434,21 +422,21 @@ export class BookOverview {
                 }
 
                 break
-            case findTarget(event, 'a.fw-data-table-title.subdir', el):
+            case findTarget(event, "a.fw-data-table-title.subdir", el):
                 event.preventDefault()
                 this.path = el.target.dataset.path
-                window.history.pushState({}, "", el.target.getAttribute('href'))
+                window.history.pushState({}, "", el.target.getAttribute("href"))
                 this.initTable()
                 break
-            case findTarget(event, '.fw-data-table-title', el): {
+            case findTarget(event, ".fw-data-table-title", el): {
                 const bookId = parseInt(el.target.dataset.id)
                 this.getImageDB().then(() => {
                     this.mod.actions.createBookDialog(bookId, this.imageDB)
                 })
                 break
             }
-            case findTarget(event, 'a', el):
-                if (el.target.hostname === window.location.hostname && el.target.getAttribute('href')[0] === '/') {
+            case findTarget(event, "a", el):
+                if (el.target.hostname === window.location.hostname && el.target.getAttribute("href")[0] === "/") {
                     event.preventDefault()
                     this.app.goTo(el.target.href)
                 }
@@ -461,7 +449,7 @@ export class BookOverview {
 
     getSelected() {
         return Array.from(
-            this.dom.querySelectorAll('.entry-select:checked:not(:disabled)')
-        ).map(el => parseInt(el.getAttribute('data-id')))
+            this.dom.querySelectorAll(".entry-select:checked:not(:disabled)")
+        ).map(el => parseInt(el.getAttribute("data-id")))
     }
 }

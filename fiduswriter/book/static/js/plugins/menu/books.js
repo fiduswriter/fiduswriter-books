@@ -8,9 +8,9 @@ export class BookMenuItem {
     init() {
         this.menu.navItems.push({
             id: "books",
-            title: gettext('compose books'),
+            title: gettext("compose books"),
             url: "/books/",
-            text: gettext('Books'),
+            text: gettext("Books"),
             order: 5
         })
     }

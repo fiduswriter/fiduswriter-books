@@ -346,8 +346,8 @@ def save(request):
         book.cover_image_id = book_obj["cover_image"]
         has_coverimage_access = True
     if has_book_write_access and has_coverimage_access:
-        book.metadata = json.dumps(book_obj["metadata"])
-        book.settings = json.dumps(book_obj["settings"])
+        book.metadata = book_obj["metadata"]
+        book.settings = book_obj["settings"]
         book.title = book_obj["title"]
         book.save()
         status = 201

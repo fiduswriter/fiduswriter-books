@@ -10,8 +10,8 @@ let currentlySearching = false
 export const menuModel = () => ({
     content: [
         {
-            type: 'text',
-            title: gettext('Create new book'),
+            type: "text",
+            title: gettext("Create new book"),
             action: overview => {
                 overview.getImageDB().then(() => {
                     overview.mod.actions.createBookDialog(0, overview.imageDB)
@@ -20,12 +20,12 @@ export const menuModel = () => ({
             order: 1
         },
         {
-            type: 'text',
-            title: gettext('Create new folder'),
+            type: "text",
+            title: gettext("Create new folder"),
             action: overview => {
                 const dialog = new NewFolderDialog(folderName => {
-                    overview.path = overview.path + folderName + '/'
-                    window.history.pushState({}, "", '/books' + overview.path)
+                    overview.path = overview.path + folderName + "/"
+                    window.history.pushState({}, "", "/books" + overview.path)
                     overview.initTable()
                 })
                 dialog.open()
@@ -33,15 +33,15 @@ export const menuModel = () => ({
             order: 2
         },
         {
-            type: 'search',
-            icon: 'search',
-            title: gettext('Search books'),
+            type: "search",
+            icon: "search",
+            title: gettext("Search books"),
             input: (overview, text) => {
                 if (text.length && !currentlySearching) {
                     overview.initTable(true)
                     currentlySearching = true
                     overview.table.on(
-                        'datatable.init',
+                        "datatable.init",
                         () => overview.table.search(text)
                     )
                 } else if (!text.length && currentlySearching) {
@@ -58,8 +58,8 @@ export const menuModel = () => ({
 })
 
 const exportEpub = (book, overview) => {
-    addAlert('info', book.title + ': ' + gettext(
-        'Epub export has been initiated.'))
+    addAlert("info", book.title + ": " + gettext(
+        "Epub export has been initiated."))
     const exporter = new EpubBookExporter(
         overview.schema,
         overview.app.csl,
@@ -73,8 +73,8 @@ const exportEpub = (book, overview) => {
 }
 
 const exportHTML = (book, overview) => {
-    addAlert('info', book.title + ': ' + gettext(
-        'HTML export has been initiated.'))
+    addAlert("info", book.title + ": " + gettext(
+        "HTML export has been initiated."))
     const exporter = new HTMLBookExporter(
         overview.schema,
         overview.app.csl,
@@ -88,8 +88,8 @@ const exportHTML = (book, overview) => {
 }
 
 const exportSingleHTML = (book, overview) => {
-    addAlert('info', book.title + ': ' + gettext(
-        'Unified HTML export has been initiated.'))
+    addAlert("info", book.title + ": " + gettext(
+        "Unified HTML export has been initiated."))
     const exporter = new SingleFileHTMLBookExporter(
         overview.schema,
         overview.app.csl,
@@ -103,8 +103,8 @@ const exportSingleHTML = (book, overview) => {
 }
 
 const exportLatex = (book, overview) => {
-    addAlert('info', book.title + ': ' + gettext(
-        'LaTeX export has been initiated.'))
+    addAlert("info", book.title + ": " + gettext(
+        "LaTeX export has been initiated."))
     const exporter = new LatexBookExporter(
         overview.schema,
         book,
@@ -116,8 +116,8 @@ const exportLatex = (book, overview) => {
 }
 
 const exportPrint = (book, overview) => {
-    addAlert('info', book.title + ': ' + gettext(
-        'Print has been initiated.'))
+    addAlert("info", book.title + ": " + gettext(
+        "Print has been initiated."))
     const exporter = new PrintBookExporter(
         overview.schema,
         overview.app.csl,
@@ -132,19 +132,19 @@ const exportPrint = (book, overview) => {
 export const bulkMenuModel = () => ({
     content: [
         {
-            title: gettext('Move selected'),
-            tooltip: gettext('Move the books that have been selected.'),
+            title: gettext("Move selected"),
+            tooltip: gettext("Move the books that have been selected."),
             action: overview => {
                 const ids = overview.getSelected()
                 const books = ids.map(id => overview.bookList.find(book => book.id === id))
                 if (books.length) {
                     const dialog = new FileDialog({
-                        title: books.length > 1 ? gettext('Move books') : gettext('Move book'),
+                        title: books.length > 1 ? gettext("Move books") : gettext("Move book"),
                         movingFiles: books,
                         allFiles: overview.bookList,
-                        moveUrl: '/api/book/move/',
-                        successMessage: gettext('Book has been moved'),
-                        errorMessage: gettext('Could not move book'),
+                        moveUrl: "/api/book/move/",
+                        successMessage: gettext("Book has been moved"),
+                        errorMessage: gettext("Could not move book"),
                         succcessCallback: (file, path) => {
                             file.path = path
                             overview.initTable()
@@ -155,8 +155,8 @@ export const bulkMenuModel = () => ({
             }
         },
         {
-            title: gettext('Delete selected'),
-            tooltip: gettext('Delete selected books.'),
+            title: gettext("Delete selected"),
+            tooltip: gettext("Delete selected books."),
             action: overview => {
                 const ids = overview.getSelected()
                 const ownIds = ids.filter(id => {
@@ -164,7 +164,7 @@ export const bulkMenuModel = () => ({
                     return book.is_owner
                 })
                 if (ownIds.length !== ids.length) {
-                    addAlert('error', gettext('You cannot delete books of other users.'))
+                    addAlert("error", gettext("You cannot delete books of other users."))
                 }
                 if (ownIds.length) {
                     overview.mod.actions.deleteBookDialog(ownIds)
@@ -173,8 +173,8 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
-            title: gettext('Share selected'),
-            tooltip: gettext('Share selected books.'),
+            title: gettext("Share selected"),
+            tooltip: gettext("Share selected books."),
             action: overview => {
                 const ids = overview.getSelected()
                 const ownIds = ids.filter(id => {
@@ -182,7 +182,7 @@ export const bulkMenuModel = () => ({
                     return book.is_owner
                 })
                 if (ownIds.length !== ids.length) {
-                    addAlert('error', gettext('You cannot share books of other users.'))
+                    addAlert("error", gettext("You cannot share books of other users."))
                 }
                 if (ownIds.length) {
                     const accessDialog = new BookAccessRightsDialog(
@@ -196,8 +196,8 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
-            title: gettext('Copy selected'),
-            tooltip: gettext('Copy selected books.'),
+            title: gettext("Copy selected"),
+            tooltip: gettext("Copy selected books."),
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id =>
@@ -209,8 +209,8 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
-            title: gettext('Export selected as Epub'),
-            tooltip: gettext('Export selected books as Epub.'),
+            title: gettext("Export selected as Epub"),
+            tooltip: gettext("Export selected books as Epub."),
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
@@ -221,8 +221,8 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
-            title: gettext('Export selected as HTML'),
-            tooltip: gettext('Export selected books as HTML.'),
+            title: gettext("Export selected as HTML"),
+            tooltip: gettext("Export selected books as HTML."),
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
@@ -233,8 +233,8 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
-            title: gettext('Export selected as Unified HTML'),
-            tooltip: gettext('Export selected books as Single-file HTML.'),
+            title: gettext("Export selected as Unified HTML"),
+            tooltip: gettext("Export selected books as Single-file HTML."),
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
@@ -245,8 +245,8 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
-            title: gettext('Export selected as LaTeX'),
-            tooltip: gettext('Export selected books as LaTeX.'),
+            title: gettext("Export selected as LaTeX"),
+            tooltip: gettext("Export selected books as LaTeX."),
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
@@ -257,8 +257,8 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
-            title: gettext('Export selected to Print/PDF'),
-            tooltip: gettext('Export selected books to the print dialog.'),
+            title: gettext("Export selected to Print/PDF"),
+            tooltip: gettext("Export selected books to the print dialog."),
             action: overview => {
                 const ids = overview.getSelected()
                 ids.forEach(id => {
@@ -274,9 +274,9 @@ export const bulkMenuModel = () => ({
 export const exportMenuModel = () => ({
     content: [
         {
-            type: 'action',
-            title: gettext('Export as Epub'),
-            tooltip: gettext('Export book as Epub.'),
+            type: "action",
+            title: gettext("Export as Epub"),
+            tooltip: gettext("Export book as Epub."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(
                     () => exportEpub(book, overview)
@@ -284,9 +284,9 @@ export const exportMenuModel = () => ({
             }
         },
         {
-            type: 'action',
-            title: gettext('Export as HTML'),
-            tooltip: gettext('Export book as HTML.'),
+            type: "action",
+            title: gettext("Export as HTML"),
+            tooltip: gettext("Export book as HTML."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(
                     () => exportHTML(book, overview)
@@ -294,9 +294,9 @@ export const exportMenuModel = () => ({
             }
         },
         {
-            type: 'action',
-            title: gettext('Export as Unified HTML'),
-            tooltip: gettext('Export book as Single-file HTML.'),
+            type: "action",
+            title: gettext("Export as Unified HTML"),
+            tooltip: gettext("Export book as Single-file HTML."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(
                     () => exportSingleHTML(book, overview)
@@ -304,9 +304,9 @@ export const exportMenuModel = () => ({
             }
         },
         {
-            type: 'action',
-            title: gettext('Export as LaTeX'),
-            tooltip: gettext('Export book as LaTeX.'),
+            type: "action",
+            title: gettext("Export as LaTeX"),
+            tooltip: gettext("Export book as LaTeX."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(
                     () => exportLatex(book, overview)
@@ -314,9 +314,9 @@ export const exportMenuModel = () => ({
             }
         },
         {
-            type: 'action',
-            title: gettext('Export to Print/PDF'),
-            tooltip: gettext('Export book to the print dialog.'),
+            type: "action",
+            title: gettext("Export to Print/PDF"),
+            tooltip: gettext("Export book to the print dialog."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(
                     () => exportPrint(book, overview)
