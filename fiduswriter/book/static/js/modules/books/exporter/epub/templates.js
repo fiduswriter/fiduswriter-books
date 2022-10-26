@@ -132,10 +132,11 @@ export const epubBookOpfTemplate = ({
 /** A template to create the book epub cover XML. */
 export const epubBookCoverTemplate = ({
     book,
-    coverImage
+    coverImage,
+    shortLang
 }) =>
     `<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="${shortLang}" lang="${shortLang}">
     <head>
         <title>${book.title}</title>
         <meta charset="utf-8"/>
@@ -150,10 +151,11 @@ export const epubBookCoverTemplate = ({
 
 /** A template to create the book epub titlepage XML. */
 export const epubBookTitlepageTemplate = ({
-    book
+    book,
+    shortLang
 }) =>
     `<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"  xml:lang="${shortLang}" lang="${shortLang}">
    <head>
       <title>${escapeText(book.title)}</title>
       <meta charset="utf-8"/>
@@ -184,10 +186,11 @@ export const epubBookTitlepageTemplate = ({
 export const epubBookCopyrightTemplate = ({
     book,
     language,
+    shortLang,
     creator
 }) =>
     `<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"  xml:lang="${shortLang}" lang="${shortLang}">
     <head>
         <title>${escapeText(book.title)}</title>
         <meta charset="utf-8"/>

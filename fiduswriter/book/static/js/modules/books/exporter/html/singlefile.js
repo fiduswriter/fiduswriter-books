@@ -52,7 +52,8 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
         })
         const css = this.getBookCSS(),
             title = this.book.title,
-            htmlDoc = singleFileHTMLBookTemplate({css, html, title, styleSheets: this.styleSheets})
+            settings = this.book.settings,
+            htmlDoc = singleFileHTMLBookTemplate({css, html, title, styleSheets: this.styleSheets, settings})
 
 
         this.outputList.push({filename: "index.html", contents: pretty(htmlDoc, {ocd: true})})

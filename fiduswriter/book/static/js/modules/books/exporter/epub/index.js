@@ -98,7 +98,7 @@ export class EpubBookExporter extends DOMExporter {
 
     exportOne() {
         this.book.chapters.sort((a, b) => a.number > b.number ? 1 : -1)
-
+        const shortLang = this.book.settings.language.split("-")[0]
         if (this.book.cover_image) {
             this.coverImage = this.book.cover_image_data
             this.images.push({
@@ -108,7 +108,7 @@ export class EpubBookExporter extends DOMExporter {
 
             this.outputList.push({
                 filename: "EPUB/cover.xhtml",
-                contents: epubBookCoverTemplate({book: this.book, coverImage: this.coverImage})
+                contents: epubBookCoverTemplate({book: this.book, coverImage: this.coverImage, shortLang})
             })
             this.contentItems.push({
                 link: "cover.xhtml#cover",
@@ -315,14 +315,16 @@ export class EpubBookExporter extends DOMExporter {
         }, {
             filename: "EPUB/titlepage.xhtml",
             contents: pretty(epubBookTitlepageTemplate({
-                book: this.book
+                book: this.book,
+                shortLang
             }), {ocd: true})
         }, {
             filename: "EPUB/copyright.xhtml",
             contents: pretty(epubBookCopyrightTemplate({
                 book: this.book,
                 creator: this.user.name,
-                language
+                language,
+                shortLang
             }), {ocd: true})
         }])
 

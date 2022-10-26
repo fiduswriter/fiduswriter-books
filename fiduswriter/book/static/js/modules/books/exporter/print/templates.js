@@ -8,8 +8,8 @@ export const chapterTemplate = ({part, contents}) => `
 }
     ${contents}`
 
-export const printHTMLTemplate = ({css, html, title}) => `<!DOCTYPE html>
-<html>
+export const printHTMLTemplate = ({css, html, title, settings}) => `<!DOCTYPE html>
+<html lang="${settings.language.split("-")[0]}">
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>

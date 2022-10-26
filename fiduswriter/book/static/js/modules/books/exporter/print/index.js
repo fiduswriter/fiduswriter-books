@@ -47,7 +47,8 @@ export class PrintBookExporter extends HTMLBookExporter {
                 }).map(({contents}) => contents).join(""),
             css = this.getBookCSS(),
             title = this.book.title,
-            htmlDoc = printHTMLTemplate({css, html, title})
+            settings = this.book.settings,
+            htmlDoc = printHTMLTemplate({css, html, title, settings})
 
         const config = {title}
 

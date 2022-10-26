@@ -1,9 +1,9 @@
 import {escapeText, localizeDate} from "../../../common"
 
 /** A template for HTML export of a book. */
-export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents, title}) =>
+export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents, title, settings}) =>
     `<!DOCTYPE html>
-<html>
+<html lang="${settings.language.split("-")[0]}">
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
@@ -95,7 +95,7 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
 /** A template to create the book index. */
 export const htmlBookIndexTemplate = ({book, contentItems, language, creator, styleSheets, multiDoc}) =>
     `<!DOCTYPE html>
-<html>
+<html lang="${book.settings.language.split("-")[0]}">
     <head>
         <meta charset="utf-8"></meta>
         <title>${escapeText(book.title)}</title>
@@ -120,8 +120,8 @@ export const singleFileHTMLBookChapterTemplate = ({part, contents}) => `
 }
     ${contents}`
 
-export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets}) => `<!DOCTYPE html>
-<html>
+export const singleFileHTMLBookTemplate = ({css, html, title, styleSheets, settings}) => `<!DOCTYPE html>
+<html lang="${settings.language.split("-")[0]}">
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
