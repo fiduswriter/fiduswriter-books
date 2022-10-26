@@ -31,7 +31,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name="fiduswriter-books",
-    version="3.10.14",
+    version="3.11.0",
     packages=find_namespace_packages(),
     exclude_package_data={"": ["configuration.py", "django-admin.py", "build/*"]},
     include_package_data=True,
@@ -46,8 +46,6 @@ setup(
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Django",
-        "Framework :: Django :: 3.2",
-        "Framework :: Django :: 4.0",
         "Framework :: Django :: 4.1",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU Affero General Public License v3",
