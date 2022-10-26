@@ -1,5 +1,5 @@
 import {escapeText, localizeDate} from "../../../common"
-
+import {bookTerm} from "../../i18n"
 /** A template for HTML export of a book. */
 export const htmlBookExportTemplate = ({styleSheets, part, currentPart, contents, title, settings}) =>
     `<!DOCTYPE html>
@@ -62,7 +62,7 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
 }
         ${
     book.metadata.author.length ?
-        `<h3 class="bookauthor">${gettext("by")} ${escapeText(book.metadata.author)}</h3>` :
+        `<h3 class="bookauthor">${bookTerm("by", book.settings.language)} ${escapeText(book.metadata.author)}</h3>` :
         ""
 }
         ${
@@ -74,13 +74,13 @@ export const htmlBookIndexBodyTemplate = ({book, contentItems, language, creator
     <div class="copyrightpage frontmatter">
         ${
     book.metadata.publisher && book.metadata.publisher.length ?
-        `<p>${gettext("Published by")}: ${escapeText(book.metadata.publisher)}</p>` :
+        `<p>${bookTerm("Published by", book.settings.language)}: ${escapeText(book.metadata.publisher)}</p>` :
         ""
 }
-        <p>${gettext("Last Updated")}: ${localizeDate(book.updated * 1000, "sortable-date")}</p>
-        <p>${gettext("Created")}: ${localizeDate(book.added * 1000, "sortable-date")}</p>
-        <p>${gettext("Language")}: ${language}</p>
-        <p>${gettext("Created by")}: ${escapeText(creator)}</p>
+        <p>${bookTerm("Last updated", book.settings.language)}: ${localizeDate(book.updated * 1000, "sortable-date")}</p>
+        <p>${bookTerm("Created", book.settings.language)}: ${localizeDate(book.added * 1000, "sortable-date")}</p>
+        <p>${bookTerm("Language", book.settings.language)}: ${language}</p>
+        <p>${bookTerm("Created by", book.settings.language)}: ${escapeText(creator)}</p>
     </div>
     <div class="tocpage frontmatter">
         <nav role="doc-toc"><ol>

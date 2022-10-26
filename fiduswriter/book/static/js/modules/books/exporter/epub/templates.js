@@ -1,5 +1,6 @@
-import {escapeText} from "../../../common"
+import {escapeText, localizeDate} from "../../../common"
 import {LANGUAGES} from "../../../schema/const"
+import {bookTerm} from "../../i18n"
 
 /** A template to create the OPF file of book epubs. */
 export const epubBookOpfTemplate = ({
@@ -144,7 +145,7 @@ export const epubBookCoverTemplate = ({
     <body class="epub cover">
         <div id="cover">
             <img src="${coverImage.image.split("/").pop().split("?")[0]}"
-                    alt="${gettext("Cover Image")}" title="Cover Image"/>
+                    alt="${bookTerm("Cover image", book.settings.language)}" title="${bookTerm("Cover image", book.settings.language)}"/>
         </div>
     </body>
 </html>`
@@ -175,7 +176,7 @@ export const epubBookTitlepageTemplate = ({
 }
           ${
     book.metadata.author.length ?
-        `<h3 class="bookauthor">${gettext("by")} ${escapeText(book.metadata.author)}</h3>` :
+        `<h3 class="bookauthor">${bookTerm("by", book.settings.language)} ${escapeText(book.metadata.author)}</h3>` :
         ""
 }
       </div>
@@ -202,7 +203,7 @@ export const epubBookCopyrightTemplate = ({
                     ${escapeText(book.title)}
                     ${
     book.metadata.author.length ?
-        `${gettext("by")} ${escapeText(book.metadata.author)}` :
+        `${bookTerm("by", book.settings.language)} ${escapeText(book.metadata.author)}` :
         ""
 }
                 </p>
@@ -211,21 +212,21 @@ export const epubBookCopyrightTemplate = ({
         `<p>${escapeText(book.metadata.copyright)}</p>` :
         ""
 }
-                <p>${gettext("Title")}: ${escapeText(book.title)}</p>
+                <p>${bookTerm("Title", book.settings.language)}: ${escapeText(book.title)}</p>
                 ${
     book.metadata.author.length ?
-        `<p>${gettext("Author")}: ${escapeText(book.metadata.author)}</p>` :
+        `<p>${bookTerm("Author", book.settings.language)}: ${escapeText(book.metadata.author)}</p>` :
         ""
 }
                 ${
     book.metadata.publisher && book.metadata.publisher.length ?
-        `<p>${gettext("Published by")}: ${escapeText(book.metadata.publisher)}</p>` :
+        `<p>${bookTerm("Published by", book.settings.language)}: ${escapeText(book.metadata.publisher)}</p>` :
         ""
 }
-                <p>${gettext("Last Updated")}: ${book.updated}</p>
-                <p>${gettext("Created")}: ${book.added}</p>
-                <p>${gettext("Language")}: ${LANGUAGES.find(lang => lang[0] === language)[1]}</p>
-                <p>${gettext("Created by")}: ${escapeText(creator)}</p>
+                <p>${bookTerm("Last updated", book.settings.language)}: ${localizeDate(book.updated * 1000, "sortable-date")}</p>
+                <p>${bookTerm("Created", book.settings.language)}: ${localizeDate(book.added * 1000, "sortable-date")}</p>
+                <p>${bookTerm("Language", book.settings.language)}: ${LANGUAGES.find(lang => lang[0] === language)[1]}</p>
+                <p>${bookTerm("Created by", book.settings.language)}: ${escapeText(creator)}</p>
             </div>
         </section>
     </body>

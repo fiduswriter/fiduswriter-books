@@ -3,7 +3,7 @@ import download from "downloadjs"
 import pretty from "pretty"
 
 import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
-
+import {bookTerm} from "../../i18n"
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {epubBookOpfTemplate, epubBookCoverTemplate, epubBookTitlepageTemplate,
     epubBookCopyrightTemplate} from "./templates"
@@ -112,7 +112,7 @@ export class EpubBookExporter extends DOMExporter {
             })
             this.contentItems.push({
                 link: "cover.xhtml#cover",
-                title: gettext("Cover"),
+                title: bookTerm("Cover", this.book.settings.language),
                 docNum: 0,
                 id: 0,
                 level: 0,
@@ -121,7 +121,7 @@ export class EpubBookExporter extends DOMExporter {
         }
         this.contentItems.push({
             link: "titlepage.xhtml#title",
-            title: gettext("Title page"),
+            title: bookTerm("Title page", this.book.settings.language),
             docNum: 0,
             id: 1,
             level: 0,
@@ -242,9 +242,10 @@ export class EpubBookExporter extends DOMExporter {
 
     exportThree() {
 
+        const language = this.book.settings.language
         this.contentItems.push({
             link: "copyright.xhtml#copyright",
-            title: gettext("Copyright"),
+            title: bookTerm("Copyright", language),
             docNum: 0,
             id: 2,
             level: 0,
@@ -266,9 +267,7 @@ export class EpubBookExporter extends DOMExporter {
             ).coverImage = true
         }
 
-        const language = this.book.settings.language
         const shortLang = language.split("-")[0]
-
         const opfCode = epubBookOpfTemplate({
             language,
             book: this.book,
