@@ -39,6 +39,8 @@ jobs:
           pip install requests[security]
           pip install coverage
           pip install coveralls
+          pip install packaging
+          pip install webdriver-manager
           pip install selenium
           pip install flake8
           pip install black
