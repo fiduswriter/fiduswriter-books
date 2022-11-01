@@ -81,9 +81,9 @@ export class BookOverview {
 
     render() {
         ensureCSS([
-            "add_remove_dialog.css",
-            "access_rights_dialog.css",
-            "book_dialog.css"
+            staticUrl("css/add_remove_dialog.css"),
+            staticUrl("css/access_rights_dialog.css"),
+            staticUrl("css/book_dialog.css")
         ])
         this.dom = document.createElement("body")
         this.dom.innerHTML = baseBodyTemplate({

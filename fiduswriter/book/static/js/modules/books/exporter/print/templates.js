@@ -13,7 +13,7 @@ export const printHTMLTemplate = ({css, html, title, settings}) => `<!DOCTYPE ht
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
-        <link type="text/css" rel="stylesheet" href="${settings_STATIC_URL}css/book.css?v=${transpile_VERSION}" />
+        <link type="text/css" rel="stylesheet" href="${staticUrl("css/book.css")}" />
         <style>
             ${css}
         </style>

@@ -31,7 +31,7 @@ export class HTMLBookExporter extends DOMExporter {
         this.chapterTemplate = htmlBookExportTemplate
         this.indexTemplate = htmlBookIndexTemplate
         this.styleSheets = [
-            {url: `${settings_STATIC_URL}css/book.css?v=${transpile_VERSION}`}
+            {url: staticUrl("css/book.css")}
         ]
     }
 
@@ -303,7 +303,7 @@ export class HTMLBookExporter extends DOMExporter {
         if (this.math) {
             this.includeZips.push({
                 "directory": "css",
-                "url": `${settings_STATIC_URL}zip/mathlive_style.zip?v=${transpile_VERSION}`
+                "url": staticUrl("zip/mathlive_style.zip")
             })
         }
 
