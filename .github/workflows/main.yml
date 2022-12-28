@@ -22,13 +22,13 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: lts/*
       - name: Install Python dependencies
         run: |
           pip install wheel
