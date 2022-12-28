@@ -1,1 +1,1 @@
-INSTALLED_APPS = ['book']
+INSTALLED_APPS = ["book"]
