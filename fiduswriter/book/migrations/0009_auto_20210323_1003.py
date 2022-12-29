@@ -7,9 +7,7 @@ def update_figure_cats(apps, schema_editor):
     BookStyle = apps.get_model("book", "BookStyle")
     for style in BookStyle.objects.all():
         contents = style.contents
-        contents = contents.replace(
-            "cat-0 cat-1", "cat-figure cat-equation cat-photo"
-        )
+        contents = contents.replace("cat-0 cat-1", "cat-figure cat-equation cat-photo")
         contents = contents.replace("cat-0", "cat-figure")
         contents = contents.replace("cat-1", "cat-photo")
         contents = contents.replace("cat-2", "cat-table")
