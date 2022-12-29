@@ -3,6 +3,7 @@ from glob import glob
 from setuptools import find_namespace_packages, setup
 from setuptools.command.build_py import build_py as _build_py
 
+
 # From https://github.com/pypa/setuptools/pull/1574
 class build_py(_build_py):
     def find_package_modules(self, package, package_dir):
@@ -33,11 +34,14 @@ setup(
     name="fiduswriter-books",
     version="3.11.1",
     packages=find_namespace_packages(),
-    exclude_package_data={"": ["configuration.py", "django-admin.py", "build/*"]},
+    exclude_package_data={
+        "": ["configuration.py", "django-admin.py", "build/*"]
+    },
     include_package_data=True,
     license="AGPL License",
     description=(
-        "A Fidus Writer plugin to allow creation of books " "and article collections"
+        "A Fidus Writer plugin to allow creation of books "
+        "and article collections"
     ),
     long_description=README,
     url="https://www.github.org/fiduswriter/fiduswriter-books",
