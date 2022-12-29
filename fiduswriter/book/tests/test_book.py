@@ -54,7 +54,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.get(self.base_url + "/")
         # Create chapter one doc
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".new_document button"))
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, ".new_document button")
+            )
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
@@ -67,7 +69,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(By.ID, "close-document-top").click()
         # Create chapter two doc
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".new_document button"))
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, ".new_document button")
+            )
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
@@ -80,7 +84,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(By.ID, "close-document-top").click()
         # Create chapter three doc
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".new_document button"))
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, ".new_document button")
+            )
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
@@ -95,7 +101,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable((By.ID, "preferences-btn"))
         ).click()
-        self.driver.find_element(By.XPATH, '//*[normalize-space()="Contacts"]').click()
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Contacts"]'
+        ).click()
         self.assertEqual(
             len(
                 self.driver.find_elements(
@@ -123,7 +131,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(
             By.CSS_SELECTOR, "button[title='Invite contact']"
         ).click()
-        self.driver.find_element(By.ID, "new-contact-user-string").send_keys("Yeti3")
+        self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
+            "Yeti3"
+        )
         self.driver.find_element(By.CSS_SELECTOR, "button.fw-dark").click()
         time.sleep(1)
         self.assertEqual(
@@ -136,14 +146,18 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         )
         # Go to book section
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href="/books/"]'))
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, 'a[href="/books/"]')
+            )
         ).click()
         # Create a new book
         self.driver.find_element(
             By.CSS_SELECTOR, 'button[title="Create new book"]'
         ).click()
         self.driver.find_element(By.ID, "book-title").send_keys("My book")
-        self.driver.find_element(By.ID, "book-metadata-author").send_keys("Author 1")
+        self.driver.find_element(By.ID, "book-metadata-author").send_keys(
+            "Author 1"
+        )
         self.driver.find_element(By.ID, "book-metadata-subtitle").send_keys(
             "My very first book"
         )
@@ -156,7 +170,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(By.ID, "book-metadata-keywords").send_keys(
             "Fishing, Testing, Heating"
         )
-        self.driver.find_element(By.CSS_SELECTOR, 'a[href="#optionTab1"]').click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab1"]'
+        ).click()
         self.driver.find_element(
             By.CSS_SELECTOR, "#book-document-list .file .file-name"
         ).click()
@@ -169,10 +185,16 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             "#book-document-list .file:nth-child(3) .file-name",
         ).click()
         self.driver.find_element(By.ID, "add-chapter").click()
-        self.driver.find_element(By.CSS_SELECTOR, 'a[href="#optionTab3"]').click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab3"]'
+        ).click()
         self.driver.find_element(By.ID, "select-cover-image-button").click()
-        self.driver.find_element(By.CSS_SELECTOR, "button > i.fa-plus-circle").click()
-        image_path = os.path.join(settings.PROJECT_PATH, "book/tests/uploads/image.png")
+        self.driver.find_element(
+            By.CSS_SELECTOR, "button > i.fa-plus-circle"
+        ).click()
+        image_path = os.path.join(
+            settings.PROJECT_PATH, "book/tests/uploads/image.png"
+        )
         self.driver.find_element(
             By.CSS_SELECTOR, "input.fw-media-file-input"
         ).send_keys(image_path)
@@ -183,7 +205,10 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         time.sleep(1)
         self.driver.find_element(
             By.XPATH,
-            ('//*[contains(@class, "ui-button") ' 'and normalize-space()="Use image"]'),
+            (
+                '//*[contains(@class, "ui-button") '
+                'and normalize-space()="Use image"]'
+            ),
         ).click()
         self.driver.find_element(
             By.XPATH,
@@ -203,11 +228,15 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Go to contacts"]'
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR, "button.respond-invite").click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, "button.respond-invite"
+        ).click()
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Accept invite"]'
         ).click()
-        self.driver.find_element(By.XPATH, '//*[normalize-space()="Books"]').click()
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Books"]'
+        ).click()
         # Login as user 1 again.
         self.login_user(self.user, self.driver, self.client)
         time.sleep(2)
@@ -224,10 +253,12 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR, "#my-contacts tr:nth-child(2) .fw-checkable"
         ).click()
         self.driver.find_element(By.ID, "add-share-contact").click()
-        self.driver.find_elements(By.CSS_SELECTOR, ".fa-caret-down.edit-right")[
-            1
-        ].click()
-        self.driver.find_element(By.XPATH, '//*[normalize-space()="Write"]').click()
+        self.driver.find_elements(
+            By.CSS_SELECTOR, ".fa-caret-down.edit-right"
+        )[1].click()
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Write"]'
+        ).click()
         self.driver.find_element(
             By.XPATH,
             '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
@@ -264,11 +295,15 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Go to contacts"]'
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR, "button.respond-invite").click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, "button.respond-invite"
+        ).click()
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Accept invite"]'
         ).click()
-        self.driver.find_element(By.XPATH, '//*[normalize-space()="Books"]').click()
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Books"]'
+        ).click()
         self.assertEqual(
             len(self.driver.find_elements(By.CSS_SELECTOR, ".book-title")), 1
         )
@@ -293,7 +328,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         )
         self.driver.find_element(By.CSS_SELECTOR, ".book-title").click()
         self.driver.find_element(By.ID, "book-title").send_keys(" EXTRA")
-        self.driver.find_element(By.CSS_SELECTOR, 'a[href="#optionTab1"]').click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab1"]'
+        ).click()
         self.assertEqual(
             self.driver.find_element(
                 By.CSS_SELECTOR, ".fw-ar-container:nth-child(3) tr .fw-inline"
@@ -358,10 +395,16 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # Check that the user cannot change the book
         self.driver.find_element(By.CSS_SELECTOR, ".book-title").click()
         self.assertEqual(
-            len(self.driver.find_elements(By.CSS_SELECTOR, "#book-title[disabled]")),
+            len(
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, "#book-title[disabled]"
+                )
+            ),
             1,
         )
-        self.driver.find_element(By.CSS_SELECTOR, 'a[href="#optionTab1"]').click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab1"]'
+        ).click()
         self.assertEqual(
             self.driver.find_element(
                 By.CSS_SELECTOR, ".fw-ar-container tr .fw-inline"
@@ -397,7 +440,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.XPATH, '//*[normalize-space()="Export selected as Epub"]'
         ).click()
         time.sleep(3)
-        assert os.path.isfile(os.path.join(self.download_dir, "my-book-extra.epub"))
+        assert os.path.isfile(
+            os.path.join(self.download_dir, "my-book-extra.epub")
+        )
         os.remove(os.path.join(self.download_dir, "my-book-extra.epub"))
         # HTML
         self.driver.refresh()
@@ -411,7 +456,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.XPATH, '//*[normalize-space()="Export selected as HTML"]'
         ).click()
         time.sleep(1)
-        assert os.path.isfile(os.path.join(self.download_dir, "my-book-extra.html.zip"))
+        assert os.path.isfile(
+            os.path.join(self.download_dir, "my-book-extra.html.zip")
+        )
         os.remove(os.path.join(self.download_dir, "my-book-extra.html.zip"))
         # LaTeX
         self.driver.refresh()
@@ -464,7 +511,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         )
         # Delete the second book
         self.driver.find_element(By.CSS_SELECTOR, ".delete-book i").click()
-        self.driver.find_element(By.XPATH, '//*[normalize-space()="Delete"]').click()
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Delete"]'
+        ).click()
         time.sleep(1)
         self.assertEqual(
             len(self.driver.find_elements(By.CSS_SELECTOR, ".book-title")), 1
@@ -484,7 +533,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             )
         ).click()
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").click()
-        self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys("Book 1")
+        self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys(
+            "Book 1"
+        )
         self.driver.find_element(
             By.XPATH,
             '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
@@ -504,9 +555,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             By.CSS_SELECTOR, 'button[title="Create new folder"]'
         ).click()
         self.driver.find_element(By.CSS_SELECTOR, "#new-folder-name").click()
-        self.driver.find_element(By.CSS_SELECTOR, "#new-folder-name").send_keys(
-            "Releases"
-        )
+        self.driver.find_element(
+            By.CSS_SELECTOR, "#new-folder-name"
+        ).send_keys("Releases")
         self.driver.find_element(By.CSS_SELECTOR, "button.fw-dark").click()
         time.sleep(1)
         trs = self.driver.find_elements(
@@ -514,7 +565,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         )
         self.assertEqual(len(trs), 1)
         self.assertEqual(trs[0].text, "..")
-        self.assertEqual(urlparse(self.driver.current_url).path, "/books/Releases/")
+        self.assertEqual(
+            urlparse(self.driver.current_url).path, "/books/Releases/"
+        )
         self.assertEqual(
             self.driver.find_element(By.CSS_SELECTOR, ".fw-contents h1").text,
             "/Releases/",
@@ -526,7 +579,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             )
         ).click()
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").click()
-        self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys("Book 2")
+        self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys(
+            "Book 2"
+        )
         self.driver.find_element(
             By.XPATH,
             '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
@@ -600,7 +655,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.get(self.base_url + "/")
         # Create chapter one doc - with a leftover track change and comment
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".new_document button"))
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, ".new_document button")
+            )
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
@@ -614,12 +671,20 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             "Some content"
         )
         # Add a comment
-        ActionChains(self.driver).key_down(Keys.SHIFT).send_keys(Keys.LEFT).send_keys(
+        ActionChains(self.driver).key_down(Keys.SHIFT).send_keys(
             Keys.LEFT
-        ).send_keys(Keys.LEFT).send_keys(Keys.LEFT).key_up(Keys.SHIFT).perform()
+        ).send_keys(Keys.LEFT).send_keys(Keys.LEFT).send_keys(
+            Keys.LEFT
+        ).key_up(
+            Keys.SHIFT
+        ).perform()
         self.driver.find_element(By.CSS_SELECTOR, "button .fa-comment").click()
-        ActionChains(self.driver).send_keys("This needs to be reviewed!").perform()
-        self.driver.find_element(By.CSS_SELECTOR, ".comment-btns .submit").click()
+        ActionChains(self.driver).send_keys(
+            "This needs to be reviewed!"
+        ).perform()
+        self.driver.find_element(
+            By.CSS_SELECTOR, ".comment-btns .submit"
+        ).click()
         time.sleep(1)
         self.driver.find_element(
             By.CSS_SELECTOR, ".header-menu:nth-child(5) > .header-nav-item"
@@ -636,7 +701,9 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         # Create chapter two doc - with an internal link and reference with
         # a missing target.
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".new_document button"))
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, ".new_document button")
+            )
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
@@ -730,10 +797,14 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
                 "fw-button.ui-button.ui-corner-all.ui-widget"
             ),
         ).click()
-        internal_link = self.driver.find_element(By.CSS_SELECTOR, ".article-body a")
+        internal_link = self.driver.find_element(
+            By.CSS_SELECTOR, ".article-body a"
+        )
         assert internal_link.text == "An abstract title"
         # We delete the contents from the heading
-        self.driver.find_element(By.CSS_SELECTOR, ".article-abstract h3").click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, ".article-abstract h3"
+        ).click()
         ActionChains(self.driver).send_keys(Keys.BACKSPACE).send_keys(
             Keys.BACKSPACE
         ).send_keys(Keys.BACKSPACE).send_keys(Keys.BACKSPACE).send_keys(
@@ -772,14 +843,20 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         )
         assert internal_link.get_attribute("title") == "Missing target"
         self.assertEqual(
-            len(self.driver.find_elements(By.CSS_SELECTOR, ".margin-box.warning")),
+            len(
+                self.driver.find_elements(
+                    By.CSS_SELECTOR, ".margin-box.warning"
+                )
+            ),
             2,
         )
         time.sleep(1)
         self.driver.find_element(By.ID, "close-document-top").click()
         # Create chapter three doc - without a title
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".new_document button"))
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, ".new_document button")
+            )
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
@@ -792,14 +869,18 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.driver.find_element(By.ID, "close-document-top").click()
         # Create a book with these three chapters and run the sanity check.
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'a[href="/books/"]'))
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, 'a[href="/books/"]')
+            )
         ).click()
         # Create a new book
         self.driver.find_element(
             By.CSS_SELECTOR, 'button[title="Create new book"]'
         ).click()
         self.driver.find_element(By.ID, "book-title").send_keys("My book")
-        self.driver.find_element(By.CSS_SELECTOR, 'a[href="#optionTab1"]').click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab1"]'
+        ).click()
         self.driver.find_element(
             By.CSS_SELECTOR, "#book-document-list .file .file-name"
         ).click()
@@ -812,11 +893,15 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             "#book-document-list .file:nth-child(3) .file-name",
         ).click()
         self.driver.find_element(By.ID, "add-chapter").click()
-        self.driver.find_element(By.CSS_SELECTOR, 'a[href="#optionTab5"]').click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab5"]'
+        ).click()
         self.driver.find_element(
             By.CSS_SELECTOR, "#perform-sanity-check-button"
         ).click()
-        warnings = self.driver.find_elements(By.CSS_SELECTOR, "#sanity-check-output li")
+        warnings = self.driver.find_elements(
+            By.CSS_SELECTOR, "#sanity-check-output li"
+        )
         self.assertEqual(len(warnings), 5)
         self.assertEqual(
             warnings[0].text, "Unresolved comments (Chapter 1, /Chapter 1)"
@@ -833,4 +918,6 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
             warnings[3].text,
             "Internal links without target (Chapter 2, /Chapter 2)",
         )
-        self.assertEqual(warnings[4].text, "No chapter title (Chapter 3, /Untitled)")
+        self.assertEqual(
+            warnings[4].text, "No chapter title (Chapter 3, /Untitled)"
+        )

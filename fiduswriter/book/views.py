@@ -241,7 +241,10 @@ def set_chapters(book, chapters, user):
                     )
             if (
                 user != book.owner
-                and len(new_chapter.text.accessright_set.filter(user=book.owner)) == 0
+                and len(
+                    new_chapter.text.accessright_set.filter(user=book.owner)
+                )
+                == 0
             ):
                 AccessRight.objects.create(
                     document_id=new_chapter.text.id,
@@ -443,7 +446,9 @@ def save_access_rights(request):
                     if access_right.rights != right["rights"]:
                         access_right.rights = right["rights"]
                         if right["holder"]["type"] == "user":
-                            collaborator = User.objects.get(id=right["holder"]["id"])
+                            collaborator = User.objects.get(
+                                id=right["holder"]["id"]
+                            )
                             collaborator_name = collaborator.readable_name
                             collaborator_email = collaborator.email
                             emails.send_share_notification(
@@ -463,7 +468,9 @@ def save_access_rights(request):
                     if len(path) == 1:
                         path = ""
                     if right["holder"]["type"] == "userinvite":
-                        holder = UserInvite.objects.get(id=right["holder"]["id"])
+                        holder = UserInvite.objects.get(
+                            id=right["holder"]["id"]
+                        )
                     else:
                         holder = User.objects.get(id=right["holder"]["id"])
                     access_right = BookAccessRight.objects.create(

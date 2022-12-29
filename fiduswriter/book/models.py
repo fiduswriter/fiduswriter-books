@@ -82,7 +82,9 @@ class BookAccessRight(models.Model):
     )
     holder_id = models.PositiveIntegerField()
     holder_obj = GenericForeignKey("holder_type", "holder_id")
-    rights = models.CharField(max_length=5, choices=RIGHTS_CHOICES, blank=False)
+    rights = models.CharField(
+        max_length=5, choices=RIGHTS_CHOICES, blank=False
+    )
 
     class Meta(object):
         unique_together = (("book", "holder_id", "holder_type"),)
@@ -106,7 +108,9 @@ class BookStyle(models.Model):
         default="default",
         unique=True,
     )
-    contents = models.TextField(help_text="The CSS style definiton.", default="")
+    contents = models.TextField(
+        help_text="The CSS style definiton.", default=""
+    )
 
     def __str__(self):
         return self.title
@@ -126,7 +130,9 @@ class BookStyleFile(models.Model):
             "with the final url of the file in the style."
         ),
     )
-    filename = models.CharField(max_length=255, help_text="The original filename.")
+    filename = models.CharField(
+        max_length=255, help_text="The original filename."
+    )
     style = models.ForeignKey("BookStyle", on_delete=models.deletion.CASCADE)
 
     def __str__(self):

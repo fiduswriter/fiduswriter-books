@@ -6,7 +6,9 @@ import django.db.models.deletion
 from django.core.management import call_command
 
 
-fixture_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../fixtures"))
+fixture_dir = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "../fixtures")
+)
 fixture_filename = "initial_book_data.json"
 
 
@@ -58,7 +60,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "contents",
-                    models.TextField(default="", help_text="The CSS style definiton."),
+                    models.TextField(
+                        default="", help_text="The CSS style definiton."
+                    ),
                 ),
             ],
         ),
