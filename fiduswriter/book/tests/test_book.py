@@ -241,6 +241,7 @@ class BookTest(LiveTornadoTestCase, SeleniumHelper):
         self.login_user(self.user, self.driver, self.client)
         time.sleep(2)
         self.driver.refresh()
+        time.sleep(1)
         # Add access rights for user 2 (write) + 3 (read)
         self.driver.find_element(
             By.CSS_SELECTOR,
