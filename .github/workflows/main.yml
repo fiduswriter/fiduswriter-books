@@ -33,7 +33,7 @@ jobs:
         run: |
           pip install wheel
           pip install pip --upgrade
-          if grep version setup.py | grep -q "dev";
+          if grep version pyproject.toml | grep -q "dev";
             then pip install https://github.com/fiduswriter/fiduswriter/archive/develop.zip;
             else pip install https://github.com/fiduswriter/fiduswriter/archive/main.zip;
           fi
