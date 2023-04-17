@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "fiduswriter-books"
 description = "A Fidus Writer plugin to allow creation of books and article collections"
-version = "3.11.2"
+version = "3.11.3"
 readme = "README.md"
 license = {text = "AGPL-3.0-or-later"}
 authors = [
