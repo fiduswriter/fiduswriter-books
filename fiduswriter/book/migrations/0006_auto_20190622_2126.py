@@ -14,7 +14,6 @@ def add_bibliography_header(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("book", "0005_auto_20160515_1013"),
     ]

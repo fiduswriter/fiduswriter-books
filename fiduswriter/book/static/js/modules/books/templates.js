@@ -10,7 +10,7 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <h4 class="fw-tablerow-title">${gettext("Title")}</h4>
                 </th>
                 <td>
-                    <input class="entryForm" type="text" id="book-title"
+                    <input class="entry-form" type="text" id="book-title"
                             value="${escapeText(book.title)}"
                             ${
     book.rights === "read" ?
@@ -25,7 +25,7 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <h4 class="fw-tablerow-title">${gettext("Author")}</h4>
                 </th>
                 <td>
-                    <input class="entryForm" type="text" id="book-metadata-author"
+                    <input class="entry-form" type="text" id="book-metadata-author"
                             value="${escapeText(book.metadata.author)}"
                             ${
     book.rights === "read" ?
@@ -40,7 +40,7 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <h4 class="fw-tablerow-title">${gettext("Subtitle")}</h4>
                 </th>
                 <td>
-                    <input class="entryForm" type="text" id="book-metadata-subtitle"
+                    <input class="entry-form" type="text" id="book-metadata-subtitle"
                             value="${escapeText(book.metadata.subtitle)}"
                             ${
     book.rights === "read" ?
@@ -55,7 +55,7 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <h4 class="fw-tablerow-title">${gettext("Version")}</h4>
                 </th>
                 <td>
-                    <input class="entryForm" type="text" id="book-metadata-version"
+                    <input class="entry-form" type="text" id="book-metadata-version"
                             value="${escapeText(book.metadata.version)}"
                             ${
     book.rights === "read" ?
@@ -70,29 +70,32 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <h4 class="fw-tablerow-title">${gettext("Language")}</h4>
                 </th>
                 <td>
-                    <select class="entryForm dk" name="book-settings-language"
-                            title="${gettext("Select language")}"
-                            id="book-settings-language"
-                            ${
+                    <div class="fw-select-container">
+                        <select class="entry-form dk fw-button fw-light fw-large" name="book-settings-language"
+                                title="${gettext("Select language")}"
+                                id="book-settings-language"
+                                ${
     book.rights === "read" ?
         "disabled=\"disabled\"" :
         ""
 }
-                    >
-                        ${
+                        >
+                            ${
     LANGUAGES.map(language =>
         `<option value="${language[0]}"
-                                        ${
+                                            ${
     language[0] === book.settings.language ?
         "selected" :
         ""
 }
-                                >
-                                    ${escapeText(language[1])}
-                                </option>`
+                                    >
+                                        ${escapeText(language[1])}
+                                    </option>`
     ).join("")
 }
-                    </select>
+                        </select>
+                        <div class="fw-select-arrow fa fa-caret-down"></div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -100,7 +103,7 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <h4 class="fw-tablerow-title">${gettext("Publisher")}</h4>
                 </th>
                 <td>
-                    <input class="entryForm" type="text" id="book-metadata-publisher"
+                    <input class="entry-form" type="text" id="book-metadata-publisher"
                             value="${escapeText(book.metadata.publisher)}"
                             ${
     book.rights === "read" ?
@@ -115,7 +118,7 @@ export const bookBasicInfoTemplate = ({book}) =>
                     <h4 class="fw-tablerow-title">${gettext("Copyright notice")}</h4>
                 </th>
                 <td>
-                    <input class="entryForm" type="text" id="book-metadata-copyright"
+                    <input class="entry-form" type="text" id="book-metadata-copyright"
                             value="${escapeText(book.metadata.copyright)}"
                             ${
     book.rights === "read" ?
@@ -132,7 +135,7 @@ export const bookBasicInfoTemplate = ({book}) =>
                     </h4>
                 </th>
                 <td>
-                    <input class="entryForm" type="text" id="book-metadata-keywords"
+                    <input class="entry-form" type="text" id="book-metadata-keywords"
                             value="${book.metadata.keywords}"
                             ${
     book.rights === "read" ?
@@ -155,7 +158,7 @@ export const bookBibliographyDataTemplate = ({book, citationStyles}) =>
                     <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
                 </th>
                 <td>
-                    <select class="entryForm" name="book-settings-citationstyle"
+                    <select class="entry-form" name="book-settings-citationstyle"
                         title="${gettext("Select citation style for the book")}"
                         id="book-settings-citationstyle"
                         ${
@@ -199,7 +202,7 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                     <h4 class="fw-tablerow-title">${gettext("Book style")}</h4>
                 </th>
                 <td>
-                    <select class="entryForm dk" name="book-settings-bookstyle"
+                    <select class="entry-form dk" name="book-settings-bookstyle"
                             title="${gettext("Select stylesheet for the book")}"
                             id="book-settings-bookstyle"
                             ${
@@ -229,7 +232,7 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                     <h4 class="fw-tablerow-title">${gettext("Paper size")}</h4>
                 </th>
                 <td>
-                <select class="entryForm dk" name="book-settings-papersize"
+                <select class="entry-form dk" name="book-settings-papersize"
                         title="${gettext("Select paper size for the book")}"
                         id="book-settings-papersize"
                         ${

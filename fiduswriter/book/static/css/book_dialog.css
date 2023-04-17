@@ -8,9 +8,11 @@
     width: 140px !important;
 }
 
-#book-dialog input.entryForm,
-#book-dialog input.fw-input {
+#book-dialog input.entry-form,
+#book-dialog input.fw-input,
+#book-dialog div.fw-select-container {
     width: 486px;
+    margin-bottom: 0;
 }
 
 .fw-data-table td.book-sort-up,

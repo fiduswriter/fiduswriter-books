@@ -23,7 +23,6 @@ def demodify_access_rights(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("book", "0003_auto_20160515_1007"),
     ]

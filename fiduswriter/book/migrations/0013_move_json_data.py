@@ -24,7 +24,6 @@ def json_to_text(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("book", "0012_remove_user_accessrights"),
     ]

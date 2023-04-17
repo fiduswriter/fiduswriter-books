@@ -32,7 +32,6 @@ def reverse_change_access_right_to_generic_key(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("book", "0010_add_generic_accessrights"),
         ("user", "0004_auto_20210402_2049"),

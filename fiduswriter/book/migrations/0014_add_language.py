@@ -18,7 +18,6 @@ def remove_language(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("book", "0013_move_json_data"),
     ]

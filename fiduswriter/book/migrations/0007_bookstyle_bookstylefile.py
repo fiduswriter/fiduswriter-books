@@ -23,7 +23,6 @@ def unload_fixture(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("book", "0006_auto_20190622_2126"),
     ]

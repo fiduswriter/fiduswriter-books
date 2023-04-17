@@ -18,7 +18,6 @@ def update_figure_cats(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("book", "0008_auto_20210228_1421"),
     ]

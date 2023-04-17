@@ -4,7 +4,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("document", "0001_squashed_20200219"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
