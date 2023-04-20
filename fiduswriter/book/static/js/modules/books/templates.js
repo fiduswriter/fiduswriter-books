@@ -163,22 +163,22 @@ export const bookBibliographyDataTemplate = ({book, citationStyles}) =>
                             title="${gettext("Select citation style for the book")}"
                             id="book-settings-citationstyle"
                             ${
-        book.rights === "read" ?
-            "disabled=\"disabled\"" :
-            ""
-    }
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
+}
                         >
                         ${
-        Object.entries(citationStyles).map(([key, value]) =>
-            `<option value="${key}" ${
-                key === book.settings.citationstyle ?
-                    "selected" :
-                    ""
-            }>
+    Object.entries(citationStyles).map(([key, value]) =>
+        `<option value="${key}" ${
+            key === book.settings.citationstyle ?
+                "selected" :
+                ""
+        }>
                                     ${value}
                                 </option>`
-        ).join("")
-    }
+    ).join("")
+}
                         </select>
                         <div class="fw-select-arrow fa fa-caret-down"></div>
                     </div>
@@ -210,24 +210,24 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                                 title="${gettext("Select stylesheet for the book")}"
                                 id="book-settings-bookstyle"
                                 ${
-        book.rights === "read" || !bookStyleList.length ?
-            "disabled=\"disabled\"" :
-            ""
-    }
+    book.rights === "read" || !bookStyleList.length ?
+        "disabled=\"disabled\"" :
+        ""
+}
                         >
                             ${
-        bookStyleList.map(bookStyle =>
-            `<option value="${bookStyle.slug}"
+    bookStyleList.map(bookStyle =>
+        `<option value="${bookStyle.slug}"
                                             ${
-        bookStyle.slug === book.settings.book_style ?
-            "selected" :
-            ""
-    }
+    bookStyle.slug === book.settings.book_style ?
+        "selected" :
+        ""
+}
                                     >
                                         ${escapeText(bookStyle.title)}
                                     </option>`
-        ).join("")
-    }
+    ).join("")
+}
                         </select>
                         <div class="fw-select-arrow fa fa-caret-down"></div>
                     </div>
@@ -243,22 +243,22 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                                 title="${gettext("Select paper size for the book")}"
                                 id="book-settings-papersize"
                                 ${
-            book.rights === "read" ?
-                "disabled=\"disabled\"" :
-                ""
-        }
+    book.rights === "read" ?
+        "disabled=\"disabled\"" :
+        ""
+}
                         >
                             ${
-            paperSizes.map(size =>
-                `<option value="${size[0]}" ${
-                    size[0] === book.settings.papersize ?
-                        "selected" :
-                        ""
-                }>
+    paperSizes.map(size =>
+        `<option value="${size[0]}" ${
+            size[0] === book.settings.papersize ?
+                "selected" :
+                ""
+        }>
                                         ${size[1]}
                                     </option>`
-            ).join("")
-        }
+    ).join("")
+}
                         </select>
                         <div class="fw-select-arrow fa fa-caret-down"></div>
                     </div>
