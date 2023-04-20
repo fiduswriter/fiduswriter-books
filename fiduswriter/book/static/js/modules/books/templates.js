@@ -158,27 +158,30 @@ export const bookBibliographyDataTemplate = ({book, citationStyles}) =>
                     <h4 class="fw-tablerow-title">${gettext("Citation style")}</h4>
                 </th>
                 <td>
-                    <select class="entry-form" name="book-settings-citationstyle"
-                        title="${gettext("Select citation style for the book")}"
-                        id="book-settings-citationstyle"
+                    <div class="fw-select-container">
+                        <select class="entry-form dk fw-button fw-light fw-large" name="book-settings-citationstyle"
+                            title="${gettext("Select citation style for the book")}"
+                            id="book-settings-citationstyle"
+                            ${
+        book.rights === "read" ?
+            "disabled=\"disabled\"" :
+            ""
+    }
+                        >
                         ${
-    book.rights === "read" ?
-        "disabled=\"disabled\"" :
-        ""
-}
-                    >
-                    ${
-    Object.entries(citationStyles).map(([key, value]) =>
-        `<option value="${key}" ${
-            key === book.settings.citationstyle ?
-                "selected" :
-                ""
-        }>
-                                ${value}
-                            </option>`
-    ).join("")
-}
-                    </select>
+        Object.entries(citationStyles).map(([key, value]) =>
+            `<option value="${key}" ${
+                key === book.settings.citationstyle ?
+                    "selected" :
+                    ""
+            }>
+                                    ${value}
+                                </option>`
+        ).join("")
+    }
+                        </select>
+                        <div class="fw-select-arrow fa fa-caret-down"></div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -202,29 +205,32 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                     <h4 class="fw-tablerow-title">${gettext("Book style")}</h4>
                 </th>
                 <td>
-                    <select class="entry-form dk" name="book-settings-bookstyle"
-                            title="${gettext("Select stylesheet for the book")}"
-                            id="book-settings-bookstyle"
+                    <div class="fw-select-container">
+                        <select class="entry-form dk fw-button fw-light fw-large" name="book-settings-bookstyle"
+                                title="${gettext("Select stylesheet for the book")}"
+                                id="book-settings-bookstyle"
+                                ${
+        book.rights === "read" || !bookStyleList.length ?
+            "disabled=\"disabled\"" :
+            ""
+    }
+                        >
                             ${
-    book.rights === "read" || !bookStyleList.length ?
-        "disabled=\"disabled\"" :
-        ""
-}
-                    >
-                        ${
-    bookStyleList.map(bookStyle =>
-        `<option value="${bookStyle.slug}"
-                                        ${
-    bookStyle.slug === book.settings.book_style ?
-        "selected" :
-        ""
-}
-                                >
-                                    ${escapeText(bookStyle.title)}
-                                </option>`
-    ).join("")
-}
-                    </select>
+        bookStyleList.map(bookStyle =>
+            `<option value="${bookStyle.slug}"
+                                            ${
+        bookStyle.slug === book.settings.book_style ?
+            "selected" :
+            ""
+    }
+                                    >
+                                        ${escapeText(bookStyle.title)}
+                                    </option>`
+        ).join("")
+    }
+                        </select>
+                        <div class="fw-select-arrow fa fa-caret-down"></div>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -232,27 +238,30 @@ export const bookPrintDataTemplate = ({book, bookStyleList}) =>
                     <h4 class="fw-tablerow-title">${gettext("Paper size")}</h4>
                 </th>
                 <td>
-                <select class="entry-form dk" name="book-settings-papersize"
-                        title="${gettext("Select paper size for the book")}"
-                        id="book-settings-papersize"
-                        ${
-    book.rights === "read" ?
-        "disabled=\"disabled\"" :
-        ""
-}
-                >
-                    ${
-    paperSizes.map(size =>
-        `<option value="${size[0]}" ${
-            size[0] === book.settings.papersize ?
-                "selected" :
+                    <div class="fw-select-container">
+                        <select class="entry-form dk fw-button fw-light fw-large" name="book-settings-papersize"
+                                title="${gettext("Select paper size for the book")}"
+                                id="book-settings-papersize"
+                                ${
+            book.rights === "read" ?
+                "disabled=\"disabled\"" :
                 ""
-        }>
-                                ${size[1]}
-                            </option>`
-    ).join("")
-}
-                </select>
+        }
+                        >
+                            ${
+            paperSizes.map(size =>
+                `<option value="${size[0]}" ${
+                    size[0] === book.settings.papersize ?
+                        "selected" :
+                        ""
+                }>
+                                        ${size[1]}
+                                    </option>`
+            ).join("")
+        }
+                        </select>
+                        <div class="fw-select-arrow fa fa-caret-down"></div>
+                    </div>
                 </td>
             </tr>
         </tbody>
