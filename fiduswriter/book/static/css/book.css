@@ -2,22 +2,22 @@
 
 span.label-counter::after,
 a.reference-counter::after {
-    content: ' ' attr(data-book-counter); /* or data-chapter-counter */
+    content: " " attr(data-book-counter); /* or data-chapter-counter */
 }
 
 .footnote-counter::before {
     content: attr(data-book-counter); /* or data-chapter-counter */
 }
 
-section[role='doc-footnote'] .footnote-counter::after {
-    content: '. ';
+section[role="doc-footnote"] .footnote-counter::after {
+    content: ". ";
 }
 
 /* CSL */
 
 .csl-bib-body {
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .csl-left-margin {
@@ -46,7 +46,7 @@ section[role='doc-footnote'] .footnote-counter::after {
 }
 
 .csl-indent {
-    padding-left: .5in;
+    padding-left: 0.5in;
 }
 
 .csl-entry {
@@ -64,7 +64,7 @@ span.anchor {
 
 figure figcaption {
     margin-top: 10px;
-    font-size: .9em;
+    font-size: 0.9em;
 }
 
 figure img {
@@ -122,12 +122,11 @@ figure {
     box-sizing: border-box;
 }
 
-
-figure[data-category='table'] figcaption span.text::before,
-figure[data-category='photo'] figcaption span.text::before,
-figure[data-category='figure'] figcaption span.text::before,
-table[data-category='table'] caption span.text::before {
-    content: ': ';
+figure[data-category="table"] figcaption span.text::before,
+figure[data-category="photo"] figcaption span.text::before,
+figure[data-category="figure"] figcaption span.text::before,
+table[data-category="table"] caption span.text::before {
+    content: ": ";
 }
 
 table {
@@ -168,11 +167,11 @@ table {
     text-decoration: underline;
 }
 
-.article table[data-layout='fixed'] {
+.article table[data-layout="fixed"] {
     table-layout: fixed !important;
 }
 
-.article table[data-layout='auto'] {
+.article table[data-layout="auto"] {
     table-layout: auto !important;
 }
 

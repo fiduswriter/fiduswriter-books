@@ -20,13 +20,13 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.2
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5.1.0
         with:
-          python-version: "3.11"
+          python-version: "3.12"
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
       - name: Install Python dependencies
@@ -54,7 +54,7 @@ jobs:
           cd fiduswriter
           fiduswriter lint
       - name: Run tests
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@v3
         with:
           timeout_minutes: 8
           max_attempts: 3
@@ -64,13 +64,13 @@ jobs:
             coverage run $(which fiduswriter) test book
       - name: Upload failed test screenshots
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.3.4
         with:
           name: failure-artifacts
           path: ${{ github.workspace }}/fiduswriter/screenshots/
       - name: Coveralls
         run: |
-            cd fiduswriter
-            coveralls --service=github
+          cd fiduswriter
+          coveralls --service=github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

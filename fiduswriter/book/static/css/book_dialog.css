@@ -33,7 +33,6 @@ b.part {
     background-size: contain;
 }
 
-
 #book-dialog .warninglist {
     background-color: rgba(var(--warning-background-color));
 }
