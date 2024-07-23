@@ -11,9 +11,7 @@ const CSS_PAPER_SIZES = {
     a4: "A4"
 }
 
-
 export class PrintBookExporter extends HTMLBookExporter {
-
     constructor(schema, csl, documentStyles, book, user, docList) {
         super(schema, csl, documentStyles, book, user, docList)
         this.chapterTemplate = chapterTemplate
@@ -27,24 +25,31 @@ export class PrintBookExporter extends HTMLBookExporter {
     }
 
     exportThree() {
-        const html = this.outputList.filter(
-                ({filename}) => filename.slice(-5) === ".html"
-            ).sort(
-                (a, b) => {
+        const html = this.outputList
+                .filter(({filename}) => filename.slice(-5) === ".html")
+                .sort((a, b) => {
                     if (a.filename === "index.html") {
                         return -1
                     }
                     if (b.filename === "index.html") {
                         return 1
                     }
-                    if (parseInt(a.filename.match(/\d+/g)) < parseInt(b.filename.match(/\d+/g))) {
+                    if (
+                        parseInt(a.filename.match(/\d+/g)) <
+                        parseInt(b.filename.match(/\d+/g))
+                    ) {
                         return -1
                     }
-                    if (parseInt(a.filename.match(/\d+/g)) > parseInt(b.filename.match(/\d+/g))) {
+                    if (
+                        parseInt(a.filename.match(/\d+/g)) >
+                        parseInt(b.filename.match(/\d+/g))
+                    ) {
                         return 1
                     }
                     return 0
-                }).map(({contents}) => contents).join(""),
+                })
+                .map(({contents}) => contents)
+                .join(""),
             css = this.getBookCSS(),
             title = this.book.title,
             settings = this.book.settings,
@@ -59,7 +64,9 @@ export class PrintBookExporter extends HTMLBookExporter {
                 const oldBody = document.body
                 document.body.parentElement.dataset.vivliostylePaginated = true
                 document.body = iframeWin.document.body
-                iframeWin.document.querySelectorAll("style").forEach(el => document.body.appendChild(el))
+                iframeWin.document
+                    .querySelectorAll("style")
+                    .forEach(el => document.body.appendChild(el))
                 const backgroundStyle = document.createElement("style")
                 backgroundStyle.innerHTML = "body {background-color: white;}"
                 document.body.appendChild(backgroundStyle)
@@ -69,20 +76,14 @@ export class PrintBookExporter extends HTMLBookExporter {
             }
         }
 
-        printHTML(
-            htmlDoc,
-            config
-        )
-
+        printHTML(htmlDoc, config)
     }
 
     getBookCSS() {
         let css = `a.fn {
-            -adapt-template: url(data:application/xml,${
-    encodeURI(
+            -adapt-template: url(data:application/xml,${encodeURI(
         "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:s=\"http://www.pyroxy.com/ns/shadow\"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id=\"footnote\"><s:content/><s:include class=\"footnote-content\"/></s:template></body></html>#footnote"
-    )
-});
+    )});
             text-decoration: none;
             color: inherit;
             vertical-align: baseline;
@@ -160,14 +161,17 @@ export class PrintBookExporter extends HTMLBookExporter {
         .booktitle {
             text-align: center;
         }`
-        const bookStyle = this.documentStyles.find(style => style.slug === this.book.settings.book_style)
+        const bookStyle = this.documentStyles.find(
+            style => style.slug === this.book.settings.book_style
+        )
         if (bookStyle) {
             let contents = bookStyle.contents
             bookStyle.bookstylefile_set.forEach(
-                ([url, filename]) => contents = contents.replace(
-                    new RegExp(filename, "g"),
-                    url
-                )
+                ([url, filename]) =>
+                    (contents = contents.replace(
+                        new RegExp(filename, "g"),
+                        url
+                    ))
             )
             css += contents
         }

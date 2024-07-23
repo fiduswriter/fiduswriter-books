@@ -14,5 +14,4 @@ export class BookMenuItem {
             order: 5
         })
     }
-
 }

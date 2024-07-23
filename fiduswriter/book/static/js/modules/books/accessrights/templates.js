@@ -2,21 +2,29 @@ import {avatarTemplate, escapeText} from "../../common"
 
 /** A template for the book collaboration pane */
 export const bookCollaboratorsTemplate = ({collaborators}) => {
-    return collaborators.map(collaborator =>
-        `<tr id="collaborator-${collaborator.holder.type}-${collaborator.holder.id}"
-        data-type="${collaborator.holder.type}" data-id="${collaborator.holder.id}"
+    return collaborators
+        .map(
+            collaborator =>
+                `<tr id="collaborator-${collaborator.holder.type}-${
+                    collaborator.holder.id
+                }"
+        data-type="${collaborator.holder.type}" data-id="${
+    collaborator.holder.id
+}"
         class="collaborator-tr" data-rights="${collaborator.rights}">
             <td width="212">
                 <span>${avatarTemplate({user: collaborator.holder})}</span>
                 <span class="fw-inline">${
-    collaborator.holder.type === "userinvite" ?
-        `${gettext("Invite")}: ` :
-        ""
+    collaborator.holder.type === "userinvite"
+        ? `${gettext("Invite")}: `
+        : ""
 }${escapeText(collaborator.holder.name)}</span>
             </td>
             <td width="50" align="center">
                 <div class="fw-inline edit-right-wrapper">
-                    <i class="icon-access-right icon-access-${collaborator.rights}"></i>
+                    <i class="icon-access-right icon-access-${
+    collaborator.rights
+}"></i>
                     <i class="fas fa-caret-down edit-right"></i>
                 </div>
             </td>
@@ -26,27 +34,32 @@ export const bookCollaboratorsTemplate = ({collaborators}) => {
                 </span>
             </td>
         </tr>`
-    ).join("")
+        )
+        .join("")
 }
 
 export const bookContactsTemplate = ({contacts}) =>
-    contacts.map(contact =>
-        `<tr>
-            <td width="337" data-id="${contact.id}" data-type="${contact.type}" class="fw-checkable fw-checkable-td">
+    contacts
+        .map(
+            contact =>
+                `<tr>
+            <td width="337" data-id="${contact.id}" data-type="${
+    contact.type
+}" class="fw-checkable fw-checkable-td">
                 <span>${avatarTemplate({user: contact})}</span>
                 <span class="fw-inline">
                 ${
-    contact.type === "userinvite" ?
-        `${gettext("Invite")}:&nbsp;` :
-        ""
+    contact.type === "userinvite"
+        ? `${gettext("Invite")}:&nbsp;`
+        : ""
 }
                     ${escapeText(contact.name)}
 
                 </span>
             </td>
         </tr>`
-    ).join("")
-
+        )
+        .join("")
 
 /** A template for the book access rights overview */
 export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
@@ -74,8 +87,10 @@ export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
                         <th width="50" align="center">${gettext("Rights")}</th>
                         <th width="50" align="center">${gettext("Delete")}</th>
                 </tr></thead>
-                <tbody class="fw-data-table-body fw-small">${bookCollaboratorsTemplate({
-        collaborators
-    })}</tbody>
+                <tbody class="fw-data-table-body fw-small">${bookCollaboratorsTemplate(
+        {
+            collaborators
+        }
+    )}</tbody>
             </table>
         </div>`

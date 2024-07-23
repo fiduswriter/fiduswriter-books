@@ -30,14 +30,15 @@ export class HTMLBookExporter extends DOMExporter {
         this.math = false
         this.chapterTemplate = htmlBookExportTemplate
         this.indexTemplate = htmlBookIndexTemplate
-        this.styleSheets = [
-            {url: staticUrl("css/book.css")}
-        ]
+        this.styleSheets = [{url: staticUrl("css/book.css")}]
     }
 
     init() {
         if (this.book.chapters.length === 0) {
-            addAlert("error", gettext("Book cannot be exported due to lack of chapters."))
+            addAlert(
+                "error",
+                gettext("Book cannot be exported due to lack of chapters.")
+            )
             return false
         }
 
@@ -47,7 +48,9 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
     addBookStyle() {
-        const bookStyle = this.documentStyles.find(bookStyle => bookStyle.slug === this.book.settings.book_style)
+        const bookStyle = this.documentStyles.find(
+            bookStyle => bookStyle.slug === this.book.settings.book_style
+        )
         if (!bookStyle) {
             return false
         }
@@ -55,20 +58,22 @@ export class HTMLBookExporter extends DOMExporter {
         // BookStyleFiles will therefore not need to replaced with their URLs.
         let contents = bookStyle.contents
         bookStyle.bookstylefile_set.forEach(
-            ([_url, filename]) => contents = contents.replace(
-                new RegExp(filename, "g"),
-                `media/${filename}`
-            )
+            ([_url, filename]) =>
+                (contents = contents.replace(
+                    new RegExp(filename, "g"),
+                    `media/${filename}`
+                ))
         )
 
         this.styleSheets.push({contents, filename: `css/${bookStyle.slug}.css`})
-        this.fontFiles = this.fontFiles.concat(bookStyle.bookstylefile_set.map(([url, filename]) => ({
-            filename: `css/media/${filename}`,
-            url
-        })))
+        this.fontFiles = this.fontFiles.concat(
+            bookStyle.bookstylefile_set.map(([url, filename]) => ({
+                filename: `css/media/${filename}`,
+                url
+            }))
+        )
         return `css/${bookStyle.slug}.css`
     }
-
 
     getBookFootnoteAnchor(chapterCounter, bookCounter) {
         const footnoteAnchor = document.createElement("a")
@@ -92,30 +97,35 @@ export class HTMLBookExporter extends DOMExporter {
         footnotesContainer.classList.add("fnlist")
         footnotesContainer.setAttribute("role", "doc-footnotes")
 
-        footnotes.forEach(
-            (footnote, index) => {
-                const chapterCounter = index + 1
-                const bookCounter = offset + chapterCounter
-                const footnoteAnchor = this.getBookFootnoteAnchor(chapterCounter, bookCounter)
-                footnote.parentNode.replaceChild(footnoteAnchor, footnote)
-                const newFootnote = document.createElement("section")
-                newFootnote.id = "fn" + bookCounter
-                newFootnote.setAttribute("role", "doc-footnote")
-                newFootnote.dataset.chapterCounter = chapterCounter
-                newFootnote.dataset.bookCounter = bookCounter
-                newFootnote.innerHTML = footnote.dataset.footnote
-                const newFootnoteCounter = document.createElement("span")
-                newFootnoteCounter.classList.add("footnote-counter")
-                newFootnoteCounter.dataset.chapterCounter = chapterCounter
-                newFootnoteCounter.dataset.bookCounter = bookCounter
-                if (["P", "H1", "H2", "H3", "H4", "H5", "H6"].includes(newFootnote.firstElementChild?.tagName)) {
-                    newFootnote.firstElementChild.prepend(newFootnoteCounter)
-                } else {
-                    newFootnote.prepend(newFootnoteCounter)
-                }
-                footnotesContainer.appendChild(newFootnote)
+        footnotes.forEach((footnote, index) => {
+            const chapterCounter = index + 1
+            const bookCounter = offset + chapterCounter
+            const footnoteAnchor = this.getBookFootnoteAnchor(
+                chapterCounter,
+                bookCounter
+            )
+            footnote.parentNode.replaceChild(footnoteAnchor, footnote)
+            const newFootnote = document.createElement("section")
+            newFootnote.id = "fn" + bookCounter
+            newFootnote.setAttribute("role", "doc-footnote")
+            newFootnote.dataset.chapterCounter = chapterCounter
+            newFootnote.dataset.bookCounter = bookCounter
+            newFootnote.innerHTML = footnote.dataset.footnote
+            const newFootnoteCounter = document.createElement("span")
+            newFootnoteCounter.classList.add("footnote-counter")
+            newFootnoteCounter.dataset.chapterCounter = chapterCounter
+            newFootnoteCounter.dataset.bookCounter = bookCounter
+            if (
+                ["P", "H1", "H2", "H3", "H4", "H5", "H6"].includes(
+                    newFootnote.firstElementChild?.tagName
+                )
+            ) {
+                newFootnote.firstElementChild.prepend(newFootnoteCounter)
+            } else {
+                newFootnote.prepend(newFootnoteCounter)
             }
-        )
+            footnotesContainer.appendChild(newFootnote)
+        })
         contentsEl.appendChild(footnotesContainer)
         return offset + footnotes.length
     }
@@ -125,83 +135,101 @@ export class HTMLBookExporter extends DOMExporter {
     }
 
     exportOne() {
-        let footnoteCounter = 0, figureCounter = 0, equationCounter = 0,
-            photoCounter = 0, tableCounter = 0
+        let footnoteCounter = 0,
+            figureCounter = 0,
+            equationCounter = 0,
+            photoCounter = 0,
+            tableCounter = 0
 
-        this.chapters = this.book.chapters.sort(
-            (a, b) => a.number > b.number ? 1 : -1
-        ).map(chapter => {
-            let chapterFigureCounter = 0, chapterEquationCounter = 0,
-                chapterPhotoCounter = 0, chapterTableCounter = 0
-            const doc = this.docList.find(doc => doc.id === chapter.text),
-                schema = this.schema
-            schema.cached.imageDB = {db: doc.images}
-            const docContent = removeHidden(doc.content, false),
-                serializer = DOMSerializer.fromSchema(schema),
-                contents = serializer.serializeNode(schema.nodeFromJSON(docContent)),
-                equations = contents.querySelectorAll(".equation"),
-                figureEquations = contents.querySelectorAll(".figure-equation")
-            footnoteCounter = this.addFootnotes(contents, footnoteCounter)
-            if (equations.length || figureEquations.length) {
-                this.math = true
-            }
-            contents.querySelectorAll("figure[data-category='figure'] figcaption span.label").forEach(
-                el => {
-                    el.innerHTML = CATS["figure"][doc.settings.language]
-                    el.dataset.bookCounter = ++figureCounter
-                    el.dataset.chapterCounter = ++chapterFigureCounter
-                    el.classList.add("label-counter")
-                    el.classList.remove("label")
+        this.chapters = this.book.chapters
+            .sort((a, b) => (a.number > b.number ? 1 : -1))
+            .map(chapter => {
+                let chapterFigureCounter = 0,
+                    chapterEquationCounter = 0,
+                    chapterPhotoCounter = 0,
+                    chapterTableCounter = 0
+                const doc = this.docList.find(doc => doc.id === chapter.text),
+                    schema = this.schema
+                schema.cached.imageDB = {db: doc.images}
+                const docContent = removeHidden(doc.content, false),
+                    serializer = DOMSerializer.fromSchema(schema),
+                    contents = serializer.serializeNode(
+                        schema.nodeFromJSON(docContent)
+                    ),
+                    equations = contents.querySelectorAll(".equation"),
+                    figureEquations =
+                        contents.querySelectorAll(".figure-equation")
+                footnoteCounter = this.addFootnotes(contents, footnoteCounter)
+                if (equations.length || figureEquations.length) {
+                    this.math = true
                 }
-            )
-            contents.querySelectorAll("figure[data-category='equation'] figcaption span.label").forEach(
-                el => {
-                    el.innerHTML = CATS["equation"][doc.settings.language]
-                    el.dataset.bookCounter = ++equationCounter
-                    el.dataset.chapterCounter = ++chapterEquationCounter
-                    el.classList.add("label-counter")
-                    el.classList.remove("label")
-                }
-            )
-            contents.querySelectorAll("figure[data-category='photo'] figcaption span.label").forEach(
-                el => {
-                    el.innerHTML = CATS["photo"][doc.settings.language]
-                    el.dataset.bookCounter = ++photoCounter
-                    el.dataset.chapterCounter = ++chapterPhotoCounter
-                    el.classList.add("label-counter")
-                    el.classList.remove("label")
-                }
-            )
-            contents.querySelectorAll("figure[data-category='table'] figcaption span.label,table[data-category='table'] caption span.label").forEach(
-                el => {
-                    el.innerHTML = CATS["table"][doc.settings.language]
-                    el.dataset.bookCounter = ++tableCounter
-                    el.dataset.chapterCounter = ++chapterTableCounter
-                    el.classList.add("label-counter")
-                    el.classList.remove("label")
-                }
-            )
-            contents.querySelectorAll(".cross-reference").forEach(
-                el => {
-                    const rEl = contents.querySelector(`#${el.dataset.id} .label-counter`)
+                contents
+                    .querySelectorAll(
+                        "figure[data-category='figure'] figcaption span.label"
+                    )
+                    .forEach(el => {
+                        el.innerHTML = CATS["figure"][doc.settings.language]
+                        el.dataset.bookCounter = ++figureCounter
+                        el.dataset.chapterCounter = ++chapterFigureCounter
+                        el.classList.add("label-counter")
+                        el.classList.remove("label")
+                    })
+                contents
+                    .querySelectorAll(
+                        "figure[data-category='equation'] figcaption span.label"
+                    )
+                    .forEach(el => {
+                        el.innerHTML = CATS["equation"][doc.settings.language]
+                        el.dataset.bookCounter = ++equationCounter
+                        el.dataset.chapterCounter = ++chapterEquationCounter
+                        el.classList.add("label-counter")
+                        el.classList.remove("label")
+                    })
+                contents
+                    .querySelectorAll(
+                        "figure[data-category='photo'] figcaption span.label"
+                    )
+                    .forEach(el => {
+                        el.innerHTML = CATS["photo"][doc.settings.language]
+                        el.dataset.bookCounter = ++photoCounter
+                        el.dataset.chapterCounter = ++chapterPhotoCounter
+                        el.classList.add("label-counter")
+                        el.classList.remove("label")
+                    })
+                contents
+                    .querySelectorAll(
+                        "figure[data-category='table'] figcaption span.label,table[data-category='table'] caption span.label"
+                    )
+                    .forEach(el => {
+                        el.innerHTML = CATS["table"][doc.settings.language]
+                        el.dataset.bookCounter = ++tableCounter
+                        el.dataset.chapterCounter = ++chapterTableCounter
+                        el.classList.add("label-counter")
+                        el.classList.remove("label")
+                    })
+                contents.querySelectorAll(".cross-reference").forEach(el => {
+                    const rEl = contents.querySelector(
+                        `#${el.dataset.id} .label-counter`
+                    )
                     if (!rEl) {
                         return
                     }
                     el.innerHTML = `<a href="#${el.dataset.id}" class="reference-counter" data-chapter-counter="${rEl.dataset.chapterCounter}" data-book-counter="${rEl.dataset.bookCounter}">${rEl.innerHTML}</a>`
                     delete el.dataset.title
+                })
+
+                return {
+                    doc,
+                    contents
                 }
-            )
-
-            return {
-                doc,
-                contents
-            }
-
-        })
+            })
 
         const citRendererPromises = this.chapters.map(chapter => {
             // add bibliographies (asynchronously)
-            const bibliographyHeader = chapter.doc.settings.bibliography_header[chapter.doc.settings.language] || BIBLIOGRAPHY_HEADERS[chapter.doc.settings.language]
+            const bibliographyHeader =
+                chapter.doc.settings.bibliography_header[
+                    chapter.doc.settings.language
+                ] || BIBLIOGRAPHY_HEADERS[chapter.doc.settings.language]
             const citRenderer = new RenderCitations(
                 chapter.contents,
                 this.book.settings.citationstyle,
@@ -209,22 +237,19 @@ export class HTMLBookExporter extends DOMExporter {
                 {db: chapter.doc.bibliography},
                 this.csl
             )
-            return citRenderer.init().then(
-                () => {
-                    const bibHTML = citRenderer.fm.bibHTML
-                    if (bibHTML.length > 0) {
-                        chapter.contents.innerHTML += bibHTML
-                    }
-                    this.content = chapter.contents
-                    this.cleanHTML(citRenderer.fm)
-                    chapter.contents = this.content
-                    delete this.content
-                    return Promise.resolve()
+            return citRenderer.init().then(() => {
+                const bibHTML = citRenderer.fm.bibHTML
+                if (bibHTML.length > 0) {
+                    chapter.contents.innerHTML += bibHTML
                 }
-            )
+                this.content = chapter.contents
+                this.cleanHTML(citRenderer.fm)
+                chapter.contents = this.content
+                delete this.content
+                return Promise.resolve()
+            })
         })
         return Promise.all(citRendererPromises).then(() => this.exportTwo())
-
     }
 
     prepareBinaryFiles(contents) {
@@ -258,7 +283,9 @@ export class HTMLBookExporter extends DOMExporter {
             }
 
             // Make links to all H1-3 and create a TOC list of them
-            contentItems.push(...setLinks(contents, this.book.chapters[index].number))
+            contentItems.push(
+                ...setLinks(contents, this.book.chapters[index].number)
+            )
 
             const contentsCode = this.replaceImgSrc(contents.innerHTML)
 
@@ -283,40 +310,44 @@ export class HTMLBookExporter extends DOMExporter {
 
         this.outputList.push({
             filename: "index.html",
-            contents: pretty(this.indexTemplate({
-                contentItems,
-                book: this.book,
-                creator: this.user.name,
-                styleSheets: [{filename: bookStyle}],
-                language: LANGUAGES.find(lang => lang[0] === this.book.settings.language)[1],
-                multiDoc: this.multiDoc
-            }), {ocd: true})
+            contents: pretty(
+                this.indexTemplate({
+                    contentItems,
+                    book: this.book,
+                    creator: this.user.name,
+                    styleSheets: [{filename: bookStyle}],
+                    language: LANGUAGES.find(
+                        lang => lang[0] === this.book.settings.language
+                    )[1],
+                    multiDoc: this.multiDoc
+                }),
+                {ocd: true}
+            )
         })
 
         return this.exportThree()
-
     }
 
     exportThree() {
-        this.binaryFiles = uniqueObjects(this.binaryFiles.concat(this.fontFiles))
+        this.binaryFiles = uniqueObjects(
+            this.binaryFiles.concat(this.fontFiles)
+        )
         this.styleSheets = uniqueObjects(this.styleSheets)
         if (this.math) {
             this.includeZips.push({
-                "directory": "css",
-                "url": staticUrl("zip/mathlive_style.zip")
+                directory: "css",
+                url: staticUrl("zip/mathlive_style.zip")
             })
         }
 
-        return this.loadStyles().then(
-            () => {
-                this.styleSheets.forEach(styleSheet => {
-                    if (styleSheet.filename) {
-                        this.outputList.push(styleSheet)
-                    }
-                })
-                return this.createZip()
-            }
-        )
+        return this.loadStyles().then(() => {
+            this.styleSheets.forEach(styleSheet => {
+                if (styleSheet.filename) {
+                    this.outputList.push(styleSheet)
+                }
+            })
+            return this.createZip()
+        })
     }
 
     createZip() {
@@ -327,13 +358,14 @@ export class HTMLBookExporter extends DOMExporter {
             undefined,
             this.updated
         )
-        return zipper.init().then(
-            blob => this.download(blob)
-        )
+        return zipper.init().then(blob => this.download(blob))
     }
 
     download(blob) {
-        return download(blob, createSlug(this.book.title) + ".html.zip", "application/zip")
+        return download(
+            blob,
+            createSlug(this.book.title) + ".html.zip",
+            "application/zip"
+        )
     }
-
 }

@@ -40,9 +40,8 @@ export const menuModel = () => ({
                 if (text.length && !currentlySearching) {
                     overview.initTable(true)
                     currentlySearching = true
-                    overview.table.on(
-                        "datatable.init",
-                        () => overview.table.search(text)
+                    overview.table.on("datatable.init", () =>
+                        overview.table.search(text)
                     )
                 } else if (!text.length && currentlySearching) {
                     overview.initTable(false)
@@ -50,7 +49,6 @@ export const menuModel = () => ({
                 } else if (text.length) {
                     overview.table.search(text)
                 }
-
             },
             order: 3
         }
@@ -58,8 +56,10 @@ export const menuModel = () => ({
 })
 
 const exportEpub = (book, overview) => {
-    addAlert("info", book.title + ": " + gettext(
-        "Epub export has been initiated."))
+    addAlert(
+        "info",
+        book.title + ": " + gettext("Epub export has been initiated.")
+    )
     const exporter = new EpubBookExporter(
         overview.schema,
         overview.app.csl,
@@ -73,8 +73,10 @@ const exportEpub = (book, overview) => {
 }
 
 const exportHTML = (book, overview) => {
-    addAlert("info", book.title + ": " + gettext(
-        "HTML export has been initiated."))
+    addAlert(
+        "info",
+        book.title + ": " + gettext("HTML export has been initiated.")
+    )
     const exporter = new HTMLBookExporter(
         overview.schema,
         overview.app.csl,
@@ -88,8 +90,10 @@ const exportHTML = (book, overview) => {
 }
 
 const exportSingleHTML = (book, overview) => {
-    addAlert("info", book.title + ": " + gettext(
-        "Unified HTML export has been initiated."))
+    addAlert(
+        "info",
+        book.title + ": " + gettext("Unified HTML export has been initiated.")
+    )
     const exporter = new SingleFileHTMLBookExporter(
         overview.schema,
         overview.app.csl,
@@ -103,8 +107,10 @@ const exportSingleHTML = (book, overview) => {
 }
 
 const exportLatex = (book, overview) => {
-    addAlert("info", book.title + ": " + gettext(
-        "LaTeX export has been initiated."))
+    addAlert(
+        "info",
+        book.title + ": " + gettext("LaTeX export has been initiated.")
+    )
     const exporter = new LatexBookExporter(
         overview.schema,
         book,
@@ -116,8 +122,7 @@ const exportLatex = (book, overview) => {
 }
 
 const exportPrint = (book, overview) => {
-    addAlert("info", book.title + ": " + gettext(
-        "Print has been initiated."))
+    addAlert("info", book.title + ": " + gettext("Print has been initiated."))
     const exporter = new PrintBookExporter(
         overview.schema,
         overview.app.csl,
@@ -136,10 +141,15 @@ export const bulkMenuModel = () => ({
             tooltip: gettext("Move the books that have been selected."),
             action: overview => {
                 const ids = overview.getSelected()
-                const books = ids.map(id => overview.bookList.find(book => book.id === id))
+                const books = ids.map(id =>
+                    overview.bookList.find(book => book.id === id)
+                )
                 if (books.length) {
                     const dialog = new FileDialog({
-                        title: books.length > 1 ? gettext("Move books") : gettext("Move book"),
+                        title:
+                            books.length > 1
+                                ? gettext("Move books")
+                                : gettext("Move book"),
                         movingFiles: books,
                         allFiles: overview.bookList,
                         moveUrl: "/api/book/move/",
@@ -160,11 +170,14 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 const ownIds = ids.filter(id => {
-                    const book = overview.bookList.find(book => book.id = id)
+                    const book = overview.bookList.find(book => (book.id = id))
                     return book.is_owner
                 })
                 if (ownIds.length !== ids.length) {
-                    addAlert("error", gettext("You cannot delete books of other users."))
+                    addAlert(
+                        "error",
+                        gettext("You cannot delete books of other users.")
+                    )
                 }
                 if (ownIds.length) {
                     overview.mod.actions.deleteBookDialog(ownIds)
@@ -178,11 +191,14 @@ export const bulkMenuModel = () => ({
             action: overview => {
                 const ids = overview.getSelected()
                 const ownIds = ids.filter(id => {
-                    const book = overview.bookList.find(book => book.id = id)
+                    const book = overview.bookList.find(book => (book.id = id))
                     return book.is_owner
                 })
                 if (ownIds.length !== ids.length) {
-                    addAlert("error", gettext("You cannot share books of other users."))
+                    addAlert(
+                        "error",
+                        gettext("You cannot share books of other users.")
+                    )
                 }
                 if (ownIds.length) {
                     const accessDialog = new BookAccessRightsDialog(
@@ -278,9 +294,7 @@ export const exportMenuModel = () => ({
             title: gettext("Export as Epub"),
             tooltip: gettext("Export book as Epub."),
             action: ({saveBook, book, overview}) => {
-                saveBook().then(
-                    () => exportEpub(book, overview)
-                )
+                saveBook().then(() => exportEpub(book, overview))
             }
         },
         {
@@ -288,9 +302,7 @@ export const exportMenuModel = () => ({
             title: gettext("Export as HTML"),
             tooltip: gettext("Export book as HTML."),
             action: ({saveBook, book, overview}) => {
-                saveBook().then(
-                    () => exportHTML(book, overview)
-                )
+                saveBook().then(() => exportHTML(book, overview))
             }
         },
         {
@@ -298,9 +310,7 @@ export const exportMenuModel = () => ({
             title: gettext("Export as Unified HTML"),
             tooltip: gettext("Export book as Single-file HTML."),
             action: ({saveBook, book, overview}) => {
-                saveBook().then(
-                    () => exportSingleHTML(book, overview)
-                )
+                saveBook().then(() => exportSingleHTML(book, overview))
             }
         },
         {
@@ -308,9 +318,7 @@ export const exportMenuModel = () => ({
             title: gettext("Export as LaTeX"),
             tooltip: gettext("Export book as LaTeX."),
             action: ({saveBook, book, overview}) => {
-                saveBook().then(
-                    () => exportLatex(book, overview)
-                )
+                saveBook().then(() => exportLatex(book, overview))
             }
         },
         {
@@ -318,9 +326,7 @@ export const exportMenuModel = () => ({
             title: gettext("Export to Print/PDF"),
             tooltip: gettext("Export book to the print dialog."),
             action: ({saveBook, book, overview}) => {
-                saveBook().then(
-                    () => exportPrint(book, overview)
-                )
+                saveBook().then(() => exportPrint(book, overview))
             }
         }
     ]

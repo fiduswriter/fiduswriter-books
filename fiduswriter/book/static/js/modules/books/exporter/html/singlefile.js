@@ -1,6 +1,10 @@
 import pretty from "pretty"
 
-import {singleFileHTMLBookTemplate, singleFileHTMLBookChapterTemplate, htmlBookIndexBodyTemplate} from "./templates"
+import {
+    singleFileHTMLBookTemplate,
+    singleFileHTMLBookChapterTemplate,
+    htmlBookIndexBodyTemplate
+} from "./templates"
 import {HTMLBookExporter} from "./multifile"
 
 const CSS_PAPER_SIZES = {
@@ -11,15 +15,12 @@ const CSS_PAPER_SIZES = {
     a4: "A4"
 }
 
-
 export class SingleFileHTMLBookExporter extends HTMLBookExporter {
-
     constructor(schema, csl, documentStyles, book, user, docList) {
         super(schema, csl, documentStyles, book, user, docList)
         this.chapterTemplate = singleFileHTMLBookChapterTemplate
         this.indexTemplate = htmlBookIndexBodyTemplate
         this.multiDoc = false
-
     }
 
     getChapterLink(chapterNumber) {
@@ -28,48 +29,59 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
 
     exportThree() {
         let html = ""
-        this.outputList = this.outputList.sort(
-            (a, b) => {
+        this.outputList = this.outputList
+            .sort((a, b) => {
                 if (a.filename === "index.html") {
                     return -1
                 }
                 if (b.filename === "index.html") {
                     return 1
                 }
-                if (parseInt(a.filename.match(/\d+/g)) < parseInt(b.filename.match(/\d+/g))) {
+                if (
+                    parseInt(a.filename.match(/\d+/g)) <
+                    parseInt(b.filename.match(/\d+/g))
+                ) {
                     return -1
                 }
-                if (parseInt(a.filename.match(/\d+/g)) > parseInt(b.filename.match(/\d+/g))) {
+                if (
+                    parseInt(a.filename.match(/\d+/g)) >
+                    parseInt(b.filename.match(/\d+/g))
+                ) {
                     return 1
                 }
                 return 0
-            }).filter(({filename, contents}) => {
-            if (filename.slice(-5) !== ".html") {
-                return true
-            }
-            html += contents
-            return false
-        })
+            })
+            .filter(({filename, contents}) => {
+                if (filename.slice(-5) !== ".html") {
+                    return true
+                }
+                html += contents
+                return false
+            })
         const css = this.getBookCSS(),
             title = this.book.title,
             settings = this.book.settings,
-            htmlDoc = singleFileHTMLBookTemplate({css, html, title, styleSheets: this.styleSheets, settings})
+            htmlDoc = singleFileHTMLBookTemplate({
+                css,
+                html,
+                title,
+                styleSheets: this.styleSheets,
+                settings
+            })
 
-
-        this.outputList.push({filename: "index.html", contents: pretty(htmlDoc, {ocd: true})})
+        this.outputList.push({
+            filename: "index.html",
+            contents: pretty(htmlDoc, {ocd: true})
+        })
 
         return super.exportThree()
-
     }
-
 
     getBookCSS() {
         const css = `a.fn {
-            -adapt-template: url(data:application/xml,${
-    encodeURI(
+            -adapt-template: url(data:application/xml,${encodeURI(
         "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:s=\"http://www.pyroxy.com/ns/shadow\"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id=\"footnote\"><s:content/><s:include class=\"footnote-content\"/></s:template></body></html>#footnote"
-    )
-});
+    )});
             text-decoration: none;
             color: inherit;
             vertical-align: baseline;
@@ -150,6 +162,4 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
 
         return css
     }
-
-
 }

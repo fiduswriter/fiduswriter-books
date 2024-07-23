@@ -5,17 +5,28 @@ import * as plugins from "../../plugins/books_overview"
 import {BookActions} from "./actions"
 import {BookAccessRightsDialog} from "./accessrights"
 import {ImageDB} from "../images/database"
-import {OverviewMenuView, escapeText, findTarget, whenReady, postJson, activateWait, deactivateWait, addAlert, baseBodyTemplate, ensureCSS, setDocTitle, DatatableBulk, shortFileTitle, Dialog, avatarTemplate} from "../common"
+import {
+    OverviewMenuView,
+    escapeText,
+    findTarget,
+    whenReady,
+    postJson,
+    activateWait,
+    deactivateWait,
+    addAlert,
+    baseBodyTemplate,
+    ensureCSS,
+    setDocTitle,
+    DatatableBulk,
+    shortFileTitle,
+    Dialog,
+    avatarTemplate
+} from "../common"
 import {SiteMenu} from "../menu"
 import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
-import {
-    docSchema
-} from "../schema/document"
-import {
-    dateCell,
-    deleteFolderCell
-} from "./templates"
+import {docSchema} from "../schema/document"
+import {dateCell, deleteFolderCell} from "./templates"
 
 export class BookOverview {
     // A class that contains everything that happens on the books page.
@@ -46,13 +57,11 @@ export class BookOverview {
             this.dtBulkModel = bulkMenuModel()
             this.activateFidusPlugins()
             this.bind()
-            return this.getBookListData().then(
-                () => this.app.csl.getStyles().then(
-                    styles => {
-                        this.citationStyles = styles
-                        return deactivateWait()
-                    }
-                )
+            return this.getBookListData().then(() =>
+                this.app.csl.getStyles().then(styles => {
+                    this.citationStyles = styles
+                    return deactivateWait()
+                })
             )
         })
     }
@@ -103,12 +112,10 @@ export class BookOverview {
         if (!this.imageDB) {
             const imageGetter = new ImageDB()
             return new Promise(resolve => {
-                imageGetter.getDB().then(
-                    () => {
-                        this.imageDB = imageGetter
-                        resolve()
-                    }
-                )
+                imageGetter.getDB().then(() => {
+                    this.imageDB = imageGetter
+                    resolve()
+                })
             })
         } else {
             return Promise.resolve()
@@ -153,9 +160,9 @@ export class BookOverview {
             }
         }
 
-        const fileList = this.bookList.map(
-            book => this.createTableRow(book, subdirs, searching)
-        ).filter(row => !!row)
+        const fileList = this.bookList
+            .map(book => this.createTableRow(book, subdirs, searching))
+            .filter(row => !!row)
 
         if (!searching && this.path !== "/") {
             const pathParts = this.path.split("/")
@@ -166,7 +173,9 @@ export class BookOverview {
                 "-1",
                 "top",
                 "",
-                `<a class="fw-data-table-title fw-link-text parentdir" href="/books${encodeURI(parentPath)}" data-path="${parentPath}">
+                `<a class="fw-data-table-title fw-link-text parentdir" href="/books${encodeURI(
+                    parentPath
+                )}" data-path="${parentPath}">
                     <i class="fas fa-folder"></i>
                     <span>..</span>
                 </a>`,
@@ -190,7 +199,17 @@ export class BookOverview {
                 top: ""
             },
             data: {
-                headings: ["", "", this.dtBulk.getHTML(), gettext("Title"), gettext("Created"), gettext("Last changed"), gettext("Owner"), gettext("Rights"), ""],
+                headings: [
+                    "",
+                    "",
+                    this.dtBulk.getHTML(),
+                    gettext("Title"),
+                    gettext("Created"),
+                    gettext("Last changed"),
+                    gettext("Owner"),
+                    gettext("Rights"),
+                    ""
+                ],
                 data: fileList
             },
             columns: [
@@ -245,7 +264,10 @@ export class BookOverview {
                 }
                 if (this.user.id === book.owner.id) {
                     subdirs[subdir].ownedIds.push(book.id)
-                    subdirs[subdir].row[8] = deleteFolderCell({subdir, ids: subdirs[subdir].ownedIds})
+                    subdirs[subdir].row[8] = deleteFolderCell({
+                        subdir,
+                        ids: subdirs[subdir].ownedIds
+                    })
                 }
                 return false
             }
@@ -255,7 +277,9 @@ export class BookOverview {
                 "0",
                 "folder",
                 "",
-                `<a class="fw-data-table-title fw-link-text subdir" href="/books${encodeURI(this.path + subdir)}/" data-path="${this.path}${subdir}/">
+                `<a class="fw-data-table-title fw-link-text subdir" href="/books${encodeURI(
+                    this.path + subdir
+                )}/" data-path="${this.path}${subdir}/">
                     <i class="fas fa-folder"></i>
                     <span>${escapeText(subdir)}</span>
                 </a>`,
@@ -265,7 +289,12 @@ export class BookOverview {
                 "",
                 ownedIds.length ? deleteFolderCell({subdir, ids: ownedIds}) : ""
             ]
-            subdirs[subdir] = {row, added: book.added, updated: book.updated, ownedIds}
+            subdirs[subdir] = {
+                row,
+                added: book.added,
+                updated: book.updated,
+                ownedIds
+            }
             return row
         }
 
@@ -274,7 +303,9 @@ export class BookOverview {
             String(book.id),
             "file",
             `<input type="checkbox" class="entry-select fw-check" data-id="${book.id}" id="book-${book.id}"><label for="book-${book.id}"></label>`,
-            `<span class="fw-data-table-title fw-inline fw-link-text" data-id="${book.id}">
+            `<span class="fw-data-table-title fw-inline fw-link-text" data-id="${
+                book.id
+            }">
                 <i class="fas fa-book"></i>
                 <span class="book-title fw-searchable">
                     ${shortFileTitle(book.title, book.path)}
@@ -283,12 +314,24 @@ export class BookOverview {
             `<span class="date">${dateCell({date: book.added})}</span>`,
             `<span class="date">${dateCell({date: book.updated})}</span>`,
             `<span>${avatarTemplate({user: book.owner})}</span>
-            <span class="fw-inline fw-searchable">${escapeText(book.owner.name)}</span>`,
-            `<span class="${this.user.id === book.owner.id ? "owned-by-user " : ""}rights fw-inline" data-id="${book.id}">
-                <i data-id="${book.id}" class="icon-access-right icon-access-${book.rights}"></i>
+            <span class="fw-inline fw-searchable">${escapeText(
+        book.owner.name
+    )}</span>`,
+            `<span class="${
+                this.user.id === book.owner.id ? "owned-by-user " : ""
+            }rights fw-inline" data-id="${book.id}">
+                <i data-id="${book.id}" class="icon-access-right icon-access-${
+    book.rights
+}"></i>
             </span>`,
-            `<span class="delete-book fw-inline fw-link-text" data-id="${book.id}" data-title="${escapeText(book.title)}">
-                ${this.user.id === book.owner.id ? "<i class=\"fas fa-trash-alt\"></i>" : ""}
+            `<span class="delete-book fw-inline fw-link-text" data-id="${
+                book.id
+            }" data-title="${escapeText(book.title)}">
+                ${
+    this.user.id === book.owner.id
+        ? "<i class=\"fas fa-trash-alt\"></i>"
+        : ""
+}
            </span>`
         ]
     }
@@ -298,29 +341,24 @@ export class BookOverview {
         if (this.app.isOffline()) {
             return cachedPromise
         }
-        return postJson(
-            "/api/book/list/"
-        ).catch(
-            error => {
+        return postJson("/api/book/list/")
+            .catch(error => {
                 if (this.app.isOffline()) {
                     return cachedPromise
                 } else {
                     addAlert("error", gettext("Cannot load data of books."))
-                    throw (error)
+                    throw error
                 }
-            }
-        ).then(
-            ({json}) => {
+            })
+            .then(({json}) => {
                 return cachedPromise.then(oldJson => {
                     if (!deepEqual(json, oldJson)) {
                         this.updateIndexedDB(json)
                         this.initializeView(json)
                     }
                 })
-            }
-        ).then(
-            () => deactivateWait()
-        )
+            })
+            .then(() => deactivateWait())
     }
 
     initializeView(json) {
@@ -335,24 +373,22 @@ export class BookOverview {
     }
 
     loaddatafromIndexedDB() {
-        return this.app.indexedDB.readAllData("books_data").then(
-            response => {
-                if (!response.length) {
-                    return false
-                }
-                const data = response[0]
-                delete data.id
-                return data
+        return this.app.indexedDB.readAllData("books_data").then(response => {
+            if (!response.length) {
+                return false
             }
-        )
+            const data = response[0]
+            delete data.id
+            return data
+        })
     }
 
     updateIndexedDB(json) {
         json.id = 1
         // Clear data if any present
-        return this.app.indexedDB.clearData("books_data").then(
-            () => this.app.indexedDB.insertData("books_data", [json])
-        )
+        return this.app.indexedDB
+            .clearData("books_data")
+            .then(() => this.app.indexedDB.insertData("books_data", [json]))
     }
 
     bind() {
@@ -361,7 +397,12 @@ export class BookOverview {
             switch (true) {
             case findTarget(event, ".delete-book", el): {
                 if (this.app.isOffline()) {
-                    addAlert("info", gettext("You cannot delete books while you are offline."))
+                    addAlert(
+                        "info",
+                        gettext(
+                            "You cannot delete books while you are offline."
+                        )
+                    )
                 } else {
                     const bookId = parseInt(el.target.dataset.id)
                     this.mod.actions.deleteBookDialog([bookId])
@@ -370,9 +411,16 @@ export class BookOverview {
             }
             case findTarget(event, ".delete-folder", el):
                 if (this.app.isOffline()) {
-                    addAlert("info", gettext("You cannot delete books while you are offline."))
+                    addAlert(
+                        "info",
+                        gettext(
+                            "You cannot delete books while you are offline."
+                        )
+                    )
                 } else {
-                    const ids = el.target.dataset.ids.split(",").map(id => parseInt(id))
+                    const ids = el.target.dataset.ids
+                        .split(",")
+                        .map(id => parseInt(id))
                     this.mod.actions.deleteBookDialog(ids)
                 }
                 break
@@ -390,13 +438,19 @@ export class BookOverview {
                 event.preventDefault()
                 if (this.table.data.length > 1) {
                     this.path = el.target.dataset.path
-                    window.history.pushState({}, "", el.target.getAttribute("href"))
+                    window.history.pushState(
+                        {},
+                        "",
+                        el.target.getAttribute("href")
+                    )
                     this.initTable()
                 } else {
                     const confirmFolderDeletionDialog = new Dialog({
                         title: gettext("Confirm deletion"),
                         body: `<p>
-                    ${gettext("Leaving an empty folder will delete it. Do you really want to delete this folder?")}
+                    ${gettext(
+        "Leaving an empty folder will delete it. Do you really want to delete this folder?"
+    )}
                             </p>`,
                         id: "confirmfolderdeletion",
                         icon: "exclamation-triangle",
@@ -408,7 +462,11 @@ export class BookOverview {
                                 click: () => {
                                     confirmFolderDeletionDialog.close()
                                     this.path = el.target.dataset.path
-                                    window.history.pushState({}, "", el.target.getAttribute("href"))
+                                    window.history.pushState(
+                                        {},
+                                        "",
+                                        el.target.getAttribute("href")
+                                    )
                                     this.initTable()
                                 }
                             },
@@ -425,7 +483,11 @@ export class BookOverview {
             case findTarget(event, "a.fw-data-table-title.subdir", el):
                 event.preventDefault()
                 this.path = el.target.dataset.path
-                window.history.pushState({}, "", el.target.getAttribute("href"))
+                window.history.pushState(
+                    {},
+                    "",
+                    el.target.getAttribute("href")
+                )
                 this.initTable()
                 break
             case findTarget(event, ".fw-data-table-title", el): {
@@ -436,7 +498,10 @@ export class BookOverview {
                 break
             }
             case findTarget(event, "a", el):
-                if (el.target.hostname === window.location.hostname && el.target.getAttribute("href")[0] === "/") {
+                if (
+                    el.target.hostname === window.location.hostname &&
+                        el.target.getAttribute("href")[0] === "/"
+                ) {
                     event.preventDefault()
                     this.app.goTo(el.target.href)
                 }

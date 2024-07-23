@@ -8,15 +8,19 @@ export class BookAppItem {
         this.app.routes["books"] = {
             requireLogin: true,
             open: pathnameParts => {
-                const path = ("/" + pathnameParts.slice(2).join("/")).replace(/\/?$/, "/")
-                return import("../../modules/books").then(({BookOverview}) => new BookOverview(this.app.config, path))
+                const path = ("/" + pathnameParts.slice(2).join("/")).replace(
+                    /\/?$/,
+                    "/"
+                )
+                return import("../../modules/books").then(
+                    ({BookOverview}) => new BookOverview(this.app.config, path)
+                )
             },
             dbTables: {
-                "data": {
+                data: {
                     keyPath: "id"
                 }
             }
         }
     }
-
 }

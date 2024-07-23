@@ -9,7 +9,6 @@ import {removeHidden} from "../../../exporter/tools/doc_content"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 
 export class LatexBookExporter {
-
     constructor(schema, book, user, docList, updated) {
         this.schema = schema
         this.book = book
@@ -30,26 +29,43 @@ export class LatexBookExporter {
 
     export() {
         this.zipFileName = `${createSlug(this.book.title)}.latex.zip`
-        let bibIds = [], imageIds = []
-        const features = {}, combinedBibliography = {}, combinedImages = {}
+        let bibIds = [],
+            imageIds = []
+        const features = {},
+            combinedBibliography = {},
+            combinedImages = {}
         this.book.chapters.forEach((chapter, index) => {
             const doc = this.docList.find(doc => doc.id === chapter.text)
-            const converter = new LatexExporterConvert(this, {db: doc.images}, {db: doc.bibliography}, doc.settings)
+            const converter = new LatexExporterConvert(
+                this,
+                {db: doc.images},
+                {db: doc.bibliography},
+                doc.settings
+            )
             const chapterContent = removeHidden(doc.content)
             const convertedDoc = converter.init(chapterContent)
             this.textFiles.push({
                 filename: `chapter-${index + 1}.tex`,
                 contents: convertedDoc.latex
             })
-            bibIds = [...new Set(bibIds.concat(Object.keys(convertedDoc.usedBibDB)))]
+            bibIds = [
+                ...new Set(bibIds.concat(Object.keys(convertedDoc.usedBibDB)))
+            ]
             imageIds = [...new Set(imageIds.concat(convertedDoc.imageIds))]
             Object.assign(features, converter.features)
-            Object.keys(convertedDoc.usedBibDB).forEach(bibId => combinedBibliography[bibId] = doc.bibliography[bibId])
-            convertedDoc.imageIds.forEach(imageId => combinedImages[imageId] = doc.images[imageId])
+            Object.keys(convertedDoc.usedBibDB).forEach(
+                bibId => (combinedBibliography[bibId] = doc.bibliography[bibId])
+            )
+            convertedDoc.imageIds.forEach(
+                imageId => (combinedImages[imageId] = doc.images[imageId])
+            )
         })
         if (bibIds.length > 0) {
             const bibExport = new BibLatexExporter(combinedBibliography, bibIds)
-            this.textFiles.push({filename: "bibliography.bib", contents: bibExport.output})
+            this.textFiles.push({
+                filename: "bibliography.bib",
+                contents: bibExport.output
+            })
         }
         imageIds.forEach(id => {
             this.httpFiles.push({
@@ -59,7 +75,12 @@ export class LatexBookExporter {
         })
         // Start a converter, only for creating a preamble/epilogue that combines
         // the features of all of the contained chapters.
-        const bookConverter = new LatexExporterConvert(this, {db: combinedImages}, {db: combinedBibliography}, {language: this.book.settings.language, bibliography_header: {}})
+        const bookConverter = new LatexExporterConvert(
+            this,
+            {db: combinedImages},
+            {db: combinedBibliography},
+            {language: this.book.settings.language, bibliography_header: {}}
+        )
         bookConverter.features = features
         const preamble = bookConverter.assemblePreamble()
         const epilogue = bookConverter.assembleEpilogue()
@@ -84,9 +105,7 @@ export class LatexBookExporter {
             this.updated
         )
 
-        return zipper.init().then(
-            blob => this.download(blob)
-        )
+        return zipper.init().then(blob => this.download(blob))
     }
 
     download(blob) {
