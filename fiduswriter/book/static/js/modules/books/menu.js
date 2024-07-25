@@ -1,4 +1,5 @@
 import {BookAccessRightsDialog} from "./accessrights"
+import {BITSExporter} from "./exporter/bits"
 import {HTMLBookExporter, SingleFileHTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
@@ -64,6 +65,22 @@ const exportEpub = (book, overview) => {
         overview.schema,
         overview.app.csl,
         overview.styles,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
+}
+
+const exportBITS = (book, overview) => {
+    addAlert(
+        "info",
+        book.title + ": " + gettext("BITS export has been initiated.")
+    )
+    const exporter = new BITSExporter(
+        overview.schema,
+        overview.app.csl,
         book,
         overview.user,
         overview.documentList,
@@ -225,6 +242,18 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
+            title: gettext("Export selected as BITS"),
+            tooltip: gettext("Export selected books as BITS."),
+            action: overview => {
+                const ids = overview.getSelected()
+                ids.forEach(id => {
+                    const book = overview.bookList.find(book => book.id === id)
+                    exportBITS(book, overview)
+                })
+            },
+            disabled: overview => !overview.getSelected().length
+        },
+        {
             title: gettext("Export selected as Epub"),
             tooltip: gettext("Export selected books as Epub."),
             action: overview => {
@@ -289,6 +318,14 @@ export const bulkMenuModel = () => ({
 
 export const exportMenuModel = () => ({
     content: [
+        {
+            type: "action",
+            title: gettext("Export as BITS"),
+            tooltip: gettext("Export book as Book Interchange Tag Set."),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(() => exportBITS(book, overview))
+            }
+        },
         {
             type: "action",
             title: gettext("Export as Epub"),

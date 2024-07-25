@@ -232,7 +232,7 @@ export class BookOverview {
             this.lastSort = {column, dir}
         })
 
-        this.dtBulk.init(this.table.table)
+        this.dtBulk.init(this.table.dom)
     }
 
     createTableRow(book, subdirs, searching) {
