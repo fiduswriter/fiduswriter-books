@@ -468,11 +468,13 @@ def save_access_rights(request):
                     if len(path) == 1:
                         path = ""
                     if right["holder"]["type"] == "userinvite":
-                        holder = UserInvite.objects.get(
+                        holder = UserInvite.objects.filter(
                             id=right["holder"]["id"]
-                        )
+                        ).first()
                     else:
-                        holder = User.objects.get(id=right["holder"]["id"])
+                        holder = User.objects.filter(id=right["holder"]["id"]).first()
+                    if not holder:
+                        continue
                     access_right = BookAccessRight.objects.create(
                         book_id=book_id,
                         holder_obj=holder,
