@@ -47,6 +47,7 @@ export class BITSExporter {
             const converter = new JATSExporterConverter(
                 this.type,
                 doc,
+                this.csl,
                 {db: doc.images},
                 {db: doc.bibliography}
             )
