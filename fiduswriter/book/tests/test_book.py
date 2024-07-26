@@ -237,6 +237,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Books"]'
         ).click()
+        self.driver.refresh()
         # Login as user 1 again.
         self.login_user(self.user, self.driver, self.client)
         self.driver.refresh()
