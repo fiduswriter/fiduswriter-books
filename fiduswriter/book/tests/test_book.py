@@ -240,7 +240,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         # Login as user 1 again.
         self.login_user(self.user, self.driver, self.client)
         self.driver.refresh()
-        time.sleep(2)
+        time.sleep(self.wait_time / 2)
         # Add access rights for user 2 (write) + 3 (read)
         self.driver.find_element(
             By.CSS_SELECTOR,
