@@ -16,6 +16,7 @@ static-libs/
 fiduswriter/static-transpile
 fiduswriter/static-collected
 fiduswriter/.coveragerc
+fiduswriter/.coverage
 fiduswriter/configuration.py
 fiduswriter/fiduswriter.sql
 fiduswriter/fiduswriter.sqlite3
