@@ -22,7 +22,6 @@ export class BITSExporter {
         this.type = "book"
         this.textFiles = []
         this.httpFiles = []
-
     }
 
     init() {
@@ -74,7 +73,7 @@ export class BITSExporter {
         this.textFiles = [
             {
                 filename: "manuscript.xml",
-                contents: pretty(bitsTemplate(chapters), {ocd: true})
+                contents: pretty(bitsTemplate(this.book, chapters), {ocd: true})
             },
             {
                 filename: "manifest.xml",
