@@ -595,7 +595,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.assertEqual(trs[1].text, "Book 2")
         # Go to top folder
         trs[0].click()
-        time.sleep(self.wait_time/4)
+        time.sleep(self.wait_time / 4)
         trs = self.driver.find_elements(
             By.CSS_SELECTOR, ".fw-contents tbody tr .fw-data-table-title"
         )
