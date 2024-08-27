@@ -234,14 +234,16 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Accept invite"]'
         ).click()
+        time.sleep(1)
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Books"]'
         ).click()
-        self.driver.refresh()
+        time.sleep(1)
+        self.logout_user(self.driver, self.client)
         # Login as user 1 again.
         self.login_user(self.user, self.driver, self.client)
         self.driver.refresh()
-        time.sleep(self.wait_time / 2)
+        time.sleep(1)
         # Add access rights for user 2 (write) + 3 (read)
         self.driver.find_element(
             By.CSS_SELECTOR,
@@ -264,6 +266,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             By.XPATH,
             '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
         ).click()
+        time.sleep(1)
         # Check that access rights are listed
         self.driver.refresh()
         time.sleep(1)
