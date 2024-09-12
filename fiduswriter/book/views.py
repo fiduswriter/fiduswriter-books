@@ -315,6 +315,7 @@ def save_odt_template(request):
         status = 200
     return JsonResponse(response, status=status)
 
+
 @login_required
 @require_POST
 @ajax_required
@@ -493,7 +494,9 @@ def save_access_rights(request):
                             id=right["holder"]["id"]
                         ).first()
                     else:
-                        holder = User.objects.filter(id=right["holder"]["id"]).first()
+                        holder = User.objects.filter(
+                            id=right["holder"]["id"]
+                        ).first()
                     if not holder:
                         continue
                     access_right = BookAccessRight.objects.create(

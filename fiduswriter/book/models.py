@@ -12,6 +12,7 @@ def export_template_filename(instance, filename):
     instance.title = filename.split(".")[0]
     return "/".join(["book-export-template-files", filename])
 
+
 class Book(models.Model):
     title = models.CharField(max_length=128)
     path = models.TextField(default="", blank=True)
@@ -24,7 +25,9 @@ class Book(models.Model):
         default=None,
         on_delete=models.deletion.CASCADE,
     )
-    odt_template= models.FileField(upload_to=export_template_filename, blank=True, null=True)
+    odt_template = models.FileField(
+        upload_to=export_template_filename, blank=True, null=True
+    )
     chapters = models.ManyToManyField(
         Document, through="Chapter", blank=True, default=None
     )

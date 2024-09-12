@@ -806,9 +806,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         )
         assert internal_link.text == "An abstract title"
         # We delete the contents from the heading
-        self.driver.find_element(
-            By.CSS_SELECTOR, ".doc-abstract h3"
-        ).click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-abstract h3").click()
         ActionChains(self.driver).send_keys(Keys.BACKSPACE).send_keys(
             Keys.BACKSPACE
         ).send_keys(Keys.BACKSPACE).send_keys(Keys.BACKSPACE).send_keys(

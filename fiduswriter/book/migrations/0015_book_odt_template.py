@@ -15,7 +15,9 @@ class Migration(migrations.Migration):
             model_name="book",
             name="odt_template",
             field=models.FileField(
-                blank=True, null=True, upload_to=book.models.export_template_filename
+                blank=True,
+                null=True,
+                upload_to=book.models.export_template_filename,
             ),
         ),
     ]
