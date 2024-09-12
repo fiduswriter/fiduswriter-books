@@ -1,5 +1,6 @@
 import time
 import os
+import sys
 from tempfile import mkdtemp
 from urllib.parse import urlparse
 
@@ -48,6 +49,12 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.user3 = self.create_user(
             username="Yeti3", email="yeti3@snowman.com", passtext="otter1"
         )
+
+    def tearDown(self):
+        super().tearDown()
+        if "coverage" in sys.modules.keys():
+            # Cool down
+            time.sleep(self.wait_time / 3)
 
     def test_books(self):
         self.login_user(self.user, self.driver, self.client)
