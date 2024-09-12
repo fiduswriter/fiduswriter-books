@@ -896,7 +896,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ).click()
         self.driver.find_element(By.ID, "add-chapter").click()
         self.driver.find_element(
-            By.CSS_SELECTOR, 'a[href="#optionTab5"]'
+            By.CSS_SELECTOR, 'a[href="#optionTab6"]'
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR, "#perform-sanity-check-button"
