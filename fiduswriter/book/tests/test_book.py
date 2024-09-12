@@ -1,5 +1,6 @@
 import time
 import os
+import sys
 from tempfile import mkdtemp
 from urllib.parse import urlparse
 
@@ -49,6 +50,12 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             username="Yeti3", email="yeti3@snowman.com", passtext="otter1"
         )
 
+    def tearDown(self):
+        super().tearDown()
+        if "coverage" in sys.modules.keys():
+            # Cool down
+            time.sleep(self.wait_time / 3)
+
     def test_books(self):
         self.login_user(self.user, self.driver, self.client)
         self.driver.get(self.base_url + "/")
@@ -61,8 +68,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
         )
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").send_keys(
             "Chapter 1"
         )
         time.sleep(1)
@@ -76,8 +83,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
         )
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").send_keys(
             "Chapter 2"
         )
         time.sleep(1)
@@ -91,8 +98,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
         )
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").send_keys(
             "Chapter 3"
         )
         time.sleep(1)
@@ -666,12 +673,12 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
         )
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").send_keys(
             "Chapter 1"
         )
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").send_keys(
             "Some content"
         )
         # Add a comment
@@ -696,8 +703,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR, "li:nth-child(1) > .fw-pulldown-item"
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").send_keys(
             "\nTracked content"
         )
         time.sleep(1)
@@ -712,8 +719,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
         )
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-title").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-title").send_keys(
             "Chapter 2"
         )
         # We enable the abstract
@@ -734,7 +741,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
                 "> ul > li:nth-child(1) > div > ul > li:nth-child(3) > span"
             ),
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").click()
         ActionChains(self.driver).send_keys(Keys.LEFT).send_keys(
             "An abstract title"
         ).perform()
@@ -749,8 +756,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
                 "ul > li:nth-child(4) > span > label"
             ),
         ).click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").send_keys(
             "Some content\n"
         )
         # We add a cross reference for the heading
@@ -776,7 +783,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             ),
         ).click()
         cross_reference = self.driver.find_element(
-            By.CSS_SELECTOR, ".article-body .cross-reference"
+            By.CSS_SELECTOR, ".doc-body .cross-reference"
         )
         assert cross_reference.text == "An abstract title"
         # We add an internal link
@@ -802,13 +809,11 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             ),
         ).click()
         internal_link = self.driver.find_element(
-            By.CSS_SELECTOR, ".article-body a"
+            By.CSS_SELECTOR, ".doc-body a"
         )
         assert internal_link.text == "An abstract title"
         # We delete the contents from the heading
-        self.driver.find_element(
-            By.CSS_SELECTOR, ".article-abstract h3"
-        ).click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-abstract h3").click()
         ActionChains(self.driver).send_keys(Keys.BACKSPACE).send_keys(
             Keys.BACKSPACE
         ).send_keys(Keys.BACKSPACE).send_keys(Keys.BACKSPACE).send_keys(
@@ -839,11 +844,11 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             Keys.BACKSPACE
         ).perform()
         cross_reference = self.driver.find_element(
-            By.CSS_SELECTOR, ".article-body .cross-reference.missing-target"
+            By.CSS_SELECTOR, ".doc-body .cross-reference.missing-target"
         )
         assert cross_reference.text == "MISSING TARGET"
         internal_link = self.driver.find_element(
-            By.CSS_SELECTOR, ".article-body a.missing-target"
+            By.CSS_SELECTOR, ".doc-body a.missing-target"
         )
         assert internal_link.get_attribute("title") == "Missing target"
         self.assertEqual(
@@ -865,8 +870,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located((By.CLASS_NAME, "editor-toolbar"))
         )
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".article-body").send_keys(
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".doc-body").send_keys(
             "Chapter 3"
         )
         time.sleep(1)
@@ -898,7 +903,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ).click()
         self.driver.find_element(By.ID, "add-chapter").click()
         self.driver.find_element(
-            By.CSS_SELECTOR, 'a[href="#optionTab5"]'
+            By.CSS_SELECTOR, 'a[href="#optionTab6"]'
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR, "#perform-sanity-check-button"

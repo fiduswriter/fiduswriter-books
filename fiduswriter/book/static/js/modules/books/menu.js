@@ -1,9 +1,10 @@
 import {BookAccessRightsDialog} from "./accessrights"
-import {BITSExporter} from "./exporter/bits"
+import {BITSBookExporter} from "./exporter/bits"
 import {HTMLBookExporter, SingleFileHTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
+import {ODTBookExporter} from "./exporter/odt"
 import {addAlert, FileDialog, NewFolderDialog} from "../common"
 
 let currentlySearching = false
@@ -78,7 +79,7 @@ const exportBITS = (book, overview) => {
         "info",
         book.title + ": " + gettext("BITS export has been initiated.")
     )
-    const exporter = new BITSExporter(
+    const exporter = new BITSBookExporter(
         overview.schema,
         overview.app.csl,
         book,
@@ -130,6 +131,22 @@ const exportLatex = (book, overview) => {
     )
     const exporter = new LatexBookExporter(
         overview.schema,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
+}
+
+const exportODT = (book, overview) => {
+    addAlert(
+        "info",
+        book.title + ": " + gettext("ODT export has been initiated.")
+    )
+    const exporter = new ODTBookExporter(
+        overview.schema,
+        overview.app.csl,
         book,
         overview.user,
         overview.documentList,
@@ -302,6 +319,18 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
+            title: gettext("Export selected as ODT"),
+            tooltip: gettext("Export selected books as ODT."),
+            action: overview => {
+                const ids = overview.getSelected()
+                ids.forEach(id => {
+                    const book = overview.bookList.find(book => book.id === id)
+                    exportODT(book, overview)
+                })
+            },
+            disabled: overview => !overview.getSelected().length
+        },
+        {
             title: gettext("Export selected to Print/PDF"),
             tooltip: gettext("Export selected books to the print dialog."),
             action: overview => {
@@ -356,6 +385,14 @@ export const exportMenuModel = () => ({
             tooltip: gettext("Export book as LaTeX."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(() => exportLatex(book, overview))
+            }
+        },
+        {
+            type: "action",
+            title: gettext("Export as ODT"),
+            tooltip: gettext("Export book as ODT."),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(() => exportODT(book, overview))
             }
         },
         {

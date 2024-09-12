@@ -329,11 +329,60 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
 export const bookEpubDataTemplate = ({book, imageDB}) =>
     `<table class="fw-dialog-table fw-media-uploader">
         <tbody>
-            <tr id="figure-preview-row">
+            <tr id="cover-preview-row">
                 ${bookEpubDataCoverTemplate({
         book,
         imageDB
     })}
+            </tr>
+        </tbody>
+    </table>`
+
+export const bookODTDataRowTemplate = ({book}) =>
+    `<th class="odt-file-row">
+        <h4 class="fw-tablerow-title">${gettext("ODT Template")}</h4>
+    </th>
+    <td>
+        ${
+    book.odt_template
+        ? `<a href="${book.odt_template}" id="odt-template-file-url" download>${
+            escapeText(book.odt_template)
+        }</a>`
+        : ""
+}
+    </td>
+    ${
+    book.rights === "write" ?
+        `<td class="odt-template-row">
+            <button type="button" class="ui-button ui-widget ui-state-default
+                    ui-corner-all ui-button-text-only fw-button fw-dark"
+                    id="select-odt-template" role="button" aria-disabled="false" 
+                    title="${gettext("Select an ODT template file")}">
+                <span class="ui-button-text">${gettext("Select ODT template file")}</span>
+            </button>
+            ${
+    book.odt_template ?
+        `<button type="button" class="ui-button ui-widget ui-state-default
+                    ui-corner-all ui-button-text-only fw-button fw-orange"
+                    id="remove-odt-template-button" role="button" aria-disabled="false" 
+                    title="${gettext("Remove ODT template file")}">
+                <span class="ui-button-text">
+                    ${gettext("Remove ODT template file")}
+                </span>
+            </button>`
+        : ""
+}
+        </td>`
+        : ""
+}`
+
+
+/** A template for the epub related data pane of the book dialog */
+export const bookODTDataTemplate = ({book}) =>
+    `<table class="fw-dialog-table">
+        <tbody>
+            <tr id="odt-template-row">
+                ${bookODTDataRowTemplate({book})}
             </tr>
         </tbody>
     </table>`

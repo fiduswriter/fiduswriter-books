@@ -8,7 +8,9 @@ import {
     bookChapterListTemplate,
     bookChapterDialogTemplate,
     bookEpubDataCoverTemplate,
-    bookSanityCheckTemplate
+    bookSanityCheckTemplate,
+    bookODTDataTemplate,
+    bookODTDataRowTemplate
 } from "./templates"
 import {exportMenuModel} from "./menu"
 import {bookSanityCheck} from "./sanity_check"
@@ -62,6 +64,11 @@ export class BookActions {
                 title: gettext("Epub"),
                 description: gettext("Epub related settings"),
                 template: bookEpubDataTemplate
+            },
+            {
+                title: gettext("ODT"),
+                description: gettext("ODT related settings"),
+                template: bookODTDataTemplate
             },
             {
                 title: gettext("Print/PDF"),
@@ -522,29 +529,60 @@ export class BookActions {
                                     ? imageDB.db[image.id]
                                     : bookImageDB.db[image.id]
                     }
-                    document.getElementById(
-                        "figure-preview-row"
-                    ).innerHTML = bookEpubDataCoverTemplate({
-                        imageDB: {
-                            db: Object.assign(
-                                {},
-                                imageDB.db,
-                                bookImageDB.db
-                            )
-                        },
-                        book
-                    })
+                    const coverPreviewRow = document.getElementById(
+                        "cover-preview-row"
+                    )
+                    if (coverPreviewRow) {
+                        coverPreviewRow.innerHTML = bookEpubDataCoverTemplate({
+                            book,
+                            imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
+                        })
+                    }
                 })
                 break
             }
-            case findTarget(event, "#remove-cover-image-button", el):
-                delete book.cover_image
-                document.getElementById("figure-preview-row").innerHTML =
-                        bookEpubDataCoverTemplate({
-                            book,
-                            imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
-                        })
+            case findTarget(event, "#select-odt-template", el): {
+                const fileSelector = document.createElement("input")
+                fileSelector.type = "file"
+                fileSelector.accept = ".odt"
+                fileSelector.addEventListener("change", event => {
+                    const file = event.target.files[0]
+                    return postJson(
+                        "/api/book/odt_template/save/",
+                        {id: book.id, file}
+                    ).then(({status, json}) => {
+                        if (status !== 200) {
+                            return
+                        }
+                        book.odt_template = json.odt_template
+                        const odtTemplateRow = document.getElementById("odt-template-row")
+                        if (odtTemplateRow) {
+                            odtTemplateRow.innerHTML = bookODTDataRowTemplate({book})
+                        }
+                    })
+                })
+                fileSelector.click()
                 break
+            }
+            case findTarget(event, "#remove-cover-image-button", el): {
+                delete book.cover_image
+                const coverPreviewRow = document.getElementById("cover-preview-row")
+                if (coverPreviewRow) {
+                    coverPreviewRow.innerHTML = bookEpubDataCoverTemplate({
+                        book,
+                        imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
+                    })
+                }
+                break
+            }
+            case findTarget(event, "#remove-odt-template-button", el): {
+                delete book.odt_template
+                const odtTemplateRow = document.getElementById("odt-template-row")
+                if (odtTemplateRow) {
+                    odtTemplateRow.innerHTML = bookODTDataRowTemplate({book})
+                }
+                break
+            }
             case findTarget(event, "#perform-sanity-check-button", el): {
                 this.saveBook(book, oldBookId)
                     .then(() =>
@@ -555,10 +593,15 @@ export class BookActions {
                         )
                     )
                     .then(
-                        sanityCheckOutputHTML =>
-                            (document.getElementById(
+                        sanityCheckOutputHTML => {
+                            const sanityCheckOutput = document.getElementById(
                                 "sanity-check-output"
-                            ).innerHTML = sanityCheckOutputHTML)
+                            )
+                            if (sanityCheckOutput) {
+                                sanityCheckOutput.innerHTML = sanityCheckOutputHTML
+                            }
+                        }
+
                     )
                 break
             }
