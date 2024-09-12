@@ -18,4 +18,9 @@ urlpatterns = [
         views.save_access_rights,
         name="save_access_rights",
     ),
+    re_path(
+        "^odt_template/save/$",
+        views.save_odt_template,
+        name="save_odt_template",
+    ),
 ]

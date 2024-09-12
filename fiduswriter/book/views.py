@@ -93,6 +93,7 @@ def list(request):
             "metadata",
             "settings",
             "cover_image",
+            "odt_template",
             "owner_id",
             "owner__first_name",
             "owner__last_name",
@@ -164,6 +165,8 @@ def list(request):
                 field_obj["height"] = image.height
                 field_obj["width"] = image.width
             book_data["cover_image_data"] = field_obj
+        if book.odt_template:
+            book_data["odt_template"] = book.odt_template.url
         response["books"].append(book_data)
     response["contacts"] = []
     for contact in request.user.contacts.all():
@@ -300,6 +303,21 @@ def copy(request):
 @login_required
 @require_POST
 @ajax_required
+def save_odt_template(request):
+    response = {}
+    status = 403
+    book_id = int(request.POST["id"])
+    book = Book.objects.get(id=book_id)
+    if book.owner == request.user:
+        book.odt_template = request.FILES["file"]
+        book.save(update_fields=["odt_template"])
+        response["odt_template"] = book.odt_template.url
+        status = 200
+    return JsonResponse(response, status=status)
+
+@login_required
+@require_POST
+@ajax_required
 def save(request):
     response = {}
     status = 403
@@ -329,6 +347,9 @@ def save(request):
                 access_right.path = book_obj["path"]
                 access_right.save()
     has_coverimage_access = False
+    if "odt_template" not in book_obj:
+        # If the odt_template is not in the book object, we remove it in the database.
+        book.odt_template = None
     if "cover_image" not in book_obj:
         book.cover_image = None
         has_coverimage_access = True

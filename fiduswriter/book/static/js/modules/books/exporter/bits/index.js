@@ -11,7 +11,7 @@ import {addAlert} from "../../../common"
 import {bitsTemplate} from "./templates"
 
 
-export class BITSExporter {
+export class BITSBookExporter {
     constructor(schema, csl, book, user, docList, updated) {
         this.schema = schema
         this.csl = csl

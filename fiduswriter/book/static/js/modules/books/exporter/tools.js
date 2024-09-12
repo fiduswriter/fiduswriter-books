@@ -26,8 +26,8 @@ export const getMissingChapterData = function(
     }
 
     const docIds = book.chapters.map(chapter => chapter.text)
-
-    return getMissingDocumentListData(docIds, documentList, schema, rawContent)
+    const returnData = getMissingDocumentListData(docIds, documentList, schema, rawContent)
+    return returnData
 }
 
 export const uniqueObjects = function(array) {
