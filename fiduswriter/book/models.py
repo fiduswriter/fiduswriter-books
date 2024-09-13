@@ -25,6 +25,9 @@ class Book(models.Model):
         default=None,
         on_delete=models.deletion.CASCADE,
     )
+    docx_template = models.FileField(
+        upload_to=export_template_filename, blank=True, null=True
+    )
     odt_template = models.FileField(
         upload_to=export_template_filename, blank=True, null=True
     )

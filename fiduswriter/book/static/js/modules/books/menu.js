@@ -4,6 +4,7 @@ import {HTMLBookExporter, SingleFileHTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {EpubBookExporter} from "./exporter/epub"
 import {PrintBookExporter} from "./exporter/print"
+import {DOCXBookExporter} from "./exporter/docx"
 import {ODTBookExporter} from "./exporter/odt"
 import {addAlert, FileDialog, NewFolderDialog} from "../common"
 
@@ -131,6 +132,22 @@ const exportLatex = (book, overview) => {
     )
     const exporter = new LatexBookExporter(
         overview.schema,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
+}
+
+const exportDOCX = (book, overview) => {
+    addAlert(
+        "info",
+        book.title + ": " + gettext("DOCX export has been initiated.")
+    )
+    const exporter = new DOCXBookExporter(
+        overview.schema,
+        overview.app.csl,
         book,
         overview.user,
         overview.documentList,
@@ -319,6 +336,18 @@ export const bulkMenuModel = () => ({
             disabled: overview => !overview.getSelected().length
         },
         {
+            title: gettext("Export selected as DOCX"),
+            tooltip: gettext("Export selected books as DOCX."),
+            action: overview => {
+                const ids = overview.getSelected()
+                ids.forEach(id => {
+                    const book = overview.bookList.find(book => book.id === id)
+                    exportDOCX(book, overview)
+                })
+            },
+            disabled: overview => !overview.getSelected().length
+        },
+        {
             title: gettext("Export selected as ODT"),
             tooltip: gettext("Export selected books as ODT."),
             action: overview => {
@@ -387,6 +416,15 @@ export const exportMenuModel = () => ({
                 saveBook().then(() => exportLatex(book, overview))
             }
         },
+        {
+            type: "action",
+            title: gettext("Export as DOCX"),
+            tooltip: gettext("Export book as DOCX."),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(() => exportDOCX(book, overview))
+            }
+        },
+
         {
             type: "action",
             title: gettext("Export as ODT"),
