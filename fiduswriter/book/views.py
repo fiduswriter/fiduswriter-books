@@ -93,6 +93,7 @@ def list(request):
             "metadata",
             "settings",
             "cover_image",
+            "docx_template",
             "odt_template",
             "owner_id",
             "owner__first_name",
@@ -167,6 +168,8 @@ def list(request):
             book_data["cover_image_data"] = field_obj
         if book.odt_template:
             book_data["odt_template"] = book.odt_template.url
+        if book.docx_template:
+            book_data["docx_template"] = book.docx_template.url
         response["books"].append(book_data)
     response["contacts"] = []
     for contact in request.user.contacts.all():
@@ -319,6 +322,22 @@ def save_odt_template(request):
 @login_required
 @require_POST
 @ajax_required
+def save_docx_template(request):
+    response = {}
+    status = 403
+    book_id = int(request.POST["id"])
+    book = Book.objects.get(id=book_id)
+    if book.owner == request.user:
+        book.docx_template = request.FILES["file"]
+        book.save(update_fields=["docx_template"])
+        response["docx_template"] = book.docx_template.url
+        status = 200
+    return JsonResponse(response, status=status)
+
+
+@login_required
+@require_POST
+@ajax_required
 def save(request):
     response = {}
     status = 403
@@ -348,6 +367,9 @@ def save(request):
                 access_right.path = book_obj["path"]
                 access_right.save()
     has_coverimage_access = False
+    if "docx_template" not in book_obj:
+        # If the docx_template is not in the book object, we remove it in the database.
+        book.docx_template = None
     if "odt_template" not in book_obj:
         # If the odt_template is not in the book object, we remove it in the database.
         book.odt_template = None

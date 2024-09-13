@@ -27,9 +27,10 @@ export class ODTBookExporterRender extends ODTExporterRender {
                     if (
                         node.tagName === "text:section"
                     ) {
-                        if (String(node.getAttribute("text:name")).toLowerCase() === "body") {
+                        const sectionName = String(node.getAttribute("text:name")).toLowerCase()
+                        if (sectionName === "body") {
                             currentSection = this.bodyTemplate
-                        } else if (String(node.getAttribute("text:name")).toLowerCase() === "postamble") {
+                        } else if (sectionName === "postamble") {
                             currentSection = this.postamble
                         }
                     } else if (["text:p", "text:h"].includes(node.tagName)) {

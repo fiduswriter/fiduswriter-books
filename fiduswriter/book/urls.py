@@ -19,6 +19,11 @@ urlpatterns = [
         name="save_access_rights",
     ),
     re_path(
+        "^docx_template/save/$",
+        views.save_docx_template,
+        name="save_docx_template",
+    ),
+    re_path(
         "^odt_template/save/$",
         views.save_odt_template,
         name="save_odt_template",

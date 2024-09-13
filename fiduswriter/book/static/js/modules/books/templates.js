@@ -356,7 +356,7 @@ export const bookODTDataRowTemplate = ({book}) =>
         `<td class="odt-template-row">
             <button type="button" class="ui-button ui-widget ui-state-default
                     ui-corner-all ui-button-text-only fw-button fw-dark"
-                    id="select-odt-template" role="button" aria-disabled="false" 
+                    id="select-odt-template" role="button" aria-disabled="false"
                     title="${gettext("Select an ODT template file")}">
                 <span class="ui-button-text">${gettext("Select ODT template file")}</span>
             </button>
@@ -364,7 +364,7 @@ export const bookODTDataRowTemplate = ({book}) =>
     book.odt_template ?
         `<button type="button" class="ui-button ui-widget ui-state-default
                     ui-corner-all ui-button-text-only fw-button fw-orange"
-                    id="remove-odt-template-button" role="button" aria-disabled="false" 
+                    id="remove-odt-template-button" role="button" aria-disabled="false"
                     title="${gettext("Remove ODT template file")}">
                 <span class="ui-button-text">
                     ${gettext("Remove ODT template file")}
@@ -383,6 +383,56 @@ export const bookODTDataTemplate = ({book}) =>
         <tbody>
             <tr id="odt-template-row">
                 ${bookODTDataRowTemplate({book})}
+            </tr>
+        </tbody>
+    </table>`
+
+
+export const bookDOCXDataRowTemplate = ({book}) =>
+    `<th class="docx-file-row">
+        <h4 class="fw-tablerow-title">${gettext("DOCX Template")}</h4>
+    </th>
+    <td>
+        ${
+    book.docx_template
+        ? `<a href="${book.docx_template}" id="docx-template-file-url" download>${
+            escapeText(book.docx_template)
+        }</a>`
+        : ""
+}
+    </td>
+    ${
+    book.rights === "write" ?
+        `<td class="docx-template-row">
+            <button type="button" class="ui-button ui-widget ui-state-default
+                    ui-corner-all ui-button-text-only fw-button fw-dark"
+                    id="select-docx-template" role="button" aria-disabled="false"
+                    title="${gettext("Select an DOCX template file")}">
+                <span class="ui-button-text">${gettext("Select DOCX template file")}</span>
+            </button>
+            ${
+    book.docx_template ?
+        `<button type="button" class="ui-button ui-widget ui-state-default
+                    ui-corner-all ui-button-text-only fw-button fw-orange"
+                    id="remove-docx-template-button" role="button" aria-disabled="false"
+                    title="${gettext("Remove DOCX template file")}">
+                <span class="ui-button-text">
+                    ${gettext("Remove DOCX template file")}
+                </span>
+            </button>`
+        : ""
+}
+        </td>`
+        : ""
+}`
+
+
+/** A template for the epub related data pane of the book dialog */
+export const bookDOCXDataTemplate = ({book}) =>
+    `<table class="fw-dialog-table">
+        <tbody>
+            <tr id="docx-template-row">
+                ${bookDOCXDataRowTemplate({book})}
             </tr>
         </tbody>
     </table>`

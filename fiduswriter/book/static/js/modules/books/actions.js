@@ -9,6 +9,8 @@ import {
     bookChapterDialogTemplate,
     bookEpubDataCoverTemplate,
     bookSanityCheckTemplate,
+    bookDOCXDataTemplate,
+    bookDOCXDataRowTemplate,
     bookODTDataTemplate,
     bookODTDataRowTemplate
 } from "./templates"
@@ -64,6 +66,11 @@ export class BookActions {
                 title: gettext("Epub"),
                 description: gettext("Epub related settings"),
                 template: bookEpubDataTemplate
+            },
+            {
+                title: gettext("DOCX"),
+                description: gettext("DOCX related settings"),
+                template: bookDOCXDataTemplate
             },
             {
                 title: gettext("ODT"),
@@ -541,6 +548,29 @@ export class BookActions {
                 })
                 break
             }
+            case findTarget(event, "#select-docx-template", el): {
+                const fileSelector = document.createElement("input")
+                fileSelector.type = "file"
+                fileSelector.accept = ".docx"
+                fileSelector.addEventListener("change", event => {
+                    const file = event.target.files[0]
+                    return postJson(
+                        "/api/book/docx_template/save/",
+                        {id: book.id, file}
+                    ).then(({status, json}) => {
+                        if (status !== 200) {
+                            return
+                        }
+                        book.docx_template = json.docx_template
+                        const docxTemplateRow = document.getElementById("docx-template-row")
+                        if (docxTemplateRow) {
+                            docxTemplateRow.innerHTML = bookDOCXDataRowTemplate({book})
+                        }
+                    })
+                })
+                fileSelector.click()
+                break
+            }
             case findTarget(event, "#select-odt-template", el): {
                 const fileSelector = document.createElement("input")
                 fileSelector.type = "file"
@@ -572,6 +602,14 @@ export class BookActions {
                         book,
                         imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
                     })
+                }
+                break
+            }
+            case findTarget(event, "#remove-docx-template-button", el): {
+                delete book.docx_template
+                const docxTemplateRow = document.getElementById("docx-template-row")
+                if (docxTemplateRow) {
+                    docxTemplateRow.innerHTML = bookDOCXDataRowTemplate({book})
                 }
                 break
             }
