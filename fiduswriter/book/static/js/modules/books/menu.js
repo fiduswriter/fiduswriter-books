@@ -342,7 +342,18 @@ export const bulkMenuModel = () => ({
                 const ids = overview.getSelected()
                 ids.forEach(id => {
                     const book = overview.bookList.find(book => book.id === id)
-                    exportDOCX(book, overview)
+                    if (book.docx_template) {
+                        exportDOCX(book, overview)
+                    } else {
+                        addAlert(
+                            "error",
+                            book.title +
+                                ": " +
+                                gettext(
+                                    "This book does not have a DOCX template."
+                                )
+                        )
+                    }
                 })
             },
             disabled: overview => !overview.getSelected().length
@@ -354,7 +365,18 @@ export const bulkMenuModel = () => ({
                 const ids = overview.getSelected()
                 ids.forEach(id => {
                     const book = overview.bookList.find(book => book.id === id)
-                    exportODT(book, overview)
+                    if (book.odt_template) {
+                        exportODT(book, overview)
+                    } else {
+                        addAlert(
+                            "error",
+                            book.title +
+                                ": " +
+                                gettext(
+                                    "This book does not have an ODT template."
+                                )
+                        )
+                    }
                 })
             },
             disabled: overview => !overview.getSelected().length
@@ -422,7 +444,8 @@ export const exportMenuModel = () => ({
             tooltip: gettext("Export book as DOCX."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(() => exportDOCX(book, overview))
-            }
+            },
+            disabled: book => !book.docx_template
         },
 
         {
@@ -431,7 +454,8 @@ export const exportMenuModel = () => ({
             tooltip: gettext("Export book as ODT."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(() => exportODT(book, overview))
-            }
+            },
+            disabled: book => !book.odt_template
         },
         {
             type: "action",

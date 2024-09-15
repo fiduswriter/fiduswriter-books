@@ -203,7 +203,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             settings.PROJECT_PATH, "book/tests/uploads/image.png"
         )
         self.driver.find_element(
-            By.CSS_SELECTOR, "input.fw-media-file-input"
+            By.CSS_SELECTOR, "#editimage input.fw-media-file-input"
         ).send_keys(image_path)
         self.driver.find_element(
             By.XPATH,
@@ -251,6 +251,35 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.login_user(self.user, self.driver, self.client)
         self.driver.refresh()
         time.sleep(1)
+        # Add DOCX template
+        self.driver.find_element(By.CSS_SELECTOR, ".book-title").click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab4"]'
+        ).click()
+        docx_path = os.path.join(
+            settings.PROJECT_PATH, "book/tests/uploads/template.docx"
+        )
+        self.driver.find_element(
+            By.CSS_SELECTOR, "#input-docx-template"
+        ).send_keys(docx_path)
+        time.sleep(1)
+
+        # Add ODT template
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab5"]'
+        ).click()
+        odt_path = os.path.join(
+            settings.PROJECT_PATH, "book/tests/uploads/template.odt"
+        )
+        self.driver.find_element(
+            By.CSS_SELECTOR, "#input-odt-template"
+        ).send_keys(odt_path)
+        time.sleep(1)
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Submit"]'
+        ).click()
+        time.sleep(1)
+
         # Add access rights for user 2 (write) + 3 (read)
         self.driver.find_element(
             By.CSS_SELECTOR,
@@ -487,6 +516,40 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             os.path.join(self.download_dir, "my-book-extra.latex.zip")
         )
         os.remove(os.path.join(self.download_dir, "my-book-extra.latex.zip"))
+
+        # DOCX
+        self.driver.refresh()
+        self.driver.find_element(
+            By.CSS_SELECTOR, "tr:nth-child(1) > td > label"
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
+        ).click()
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Export selected as DOCX"]'
+        ).click()
+        time.sleep(3)
+        assert os.path.isfile(
+            os.path.join(self.download_dir, "my-book-extra.docx")
+        )
+        os.remove(os.path.join(self.download_dir, "my-book-extra.docx"))
+
+        # ODT
+        self.driver.refresh()
+        self.driver.find_element(
+            By.CSS_SELECTOR, "tr:nth-child(1) > td > label"
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
+        ).click()
+        self.driver.find_element(
+            By.XPATH, '//*[normalize-space()="Export selected as ODT"]'
+        ).click()
+        time.sleep(3)
+        assert os.path.isfile(
+            os.path.join(self.download_dir, "my-book-extra.odt")
+        )
+        os.remove(os.path.join(self.download_dir, "my-book-extra.odt"))
 
         # Copy document
         self.driver.refresh()
@@ -817,6 +880,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ActionChains(self.driver).send_keys(Keys.BACKSPACE).send_keys(
             Keys.BACKSPACE
         ).send_keys(Keys.BACKSPACE).send_keys(Keys.BACKSPACE).send_keys(
+            Keys.BACKSPACE
+        ).send_keys(
             Keys.BACKSPACE
         ).send_keys(
             Keys.BACKSPACE

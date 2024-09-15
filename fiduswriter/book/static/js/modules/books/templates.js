@@ -360,6 +360,7 @@ export const bookODTDataRowTemplate = ({book}) =>
                     title="${gettext("Select an ODT template file")}">
                 <span class="ui-button-text">${gettext("Select ODT template file")}</span>
             </button>
+            <input type="file" id="input-odt-template" accept=".odt" class="fw-media-file-input">
             ${
     book.odt_template ?
         `<button type="button" class="ui-button ui-widget ui-state-default
@@ -410,6 +411,7 @@ export const bookDOCXDataRowTemplate = ({book}) =>
                     title="${gettext("Select an DOCX template file")}">
                 <span class="ui-button-text">${gettext("Select DOCX template file")}</span>
             </button>
+            <input type="file" id="input-docx-template" accept=".docx" class="fw-media-file-input">
             ${
     book.docx_template ?
         `<button type="button" class="ui-button ui-widget ui-state-default

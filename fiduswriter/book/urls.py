@@ -21,11 +21,11 @@ urlpatterns = [
     re_path(
         "^docx_template/save/$",
         views.save_docx_template,
-        name="save_docx_template",
+        name="book_docx_template_save",
     ),
     re_path(
         "^odt_template/save/$",
         views.save_odt_template,
-        name="save_odt_template",
+        name="book_odt_template_save",
     ),
 ]

@@ -397,6 +397,41 @@ export class BookActions {
                 selectFolders: false
             })
             fileSelector.init()
+
+            dialog.dialogEl.querySelector("#input-docx-template").addEventListener("change", event => {
+                const file = event.target.files[0]
+                return postJson(
+                    "/api/book/docx_template/save/",
+                    {id: book.id, file}
+                ).then(({status, json}) => {
+                    if (status !== 200) {
+                        return
+                    }
+                    book.docx_template = json.docx_template
+                    const docxTemplateRow = document.getElementById("docx-template-row")
+                    if (docxTemplateRow) {
+                        docxTemplateRow.innerHTML = bookDOCXDataRowTemplate({book})
+                    }
+                })
+            })
+
+            dialog.dialogEl.querySelector("#input-odt-template").addEventListener("change", event => {
+                const file = event.target.files[0]
+                return postJson(
+                    "/api/book/odt_template/save/",
+                    {id: book.id, file}
+                ).then(({status, json}) => {
+                    if (status !== 200) {
+                        return
+                    }
+                    book.odt_template = json.odt_template
+                    const odtTemplateRow = document.getElementById("odt-template-row")
+                    if (odtTemplateRow) {
+                        odtTemplateRow.innerHTML = bookODTDataRowTemplate({book})
+                    }
+                })
+            })
+
         }
 
         // Handle tab link clicking
@@ -549,48 +584,12 @@ export class BookActions {
                 break
             }
             case findTarget(event, "#select-docx-template", el): {
-                const fileSelector = document.createElement("input")
-                fileSelector.type = "file"
-                fileSelector.accept = ".docx"
-                fileSelector.addEventListener("change", event => {
-                    const file = event.target.files[0]
-                    return postJson(
-                        "/api/book/docx_template/save/",
-                        {id: book.id, file}
-                    ).then(({status, json}) => {
-                        if (status !== 200) {
-                            return
-                        }
-                        book.docx_template = json.docx_template
-                        const docxTemplateRow = document.getElementById("docx-template-row")
-                        if (docxTemplateRow) {
-                            docxTemplateRow.innerHTML = bookDOCXDataRowTemplate({book})
-                        }
-                    })
-                })
+                const fileSelector = document.querySelector("#input-docx-template")
                 fileSelector.click()
                 break
             }
             case findTarget(event, "#select-odt-template", el): {
-                const fileSelector = document.createElement("input")
-                fileSelector.type = "file"
-                fileSelector.accept = ".odt"
-                fileSelector.addEventListener("change", event => {
-                    const file = event.target.files[0]
-                    return postJson(
-                        "/api/book/odt_template/save/",
-                        {id: book.id, file}
-                    ).then(({status, json}) => {
-                        if (status !== 200) {
-                            return
-                        }
-                        book.odt_template = json.odt_template
-                        const odtTemplateRow = document.getElementById("odt-template-row")
-                        if (odtTemplateRow) {
-                            odtTemplateRow.innerHTML = bookODTDataRowTemplate({book})
-                        }
-                    })
-                })
+                const fileSelector = document.querySelector("#input-odt-template")
                 fileSelector.click()
                 break
             }
