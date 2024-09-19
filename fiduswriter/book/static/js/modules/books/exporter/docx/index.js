@@ -152,7 +152,7 @@ export class DOCXBookExporter {
 
     getBaseMetadata() {
         const authors = this.book.metadata.author.length ? [{institution: this.book.metadata.author}] : []
-        const keywords = this.book.metadata.keywords.length ? this.book.metadata.keywords.split(',').map(keyword => keyword.trim()) : []
+        const keywords = this.book.metadata.keywords.length ? this.book.metadata.keywords.split(",").map(keyword => keyword.trim()) : []
         return {
             authors,
             keywords,

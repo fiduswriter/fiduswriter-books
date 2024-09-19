@@ -46,9 +46,9 @@ export class DOCXBookExporterRender extends DOCXExporterRender {
 
     render(docContent, pmBib, settings, richtext, citations, chapterNumber) {
         this.text = this.bodyTemplate.cloneNode(true)
-        const bodyBookmark = this.text.query('w:bookmarkStart', {'w:name':"body"})
+        const bodyBookmark = this.text.query("w:bookmarkStart", {"w:name": "body"})
         if (bodyBookmark) {
-            bodyBookmark.setAttribute('w:name', `chapter ${chapterNumber}`)
+            bodyBookmark.setAttribute("w:name", `chapter ${chapterNumber}`)
         }
         super.render(docContent, pmBib, settings, richtext, citations)
         this.bodyParts.push(this.text)
@@ -56,14 +56,14 @@ export class DOCXBookExporterRender extends DOCXExporterRender {
 
     renderAmbles({title, subtitle, version, publisher, copyright, author, keywords, language}) {
         const tags = [
-            {title: 'book.title', content: title},
-            {title: 'book.subtitle', content: subtitle},
-            {title: 'book.version', content: version},
-            {title: 'book.publisher', content: publisher},
-            {title: 'book.copyright', content: copyright},
-            {title: 'book.author', content: author},
-            {title: 'book.keywords', content: keywords},
-            {title: 'book.language', content: language}
+            {title: "book.title", content: title},
+            {title: "book.subtitle", content: subtitle},
+            {title: "book.version", content: version},
+            {title: "book.publisher", content: publisher},
+            {title: "book.copyright", content: copyright},
+            {title: "book.author", content: author},
+            {title: "book.keywords", content: keywords},
+            {title: "book.language", content: language}
         ]
         const usedTags = [], ambles = [this.preamble, this.postamble]
         ambles.forEach(

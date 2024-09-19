@@ -445,7 +445,7 @@ export const exportMenuModel = () => ({
             action: ({saveBook, book, overview}) => {
                 saveBook().then(() => exportDOCX(book, overview))
             },
-            disabled: ({saveBook, book, overview}) => !book.docx_template
+            disabled: ({book}) => !book.docx_template
         },
 
         {
@@ -455,7 +455,7 @@ export const exportMenuModel = () => ({
             action: ({saveBook, book, overview}) => {
                 saveBook().then(() => exportODT(book, overview))
             },
-            disabled: ({saveBook, book, overview}) => !book.odt_template
+            disabled: ({book}) => !book.odt_template
         },
         {
             type: "action",
