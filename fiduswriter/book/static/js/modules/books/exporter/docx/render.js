@@ -44,11 +44,11 @@ export class DOCXBookExporterRender extends DOCXExporterRender {
         )
     }
 
-    render(docContent, pmBib, settings, richtext, citations, chapterNumber) {
+    render(docContent, pmBib, settings, richtext, citations, chapterIndex) {
         this.text = this.bodyTemplate.cloneNode(true)
         const bodyBookmark = this.text.query("w:bookmarkStart", {"w:name": "body"})
         if (bodyBookmark) {
-            bodyBookmark.setAttribute("w:name", `chapter ${chapterNumber}`)
+            bodyBookmark.setAttribute("w:name", `chapter ${chapterIndex + 1}`)
         }
         super.render(docContent, pmBib, settings, richtext, citations)
         this.bodyParts.push(this.text)
