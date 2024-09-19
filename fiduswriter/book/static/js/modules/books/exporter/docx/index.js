@@ -86,7 +86,7 @@ export class DOCXBookExporter {
 
     exportChapters(xml, render, rels, math, tables) {
 
-        return this.book.chapters.map(chapter => {
+        return this.book.chapters.map((chapter, chapterIndex) => {
             return () => {
                 const doc = this.docList.find(doc => doc.id === chapter.text)
                 const docContent = moveFootnoteComments(fixTables(removeHidden(doc.rawContent)))
@@ -135,7 +135,7 @@ export class DOCXBookExporter {
                 ).then(
                     () => {
                         const pmBib = footnotes.pmBib || citations.pmBib
-                        render.render(docContent, pmBib, doc.settings, richtext, citations)
+                        render.render(docContent, pmBib, doc.settings, richtext, citations, chapterIndex)
                         return Promise.resolve()
                     }
                 )
@@ -143,9 +143,9 @@ export class DOCXBookExporter {
         }).reduce((promiseChain, currentChapter) => {
             return promiseChain.then(() => currentChapter())
         }, Promise.resolve()).then(
-            () => {
-                return render.assemble()
-            }
+            () => render.renderAmbles(Object.assign({title: this.book.title, language: this.book.settings.language}, this.book.metadata))
+        ).then(
+            () => render.assemble()
         )
     }
 

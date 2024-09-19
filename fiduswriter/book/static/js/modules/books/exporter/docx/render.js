@@ -44,14 +44,53 @@ export class DOCXBookExporterRender extends DOCXExporterRender {
         )
     }
 
-    render(docContent, pmBib, settings, richtext, citations) {
+    render(docContent, pmBib, settings, richtext, citations, chapterNumber) {
         this.text = this.bodyTemplate.cloneNode(true)
+        const bodyBookmark = this.text.query('w:bookmarkStart', {'w:name':"body"})
+        if (bodyBookmark) {
+            bodyBookmark.setAttribute('w:name', `chapter ${chapterNumber}`)
+        }
         super.render(docContent, pmBib, settings, richtext, citations)
         this.bodyParts.push(this.text)
     }
 
+    renderAmbles({title, subtitle, version, publisher, copyright, author, keywords, language}) {
+        const tags = [
+            {title: 'book.title', content: title},
+            {title: 'book.subtitle', content: subtitle},
+            {title: 'book.version', content: version},
+            {title: 'book.publisher', content: publisher},
+            {title: 'book.copyright', content: copyright},
+            {title: 'book.author', content: author},
+            {title: 'book.keywords', content: keywords},
+            {title: 'book.language', content: language}
+        ]
+        const usedTags = [], ambles = [this.preamble, this.postamble]
+        ambles.forEach(
+            amble => {
+                const blocks = amble.queryAll(["w:p", "w:sectPr"])
+                blocks.forEach(
+                    block => {
+                        // Assuming there is nothing outside of <w:t>...</w:t>
+                        const text = block.textContent
+                        tags.forEach(
+                            tag => {
+                                const tagString = tag.title
+                                if (text.includes(`{${tagString}}`)) {
+                                    usedTags.push(Object.assign({block}, tag))
+                                }
+                            }
+                        )
+                    }
+                )
+            }
+        )
+        usedTags.forEach(tag => this.inlineRender(tag))
+    }
+
     assemble() {
         const text = this.fileXML.query("w:body")
+        Array.from(this.preamble.children).forEach(node => text.appendChild(node))
         this.bodyParts.forEach((bodyPart, index) => {
             const children = bodyPart.children.slice()
             children.forEach(node => {
@@ -76,6 +115,6 @@ export class DOCXBookExporterRender extends DOCXExporterRender {
                 )
             }
         })
-        this.postamble.children.forEach(node => text.appendChild(node))
+        Array.from(this.postamble.children).forEach(node => text.appendChild(node))
     }
 }
