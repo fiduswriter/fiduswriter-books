@@ -26,25 +26,16 @@ export class ODTBookExporterRender extends ODTExporterRender {
                 let currentSection
                 const textChildren = Array.from(text.children)
                 textChildren.forEach(node => {
-                    if (
-                        node.tagName === "text:section"
-                    ) {
-                        const sectionName = String(node.getAttribute("text:name")).toLowerCase()
-                        if (sectionName === "preamble") {
-                            currentSection = this.preamble
-                        } else if (sectionName === "postamble") {
-                            currentSection = this.postamble
-                        } else {
-                            currentSection = this.bodyTemplate
-                        }
-                    } else if (["text:p", "text:h"].includes(node.tagName)) {
+                    if (["text:p", "text:h"].includes(node.tagName)) {
                         const bookmark = node.query("text:bookmark")
                         if (bookmark) {
-                            const sectionName = String(node.getAttribute("text:name")).toLowerCase()
+                            const sectionName = String(bookmark.getAttribute("text:name")).toLowerCase()
                             if (sectionName === "preamble") {
                                 currentSection = this.preamble
                             } else if (sectionName === "postamble") {
                                 currentSection = this.postamble
+                            } else if (sectionName === "body") {
+                                currentSection = this.bodyTemplate
                             } else {
                                 currentSection = currentSection || this.bodyTemplate
                             }
