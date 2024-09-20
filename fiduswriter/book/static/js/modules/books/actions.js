@@ -400,9 +400,11 @@ export class BookActions {
 
             dialog.dialogEl.querySelector("#input-docx-template").addEventListener("change", event => {
                 const file = event.target.files[0]
-                return postJson(
-                    "/api/book/docx_template/save/",
-                    {id: book.id, file}
+                return this.saveBook(book).then(
+                    () => postJson(
+                        "/api/book/docx_template/save/",
+                        {id: book.id, file}
+                    )
                 ).then(({status, json}) => {
                     if (status !== 200) {
                         return
@@ -417,9 +419,11 @@ export class BookActions {
 
             dialog.dialogEl.querySelector("#input-odt-template").addEventListener("change", event => {
                 const file = event.target.files[0]
-                return postJson(
-                    "/api/book/odt_template/save/",
-                    {id: book.id, file}
+                return this.saveBook(book).then(
+                    () => postJson(
+                        "/api/book/odt_template/save/",
+                        {id: book.id, file}
+                    )
                 ).then(({status, json}) => {
                     if (status !== 200) {
                         return
