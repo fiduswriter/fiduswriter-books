@@ -1,12 +1,12 @@
+import {FileDialog, NewFolderDialog, addAlert } from "../common"
 import {BookAccessRightsDialog} from "./accessrights"
 import {BITSBookExporter} from "./exporter/bits"
+import {DOCXBookExporter} from "./exporter/docx"
+import {EpubBookExporter} from "./exporter/epub"
 import {HTMLBookExporter, SingleFileHTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
-import {EpubBookExporter} from "./exporter/epub"
-import {PrintBookExporter} from "./exporter/print"
-import {DOCXBookExporter} from "./exporter/docx"
 import {ODTBookExporter} from "./exporter/odt"
-import {addAlert, FileDialog, NewFolderDialog} from "../common"
+import {PrintBookExporter} from "./exporter/print"
 
 let currentlySearching = false
 

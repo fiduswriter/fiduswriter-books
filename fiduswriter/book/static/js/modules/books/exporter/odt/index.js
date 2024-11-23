@@ -1,20 +1,20 @@
 import download from "downloadjs"
 
-import {removeHidden, fixTables} from "../../../exporter/tools/doc_content"
+import {addAlert} from "../../../common"
+import {fixTables, removeHidden } from "../../../exporter/tools/doc_content"
 import {createSlug} from "../../../exporter/tools/file"
 import {XmlZip} from "../../../exporter/tools/xml_zip"
 import {getMissingChapterData} from "../tools"
-import {addAlert} from "../../../common"
 
 
 import {ODTExporterCitations} from "../../../exporter/odt/citations"
 import {ODTExporterImages} from "../../../exporter/odt/images"
 
-import {ODTExporterRichtext} from "../../../exporter/odt/richtext"
 import {ODTExporterFootnotes} from "../../../exporter/odt/footnotes"
-import {ODTExporterMetadata} from "../../../exporter/odt/metadata"
-import {ODTExporterStyles} from "../../../exporter/odt/styles"
 import {ODTExporterMath} from "../../../exporter/odt/math"
+import {ODTExporterMetadata} from "../../../exporter/odt/metadata"
+import {ODTExporterRichtext} from "../../../exporter/odt/richtext"
+import {ODTExporterStyles} from "../../../exporter/odt/styles"
 import {ODTExporterTracks} from "../../../exporter/odt/track"
 
 import {ODTBookExporterRender} from "./render"

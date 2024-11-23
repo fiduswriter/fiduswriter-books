@@ -1,7 +1,7 @@
 import {printHTML} from "@vivliostyle/print"
 
-import {printHTMLTemplate, chapterTemplate} from "./templates"
 import {HTMLBookExporter, htmlBookIndexBodyTemplate} from "../html"
+import {chapterTemplate, printHTMLTemplate } from "./templates"
 
 const CSS_PAPER_SIZES = {
     folio: "12in 15in",

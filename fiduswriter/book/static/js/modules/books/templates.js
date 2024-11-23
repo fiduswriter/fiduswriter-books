@@ -1,4 +1,4 @@
-import {escapeText, longFilePath, localizeDate} from "../common"
+import {escapeText, localizeDate, longFilePath } from "../common"
 import {LANGUAGES} from "../schema/const"
 
 /** A template for the basic info book template pane */

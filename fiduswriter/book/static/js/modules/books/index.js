@@ -1,31 +1,31 @@
-import {DataTable} from "simple-datatables"
 import deepEqual from "fast-deep-equal"
+import {DataTable} from "simple-datatables"
 
 import * as plugins from "../../plugins/books_overview"
-import {BookActions} from "./actions"
-import {BookAccessRightsDialog} from "./accessrights"
-import {ImageDB} from "../images/database"
 import {
+    DatatableBulk,
+    Dialog,
     OverviewMenuView,
+    activateWait,
+    addAlert,
+    avatarTemplate,
+    baseBodyTemplate,
+    deactivateWait,
+    ensureCSS,
     escapeText,
     findTarget,
-    whenReady,
     postJson,
-    activateWait,
-    deactivateWait,
-    addAlert,
-    baseBodyTemplate,
-    ensureCSS,
     setDocTitle,
-    DatatableBulk,
     shortFileTitle,
-    Dialog,
-    avatarTemplate
+    whenReady
 } from "../common"
-import {SiteMenu} from "../menu"
-import {menuModel, bulkMenuModel} from "./menu"
 import {FeedbackTab} from "../feedback"
+import {ImageDB} from "../images/database"
+import {SiteMenu} from "../menu"
 import {docSchema} from "../schema/document"
+import {BookAccessRightsDialog} from "./accessrights"
+import {BookActions} from "./actions"
+import {bulkMenuModel, menuModel } from "./menu"
 import {dateCell, deleteFolderCell} from "./templates"
 
 export class BookOverview {

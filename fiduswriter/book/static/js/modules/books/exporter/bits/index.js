@@ -1,12 +1,12 @@
 import download from "downloadjs"
 import pretty from "pretty"
 
-import {createSlug} from "../../../exporter/tools/file"
-import {JATSExporterConverter} from "../../../exporter/jats/convert"
-import {ZipFileCreator} from "../../../exporter/tools/zip"
-import {darManifest} from "../../../exporter/jats/templates"
-import {getMissingChapterData} from "../tools"
 import {addAlert} from "../../../common"
+import {JATSExporterConverter} from "../../../exporter/jats/convert"
+import {darManifest} from "../../../exporter/jats/templates"
+import {createSlug} from "../../../exporter/tools/file"
+import {ZipFileCreator} from "../../../exporter/tools/zip"
+import {getMissingChapterData} from "../tools"
 
 import {bitsTemplate} from "./templates"
 

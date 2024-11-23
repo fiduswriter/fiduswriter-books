@@ -1,40 +1,40 @@
-import {DOMSerializer} from "prosemirror-model"
 import download from "downloadjs"
 import pretty from "pretty"
+import {DOMSerializer} from "prosemirror-model"
 
+import {
+    addCategoryLabels,
+    getTimestamp,
+    orderLinks,
+    setLinks,
+    styleEpubFootnotes
+} from "../../../exporter/epub/tools"
+import {DOMExporter} from "../../../exporter/tools/dom_export"
+import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
 import {bookTerm} from "../../i18n"
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {
-    epubBookOpfTemplate,
+    epubBookCopyrightTemplate,
     epubBookCoverTemplate,
-    epubBookTitlepageTemplate,
-    epubBookCopyrightTemplate
+    epubBookOpfTemplate,
+    epubBookTitlepageTemplate
 } from "./templates"
-import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
-import {DOMExporter} from "../../../exporter/tools/dom_export"
-import {
-    setLinks,
-    orderLinks,
-    getTimestamp,
-    styleEpubFootnotes,
-    addCategoryLabels
-} from "../../../exporter/epub/tools"
 
-import {
-    ncxTemplate,
-    ncxItemTemplate,
-    navTemplate,
-    containerTemplate,
-    xhtmlTemplate
-} from "../../../exporter/epub/templates"
-import {node2Obj, obj2Node} from "../../../exporter/tools/json"
-import {removeHidden} from "../../../exporter/tools/doc_content"
-import {modifyImages} from "../../../exporter/tools/html"
-import {createSlug} from "../../../exporter/tools/file"
-import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
+import {
+    containerTemplate,
+    navTemplate,
+    ncxItemTemplate,
+    ncxTemplate,
+    xhtmlTemplate
+} from "../../../exporter/epub/templates"
+import {removeHidden} from "../../../exporter/tools/doc_content"
+import {createSlug} from "../../../exporter/tools/file"
+import {modifyImages} from "../../../exporter/tools/html"
+import {node2Obj, obj2Node} from "../../../exporter/tools/json"
+import {ZipFileCreator} from "../../../exporter/tools/zip"
 
 export class EpubBookExporter extends DOMExporter {
     constructor(schema, csl, bookStyles, book, user, docList, updated) {

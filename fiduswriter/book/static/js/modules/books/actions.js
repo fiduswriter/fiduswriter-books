@@ -1,33 +1,33 @@
 import {
-    bookDialogTemplate,
-    bookBasicInfoTemplate,
-    bookDialogChaptersTemplate,
-    bookBibliographyDataTemplate,
-    bookEpubDataTemplate,
-    bookPrintDataTemplate,
-    bookChapterListTemplate,
-    bookChapterDialogTemplate,
-    bookEpubDataCoverTemplate,
-    bookSanityCheckTemplate,
-    bookDOCXDataTemplate,
-    bookDOCXDataRowTemplate,
-    bookODTDataTemplate,
-    bookODTDataRowTemplate
-} from "./templates"
+    ContentMenu,
+    Dialog,
+    FileSelector,
+    addAlert,
+    escapeText,
+    findTarget,
+    longFilePath,
+    post,
+    postJson
+} from "../common"
+import {ImageSelectionDialog} from "../images/selection_dialog"
 import {exportMenuModel} from "./menu"
 import {bookSanityCheck} from "./sanity_check"
-import {ImageSelectionDialog} from "../images/selection_dialog"
 import {
-    addAlert,
-    postJson,
-    post,
-    Dialog,
-    findTarget,
-    FileSelector,
-    longFilePath,
-    escapeText,
-    ContentMenu
-} from "../common"
+    bookBasicInfoTemplate,
+    bookBibliographyDataTemplate,
+    bookChapterDialogTemplate,
+    bookChapterListTemplate,
+    bookDOCXDataRowTemplate,
+    bookDOCXDataTemplate,
+    bookDialogChaptersTemplate,
+    bookDialogTemplate,
+    bookEpubDataCoverTemplate,
+    bookEpubDataTemplate,
+    bookODTDataRowTemplate,
+    bookODTDataTemplate,
+    bookPrintDataTemplate,
+    bookSanityCheckTemplate
+} from "./templates"
 
 function emptyMetadata() {
     return {

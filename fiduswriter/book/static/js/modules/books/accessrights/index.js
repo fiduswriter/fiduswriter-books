@@ -1,16 +1,16 @@
 import {
     ContentMenu,
-    setCheckableLabel,
-    addAlert,
     Dialog,
+    addAlert,
+    findTarget,
     postJson,
-    findTarget
+    setCheckableLabel
 } from "../../common"
 import {AddContactDialog} from "../../contacts/add_dialog"
 import {
+    bookAccessRightOverviewTemplate,
     bookCollaboratorsTemplate,
-    bookContactsTemplate,
-    bookAccessRightOverviewTemplate
+    bookContactsTemplate
 } from "./templates"
 /**
  * Helper functions to deal with the book access rights dialog.

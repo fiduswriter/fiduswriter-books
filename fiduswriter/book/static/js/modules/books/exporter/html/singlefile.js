@@ -1,11 +1,11 @@
 import pretty from "pretty"
 
-import {
-    singleFileHTMLBookTemplate,
-    singleFileHTMLBookChapterTemplate,
-    htmlBookIndexBodyTemplate
-} from "./templates"
 import {HTMLBookExporter} from "./multifile"
+import {
+    htmlBookIndexBodyTemplate,
+    singleFileHTMLBookChapterTemplate,
+    singleFileHTMLBookTemplate
+} from "./templates"
 
 const CSS_PAPER_SIZES = {
     folio: "12in 15in",

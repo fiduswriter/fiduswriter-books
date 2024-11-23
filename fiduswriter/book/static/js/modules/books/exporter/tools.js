@@ -1,5 +1,5 @@
-import {getMissingDocumentListData} from "../../documents/tools"
 import {addAlert} from "../../common"
+import {getMissingDocumentListData} from "../../documents/tools"
 
 export const getMissingChapterData = function(
     book,
