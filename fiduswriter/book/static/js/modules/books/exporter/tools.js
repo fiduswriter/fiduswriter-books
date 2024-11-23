@@ -1,12 +1,12 @@
 import {addAlert} from "../../common"
 import {getMissingDocumentListData} from "../../documents/tools"
 
-export const getMissingChapterData = function(
+export const getMissingChapterData = (
     book,
     documentList,
     schema,
     rawContent
-) {
+) => {
     const bookDocuments = book.chapters.map(chapter =>
         documentList.find(doc => doc.id === chapter.text)
     )
@@ -26,11 +26,16 @@ export const getMissingChapterData = function(
     }
 
     const docIds = book.chapters.map(chapter => chapter.text)
-    const returnData = getMissingDocumentListData(docIds, documentList, schema, rawContent)
+    const returnData = getMissingDocumentListData(
+        docIds,
+        documentList,
+        schema,
+        rawContent
+    )
     return returnData
 }
 
-export const uniqueObjects = function(array) {
+export const uniqueObjects = array => {
     const results = []
 
     for (let i = 0; i < array.length; i++) {

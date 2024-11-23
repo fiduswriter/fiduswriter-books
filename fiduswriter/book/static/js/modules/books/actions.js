@@ -151,11 +151,11 @@ export class BookActions {
             body: `<p>${
                 ids.length > 1
                     ? gettext(
-                        "Do you really want to delete the following books?"
-                    )
+                          "Do you really want to delete the following books?"
+                      )
                     : gettext(
-                        "Do you really want to delete the following book?"
-                    )
+                          "Do you really want to delete the following book?"
+                      )
             }</p>
             <p>
                 ${bookPaths.join("<br>")}
@@ -398,44 +398,55 @@ export class BookActions {
             })
             fileSelector.init()
 
-            dialog.dialogEl.querySelector("#input-docx-template").addEventListener("change", event => {
-                const file = event.target.files[0]
-                return this.saveBook(book).then(
-                    () => postJson(
-                        "/api/book/docx_template/save/",
-                        {id: book.id, file}
-                    )
-                ).then(({status, json}) => {
-                    if (status !== 200) {
-                        return
-                    }
-                    book.docx_template = json.docx_template
-                    const docxTemplateRow = document.getElementById("docx-template-row")
-                    if (docxTemplateRow) {
-                        docxTemplateRow.innerHTML = bookDOCXDataRowTemplate({book})
-                    }
+            dialog.dialogEl
+                .querySelector("#input-docx-template")
+                .addEventListener("change", event => {
+                    const file = event.target.files[0]
+                    return this.saveBook(book)
+                        .then(() =>
+                            postJson("/api/book/docx_template/save/", {
+                                id: book.id,
+                                file
+                            })
+                        )
+                        .then(({status, json}) => {
+                            if (status !== 200) {
+                                return
+                            }
+                            book.docx_template = json.docx_template
+                            const docxTemplateRow =
+                                document.getElementById("docx-template-row")
+                            if (docxTemplateRow) {
+                                docxTemplateRow.innerHTML =
+                                    bookDOCXDataRowTemplate({book})
+                            }
+                        })
                 })
-            })
 
-            dialog.dialogEl.querySelector("#input-odt-template").addEventListener("change", event => {
-                const file = event.target.files[0]
-                return this.saveBook(book).then(
-                    () => postJson(
-                        "/api/book/odt_template/save/",
-                        {id: book.id, file}
-                    )
-                ).then(({status, json}) => {
-                    if (status !== 200) {
-                        return
-                    }
-                    book.odt_template = json.odt_template
-                    const odtTemplateRow = document.getElementById("odt-template-row")
-                    if (odtTemplateRow) {
-                        odtTemplateRow.innerHTML = bookODTDataRowTemplate({book})
-                    }
+            dialog.dialogEl
+                .querySelector("#input-odt-template")
+                .addEventListener("change", event => {
+                    const file = event.target.files[0]
+                    return this.saveBook(book)
+                        .then(() =>
+                            postJson("/api/book/odt_template/save/", {
+                                id: book.id,
+                                file
+                            })
+                        )
+                        .then(({status, json}) => {
+                            if (status !== 200) {
+                                return
+                            }
+                            book.odt_template = json.odt_template
+                            const odtTemplateRow =
+                                document.getElementById("odt-template-row")
+                            if (odtTemplateRow) {
+                                odtTemplateRow.innerHTML =
+                                    bookODTDataRowTemplate({book})
+                            }
+                        })
                 })
-            })
-
         }
 
         // Handle tab link clicking
@@ -467,187 +478,202 @@ export class BookActions {
             const el = {}
             let chapterId, chapter
             switch (true) {
-            case findTarget(event, ".book-sort-up", el): {
-                chapterId = parseInt(el.target.dataset.id)
-                chapter = book.chapters.find(
-                    chapter => chapter.text === chapterId
-                )
+                case findTarget(event, ".book-sort-up", el): {
+                    chapterId = Number.parseInt(el.target.dataset.id)
+                    chapter = book.chapters.find(
+                        chapter => chapter.text === chapterId
+                    )
 
-                const higherChapter = book.chapters.find(
-                    bChapter => bChapter.number === chapter.number - 1
-                )
-                chapter.number--
-                higherChapter.number++
-                document.getElementById("book-chapter-list").innerHTML =
+                    const higherChapter = book.chapters.find(
+                        bChapter => bChapter.number === chapter.number - 1
+                    )
+                    chapter.number--
+                    higherChapter.number++
+                    document.getElementById("book-chapter-list").innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
                         })
-                break
-            }
-            case findTarget(event, ".book-sort-down", el): {
-                chapterId = parseInt(el.target.dataset.id)
-                chapter = book.chapters.find(
-                    chapter => chapter.text === chapterId
-                )
+                    break
+                }
+                case findTarget(event, ".book-sort-down", el): {
+                    chapterId = Number.parseInt(el.target.dataset.id)
+                    chapter = book.chapters.find(
+                        chapter => chapter.text === chapterId
+                    )
 
-                const lowerChapter = book.chapters.find(
-                    bChapter => bChapter.number === chapter.number + 1
-                )
+                    const lowerChapter = book.chapters.find(
+                        bChapter => bChapter.number === chapter.number + 1
+                    )
 
-                chapter.number++
-                lowerChapter.number--
-                document.getElementById("book-chapter-list").innerHTML =
+                    chapter.number++
+                    lowerChapter.number--
+                    document.getElementById("book-chapter-list").innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
                         })
-                break
-            }
-            case findTarget(event, ".delete-chapter", el):
-                chapterId = parseInt(el.target.dataset.id)
-                chapter = book.chapters.find(
-                    chapter => chapter.text === chapterId
-                )
+                    break
+                }
+                case findTarget(event, ".delete-chapter", el):
+                    chapterId = Number.parseInt(el.target.dataset.id)
+                    chapter = book.chapters.find(
+                        chapter => chapter.text === chapterId
+                    )
 
-                book.chapters.forEach(bChapter => {
-                    if (bChapter.number > chapter.number) {
-                        bChapter.number--
-                    }
-                })
-
-                book.chapters = book.chapters.filter(
-                    bChapter => bChapter !== chapter
-                )
-
-                document.getElementById("book-chapter-list").innerHTML =
-                        bookChapterListTemplate({
-                            book,
-                            documentList: this.bookOverview.documentList
-                        })
-
-                break
-            case findTarget(event, "#add-chapter", el): {
-                fileSelector.selected.forEach(entry => {
-                    const chapNums = book.chapters.map(
-                            chapter => chapter.number
-                        ),
-                        number = chapNums.length
-                            ? Math.max(...chapNums) + 1
-                            : 1
-                    book.chapters.push({
-                        text: entry.file.id,
-                        number,
-                        part: ""
+                    book.chapters.forEach(bChapter => {
+                        if (bChapter.number > chapter.number) {
+                            bChapter.number--
+                        }
                     })
-                })
-                fileSelector.deselectAll()
 
-                document.getElementById("book-chapter-list").innerHTML =
+                    book.chapters = book.chapters.filter(
+                        bChapter => bChapter !== chapter
+                    )
+
+                    document.getElementById("book-chapter-list").innerHTML =
                         bookChapterListTemplate({
                             book,
                             documentList: this.bookOverview.documentList
                         })
-                break
-            }
-            case findTarget(event, ".edit-chapter", el):
-                chapterId = parseInt(el.target.dataset.id)
-                chapter = book.chapters.find(
-                    chapter => chapter.text === chapterId
-                )
-                this.editChapterDialog(chapter, book)
-                break
-            case findTarget(event, "#select-cover-image-button", el): {
-                const imageSelection = new ImageSelectionDialog(
-                    bookImageDB,
-                    imageDB,
-                    book.cover_image,
-                    this.bookOverview
-                )
 
-                imageSelection.init().then(image => {
-                    if (!image) {
-                        delete book.cover_image
-                    } else {
-                        book.cover_image = image.id
-                        book.cover_image_data =
+                    break
+                case findTarget(event, "#add-chapter", el): {
+                    fileSelector.selected.forEach(entry => {
+                        const chapNums = book.chapters.map(
+                                chapter => chapter.number
+                            ),
+                            number = chapNums.length
+                                ? Math.max(...chapNums) + 1
+                                : 1
+                        book.chapters.push({
+                            text: entry.file.id,
+                            number,
+                            part: ""
+                        })
+                    })
+                    fileSelector.deselectAll()
+
+                    document.getElementById("book-chapter-list").innerHTML =
+                        bookChapterListTemplate({
+                            book,
+                            documentList: this.bookOverview.documentList
+                        })
+                    break
+                }
+                case findTarget(event, ".edit-chapter", el):
+                    chapterId = Number.parseInt(el.target.dataset.id)
+                    chapter = book.chapters.find(
+                        chapter => chapter.text === chapterId
+                    )
+                    this.editChapterDialog(chapter, book)
+                    break
+                case findTarget(event, "#select-cover-image-button", el): {
+                    const imageSelection = new ImageSelectionDialog(
+                        bookImageDB,
+                        imageDB,
+                        book.cover_image,
+                        this.bookOverview
+                    )
+
+                    imageSelection.init().then(image => {
+                        if (!image) {
+                            delete book.cover_image
+                        } else {
+                            book.cover_image = image.id
+                            book.cover_image_data =
                                 image.db === "user"
                                     ? imageDB.db[image.id]
                                     : bookImageDB.db[image.id]
-                    }
-                    const coverPreviewRow = document.getElementById(
-                        "cover-preview-row"
+                        }
+                        const coverPreviewRow =
+                            document.getElementById("cover-preview-row")
+                        if (coverPreviewRow) {
+                            coverPreviewRow.innerHTML =
+                                bookEpubDataCoverTemplate({
+                                    book,
+                                    imageDB: {
+                                        db: Object.assign(
+                                            {},
+                                            imageDB.db,
+                                            bookImageDB.db
+                                        )
+                                    }
+                                })
+                        }
+                    })
+                    break
+                }
+                case findTarget(event, "#select-docx-template", el): {
+                    const fileSelector = document.querySelector(
+                        "#input-docx-template"
                     )
+                    fileSelector.click()
+                    break
+                }
+                case findTarget(event, "#select-odt-template", el): {
+                    const fileSelector = document.querySelector(
+                        "#input-odt-template"
+                    )
+                    fileSelector.click()
+                    break
+                }
+                case findTarget(event, "#remove-cover-image-button", el): {
+                    delete book.cover_image
+                    const coverPreviewRow =
+                        document.getElementById("cover-preview-row")
                     if (coverPreviewRow) {
                         coverPreviewRow.innerHTML = bookEpubDataCoverTemplate({
                             book,
-                            imageDB: {db: Object.assign({}, imageDB.db, bookImageDB.db)}
+                            imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
                         })
                     }
-                })
-                break
-            }
-            case findTarget(event, "#select-docx-template", el): {
-                const fileSelector = document.querySelector("#input-docx-template")
-                fileSelector.click()
-                break
-            }
-            case findTarget(event, "#select-odt-template", el): {
-                const fileSelector = document.querySelector("#input-odt-template")
-                fileSelector.click()
-                break
-            }
-            case findTarget(event, "#remove-cover-image-button", el): {
-                delete book.cover_image
-                const coverPreviewRow = document.getElementById("cover-preview-row")
-                if (coverPreviewRow) {
-                    coverPreviewRow.innerHTML = bookEpubDataCoverTemplate({
-                        book,
-                        imageDB: {db: {}} // We just deleted the cover image, so we don't need a full DB
-                    })
+                    break
                 }
-                break
-            }
-            case findTarget(event, "#remove-docx-template-button", el): {
-                delete book.docx_template
-                const docxTemplateRow = document.getElementById("docx-template-row")
-                if (docxTemplateRow) {
-                    docxTemplateRow.innerHTML = bookDOCXDataRowTemplate({book})
+                case findTarget(event, "#remove-docx-template-button", el): {
+                    delete book.docx_template
+                    const docxTemplateRow =
+                        document.getElementById("docx-template-row")
+                    if (docxTemplateRow) {
+                        docxTemplateRow.innerHTML = bookDOCXDataRowTemplate({
+                            book
+                        })
+                    }
+                    break
                 }
-                break
-            }
-            case findTarget(event, "#remove-odt-template-button", el): {
-                delete book.odt_template
-                const odtTemplateRow = document.getElementById("odt-template-row")
-                if (odtTemplateRow) {
-                    odtTemplateRow.innerHTML = bookODTDataRowTemplate({book})
+                case findTarget(event, "#remove-odt-template-button", el): {
+                    delete book.odt_template
+                    const odtTemplateRow =
+                        document.getElementById("odt-template-row")
+                    if (odtTemplateRow) {
+                        odtTemplateRow.innerHTML = bookODTDataRowTemplate({
+                            book
+                        })
+                    }
+                    break
                 }
-                break
-            }
-            case findTarget(event, "#perform-sanity-check-button", el): {
-                this.saveBook(book, oldBookId)
-                    .then(() =>
-                        bookSanityCheck(
-                            book,
-                            this.bookOverview.documentList,
-                            this.bookOverview.schema
+                case findTarget(event, "#perform-sanity-check-button", el): {
+                    this.saveBook(book, oldBookId)
+                        .then(() =>
+                            bookSanityCheck(
+                                book,
+                                this.bookOverview.documentList,
+                                this.bookOverview.schema
+                            )
                         )
-                    )
-                    .then(
-                        sanityCheckOutputHTML => {
+                        .then(sanityCheckOutputHTML => {
                             const sanityCheckOutput = document.getElementById(
                                 "sanity-check-output"
                             )
                             if (sanityCheckOutput) {
-                                sanityCheckOutput.innerHTML = sanityCheckOutputHTML
+                                sanityCheckOutput.innerHTML =
+                                    sanityCheckOutputHTML
                             }
-                        }
-
-                    )
-                break
-            }
-            default:
-                break
+                        })
+                    break
+                }
+                default:
+                    break
             }
         })
 

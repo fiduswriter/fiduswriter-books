@@ -38,14 +38,14 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
                     return 1
                 }
                 if (
-                    parseInt(a.filename.match(/\d+/g)) <
-                    parseInt(b.filename.match(/\d+/g))
+                    Number.parseInt(a.filename.match(/\d+/g)) <
+                    Number.parseInt(b.filename.match(/\d+/g))
                 ) {
                     return -1
                 }
                 if (
-                    parseInt(a.filename.match(/\d+/g)) >
-                    parseInt(b.filename.match(/\d+/g))
+                    Number.parseInt(a.filename.match(/\d+/g)) >
+                    Number.parseInt(b.filename.match(/\d+/g))
                 ) {
                     return 1
                 }
@@ -80,8 +80,8 @@ export class SingleFileHTMLBookExporter extends HTMLBookExporter {
     getBookCSS() {
         const css = `a.fn {
             -adapt-template: url(data:application/xml,${encodeURI(
-        "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:s=\"http://www.pyroxy.com/ns/shadow\"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id=\"footnote\"><s:content/><s:include class=\"footnote-content\"/></s:template></body></html>#footnote"
-    )});
+                '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:s="http://www.pyroxy.com/ns/shadow"><head><style>.footnote-content{float:footnote}</style></head><body><s:template id="footnote"><s:content/><s:include class="footnote-content"/></s:template></body></html>#footnote'
+            )});
             text-decoration: none;
             color: inherit;
             vertical-align: baseline;

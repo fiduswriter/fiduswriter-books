@@ -11,20 +11,33 @@ on:
       - develop
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+  workflow_dispatch: {}
 jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install dependencies
+        run: |
+          pip install pip --upgrade
+          if grep version pyproject.toml | grep -q "dev";
+            then pip install https://github.com/fiduswriter/fiduswriter/archive/develop.zip;
+            else pip install https://github.com/fiduswriter/fiduswriter/archive/main.zip;
+          fi
+      - uses: pre-commit/action@v3
   test:
     name: Run tests
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v4.1.2
+        uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v5.1.0
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -49,10 +62,6 @@ jobs:
           pip install flake8
           pip install black
           coverage run $(which fiduswriter) setup --no-static
-      - name: Run linters
-        run: |
-          cd fiduswriter
-          fiduswriter lint
       - name: Run tests
         uses: nick-invision/retry@v3
         with:

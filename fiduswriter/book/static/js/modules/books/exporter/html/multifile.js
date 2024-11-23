@@ -4,7 +4,7 @@ import {DOMSerializer} from "prosemirror-model"
 
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
-import {orderLinks, setLinks } from "../../../exporter/epub/tools"
+import {orderLinks, setLinks} from "../../../exporter/epub/tools"
 import {removeHidden} from "../../../exporter/tools/doc_content"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {createSlug} from "../../../exporter/tools/file"

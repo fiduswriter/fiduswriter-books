@@ -1,4 +1,4 @@
-import {FileDialog, NewFolderDialog, addAlert } from "../common"
+import {FileDialog, NewFolderDialog, addAlert} from "../common"
 import {BookAccessRightsDialog} from "./accessrights"
 import {BITSBookExporter} from "./exporter/bits"
 import {DOCXBookExporter} from "./exporter/docx"

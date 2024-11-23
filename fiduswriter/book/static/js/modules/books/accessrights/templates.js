@@ -9,22 +9,22 @@ export const bookCollaboratorsTemplate = ({collaborators}) => {
                     collaborator.holder.id
                 }"
         data-type="${collaborator.holder.type}" data-id="${
-    collaborator.holder.id
-}"
+            collaborator.holder.id
+        }"
         class="collaborator-tr" data-rights="${collaborator.rights}">
             <td width="212">
                 <span>${avatarTemplate({user: collaborator.holder})}</span>
                 <span class="fw-inline">${
-    collaborator.holder.type === "userinvite"
-        ? `${gettext("Invite")}: `
-        : ""
-}${escapeText(collaborator.holder.name)}</span>
+                    collaborator.holder.type === "userinvite"
+                        ? `${gettext("Invite")}: `
+                        : ""
+                }${escapeText(collaborator.holder.name)}</span>
             </td>
             <td width="50" align="center">
                 <div class="fw-inline edit-right-wrapper">
                     <i class="icon-access-right icon-access-${
-    collaborator.rights
-}"></i>
+                        collaborator.rights
+                    }"></i>
                     <i class="fas fa-caret-down edit-right"></i>
                 </div>
             </td>
@@ -43,16 +43,14 @@ export const bookContactsTemplate = ({contacts}) =>
         .map(
             contact =>
                 `<tr>
-            <td width="337" data-id="${contact.id}" data-type="${
-    contact.type
-}" class="fw-checkable fw-checkable-td">
+            <td width="337" data-id="${contact.id}" data-type="${contact.type}" class="fw-checkable fw-checkable-td">
                 <span>${avatarTemplate({user: contact})}</span>
                 <span class="fw-inline">
                 ${
-    contact.type === "userinvite"
-        ? `${gettext("Invite")}:&nbsp;`
-        : ""
-}
+                    contact.type === "userinvite"
+                        ? `${gettext("Invite")}:&nbsp;`
+                        : ""
+                }
                     ${escapeText(contact.name)}
 
                 </span>
@@ -88,9 +86,9 @@ export const bookAccessRightOverviewTemplate = ({contacts, collaborators}) =>
                         <th width="50" align="center">${gettext("Delete")}</th>
                 </tr></thead>
                 <tbody class="fw-data-table-body fw-small">${bookCollaboratorsTemplate(
-        {
-            collaborators
-        }
-    )}</tbody>
+                    {
+                        collaborators
+                    }
+                )}</tbody>
             </table>
         </div>`

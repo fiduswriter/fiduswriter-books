@@ -25,7 +25,7 @@ import {SiteMenu} from "../menu"
 import {docSchema} from "../schema/document"
 import {BookAccessRightsDialog} from "./accessrights"
 import {BookActions} from "./actions"
-import {bulkMenuModel, menuModel } from "./menu"
+import {bulkMenuModel, menuModel} from "./menu"
 import {dateCell, deleteFolderCell} from "./templates"
 
 export class BookOverview {
@@ -315,23 +315,23 @@ export class BookOverview {
             `<span class="date">${dateCell({date: book.updated})}</span>`,
             `<span>${avatarTemplate({user: book.owner})}</span>
             <span class="fw-inline fw-searchable">${escapeText(
-        book.owner.name
-    )}</span>`,
+                book.owner.name
+            )}</span>`,
             `<span class="${
                 this.user.id === book.owner.id ? "owned-by-user " : ""
             }rights fw-inline" data-id="${book.id}">
                 <i data-id="${book.id}" class="icon-access-right icon-access-${
-    book.rights
-}"></i>
+                    book.rights
+                }"></i>
             </span>`,
             `<span class="delete-book fw-inline fw-link-text" data-id="${
                 book.id
             }" data-title="${escapeText(book.title)}">
                 ${
-    this.user.id === book.owner.id
-        ? "<i class=\"fas fa-trash-alt\"></i>"
-        : ""
-}
+                    this.user.id === book.owner.id
+                        ? '<i class="fas fa-trash-alt"></i>'
+                        : ""
+                }
            </span>`
         ]
     }
@@ -395,48 +395,93 @@ export class BookOverview {
         this.dom.addEventListener("click", event => {
             const el = {}
             switch (true) {
-            case findTarget(event, ".delete-book", el): {
-                if (this.app.isOffline()) {
-                    addAlert(
-                        "info",
-                        gettext(
-                            "You cannot delete books while you are offline."
+                case findTarget(event, ".delete-book", el): {
+                    if (this.app.isOffline()) {
+                        addAlert(
+                            "info",
+                            gettext(
+                                "You cannot delete books while you are offline."
+                            )
                         )
-                    )
-                } else {
-                    const bookId = parseInt(el.target.dataset.id)
-                    this.mod.actions.deleteBookDialog([bookId])
+                    } else {
+                        const bookId = Number.parseInt(el.target.dataset.id)
+                        this.mod.actions.deleteBookDialog([bookId])
+                    }
+                    break
                 }
-                break
-            }
-            case findTarget(event, ".delete-folder", el):
-                if (this.app.isOffline()) {
-                    addAlert(
-                        "info",
-                        gettext(
-                            "You cannot delete books while you are offline."
+                case findTarget(event, ".delete-folder", el):
+                    if (this.app.isOffline()) {
+                        addAlert(
+                            "info",
+                            gettext(
+                                "You cannot delete books while you are offline."
+                            )
                         )
+                    } else {
+                        const ids = el.target.dataset.ids
+                            .split(",")
+                            .map(id => Number.parseInt(id))
+                        this.mod.actions.deleteBookDialog(ids)
+                    }
+                    break
+                case findTarget(event, ".owned-by-user.rights", el): {
+                    const bookId = Number.parseInt(el.target.dataset.id)
+                    const accessDialog = new BookAccessRightsDialog(
+                        [bookId],
+                        this.contacts,
+                        memberDetails => this.contacts.push(memberDetails)
                     )
-                } else {
-                    const ids = el.target.dataset.ids
-                        .split(",")
-                        .map(id => parseInt(id))
-                    this.mod.actions.deleteBookDialog(ids)
+                    accessDialog.init()
+                    break
                 }
-                break
-            case findTarget(event, ".owned-by-user.rights", el): {
-                const bookId = parseInt(el.target.dataset.id)
-                const accessDialog = new BookAccessRightsDialog(
-                    [bookId],
-                    this.contacts,
-                    memberDetails => this.contacts.push(memberDetails)
-                )
-                accessDialog.init()
-                break
-            }
-            case findTarget(event, "a.fw-data-table-title.parentdir", el):
-                event.preventDefault()
-                if (this.table.data.data.length > 1) {
+                case findTarget(event, "a.fw-data-table-title.parentdir", el):
+                    event.preventDefault()
+                    if (this.table.data.data.length > 1) {
+                        this.path = el.target.dataset.path
+                        window.history.pushState(
+                            {},
+                            "",
+                            el.target.getAttribute("href")
+                        )
+                        this.initTable()
+                    } else {
+                        const confirmFolderDeletionDialog = new Dialog({
+                            title: gettext("Confirm deletion"),
+                            body: `<p>
+                    ${gettext(
+                        "Leaving an empty folder will delete it. Do you really want to delete this folder?"
+                    )}
+                            </p>`,
+                            id: "confirmfolderdeletion",
+                            icon: "exclamation-triangle",
+                            buttons: [
+                                {
+                                    text: gettext("Delete"),
+                                    classes: "fw-dark delete-folder",
+                                    height: 70,
+                                    click: () => {
+                                        confirmFolderDeletionDialog.close()
+                                        this.path = el.target.dataset.path
+                                        window.history.pushState(
+                                            {},
+                                            "",
+                                            el.target.getAttribute("href")
+                                        )
+                                        this.initTable()
+                                    }
+                                },
+                                {
+                                    type: "cancel"
+                                }
+                            ]
+                        })
+
+                        confirmFolderDeletionDialog.open()
+                    }
+
+                    break
+                case findTarget(event, "a.fw-data-table-title.subdir", el):
+                    event.preventDefault()
                     this.path = el.target.dataset.path
                     window.history.pushState(
                         {},
@@ -444,70 +489,25 @@ export class BookOverview {
                         el.target.getAttribute("href")
                     )
                     this.initTable()
-                } else {
-                    const confirmFolderDeletionDialog = new Dialog({
-                        title: gettext("Confirm deletion"),
-                        body: `<p>
-                    ${gettext(
-        "Leaving an empty folder will delete it. Do you really want to delete this folder?"
-    )}
-                            </p>`,
-                        id: "confirmfolderdeletion",
-                        icon: "exclamation-triangle",
-                        buttons: [
-                            {
-                                text: gettext("Delete"),
-                                classes: "fw-dark delete-folder",
-                                height: 70,
-                                click: () => {
-                                    confirmFolderDeletionDialog.close()
-                                    this.path = el.target.dataset.path
-                                    window.history.pushState(
-                                        {},
-                                        "",
-                                        el.target.getAttribute("href")
-                                    )
-                                    this.initTable()
-                                }
-                            },
-                            {
-                                type: "cancel"
-                            }
-                        ]
+                    break
+                case findTarget(event, ".fw-data-table-title", el): {
+                    const bookId = Number.parseInt(el.target.dataset.id)
+                    this.getImageDB().then(() => {
+                        this.mod.actions.createBookDialog(bookId, this.imageDB)
                     })
-
-                    confirmFolderDeletionDialog.open()
+                    break
                 }
-
-                break
-            case findTarget(event, "a.fw-data-table-title.subdir", el):
-                event.preventDefault()
-                this.path = el.target.dataset.path
-                window.history.pushState(
-                    {},
-                    "",
-                    el.target.getAttribute("href")
-                )
-                this.initTable()
-                break
-            case findTarget(event, ".fw-data-table-title", el): {
-                const bookId = parseInt(el.target.dataset.id)
-                this.getImageDB().then(() => {
-                    this.mod.actions.createBookDialog(bookId, this.imageDB)
-                })
-                break
-            }
-            case findTarget(event, "a", el):
-                if (
-                    el.target.hostname === window.location.hostname &&
+                case findTarget(event, "a", el):
+                    if (
+                        el.target.hostname === window.location.hostname &&
                         el.target.getAttribute("href")[0] === "/"
-                ) {
-                    event.preventDefault()
-                    this.app.goTo(el.target.href)
-                }
-                break
-            default:
-                break
+                    ) {
+                        event.preventDefault()
+                        this.app.goTo(el.target.href)
+                    }
+                    break
+                default:
+                    break
             }
         })
     }
@@ -515,6 +515,6 @@ export class BookOverview {
     getSelected() {
         return Array.from(
             this.dom.querySelectorAll(".entry-select:checked:not(:disabled)")
-        ).map(el => parseInt(el.getAttribute("data-id")))
+        ).map(el => Number.parseInt(el.getAttribute("data-id")))
     }
 }

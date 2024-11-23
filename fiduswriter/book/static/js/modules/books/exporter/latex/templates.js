@@ -11,16 +11,12 @@ ${book.metadata.version?.length ? `\\date{${book.metadata.version}}` : ""}
 \\def\\title#1{\\chapter{#1}}
 \\tableofcontents
 ${book.chapters
-        .map(
-            chapter =>
-                `${
-                    chapter.part && chapter.part.length
-                        ? `\n\\part{${chapter.part}}`
-                        : ""
-                }
+    .map(
+        chapter =>
+            `${chapter.part && chapter.part.length ? `\n\\part{${chapter.part}}` : ""}
         \\input{chapter-${chapter.number}}
         `
-        )
-        .join("")}
+    )
+    .join("")}
 ${epilogue}
 \\end{document}`

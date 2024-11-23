@@ -11,10 +11,7 @@ const labelChapter = (chapter, doc) =>
 function findContentIssues(node, chapter, doc, messages) {
     if (node.attrs?.track?.length) {
         messages.warnings.push(
-            `${gettext("Unresolved tracked changes")} ${labelChapter(
-                chapter,
-                doc
-            )}`
+            `${gettext("Unresolved tracked changes")} ${labelChapter(chapter, doc)}`
         )
     }
     if (node.marks) {
@@ -32,13 +29,10 @@ function findContentIssues(node, chapter, doc, messages) {
                 )
             } else if (
                 mark.type == "comment" &&
-                doc.comments[parseInt(mark.attrs.id)]?.resolved === false
+                doc.comments[Number.parseInt(mark.attrs.id)]?.resolved === false
             ) {
                 messages.warnings.push(
-                    `${gettext("Unresolved comments")} ${labelChapter(
-                        chapter,
-                        doc
-                    )}`
+                    `${gettext("Unresolved comments")} ${labelChapter(chapter, doc)}`
                 )
             } else if (
                 mark.type === "deletion" ||
@@ -92,10 +86,7 @@ export const bookSanityCheck = (book, documentList, schema) => {
             }
             if (!doc.title || !doc.title.length) {
                 messages.warnings.push(
-                    `${gettext("No chapter title")} ${labelChapter(
-                        chapter,
-                        doc
-                    )}`
+                    `${gettext("No chapter title")} ${labelChapter(chapter, doc)}`
                 )
             }
             findContentIssues(doc.rawContent, chapter, doc, messages)
@@ -107,16 +98,12 @@ export const bookSanityCheck = (book, documentList, schema) => {
             return `<p>${gettext("No issues were found:")}</p>
                     <p>${gettext("The book contains chapters.")}</p>
                     <p>${gettext("Each chapter has a title.")}</p>
-                    <p>${gettext(
-        "There are no unresolved tracked changes."
-    )}</p>
+                    <p>${gettext("There are no unresolved tracked changes.")}</p>
                     <p>${gettext("There are no unresolved comments.")}</p>
+                    <p>${gettext("All cross references have working targets.")}</p>
                     <p>${gettext(
-        "All cross references have working targets."
-    )}</p>
-                    <p>${gettext(
-        "All internal links have working targets."
-    )}</p>`
+                        "All internal links have working targets."
+                    )}</p>`
         }
         return `<ul class="warninglist">
                     ${warnings.map(warning => `<li>${warning}</li>`).join("")}

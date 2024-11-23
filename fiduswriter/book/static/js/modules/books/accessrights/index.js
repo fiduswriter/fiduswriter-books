@@ -123,7 +123,7 @@ export class BookAccessRightsDialog {
                         .forEach(el => {
                             accessRights.push({
                                 holder: {
-                                    id: parseInt(el.dataset.id),
+                                    id: Number.parseInt(el.dataset.id),
                                     type: el.dataset.type
                                 },
                                 rights: el.dataset.rights
@@ -182,7 +182,8 @@ export class BookAccessRightsDialog {
                             const collaborator = this.contacts.find(
                                 contact =>
                                     contact.type === el.dataset.type &&
-                                    contact.id === parseInt(el.dataset.id)
+                                    contact.id ===
+                                        Number.parseInt(el.dataset.id)
                             )
                             if (!collaborator) {
                                 console.warn(
@@ -218,47 +219,47 @@ export class BookAccessRightsDialog {
         this.dialog.dialogEl.addEventListener("click", event => {
             const el = {}
             switch (true) {
-            case findTarget(event, ".fw-checkable", el):
-                setCheckableLabel(el.target)
-                break
-            case findTarget(event, ".edit-right", el): {
-                const colRow = el.target.closest(
-                    ".collaborator-tr,.invite-tr"
-                )
-                const currentRight = colRow.dataset.rights
-                const menu = this.getDropdownMenu(
-                    currentRight,
-                    newRight => {
-                        colRow.dataset.rights = newRight
-                        colRow
-                            .querySelector(".icon-access-right")
-                            .setAttribute(
-                                "class",
-                                `icon-access-right icon-access-${newRight}`
-                            )
-                    }
-                )
-                const contentMenu = new ContentMenu({
-                    menu,
-                    menuPos: {X: event.pageX, Y: event.pageY},
-                    width: 200
-                })
-                contentMenu.open()
-                break
-            }
-            case findTarget(event, ".delete-collaborator", el): {
-                const colRow = el.target.closest(".collaborator-tr")
-                colRow.dataset.right = "delete"
-                colRow
-                    .querySelector(".icon-access-right")
-                    .setAttribute(
-                        "class",
-                        "icon-access-right icon-access-delete"
+                case findTarget(event, ".fw-checkable", el):
+                    setCheckableLabel(el.target)
+                    break
+                case findTarget(event, ".edit-right", el): {
+                    const colRow = el.target.closest(
+                        ".collaborator-tr,.invite-tr"
                     )
-                break
-            }
-            default:
-                break
+                    const currentRight = colRow.dataset.rights
+                    const menu = this.getDropdownMenu(
+                        currentRight,
+                        newRight => {
+                            colRow.dataset.rights = newRight
+                            colRow
+                                .querySelector(".icon-access-right")
+                                .setAttribute(
+                                    "class",
+                                    `icon-access-right icon-access-${newRight}`
+                                )
+                        }
+                    )
+                    const contentMenu = new ContentMenu({
+                        menu,
+                        menuPos: {X: event.pageX, Y: event.pageY},
+                        width: 200
+                    })
+                    contentMenu.open()
+                    break
+                }
+                case findTarget(event, ".delete-collaborator", el): {
+                    const colRow = el.target.closest(".collaborator-tr")
+                    colRow.dataset.right = "delete"
+                    colRow
+                        .querySelector(".icon-access-right")
+                        .setAttribute(
+                            "class",
+                            "icon-access-right icon-access-delete"
+                        )
+                    break
+                }
+                default:
+                    break
             }
         })
     }

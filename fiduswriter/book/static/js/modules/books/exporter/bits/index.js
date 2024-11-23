@@ -10,7 +10,6 @@ import {getMissingChapterData} from "../tools"
 
 import {bitsTemplate} from "./templates"
 
-
 export class BITSBookExporter {
     constructor(schema, csl, book, user, docList, updated) {
         this.schema = schema
@@ -41,24 +40,27 @@ export class BITSBookExporter {
         this.book.chapters.sort((a, b) => (a.number > b.number ? 1 : -1))
 
         const imageDict = {}
-        Promise.all(this.book.chapters.map(chapter => {
-            const doc = this.docList.find(doc => doc.id === chapter.text)
-            const converter = new JATSExporterConverter(
-                this.type,
-                doc,
-                this.csl,
-                {db: doc.images},
-                {db: doc.bibliography}
-            )
-            return converter.init().then(({front, body, back, imageIds}) => {
-                imageIds.forEach(
-                    imageId => (imageDict[imageId] = doc.images[imageId])
+        Promise.all(
+            this.book.chapters.map(chapter => {
+                const doc = this.docList.find(doc => doc.id === chapter.text)
+                const converter = new JATSExporterConverter(
+                    this.type,
+                    doc,
+                    this.csl,
+                    {db: doc.images},
+                    {db: doc.bibliography}
                 )
-                return {front, body, back}
+                return converter
+                    .init()
+                    .then(({front, body, back, imageIds}) => {
+                        imageIds.forEach(
+                            imageId =>
+                                (imageDict[imageId] = doc.images[imageId])
+                        )
+                        return {front, body, back}
+                    })
             })
-        })).then(
-            chapters => this.createFiles(chapters, imageDict)
-        )
+        ).then(chapters => this.createFiles(chapters, imageDict))
     }
 
     createFiles(chapters, imageDict) {
@@ -77,11 +79,14 @@ export class BITSBookExporter {
             },
             {
                 filename: "manifest.xml",
-                contents: pretty(darManifest({
-                    title: this.book.title,
-                    type: this.type,
-                    images
-                }), {ocd: true})
+                contents: pretty(
+                    darManifest({
+                        title: this.book.title,
+                        type: this.type,
+                        images
+                    }),
+                    {ocd: true}
+                )
             }
         ]
 
@@ -100,9 +105,7 @@ export class BITSBookExporter {
             undefined,
             this.updated
         )
-        return zipper.init().then(
-            blob => this.download(blob)
-        )
+        return zipper.init().then(blob => this.download(blob))
     }
 
     download(blob) {
