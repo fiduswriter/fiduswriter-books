@@ -4,16 +4,16 @@ import {DOMSerializer} from "prosemirror-model"
 
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
-import {orderLinks, setLinks} from "../../../exporter/epub/tools"
 import {removeHidden} from "../../../exporter/tools/doc_content"
-import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {createSlug} from "../../../exporter/tools/file"
-import {modifyImages} from "../../../exporter/tools/html"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {LANGUAGES} from "../../../schema/const"
 import {BIBLIOGRAPHY_HEADERS, CATS} from "../../../schema/i18n"
+import {DOMExporter} from "../dom_export"
+import {orderLinks, setLinks} from "../epub/tools"
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {htmlBookExportTemplate, htmlBookIndexTemplate} from "./templates"
+import {modifyImages} from "./tools"
 
 export class HTMLBookExporter extends DOMExporter {
     constructor(schema, csl, bookStyles, book, user, docList, updated) {

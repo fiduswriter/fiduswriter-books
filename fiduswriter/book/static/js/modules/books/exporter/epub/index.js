@@ -2,13 +2,7 @@ import download from "downloadjs"
 import pretty from "pretty"
 import {DOMSerializer} from "prosemirror-model"
 
-import {
-    addCategoryLabels,
-    getTimestamp,
-    orderLinks,
-    setLinks,
-    styleEpubFootnotes
-} from "../../../exporter/epub/tools"
+import {getTimestamp} from "../../../exporter/epub/tools"
 import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
@@ -18,8 +12,15 @@ import {
     epubBookCopyrightTemplate,
     epubBookCoverTemplate,
     epubBookOpfTemplate,
-    epubBookTitlepageTemplate
+    epubBookTitlepageTemplate,
+    xhtmlTemplate
 } from "./templates"
+import {
+    addCategoryLabels,
+    orderLinks,
+    setLinks,
+    styleEpubFootnotes
+} from "./tools"
 
 import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
@@ -27,8 +28,7 @@ import {
     containerTemplate,
     navTemplate,
     ncxItemTemplate,
-    ncxTemplate,
-    xhtmlTemplate
+    ncxTemplate
 } from "../../../exporter/epub/templates"
 import {removeHidden} from "../../../exporter/tools/doc_content"
 import {createSlug} from "../../../exporter/tools/file"

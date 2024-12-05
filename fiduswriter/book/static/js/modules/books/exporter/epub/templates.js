@@ -2,6 +2,49 @@ import {escapeText, localizeDate} from "../../../common"
 import {LANGUAGES} from "../../../schema/const"
 import {bookTerm} from "../../i18n"
 
+/** A template for a document in an epub. */
+export const xhtmlTemplate = ({
+    shortLang,
+    title,
+    math,
+    styleSheets,
+    part,
+    currentPart,
+    body,
+    copyright
+}) =>
+    `<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${shortLang}" lang="${shortLang}"
+        xmlns:epub="http://www.idpf.org/2007/ops">
+    <head>
+        ${copyright && copyright.holder ? `<meta name="copyright" content="© ${copyright.year ? copyright.year : new Date().getFullYear()} ${escapeText(copyright.holder)}" />` : ""}
+        <title>${escapeText(title)}</title>
+${
+    math
+        ? '<link rel="stylesheet" type="text/css" href="css/mathlive.css" />\n'
+        : ""
+}
+${styleSheets
+    .map(
+        sheet =>
+            `<link rel="stylesheet" type="text/css" href="${sheet.filename}" />\n`
+    )
+    .join("")}
+    </head>
+    <body class="user-contents ${currentPart && currentPart.length ? `epub ${currentPart.toLowerCase().replace(/[^a-z]/g, "")} content` : "epub content"}"${currentPart && currentPart.length ? ` data-part="${escapeText(currentPart)}"` : ""} data-title="${escapeText(title)}">${
+        part && part.length ? `<h1 class="part">${escapeText(part)}</h1>` : ""
+    }${body}${
+        copyright && copyright.holder
+            ? `<div>© ${copyright.year ? copyright.year : new Date().getFullYear()} ${copyright.holder}</div>`
+            : ""
+    }
+    ${
+        copyright && copyright.licenses.length
+            ? `<div>${copyright.licenses.map(license => `<a rel="license" href="${escapeText(license.url)}">${escapeText(license.title)}${license.start ? ` (${license.start})` : ""}</a>`).join("</div><div>")}</div>`
+            : ""
+    }</body>
+</html>`
+
 /** A template to create the OPF file of book epubs. */
 export const epubBookOpfTemplate = ({
     book,
