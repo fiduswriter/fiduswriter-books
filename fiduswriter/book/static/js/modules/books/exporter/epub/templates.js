@@ -1,4 +1,5 @@
 import {escapeText, localizeDate} from "../../../common"
+import {ncxItemTemplate} from "../../../exporter/epub/templates"
 import {LANGUAGES} from "../../../schema/const"
 import {bookTerm} from "../../i18n"
 
@@ -299,5 +300,62 @@ export const epubBookCopyrightTemplate = ({
                 )}: ${escapeText(creator)}</p>
             </div>
         </section>
+    </body>
+</html>`
+
+/** A template of the NCX file of an epub. */
+export const ncxTemplate = ({shortLang, idType, id, title, contentItems}) =>
+    `<?xml version="1.0" encoding="UTF-8"?>
+<ncx xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="${shortLang}">
+    <head>
+        <meta name="dtb:${idType}" content="${id}"/>
+    </head>
+    <docTitle>
+        <text>${escapeText(title)}</text>
+    </docTitle>
+    <navMap>
+        <!-- 2.01 NCX: playOrder is optional -->
+${contentItems.map(item => ncxItemTemplate({item})).join("")}
+    </navMap>
+</ncx>`
+
+/** A template for each item in an epub's navigation document. */
+const navItemTemplate = ({item}) =>
+    `\t\t\t\t<li><a href="${
+        item.link
+            ? item.link
+            : item.docNum
+              ? `document-${item.docNum}.xhtml#${item.id}`
+              : `document.xhtml#${item.id}`
+    }">${escapeText(item.title)}</a>
+${
+    item.subItems.length
+        ? `<ol>
+        ${item.subItems.map(item => navItemTemplate({item})).join("")}
+    </ol>`
+        : ""
+}
+</li>`
+
+/** A template for an epub's navigation document. */
+export const navTemplate = ({shortLang, contentItems, styleSheets}) =>
+    `<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${shortLang}" lang="${shortLang}" xmlns:epub="http://www.idpf.org/2007/ops">
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>Navigation</title>
+        ${styleSheets
+            .map(
+                sheet =>
+                    `<link rel="stylesheet" type="text/css" href="${sheet.filename}" />\n`
+            )
+            .join("")}
+    </head>
+    <body class="epub navigation">
+        <nav epub:type="toc" id="toc">
+            <ol>
+${contentItems.map(item => navItemTemplate({item})).join("")}
+            </ol>
+        </nav>
     </body>
 </html>`

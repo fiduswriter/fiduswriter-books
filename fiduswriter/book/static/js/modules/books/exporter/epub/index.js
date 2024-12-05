@@ -13,6 +13,8 @@ import {
     epubBookCoverTemplate,
     epubBookOpfTemplate,
     epubBookTitlepageTemplate,
+    navTemplate,
+    ncxTemplate,
     xhtmlTemplate
 } from "./templates"
 import {
@@ -26,9 +28,7 @@ import {RenderCitations} from "../../../citations/render"
 import {addAlert} from "../../../common"
 import {
     containerTemplate,
-    navTemplate,
-    ncxItemTemplate,
-    ncxTemplate
+    ncxItemTemplate
 } from "../../../exporter/epub/templates"
 import {removeHidden} from "../../../exporter/tools/doc_content"
 import {createSlug} from "../../../exporter/tools/file"
