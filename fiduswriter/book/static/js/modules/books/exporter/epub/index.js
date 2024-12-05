@@ -3,10 +3,10 @@ import pretty from "pretty"
 import {DOMSerializer} from "prosemirror-model"
 
 import {getTimestamp} from "../../../exporter/epub/tools"
-import {DOMExporter} from "../../../exporter/tools/dom_export"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
 import {bookTerm} from "../../i18n"
+import {DOMExporter} from "../dom_export"
 import {getMissingChapterData, uniqueObjects} from "../tools"
 import {
     epubBookCopyrightTemplate,
@@ -32,9 +32,9 @@ import {
 } from "../../../exporter/epub/templates"
 import {removeHidden} from "../../../exporter/tools/doc_content"
 import {createSlug} from "../../../exporter/tools/file"
-import {modifyImages} from "../../../exporter/tools/html"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
+import {modifyImages} from "../html/tools"
 
 export class EpubBookExporter extends DOMExporter {
     constructor(schema, csl, bookStyles, book, user, docList, updated) {
