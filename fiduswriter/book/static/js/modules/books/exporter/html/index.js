@@ -143,7 +143,7 @@ export class HTMLBookExporter {
             )
 
             await documentHTMLExporter.process()
-            const {metaData, converter, textFiles, httpFiles, includeZips} =
+            const {metaData, converter, textFiles, httpFiles} =
                 documentHTMLExporter.getProcessedFiles()
 
             const contents = textFiles.find(
@@ -152,7 +152,6 @@ export class HTMLBookExporter {
             if (!contents) {
                 continue
             }
-            this.includeZips = this.includeZips.concat(includeZips)
             this.httpFiles = this.httpFiles.concat(httpFiles)
 
             // Update counters
