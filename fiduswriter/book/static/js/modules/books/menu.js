@@ -3,7 +3,7 @@ import {BookAccessRightsDialog} from "./accessrights"
 import {BITSBookExporter} from "./exporter/bits"
 import {DOCXBookExporter} from "./exporter/docx"
 import {EpubBookExporter} from "./exporter/epub"
-import {HTMLBookExporter, SingleFileHTMLBookExporter} from "./exporter/html"
+import {HTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
 import {ODTBookExporter} from "./exporter/odt"
 import {PrintBookExporter} from "./exporter/print"
@@ -113,14 +113,15 @@ const exportSingleHTML = (book, overview) => {
         "info",
         book.title + ": " + gettext("Unified HTML export has been initiated.")
     )
-    const exporter = new SingleFileHTMLBookExporter(
+    const exporter = new HTMLBookExporter(
         overview.schema,
         overview.app.csl,
         overview.styles,
         book,
         overview.user,
         overview.documentList,
-        new Date(book.updated * 1000)
+        new Date(book.updated * 1000),
+        false
     )
     return exporter.init()
 }

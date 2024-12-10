@@ -19,6 +19,7 @@ import {
 } from "./templates"
 import {
     addCategoryLabels,
+    modifyImages,
     orderLinks,
     setLinks,
     styleEpubFootnotes
@@ -34,7 +35,6 @@ import {removeHidden} from "../../../exporter/tools/doc_content"
 import {createSlug} from "../../../exporter/tools/file"
 import {node2Obj, obj2Node} from "../../../exporter/tools/json"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
-import {modifyImages} from "../html/tools"
 
 export class EpubBookExporter extends DOMExporter {
     constructor(schema, csl, bookStyles, book, user, docList, updated) {

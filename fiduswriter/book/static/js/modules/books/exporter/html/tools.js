@@ -1,30 +1,22 @@
-export const modifyImages = htmlEl => {
-    const imageLinks = htmlEl.querySelectorAll("img"),
-        images = []
-
-    imageLinks.forEach((el, index) => {
-        const src = el.getAttribute("src").split("?")[0]
-        let filename = `images/${src.split("/").pop()}`
-        // JPGs are output as PNG elements as well.
-        if (filename === "images/") {
-            // name was not retrievable so we give the image a unique numerical
-            // name like 1.png, 2.jpg, 3.svg, etc. .
-            filename = `images/${index}`
+export function orderLinks(contentItems) {
+    for (let i = 0; i < contentItems.length; i++) {
+        contentItems[i].subItems = []
+        if (i > 0) {
+            for (let j = i - 1; j > -1; j--) {
+                if (contentItems[j].level < contentItems[i].level) {
+                    contentItems[j].subItems.push(contentItems[i])
+                    contentItems[i].delete = true
+                    break
+                }
+            }
         }
+    }
 
-        const newImg = document.createElement("img")
-        // We set the src of the image as "data-src" for now so that the browser
-        // won't try to load the file immediately
-        newImg.setAttribute("data-src", filename)
-        el.parentNode.replaceChild(newImg, el)
-
-        if (!images.find(image => image.filename === filename)) {
-            images.push({
-                filename,
-                url: src
-            })
+    for (let i = contentItems.length; i > -1; i--) {
+        if (contentItems[i]?.delete) {
+            delete contentItems[i].delete
+            contentItems.splice(i, 1)
         }
-    })
-
-    return images
+    }
+    return contentItems
 }
