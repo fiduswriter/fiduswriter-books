@@ -1,18 +1,18 @@
 import {DOMSerializer} from "prosemirror-model"
-import {RenderCitations} from "../../citations/render"
-import {get} from "../../common"
-import {BIBLIOGRAPHY_HEADERS, CATS} from "../../schema/i18n"
+import {RenderCitations} from "../../../citations/render"
+import {get} from "../../../common"
+import {BIBLIOGRAPHY_HEADERS, CATS} from "../../../schema/i18n"
 
 /*
 
 WARNING: DEPRECATED!
 
 Base exporter class for dom-based exports. This is the deprecated way of creating exports.
-The epub and html book export filters go over a DOM of a document which they change little
-by little, and they are all based on the BaseDOMExporter class.
+The epub book export filter goes over a DOM of a document which they change little
+by little, and it is based on the DOMExporter class.
 
     New exporters should instead by walking the doc.content tree.
-    This is how all document exporters work, including the new HTML/EPUB exporter.
+    This is how all document exporters work, including the new EPUB exporter.
 */
 
 export class DOMExporter {

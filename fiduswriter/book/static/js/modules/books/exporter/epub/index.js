@@ -6,8 +6,8 @@ import {getTimestamp} from "../../../exporter/epub/tools"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {BIBLIOGRAPHY_HEADERS} from "../../../schema/i18n"
 import {bookTerm} from "../../i18n"
-import {DOMExporter} from "../dom_export"
-import {getMissingChapterData, uniqueObjects} from "../tools"
+import {getMissingChapterData} from "../tools"
+import {DOMExporter} from "./dom_export"
 import {
     epubBookCopyrightTemplate,
     epubBookCoverTemplate,
@@ -22,7 +22,8 @@ import {
     modifyImages,
     orderLinks,
     setLinks,
-    styleEpubFootnotes
+    styleEpubFootnotes,
+    uniqueObjects
 } from "./tools"
 
 import {RenderCitations} from "../../../citations/render"

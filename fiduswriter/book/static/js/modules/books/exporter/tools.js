@@ -34,22 +34,3 @@ export const getMissingChapterData = (
     )
     return returnData
 }
-
-export const uniqueObjects = array => {
-    const results = []
-
-    for (let i = 0; i < array.length; i++) {
-        let willCopy = true
-        for (let j = 0; j < i; j++) {
-            if (JSON.stringify(array[i]) === JSON.stringify(array[j])) {
-                willCopy = false
-                break
-            }
-        }
-        if (willCopy) {
-            results.push(array[i])
-        }
-    }
-
-    return results
-}
