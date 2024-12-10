@@ -27,7 +27,7 @@ export class HTMLBookExporter {
         docList,
         updated,
         multiDoc = true,
-        {relativeUrls = true}
+        {relativeUrls = true} = {}
     ) {
         this.schema = schema
         this.csl = csl
