@@ -51,8 +51,8 @@ jobs:
             else pip install https://github.com/fiduswriter/fiduswriter/archive/main.zip;
           fi
           cd fiduswriter
-          cp ../ci/configuration.py ./
-          cp ../ci/.coveragerc ./
+          mv ../ci/configuration.py ./
+          mv ../ci/.coveragerc ./
           pip install requests[security]
           pip install coverage
           pip install coveralls
