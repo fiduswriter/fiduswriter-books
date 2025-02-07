@@ -1,5 +1,6 @@
 import deepEqual from "fast-deep-equal"
 import {DataTable} from "simple-datatables"
+import {keyName} from "w3c-keyname"
 
 import * as plugins from "../../plugins/books_overview"
 import {
@@ -172,7 +173,7 @@ export class BookOverview {
             fileList.unshift([
                 "-1",
                 "top",
-                "",
+                false,
                 `<a class="fw-data-table-title fw-link-text parentdir" href="/books${encodeURI(
                     parentPath
                 )}" data-path="${parentPath}">
@@ -218,14 +219,79 @@ export class BookOverview {
                     hidden: true
                 },
                 {
-                    select: [2, 7, 8],
+                    select: 2,
+                    sortable: false,
+                    type: "boolean"
+                },
+                {
+                    select: [7, 8],
                     sortable: false
                 },
                 {
                     select: [this.lastSort.column],
                     sort: this.lastSort.dir
                 }
-            ]
+            ],
+            rowNavigation: true,
+            rowSelectionKeys: ["Enter", "Delete", " "],
+            tabIndex: 1,
+            rowRender: (row, tr, _index) => {
+                if (row.cells[1].data === "folder") {
+                    tr.childNodes[0].childNodes = []
+                    return
+                }
+                const id = row.cells[0].data
+                const inputNode = {
+                    nodeName: "input",
+                    attributes: {
+                        type: "checkbox",
+                        class: "entry-select fw-check",
+                        "data-id": id,
+                        id: `book-${id}`
+                    }
+                }
+                if (row.cells[2].data) {
+                    inputNode.attributes.checked = true
+                }
+                tr.childNodes[0].childNodes = [
+                    inputNode,
+                    {
+                        nodeName: "label",
+                        attributes: {
+                            for: `book-${id}`
+                        }
+                    }
+                ]
+            }
+        })
+
+        this.table.on("datatable.selectrow", (rowIndex, event, focused) => {
+            event.preventDefault()
+            if (event.type === "keydown") {
+                const key = keyName(event)
+                if (key === "Enter") {
+                    const link = this.table.dom.querySelector(
+                        `tr[data-index="${rowIndex}"] a.fw-data-table-title`
+                    )
+                    if (link) {
+                        link.click()
+                    }
+                } else if (key === " ") {
+                    const cell = this.table.data.data[rowIndex].cells[2]
+                    cell.data = !cell.data
+                    cell.text = String(cell.data)
+                    this.table.update()
+                } else if (key === "Delete") {
+                    const cell = this.table.data.data[rowIndex].cells[0]
+                    const bookId = cell.data
+                    this.mod.actions.deleteBookDialog([bookId], this.app)
+                }
+            } else {
+                if (!focused) {
+                    this.table.dom.focus()
+                }
+                this.table.rows.setCursor(rowIndex)
+            }
         })
 
         this.table.on("datatable.sort", (column, dir) => {
@@ -276,7 +342,7 @@ export class BookOverview {
             const row = [
                 "0",
                 "folder",
-                "",
+                false,
                 `<a class="fw-data-table-title fw-link-text subdir" href="/books${encodeURI(
                     this.path + subdir
                 )}/" data-path="${this.path}${subdir}/">
@@ -300,9 +366,9 @@ export class BookOverview {
 
         // This is the folder of the file. Return the file.
         return [
-            String(book.id),
+            book.id,
             "file",
-            `<input type="checkbox" class="entry-select fw-check" data-id="${book.id}" id="book-${book.id}"><label for="book-${book.id}"></label>`,
+            false, // checkbox
             `<span class="fw-data-table-title fw-inline fw-link-text" data-id="${
                 book.id
             }">
@@ -395,6 +461,23 @@ export class BookOverview {
         this.dom.addEventListener("click", event => {
             const el = {}
             switch (true) {
+                case findTarget(
+                    event,
+                    ".entry-select, .entry-select + label",
+                    el
+                ): {
+                    const checkbox = el.target
+                    const dataIndex = checkbox
+                        .closest("tr")
+                        .getAttribute("data-index", null)
+                    if (dataIndex) {
+                        const index = Number.parseInt(dataIndex)
+                        const data = this.table.data.data[index]
+                        data.cells[2].data = !checkbox.checked
+                        data.cells[2].text = String(!checkbox.checked)
+                    }
+                    break
+                }
                 case findTarget(event, ".delete-book", el): {
                     if (this.app.isOffline()) {
                         addAlert(
@@ -516,5 +599,15 @@ export class BookOverview {
         return Array.from(
             this.dom.querySelectorAll(".entry-select:checked:not(:disabled)")
         ).map(el => Number.parseInt(el.getAttribute("data-id")))
+    }
+
+    close() {
+        if (this.table) {
+            this.table.destroy()
+        }
+        if (this.menu) {
+            this.menu.destroy()
+            this.menu = null
+        }
     }
 }

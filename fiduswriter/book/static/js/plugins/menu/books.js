@@ -11,7 +11,8 @@ export class BookMenuItem {
             title: gettext("compose books"),
             url: "/books/",
             text: gettext("Books"),
-            order: 5
+            order: 5,
+            keys: "Alt-o"
         })
     }
 }

@@ -15,6 +15,7 @@ export const menuModel = () => ({
         {
             type: "text",
             title: gettext("Create new book"),
+            keys: "n",
             action: overview => {
                 overview.getImageDB().then(() => {
                     overview.mod.actions.createBookDialog(0, overview.imageDB)
@@ -25,6 +26,7 @@ export const menuModel = () => ({
         {
             type: "text",
             title: gettext("Create new folder"),
+            keys: "o",
             action: overview => {
                 const dialog = new NewFolderDialog(folderName => {
                     overview.path = overview.path + folderName + "/"
@@ -39,6 +41,7 @@ export const menuModel = () => ({
             type: "search",
             icon: "search",
             title: gettext("Search books"),
+            keys: "s",
             input: (overview, text) => {
                 if (text.length && !currentlySearching) {
                     overview.initTable(true)
