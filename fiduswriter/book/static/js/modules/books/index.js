@@ -287,6 +287,13 @@ export class BookOverview {
                     this.mod.actions.deleteBookDialog([bookId], this.app)
                 }
             } else {
+                if (
+                    event.target.closest(
+                        "span.fw-data-table-title, span.rights, span.delete-book"
+                    )
+                ) {
+                    return
+                }
                 if (!focused) {
                     this.table.dom.focus()
                 }
