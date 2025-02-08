@@ -1,14 +1,14 @@
 import {escapeText} from "../../../common"
 
 const bookPartTemplate = ({front, body, back}) =>
-    `<book-part book-part-type="chapter" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">${front}${body}${back}</book-part>`
+    `<book-part book-part-type="chapter" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML">${front}${body}${back}</book-part>`
 
 export const bitsTemplate = (book, chapters) => {
     const updated = new Date(book.updated * 1000)
     return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//NLM//DTD BITS Book Interchange DTD v2.1 20220202//EN" "https://jats.nlm.nih.gov/extensions/bits/2.1/BITS-book2-1.dtd">
 <book dtd-version="2.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ali="http://www.niso.org/schemas/ali/1.0/">
-    <processing-meta tagset-family="bits" table-model="xhtml" math-representation="tex"></processing-meta>
+    <processing-meta tagset-family="bits" table-model="xhtml" math-representation="tex mathml"></processing-meta>
     <book-meta>
         <book-title-group>
             <book-title>${escapeText(book.title)}</book-title>
