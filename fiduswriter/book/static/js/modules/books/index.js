@@ -314,6 +314,8 @@ export class BookOverview {
         })
 
         this.dtBulk.init(this.table.dom)
+
+        this.table.dom.focus()
     }
 
     createTableRow(book, subdirs, searching) {
