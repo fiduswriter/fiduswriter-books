@@ -15,7 +15,7 @@ export const menuModel = () => ({
         {
             type: "text",
             title: gettext("Create new book"),
-            keys: "n",
+            keys: "Alt-n",
             action: overview => {
                 overview.getImageDB().then(() => {
                     overview.mod.actions.createBookDialog(0, overview.imageDB)
@@ -26,7 +26,7 @@ export const menuModel = () => ({
         {
             type: "text",
             title: gettext("Create new folder"),
-            keys: "o",
+            keys: "Alt-f",
             action: overview => {
                 const dialog = new NewFolderDialog(folderName => {
                     overview.path = overview.path + folderName + "/"

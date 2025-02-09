@@ -129,6 +129,9 @@ export class BookActions {
         })
         const buttons = [
             {
+                type: "close"
+            },
+            {
                 text: gettext("Delete"),
                 classes: "fw-dark",
                 click: () => {
@@ -137,9 +140,6 @@ export class BookActions {
                         this.bookOverview.initTable()
                     })
                 }
-            },
-            {
-                type: "close"
             }
         ]
 
@@ -176,6 +176,9 @@ export class BookActions {
 
         const buttons = [
             {
+                type: "cancel"
+            },
+            {
                 text: gettext("Submit"),
                 classes: "fw-dark",
                 click: () => {
@@ -188,9 +191,6 @@ export class BookActions {
                         })
                     dialog.close()
                 }
-            },
-            {
-                type: "cancel"
             }
         ]
 

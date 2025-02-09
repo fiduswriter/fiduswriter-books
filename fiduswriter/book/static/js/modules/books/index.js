@@ -215,6 +215,10 @@ export class BookOverview {
             },
             columns: [
                 {
+                    select: 0,
+                    type: "number"
+                },
+                {
                     select: hiddenCols,
                     hidden: true
                 },

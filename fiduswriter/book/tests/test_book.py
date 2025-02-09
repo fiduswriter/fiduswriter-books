@@ -159,7 +159,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ).click()
         # Create a new book
         self.driver.find_element(
-            By.CSS_SELECTOR, 'button[title="Create new book"]'
+            By.CSS_SELECTOR, 'button[title="Create new book (Alt-n)"]'
         ).click()
         self.driver.find_element(By.ID, "book-title").send_keys("My book")
         self.driver.find_element(By.ID, "book-metadata-author").send_keys(
@@ -366,7 +366,11 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             ),
             0,
         )
+
+        # Edit title
         self.driver.find_element(By.CSS_SELECTOR, ".book-title").click()
+        # Move focus
+        self.driver.find_element(By.CSS_SELECTOR, ".fw-tablerow-title").click()
         self.driver.find_element(By.ID, "book-title").send_keys(" EXTRA")
         self.driver.find_element(
             By.CSS_SELECTOR, 'a[href="#optionTab1"]'
@@ -603,7 +607,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         # Create a new book
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, 'button[title="Create new book"]')
+                (By.CSS_SELECTOR, 'button[title="Create new book (Alt-n)"]')
             )
         ).click()
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").click()
@@ -626,7 +630,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         )
         # Create new folder 'Releases' and enter
         self.driver.find_element(
-            By.CSS_SELECTOR, 'button[title="Create new folder"]'
+            By.CSS_SELECTOR, 'button[title="Create new folder (Alt-f)"]'
         ).click()
         self.driver.find_element(By.CSS_SELECTOR, "#new-folder-name").click()
         self.driver.find_element(
@@ -649,7 +653,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         # Create second book inside of Releases folder
         WebDriverWait(self.driver, self.wait_time).until(
             EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, 'button[title="Create new book"]')
+                (By.CSS_SELECTOR, 'button[title="Create new book (Alt-n)"]')
             )
         ).click()
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").click()
@@ -949,7 +953,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ).click()
         # Create a new book
         self.driver.find_element(
-            By.CSS_SELECTOR, 'button[title="Create new book"]'
+            By.CSS_SELECTOR, 'button[title="Create new book (Alt-n)"]'
         ).click()
         self.driver.find_element(By.ID, "book-title").send_keys("My book")
         self.driver.find_element(
