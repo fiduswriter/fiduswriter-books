@@ -134,7 +134,11 @@ export class BookOverview {
     initTable(searching = false) {
         if (this.table) {
             this.table.destroy()
-            this.table = false
+            this.table = null
+        }
+        if (this.dtBulk) {
+            this.dtBulk.destroy()
+            this.dtBulk = null
         }
         const subdirs = {}
         const tableEl = document.createElement("table")
@@ -604,6 +608,11 @@ export class BookOverview {
     close() {
         if (this.table) {
             this.table.destroy()
+            this.table = null
+        }
+        if (this.dtBulk) {
+            this.dtBulk.destroy()
+            this.dtBulk = null
         }
         if (this.menu) {
             this.menu.destroy()
