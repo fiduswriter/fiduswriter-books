@@ -120,7 +120,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             0,
         )
         self.driver.find_element(
-            By.CSS_SELECTOR, "button[title='Invite contact']"
+            By.CSS_SELECTOR, "button[title='Invite contact (Alt-i)']"
         ).click()
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "yeti2@snowman.com"
@@ -136,7 +136,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             1,
         )
         self.driver.find_element(
-            By.CSS_SELECTOR, "button[title='Invite contact']"
+            By.CSS_SELECTOR, "button[title='Invite contact (Alt-i)']"
         ).click()
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "Yeti3"
