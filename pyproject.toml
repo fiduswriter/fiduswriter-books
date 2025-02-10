@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=65.6.3", "wheel"]
+requires = ["setuptools>=75.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -25,4 +25,4 @@ classifiers=[
 ]
 
 [project.urls]
-repository = "https://www.github.org/fiduswriter/fiduswriter-books"
+repository = "https://www.github.com/fiduswriter/fiduswriter-books"
