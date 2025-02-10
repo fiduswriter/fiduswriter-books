@@ -317,7 +317,7 @@ export class BookOverview {
             this.lastSort = {column, dir}
         })
 
-        this.dtBulk.init(this.table.dom)
+        this.dtBulk.init(this.table)
 
         this.table.dom.focus()
     }
