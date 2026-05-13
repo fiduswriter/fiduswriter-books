@@ -456,7 +456,71 @@ export class BookOverview {
         if (this.app.page === this) {
             this.initTable()
         }
+        this.decryptE2EETitles()
         return json
+    }
+
+    /**
+     * Update doc.title in-place for every E2EE document in documentList so
+     * that all downstream consumers (templates, FileSelector, exporters) can
+     * treat the title as a plain string without any special handling.
+     *
+     * Two passes:
+     *   1. Synchronous — titles already cached in sessionStorage (written
+     *      when the editor closed the document this session) are applied
+     *      immediately, before any other code runs.
+     *   2. Async — for docs whose title is not yet cached, derive the key
+     *      from sessionStorage and decrypt with AES-GCM.
+     */
+    decryptE2EETitles() {
+        const e2eeDocs = this.documentList.filter(doc => doc.e2ee && doc.title)
+        if (!e2eeDocs.length) {
+            return
+        }
+
+        // Pass 1: synchronous sessionStorage read — covers the common case
+        // where the document was opened in the current browser session.
+        const needsAsyncDecrypt = []
+        e2eeDocs.forEach(doc => {
+            const cached = sessionStorage.getItem(`e2ee_title_${doc.id}`)
+            if (cached !== null) {
+                doc.title = cached
+            } else {
+                needsAsyncDecrypt.push(doc)
+            }
+        })
+
+        if (!needsAsyncDecrypt.length) {
+            return // Pass 2: async decryption for docs whose title was not yet cached.
+        }
+        ;(async () => {
+            const [{E2EEKeyManager}, {E2EEEncryptor}] = await Promise.all([
+                import("../editor/e2ee/key-manager"),
+                import("../editor/e2ee/encryptor")
+            ])
+            await Promise.all(
+                needsAsyncDecrypt.map(async doc => {
+                    try {
+                        const keyOrNull = E2EEKeyManager.getKeyFromSession(
+                            doc.id
+                        )
+                        if (!keyOrNull) {
+                            return
+                        }
+                        const key = await keyOrNull
+                        const title = await E2EEEncryptor.decrypt(
+                            doc.title,
+                            key
+                        )
+                        doc.title = title
+                        sessionStorage.setItem(`e2ee_title_${doc.id}`, title)
+                    } catch (_e) {
+                        // Key unavailable or stale — leave the encrypted
+                        // title in place; the UI will show it as-is.
+                    }
+                })
+            )
+        })()
     }
 
     loaddatafromIndexedDB() {

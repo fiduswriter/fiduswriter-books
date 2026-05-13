@@ -140,23 +140,119 @@ const decryptE2EEChapters = (book, documentList, schema, rawContent) => {
                             iterations
                         )
                             .then(key =>
-                                E2EEEncryptor.decryptObject(doc.content, key)
-                            )
-                            .then(decryptedContent => {
-                                if (rawContent) {
-                                    doc.rawContent = JSON.parse(
-                                        JSON.stringify(
-                                            schema
-                                                .nodeFromJSON(decryptedContent)
-                                                .toJSON()
+                                // Keep key in scope for image decryption by
+                                // nesting the next step inside this .then().
+                                E2EEEncryptor.decryptObject(
+                                    doc.content,
+                                    key
+                                ).then(decryptedContent => {
+                                    // --- 1. Update the plaintext title -------
+                                    // doc.title is the encrypted ciphertext
+                                    // until we overwrite it here.  The title
+                                    // node is always the first child of the
+                                    // document node.
+                                    const titleContent =
+                                        decryptedContent?.content?.[0]
+                                            ?.content || []
+                                    let title = ""
+                                    titleContent.forEach(child => {
+                                        // Skip text that belongs to a tracked
+                                        // deletion so the title matches what
+                                        // the user actually sees.
+                                        if (
+                                            !(child.marks || []).some(
+                                                m => m.type === "deletion"
+                                            )
+                                        ) {
+                                            title += child.text || ""
+                                        }
+                                    })
+                                    if (title) {
+                                        doc.title = title.substring(0, 255)
+                                        // Keep sessionStorage in sync so the
+                                        // document overview also shows the
+                                        // decrypted title.
+                                        sessionStorage.setItem(
+                                            `e2ee_title_${doc.id}`,
+                                            doc.title
+                                        )
+                                    }
+
+                                    // --- 2. Parse ProseMirror content --------
+                                    if (rawContent) {
+                                        doc.rawContent = JSON.parse(
+                                            JSON.stringify(
+                                                schema
+                                                    .nodeFromJSON(
+                                                        decryptedContent
+                                                    )
+                                                    .toJSON()
+                                            )
+                                        )
+                                    }
+                                    doc.content = acceptAllNoInsertions(
+                                        schema.nodeFromJSON(decryptedContent)
+                                    ).toJSON()
+                                    doc.settings = getSettings(doc.content)
+
+                                    // --- 3. Decrypt encrypted images ---------
+                                    // get_documentlist_extra returns
+                                    // EncryptedDocumentImage records as
+                                    // file_type "application/octet-stream".
+                                    // We decrypt each one with the same
+                                    // AES-GCM key and replace the server URL
+                                    // with a local blob URL so that exporters
+                                    // (HTML, EPUB, …) can include the images
+                                    // without encountering encrypted bytes.
+                                    const encryptedImageEntries =
+                                        Object.entries(doc.images || {}).filter(
+                                            ([, entry]) =>
+                                                entry.file_type ===
+                                                    "application/octet-stream" &&
+                                                entry.image
+                                        )
+
+                                    if (!encryptedImageEntries.length) {
+                                        return
+                                    }
+
+                                    return Promise.all(
+                                        encryptedImageEntries.map(
+                                            ([id, entry]) =>
+                                                E2EEEncryptor.decryptImageToUrl(
+                                                    entry.image,
+                                                    key
+                                                )
+                                                    .then(blobUrl => {
+                                                        doc.images[id] = {
+                                                            ...entry,
+                                                            image: blobUrl,
+                                                            // Replace the
+                                                            // opaque octet
+                                                            // type with a
+                                                            // generic image
+                                                            // type so the
+                                                            // exporter treats
+                                                            // the entry as a
+                                                            // normal image.
+                                                            file_type:
+                                                                "image/png"
+                                                        }
+                                                    })
+                                                    .catch(() => {
+                                                        // Remove any entry
+                                                        // that cannot be
+                                                        // decrypted so the
+                                                        // exporter never
+                                                        // receives an
+                                                        // undefined
+                                                        // imageDBEntry.
+                                                        delete doc.images[id]
+                                                    })
                                         )
                                     )
-                                }
-                                doc.content = acceptAllNoInsertions(
-                                    schema.nodeFromJSON(decryptedContent)
-                                ).toJSON()
-                                doc.settings = getSettings(doc.content)
-                            })
+                                })
+                            )
                             .catch(err => {
                                 // Re-throw "no key" errors that we already
                                 // alerted about; for all other decryption

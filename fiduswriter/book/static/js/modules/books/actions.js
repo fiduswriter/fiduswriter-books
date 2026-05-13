@@ -380,7 +380,6 @@ export class BookActions {
         })
         dialog.open()
 
-        // Hide all but first tab
         dialog.dialogEl
             .querySelectorAll("#bookoptions-tab .tab-content")
             .forEach((el, index) => {

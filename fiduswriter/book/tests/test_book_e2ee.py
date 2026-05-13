@@ -14,6 +14,8 @@ Covers:
 import os
 import sys
 import time
+import zipfile
+from tempfile import mkdtemp
 
 from django.conf import settings
 from django.test import override_settings
@@ -45,7 +47,8 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.base_url = cls.live_server_url
-        driver_data = cls.get_drivers(1)
+        cls.download_dir = mkdtemp()
+        driver_data = cls.get_drivers(1, cls.download_dir)
         cls.driver = driver_data["drivers"][0]
         cls.client = driver_data["clients"][0]
         cls.driver.implicitly_wait(driver_data["wait_time"])
@@ -54,6 +57,17 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
+        # Clean up any leftover downloads so os.rmdir succeeds even if a
+        # test failed before removing its own files.
+        for fname in os.listdir(cls.download_dir):
+            try:
+                os.remove(os.path.join(cls.download_dir, fname))
+            except OSError:
+                pass
+        try:
+            os.rmdir(cls.download_dir)
+        except OSError:
+            pass
         super().tearDownClass()
 
     def setUp(self):
@@ -514,6 +528,118 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
             "Chapter title 'E2EE Chapter with Image' should be recognised "
             "after successful decryption.",
         )
+
+        # ---- Verify the dialog shows the plaintext chapter title --------
+        # Switch to the Chapters tab (optionTab1).  decryptE2EETitles in
+        # BookOverview.initializeView() runs synchronously from
+        # sessionStorage, so by now doc.title in this.bookOverview.
+        # documentList is the plaintext title -- both the "Book chapters"
+        # table and the "My documents" FileSelector should reflect it.
+        self.driver.find_element(
+            By.CSS_SELECTOR, 'a[href="#optionTab1"]'
+        ).click()
+
+        chapter_list = WebDriverWait(self.driver, self.wait_time).until(
+            EC.visibility_of_element_located((By.ID, "book-chapter-list"))
+        )
+        self.assertIn(
+            "E2EE Chapter with Image",
+            chapter_list.text,
+            "The 'Book chapters' panel must show the decrypted plaintext "
+            "title, not the encrypted ciphertext.",
+        )
+        # The tooltip on the chapter-title cell carries the same value;
+        # checking it as a separate assertion guards against the visible
+        # text accidentally matching some other string on the row.
+        chapter_cell = chapter_list.find_element(
+            By.CSS_SELECTOR, "td.fw-checkable-td"
+        )
+        self.assertIn(
+            "E2EE Chapter with Image",
+            chapter_cell.get_attribute("title") or "",
+            "The tooltip on the chapter row must contain the plaintext "
+            "title.",
+        )
+
+        document_list = self.driver.find_element(By.ID, "book-document-list")
+        self.assertIn(
+            "E2EE Chapter with Image",
+            document_list.text,
+            "The 'My documents' FileSelector must show the decrypted "
+            "plaintext title.",
+        )
+
+        # ---- Close the book dialog --------------------------------------
+        # Submit dismisses the dialog cleanly (saveBook is a no-op since
+        # nothing changed).  Wait for the dialog to be detached from the
+        # DOM before continuing.
+        self.driver.find_element(
+            By.XPATH,
+            '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.staleness_of(chapter_list)
+        )
+
+        # ---- Export the book as Unified HTML ----------------------------
+        # Select the only book row, open the bulk dropdown and choose
+        # "Export selected as Unified HTML".
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, "tr:nth-child(1) > td > label")
+            )
+        ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, ".dt-bulk-dropdown"))
+        ).click()
+        self.driver.find_element(
+            By.XPATH,
+            '//*[normalize-space()="Export selected as Unified HTML"]',
+        ).click()
+
+        # Wait for the ZIP to land in the download directory.  Chrome
+        # writes to a .crdownload file first and only renames to the
+        # final name when the download is complete, so simply waiting
+        # for the final filename to exist is enough.
+        zip_path = os.path.join(self.download_dir, "image-e2ee-book.html.zip")
+        deadline = time.time() + self.wait_time * 2
+        while time.time() < deadline and not os.path.isfile(zip_path):
+            time.sleep(0.5)
+        self.assertTrue(
+            os.path.isfile(zip_path),
+            f"Unified HTML export was not produced at {zip_path}",
+        )
+
+        # ---- Inspect the ZIP contents -----------------------------------
+        try:
+            with zipfile.ZipFile(zip_path) as zf:
+                names = zf.namelist()
+                image_files = [
+                    n
+                    for n in names
+                    if n.startswith("images/") and not n.endswith("/")
+                ]
+                self.assertTrue(
+                    len(image_files) > 0,
+                    f"Unified HTML export must contain the decrypted "
+                    f"chapter image under images/. ZIP contents: {names}",
+                )
+                self.assertIn(
+                    "index.html",
+                    names,
+                    "Unified HTML export must contain a single index.html.",
+                )
+                with zf.open("index.html") as f:
+                    html_content = f.read().decode("utf-8", errors="replace")
+
+            self.assertIn(
+                "Chapter body text.",
+                html_content,
+                "Unified HTML index.html must contain the plaintext body "
+                "that was typed into the encrypted chapter.",
+            )
+        finally:
+            os.remove(zip_path)
 
     def test_book_sanity_check_fails_gracefully_without_passphrase(self):
         """
