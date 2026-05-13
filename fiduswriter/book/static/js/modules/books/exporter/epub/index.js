@@ -6,7 +6,6 @@ import {htmlExportTemplate} from "../../../exporter/html/templates"
 import {removeHidden} from "../../../exporter/tools/doc_content"
 import {createSlug} from "../../../exporter/tools/file"
 import {ZipFileCreator} from "../../../exporter/tools/zip"
-import {LANGUAGES} from "../../../schema/const"
 import {getMissingChapterData} from "../tools"
 import {
     containerTemplate,

@@ -1,4 +1,22 @@
 {
+    "files": {
+        "ignore": [
+            "**/.transpile-cache/",
+            "**/venv/",
+            "**/static-transpile/",
+            "**/static-libs/",
+            "**/static-collected/",
+            "**/node-modules/",
+            "**/testing/",
+            "**/*.json",
+            "**/*.html",
+            "**/.direnv",
+            "**/.transpile",
+            "**/.babelrc",
+            "**/sw-template.js",
+            "**/manifest.json"
+        ]
+    },
     "formatter": {
         "enabled": true,
         "useEditorconfig": true,
@@ -8,24 +26,7 @@
         "lineEnding": "lf",
         "lineWidth": 80,
         "attributePosition": "auto",
-        "bracketSpacing": true,
-        "ignore": [
-            "**/.transpile-cache/",
-            "**/venv/",
-            "**/static-transpile/",
-            "**/static-libs/",
-            "**/static-collected/",
-            "**/node-modules/",
-            "**/testing/",
-            "**/.eslintrc.mjs",
-            "**/*.json",
-            "**/*.html",
-            "**/.direnv",
-            "**/venv",
-            "**/.transpile",
-            "**/.babelrc",
-            "**/sw-template.js"
-        ]
+        "bracketSpacing": true
     },
     "linter": {
         "enabled": true,
@@ -73,13 +74,18 @@
                 "useValidForDirection": "error",
                 "useYield": "error"
             },
-            "security": { "noGlobalEval": "error" },
+            "security": {
+                "noGlobalEval": "error"
+            },
             "style": {
                 "noArguments": "off",
                 "noCommaOperator": "error",
                 "noNegationElse": "off",
                 "noParameterAssign": "off",
-                "noRestrictedGlobals": { "level": "error", "options": {} },
+                "noRestrictedGlobals": {
+                    "level": "error",
+                    "options": {}
+                },
                 "noVar": "error",
                 "noYodaExpression": "off",
                 "useBlockStatements": "error",
@@ -121,17 +127,7 @@
                 "useGetterReturn": "error",
                 "useValidTypeof": "error"
             }
-        },
-        "ignore": [
-            "**/.transpile-cache/",
-            "**/venv/",
-            "**/static-transpile/",
-            "**/static-libs/",
-            "**/static-collected/",
-            "**/testing/",
-            "**/manifest.json",
-            "**/sw-template.js"
-        ]
+        }
     },
     "javascript": {
         "formatter": {
