@@ -2,7 +2,9 @@ import {
     ContentMenu,
     Dialog,
     FileSelector,
+    activateWait,
     addAlert,
+    deactivateWait,
     escapeText,
     findTarget,
     longFilePath,
@@ -10,6 +12,7 @@ import {
     postJson
 } from "../common"
 import {ImageSelectionDialog} from "../images/selection_dialog"
+import {NativeBookImporter} from "./importer/native"
 import {exportMenuModel} from "./menu"
 import {bookSanityCheck} from "./sanity_check"
 import {
@@ -281,6 +284,79 @@ export class BookActions {
                 this.bookOverview.bookList.push(book)
                 this.bookOverview.initTable()
             })
+    }
+
+    /**
+     * Open a dialog to let the user pick a .fidusbook file and import it.
+     * Creates all chapter documents on the server, uploads the cover image
+     * (if present), and finally creates the book record.
+     */
+    importBook() {
+        const overview = this.bookOverview
+
+        const importDialog = new Dialog({
+            id: "import_fidusbook",
+            title: gettext("Import a book"),
+            body: `<p>
+                <label class="fw-document-list-item fw-large" for="fidusbook-uploader">
+                    ${gettext("Select a .fidusbook file:")}
+                </label>
+            </p>
+            <p>
+                <input type="file"
+                       id="fidusbook-uploader"
+                       accept=".fidusbook"
+                       style="display:block;margin-top:8px;">
+            </p>`,
+            height: 180,
+            buttons: [
+                {
+                    text: gettext("Import"),
+                    classes: "fw-dark",
+                    click: () => {
+                        const fileInput =
+                            document.getElementById("fidusbook-uploader")
+                        if (!fileInput || fileInput.files.length === 0) {
+                            return
+                        }
+                        const file = fileInput.files[0]
+                        if (file.size > 524288000) {
+                            // 500 MB hard limit
+                            addAlert("error", gettext("File too large"))
+                            return
+                        }
+                        importDialog.close()
+                        activateWait(true)
+
+                        const importer = new NativeBookImporter(
+                            file,
+                            overview.user,
+                            overview.path
+                        )
+                        importer
+                            .init()
+                            .then(({ok, statusText}) => {
+                                deactivateWait()
+                                if (ok) {
+                                    addAlert("info", statusText)
+                                    // Refresh the book list from the server
+                                    // so the newly-imported book appears.
+                                    overview.getBookListData()
+                                } else {
+                                    addAlert("error", statusText)
+                                }
+                            })
+                            .catch(() => {
+                                deactivateWait()
+                            })
+                    }
+                },
+                {
+                    type: "cancel"
+                }
+            ]
+        })
+        importDialog.open()
     }
 
     createBookDialog(bookId, imageDB) {

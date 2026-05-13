@@ -5,6 +5,7 @@ import {DOCXBookExporter} from "./exporter/docx"
 import {EpubBookExporter} from "./exporter/epub"
 import {HTMLBookExporter} from "./exporter/html"
 import {LatexBookExporter} from "./exporter/latex"
+import {NativeBookExporter} from "./exporter/native"
 import {ODTBookExporter} from "./exporter/odt"
 import {PrintBookExporter} from "./exporter/print"
 
@@ -38,6 +39,15 @@ export const menuModel = () => ({
             order: 2
         },
         {
+            type: "text",
+            title: gettext("Import book from Fidusbook file"),
+            keys: "Alt-i",
+            action: overview => {
+                overview.mod.actions.importBook()
+            },
+            order: 3
+        },
+        {
             type: "search",
             icon: "search",
             title: gettext("Search books"),
@@ -56,7 +66,7 @@ export const menuModel = () => ({
                     overview.table.search(text)
                 }
             },
-            order: 3
+            order: 4
         }
     ]
 })
@@ -187,6 +197,17 @@ const exportPrint = (book, overview) => {
         overview.documentList
     )
     exporter.init()
+}
+
+const exportFidusbook = (book, overview) => {
+    const exporter = new NativeBookExporter(
+        overview.schema,
+        book,
+        overview.user,
+        overview.documentList,
+        new Date(book.updated * 1000)
+    )
+    return exporter.init()
 }
 
 export const bulkMenuModel = () => ({
@@ -396,6 +417,20 @@ export const bulkMenuModel = () => ({
                 })
             },
             disabled: overview => !overview.getSelected().length
+        },
+        {
+            title: gettext("Export selected as Fidusbook"),
+            tooltip: gettext(
+                "Export selected books as .fidusbook files (for moving to another server)."
+            ),
+            action: overview => {
+                const ids = overview.getSelected()
+                ids.forEach(id => {
+                    const book = overview.bookList.find(book => book.id === id)
+                    exportFidusbook(book, overview)
+                })
+            },
+            disabled: overview => !overview.getSelected().length
         }
     ]
 })
@@ -467,6 +502,16 @@ export const exportMenuModel = () => ({
             tooltip: gettext("Export book to the print dialog."),
             action: ({saveBook, book, overview}) => {
                 saveBook().then(() => exportPrint(book, overview))
+            }
+        },
+        {
+            type: "action",
+            title: gettext("Export as Fidusbook"),
+            tooltip: gettext(
+                "Export book as a .fidusbook file (for moving to another server)."
+            ),
+            action: ({saveBook, book, overview}) => {
+                saveBook().then(() => exportFidusbook(book, overview))
             }
         }
     ]
