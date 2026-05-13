@@ -296,8 +296,8 @@ export class BookAccessRightsDialog {
 
     submitAccessRight(newAccessRights) {
         return postJson("/api/book/access_rights/save/", {
-            book_ids: JSON.stringify(this.bookIds),
-            access_rights: JSON.stringify(newAccessRights)
+            book_ids: this.bookIds,
+            access_rights: newAccessRights
         })
             .catch(error => {
                 addAlert("error", gettext("Cannot save access rights."))

@@ -1,4 +1,5 @@
 import os
+import json
 from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
@@ -9,7 +10,7 @@ class BookTemplateSaveTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = create_user("testuser", "testuser@example.com", "password")
-        self.client.login(username="testuser@example.com", password="password")
+        self.client.force_login(self.user)
         self.book = create_book(self.user, "Test Book")
 
     def test_add_odt_template_save(self):
@@ -28,7 +29,7 @@ class BookTemplateSaveTest(TestCase):
         # Add ODT template to the book
         response = self.client.post(
             reverse("book_odt_template_save"),
-            {"id": self.book.id, "file": mock_odt_file},
+            {"json": json.dumps({"id": self.book.id}), "file": mock_odt_file},
             HTTP_X_REQUESTED_WITH="XMLHttpRequest",  # Add this line to simulate an AJAX request
         )
 
@@ -57,7 +58,7 @@ class BookTemplateSaveTest(TestCase):
         # Add DOCX template to the book
         response = self.client.post(
             reverse("book_docx_template_save"),
-            {"id": self.book.id, "file": mock_docx_file},
+            {"json": json.dumps({"id": self.book.id}), "file": mock_docx_file},
             HTTP_X_REQUESTED_WITH="XMLHttpRequest",
         )
 

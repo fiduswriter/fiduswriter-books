@@ -309,6 +309,14 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR, ".icon-access-right.icon-access-write"
         ).click()
+        # Wait for the async API call to complete and the dialog to render
+        # collaborator rows before asserting (find_elements won't trigger
+        # implicit wait, so we need an explicit wait here).
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "tr.collaborator-tr")
+            )
+        )
         self.assertEqual(
             len(
                 self.driver.find_elements(
