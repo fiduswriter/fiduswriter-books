@@ -1,4 +1,3 @@
-import json
 import time
 
 from django.http import JsonResponse, HttpRequest
@@ -29,7 +28,7 @@ def get_access_rights(request):
     status = 200
     avatars = Avatars()
     ar_qs = BookAccessRight.objects.filter(book__owner=request.user)
-    book_ids = request.POST.getlist("book_ids[]")
+    book_ids = request.JSON.get("book_ids")
     if len(book_ids) > 0:
         ar_qs = ar_qs.filter(book_id__in=book_ids)
     access_rights = []
@@ -266,7 +265,7 @@ def set_chapters(book, chapters, user):
 @ajax_required
 def copy(request):
     # Copy a book
-    book_id = request.POST["id"]
+    book_id = request.JSON["id"]
     book = Book.objects.get(id=book_id)
     if (
         book.owner != request.user
@@ -275,7 +274,7 @@ def copy(request):
         ).exists()
     ):
         return JsonResponse({}, status=405)
-    path = request.POST["path"]
+    path = request.JSON["path"]
     if len(path):
         counter = 0
         base_path = path
@@ -309,7 +308,7 @@ def copy(request):
 def save_odt_template(request):
     response = {}
     status = 403
-    book_id = int(request.POST["id"])
+    book_id = request.JSON["id"]
     book = Book.objects.get(id=book_id)
     if book.owner == request.user:
         book.odt_template = request.FILES["file"]
@@ -325,7 +324,7 @@ def save_odt_template(request):
 def save_docx_template(request):
     response = {}
     status = 403
-    book_id = int(request.POST["id"])
+    book_id = request.JSON["id"]
     book = Book.objects.get(id=book_id)
     if book.owner == request.user:
         book.docx_template = request.FILES["file"]
@@ -341,7 +340,7 @@ def save_docx_template(request):
 def save(request):
     response = {}
     status = 403
-    book_obj = json.loads(request.POST["book"])
+    book_obj = request.JSON["book"]
     chapters = book_obj.pop("chapters")
     has_book_write_access = False
     if book_obj["id"] == 0:
@@ -408,7 +407,7 @@ def save(request):
 def delete(request):
     response = {}
     status = 405
-    book_id = int(request.POST["id"])
+    book_id = request.JSON["id"]
     book = Book.objects.filter(pk=book_id, owner=request.user).first()
     if book:
         image = book.cover_image
@@ -425,8 +424,8 @@ def delete(request):
 def move(request):
     response = {}
     status = 200
-    book_id = int(request.POST["id"])
-    path = request.POST["path"]
+    book_id = request.JSON["id"]
+    path = request.JSON["path"]
     book = Book.objects.filter(pk=book_id).first()
     if not book:
         response["done"] = False
@@ -458,8 +457,8 @@ def move(request):
 def save_access_rights(request):
     User = get_user_model()
     response = {}
-    book_ids = json.loads(request.POST["book_ids"])
-    rights = json.loads(request.POST["access_rights"])
+    book_ids = request.JSON["book_ids"]
+    rights = request.JSON["access_rights"]
     for book_id in book_ids:
         book = Book.objects.filter(pk=book_id, owner=request.user).first()
         if not book:

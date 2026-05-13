@@ -237,7 +237,7 @@ export class BookActions {
         const bookData = Object.assign({}, book)
         delete bookData.cover_image_data
 
-        return postJson("/api/book/save/", {book: JSON.stringify(bookData)})
+        return postJson("/api/book/save/", {book: bookData})
             .catch(error => {
                 addAlert("error", gettext("The book could not be saved"))
                 throw error
@@ -404,10 +404,13 @@ export class BookActions {
                     const file = event.target.files[0]
                     return this.saveBook(book)
                         .then(() =>
-                            postJson("/api/book/docx_template/save/", {
-                                id: book.id,
-                                file
-                            })
+                            postJson(
+                                "/api/book/docx_template/save/",
+                                {
+                                    id: book.id
+                                },
+                                {file}
+                            )
                         )
                         .then(({status, json}) => {
                             if (status !== 200) {
@@ -429,10 +432,13 @@ export class BookActions {
                     const file = event.target.files[0]
                     return this.saveBook(book)
                         .then(() =>
-                            postJson("/api/book/odt_template/save/", {
-                                id: book.id,
-                                file
-                            })
+                            postJson(
+                                "/api/book/odt_template/save/",
+                                {
+                                    id: book.id
+                                },
+                                {file}
+                            )
                         )
                         .then(({status, json}) => {
                             if (status !== 200) {

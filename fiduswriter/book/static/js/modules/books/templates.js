@@ -450,7 +450,7 @@ export const bookDialogTemplate = ({title, bookInfo, dialogParts}) =>
                 ${dialogParts
                     .map(
                         (part, index) =>
-                            `<li class="tab-link current-tab">
+                            `<li class="tab-link ${index === 0 ? "current-tab" : ""}">
                                 <a href="#optionTab${index}" class="tab-link-inner" title="${escapeText(
                                     part.description
                                 )}">

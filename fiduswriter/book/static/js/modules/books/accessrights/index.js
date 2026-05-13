@@ -3,6 +3,7 @@ import {
     Dialog,
     addAlert,
     findTarget,
+    getSettings,
     postJson,
     setCheckableLabel
 } from "../../common"
@@ -21,6 +22,7 @@ export class BookAccessRightsDialog {
         this.bookIds = bookIds
         this.contacts = contacts
         this.newContactCall = newContactCall // a function to be called when a new contact has been added with contact details
+        this.settings = getSettings()
     }
 
     init() {
@@ -61,7 +63,8 @@ export class BookAccessRightsDialog {
         const buttons = [
             {
                 text:
-                    settings_REGISTRATION_OPEN || settings_SOCIALACCOUNT_OPEN
+                    this.settings.REGISTRATION_OPEN ||
+                    this.settings.SOCIALACCOUNT_OPEN
                         ? gettext("Add contact or invite new user")
                         : gettext("Add contact"),
                 classes: "fw-light fw-add-button",
