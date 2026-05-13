@@ -71,31 +71,32 @@ export const bookSanityCheck = (book, documentList, schema) => {
             )}</li></ul>`
         )
     }
-    return getMissingChapterData(book, documentList, schema, true).then(() => {
-        const messages = {
-            warnings: [],
-            errors: []
-        }
-        book.chapters.forEach(chapter => {
-            const doc = documentList.find(doc => doc.id === chapter.text)
-            if (!doc || !doc.rawContent) {
-                messages.errors.push(
-                    `${gettext("No access")} ${labelChapter(chapter, doc)}`
-                )
-                return
+    return getMissingChapterData(book, documentList, schema, true)
+        .then(() => {
+            const messages = {
+                warnings: [],
+                errors: []
             }
-            if (!doc.title || !doc.title.length) {
-                messages.warnings.push(
-                    `${gettext("No chapter title")} ${labelChapter(chapter, doc)}`
-                )
-            }
-            findContentIssues(doc.rawContent, chapter, doc, messages)
-        })
+            book.chapters.forEach(chapter => {
+                const doc = documentList.find(doc => doc.id === chapter.text)
+                if (!doc || !doc.rawContent) {
+                    messages.errors.push(
+                        `${gettext("No access")} ${labelChapter(chapter, doc)}`
+                    )
+                    return
+                }
+                if (!doc.title || !doc.title.length) {
+                    messages.warnings.push(
+                        `${gettext("No chapter title")} ${labelChapter(chapter, doc)}`
+                    )
+                }
+                findContentIssues(doc.rawContent, chapter, doc, messages)
+            })
 
-        const warnings = Array.from(new Set(messages.warnings))
-        const errors = Array.from(new Set(messages.errors))
-        if (!warnings.length && !errors.length) {
-            return `<p>${gettext("No issues were found:")}</p>
+            const warnings = Array.from(new Set(messages.warnings))
+            const errors = Array.from(new Set(messages.errors))
+            if (!warnings.length && !errors.length) {
+                return `<p>${gettext("No issues were found:")}</p>
                     <p>${gettext("The book contains chapters.")}</p>
                     <p>${gettext("Each chapter has a title.")}</p>
                     <p>${gettext("There are no unresolved tracked changes.")}</p>
@@ -104,12 +105,25 @@ export const bookSanityCheck = (book, documentList, schema) => {
                     <p>${gettext(
                         "All internal links have working targets."
                     )}</p>`
-        }
-        return `<ul class="warninglist">
+            }
+            return `<ul class="warninglist">
                     ${warnings.map(warning => `<li>${warning}</li>`).join("")}
                 </ul>
                 <ul class="errorlist">
                     ${errors.map(error => `<li>${error}</li>`).join("")}
                 </ul>`
-    })
+        })
+        .catch(err => {
+            // Passphrase unavailable or user cancelled the unlock dialog.
+            if (err.message && err.message.includes("Passphrase required")) {
+                return `<ul class="errorlist"><li>${gettext(
+                    "This book contains encrypted chapters. A personal passphrase is required to perform a sanity check. Please set up or unlock your personal passphrase in your profile settings."
+                )}</li></ul>`
+            }
+            // Individual chapter decryption failure — alerts were already
+            // shown by decryptE2EEChapters; show a summary here.
+            return `<ul class="errorlist"><li>${gettext(
+                "One or more encrypted chapters could not be decrypted. See the error notifications for details."
+            )}</li></ul>`
+        })
 }

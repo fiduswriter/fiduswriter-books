@@ -483,6 +483,42 @@ export class BookActions {
         dialog.dialogEl.addEventListener("click", event => {
             const el = {}
             let chapterId, chapter
+
+            // Helper: add or remove the encrypted-chapters notice that lives
+            // alongside #book-chapter-list. Called after any operation that
+            // changes book.chapters so the notice stays in sync.
+            const updateChapterNotice = () => {
+                const chapterListEl =
+                    document.getElementById("book-chapter-list")
+                if (!chapterListEl) {
+                    return
+                }
+                const container = chapterListEl.closest(".fw-ar-container")
+                if (!container) {
+                    return
+                }
+                const existingNotice = container.querySelector(
+                    ".e2ee-chapter-notice"
+                )
+                const hasEncrypted = book.chapters.some(
+                    ch =>
+                        this.bookOverview.documentList.find(
+                            doc => doc.id === ch.text
+                        )?.e2ee
+                )
+                if (hasEncrypted && !existingNotice) {
+                    container.insertAdjacentHTML(
+                        "beforeend",
+                        `<p class="fw-note e2ee-chapter-notice">
+                            <i class="fas fa-lock"></i>
+                            ${gettext("This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book.")}
+                        </p>`
+                    )
+                } else if (!hasEncrypted && existingNotice) {
+                    existingNotice.remove()
+                }
+            }
+
             switch (true) {
                 case findTarget(event, ".book-sort-up", el): {
                     chapterId = Number.parseInt(el.target.dataset.id)
@@ -500,6 +536,7 @@ export class BookActions {
                             book,
                             documentList: this.bookOverview.documentList
                         })
+                    updateChapterNotice()
                     break
                 }
                 case findTarget(event, ".book-sort-down", el): {
@@ -519,6 +556,7 @@ export class BookActions {
                             book,
                             documentList: this.bookOverview.documentList
                         })
+                    updateChapterNotice()
                     break
                 }
                 case findTarget(event, ".delete-chapter", el):
@@ -542,6 +580,7 @@ export class BookActions {
                             book,
                             documentList: this.bookOverview.documentList
                         })
+                    updateChapterNotice()
 
                     break
                 case findTarget(event, "#add-chapter", el): {
@@ -565,6 +604,7 @@ export class BookActions {
                             book,
                             documentList: this.bookOverview.documentList
                         })
+                    updateChapterNotice()
                     break
                 }
                 case findTarget(event, ".edit-chapter", el):

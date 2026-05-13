@@ -1,5 +1,184 @@
 import {addAlert} from "../../common"
 import {getMissingDocumentListData} from "../../documents/tools"
+import {E2EEEncryptor} from "../../editor/e2ee/encryptor"
+import {enterPassphraseDialog} from "../../editor/e2ee/passphrase-dialog"
+import {PassphraseManager} from "../../editor/e2ee/passphrase-manager"
+import {acceptAllNoInsertions} from "../../editor/track"
+import {getSettings} from "../../schema/convert"
+
+/**
+ * Ensure the user's personal passphrase keys are available in the session.
+ * If keys are already unlocked, resolves immediately with true.
+ * If the user has no passphrase set up, resolves with false.
+ * Otherwise opens the passphrase dialog and resolves true on success or false
+ * if the user cancels.
+ *
+ * @returns {Promise<boolean>}
+ */
+const ensurePassphraseUnlocked = () => {
+    if (PassphraseManager.hasKeysInSession()) {
+        return Promise.resolve(true)
+    }
+    return PassphraseManager.hasEncryptionKeys().then(hasKeys => {
+        if (!hasKeys) {
+            return false
+        }
+        return new Promise(resolve => {
+            const tryUnlock = (errorMessage = "") => {
+                let unlockAttempted = false
+                enterPassphraseDialog(
+                    passphrase => {
+                        unlockAttempted = true
+                        PassphraseManager.unlockWithPassphrase(passphrase)
+                            .then(() => resolve(true))
+                            .catch(() => {
+                                tryUnlock(
+                                    gettext(
+                                        "Wrong passphrase. Please try again."
+                                    )
+                                )
+                            })
+                    },
+                    null,
+                    errorMessage ? {errorMessage} : {}
+                ).then(() => {
+                    // Dialog resolved — if unlock was never attempted the user
+                    // clicked Cancel.
+                    if (!unlockAttempted) {
+                        resolve(false)
+                    }
+                })
+            }
+            tryUnlock()
+        })
+    })
+}
+
+/**
+ * Decrypt all E2EE chapters in the book whose content is still an encrypted
+ * string (i.e. chapters that have an e2ee_snapshot but haven't been
+ * decrypted yet in this session).
+ *
+ * Fetches the document password for each chapter via PassphraseManager,
+ * derives the AES-GCM key from the stored salt, then decrypts and parses
+ * the ProseMirror content — updating doc.content, doc.rawContent (when
+ * rawContent is true), and doc.settings in-place on the documentList entry.
+ *
+ * Rejects if the passphrase is unavailable or any chapter cannot be
+ * decrypted.
+ *
+ * @param {Object} book
+ * @param {Array}  documentList
+ * @param {Object} schema      - ProseMirror schema
+ * @param {boolean} rawContent - whether to also populate doc.rawContent
+ * @returns {Promise<void>}
+ */
+const decryptE2EEChapters = (book, documentList, schema, rawContent) => {
+    // Only process chapters whose document still has encrypted string content.
+    const e2eeChapters = book.chapters.filter(chapter => {
+        const doc = documentList.find(doc => doc.id === chapter.text)
+        return doc && doc.e2ee && typeof doc.content === "string"
+    })
+
+    if (!e2eeChapters.length) {
+        return Promise.resolve()
+    }
+
+    return ensurePassphraseUnlocked().then(unlocked => {
+        if (!unlocked) {
+            addAlert(
+                "error",
+                gettext(
+                    "A personal passphrase is required to work with books that contain encrypted chapters. Please set up or unlock your personal passphrase in your profile settings."
+                )
+            )
+            return Promise.reject(
+                new Error("Passphrase required for encrypted chapters")
+            )
+        }
+
+        return Promise.all(
+            e2eeChapters.map(chapter => {
+                const doc = documentList.find(d => d.id === chapter.text)
+                const chapterLabel = doc.title
+                    ? `"${doc.title}"`
+                    : gettext("Untitled")
+
+                return PassphraseManager.getDocumentPassword(doc.id).then(
+                    password => {
+                        if (!password) {
+                            addAlert(
+                                "error",
+                                `${gettext("No encryption key found for chapter:")} ${chapterLabel}. ${gettext("The key may not have been shared with you.")}`
+                            )
+                            return Promise.reject(
+                                new Error(
+                                    `No encryption key for document ${doc.id}`
+                                )
+                            )
+                        }
+
+                        // Decode the base64-encoded salt stored by
+                        // getMissingDocumentListData on the doc object.
+                        let salt
+                        if (doc.e2ee_salt) {
+                            const binary = atob(doc.e2ee_salt)
+                            salt = new Uint8Array(binary.length)
+                            for (let i = 0; i < binary.length; i++) {
+                                salt[i] = binary.charCodeAt(i)
+                            }
+                        } else {
+                            // No salt means the document has no encrypted
+                            // snapshot yet — skip gracefully.
+                            return Promise.resolve()
+                        }
+                        const iterations = doc.e2ee_iterations || 600000
+
+                        return PassphraseManager.resolvePasswordToKey(
+                            password,
+                            salt,
+                            iterations
+                        )
+                            .then(key =>
+                                E2EEEncryptor.decryptObject(doc.content, key)
+                            )
+                            .then(decryptedContent => {
+                                if (rawContent) {
+                                    doc.rawContent = JSON.parse(
+                                        JSON.stringify(
+                                            schema
+                                                .nodeFromJSON(decryptedContent)
+                                                .toJSON()
+                                        )
+                                    )
+                                }
+                                doc.content = acceptAllNoInsertions(
+                                    schema.nodeFromJSON(decryptedContent)
+                                ).toJSON()
+                                doc.settings = getSettings(doc.content)
+                            })
+                            .catch(err => {
+                                // Re-throw "no key" errors that we already
+                                // alerted about; for all other decryption
+                                // failures show a specific message.
+                                if (
+                                    err.message &&
+                                    err.message.startsWith("No encryption key")
+                                ) {
+                                    throw err
+                                }
+                                addAlert(
+                                    "error",
+                                    `${gettext("Could not decrypt chapter:")} ${chapterLabel}. ${gettext("The document may have been re-encrypted with a different password.")}`
+                                )
+                                throw err
+                            })
+                    }
+                )
+            })
+        )
+    })
+}
 
 export const getMissingChapterData = (
     book,
@@ -26,11 +205,10 @@ export const getMissingChapterData = (
     }
 
     const docIds = book.chapters.map(chapter => chapter.text)
-    const returnData = getMissingDocumentListData(
+    return getMissingDocumentListData(
         docIds,
         documentList,
         schema,
         rawContent
-    )
-    return returnData
+    ).then(() => decryptE2EEChapters(book, documentList, schema, rawContent))
 }

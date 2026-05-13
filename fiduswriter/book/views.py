@@ -60,7 +60,24 @@ def list(request):
     response = {}
     status = 200
     avatars = Avatars()
-    response["documents"] = documents_list(request)
+
+    all_docs = documents_list(request)
+
+    # For E2EE documents the user must hold a DocumentEncryptionKey to be
+    # able to decrypt the content. Without a key they cannot add the document
+    # as a book chapter, so exclude it from the list entirely.
+    from document.models import DocumentEncryptionKey
+
+    decryptable_e2ee_ids = set(
+        DocumentEncryptionKey.objects.filter(holder=request.user).values_list(
+            "document_id", flat=True
+        )
+    )
+    response["documents"] = [
+        doc
+        for doc in all_docs
+        if not doc.get("e2ee") or doc["id"] in decryptable_e2ee_ids
+    ]
     books = (
         Book.objects.filter(
             Q(owner=request.user)

@@ -474,8 +474,11 @@ export const bookDialogTemplate = ({title, bookInfo, dialogParts}) =>
     </div>`
 
 /** A template for the chapter pane of the book dialog. */
-export const bookDialogChaptersTemplate = ({book, documentList}) =>
-    `${
+export const bookDialogChaptersTemplate = ({book, documentList}) => {
+    const hasEncryptedChapters = book.chapters.some(
+        chapter => documentList.find(doc => doc.id === chapter.text)?.e2ee
+    )
+    return `${
         book.rights === "write"
             ? `<div class="fw-ar-container">
             <h3 class="fw-green-title">${gettext("My documents")}</h3>
@@ -503,7 +506,16 @@ export const bookDialogChaptersTemplate = ({book, documentList}) =>
                 })}
             </tbody>
         </table>
+        ${
+            hasEncryptedChapters
+                ? `<p class="fw-note e2ee-chapter-notice">
+                <i class="fas fa-lock"></i>
+                ${gettext("This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book.")}
+            </p>`
+                : ""
+        }
     </div>`
+}
 
 /** A template for the chapter list on the chapter pane the book dialog. */
 export const bookChapterListTemplate = ({book, documentList}) => {
@@ -523,6 +535,7 @@ export const bookChapterListTemplate = ({book, documentList}) => {
                 }>
                 <span class="fw-inline">
                     ${doc ? "" : '<i class="fas fa-minus-circle"></i>'}
+                    ${doc && doc.e2ee ? `<i class="fas fa-lock e2ee-chapter-icon" title="${gettext("Encrypted document")}"></i>` : ""}
                     ${
                         chapter.part.length
                             ? `<b class="part">
