@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
@@ -684,25 +685,26 @@ msgid "All internal links have working targets."
 msgstr "Alla interna länkar har fungerande mål."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
 #| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
+#| "A personal passphrase is required to work with books that contain encrypted "
+#| "chapters. Please set up or unlock your personal passphrase in your profile "
+#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"En personlig lösenfras krävs för att arbeta med böcker som innehåller "
-"krypterade kapitel. Vänligen skapa eller lås upp din personliga lösenfras i "
-"dina profilinställningar."
+"Den här boken innehåller krypterade kapitel. En personlig lösenfras krävs "
+"för att utföra en hälsokontroll. Vänligen ställ in eller lås upp din "
+"personliga lösenfras i dina profilinställningar."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
 msgstr ""
+"Ett eller flera krypterade kapitel kunde inte dekrypteras. Se "
+"felmeddelandena för detaljer."
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -714,17 +716,16 @@ msgstr "Undertitel"
 
 #: book/static/js/modules/books/templates.js:55
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: book/static/js/modules/books/templates.js:70
 msgid "Language"
 msgstr "Språk"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
 #| msgid "Select Image"
 msgid "Select language"
-msgstr "Välj bild"
+msgstr "Välj språk"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -744,35 +745,33 @@ msgstr "Nyckelord"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "Till exempel: 2024 eller januari 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
 #| msgid "Citation style"
 msgid "Publication date"
-msgstr "Citationstil"
+msgstr "Publiceringsdatum"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "T.ex.: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
 #| msgid "Subtitle"
 msgid "Series title"
-msgstr "Undertitel"
+msgstr "Serietitel"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "Serieposition"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -841,37 +840,37 @@ msgstr "Ta bort bild"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "ODT-mall"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "Välj en ODT-mallfil"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "Välj ODT-mallfil"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "Ta bort ODT-mallfil"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "DOCX-mall"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "Välj en DOCX-mallfil"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "Välj DOCX-mallfil"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "Ta bort DOCX mallfil"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -890,10 +889,9 @@ msgid "Sort"
 msgstr "Sortera"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
 #| msgid "My documents"
 msgid "Encrypted document"
-msgstr "Mina dokument"
+msgstr "Krypterat dokument"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"
@@ -903,7 +901,8 @@ msgstr "Bokdel"
 msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
-msgstr "Om detta kapitel inleder en del av boken, ange titeln på den delen här"
+msgstr ""
+"Om detta kapitel inleder en del av boken, ange titeln på den delen här"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"

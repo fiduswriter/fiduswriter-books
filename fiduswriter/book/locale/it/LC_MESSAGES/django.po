@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books backend\n"
@@ -10,9 +11,8 @@ msgstr ""
 "X-Generator: POEditor.com\n"
 
 #: book/emails.py:18
-#, fuzzy
 msgid "Untitled"
-msgstr "Sottotitolo"
+msgstr "Senza titolo"
 
 #: book/emails.py:97
 msgid "shared"

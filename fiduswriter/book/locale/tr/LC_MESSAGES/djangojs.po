@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
@@ -232,8 +233,8 @@ msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "export or run a sanity check on this book."
 msgstr ""
-"Bu kitap şifrelenmiş bölümler içeriyor. Bu kitabı dışa aktarmak veya kontrol "
-"yapmak için kişisel bir parola gerekli."
+"Bu kitap şifrelenmiş bölümler içeriyor. Bu kitabı dışa aktarmak veya kontrol"
+" yapmak için kişisel bir parola gerekli."
 
 #: book/static/js/modules/books/exporter/bits/index.js:30
 #: book/static/js/modules/books/exporter/docx/index.js:43
@@ -356,8 +357,8 @@ msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr ""
-"Boş bir klasör bırakılırsa silinecektir. Bu klasörü gerçekten silmek istiyor "
-"musunuz?"
+"Boş bir klasör bırakılırsa silinecektir. Bu klasörü gerçekten silmek istiyor"
+" musunuz?"
 
 #: book/static/js/modules/books/menu.js:18
 msgid "Create new book"
@@ -543,8 +544,8 @@ msgstr "Seçileni Fidusbook olarak dışa aktar"
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr ""
-"Seçilen kitapları .fidusbook dosyaları olarak dışa aktar (başka bir sunucuya "
-"taşımak için)."
+"Seçilen kitapları .fidusbook dosyaları olarak dışa aktar (başka bir sunucuya"
+" taşımak için)."
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
@@ -683,25 +684,26 @@ msgid "All internal links have working targets."
 msgstr "Tüm iç bağlantıların çalışan hedefleri var."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
 #| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
+#| "A personal passphrase is required to work with books that contain encrypted "
+#| "chapters. Please set up or unlock your personal passphrase in your profile "
+#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"Şifrelenmiş bölümler içeren kitaplarla çalışmak için kişisel bir parola "
-"gerekli. Lütfen profil ayarlarınızda kişisel parolanızı oluşturun veya "
-"kilidini açın."
+"Bu kitap şifrelenmiş bölümler içermektedir. Akıl sağlığı kontrolünü "
+"gerçekleştirmek için kişisel bir parola gerekir. Lütfen profil ayarlarınızda"
+" kişisel parolanızı oluşturun veya kilidini açın."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
 msgstr ""
+"Bir veya daha fazla şifrelenmiş bölümün şifresi çözülemedi. Ayrıntılar için "
+"hata bildirimlerine bakın."
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -720,10 +722,9 @@ msgid "Language"
 msgstr "Dil"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
 #| msgid "Select Image"
 msgid "Select language"
-msgstr "Görsel Seç"
+msgstr "Dil seçin"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -743,35 +744,33 @@ msgstr "Anahtar kelimeler"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "Tanım"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "Örn: 2024 veya Ocak 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
 #| msgid "Citation style"
 msgid "Publication date"
-msgstr "Alıntı stili"
+msgstr "Yayınlanma tarihi"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "Örn: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
 #| msgid "Subtitle"
 msgid "Series title"
-msgstr "Alt başlık"
+msgstr "Seri başlığı"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "Seri konumu"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -840,37 +839,37 @@ msgstr "Görseli Kaldır"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "ODT Şablonu"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "Bir ODT şablon dosyası seçin"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "ODT şablon dosyasını seçin"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "ODT şablon dosyasını kaldır"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "DOCX Şablonu"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "Bir DOCX şablon dosyası seçin"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "DOCX şablon dosyasını seçin"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "DOCX şablon dosyasını kaldır"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -889,10 +888,9 @@ msgid "Sort"
 msgstr "Sırala"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
 #| msgid "My documents"
 msgid "Encrypted document"
-msgstr "Belgelerim"
+msgstr "Şifreli belge"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"
@@ -903,7 +901,8 @@ msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
 msgstr ""
-"Bu bölüm kitabın bir kısmını başlatıyorsa, o kısmın başlığını buraya belirtin"
+"Bu bölüm kitabın bir kısmını başlatıyorsa, o kısmın başlığını buraya "
+"belirtin"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"

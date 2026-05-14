@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
@@ -285,8 +286,8 @@ msgstr "Документът може да е бил повторно крипт
 #: book/static/js/modules/books/exporter/tools.js:293
 msgid "Cannot produce book as you lack access rights to its chapters."
 msgstr ""
-"Не можете да създадете книга, тъй като ви липсват права за достъп до нейните "
-"глави."
+"Не можете да създадете книга, тъй като ви липсват права за достъп до нейните"
+" глави."
 
 #: book/static/js/modules/books/importer/native/index.js:58
 #: book/static/js/modules/books/importer/native/index.js:82
@@ -684,25 +685,26 @@ msgid "All internal links have working targets."
 msgstr "Всички вътрешни връзки имат работещи цели."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
 #| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
+#| "A personal passphrase is required to work with books that contain encrypted "
+#| "chapters. Please set up or unlock your personal passphrase in your profile "
+#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"Необходима е лична парола за работа с книги, които съдържат криптирани "
-"глави. Моля, настройте или отключете личната си парола в настройките на "
-"профила си."
+"Тази книга съдържа криптирани глави. Необходима е лична парола за извършване"
+" на проверка за разумност. Моля, настройте или отключете вашата лична парола"
+" в настройките на вашия профил."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
 msgstr ""
+"Една или повече криптирани глави не могат да бъдат декриптирани. Вижте "
+"известията за грешки за подробности."
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -721,10 +723,9 @@ msgid "Language"
 msgstr "Език"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
 #| msgid "Select Image"
 msgid "Select language"
-msgstr "Избор на изображение"
+msgstr "Изберете език"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -744,35 +745,33 @@ msgstr "Ключови думи"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "Например: 2024 г. или януари 2024 г"
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
 #| msgid "Citation style"
 msgid "Publication date"
-msgstr "Стил на цитатите"
+msgstr "Дата на публикуване"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "Например: 2024 г"
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
 #| msgid "Subtitle"
 msgid "Series title"
-msgstr "Подзаглавие"
+msgstr "Заглавие на сериала"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "Серийна позиция"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -841,37 +840,37 @@ msgstr "Изтрий изображение:"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "ODT шаблон"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "Изберете ODT шаблонен файл"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "Изберете ODT шаблонен файл"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "Премахнете ODT шаблонния файл"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "DOCX шаблон"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "Изберете DOCX шаблонен файл"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "Изберете DOCX шаблонен файл"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "Премахнете DOCX шаблонния файл"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -890,10 +889,9 @@ msgid "Sort"
 msgstr "Сортиране"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
 #| msgid "My documents"
 msgid "Encrypted document"
-msgstr "Моите документи"
+msgstr "Криптиран документ"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"

@@ -19,29 +19,29 @@ msgstr ""
 
 #: book/emails.py:18
 msgid "Untitled"
-msgstr ""
+msgstr "Untitled"
 
 #: book/emails.py:97
 msgid "shared"
-msgstr ""
+msgstr "shared"
 
 #: book/emails.py:99
 msgid "Book"
-msgstr ""
+msgstr "Book"
 
 #: book/emails.py:101
 msgid "Editor"
-msgstr ""
+msgstr "Editor"
 
 #: book/emails.py:103
 msgid "Access Rights"
-msgstr ""
+msgstr "Access Rights"
 
 #: book/emails.py:106
 msgid "Access books"
-msgstr ""
+msgstr "Access books"
 
 #: book/emails.py:109
 #, python-format
 msgid "Book shared: %(book_title)s"
-msgstr ""
+msgstr "Book shared: %(book_title)s"

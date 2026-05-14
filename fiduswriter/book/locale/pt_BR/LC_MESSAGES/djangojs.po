@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
@@ -10,9 +11,8 @@ msgstr ""
 "X-Generator: POEditor.com\n"
 
 #: book/static/js/modules/books/accessrights/index.js:31
-#, fuzzy
 msgid "Cannot load book access data."
-msgstr "Não é possível carregar os dados de acesso do livro."
+msgstr "Não é possível carregar os dados de acesso ao livro."
 
 #: book/static/js/modules/books/accessrights/index.js:68
 msgid "Add contact or invite new user"
@@ -234,7 +234,8 @@ msgid ""
 "export or run a sanity check on this book."
 msgstr ""
 "Este livro contém capítulos criptografados. É necessária uma frase secreta "
-"pessoal para exportar ou executar uma verificação de integridade neste livro."
+"pessoal para exportar ou executar uma verificação de integridade neste "
+"livro."
 
 #: book/static/js/modules/books/exporter/bits/index.js:30
 #: book/static/js/modules/books/exporter/docx/index.js:43
@@ -685,25 +686,26 @@ msgid "All internal links have working targets."
 msgstr "Todos os links internos funcionam corretamente"
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
 #| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
+#| "A personal passphrase is required to work with books that contain encrypted "
+#| "chapters. Please set up or unlock your personal passphrase in your profile "
+#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"É necessária uma frase secreta pessoal para trabalhar com livros que "
-"contenham capítulos criptografados. Configure ou desbloqueie sua frase "
-"secreta pessoal nas configurações do seu perfil."
+"Este livro contém capítulos criptografados. Uma senha pessoal é necessária "
+"para realizar uma verificação de integridade. Configure ou desbloqueie sua "
+"senha pessoal nas configurações do seu perfil."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
 msgstr ""
+"Um ou mais capítulos criptografados não puderam ser descriptografados. "
+"Consulte as notificações de erro para obter detalhes."
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -722,10 +724,9 @@ msgid "Language"
 msgstr "Língua"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
 #| msgid "Select Image"
 msgid "Select language"
-msgstr "Selecione a imagem"
+msgstr "Selecione o idioma"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -745,35 +746,33 @@ msgstr "Palavras chaves"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "Ex.: 2024 ou janeiro de 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
 #| msgid "Citation style"
 msgid "Publication date"
-msgstr "Estilo de citação"
+msgstr "Data de publicação"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "Ex.: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
 #| msgid "Subtitle"
 msgid "Series title"
-msgstr "Subtítulo"
+msgstr "Título da série"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "Posição na série"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -842,37 +841,37 @@ msgstr "Remover imagem"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "Modelo ODT"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "Selecione um arquivo de modelo ODT"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "Selecione o arquivo de modelo ODT"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "Remover arquivo de modelo ODT"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "Modelo DOCX"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "Selecione um arquivo de modelo DOCX"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "Selecione o arquivo de modelo DOCX"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "Remover arquivo de modelo DOCX"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -891,10 +890,9 @@ msgid "Sort"
 msgstr "Ordenar"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
 #| msgid "My documents"
 msgid "Encrypted document"
-msgstr "Meus documentos"
+msgstr "Documento criptografado"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"

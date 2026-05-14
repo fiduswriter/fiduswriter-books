@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
@@ -231,9 +232,7 @@ msgstr "エクスポート"
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "export or run a sanity check on this book."
-msgstr ""
-"この本には暗号化された章が含まれています。この本をエクスポートまたは整合性"
-"チェックを実行するには、個人用パスフレーズが必要です。"
+msgstr "この本には暗号化された章が含まれています。この本をエクスポートまたは整合性チェックを実行するには、個人用パスフレーズが必要です。"
 
 #: book/static/js/modules/books/exporter/bits/index.js:30
 #: book/static/js/modules/books/exporter/docx/index.js:43
@@ -262,8 +261,7 @@ msgid ""
 "chapters. Please set up or unlock your personal passphrase in your profile "
 "settings."
 msgstr ""
-"暗号化された章を含む本を操作するには個人用パスフレーズが必要です。プロフィー"
-"ル設定で個人用パスフレーズを設定するかロックを解除してください。"
+"暗号化された章を含む本を操作するには個人用パスフレーズが必要です。プロフィール設定で個人用パスフレーズを設定するかロックを解除してください。"
 
 #: book/static/js/modules/books/exporter/tools.js:112
 msgid "No encryption key found for chapter:"
@@ -297,19 +295,19 @@ msgstr "このサーバーはFidusbookファイルのバージョンをサポー
 
 #: book/static/js/modules/books/importer/native/index.js:193
 msgid "Fidusbook file is missing data for chapter "
-msgstr ""
+msgstr "Fidusbook ファイルに章のデータがありません "
 
 #: book/static/js/modules/books/importer/native/index.js:251
 msgid "Could not import chapter "
-msgstr ""
+msgstr "章をインポートできませんでした "
 
 #: book/static/js/modules/books/importer/native/index.js:300
 msgid "successfully imported."
-msgstr ""
+msgstr "正常にインポートされました。"
 
 #: book/static/js/modules/books/importer/native/index.js:418
 msgid "Could not create book record."
-msgstr ""
+msgstr "帳簿を作成できませんでした。"
 
 #: book/static/js/modules/books/index.js:107
 msgid "Book Overview"
@@ -539,9 +537,7 @@ msgstr "選択項目をFidusbookとしてエクスポート"
 #: book/static/js/modules/books/menu.js:424
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
-msgstr ""
-"選択した本を.fidusbookファイルとしてエクスポート（別のサーバーに移動するた"
-"め）。"
+msgstr "選択した本を.fidusbookファイルとしてエクスポート（別のサーバーに移動するため）。"
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
@@ -613,8 +609,7 @@ msgstr "Fidusbookとしてエクスポート"
 
 #: book/static/js/modules/books/menu.js:511
 msgid "Export book as a .fidusbook file (for moving to another server)."
-msgstr ""
-"本を.fidusbookファイルとしてエクスポート（別のサーバーに移動するため）。"
+msgstr "本を.fidusbookファイルとしてエクスポート（別のサーバーに移動するため）。"
 
 #: book/static/js/modules/books/sanity_check.js:6
 msgid "Chapter"
@@ -679,24 +674,22 @@ msgid "All internal links have working targets."
 msgstr "すべての内部リンクに有効なターゲットがあります。"
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
 #| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
+#| "A personal passphrase is required to work with books that contain encrypted "
+#| "chapters. Please set up or unlock your personal passphrase in your profile "
+#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"暗号化された章を含む本を操作するには個人用パスフレーズが必要です。プロフィー"
-"ル設定で個人用パスフレーズを設定するかロックを解除してください。"
+"この本には暗号化された章が含まれています。健全性チェックを実行するには、個人のパスフレーズが必要です。プロファイル設定で個人パスフレーズを設定またはロック解除してください。"
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
-msgstr ""
+msgstr "1 つ以上の暗号化されたチャプターを復号化できませんでした。詳細については、エラー通知を参照してください。"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -715,10 +708,9 @@ msgid "Language"
 msgstr "言語"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
 #| msgid "Select Image"
 msgid "Select language"
-msgstr "画像を選択"
+msgstr "言語を選択してください"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -738,35 +730,33 @@ msgstr "キーワード"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "例: 2024 年または 2024 年 1 月"
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
 #| msgid "Citation style"
 msgid "Publication date"
-msgstr "引用スタイル"
+msgstr "発行日"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "例: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
 #| msgid "Subtitle"
 msgid "Series title"
-msgstr "サブタイトル"
+msgstr "シリーズタイトル"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "シリーズ順位"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -835,37 +825,37 @@ msgstr "画像を削除"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "ODT テンプレート"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "ODT テンプレート ファイルを選択します"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "ODTテンプレートファイルの選択"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "ODTテンプレートファイルを削除します"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "DOCX テンプレート"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "DOCX テンプレート ファイルを選択します"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "DOCXテンプレートファイルを選択します"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "DOCXテンプレートファイルを削除します"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -884,10 +874,9 @@ msgid "Sort"
 msgstr "並べ替え"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
 #| msgid "My documents"
 msgid "Encrypted document"
-msgstr "自分のドキュメント"
+msgstr "暗号化された文書"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"
@@ -897,8 +886,7 @@ msgstr "本の部"
 msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
-msgstr ""
-"この章が本の一部の始まりの場合は、その部のタイトルをここに指定してください"
+msgstr "この章が本の一部の始まりの場合は、その部のタイトルをここに指定してください"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"

@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
@@ -263,8 +264,8 @@ msgid ""
 "settings."
 msgstr ""
 "En personlig passfrase er nødvendig for å arbeide med bøker som inneholder "
-"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase "
-"i profilinnstillingene dine."
+"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase"
+" i profilinnstillingene dine."
 
 #: book/static/js/modules/books/exporter/tools.js:112
 msgid "No encryption key found for chapter:"
@@ -299,19 +300,19 @@ msgstr "Fidusbook-filversjonen støttes ikke av denne serveren: "
 
 #: book/static/js/modules/books/importer/native/index.js:193
 msgid "Fidusbook file is missing data for chapter "
-msgstr ""
+msgstr "Fidusbook-fil mangler data for kapittel "
 
 #: book/static/js/modules/books/importer/native/index.js:251
 msgid "Could not import chapter "
-msgstr ""
+msgstr "Kunne ikke importere kapittel "
 
 #: book/static/js/modules/books/importer/native/index.js:300
 msgid "successfully imported."
-msgstr ""
+msgstr "vellykket importert."
 
 #: book/static/js/modules/books/importer/native/index.js:418
 msgid "Could not create book record."
-msgstr ""
+msgstr "Kunne ikke opprette bokpost."
 
 #: book/static/js/modules/books/index.js:107
 msgid "Book Overview"
@@ -683,25 +684,26 @@ msgid "All internal links have working targets."
 msgstr "Alle interne lenker har fungerende mål."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
 #| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
+#| "A personal passphrase is required to work with books that contain encrypted "
+#| "chapters. Please set up or unlock your personal passphrase in your profile "
+#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"En personlig passfrase er nødvendig for å arbeide med bøker som inneholder "
-"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase "
-"i profilinnstillingene dine."
+"Denne boken inneholder krypterte kapitler. En personlig passordfrase kreves "
+"for å utføre en tilregnelighetssjekk. Sett opp eller lås opp din personlige "
+"passordfrase i profilinnstillingene dine."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
 msgstr ""
+"Ett eller flere krypterte kapitler kunne ikke dekrypteres. Se feilvarslene "
+"for detaljer."
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -720,10 +722,9 @@ msgid "Language"
 msgstr "Språk"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
 #| msgid "Select Image"
 msgid "Select language"
-msgstr "Velg bilde"
+msgstr "Velg språk"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -743,35 +744,33 @@ msgstr "Nøkkelord"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "Beskrivelse"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "F.eks.: 2024 eller januar 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
 #| msgid "Citation style"
 msgid "Publication date"
-msgstr "Siteringsstil"
+msgstr "Publiseringsdato"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "F.eks.: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
 #| msgid "Subtitle"
 msgid "Series title"
-msgstr "Undertittel"
+msgstr "Serietittel"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "Seriens plassering"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -840,37 +839,37 @@ msgstr "Fjern bilde"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "ODT-mal"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "Velg en ODT-malfil"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "Velg ODT-malfil"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "Fjern ODT-malfil"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "DOCX-mal"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "Velg en DOCX-malfil"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "Velg DOCX malfil"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "Fjern DOCX malfil"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -889,10 +888,9 @@ msgid "Sort"
 msgstr "Sorter"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
 #| msgid "My documents"
 msgid "Encrypted document"
-msgstr "Mine dokumenter"
+msgstr "Kryptert dokument"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"
@@ -903,7 +901,8 @@ msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
 msgstr ""
-"Hvis dette kapittelet starter en del av boken, angi tittelen på den delen her"
+"Hvis dette kapittelet starter en del av boken, angi tittelen på den delen "
+"her"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"
