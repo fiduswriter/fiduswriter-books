@@ -293,6 +293,25 @@ export class BookActions {
      */
     importBook() {
         const overview = this.bookOverview
+        const e2eeMode = overview.app.settings.E2EE_MODE
+        const e2eeRequired = e2eeMode === "required"
+        const e2eeOptional = e2eeMode === "enabled"
+
+        // Extra UI inside the dialog body for E2EE modes.
+        const e2eeNote = e2eeRequired
+            ? `<p class="fw-note" style="margin-top:10px;">
+                <i class="fas fa-lock"></i>
+                ${gettext("Chapters will be imported as encrypted (E2EE) documents.")}
+               </p>`
+            : ""
+        const e2eeCheckbox = e2eeOptional
+            ? `<p style="margin-top:10px;">
+                <label>
+                    <input type="checkbox" id="fidusbook-import-e2ee" style="margin-right:6px;">
+                    ${gettext("Import chapters as encrypted (E2EE) documents")}
+                </label>
+               </p>`
+            : ""
 
         const importDialog = new Dialog({
             id: "import_fidusbook",
@@ -307,8 +326,10 @@ export class BookActions {
                        id="fidusbook-uploader"
                        accept=".fidusbook"
                        style="display:block;margin-top:8px;">
-            </p>`,
-            height: 180,
+            </p>
+            ${e2eeNote}
+            ${e2eeCheckbox}`,
+            height: e2eeRequired || e2eeOptional ? 230 : 180,
             buttons: [
                 {
                     text: gettext("Import"),
@@ -325,13 +346,20 @@ export class BookActions {
                             addAlert("error", gettext("File too large"))
                             return
                         }
+                        const useE2EE =
+                            e2eeRequired ||
+                            (e2eeOptional &&
+                                !!document.getElementById(
+                                    "fidusbook-import-e2ee"
+                                )?.checked)
                         importDialog.close()
                         activateWait(true)
 
                         const importer = new NativeBookImporter(
                             file,
                             overview.user,
-                            overview.path
+                            overview.path,
+                            useE2EE
                         )
                         importer
                             .init()

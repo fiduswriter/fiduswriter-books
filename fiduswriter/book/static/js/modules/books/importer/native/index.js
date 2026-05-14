@@ -15,17 +15,25 @@ export const MAX_FIDUSBOOK_VERSION = 1.0
  *     the document on the server and collect the resulting document IDs.
  *  4. Optionally upload the cover image via /api/usermedia/save/.
  *  5. Create the book on the server via /api/book/save/ using the new doc IDs.
+ *
+ * E2EE support:
+ *  When `useE2EE` is true a fresh AES-GCM key is generated for every chapter.
+ *  If the user has their passphrase keys in session the encrypted document
+ *  password is also persisted to the server so access survives future sessions.
  */
 export class NativeBookImporter {
     /**
-     * @param {File}   file  - The .fidusbook file selected by the user.
-     * @param {Object} user  - The logged-in user object (id, name, …).
-     * @param {string} path  - The folder path where the book should land.
+     * @param {File}    file     - The .fidusbook file selected by the user.
+     * @param {Object}  user     - The logged-in user object (id, name, …).
+     * @param {string}  path     - The folder path where the book should land.
+     * @param {boolean} useE2EE  - When true, import every chapter as an E2EE
+     *                             encrypted document.
      */
-    constructor(file, user, path = "/") {
+    constructor(file, user, path = "/", useE2EE = false) {
         this.file = file
         this.user = user
         this.path = path.endsWith("/") ? path : path + "/"
+        this.useE2EE = useE2EE
 
         this.ok = false
         this.statusText = ""
@@ -111,7 +119,7 @@ export class NativeBookImporter {
             })
     }
 
-    processFidusbookFile(textFiles, binaryFiles) {
+    async processFidusbookFile(textFiles, binaryFiles) {
         const versionEntry = textFiles.find(
             f => f.filename === "filetype-version"
         )
@@ -125,7 +133,7 @@ export class NativeBookImporter {
                 gettext(
                     "The Fidusbook file version is not supported by this server: "
                 ) + versionEntry.content
-            return Promise.resolve(this)
+            return
         }
 
         const mimetypeEntry = textFiles.find(f => f.filename === "mimetype")
@@ -136,7 +144,7 @@ export class NativeBookImporter {
             this.statusText = gettext(
                 "The uploaded file does not appear to be a Fidusbook file."
             )
-            return Promise.resolve(this)
+            return
         }
 
         const bookData = JSON.parse(
@@ -152,13 +160,21 @@ export class NativeBookImporter {
         // Mapping from chapter_index → newly-created document ID on this server.
         const importedDocIds = {}
 
-        // Import chapters one at a time (sequential) to avoid creating too
-        // many concurrent document-creation requests.
-        const importNextChapter = index => {
-            if (index >= sortedChapters.length) {
-                return Promise.resolve()
-            }
-            const chapter = sortedChapters[index]
+        // ── E2EE: resolve passphrase state once, before the chapter loop ──
+        // This avoids repeated network calls to /api/user/encryption_key/.
+        let passphraseInSession = false
+        if (this.useE2EE) {
+            const {PassphraseManager} = await import(
+                "../../../editor/e2ee/passphrase-manager"
+            )
+            const hasPassphraseKeys =
+                await PassphraseManager.hasEncryptionKeys()
+            passphraseInSession =
+                hasPassphraseKeys && PassphraseManager.hasKeysInSession()
+        }
+
+        // ── Import chapters one at a time (sequential) ────────────────────
+        for (const chapter of sortedChapters) {
             const ci = chapter.chapter_index
 
             const docFile = textFiles.find(
@@ -175,11 +191,9 @@ export class NativeBookImporter {
                 addAlert(
                     "error",
                     gettext("Fidusbook file is missing data for chapter ") +
-                        (index + 1)
+                        (sortedChapters.indexOf(chapter) + 1)
                 )
-                return Promise.reject(
-                    new Error(`Missing chapter data for index ${ci}`)
-                )
+                throw new Error(`Missing chapter data for index ${ci}`)
             }
 
             const docJson = JSON.parse(docFile.content)
@@ -206,6 +220,16 @@ export class NativeBookImporter {
             )
             const chapterPath = `${this.path}${safeBookTitle}/${docJson.title || "Untitled"}`
 
+            // ── Per-chapter E2EE key generation ──────────────────────────
+            let e2eeOptions = null
+            let chapterPassword = null
+            if (this.useE2EE) {
+                const result =
+                    await this._generateE2EEOptions(passphraseInSession)
+                e2eeOptions = result.options
+                chapterPassword = result.password
+            }
+
             const importer = new NativeImporter(
                 docJson,
                 bibJson,
@@ -215,39 +239,111 @@ export class NativeBookImporter {
                 null, // importId – let NativeImporter extract it from the doc
                 chapterPath,
                 null, // template – extracted from doc content
-                null // e2eeOptions
+                e2eeOptions
             )
 
-            return importer
-                .init()
-                .then(({doc}) => {
-                    importedDocIds[ci] = doc.id
-                    return importNextChapter(index + 1)
-                })
-                .catch(error => {
-                    addAlert(
-                        "error",
-                        gettext("Could not import chapter ") +
-                            (docJson.title || index + 1)
+            let doc
+            try {
+                ;({doc} = await importer.init())
+            } catch (error) {
+                addAlert(
+                    "error",
+                    gettext("Could not import chapter ") +
+                        (docJson.title || sortedChapters.indexOf(chapter) + 1)
+                )
+                throw error
+            }
+
+            importedDocIds[ci] = doc.id
+
+            // ── Persist E2EE password for future sessions ─────────────────
+            // NativeImporter already stores the raw key in sessionStorage via
+            // E2EEKeyManager.storeKeyInSession() — that is sufficient for
+            // decryptE2EETitles() and for accessing the document within the
+            // current browser session.  We additionally store the password
+            // so that decryptE2EEChapters() (used during export) can derive
+            // the key from it, and — when passphrase keys are available —
+            // save it to the server so it survives future sessions.
+            if (this.useE2EE && chapterPassword !== null) {
+                const {E2EEKeyManager} = await import(
+                    "../../../editor/e2ee/key-manager"
+                )
+                E2EEKeyManager.storePasswordInSession(doc.id, chapterPassword)
+
+                if (passphraseInSession) {
+                    const {PassphraseManager} = await import(
+                        "../../../editor/e2ee/passphrase-manager"
                     )
-                    throw error
-                })
+                    try {
+                        await PassphraseManager.saveDocumentPassword(
+                            doc.id,
+                            chapterPassword,
+                            null,
+                            "user",
+                            true
+                        )
+                    } catch (_e) {
+                        // Non-fatal: the key is still cached for this session.
+                    }
+                }
+            }
         }
 
-        return importNextChapter(0)
-            .then(() => this.importCoverImage(bookData, binaryFiles))
-            .then(coverImageId =>
-                this.createBook(
-                    bookData,
-                    sortedChapters,
-                    importedDocIds,
-                    coverImageId
-                )
-            )
-            .then(() => {
-                this.ok = true
-                this.statusText = `"${bookData.title}" ${gettext("successfully imported.")}`
-            })
+        const coverImageId = await this.importCoverImage(bookData, binaryFiles)
+        await this.createBook(
+            bookData,
+            sortedChapters,
+            importedDocIds,
+            coverImageId
+        )
+        this.ok = true
+        this.statusText = `"${bookData.title}" ${gettext("successfully imported.")}`
+    }
+
+    /**
+     * Generate a fresh AES-GCM key for one E2EE chapter.
+     *
+     * When the user has passphrase keys unlocked in session a random document
+     * password (raw DEK) is generated via PassphraseManager so that it can
+     * later be saved to the server (encrypted with the master key).  Otherwise
+     * a random 32-byte DEK is generated directly — access is session-scoped.
+     *
+     * @param {boolean} passphraseInSession
+     * @returns {Promise<{options: Object, password: string}>}
+     */
+    async _generateE2EEOptions(passphraseInSession) {
+        const {E2EEKeyManager} = await import(
+            "../../../editor/e2ee/key-manager"
+        )
+        const {PassphraseManager} = await import(
+            "../../../editor/e2ee/passphrase-manager"
+        )
+
+        let password
+        if (passphraseInSession) {
+            // Generates a 44-char base64-encoded random 32-byte DEK.
+            // resolvePasswordToKey() will import it directly — no PBKDF2 round.
+            password = await PassphraseManager.generateDocumentPassword()
+        } else {
+            // No passphrase system — generate a raw DEK directly.
+            const rawKey = crypto.getRandomValues(new Uint8Array(32))
+            password = btoa(String.fromCharCode(...rawKey))
+        }
+
+        const salt = E2EEKeyManager.generateSalt()
+        const saltBase64 = btoa(String.fromCharCode(...salt))
+        const iterations = 600000
+
+        const key = await PassphraseManager.resolvePasswordToKey(
+            password,
+            salt,
+            iterations
+        )
+
+        return {
+            options: {enabled: true, key, salt: saltBase64, iterations},
+            password
+        }
     }
 
     /**
