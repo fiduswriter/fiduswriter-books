@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:48+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -233,8 +233,8 @@ msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "export or run a sanity check on this book."
 msgstr ""
-"Bu kitap şifrelenmiş bölümler içeriyor. Bu kitabı dışa aktarmak veya kontrol"
-" yapmak için kişisel bir parola gerekli."
+"Bu kitap şifrelenmiş bölümler içeriyor. Bu kitabı dışa aktarmak veya kontrol "
+"yapmak için kişisel bir parola gerekli."
 
 #: book/static/js/modules/books/exporter/bits/index.js:30
 #: book/static/js/modules/books/exporter/docx/index.js:43
@@ -357,8 +357,8 @@ msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr ""
-"Boş bir klasör bırakılırsa silinecektir. Bu klasörü gerçekten silmek istiyor"
-" musunuz?"
+"Boş bir klasör bırakılırsa silinecektir. Bu klasörü gerçekten silmek istiyor "
+"musunuz?"
 
 #: book/static/js/modules/books/menu.js:18
 msgid "Create new book"
@@ -544,8 +544,8 @@ msgstr "Seçileni Fidusbook olarak dışa aktar"
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr ""
-"Seçilen kitapları .fidusbook dosyaları olarak dışa aktar (başka bir sunucuya"
-" taşımak için)."
+"Seçilen kitapları .fidusbook dosyaları olarak dışa aktar (başka bir sunucuya "
+"taşımak için)."
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
@@ -684,18 +684,14 @@ msgid "All internal links have working targets."
 msgstr "Tüm iç bağlantıların çalışan hedefleri var."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain encrypted "
-#| "chapters. Please set up or unlock your personal passphrase in your profile "
-#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
 "Bu kitap şifrelenmiş bölümler içermektedir. Akıl sağlığı kontrolünü "
-"gerçekleştirmek için kişisel bir parola gerekir. Lütfen profil ayarlarınızda"
-" kişisel parolanızı oluşturun veya kilidini açın."
+"gerçekleştirmek için kişisel bir parola gerekir. Lütfen profil ayarlarınızda "
+"kişisel parolanızı oluşturun veya kilidini açın."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
@@ -722,7 +718,6 @@ msgid "Language"
 msgstr "Dil"
 
 #: book/static/js/modules/books/templates.js:75
-#| msgid "Select Image"
 msgid "Select language"
 msgstr "Dil seçin"
 
@@ -755,7 +750,6 @@ msgid "E.g.: 2024 or January 2024"
 msgstr "Örn: 2024 veya Ocak 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#| msgid "Citation style"
 msgid "Publication date"
 msgstr "Yayınlanma tarihi"
 
@@ -764,7 +758,6 @@ msgid "E.g.: 2024"
 msgstr "Örn: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#| msgid "Subtitle"
 msgid "Series title"
 msgstr "Seri başlığı"
 
@@ -888,7 +881,6 @@ msgid "Sort"
 msgstr "Sırala"
 
 #: book/static/js/modules/books/templates.js:595
-#| msgid "My documents"
 msgid "Encrypted document"
 msgstr "Şifreli belge"
 
@@ -901,8 +893,7 @@ msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
 msgstr ""
-"Bu bölüm kitabın bir kısmını başlatıyorsa, o kısmın başlığını buraya "
-"belirtin"
+"Bu bölüm kitabın bir kısmını başlatıyorsa, o kısmın başlığını buraya belirtin"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"

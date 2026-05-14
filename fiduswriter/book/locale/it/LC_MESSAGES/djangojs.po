@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:49+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -234,8 +234,7 @@ msgid ""
 "export or run a sanity check on this book."
 msgstr ""
 "Questo libro contiene capitoli crittografati. Per esportare o eseguire un "
-"controllo di integrità su questo libro è necessaria una passphrase "
-"personale."
+"controllo di integrità su questo libro è necessaria una passphrase personale."
 
 #: book/static/js/modules/books/exporter/bits/index.js:30
 #: book/static/js/modules/books/exporter/docx/index.js:43
@@ -621,8 +620,7 @@ msgstr "Esporta come Fidusbook"
 
 #: book/static/js/modules/books/menu.js:511
 msgid "Export book as a .fidusbook file (for moving to another server)."
-msgstr ""
-"Esporta libro come file .fidusbook (per spostarlo su un altro server)."
+msgstr "Esporta libro come file .fidusbook (per spostarlo su un altro server)."
 
 #: book/static/js/modules/books/sanity_check.js:6
 msgid "Chapter"
@@ -687,10 +685,6 @@ msgid "All internal links have working targets."
 msgstr "Tutti i collegamenti interni hanno obiettivi di lavoro."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain encrypted "
-#| "chapters. Please set up or unlock your personal passphrase in your profile "
-#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -725,7 +719,6 @@ msgid "Language"
 msgstr "Lingua"
 
 #: book/static/js/modules/books/templates.js:75
-#| msgid "Select Image"
 msgid "Select language"
 msgstr "Seleziona la lingua"
 
@@ -758,7 +751,6 @@ msgid "E.g.: 2024 or January 2024"
 msgstr "Ad esempio: 2024 o gennaio 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#| msgid "Citation style"
 msgid "Publication date"
 msgstr "Data di pubblicazione"
 
@@ -767,7 +759,6 @@ msgid "E.g.: 2024"
 msgstr "Esempio: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#| msgid "Subtitle"
 msgid "Series title"
 msgstr "Titolo della serie"
 
@@ -891,7 +882,6 @@ msgid "Sort"
 msgstr "Ordina"
 
 #: book/static/js/modules/books/templates.js:595
-#| msgid "My documents"
 msgid "Encrypted document"
 msgstr "Documento crittografato"
 

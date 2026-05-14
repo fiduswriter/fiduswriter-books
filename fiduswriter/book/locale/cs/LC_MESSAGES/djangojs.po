@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:50+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -358,8 +358,7 @@ msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr ""
-"Pokud ponecháte prázdnou složku, smaže se. Opravdu chcete smazat tuto "
-"složku?"
+"Pokud ponecháte prázdnou složku, smaže se. Opravdu chcete smazat tuto složku?"
 
 #: book/static/js/modules/books/menu.js:18
 msgid "Create new book"
@@ -545,8 +544,7 @@ msgstr "Export vybrán jako Fidusbook"
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr ""
-"Exportujte vybrané knihy jako soubory .fidusbook (pro přesun na jiný "
-"server)."
+"Exportujte vybrané knihy jako soubory .fidusbook (pro přesun na jiný server)."
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
@@ -717,7 +715,6 @@ msgid "Language"
 msgstr "Jazyk"
 
 #: book/static/js/modules/books/templates.js:75
-#| msgid "Select Image"
 msgid "Select language"
 msgstr "Vyberte jazyk"
 
@@ -750,7 +747,6 @@ msgid "E.g.: 2024 or January 2024"
 msgstr "Např.: 2024 nebo leden 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#| msgid "Citation style"
 msgid "Publication date"
 msgstr "Datum zveřejnění"
 
@@ -759,7 +755,6 @@ msgid "E.g.: 2024"
 msgstr "Např.: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#| msgid "Subtitle"
 msgid "Series title"
 msgstr "Název seriálu"
 
@@ -883,7 +878,6 @@ msgid "Sort"
 msgstr "Seřadit"
 
 #: book/static/js/modules/books/templates.js:595
-#| msgid "My documents"
 msgid "Encrypted document"
 msgstr "Šifrovaný dokument"
 

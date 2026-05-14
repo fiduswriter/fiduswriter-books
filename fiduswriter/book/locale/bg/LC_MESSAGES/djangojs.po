@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:48+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -286,8 +286,8 @@ msgstr "Документът може да е бил повторно крипт
 #: book/static/js/modules/books/exporter/tools.js:293
 msgid "Cannot produce book as you lack access rights to its chapters."
 msgstr ""
-"Не можете да създадете книга, тъй като ви липсват права за достъп до нейните"
-" глави."
+"Не можете да създадете книга, тъй като ви липсват права за достъп до нейните "
+"глави."
 
 #: book/static/js/modules/books/importer/native/index.js:58
 #: book/static/js/modules/books/importer/native/index.js:82
@@ -685,18 +685,14 @@ msgid "All internal links have working targets."
 msgstr "Всички вътрешни връзки имат работещи цели."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain encrypted "
-#| "chapters. Please set up or unlock your personal passphrase in your profile "
-#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"Тази книга съдържа криптирани глави. Необходима е лична парола за извършване"
-" на проверка за разумност. Моля, настройте или отключете вашата лична парола"
-" в настройките на вашия профил."
+"Тази книга съдържа криптирани глави. Необходима е лична парола за извършване "
+"на проверка за разумност. Моля, настройте или отключете вашата лична парола "
+"в настройките на вашия профил."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
@@ -723,7 +719,6 @@ msgid "Language"
 msgstr "Език"
 
 #: book/static/js/modules/books/templates.js:75
-#| msgid "Select Image"
 msgid "Select language"
 msgstr "Изберете език"
 
@@ -756,7 +751,6 @@ msgid "E.g.: 2024 or January 2024"
 msgstr "Например: 2024 г. или януари 2024 г"
 
 #: book/static/js/modules/books/templates.js:174
-#| msgid "Citation style"
 msgid "Publication date"
 msgstr "Дата на публикуване"
 
@@ -765,7 +759,6 @@ msgid "E.g.: 2024"
 msgstr "Например: 2024 г"
 
 #: book/static/js/modules/books/templates.js:187
-#| msgid "Subtitle"
 msgid "Series title"
 msgstr "Заглавие на сериала"
 
@@ -889,7 +882,6 @@ msgid "Sort"
 msgstr "Сортиране"
 
 #: book/static/js/modules/books/templates.js:595
-#| msgid "My documents"
 msgid "Encrypted document"
 msgstr "Криптиран документ"
 

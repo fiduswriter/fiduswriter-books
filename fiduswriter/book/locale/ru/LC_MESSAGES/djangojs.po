@@ -1,8 +1,9 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:54+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -680,25 +681,22 @@ msgid "All internal links have working targets."
 msgstr "Все внутренние ссылки имеют рабочие цели."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"Для работы с книгами, содержащими зашифрованные главы, требуется личная "
-"парольная фраза. Пожалуйста, настройте или разблокируйте её в настройках "
-"профиля."
+"Эта книга содержит зашифрованные главы. Для проверки работоспособности "
+"требуется персональная парольная фраза. Пожалуйста, установите или "
+"разблокируйте свою личную парольную фразу в настройках вашего профиля."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
 msgstr ""
+"Одну или несколько зашифрованных глав не удалось расшифровать. Подробности "
+"смотрите в уведомлениях об ошибках."
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -717,10 +715,8 @@ msgid "Language"
 msgstr "Язык"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
-#| msgid "Select Image"
 msgid "Select language"
-msgstr "Выбрать изображение"
+msgstr "Выберите язык"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -740,35 +736,31 @@ msgstr "Ключевые слова"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "Например: 2024 г. или январь 2024 г."
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
-#| msgid "Citation style"
 msgid "Publication date"
-msgstr "Стиль цитирования"
+msgstr "Дата публикации"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "Например: 2024 год."
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
-#| msgid "Subtitle"
 msgid "Series title"
-msgstr "Подзаголовок"
+msgstr "Название серии"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "Позиция в серии"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -837,37 +829,37 @@ msgstr "Удалить изображение"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "Шаблон ODT"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "Выберите файл шаблона ODT"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "Выберите файл шаблона ODT"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "Удалить файл шаблона ODT"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "Шаблон DOCX"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "Выберите файл шаблона DOCX"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "Выберите файл шаблона DOCX"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "Удалить файл шаблона DOCX"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -886,10 +878,8 @@ msgid "Sort"
 msgstr "Сортировать"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
-#| msgid "My documents"
 msgid "Encrypted document"
-msgstr "Мои документы"
+msgstr "Зашифрованный документ"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"

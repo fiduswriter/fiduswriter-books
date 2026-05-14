@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:49+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -687,10 +687,6 @@ msgid "All internal links have working targets."
 msgstr "Todos los enlaces internos funcionan correctamente."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain encrypted "
-#| "chapters. Please set up or unlock your personal passphrase in your profile "
-#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -725,7 +721,6 @@ msgid "Language"
 msgstr "Idioma"
 
 #: book/static/js/modules/books/templates.js:75
-#| msgid "Select Image"
 msgid "Select language"
 msgstr "Seleccionar idioma"
 
@@ -758,7 +753,6 @@ msgid "E.g.: 2024 or January 2024"
 msgstr "Por ejemplo: 2024 o enero de 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#| msgid "Citation style"
 msgid "Publication date"
 msgstr "Fecha de publicación"
 
@@ -767,7 +761,6 @@ msgid "E.g.: 2024"
 msgstr "Por ejemplo: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#| msgid "Subtitle"
 msgid "Series title"
 msgstr "Título de la serie"
 
@@ -891,7 +884,6 @@ msgid "Sort"
 msgstr "Ordenar"
 
 #: book/static/js/modules/books/templates.js:595
-#| msgid "My documents"
 msgid "Encrypted document"
 msgstr "Documento cifrado"
 

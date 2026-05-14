@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books backend\n"
@@ -34,6 +35,6 @@ msgid "Access books"
 msgstr "Accéder aux livres"
 
 #: book/emails.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "Book shared: %(book_title)s"
-msgstr "Livre partagé: %(book_title)s"
+msgstr "Livre partagé : %(book_title)s"

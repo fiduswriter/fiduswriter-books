@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:45+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -264,8 +264,8 @@ msgid ""
 "settings."
 msgstr ""
 "En personlig passfrase er nødvendig for å arbeide med bøker som inneholder "
-"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase"
-" i profilinnstillingene dine."
+"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase "
+"i profilinnstillingene dine."
 
 #: book/static/js/modules/books/exporter/tools.js:112
 msgid "No encryption key found for chapter:"
@@ -684,10 +684,6 @@ msgid "All internal links have working targets."
 msgstr "Alle interne lenker har fungerende mål."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain encrypted "
-#| "chapters. Please set up or unlock your personal passphrase in your profile "
-#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -722,7 +718,6 @@ msgid "Language"
 msgstr "Språk"
 
 #: book/static/js/modules/books/templates.js:75
-#| msgid "Select Image"
 msgid "Select language"
 msgstr "Velg språk"
 
@@ -755,7 +750,6 @@ msgid "E.g.: 2024 or January 2024"
 msgstr "F.eks.: 2024 eller januar 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#| msgid "Citation style"
 msgid "Publication date"
 msgstr "Publiseringsdato"
 
@@ -764,7 +758,6 @@ msgid "E.g.: 2024"
 msgstr "F.eks.: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#| msgid "Subtitle"
 msgid "Series title"
 msgstr "Serietittel"
 
@@ -888,7 +881,6 @@ msgid "Sort"
 msgstr "Sorter"
 
 #: book/static/js/modules/books/templates.js:595
-#| msgid "My documents"
 msgid "Encrypted document"
 msgstr "Kryptert dokument"
 
@@ -901,8 +893,7 @@ msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
 msgstr ""
-"Hvis dette kapittelet starter en del av boken, angi tittelen på den delen "
-"her"
+"Hvis dette kapittelet starter en del av boken, angi tittelen på den delen her"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"

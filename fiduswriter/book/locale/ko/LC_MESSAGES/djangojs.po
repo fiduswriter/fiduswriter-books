@@ -1,8 +1,9 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:56+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -297,19 +298,19 @@ msgstr "이 서버에서 지원하지 않는 Fidusbook 파일 버전입니다: "
 
 #: book/static/js/modules/books/importer/native/index.js:193
 msgid "Fidusbook file is missing data for chapter "
-msgstr ""
+msgstr "Fidusbook 파일에 장에 대한 데이터가 누락되었습니다. "
 
 #: book/static/js/modules/books/importer/native/index.js:251
 msgid "Could not import chapter "
-msgstr ""
+msgstr "챕터를 가져올 수 없습니다. "
 
 #: book/static/js/modules/books/importer/native/index.js:300
 msgid "successfully imported."
-msgstr ""
+msgstr "성공적으로 가져왔습니다."
 
 #: book/static/js/modules/books/importer/native/index.js:418
 msgid "Could not create book record."
-msgstr ""
+msgstr "도서 기록을 생성할 수 없습니다."
 
 #: book/static/js/modules/books/index.js:107
 msgid "Book Overview"
@@ -676,24 +677,21 @@ msgid "All internal links have working targets."
 msgstr "모든 내부 링크에 유효한 대상이 있습니다."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"암호화된 장이 포함된 책을 작업하려면 개인 암호가 필요합니다. 프로필 설정에서 "
-"개인 암호를 설정하거나 잠금을 해제해 주세요."
+"이 책에는 암호화된 장이 포함되어 있습니다. 상태 확인을 수행하려면 개인 암호"
+"가 필요합니다. 프로필 설정에서 개인 암호를 설정하거나 잠금 해제하세요."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
 msgstr ""
+"하나 이상의 암호화된 챕터를 해독할 수 없습니다. 자세한 내용은 오류 알림을 참"
+"조하세요."
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
@@ -712,10 +710,8 @@ msgid "Language"
 msgstr "언어"
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
-#| msgid "Select Image"
 msgid "Select language"
-msgstr "이미지 선택"
+msgstr "언어 선택"
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
@@ -735,35 +731,31 @@ msgstr "키워드"
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
-msgstr ""
+msgstr "설명"
 
 #: book/static/js/modules/books/templates.js:162
 msgid "ISBN"
-msgstr ""
+msgstr "ISBN"
 
 #: book/static/js/modules/books/templates.js:173
 msgid "E.g.: 2024 or January 2024"
-msgstr ""
+msgstr "예: 2024년 또는 2024년 1월"
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
-#| msgid "Citation style"
 msgid "Publication date"
-msgstr "인용 스타일"
+msgstr "출판일"
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
-msgstr ""
+msgstr "예: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
-#| msgid "Subtitle"
 msgid "Series title"
-msgstr "부제목"
+msgstr "시리즈 제목"
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
-msgstr ""
+msgstr "시리즈 위치"
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
@@ -832,37 +824,37 @@ msgstr "이미지 제거"
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
-msgstr ""
+msgstr "ODT 템플릿"
 
 #: book/static/js/modules/books/templates.js:409
 msgid "Select an ODT template file"
-msgstr ""
+msgstr "ODT 템플릿 파일 선택"
 
 #: book/static/js/modules/books/templates.js:410
 msgid "Select ODT template file"
-msgstr ""
+msgstr "ODT 템플릿 파일 선택"
 
 #: book/static/js/modules/books/templates.js:418
 #: book/static/js/modules/books/templates.js:420
 msgid "Remove ODT template file"
-msgstr ""
+msgstr "ODT 템플릿 파일 제거"
 
 #: book/static/js/modules/books/templates.js:441
 msgid "DOCX Template"
-msgstr ""
+msgstr "DOCX 템플릿"
 
 #: book/static/js/modules/books/templates.js:458
 msgid "Select an DOCX template file"
-msgstr ""
+msgstr "DOCX 템플릿 파일을 선택하세요"
 
 #: book/static/js/modules/books/templates.js:459
 msgid "Select DOCX template file"
-msgstr ""
+msgstr "DOCX 템플릿 파일 선택"
 
 #: book/static/js/modules/books/templates.js:467
 #: book/static/js/modules/books/templates.js:469
 msgid "Remove DOCX template file"
-msgstr ""
+msgstr "DOCX 템플릿 파일 제거"
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
@@ -881,10 +873,8 @@ msgid "Sort"
 msgstr "정렬"
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
-#| msgid "My documents"
 msgid "Encrypted document"
-msgstr "내 문서"
+msgstr "암호화된 문서"
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"

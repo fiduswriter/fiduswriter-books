@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:52+0000\n"
+"POT-Creation-Date: 2026-05-14 10:45+0000\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -685,10 +685,6 @@ msgid "All internal links have working targets."
 msgstr "Alla interna länkar har fungerande mål."
 
 #: book/static/js/modules/books/sanity_check.js:120
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain encrypted "
-#| "chapters. Please set up or unlock your personal passphrase in your profile "
-#| "settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -723,7 +719,6 @@ msgid "Language"
 msgstr "Språk"
 
 #: book/static/js/modules/books/templates.js:75
-#| msgid "Select Image"
 msgid "Select language"
 msgstr "Välj språk"
 
@@ -756,7 +751,6 @@ msgid "E.g.: 2024 or January 2024"
 msgstr "Till exempel: 2024 eller januari 2024"
 
 #: book/static/js/modules/books/templates.js:174
-#| msgid "Citation style"
 msgid "Publication date"
 msgstr "Publiceringsdatum"
 
@@ -765,7 +759,6 @@ msgid "E.g.: 2024"
 msgstr "T.ex.: 2024"
 
 #: book/static/js/modules/books/templates.js:187
-#| msgid "Subtitle"
 msgid "Series title"
 msgstr "Serietitel"
 
@@ -889,7 +882,6 @@ msgid "Sort"
 msgstr "Sortera"
 
 #: book/static/js/modules/books/templates.js:595
-#| msgid "My documents"
 msgid "Encrypted document"
 msgstr "Krypterat dokument"
 
@@ -901,8 +893,7 @@ msgstr "Bokdel"
 msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
-msgstr ""
-"Om detta kapitel inleder en del av boken, ange titeln på den delen här"
+msgstr "Om detta kapitel inleder en del av boken, ange titeln på den delen här"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"
