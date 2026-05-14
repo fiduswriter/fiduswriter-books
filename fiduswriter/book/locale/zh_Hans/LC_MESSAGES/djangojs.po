@@ -260,9 +260,7 @@ msgid ""
 "A personal passphrase is required to work with books that contain encrypted "
 "chapters. Please set up or unlock your personal passphrase in your profile "
 "settings."
-msgstr ""
-"需要个人密码才能使用包含加密章节的书籍。请在您的个人资料设置中设置或解锁您的"
-"个人密码。"
+msgstr "需要个人密码才能使用包含加密章节的书籍。请在您的个人资料设置中设置或解锁您的个人密码。"
 
 #: book/static/js/modules/books/exporter/tools.js:112
 msgid "No encryption key found for chapter:"
@@ -602,7 +600,7 @@ msgstr "导出为打印/PDF"
 
 #: book/static/js/modules/books/menu.js:502
 msgid "Export book to the print dialog."
-msgstr ""
+msgstr "将书籍导出到打印对话框。"
 
 #: book/static/js/modules/books/menu.js:509
 msgid "Export as Fidusbook"
@@ -656,7 +654,7 @@ msgstr "本书包含章节。"
 
 #: book/static/js/modules/books/sanity_check.js:101
 msgid "Each chapter has a title."
-msgstr ""
+msgstr "每章都有一个标题。"
 
 #: book/static/js/modules/books/sanity_check.js:102
 msgid "There are no unresolved tracked changes."
@@ -679,9 +677,7 @@ msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
-msgstr ""
-"本书包含加密章节。需要个人密码来执行健全性检查。请在您的个人资料设置中设置或"
-"解锁您的个人密码。"
+msgstr "本书包含加密章节。需要个人密码来执行健全性检查。请在您的个人资料设置中设置或解锁您的个人密码。"
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
@@ -894,135 +890,83 @@ msgstr "撰写书籍"
 msgid "Books"
 msgstr "书籍"
 
-#, fuzzy
-#~| msgid "LaTeX export has been initiated."
 #~ msgid "Pandoc export has been initiated."
-#~ msgstr "LaTeX导出已启动。"
+#~ msgstr "Pandoc 导出已启动。"
 
-#, fuzzy
-#~| msgid "Fidusbook export failed."
 #~ msgid "Pandoc export failed."
-#~ msgstr "Fidusbook 导出失败。"
+#~ msgstr "Pandoc 导出失败。"
 
-#, fuzzy
-#~| msgid "Export selected to Print/PDF"
 #~ msgid "Export selected with Pandoc"
-#~ msgstr "将选中项导出为打印/PDF"
+#~ msgstr "使用 Pandoc 导出选定内容"
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books using Pandoc."
-#~ msgstr "将选中的书籍导出为LaTeX。"
+#~ msgstr "使用 Pandoc 导出选定的书籍。"
 
-#, fuzzy
-#~| msgid "Export selected books as HTML."
 #~ msgid "Export selected books as Markdown via Pandoc."
-#~ msgstr "将选中的书籍导出为HTML。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 Markdown。"
 
-#, fuzzy
-#~| msgid "Export selected books as DOCX."
 #~ msgid "Export selected books as Commonmark via Pandoc."
-#~ msgstr "将选定的书籍导出为 DOCX。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 Commonmark。"
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as reStructuredText via Pandoc."
-#~ msgstr "将选中的书籍导出为LaTeX。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 reStructuredText。"
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as LaTeX via Pandoc."
-#~ msgstr "将选中的书籍导出为LaTeX。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 LaTeX。"
 
-#, fuzzy
-#~| msgid "Books"
 #~ msgid "DocBook"
-#~ msgstr "书籍"
+#~ msgstr "文档书"
 
-#, fuzzy
-#~| msgid "Export selected books as ODT."
 #~ msgid "Export selected books as DocBook via Pandoc."
-#~ msgstr "将选定的书籍导出为 ODT。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 DocBook。"
 
-#, fuzzy
-#~| msgid "Export selected books as HTML."
 #~ msgid "Export selected books as JATS XML via Pandoc."
-#~ msgstr "将选中的书籍导出为HTML。"
+#~ msgstr "通过 Pandoc 将所选书籍导出为 JATS XML。"
 
-#, fuzzy
-#~| msgid "Export selected books as BITS."
 #~ msgid "Export selected books as TEI Simple via Pandoc."
-#~ msgstr "将选定的书籍导出为 BITS。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 TEI Simple。"
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as Emacs Org Mode via Pandoc."
-#~ msgstr "将选中的书籍导出为LaTeX。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 Emacs Org 模式。"
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as Textile via Pandoc."
-#~ msgstr "将选中的书籍导出为LaTeX。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 Textile。"
 
-#, fuzzy
-#~| msgid "Export selected books as ODT."
 #~ msgid "Export selected books as Typst via Pandoc."
-#~ msgstr "将选定的书籍导出为 ODT。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为 Typst。"
 
-#, fuzzy
-#~| msgid "Export selected books to the print dialog."
 #~ msgid "Export selected books as Rich Text Format via Pandoc."
-#~ msgstr "将选中的书籍导出到打印对话框。"
+#~ msgstr "通过 Pandoc 将选定的书籍导出为富文本格式。"
 
-#, fuzzy
-#~| msgid "Export selected books as HTML."
 #~ msgid "Export selected books as ICML via Pandoc."
-#~ msgstr "将选中的书籍导出为HTML。"
+#~ msgstr "通过 Pandoc 将所选书籍导出为 ICML。"
 
-#, fuzzy
-#~| msgid "Export book as LaTeX."
 #~ msgid "Export book using Pandoc."
-#~ msgstr "将书籍导出为 LaTeX。"
+#~ msgstr "使用 Pandoc 导出图书。"
 
-#, fuzzy
-#~| msgid "Export book as HTML."
 #~ msgid "Export book as Markdown via Pandoc."
-#~ msgstr "将图书导出为 HTML。"
+#~ msgstr "通过 Pandoc 将书籍导出为 Markdown。"
 
-#, fuzzy
-#~| msgid "Export book as LaTeX."
 #~ msgid "Export book as LaTeX via Pandoc."
-#~ msgstr "将书籍导出为 LaTeX。"
+#~ msgstr "通过 Pandoc 将书籍导出为 LaTeX。"
 
-#, fuzzy
-#~| msgid "Export book as Book Interchange Tag Set."
 #~ msgid "Export book as DocBook via Pandoc."
-#~ msgstr "将书籍导出为书籍交换标签集。"
+#~ msgstr "通过 Pandoc 将书籍导出为 DocBook。"
 
-#, fuzzy
-#~| msgid "Export book as HTML."
 #~ msgid "Export book as JATS XML via Pandoc."
-#~ msgstr "将图书导出为 HTML。"
+#~ msgstr "通过 Pandoc 将图书导出为 JATS XML。"
 
-#, fuzzy
-#~| msgid "Export book as Single-file HTML."
 #~ msgid "Export book as TEI Simple via Pandoc."
-#~ msgstr "将图书导出为单文件 HTML。"
+#~ msgstr "通过 Pandoc 将书籍导出为 TEI Simple。"
 
-#, fuzzy
-#~| msgid "Export book as LaTeX."
 #~ msgid "Export book as Textile via Pandoc."
-#~ msgstr "将书籍导出为 LaTeX。"
+#~ msgstr "通过 Pandoc 将书籍导出为 Textile。"
 
-#, fuzzy
-#~| msgid "Export book as ODT."
 #~ msgid "Export book as Typst via Pandoc."
-#~ msgstr "将图书导出为 ODT。"
+#~ msgstr "通过 Pandoc 将书籍导出为 Typst。"
 
-#, fuzzy
-#~| msgid "Export book as HTML."
 #~ msgid "Export book as ICML via Pandoc."
-#~ msgstr "将图书导出为 HTML。"
+#~ msgstr "通过 Pandoc 将图书导出为 ICML。"
 
 #~ msgid "Cover"
 #~ msgstr "封面"

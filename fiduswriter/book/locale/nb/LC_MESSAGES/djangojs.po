@@ -264,8 +264,8 @@ msgid ""
 "settings."
 msgstr ""
 "En personlig passfrase er nødvendig for å arbeide med bøker som inneholder "
-"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase "
-"i profilinnstillingene dine."
+"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase"
+" i profilinnstillingene dine."
 
 #: book/static/js/modules/books/exporter/tools.js:112
 msgid "No encryption key found for chapter:"
@@ -893,7 +893,8 @@ msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
 msgstr ""
-"Hvis dette kapittelet starter en del av boken, angi tittelen på den delen her"
+"Hvis dette kapittelet starter en del av boken, angi tittelen på den delen "
+"her"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"
@@ -907,140 +908,86 @@ msgstr "sett sammen bøker"
 msgid "Books"
 msgstr "Bøker"
 
-#, fuzzy
-#~| msgid "LaTeX export has been initiated."
 #~ msgid "Pandoc export has been initiated."
-#~ msgstr "LaTeX-eksport er startet."
+#~ msgstr "Pandoc-eksport er igangsatt."
 
-#, fuzzy
-#~| msgid "Fidusbook export failed."
 #~ msgid "Pandoc export failed."
-#~ msgstr "Fidusbook-eksport mislyktes."
+#~ msgstr "Pandoc-eksport mislyktes."
 
-#, fuzzy
-#~| msgid "Export selected to Print/PDF"
 #~ msgid "Export selected with Pandoc"
-#~ msgstr "Eksporter valgte til utskrift/PDF"
+#~ msgstr "Eksporter valgt med Pandoc"
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books using Pandoc."
-#~ msgstr "Eksporter valgte bøker som LaTeX."
+#~ msgstr "Eksporter valgte bøker ved hjelp av Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as HTML."
 #~ msgid "Export selected books as Markdown via Pandoc."
-#~ msgstr "Eksporter valgte bøker som HTML."
+#~ msgstr "Eksporter valgte bøker som Markdown via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as DOCX."
 #~ msgid "Export selected books as Commonmark via Pandoc."
-#~ msgstr "Eksporter valgte bøker som DOCX."
+#~ msgstr "Eksporter utvalgte bøker som Commonmark via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as reStructuredText via Pandoc."
-#~ msgstr "Eksporter valgte bøker som LaTeX."
+#~ msgstr "Eksporter valgte bøker som reStructuredText via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as LaTeX via Pandoc."
-#~ msgstr "Eksporter valgte bøker som LaTeX."
+#~ msgstr "Eksporter utvalgte bøker som LaTeX via Pandoc."
 
-#, fuzzy
-#~| msgid "Books"
 #~ msgid "DocBook"
-#~ msgstr "Bøker"
+#~ msgstr "DocBook"
 
-#, fuzzy
-#~| msgid "Export selected books as ODT."
 #~ msgid "Export selected books as DocBook via Pandoc."
-#~ msgstr "Eksporter valgte bøker som ODT."
+#~ msgstr "Eksporter utvalgte bøker som DocBook via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as HTML."
 #~ msgid "Export selected books as JATS XML via Pandoc."
-#~ msgstr "Eksporter valgte bøker som HTML."
+#~ msgstr "Eksporter utvalgte bøker som JATS XML via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as BITS."
 #~ msgid "Export selected books as TEI Simple via Pandoc."
-#~ msgstr "Eksporter valgte bøker som BITS."
+#~ msgstr "Eksporter utvalgte bøker som TEI Simple via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as Emacs Org Mode via Pandoc."
-#~ msgstr "Eksporter valgte bøker som LaTeX."
+#~ msgstr "Eksporter valgte bøker som Emacs Org Mode via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as LaTeX."
 #~ msgid "Export selected books as Textile via Pandoc."
-#~ msgstr "Eksporter valgte bøker som LaTeX."
+#~ msgstr "Eksporter utvalgte bøker som tekstil via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as ODT."
 #~ msgid "Export selected books as Typst via Pandoc."
-#~ msgstr "Eksporter valgte bøker som ODT."
+#~ msgstr "Eksporter valgte bøker som Typst via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books to the print dialog."
 #~ msgid "Export selected books as Rich Text Format via Pandoc."
-#~ msgstr "Eksporter valgte bøker til utskriftsdialogen."
+#~ msgstr "Eksporter valgte bøker som Rich Text Format via Pandoc."
 
-#, fuzzy
-#~| msgid "Export selected books as HTML."
 #~ msgid "Export selected books as ICML via Pandoc."
-#~ msgstr "Eksporter valgte bøker som HTML."
+#~ msgstr "Eksporter utvalgte bøker som ICML via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as LaTeX."
 #~ msgid "Export book using Pandoc."
-#~ msgstr "Eksporter bok som LaTeX."
+#~ msgstr "Eksporter bok ved hjelp av Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as HTML."
 #~ msgid "Export book as Markdown via Pandoc."
-#~ msgstr "Eksporter bok som HTML."
+#~ msgstr "Eksporter bok som Markdown via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as LaTeX."
 #~ msgid "Export book as LaTeX via Pandoc."
-#~ msgstr "Eksporter bok som LaTeX."
+#~ msgstr "Eksporter bok som LaTeX via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as Book Interchange Tag Set."
 #~ msgid "Export book as DocBook via Pandoc."
-#~ msgstr "Eksporter bok som Book Interchange Tag Set."
+#~ msgstr "Eksporter bok som DocBook via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as HTML."
 #~ msgid "Export book as JATS XML via Pandoc."
-#~ msgstr "Eksporter bok som HTML."
+#~ msgstr "Eksporter bok som JATS XML via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as Single-file HTML."
 #~ msgid "Export book as TEI Simple via Pandoc."
-#~ msgstr "Eksporter bok som enkeltfil-HTML."
+#~ msgstr "Eksporter bok som TEI Simple via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as LaTeX."
 #~ msgid "Export book as Textile via Pandoc."
-#~ msgstr "Eksporter bok som LaTeX."
+#~ msgstr "Eksporter bok som tekstil via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as ODT."
 #~ msgid "Export book as Typst via Pandoc."
-#~ msgstr "Eksporter bok som ODT."
+#~ msgstr "Eksporter bok som Typst via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book to the print dialog."
 #~ msgid "Export book as Rich Text Format via Pandoc."
-#~ msgstr "Eksporter bok til utskriftsdialogen."
+#~ msgstr "Eksporter bok som rikt tekstformat via Pandoc."
 
-#, fuzzy
-#~| msgid "Export book as HTML."
 #~ msgid "Export book as ICML via Pandoc."
-#~ msgstr "Eksporter bok som HTML."
+#~ msgstr "Eksporter bok som ICML via Pandoc."
 
 #~ msgid "Cover"
 #~ msgstr "Forside"
