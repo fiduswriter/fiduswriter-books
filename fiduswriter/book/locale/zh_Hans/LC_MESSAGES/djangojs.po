@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 10:45+0000\n"
+"POT-Creation-Date: 2026-05-14 11:32+0000\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -893,6 +893,136 @@ msgstr "撰写书籍"
 #: book/static/js/plugins/menu/books.js:13
 msgid "Books"
 msgstr "书籍"
+
+#, fuzzy
+#~| msgid "LaTeX export has been initiated."
+#~ msgid "Pandoc export has been initiated."
+#~ msgstr "LaTeX导出已启动。"
+
+#, fuzzy
+#~| msgid "Fidusbook export failed."
+#~ msgid "Pandoc export failed."
+#~ msgstr "Fidusbook 导出失败。"
+
+#, fuzzy
+#~| msgid "Export selected to Print/PDF"
+#~ msgid "Export selected with Pandoc"
+#~ msgstr "将选中项导出为打印/PDF"
+
+#, fuzzy
+#~| msgid "Export selected books as LaTeX."
+#~ msgid "Export selected books using Pandoc."
+#~ msgstr "将选中的书籍导出为LaTeX。"
+
+#, fuzzy
+#~| msgid "Export selected books as HTML."
+#~ msgid "Export selected books as Markdown via Pandoc."
+#~ msgstr "将选中的书籍导出为HTML。"
+
+#, fuzzy
+#~| msgid "Export selected books as DOCX."
+#~ msgid "Export selected books as Commonmark via Pandoc."
+#~ msgstr "将选定的书籍导出为 DOCX。"
+
+#, fuzzy
+#~| msgid "Export selected books as LaTeX."
+#~ msgid "Export selected books as reStructuredText via Pandoc."
+#~ msgstr "将选中的书籍导出为LaTeX。"
+
+#, fuzzy
+#~| msgid "Export selected books as LaTeX."
+#~ msgid "Export selected books as LaTeX via Pandoc."
+#~ msgstr "将选中的书籍导出为LaTeX。"
+
+#, fuzzy
+#~| msgid "Books"
+#~ msgid "DocBook"
+#~ msgstr "书籍"
+
+#, fuzzy
+#~| msgid "Export selected books as ODT."
+#~ msgid "Export selected books as DocBook via Pandoc."
+#~ msgstr "将选定的书籍导出为 ODT。"
+
+#, fuzzy
+#~| msgid "Export selected books as HTML."
+#~ msgid "Export selected books as JATS XML via Pandoc."
+#~ msgstr "将选中的书籍导出为HTML。"
+
+#, fuzzy
+#~| msgid "Export selected books as BITS."
+#~ msgid "Export selected books as TEI Simple via Pandoc."
+#~ msgstr "将选定的书籍导出为 BITS。"
+
+#, fuzzy
+#~| msgid "Export selected books as LaTeX."
+#~ msgid "Export selected books as Emacs Org Mode via Pandoc."
+#~ msgstr "将选中的书籍导出为LaTeX。"
+
+#, fuzzy
+#~| msgid "Export selected books as LaTeX."
+#~ msgid "Export selected books as Textile via Pandoc."
+#~ msgstr "将选中的书籍导出为LaTeX。"
+
+#, fuzzy
+#~| msgid "Export selected books as ODT."
+#~ msgid "Export selected books as Typst via Pandoc."
+#~ msgstr "将选定的书籍导出为 ODT。"
+
+#, fuzzy
+#~| msgid "Export selected books to the print dialog."
+#~ msgid "Export selected books as Rich Text Format via Pandoc."
+#~ msgstr "将选中的书籍导出到打印对话框。"
+
+#, fuzzy
+#~| msgid "Export selected books as HTML."
+#~ msgid "Export selected books as ICML via Pandoc."
+#~ msgstr "将选中的书籍导出为HTML。"
+
+#, fuzzy
+#~| msgid "Export book as LaTeX."
+#~ msgid "Export book using Pandoc."
+#~ msgstr "将书籍导出为 LaTeX。"
+
+#, fuzzy
+#~| msgid "Export book as HTML."
+#~ msgid "Export book as Markdown via Pandoc."
+#~ msgstr "将图书导出为 HTML。"
+
+#, fuzzy
+#~| msgid "Export book as LaTeX."
+#~ msgid "Export book as LaTeX via Pandoc."
+#~ msgstr "将书籍导出为 LaTeX。"
+
+#, fuzzy
+#~| msgid "Export book as Book Interchange Tag Set."
+#~ msgid "Export book as DocBook via Pandoc."
+#~ msgstr "将书籍导出为书籍交换标签集。"
+
+#, fuzzy
+#~| msgid "Export book as HTML."
+#~ msgid "Export book as JATS XML via Pandoc."
+#~ msgstr "将图书导出为 HTML。"
+
+#, fuzzy
+#~| msgid "Export book as Single-file HTML."
+#~ msgid "Export book as TEI Simple via Pandoc."
+#~ msgstr "将图书导出为单文件 HTML。"
+
+#, fuzzy
+#~| msgid "Export book as LaTeX."
+#~ msgid "Export book as Textile via Pandoc."
+#~ msgstr "将书籍导出为 LaTeX。"
+
+#, fuzzy
+#~| msgid "Export book as ODT."
+#~ msgid "Export book as Typst via Pandoc."
+#~ msgstr "将图书导出为 ODT。"
+
+#, fuzzy
+#~| msgid "Export book as HTML."
+#~ msgid "Export book as ICML via Pandoc."
+#~ msgstr "将图书导出为 HTML。"
 
 #~ msgid "Cover"
 #~ msgstr "封面"
