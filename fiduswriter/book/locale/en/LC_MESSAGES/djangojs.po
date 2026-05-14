@@ -1,230 +1,238 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Fidus Writer books\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 09:45+0000\n"
-"Language: nb\n"
+"POT-Creation-Date: 2026-05-14 09:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: POEditor.com\n"
-
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: book/static/js/modules/books/accessrights/index.js:31
 msgid "Cannot load book access data."
-msgstr "Kan ikke laste tilgangsdata for boken."
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:68
 msgid "Add contact or invite new user"
-msgstr "Legg til kontakt eller inviter ny bruker"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:69
 msgid "Add contact"
-msgstr "Legg til kontakt"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:120
 #: book/static/js/modules/books/actions.js:190
 #: book/static/js/modules/books/actions.js:483
 msgid "Submit"
-msgstr "Send inn"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:151
 msgid "Share your book with others"
-msgstr "Del boken din med andre"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:275
 #: book/static/js/modules/books/accessrights/index.js:277
 msgid "Write"
-msgstr "Skrive"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:285
 #: book/static/js/modules/books/accessrights/index.js:287
 msgid "Read"
-msgstr "Lese"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:303
 msgid "Cannot save access rights."
-msgstr "Kan ikke lagre tilgangsrettigheter."
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/index.js:307
 msgid "Access rights have been saved"
-msgstr "Tilgangsrettigheter er lagret"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 #: book/static/js/modules/books/accessrights/templates.js:51
 msgid "Invite"
-msgstr "Invitér"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/templates.js:65
 msgid "My contacts"
-msgstr "Mine kontakter"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/templates.js:69
 msgid "Contacts"
-msgstr "Kontakter"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/templates.js:81
 msgid "My collaborators"
-msgstr "Mine samarbeidspartnere"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/templates.js:84
 msgid "Collaborators"
-msgstr "Samarbeidspartnere"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/templates.js:85
 #: book/static/js/modules/books/index.js:215
 msgid "Rights"
-msgstr "Rettigheter"
+msgstr ""
 
 #: book/static/js/modules/books/accessrights/templates.js:86
 #: book/static/js/modules/books/actions.js:143
 #: book/static/js/modules/books/index.js:610
 msgid "Delete"
-msgstr "Slett"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:59
 msgid "Basic info"
-msgstr "Grunnleggende info"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:60
 msgid "Basic book information"
-msgstr "Grunnleggende bokinformasjon"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:64
 msgid "Chapters"
-msgstr "Kapitler"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:65
 msgid "Documents assigned as chapters"
-msgstr "Dokumenter tilordnet som kapitler"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:69
 #: book/static/js/modules/books/actions.js:423
 msgid "Bibliography"
-msgstr "Bibliografi"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:70
 msgid "Bibliography related settings"
-msgstr "Bibliografirelaterte innstillinger"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:74
 msgid "Epub"
-msgstr "Epub"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:75
 msgid "Epub related settings"
-msgstr "Epub-relaterte innstillinger"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:79
 msgid "DOCX"
-msgstr "DOCX"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:80
 msgid "DOCX related settings"
-msgstr "DOCX-relaterte innstillinger"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:84
 msgid "ODT"
-msgstr "ODT"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:85
 msgid "ODT related settings"
-msgstr "ODT-relaterte innstillinger"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:89
 msgid "Print/PDF"
-msgstr "Utskrift/PDF"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:90
 msgid "Print related settings"
-msgstr "Utskriftrelaterte innstillinger"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:94
 msgid "Sanity check"
-msgstr "Sunnhetssjekk"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:95
 msgid "Perform sanity check on book"
-msgstr "Utfør sunnhetssjekk på boken"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:111
 msgid "Could not delete book"
-msgstr "Kunne ikke slette bok"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:121
 msgid "Book has been deleted"
-msgstr "Boken er slettet"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:155
 #: book/static/js/modules/books/index.js:600
 msgid "Confirm deletion"
-msgstr "Bekreft sletting"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:162
 msgid "Do you really want to delete the following books?"
-msgstr "Vil du virkelig slette følgende bøker?"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:165
 msgid "Do you really want to delete the following book?"
-msgstr "Vil du virkelig slette følgende bok?"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:182
 #: book/static/js/modules/books/exporter/tools.js:105
 #: book/static/js/modules/books/importer/native/index.js:401
 #: book/static/js/modules/books/templates.js:610
 msgid "Untitled"
-msgstr "Uten tittel"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:206
 msgid "Edit Chapter"
-msgstr "Rediger kapittel"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:263
 msgid "The book could not be saved"
-msgstr "Boken kunne ikke lagres"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:292
 msgid "Copy of"
-msgstr "Kopi av"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:296
 msgid "The book could not be copied"
-msgstr "Boken kunne ikke kopieres"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:322
 msgid "Chapters will be imported as encrypted (E2EE) documents."
-msgstr "Kapitler vil bli importert som krypterte (E2EE) dokumenter."
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:329
 msgid "Import chapters as encrypted (E2EE) documents"
-msgstr "Importer kapitler som krypterte (E2EE) dokumenter"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:336
 msgid "Import a book"
-msgstr "Importer en bok"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:339
 msgid "Select a .fidusbook file:"
-msgstr "Velg en .fidusbook-fil:"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:353
 msgid "Import"
-msgstr "Importer"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:364
 msgid "File too large"
-msgstr "Filen er for stor"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:413
 msgid "Create Book"
-msgstr "Opprett bok"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:448
 msgid "Edit Book"
-msgstr "Rediger bok"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:464
 msgid "Export"
-msgstr "Eksporter"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:635
 #: book/static/js/modules/books/templates.js:570
@@ -232,8 +240,6 @@ msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "export or run a sanity check on this book."
 msgstr ""
-"Denne boken inneholder krypterte kapitler. En personlig passfrase er "
-"nødvendig for å eksportere eller kjøre en sunnhetssjekk på denne boken."
 
 #: book/static/js/modules/books/exporter/bits/index.js:30
 #: book/static/js/modules/books/exporter/docx/index.js:43
@@ -242,19 +248,19 @@ msgstr ""
 #: book/static/js/modules/books/exporter/native/index.js:42
 #: book/static/js/modules/books/exporter/odt/index.js:40
 msgid "Book cannot be exported due to lack of chapters."
-msgstr "Boken kan ikke eksporteres på grunn av manglende kapitler."
+msgstr ""
 
 #: book/static/js/modules/books/exporter/native/index.js:49
 msgid "Fidusbook export has been initiated."
-msgstr "Fidusbook-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/exporter/native/index.js:57
 msgid "Fidusbook export failed."
-msgstr "Fidusbook-eksport mislyktes."
+msgstr ""
 
 #: book/static/js/modules/books/exporter/tools.js:37
 msgid "Wrong passphrase. Please try again."
-msgstr "Feil passfrase. Prøv igjen."
+msgstr ""
 
 #: book/static/js/modules/books/exporter/tools.js:92
 msgid ""
@@ -262,40 +268,36 @@ msgid ""
 "chapters. Please set up or unlock your personal passphrase in your profile "
 "settings."
 msgstr ""
-"En personlig passfrase er nødvendig for å arbeide med bøker som inneholder "
-"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase "
-"i profilinnstillingene dine."
 
 #: book/static/js/modules/books/exporter/tools.js:112
 msgid "No encryption key found for chapter:"
-msgstr "Ingen krypteringsnøkkel funnet for kapittel:"
+msgstr ""
 
 #: book/static/js/modules/books/exporter/tools.js:112
 msgid "The key may not have been shared with you."
-msgstr "Nøkkelen er kanskje ikke delt med deg."
+msgstr ""
 
 #: book/static/js/modules/books/exporter/tools.js:268
 msgid "Could not decrypt chapter:"
-msgstr "Kunne ikke dekryptere kapittel:"
+msgstr ""
 
 #: book/static/js/modules/books/exporter/tools.js:268
 msgid "The document may have been re-encrypted with a different password."
-msgstr "Dokumentet kan ha blitt re-kryptert med et annet passord."
+msgstr ""
 
 #: book/static/js/modules/books/exporter/tools.js:293
 msgid "Cannot produce book as you lack access rights to its chapters."
 msgstr ""
-"Kan ikke produsere boken fordi du mangler tilgangsrettigheter til kapitlene."
 
 #: book/static/js/modules/books/importer/native/index.js:58
 #: book/static/js/modules/books/importer/native/index.js:82
 #: book/static/js/modules/books/importer/native/index.js:145
 msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "Den opplastede filen ser ikke ut til å være en Fidusbook-fil."
+msgstr ""
 
 #: book/static/js/modules/books/importer/native/index.js:134
 msgid "The Fidusbook file version is not supported by this server: "
-msgstr "Fidusbook-filversjonen støttes ikke av denne serveren: "
+msgstr ""
 
 #: book/static/js/modules/books/importer/native/index.js:193
 msgid "Fidusbook file is missing data for chapter "
@@ -315,387 +317,374 @@ msgstr ""
 
 #: book/static/js/modules/books/index.js:107
 msgid "Book Overview"
-msgstr "Bokoversikt"
+msgstr ""
 
 #: book/static/js/modules/books/index.js:200
 msgid "No books available"
-msgstr "Ingen bøker tilgjengelig"
+msgstr ""
 
 #: book/static/js/modules/books/index.js:201
 msgid "No books found"
-msgstr "Ingen bøker funnet"
+msgstr ""
 
 #: book/static/js/modules/books/index.js:211
 #: book/static/js/modules/books/templates.js:10
 #: book/static/js/modules/books/templates.js:554
 msgid "Title"
-msgstr "Tittel"
+msgstr ""
 
 #: book/static/js/modules/books/index.js:212
 msgid "Created"
-msgstr "Opprettet"
+msgstr ""
 
 #: book/static/js/modules/books/index.js:213
 msgid "Last changed"
-msgstr "Sist endret"
+msgstr ""
 
 #: book/static/js/modules/books/index.js:214
 msgid "Owner"
-msgstr "Eier"
+msgstr ""
 
 #: book/static/js/modules/books/index.js:436
 msgid "Cannot load data of books."
-msgstr "Kan ikke laste data om bøker."
+msgstr ""
 
 #: book/static/js/modules/books/index.js:554
 #: book/static/js/modules/books/index.js:568
 msgid "You cannot delete books while you are offline."
-msgstr "Du kan ikke slette bøker mens du er frakoblet."
+msgstr ""
 
 #: book/static/js/modules/books/index.js:603
 msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr ""
-"Hvis du forlater en tom mappe, blir den slettet. Vil du virkelig slette "
-"denne mappen?"
 
 #: book/static/js/modules/books/menu.js:18
 msgid "Create new book"
-msgstr "Opprett ny bok"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:29
 msgid "Create new folder"
-msgstr "Opprett ny mappe"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:43
 msgid "Import book from Fidusbook file"
-msgstr "Importer bok fra Fidusbook-fil"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:53
 msgid "Search books"
-msgstr "Søk i bøker"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:77
 msgid "Epub export has been initiated."
-msgstr "Epub-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:94
 msgid "BITS export has been initiated."
-msgstr "BITS-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:110
 msgid "HTML export has been initiated."
-msgstr "HTML-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:127
 msgid "Unified HTML export has been initiated."
-msgstr "Unified HTML-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:145
 msgid "LaTeX export has been initiated."
-msgstr "LaTeX-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:160
 msgid "DOCX export has been initiated."
-msgstr "DOCX-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:176
 msgid "ODT export has been initiated."
-msgstr "ODT-eksport er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:190
 msgid "Print has been initiated."
-msgstr "Utskrift er startet."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:216
 msgid "Move selected"
-msgstr "Flytt valgte"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:217
 msgid "Move the books that have been selected."
-msgstr "Flytt bøkene som er valgt."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:227
 msgid "Move books"
-msgstr "Flytt bøker"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:228
 msgid "Move book"
-msgstr "Flytt bok"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:232
 msgid "Book has been moved"
-msgstr "Boken er flyttet"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:233
 msgid "Could not move book"
-msgstr "Kunne ikke flytte bok"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:244
 msgid "Delete selected"
-msgstr "Slett valgte"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:245
 msgid "Delete selected books."
-msgstr "Slett valgte bøker."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:255
 msgid "You cannot delete books of other users."
-msgstr "Du kan ikke slette bøker som tilhører andre brukere."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:265
 msgid "Share selected"
-msgstr "Del valgte"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:266
 msgid "Share selected books."
-msgstr "Del valgte bøker."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:276
 msgid "You cannot share books of other users."
-msgstr "Du kan ikke dele bøker som tilhører andre brukere."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:291
 msgid "Copy selected"
-msgstr "Kopier valgte"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:292
 msgid "Copy selected books."
-msgstr "Kopier valgte bøker."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:304
 msgid "Export selected as BITS"
-msgstr "Eksporter valgte som BITS"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:305
 msgid "Export selected books as BITS."
-msgstr "Eksporter valgte bøker som BITS."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:316
 msgid "Export selected as Epub"
-msgstr "Eksporter valgte som Epub"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:317
 msgid "Export selected books as Epub."
-msgstr "Eksporter valgte bøker som Epub."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:328
 msgid "Export selected as HTML"
-msgstr "Eksporter valgte som HTML"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:329
 msgid "Export selected books as HTML."
-msgstr "Eksporter valgte bøker som HTML."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:340
 msgid "Export selected as Unified HTML"
-msgstr "Eksporter valgte som Unified HTML"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:341
 msgid "Export selected books as Single-file HTML."
-msgstr "Eksporter valgte bøker som enkeltfil-HTML."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:352
 msgid "Export selected as LaTeX"
-msgstr "Eksporter valgte som LaTeX"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:353
 msgid "Export selected books as LaTeX."
-msgstr "Eksporter valgte bøker som LaTeX."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:364
 msgid "Export selected as DOCX"
-msgstr "Eksporter valgte som DOCX"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:365
 msgid "Export selected books as DOCX."
-msgstr "Eksporter valgte bøker som DOCX."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:378
 msgid "This book does not have a DOCX template."
-msgstr "Denne boken har ingen DOCX-mal."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:387
 msgid "Export selected as ODT"
-msgstr "Eksporter valgte som ODT"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:388
 msgid "Export selected books as ODT."
-msgstr "Eksporter valgte bøker som ODT."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:401
 msgid "This book does not have an ODT template."
-msgstr "Denne boken har ingen ODT-mal."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:410
 msgid "Export selected to Print/PDF"
-msgstr "Eksporter valgte til utskrift/PDF"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:411
 msgid "Export selected books to the print dialog."
-msgstr "Eksporter valgte bøker til utskriftsdialogen."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:422
 msgid "Export selected as Fidusbook"
-msgstr "Eksporter valgte som Fidusbook"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:424
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr ""
-"Eksporter valgte bøker som .fidusbook-filer (for flytting til en annen "
-"server)."
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
-msgstr "Eksporter som BITS"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:443
 msgid "Export book as Book Interchange Tag Set."
-msgstr "Eksporter bok som Book Interchange Tag Set."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:450
 msgid "Export as Epub"
-msgstr "Eksporter som Epub"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:451
 msgid "Export book as Epub."
-msgstr "Eksporter bok som Epub."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:458
 msgid "Export as HTML"
-msgstr "Eksporter som HTML"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:459
 msgid "Export book as HTML."
-msgstr "Eksporter bok som HTML."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:466
 msgid "Export as Unified HTML"
-msgstr "Eksporter som Unified HTML"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:467
 msgid "Export book as Single-file HTML."
-msgstr "Eksporter bok som enkeltfil-HTML."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:474
 msgid "Export as LaTeX"
-msgstr "Eksporter som LaTeX"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:475
 msgid "Export book as LaTeX."
-msgstr "Eksporter bok som LaTeX."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:482
 msgid "Export as DOCX"
-msgstr "Eksporter som DOCX"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:483
 msgid "Export book as DOCX."
-msgstr "Eksporter bok som DOCX."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:492
 msgid "Export as ODT"
-msgstr "Eksporter som ODT"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:493
 msgid "Export book as ODT."
-msgstr "Eksporter bok som ODT."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:501
 msgid "Export to Print/PDF"
-msgstr "Eksporter til utskrift/PDF"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:502
 msgid "Export book to the print dialog."
-msgstr "Eksporter bok til utskriftsdialogen."
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:509
 msgid "Export as Fidusbook"
-msgstr "Eksporter som Fidusbook"
+msgstr ""
 
 #: book/static/js/modules/books/menu.js:511
 msgid "Export book as a .fidusbook file (for moving to another server)."
 msgstr ""
-"Eksporter bok som en .fidusbook-fil (for flytting til en annen server)."
 
 #: book/static/js/modules/books/sanity_check.js:6
 msgid "Chapter"
-msgstr "Kapittel"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:14
 #: book/static/js/modules/books/sanity_check.js:42
 msgid "Unresolved tracked changes"
-msgstr "Uoppløste sporede endringer"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:25
 msgid "Internal links without target"
-msgstr "Interne lenker uten mål"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:35
 msgid "Unresolved comments"
-msgstr "Uoppløste kommentarer"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:52
 msgid "Cross references without targets"
-msgstr "Krysshenvisninger uten mål"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:70
 msgid "The book contains no chapters."
-msgstr "Boken inneholder ingen kapitler."
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:84
 #: book/static/js/modules/books/templates.js:611
 msgid "No access"
-msgstr "Ingen tilgang"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:90
 msgid "No chapter title"
-msgstr "Ingen kapitteltittel"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:99
 msgid "No issues were found:"
-msgstr "Ingen problemer ble funnet:"
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:100
 msgid "The book contains chapters."
-msgstr "Boken inneholder kapitler."
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:101
 msgid "Each chapter has a title."
-msgstr "Hvert kapittel har en tittel."
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:102
 msgid "There are no unresolved tracked changes."
-msgstr "Det er ingen uoppløste sporede endringer."
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:103
 msgid "There are no unresolved comments."
-msgstr "Det er ingen uoppløste kommentarer."
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:104
 msgid "All cross references have working targets."
-msgstr "Alle krysshenvisninger har fungerende mål."
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:106
 msgid "All internal links have working targets."
-msgstr "Alle interne lenker har fungerende mål."
+msgstr ""
 
 #: book/static/js/modules/books/sanity_check.js:120
-#, fuzzy
-#| msgid ""
-#| "A personal passphrase is required to work with books that contain "
-#| "encrypted chapters. Please set up or unlock your personal passphrase in "
-#| "your profile settings."
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr ""
-"En personlig passfrase er nødvendig for å arbeide med bøker som inneholder "
-"krypterte kapitler. Vennligst opprett eller lås opp din personlige passfrase "
-"i profilinnstillingene dine."
 
 #: book/static/js/modules/books/sanity_check.js:126
 msgid ""
@@ -705,41 +694,39 @@ msgstr ""
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Author"
-msgstr "Forfatter"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:40
 msgid "Subtitle"
-msgstr "Undertittel"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:55
 msgid "Version"
-msgstr "Versjon"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:70
 msgid "Language"
-msgstr "Språk"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:75
-#, fuzzy
-#| msgid "Select Image"
 msgid "Select language"
-msgstr "Velg bilde"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:103
 msgid "Publisher"
-msgstr "Forlag"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:118
 msgid "Copyright notice"
-msgstr "Opphavsrettsmerknad"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:134
 msgid "Comma separated keywords"
-msgstr "Kommaseparerte nøkkelord"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:136
 msgid "Keywords"
-msgstr "Nøkkelord"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:152
 msgid "Description"
@@ -754,20 +741,16 @@ msgid "E.g.: 2024 or January 2024"
 msgstr ""
 
 #: book/static/js/modules/books/templates.js:174
-#, fuzzy
-#| msgid "Citation style"
 msgid "Publication date"
-msgstr "Siteringsstil"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:180
 msgid "E.g.: 2024"
 msgstr ""
 
 #: book/static/js/modules/books/templates.js:187
-#, fuzzy
-#| msgid "Subtitle"
 msgid "Series title"
-msgstr "Undertittel"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:198
 msgid "Series position"
@@ -775,68 +758,68 @@ msgstr ""
 
 #: book/static/js/modules/books/templates.js:216
 msgid "Citation style"
-msgstr "Siteringsstil"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:222
 msgid "Select citation style for the book"
-msgstr "Velg siteringsstil for boken"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:252
 msgid "Folio (15 x 12 inch)"
-msgstr "Folio (15 x 12 tommer)"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:253
 msgid "Quarto (12 × 9 inch)"
-msgstr "Kvart (12 × 9 tommer)"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:254
 msgid "Octavo (9 x 6 inch)"
-msgstr "Oktav (9 x 6 tommer)"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:255
 msgid "A5"
-msgstr "A5"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:256
 msgid "A4"
-msgstr "A4"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:265
 msgid "Book style"
-msgstr "Bokstil"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:271
 msgid "Select stylesheet for the book"
-msgstr "Velg stilark for boken"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:303
 msgid "Paper size"
-msgstr "Papirstørrelse"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:309
 msgid "Select paper size for the book"
-msgstr "Velg papirstørrelse for boken"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:341
 #: book/static/js/modules/books/templates.js:348
 msgid "Cover image"
-msgstr "Forsidebilde"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:358
 msgid "Select a cover image"
-msgstr "Velg et forsidebilde"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:360
 msgid "Select Image"
-msgstr "Velg bilde"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:367
 msgid "Remove cover image"
-msgstr "Fjern forsidebilde"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:369
 msgid "Remove Image"
-msgstr "Fjern bilde"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:392
 msgid "ODT Template"
@@ -874,75 +857,42 @@ msgstr ""
 
 #: book/static/js/modules/books/templates.js:494
 msgid "Perform sanity check"
-msgstr "Utfør sunnhetssjekk"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:541
 msgid "My documents"
-msgstr "Mine dokumenter"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:550
 msgid "Book chapters"
-msgstr "Bokkapitler"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:555
 msgid "Sort"
-msgstr "Sorter"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:595
-#, fuzzy
-#| msgid "My documents"
 msgid "Encrypted document"
-msgstr "Mine dokumenter"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:599
 msgid "Book part"
-msgstr "Bokdel"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:657
 msgid ""
 "If this chapter starts a part of the book, specify the title of that part "
 "here"
 msgstr ""
-"Hvis dette kapittelet starter en del av boken, angi tittelen på den delen her"
 
 #: book/static/js/modules/books/templates.js:659
 msgid "Book part title"
-msgstr "Bokdeltittel"
+msgstr ""
 
 #: book/static/js/plugins/menu/books.js:11
 msgid "compose books"
-msgstr "sett sammen bøker"
+msgstr ""
 
 #: book/static/js/plugins/menu/books.js:13
 msgid "Books"
-msgstr "Bøker"
-
-#~ msgid "Cover"
-#~ msgstr "Forside"
-
-#~ msgid "Title page"
-#~ msgstr "Tittelside"
-
-#~ msgid "Copyright"
-#~ msgstr "Opphavsrett"
-
-#~ msgid "Cover Image"
-#~ msgstr "Forsidebilde"
-
-#~ msgid "by"
-#~ msgstr "av"
-
-#~ msgid "Published by"
-#~ msgstr "Publisert av"
-
-#~ msgid "Last Updated"
-#~ msgstr "Sist oppdatert"
-
-#~ msgid "Languages"
-#~ msgstr "Språk"
-
-#~ msgid "Created by"
-#~ msgstr "Opprettet av"
-
-#~ msgid "English"
-#~ msgstr "Norsk"
+msgstr ""

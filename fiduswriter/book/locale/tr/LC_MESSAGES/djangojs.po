@@ -1,682 +1,194 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: Fidus Writer books\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-14 09:48+0000\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Fidus Writer books\n"
-"Language: tr\n"
 
-#: book/static/js/modules/books/accessrights/index.js:81
-#: book/static/js/modules/books/actions.js:107
-#: book/static/js/modules/books/actions.js:276
-msgid "Submit"
-msgstr "Gönder"
-
-#: book/static/js/modules/books/accessrights/index.js:107
-msgid "Share your book with others"
-msgstr "Kitabınızı başkalarıyla paylaşın"
-
-#: book/static/js/modules/books/accessrights/index.js:222
-msgid "Cannot save access rights."
-msgstr "Erişim hakları kaydedilemiyor."
-
-#: book/static/js/modules/books/accessrights/index.js:225
-msgid "Access rights have been saved"
-msgstr "Erişim hakları kaydedildi"
-
-#: book/static/js/modules/books/accessrights/index.js:197
-#: book/static/js/modules/books/accessrights/index.js:199
-msgid "Write"
-msgstr "Yazma"
-
-#: book/static/js/modules/books/accessrights/index.js:206
-#: book/static/js/modules/books/accessrights/index.js:208
-msgid "Read"
-msgstr "Okuma"
-
-#: book/static/js/modules/books/accessrights/templates.js:17
-msgid "My contacts"
-msgstr "Kişilerim"
-
-#: book/static/js/modules/books/accessrights/templates.js:17
-msgid "Contacts"
-msgstr "Kişiler"
-
-#: book/static/js/modules/books/accessrights/templates.js:19
-msgid "My collaborators"
-msgstr "İş birlikçilerim"
-
-#: book/static/js/modules/books/accessrights/templates.js:19
-msgid "Collaborators"
-msgstr "İş birlikçiler"
-
-#: book/static/js/modules/books/accessrights/templates.js:19
-#: book/static/js/modules/books/index.js:169
-msgid "Rights"
-msgstr "Haklar"
-
-#: book/static/js/modules/books/accessrights/templates.js:19
-#: book/static/js/modules/books/actions.js:76
-#: book/static/js/modules/books/index.js:381
-msgid "Delete"
-msgstr "Sil"
-
-#: book/static/js/modules/books/actions.js:61
-msgid "Could not delete book"
-msgstr "Kitap silinemedi"
-
-#: book/static/js/modules/books/actions.js:64
-msgid "Book has been deleted"
-msgstr "Kitap silindi"
-
-#: book/static/js/modules/books/actions.js:88
-#: book/static/js/modules/books/index.js:376
-msgid "Confirm deletion"
-msgstr "Silmeyi onayla"
-
-#: book/static/js/modules/books/actions.js:103
-#: book/static/js/modules/books/templates.js:61
-msgid "Untitled"
-msgstr "Başlıksız"
-
-#: book/static/js/modules/books/actions.js:121
-msgid "Edit Chapter"
-msgstr "Bölümü Düzenle"
-
-#: book/static/js/modules/books/actions.js:152
-msgid "The book could not be saved"
-msgstr "Kitap kaydedilemedi"
-
-#: book/static/js/modules/books/actions.js:185
-msgid "The book could not be copied"
-msgstr "Kitap kopyalanamadı"
-
-#: book/static/js/modules/books/actions.js:204
-msgid "Create Book"
-msgstr "Kitap Oluştur"
-
-#: book/static/js/modules/books/actions.js:33
-#: book/static/js/modules/books/actions.js:214
-msgid "Bibliography"
-msgstr "Kaynakça"
-
-#: book/static/js/modules/books/actions.js:235
-msgid "Edit Book"
-msgstr "Kitabı Düzenle"
-
-#: book/static/js/modules/books/exporter/epub/index.js:36
-#: book/static/js/modules/books/exporter/html/multifile.js:36
-msgid "Book cannot be exported due to lack of chapters."
-msgstr "Bölüm eksikliği nedeniyle kitap dışa aktarılamıyor."
-
-#: book/static/js/modules/books/exporter/epub/index.js:105
-msgid "Cover"
-msgstr "Kapak"
-
-#: book/static/js/modules/books/exporter/epub/index.js:115
-msgid "Title page"
-msgstr "Başlık sayfası"
-
-#: book/static/js/modules/books/exporter/epub/index.js:234
-msgid "Copyright"
-msgstr "Telif Hakkı"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:25
-msgid "Cover Image"
-msgstr "Kapak Görseli"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:30
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/exporter/html/templates.js:29
-msgid "by"
-msgstr "tarafından"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/index.js:169
-#: book/static/js/modules/books/templates.js:6
-#: book/static/js/modules/books/templates.js:48
-msgid "Title"
-msgstr "Başlık"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/templates.js:6
-msgid "Author"
-msgstr "Yazar"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/exporter/html/templates.js:29
-msgid "Published by"
-msgstr "Yayımlayan"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/exporter/html/templates.js:29
-msgid "Last Updated"
-msgstr "Son Güncelleme"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/exporter/html/templates.js:29
-#: book/static/js/modules/books/index.js:169
-msgid "Created"
-msgstr "Oluşturulma"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/exporter/html/templates.js:29
-msgid "Language"
-msgstr "Dil"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-msgid "Languages"
-msgstr "Diller"
-
-#: book/static/js/modules/books/exporter/epub/templates.js:37
-#: book/static/js/modules/books/exporter/html/templates.js:29
-msgid "Created by"
-msgstr "Oluşturan"
-
-#: book/static/js/modules/books/exporter/html/multifile.js:274
-msgid "English"
-msgstr "Türkçe"
-
-#: book/static/js/modules/books/exporter/tools.js:7
-msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "Bölümlerine erişim hakkınız olmadığı için kitap oluşturulamıyor."
-
-#: book/static/js/modules/books/index.js:86
-msgid "Book Overview"
-msgstr "Kitap Genel Bakış"
-
-#: book/static/js/modules/books/index.js:161
-msgid "No books available"
-msgstr "Kullanılabilir kitap yok"
-
-#: book/static/js/modules/books/index.js:169
-msgid "Last changed"
-msgstr "Son değişiklik"
-
-#: book/static/js/modules/books/index.js:169
-msgid "Owner"
-msgstr "Sahip"
-
-#: book/static/js/modules/books/index.js:279
-msgid "Cannot load data of books."
-msgstr "Kitapların verileri yüklenemiyor."
-
-#: book/static/js/modules/books/menu.js:11
-msgid "Create new book"
-msgstr "Yeni kitap oluştur"
-
-#: book/static/js/modules/books/menu.js:105
-msgid "Delete selected"
-msgstr "Seçileni sil"
-
-#: book/static/js/modules/books/menu.js:115
-msgid "You cannot delete books of other users."
-msgstr "Diğer kullanıcıların kitaplarını silemezsiniz."
-
-#: book/static/js/modules/books/menu.js:124
-msgid "Share selected"
-msgstr "Seçileni paylaş"
-
-#: book/static/js/modules/books/menu.js:134
-msgid "You cannot share books of other users."
-msgstr "Diğer kullanıcıların kitaplarını paylaşamazsınız."
-
-#: book/static/js/modules/books/menu.js:144
-msgid "Copy selected"
-msgstr "Seçileni kopyala"
-
-#: book/static/js/modules/books/menu.js:152
-msgid "Export selected as Epub"
-msgstr "Seçileni Epub olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:51
-msgid "Epub export has been initiated."
-msgstr "Epub dışa aktarma başlatıldı."
-
-#: book/static/js/modules/books/menu.js:163
-msgid "Export selected as HTML"
-msgstr "Seçileni HTML olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:57
-msgid "HTML export has been initiated."
-msgstr "HTML dışa aktarma başlatıldı."
-
-#: book/static/js/modules/books/menu.js:185
-msgid "Export selected as LaTeX"
-msgstr "Seçileni LaTeX olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:69
-msgid "LaTeX export has been initiated."
-msgstr "LaTeX dışa aktarma başlatıldı."
-
-#: book/static/js/modules/books/menu.js:196
-msgid "Export selected to Print/PDF"
-msgstr "Seçileni Yazdır/PDF olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:75
-msgid "Print has been initiated."
-msgstr "Yazdırma başlatıldı."
-
-#: book/static/js/modules/books/templates.js:6
-msgid "Subtitle"
-msgstr "Alt başlık"
-
-#: book/static/js/modules/books/templates.js:6
-msgid "Publisher"
-msgstr "Yayımcı"
-
-#: book/static/js/modules/books/templates.js:6
-msgid "Copyright notice"
-msgstr "Telif hakkı bildirimi"
-
-#: book/static/js/modules/books/templates.js:6
-msgid "Comma separated keywords"
-msgstr "Virgülle ayrılmış anahtar kelimeler"
-
-#: book/static/js/modules/books/templates.js:6
-msgid "Keywords"
-msgstr "Anahtar kelimeler"
-
-#: book/static/js/modules/books/templates.js:12
-msgid "Citation style"
-msgstr "Alıntı stili"
-
-#: book/static/js/modules/books/templates.js:12
-msgid "Select citation style for the book"
-msgstr "Kitap için alıntı stili seçin"
-
-#: book/static/js/modules/books/templates.js:13
-msgid "Folio (15 x 12 inch)"
-msgstr "Folio (15 × 12 inç)"
-
-#: book/static/js/modules/books/templates.js:13
-msgid "Quarto (12 × 9 inch)"
-msgstr "Quarto (12 × 9 inç)"
-
-#: book/static/js/modules/books/templates.js:13
-msgid "Octavo (9 x 6 inch)"
-msgstr "Octavo (9 × 6 inç)"
-
-#: book/static/js/modules/books/templates.js:13
-msgid "A5"
-msgstr "A5"
-
-#: book/static/js/modules/books/templates.js:13
-msgid "A4"
-msgstr "A4"
-
-#: book/static/js/modules/books/templates.js:19
-msgid "Book style"
-msgstr "Kitap stili"
-
-#: book/static/js/modules/books/templates.js:19
-msgid "Select stylesheet for the book"
-msgstr "Kitap için stil sayfası seçin"
-
-#: book/static/js/modules/books/templates.js:19
-msgid "Paper size"
-msgstr "Kâğıt boyutu"
-
-#: book/static/js/modules/books/templates.js:19
-msgid "Select paper size for the book"
-msgstr "Kitap için kâğıt boyutu seçin"
-
-#: book/static/js/modules/books/templates.js:25
-msgid "Cover image"
-msgstr "Kapak görseli"
-
-#: book/static/js/modules/books/templates.js:25
-msgid "Select a cover image"
-msgstr "Bir kapak görseli seçin"
-
-#: book/static/js/modules/books/templates.js:25
-msgid "Select Image"
-msgstr "Görsel Seç"
-
-#: book/static/js/modules/books/templates.js:25
-msgid "Remove cover image"
-msgstr "Kapak görselini kaldır"
-
-#: book/static/js/modules/books/templates.js:25
-msgid "Remove Image"
-msgstr "Görseli Kaldır"
-
-#: book/static/js/modules/books/actions.js:26
-msgid "Basic book information"
-msgstr "Temel kitap bilgisi"
-
-#: book/static/js/modules/books/actions.js:25
-msgid "Basic info"
-msgstr "Temel bilgi"
-
-#: book/static/js/modules/books/actions.js:30
-msgid "Documents assigned as chapters"
-msgstr "Bölüm olarak atanan belgeler"
-
-#: book/static/js/modules/books/actions.js:29
-msgid "Chapters"
-msgstr "Bölümler"
-
-#: book/static/js/modules/books/actions.js:34
-msgid "Bibliography related settings"
-msgstr "Kaynakça ile ilgili ayarlar"
-
-#: book/static/js/modules/books/actions.js:38
-msgid "Epub related settings"
-msgstr "Epub ile ilgili ayarlar"
-
-#: book/static/js/modules/books/actions.js:37
-msgid "Epub"
-msgstr "Epub"
-
-#: book/static/js/modules/books/actions.js:42
-msgid "Print related settings"
-msgstr "Yazdırma ile ilgili ayarlar"
-
-#: book/static/js/modules/books/actions.js:41
-msgid "Print/PDF"
-msgstr "Yazdır/PDF"
-
-#: book/static/js/modules/books/templates.js:48
-msgid "My documents"
-msgstr "Belgelerim"
-
-#: book/static/js/modules/books/templates.js:48
-msgid "Book chapters"
-msgstr "Kitap bölümleri"
-
-#: book/static/js/modules/books/templates.js:48
-msgid "Sort"
-msgstr "Sırala"
-
-#: book/static/js/modules/books/templates.js:61
-msgid "Book part"
-msgstr "Kitap kısmı"
-
-#: book/static/js/modules/books/templates.js:68
-msgid "If this chapter starts a part of the book, specify the title of that part here"
-msgstr "Bu bölüm kitabın bir kısmını başlatıyorsa, o kısmın başlığını buraya belirtin"
-
-#: book/static/js/modules/books/templates.js:68
-msgid "Book part title"
-msgstr "Kitap kısmı başlığı"
-
-#: book/static/js/plugins/menu/books.js:10
-msgid "compose books"
-msgstr "kitapları oluştur"
-
-#: book/static/js/plugins/menu/books.js:12
-msgid "Books"
-msgstr "Kitaplar"
-
-#: book/static/js/modules/books/menu.js:106
-msgid "Delete selected books."
-msgstr "Seçilen kitapları sil."
-
-#: book/static/js/modules/books/menu.js:125
-msgid "Share selected books."
-msgstr "Seçilen kitapları paylaş."
-
-#: book/static/js/modules/books/menu.js:145
-msgid "Copy selected books."
-msgstr "Seçilen kitapları kopyala."
-
-#: book/static/js/modules/books/menu.js:153
-msgid "Export selected books as Epub."
-msgstr "Seçilen kitapları Epub olarak dışa aktar."
-
-#: book/static/js/modules/books/menu.js:164
-msgid "Export selected books as HTML."
-msgstr "Seçilen kitapları HTML olarak dışa aktar."
-
-#: book/static/js/modules/books/menu.js:186
-msgid "Export selected books as LaTeX."
-msgstr "Seçilen kitapları LaTeX olarak dışa aktar."
-
-#: book/static/js/modules/books/menu.js:197
-msgid "Export selected books to the print dialog."
-msgstr "Seçilen kitapları yazdırma iletişim kutusuna aktar."
-
-#: book/static/js/modules/books/accessrights/index.js:19
+#: book/static/js/modules/books/accessrights/index.js:31
 msgid "Cannot load book access data."
 msgstr "Kitap erişim verileri yüklenemiyor."
 
-#: book/static/js/modules/books/accessrights/index.js:52
+#: book/static/js/modules/books/accessrights/index.js:68
 msgid "Add contact or invite new user"
 msgstr "Kişi ekle veya yeni kullanıcı davet et"
 
-#: book/static/js/modules/books/accessrights/index.js:52
+#: book/static/js/modules/books/accessrights/index.js:69
 msgid "Add contact"
 msgstr "Kişi ekle"
 
-#: book/static/js/modules/books/accessrights/templates.js:7
-#: book/static/js/modules/books/accessrights/templates.js:11
+#: book/static/js/modules/books/accessrights/index.js:120
+#: book/static/js/modules/books/actions.js:190
+#: book/static/js/modules/books/actions.js:483
+msgid "Submit"
+msgstr "Gönder"
+
+#: book/static/js/modules/books/accessrights/index.js:151
+msgid "Share your book with others"
+msgstr "Kitabınızı başkalarıyla paylaşın"
+
+#: book/static/js/modules/books/accessrights/index.js:275
+#: book/static/js/modules/books/accessrights/index.js:277
+msgid "Write"
+msgstr "Yazma"
+
+#: book/static/js/modules/books/accessrights/index.js:285
+#: book/static/js/modules/books/accessrights/index.js:287
+msgid "Read"
+msgstr "Okuma"
+
+#: book/static/js/modules/books/accessrights/index.js:303
+msgid "Cannot save access rights."
+msgstr "Erişim hakları kaydedilemiyor."
+
+#: book/static/js/modules/books/accessrights/index.js:307
+msgid "Access rights have been saved"
+msgstr "Erişim hakları kaydedildi"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+#: book/static/js/modules/books/accessrights/templates.js:51
 msgid "Invite"
 msgstr "Davet Et"
 
-#: book/static/js/modules/books/actions.js:45
-msgid "Sanity check"
-msgstr "Kontrol"
+#: book/static/js/modules/books/accessrights/templates.js:65
+msgid "My contacts"
+msgstr "Kişilerim"
 
-#: book/static/js/modules/books/actions.js:46
-msgid "Perform sanity check on book"
-msgstr "Kitap üzerinde kontrol yap"
+#: book/static/js/modules/books/accessrights/templates.js:69
+msgid "Contacts"
+msgstr "Kişiler"
 
-#: book/static/js/modules/books/actions.js:92
-msgid "Do you really want to delete the following books?"
-msgstr "Aşağıdaki kitapları gerçekten silmek istiyor musunuz?"
+#: book/static/js/modules/books/accessrights/templates.js:81
+msgid "My collaborators"
+msgstr "İş birlikçilerim"
 
-#: book/static/js/modules/books/actions.js:92
-msgid "Do you really want to delete the following book?"
-msgstr "Aşağıdaki kitabı gerçekten silmek istiyor musunuz?"
+#: book/static/js/modules/books/accessrights/templates.js:84
+msgid "Collaborators"
+msgstr "İş birlikçiler"
 
-#: book/static/js/modules/books/actions.js:180
-msgid "Copy of"
-msgstr "Kopyası"
+#: book/static/js/modules/books/accessrights/templates.js:85
+#: book/static/js/modules/books/index.js:215
+msgid "Rights"
+msgstr "Haklar"
 
-#: book/static/js/modules/books/actions.js:253
-msgid "Export"
-msgstr "Dışa Aktar"
+#: book/static/js/modules/books/accessrights/templates.js:86
+#: book/static/js/modules/books/actions.js:143
+#: book/static/js/modules/books/index.js:610
+msgid "Delete"
+msgstr "Sil"
 
-#: book/static/js/modules/books/index.js:340
-#: book/static/js/modules/books/index.js:351
-msgid "You cannot delete books while you are offline."
-msgstr "Çevrimdışıyken kitapları silemezsiniz."
+#: book/static/js/modules/books/actions.js:59
+msgid "Basic info"
+msgstr "Temel bilgi"
 
-#: book/static/js/modules/books/menu.js:20
-msgid "Create new folder"
-msgstr "Yeni klasör oluştur"
+#: book/static/js/modules/books/actions.js:60
+msgid "Basic book information"
+msgstr "Temel kitap bilgisi"
 
-#: book/static/js/modules/books/menu.js:33
-msgid "Search books"
-msgstr "Kitapları ara"
+#: book/static/js/modules/books/actions.js:64
+msgid "Chapters"
+msgstr "Bölümler"
 
-#: book/static/js/modules/books/menu.js:82
-msgid "Move selected"
-msgstr "Seçileni taşı"
+#: book/static/js/modules/books/actions.js:65
+msgid "Documents assigned as chapters"
+msgstr "Bölüm olarak atanan belgeler"
 
-#: book/static/js/modules/books/menu.js:83
-msgid "Move the books that have been selected."
-msgstr "Seçilen kitapları taşı."
+#: book/static/js/modules/books/actions.js:69
+#: book/static/js/modules/books/actions.js:423
+msgid "Bibliography"
+msgstr "Kaynakça"
 
-#: book/static/js/modules/books/menu.js:90
-msgid "Move books"
-msgstr "Kitapları taşı"
+#: book/static/js/modules/books/actions.js:70
+msgid "Bibliography related settings"
+msgstr "Kaynakça ile ilgili ayarlar"
 
-#: book/static/js/modules/books/menu.js:90
-msgid "Move book"
-msgstr "Kitabı taşı"
+#: book/static/js/modules/books/actions.js:74
+msgid "Epub"
+msgstr "Epub"
 
-#: book/static/js/modules/books/menu.js:94
-msgid "Book has been moved"
-msgstr "Kitap taşındı"
+#: book/static/js/modules/books/actions.js:75
+msgid "Epub related settings"
+msgstr "Epub ile ilgili ayarlar"
 
-#: book/static/js/modules/books/menu.js:95
-msgid "Could not move book"
-msgstr "Kitap taşınamadı"
-
-#: book/static/js/modules/books/menu.js:211
-msgid "Export as Epub"
-msgstr "Epub olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:212
-msgid "Export book as Epub."
-msgstr "Kitabı Epub olarak dışa aktar."
-
-#: book/static/js/modules/books/menu.js:222
-msgid "Export as HTML"
-msgstr "HTML olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:223
-msgid "Export book as HTML."
-msgstr "Kitabı HTML olarak dışa aktar."
-
-#: book/static/js/modules/books/menu.js:244
-msgid "Export as LaTeX"
-msgstr "LaTeX olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:245
-msgid "Export book as LaTeX."
-msgstr "Kitabı LaTeX olarak dışa aktar."
-
-#: book/static/js/modules/books/menu.js:255
-msgid "Export to Print/PDF"
-msgstr "Yazdır/PDF olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:256
-msgid "Export book to the print dialog."
-msgstr "Kitabı yazdırma iletişim kutusuna aktar."
-
-#: book/static/js/modules/books/sanity_check.js:4
-msgid "Chapter"
-msgstr "Bölüm"
-
-#: book/static/js/modules/books/sanity_check.js:8
-#: book/static/js/modules/books/sanity_check.js:18
-msgid "Unresolved tracked changes"
-msgstr "Çözülmemiş izlenen değişiklikler"
-
-#: book/static/js/modules/books/sanity_check.js:14
-msgid "Internal links without target"
-msgstr "Hedefi olmayan iç bağlantılar"
-
-#: book/static/js/modules/books/sanity_check.js:16
-msgid "Unresolved comments"
-msgstr "Çözülmemiş yorumlar"
-
-#: book/static/js/modules/books/sanity_check.js:24
-msgid "Cross references without targets"
-msgstr "Hedefi olmayan çapraz referanslar"
-
-#: book/static/js/modules/books/sanity_check.js:34
-msgid "The book contains no chapters."
-msgstr "Kitap hiç bölüm içermiyor."
-
-#: book/static/js/modules/books/sanity_check.js:46
-#: book/static/js/modules/books/templates.js:61
-msgid "No access"
-msgstr "Erişim yok"
-
-#: book/static/js/modules/books/sanity_check.js:51
-msgid "No chapter title"
-msgstr "Bölüm başlığı yok"
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "No issues were found:"
-msgstr "Herhangi bir sorun bulunamadı:"
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "The book contains chapters."
-msgstr "Kitap bölümler içeriyor."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "Each chapter has a title."
-msgstr "Her bölümün bir başlığı var."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "There are no unresolved tracked changes."
-msgstr "Çözülmemiş izlenen değişiklik yok."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "There are no unresolved comments."
-msgstr "Çözülmemiş yorum yok."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "All cross references have working targets."
-msgstr "Tüm çapraz referansların çalışan hedefleri var."
-
-#: book/static/js/modules/books/sanity_check.js:60
-msgid "All internal links have working targets."
-msgstr "Tüm iç bağlantıların çalışan hedefleri var."
-
-#: book/static/js/modules/books/templates.js:35
-msgid "Perform sanity check"
-msgstr "Kontrol yap"
-
-#: book/static/js/modules/books/index.js:162
-msgid "No books found"
-msgstr "Kitap bulunamadı"
-
-#: book/static/js/modules/books/menu.js:63
-msgid "Unified HTML export has been initiated."
-msgstr "Birleşik HTML dışa aktarma başlatıldı."
-
-#: book/static/js/modules/books/menu.js:174
-msgid "Export selected as Unified HTML"
-msgstr "Seçileni Birleşik HTML olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:175
-msgid "Export selected books as Single-file HTML."
-msgstr "Seçilen kitapları tek dosya HTML olarak dışa aktar."
-
-#: book/static/js/modules/books/menu.js:233
-msgid "Export as Unified HTML"
-msgstr "Birleşik HTML olarak dışa aktar"
-
-#: book/static/js/modules/books/menu.js:234
-msgid "Export book as Single-file HTML."
-msgstr "Kitabı tek dosya HTML olarak dışa aktar."
-
-#: book/static/js/modules/books/index.js:377
-msgid "Leaving an empty folder will delete it. Do you really want to delete this folder?"
-msgstr "Boş bir klasör bırakılırsa silinecektir. Bu klasörü gerçekten silmek istiyor musunuz?"
-
-#: book/static/js/modules/books/templates.js:6
-msgid "Version"
-msgstr "Sürüm"
-
-#: book/static/js/modules/books/actions.js:78
+#: book/static/js/modules/books/actions.js:79
 msgid "DOCX"
 msgstr "DOCX"
 
-#: book/static/js/modules/books/actions.js:79
+#: book/static/js/modules/books/actions.js:80
 msgid "DOCX related settings"
 msgstr "DOCX ile ilgili ayarlar"
 
-#: book/static/js/modules/books/actions.js:83
+#: book/static/js/modules/books/actions.js:84
 msgid "ODT"
 msgstr "ODT"
 
-#: book/static/js/modules/books/actions.js:84
+#: book/static/js/modules/books/actions.js:85
 msgid "ODT related settings"
 msgstr "ODT ile ilgili ayarlar"
 
-#: book/static/js/modules/books/actions.js:330
-msgid "Import a book"
-msgstr "Bir kitap içe aktar"
+#: book/static/js/modules/books/actions.js:89
+msgid "Print/PDF"
+msgstr "Yazdır/PDF"
 
-#: book/static/js/modules/books/actions.js:337
-msgid "Select a .fidusbook file:"
-msgstr "Bir .fidusbook dosyası seçin:"
+#: book/static/js/modules/books/actions.js:90
+msgid "Print related settings"
+msgstr "Yazdırma ile ilgili ayarlar"
 
-#: book/static/js/modules/books/actions.js:355
-msgid "Import"
-msgstr "İçe Aktar"
+#: book/static/js/modules/books/actions.js:94
+msgid "Sanity check"
+msgstr "Kontrol"
 
-#: book/static/js/modules/books/actions.js:368
-msgid "File too large"
-msgstr "Dosya çok büyük"
+#: book/static/js/modules/books/actions.js:95
+msgid "Perform sanity check on book"
+msgstr "Kitap üzerinde kontrol yap"
+
+#: book/static/js/modules/books/actions.js:111
+msgid "Could not delete book"
+msgstr "Kitap silinemedi"
+
+#: book/static/js/modules/books/actions.js:121
+msgid "Book has been deleted"
+msgstr "Kitap silindi"
+
+#: book/static/js/modules/books/actions.js:155
+#: book/static/js/modules/books/index.js:600
+msgid "Confirm deletion"
+msgstr "Silmeyi onayla"
+
+#: book/static/js/modules/books/actions.js:162
+msgid "Do you really want to delete the following books?"
+msgstr "Aşağıdaki kitapları gerçekten silmek istiyor musunuz?"
+
+#: book/static/js/modules/books/actions.js:165
+msgid "Do you really want to delete the following book?"
+msgstr "Aşağıdaki kitabı gerçekten silmek istiyor musunuz?"
+
+#: book/static/js/modules/books/actions.js:182
+#: book/static/js/modules/books/exporter/tools.js:105
+#: book/static/js/modules/books/importer/native/index.js:401
+#: book/static/js/modules/books/templates.js:610
+msgid "Untitled"
+msgstr "Başlıksız"
+
+#: book/static/js/modules/books/actions.js:206
+msgid "Edit Chapter"
+msgstr "Bölümü Düzenle"
+
+#: book/static/js/modules/books/actions.js:263
+msgid "The book could not be saved"
+msgstr "Kitap kaydedilemedi"
+
+#: book/static/js/modules/books/actions.js:292
+msgid "Copy of"
+msgstr "Kopyası"
+
+#: book/static/js/modules/books/actions.js:296
+msgid "The book could not be copied"
+msgstr "Kitap kopyalanamadı"
 
 #: book/static/js/modules/books/actions.js:322
 msgid "Chapters will be imported as encrypted (E2EE) documents."
@@ -686,25 +198,270 @@ msgstr "Bölümler şifrelenmiş (E2EE) belgeler olarak içe aktarılacak."
 msgid "Import chapters as encrypted (E2EE) documents"
 msgstr "Bölümleri şifrelenmiş (E2EE) belgeler olarak içe aktar"
 
-#: book/static/js/modules/books/actions.js:636
-msgid "This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book."
-msgstr "Bu kitap şifrelenmiş bölümler içeriyor. Bu kitabı dışa aktarmak veya kontrol yapmak için kişisel bir parola gerekli."
+#: book/static/js/modules/books/actions.js:336
+msgid "Import a book"
+msgstr "Bir kitap içe aktar"
+
+#: book/static/js/modules/books/actions.js:339
+msgid "Select a .fidusbook file:"
+msgstr "Bir .fidusbook dosyası seçin:"
+
+#: book/static/js/modules/books/actions.js:353
+msgid "Import"
+msgstr "İçe Aktar"
+
+#: book/static/js/modules/books/actions.js:364
+msgid "File too large"
+msgstr "Dosya çok büyük"
+
+#: book/static/js/modules/books/actions.js:413
+msgid "Create Book"
+msgstr "Kitap Oluştur"
+
+#: book/static/js/modules/books/actions.js:448
+msgid "Edit Book"
+msgstr "Kitabı Düzenle"
+
+#: book/static/js/modules/books/actions.js:464
+msgid "Export"
+msgstr "Dışa Aktar"
+
+#: book/static/js/modules/books/actions.js:635
+#: book/static/js/modules/books/templates.js:570
+msgid ""
+"This book contains encrypted chapters. A personal passphrase is required to "
+"export or run a sanity check on this book."
+msgstr ""
+"Bu kitap şifrelenmiş bölümler içeriyor. Bu kitabı dışa aktarmak veya kontrol "
+"yapmak için kişisel bir parola gerekli."
+
+#: book/static/js/modules/books/exporter/bits/index.js:30
+#: book/static/js/modules/books/exporter/docx/index.js:43
+#: book/static/js/modules/books/exporter/epub/index.js:49
+#: book/static/js/modules/books/exporter/html/index.js:62
+#: book/static/js/modules/books/exporter/native/index.js:42
+#: book/static/js/modules/books/exporter/odt/index.js:40
+msgid "Book cannot be exported due to lack of chapters."
+msgstr "Bölüm eksikliği nedeniyle kitap dışa aktarılamıyor."
+
+#: book/static/js/modules/books/exporter/native/index.js:49
+msgid "Fidusbook export has been initiated."
+msgstr "Fidusbook dışa aktarma başlatıldı."
+
+#: book/static/js/modules/books/exporter/native/index.js:57
+msgid "Fidusbook export failed."
+msgstr "Fidusbook dışa aktarma başarısız oldu."
+
+#: book/static/js/modules/books/exporter/tools.js:37
+msgid "Wrong passphrase. Please try again."
+msgstr "Yanlış parola. Lütfen tekrar deneyin."
+
+#: book/static/js/modules/books/exporter/tools.js:92
+msgid ""
+"A personal passphrase is required to work with books that contain encrypted "
+"chapters. Please set up or unlock your personal passphrase in your profile "
+"settings."
+msgstr ""
+"Şifrelenmiş bölümler içeren kitaplarla çalışmak için kişisel bir parola "
+"gerekli. Lütfen profil ayarlarınızda kişisel parolanızı oluşturun veya "
+"kilidini açın."
+
+#: book/static/js/modules/books/exporter/tools.js:112
+msgid "No encryption key found for chapter:"
+msgstr "Bölüm için şifreleme anahtarı bulunamadı:"
+
+#: book/static/js/modules/books/exporter/tools.js:112
+msgid "The key may not have been shared with you."
+msgstr "Anahtar sizinle paylaşılmamış olabilir."
+
+#: book/static/js/modules/books/exporter/tools.js:268
+msgid "Could not decrypt chapter:"
+msgstr "Bölümün şifresi çözülemedi:"
+
+#: book/static/js/modules/books/exporter/tools.js:268
+msgid "The document may have been re-encrypted with a different password."
+msgstr "Belge farklı bir parolayla yeniden şifrelenmiş olabilir."
+
+#: book/static/js/modules/books/exporter/tools.js:293
+msgid "Cannot produce book as you lack access rights to its chapters."
+msgstr "Bölümlerine erişim hakkınız olmadığı için kitap oluşturulamıyor."
+
+#: book/static/js/modules/books/importer/native/index.js:58
+#: book/static/js/modules/books/importer/native/index.js:82
+#: book/static/js/modules/books/importer/native/index.js:145
+msgid "The uploaded file does not appear to be a Fidusbook file."
+msgstr "Yüklenen dosya bir Fidusbook dosyası gibi görünmüyor."
+
+#: book/static/js/modules/books/importer/native/index.js:134
+msgid "The Fidusbook file version is not supported by this server: "
+msgstr "Fidusbook dosya sürümü bu sunucu tarafından desteklenmiyor: "
+
+#: book/static/js/modules/books/importer/native/index.js:193
+msgid "Fidusbook file is missing data for chapter "
+msgstr "Fidusbook dosyasında bölüm için veri eksik "
+
+#: book/static/js/modules/books/importer/native/index.js:251
+msgid "Could not import chapter "
+msgstr "Bölüm içe aktarılamadı "
+
+#: book/static/js/modules/books/importer/native/index.js:300
+msgid "successfully imported."
+msgstr "başarıyla içe aktarıldı."
+
+#: book/static/js/modules/books/importer/native/index.js:418
+msgid "Could not create book record."
+msgstr "Kitap kaydı oluşturulamadı."
+
+#: book/static/js/modules/books/index.js:107
+msgid "Book Overview"
+msgstr "Kitap Genel Bakış"
+
+#: book/static/js/modules/books/index.js:200
+msgid "No books available"
+msgstr "Kullanılabilir kitap yok"
+
+#: book/static/js/modules/books/index.js:201
+msgid "No books found"
+msgstr "Kitap bulunamadı"
+
+#: book/static/js/modules/books/index.js:211
+#: book/static/js/modules/books/templates.js:10
+#: book/static/js/modules/books/templates.js:554
+msgid "Title"
+msgstr "Başlık"
+
+#: book/static/js/modules/books/index.js:212
+msgid "Created"
+msgstr "Oluşturulma"
+
+#: book/static/js/modules/books/index.js:213
+msgid "Last changed"
+msgstr "Son değişiklik"
+
+#: book/static/js/modules/books/index.js:214
+msgid "Owner"
+msgstr "Sahip"
+
+#: book/static/js/modules/books/index.js:436
+msgid "Cannot load data of books."
+msgstr "Kitapların verileri yüklenemiyor."
+
+#: book/static/js/modules/books/index.js:554
+#: book/static/js/modules/books/index.js:568
+msgid "You cannot delete books while you are offline."
+msgstr "Çevrimdışıyken kitapları silemezsiniz."
+
+#: book/static/js/modules/books/index.js:603
+msgid ""
+"Leaving an empty folder will delete it. Do you really want to delete this "
+"folder?"
+msgstr ""
+"Boş bir klasör bırakılırsa silinecektir. Bu klasörü gerçekten silmek istiyor "
+"musunuz?"
+
+#: book/static/js/modules/books/menu.js:18
+msgid "Create new book"
+msgstr "Yeni kitap oluştur"
+
+#: book/static/js/modules/books/menu.js:29
+msgid "Create new folder"
+msgstr "Yeni klasör oluştur"
 
 #: book/static/js/modules/books/menu.js:43
 msgid "Import book from Fidusbook file"
 msgstr "Fidusbook dosyasından kitap içe aktar"
 
-#: book/static/js/modules/books/menu.js:95
+#: book/static/js/modules/books/menu.js:53
+msgid "Search books"
+msgstr "Kitapları ara"
+
+#: book/static/js/modules/books/menu.js:77
+msgid "Epub export has been initiated."
+msgstr "Epub dışa aktarma başlatıldı."
+
+#: book/static/js/modules/books/menu.js:94
 msgid "BITS export has been initiated."
 msgstr "BITS dışa aktarma başlatıldı."
 
-#: book/static/js/modules/books/menu.js:161
+#: book/static/js/modules/books/menu.js:110
+msgid "HTML export has been initiated."
+msgstr "HTML dışa aktarma başlatıldı."
+
+#: book/static/js/modules/books/menu.js:127
+msgid "Unified HTML export has been initiated."
+msgstr "Birleşik HTML dışa aktarma başlatıldı."
+
+#: book/static/js/modules/books/menu.js:145
+msgid "LaTeX export has been initiated."
+msgstr "LaTeX dışa aktarma başlatıldı."
+
+#: book/static/js/modules/books/menu.js:160
 msgid "DOCX export has been initiated."
 msgstr "DOCX dışa aktarma başlatıldı."
 
-#: book/static/js/modules/books/menu.js:177
+#: book/static/js/modules/books/menu.js:176
 msgid "ODT export has been initiated."
 msgstr "ODT dışa aktarma başlatıldı."
+
+#: book/static/js/modules/books/menu.js:190
+msgid "Print has been initiated."
+msgstr "Yazdırma başlatıldı."
+
+#: book/static/js/modules/books/menu.js:216
+msgid "Move selected"
+msgstr "Seçileni taşı"
+
+#: book/static/js/modules/books/menu.js:217
+msgid "Move the books that have been selected."
+msgstr "Seçilen kitapları taşı."
+
+#: book/static/js/modules/books/menu.js:227
+msgid "Move books"
+msgstr "Kitapları taşı"
+
+#: book/static/js/modules/books/menu.js:228
+msgid "Move book"
+msgstr "Kitabı taşı"
+
+#: book/static/js/modules/books/menu.js:232
+msgid "Book has been moved"
+msgstr "Kitap taşındı"
+
+#: book/static/js/modules/books/menu.js:233
+msgid "Could not move book"
+msgstr "Kitap taşınamadı"
+
+#: book/static/js/modules/books/menu.js:244
+msgid "Delete selected"
+msgstr "Seçileni sil"
+
+#: book/static/js/modules/books/menu.js:245
+msgid "Delete selected books."
+msgstr "Seçilen kitapları sil."
+
+#: book/static/js/modules/books/menu.js:255
+msgid "You cannot delete books of other users."
+msgstr "Diğer kullanıcıların kitaplarını silemezsiniz."
+
+#: book/static/js/modules/books/menu.js:265
+msgid "Share selected"
+msgstr "Seçileni paylaş"
+
+#: book/static/js/modules/books/menu.js:266
+msgid "Share selected books."
+msgstr "Seçilen kitapları paylaş."
+
+#: book/static/js/modules/books/menu.js:276
+msgid "You cannot share books of other users."
+msgstr "Diğer kullanıcıların kitaplarını paylaşamazsınız."
+
+#: book/static/js/modules/books/menu.js:291
+msgid "Copy selected"
+msgstr "Seçileni kopyala"
+
+#: book/static/js/modules/books/menu.js:292
+msgid "Copy selected books."
+msgstr "Seçilen kitapları kopyala."
 
 #: book/static/js/modules/books/menu.js:304
 msgid "Export selected as BITS"
@@ -714,6 +471,38 @@ msgstr "Seçileni BITS olarak dışa aktar"
 msgid "Export selected books as BITS."
 msgstr "Seçilen kitapları BITS olarak dışa aktar."
 
+#: book/static/js/modules/books/menu.js:316
+msgid "Export selected as Epub"
+msgstr "Seçileni Epub olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:317
+msgid "Export selected books as Epub."
+msgstr "Seçilen kitapları Epub olarak dışa aktar."
+
+#: book/static/js/modules/books/menu.js:328
+msgid "Export selected as HTML"
+msgstr "Seçileni HTML olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:329
+msgid "Export selected books as HTML."
+msgstr "Seçilen kitapları HTML olarak dışa aktar."
+
+#: book/static/js/modules/books/menu.js:340
+msgid "Export selected as Unified HTML"
+msgstr "Seçileni Birleşik HTML olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:341
+msgid "Export selected books as Single-file HTML."
+msgstr "Seçilen kitapları tek dosya HTML olarak dışa aktar."
+
+#: book/static/js/modules/books/menu.js:352
+msgid "Export selected as LaTeX"
+msgstr "Seçileni LaTeX olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:353
+msgid "Export selected books as LaTeX."
+msgstr "Seçilen kitapları LaTeX olarak dışa aktar."
+
 #: book/static/js/modules/books/menu.js:364
 msgid "Export selected as DOCX"
 msgstr "Seçileni DOCX olarak dışa aktar"
@@ -722,7 +511,7 @@ msgstr "Seçileni DOCX olarak dışa aktar"
 msgid "Export selected books as DOCX."
 msgstr "Seçilen kitapları DOCX olarak dışa aktar."
 
-#: book/static/js/modules/books/menu.js:377
+#: book/static/js/modules/books/menu.js:378
 msgid "This book does not have a DOCX template."
 msgstr "Bu kitabın bir DOCX şablonu yok."
 
@@ -734,17 +523,28 @@ msgstr "Seçileni ODT olarak dışa aktar"
 msgid "Export selected books as ODT."
 msgstr "Seçilen kitapları ODT olarak dışa aktar."
 
-#: book/static/js/modules/books/menu.js:400
+#: book/static/js/modules/books/menu.js:401
 msgid "This book does not have an ODT template."
 msgstr "Bu kitabın bir ODT şablonu yok."
+
+#: book/static/js/modules/books/menu.js:410
+msgid "Export selected to Print/PDF"
+msgstr "Seçileni Yazdır/PDF olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:411
+msgid "Export selected books to the print dialog."
+msgstr "Seçilen kitapları yazdırma iletişim kutusuna aktar."
 
 #: book/static/js/modules/books/menu.js:422
 msgid "Export selected as Fidusbook"
 msgstr "Seçileni Fidusbook olarak dışa aktar"
 
-#: book/static/js/modules/books/menu.js:423
-msgid "Export selected books as .fidusbook files (for moving to another server)."
-msgstr "Seçilen kitapları .fidusbook dosyaları olarak dışa aktar (başka bir sunucuya taşımak için)."
+#: book/static/js/modules/books/menu.js:424
+msgid ""
+"Export selected books as .fidusbook files (for moving to another server)."
+msgstr ""
+"Seçilen kitapları .fidusbook dosyaları olarak dışa aktar (başka bir sunucuya "
+"taşımak için)."
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
@@ -753,6 +553,38 @@ msgstr "BITS olarak dışa aktar"
 #: book/static/js/modules/books/menu.js:443
 msgid "Export book as Book Interchange Tag Set."
 msgstr "Kitabı Book Interchange Tag Set (BITS) olarak dışa aktar."
+
+#: book/static/js/modules/books/menu.js:450
+msgid "Export as Epub"
+msgstr "Epub olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:451
+msgid "Export book as Epub."
+msgstr "Kitabı Epub olarak dışa aktar."
+
+#: book/static/js/modules/books/menu.js:458
+msgid "Export as HTML"
+msgstr "HTML olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:459
+msgid "Export book as HTML."
+msgstr "Kitabı HTML olarak dışa aktar."
+
+#: book/static/js/modules/books/menu.js:466
+msgid "Export as Unified HTML"
+msgstr "Birleşik HTML olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:467
+msgid "Export book as Single-file HTML."
+msgstr "Kitabı tek dosya HTML olarak dışa aktar."
+
+#: book/static/js/modules/books/menu.js:474
+msgid "Export as LaTeX"
+msgstr "LaTeX olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:475
+msgid "Export book as LaTeX."
+msgstr "Kitabı LaTeX olarak dışa aktar."
 
 #: book/static/js/modules/books/menu.js:482
 msgid "Export as DOCX"
@@ -770,76 +602,347 @@ msgstr "ODT olarak dışa aktar"
 msgid "Export book as ODT."
 msgstr "Kitabı ODT olarak dışa aktar."
 
-#: book/static/js/modules/books/menu.js:508
+#: book/static/js/modules/books/menu.js:501
+msgid "Export to Print/PDF"
+msgstr "Yazdır/PDF olarak dışa aktar"
+
+#: book/static/js/modules/books/menu.js:502
+msgid "Export book to the print dialog."
+msgstr "Kitabı yazdırma iletişim kutusuna aktar."
+
+#: book/static/js/modules/books/menu.js:509
 msgid "Export as Fidusbook"
 msgstr "Fidusbook olarak dışa aktar"
 
-#: book/static/js/modules/books/menu.js:509
+#: book/static/js/modules/books/menu.js:511
 msgid "Export book as a .fidusbook file (for moving to another server)."
-msgstr "Kitabı .fidusbook dosyası olarak dışa aktar (başka bir sunucuya taşımak için)."
+msgstr ""
+"Kitabı .fidusbook dosyası olarak dışa aktar (başka bir sunucuya taşımak "
+"için)."
 
-#: book/static/js/modules/books/exporter/native/index.js:50
-msgid "Fidusbook export has been initiated."
-msgstr "Fidusbook dışa aktarma başlatıldı."
+#: book/static/js/modules/books/sanity_check.js:6
+msgid "Chapter"
+msgstr "Bölüm"
 
-#: book/static/js/modules/books/exporter/native/index.js:56
-msgid "Fidusbook export failed."
-msgstr "Fidusbook dışa aktarma başarısız oldu."
+#: book/static/js/modules/books/sanity_check.js:14
+#: book/static/js/modules/books/sanity_check.js:42
+msgid "Unresolved tracked changes"
+msgstr "Çözülmemiş izlenen değişiklikler"
 
-#: book/static/js/modules/books/exporter/native/index.js:29
-#: book/static/js/modules/books/exporter/bits/index.js:30
-#: book/static/js/modules/books/exporter/docx/index.js:42
-#: book/static/js/modules/books/exporter/epub/index.js:48
-#: book/static/js/modules/books/exporter/html/index.js:61
-#: book/static/js/modules/books/exporter/odt/index.js:39
-msgid "Book cannot be exported due to lack of chapters."
-msgstr "Bölüm eksikliği nedeniyle kitap dışa aktarılamıyor."
+#: book/static/js/modules/books/sanity_check.js:25
+msgid "Internal links without target"
+msgstr "Hedefi olmayan iç bağlantılar"
 
-#: book/static/js/modules/books/exporter/tools.js:40
-msgid "Wrong passphrase. Please try again."
-msgstr "Yanlış parola. Lütfen tekrar deneyin."
+#: book/static/js/modules/books/sanity_check.js:35
+msgid "Unresolved comments"
+msgstr "Çözülmemiş yorumlar"
 
-#: book/static/js/modules/books/exporter/tools.js:97
-msgid "A personal passphrase is required to work with books that contain encrypted chapters. Please set up or unlock your personal passphrase in your profile settings."
-msgstr "Şifrelenmiş bölümler içeren kitaplarla çalışmak için kişisel bir parola gerekli. Lütfen profil ayarlarınızda kişisel parolanızı oluşturun veya kilidini açın."
+#: book/static/js/modules/books/sanity_check.js:52
+msgid "Cross references without targets"
+msgstr "Hedefi olmayan çapraz referanslar"
 
-#: book/static/js/modules/books/exporter/tools.js:114
-msgid "No encryption key found for chapter:"
-msgstr "Bölüm için şifreleme anahtarı bulunamadı:"
+#: book/static/js/modules/books/sanity_check.js:70
+msgid "The book contains no chapters."
+msgstr "Kitap hiç bölüm içermiyor."
 
-#: book/static/js/modules/books/exporter/tools.js:114
-msgid "The key may not have been shared with you."
-msgstr "Anahtar sizinle paylaşılmamış olabilir."
+#: book/static/js/modules/books/sanity_check.js:84
+#: book/static/js/modules/books/templates.js:611
+msgid "No access"
+msgstr "Erişim yok"
 
-#: book/static/js/modules/books/exporter/tools.js:270
-msgid "Could not decrypt chapter:"
-msgstr "Bölümün şifresi çözülemedi:"
+#: book/static/js/modules/books/sanity_check.js:90
+msgid "No chapter title"
+msgstr "Bölüm başlığı yok"
 
-#: book/static/js/modules/books/exporter/tools.js:270
-msgid "The document may have been re-encrypted with a different password."
-msgstr "Belge farklı bir parolayla yeniden şifrelenmiş olabilir."
+#: book/static/js/modules/books/sanity_check.js:99
+msgid "No issues were found:"
+msgstr "Herhangi bir sorun bulunamadı:"
 
-#: book/static/js/modules/books/importer/native/index.js:60
-#: book/static/js/modules/books/importer/native/index.js:84
-msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "Yüklenen dosya bir Fidusbook dosyası gibi görünmüyor."
+#: book/static/js/modules/books/sanity_check.js:100
+msgid "The book contains chapters."
+msgstr "Kitap bölümler içeriyor."
 
-#: book/static/js/modules/books/importer/native/index.js:134
-msgid "The Fidusbook file version is not supported by this server: "
-msgstr "Fidusbook dosya sürümü bu sunucu tarafından desteklenmiyor: "
+#: book/static/js/modules/books/sanity_check.js:101
+msgid "Each chapter has a title."
+msgstr "Her bölümün bir başlığı var."
 
-#: book/static/js/modules/books/importer/native/index.js:193
-msgid "Fidusbook file is missing data for chapter "
-msgstr "Fidusbook dosyasında bölüm için veri eksik "
+#: book/static/js/modules/books/sanity_check.js:102
+msgid "There are no unresolved tracked changes."
+msgstr "Çözülmemiş izlenen değişiklik yok."
 
-#: book/static/js/modules/books/importer/native/index.js:251
-msgid "Could not import chapter "
-msgstr "Bölüm içe aktarılamadı "
+#: book/static/js/modules/books/sanity_check.js:103
+msgid "There are no unresolved comments."
+msgstr "Çözülmemiş yorum yok."
 
-#: book/static/js/modules/books/importer/native/index.js:301
-msgid "successfully imported."
-msgstr "başarıyla içe aktarıldı."
+#: book/static/js/modules/books/sanity_check.js:104
+msgid "All cross references have working targets."
+msgstr "Tüm çapraz referansların çalışan hedefleri var."
 
-#: book/static/js/modules/books/importer/native/index.js:420
-msgid "Could not create book record."
-msgstr "Kitap kaydı oluşturulamadı."
+#: book/static/js/modules/books/sanity_check.js:106
+msgid "All internal links have working targets."
+msgstr "Tüm iç bağlantıların çalışan hedefleri var."
+
+#: book/static/js/modules/books/sanity_check.js:120
+#, fuzzy
+#| msgid ""
+#| "A personal passphrase is required to work with books that contain "
+#| "encrypted chapters. Please set up or unlock your personal passphrase in "
+#| "your profile settings."
+msgid ""
+"This book contains encrypted chapters. A personal passphrase is required to "
+"perform a sanity check. Please set up or unlock your personal passphrase in "
+"your profile settings."
+msgstr ""
+"Şifrelenmiş bölümler içeren kitaplarla çalışmak için kişisel bir parola "
+"gerekli. Lütfen profil ayarlarınızda kişisel parolanızı oluşturun veya "
+"kilidini açın."
+
+#: book/static/js/modules/books/sanity_check.js:126
+msgid ""
+"One or more encrypted chapters could not be decrypted. See the error "
+"notifications for details."
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Author"
+msgstr "Yazar"
+
+#: book/static/js/modules/books/templates.js:40
+msgid "Subtitle"
+msgstr "Alt başlık"
+
+#: book/static/js/modules/books/templates.js:55
+msgid "Version"
+msgstr "Sürüm"
+
+#: book/static/js/modules/books/templates.js:70
+msgid "Language"
+msgstr "Dil"
+
+#: book/static/js/modules/books/templates.js:75
+#, fuzzy
+#| msgid "Select Image"
+msgid "Select language"
+msgstr "Görsel Seç"
+
+#: book/static/js/modules/books/templates.js:103
+msgid "Publisher"
+msgstr "Yayımcı"
+
+#: book/static/js/modules/books/templates.js:118
+msgid "Copyright notice"
+msgstr "Telif hakkı bildirimi"
+
+#: book/static/js/modules/books/templates.js:134
+msgid "Comma separated keywords"
+msgstr "Virgülle ayrılmış anahtar kelimeler"
+
+#: book/static/js/modules/books/templates.js:136
+msgid "Keywords"
+msgstr "Anahtar kelimeler"
+
+#: book/static/js/modules/books/templates.js:152
+msgid "Description"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:162
+msgid "ISBN"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:173
+msgid "E.g.: 2024 or January 2024"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:174
+#, fuzzy
+#| msgid "Citation style"
+msgid "Publication date"
+msgstr "Alıntı stili"
+
+#: book/static/js/modules/books/templates.js:180
+msgid "E.g.: 2024"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:187
+#, fuzzy
+#| msgid "Subtitle"
+msgid "Series title"
+msgstr "Alt başlık"
+
+#: book/static/js/modules/books/templates.js:198
+msgid "Series position"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:216
+msgid "Citation style"
+msgstr "Alıntı stili"
+
+#: book/static/js/modules/books/templates.js:222
+msgid "Select citation style for the book"
+msgstr "Kitap için alıntı stili seçin"
+
+#: book/static/js/modules/books/templates.js:252
+msgid "Folio (15 x 12 inch)"
+msgstr "Folio (15 × 12 inç)"
+
+#: book/static/js/modules/books/templates.js:253
+msgid "Quarto (12 × 9 inch)"
+msgstr "Quarto (12 × 9 inç)"
+
+#: book/static/js/modules/books/templates.js:254
+msgid "Octavo (9 x 6 inch)"
+msgstr "Octavo (9 × 6 inç)"
+
+#: book/static/js/modules/books/templates.js:255
+msgid "A5"
+msgstr "A5"
+
+#: book/static/js/modules/books/templates.js:256
+msgid "A4"
+msgstr "A4"
+
+#: book/static/js/modules/books/templates.js:265
+msgid "Book style"
+msgstr "Kitap stili"
+
+#: book/static/js/modules/books/templates.js:271
+msgid "Select stylesheet for the book"
+msgstr "Kitap için stil sayfası seçin"
+
+#: book/static/js/modules/books/templates.js:303
+msgid "Paper size"
+msgstr "Kâğıt boyutu"
+
+#: book/static/js/modules/books/templates.js:309
+msgid "Select paper size for the book"
+msgstr "Kitap için kâğıt boyutu seçin"
+
+#: book/static/js/modules/books/templates.js:341
+#: book/static/js/modules/books/templates.js:348
+msgid "Cover image"
+msgstr "Kapak görseli"
+
+#: book/static/js/modules/books/templates.js:358
+msgid "Select a cover image"
+msgstr "Bir kapak görseli seçin"
+
+#: book/static/js/modules/books/templates.js:360
+msgid "Select Image"
+msgstr "Görsel Seç"
+
+#: book/static/js/modules/books/templates.js:367
+msgid "Remove cover image"
+msgstr "Kapak görselini kaldır"
+
+#: book/static/js/modules/books/templates.js:369
+msgid "Remove Image"
+msgstr "Görseli Kaldır"
+
+#: book/static/js/modules/books/templates.js:392
+msgid "ODT Template"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:409
+msgid "Select an ODT template file"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:410
+msgid "Select ODT template file"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:418
+#: book/static/js/modules/books/templates.js:420
+msgid "Remove ODT template file"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:441
+msgid "DOCX Template"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:458
+msgid "Select an DOCX template file"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:459
+msgid "Select DOCX template file"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:467
+#: book/static/js/modules/books/templates.js:469
+msgid "Remove DOCX template file"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:494
+msgid "Perform sanity check"
+msgstr "Kontrol yap"
+
+#: book/static/js/modules/books/templates.js:541
+msgid "My documents"
+msgstr "Belgelerim"
+
+#: book/static/js/modules/books/templates.js:550
+msgid "Book chapters"
+msgstr "Kitap bölümleri"
+
+#: book/static/js/modules/books/templates.js:555
+msgid "Sort"
+msgstr "Sırala"
+
+#: book/static/js/modules/books/templates.js:595
+#, fuzzy
+#| msgid "My documents"
+msgid "Encrypted document"
+msgstr "Belgelerim"
+
+#: book/static/js/modules/books/templates.js:599
+msgid "Book part"
+msgstr "Kitap kısmı"
+
+#: book/static/js/modules/books/templates.js:657
+msgid ""
+"If this chapter starts a part of the book, specify the title of that part "
+"here"
+msgstr ""
+"Bu bölüm kitabın bir kısmını başlatıyorsa, o kısmın başlığını buraya belirtin"
+
+#: book/static/js/modules/books/templates.js:659
+msgid "Book part title"
+msgstr "Kitap kısmı başlığı"
+
+#: book/static/js/plugins/menu/books.js:11
+msgid "compose books"
+msgstr "kitapları oluştur"
+
+#: book/static/js/plugins/menu/books.js:13
+msgid "Books"
+msgstr "Kitaplar"
+
+#~ msgid "Cover"
+#~ msgstr "Kapak"
+
+#~ msgid "Title page"
+#~ msgstr "Başlık sayfası"
+
+#~ msgid "Copyright"
+#~ msgstr "Telif Hakkı"
+
+#~ msgid "Cover Image"
+#~ msgstr "Kapak Görseli"
+
+#~ msgid "by"
+#~ msgstr "tarafından"
+
+#~ msgid "Published by"
+#~ msgstr "Yayımlayan"
+
+#~ msgid "Last Updated"
+#~ msgstr "Son Güncelleme"
+
+#~ msgid "Languages"
+#~ msgstr "Diller"
+
+#~ msgid "Created by"
+#~ msgstr "Oluşturan"
+
+#~ msgid "English"
+#~ msgstr "Türkçe"
