@@ -376,7 +376,7 @@ msgstr "Printrelaterede indstillinger"
 
 #: book/static/js/modules/books/actions.js:41
 msgid "Print/PDF"
-msgstr "Print/PDF"
+msgstr ""
 
 #: book/static/js/modules/books/templates.js:48
 msgid "My documents"
@@ -577,3 +577,275 @@ msgstr "Bogen indeholder ingen kapitler."
 #: book/static/js/modules/books/templates.js:61
 msgid "No access"
 msgstr "Ingen adgang"
+msgid "DOCX"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:79
+msgid "DOCX related settings"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:83
+msgid "ODT"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:84
+msgid "ODT related settings"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:330
+msgid "Import a book"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:337
+msgid "Select a .fidusbook file:"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:355
+msgid "Import"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:368
+msgid "File too large"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:322
+msgid "Chapters will be imported as encrypted (E2EE) documents."
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:329
+msgid "Import chapters as encrypted (E2EE) documents"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:636
+msgid "This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:43
+msgid "Import book from Fidusbook file"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:95
+msgid "BITS export has been initiated."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:161
+msgid "DOCX export has been initiated."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:177
+msgid "ODT export has been initiated."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:304
+msgid "Export selected as BITS"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:305
+msgid "Export selected books as BITS."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:364
+msgid "Export selected as DOCX"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:365
+msgid "Export selected books as DOCX."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:377
+msgid "This book does not have a DOCX template."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:387
+msgid "Export selected as ODT"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:388
+msgid "Export selected books as ODT."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:400
+msgid "This book does not have an ODT template."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:422
+msgid "Export selected as Fidusbook"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:423
+msgid "Export selected books as .fidusbook files (for moving to another server)."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:442
+msgid "Export as BITS"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:443
+msgid "Export book as Book Interchange Tag Set."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:482
+msgid "Export as DOCX"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:483
+msgid "Export book as DOCX."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:492
+msgid "Export as ODT"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:493
+msgid "Export book as ODT."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:508
+msgid "Export as Fidusbook"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:509
+msgid "Export book as a .fidusbook file (for moving to another server)."
+msgstr ""
+
+#: book/static/js/modules/books/exporter/native/index.js:50
+msgid "Fidusbook export has been initiated."
+msgstr ""
+
+#: book/static/js/modules/books/exporter/native/index.js:56
+msgid "Fidusbook export failed."
+msgstr ""
+
+#: book/static/js/modules/books/exporter/native/index.js:29
+#: book/static/js/modules/books/exporter/bits/index.js:30
+#: book/static/js/modules/books/exporter/docx/index.js:42
+#: book/static/js/modules/books/exporter/epub/index.js:48
+#: book/static/js/modules/books/exporter/html/index.js:61
+#: book/static/js/modules/books/exporter/odt/index.js:39
+msgid "Book cannot be exported due to lack of chapters."
+msgstr ""
+
+#: book/static/js/modules/books/exporter/tools.js:40
+msgid "Wrong passphrase. Please try again."
+msgstr ""
+
+#: book/static/js/modules/books/exporter/tools.js:97
+msgid "A personal passphrase is required to work with books that contain encrypted chapters. Please set up or unlock your personal passphrase in your profile settings."
+msgstr ""
+
+#: book/static/js/modules/books/exporter/tools.js:114
+msgid "No encryption key found for chapter:"
+msgstr ""
+
+#: book/static/js/modules/books/exporter/tools.js:114
+msgid "The key may not have been shared with you."
+msgstr ""
+
+#: book/static/js/modules/books/exporter/tools.js:270
+msgid "Could not decrypt chapter:"
+msgstr ""
+
+#: book/static/js/modules/books/exporter/tools.js:270
+msgid "The document may have been re-encrypted with a different password."
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:60
+#: book/static/js/modules/books/importer/native/index.js:84
+msgid "The uploaded file does not appear to be a Fidusbook file."
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:134
+msgid "The Fidusbook file version is not supported by this server: "
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:193
+msgid "Fidusbook file is missing data for chapter "
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:251
+msgid "Could not import chapter "
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:301
+msgid "successfully imported."
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:420
+msgid "Could not create book record."
+msgstr ""
+
+=== ar ===
+=== cs ===
+=== da ===
+
+#: book/static/js/modules/books/sanity_check.js:51
+msgid "No chapter title"
+msgstr ""
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "No issues were found:"
+msgstr ""
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "The book contains chapters."
+msgstr ""
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "Each chapter has a title."
+msgstr ""
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "There are no unresolved tracked changes."
+msgstr ""
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "There are no unresolved comments."
+msgstr ""
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "All cross references have working targets."
+msgstr ""
+
+#: book/static/js/modules/books/sanity_check.js:60
+msgid "All internal links have working targets."
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:35
+msgid "Perform sanity check"
+msgstr ""
+
+#: book/static/js/modules/books/index.js:162
+msgid "No books found"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:63
+msgid "Unified HTML export has been initiated."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:174
+msgid "Export selected as Unified HTML"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:175
+msgid "Export selected books as Single-file HTML."
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:233
+msgid "Export as Unified HTML"
+msgstr ""
+
+#: book/static/js/modules/books/menu.js:234
+msgid "Export book as Single-file HTML."
+msgstr ""
+
+#: book/static/js/modules/books/index.js:377
+msgid "Leaving an empty folder will delete it. Do you really want to delete this folder?"
+msgstr ""
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Version"
+msgstr ""
+
+#: book/static/js/modules/books/actions.js:78
+msgid "DOCX"
+msgstr ""

@@ -827,3 +827,19 @@ msgstr "アップロードされたファイルはFidusbookファイルではな
 #: book/static/js/modules/books/importer/native/index.js:134
 msgid "The Fidusbook file version is not supported by this server: "
 msgstr "このサーバーはFidusbookファイルのバージョンをサポートしていません："
+
+#: book/static/js/modules/books/importer/native/index.js:193
+msgid "Fidusbook file is missing data for chapter "
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:251
+msgid "Could not import chapter "
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:301
+msgid "successfully imported."
+msgstr ""
+
+#: book/static/js/modules/books/importer/native/index.js:420
+msgid "Could not create book record."
+msgstr ""

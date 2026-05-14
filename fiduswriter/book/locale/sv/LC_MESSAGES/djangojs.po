@@ -644,7 +644,7 @@ msgstr "Om du lämnar en tom mapp kommer den att tas bort. Vill du verkligen ta 
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Version"
-msgstr "Version"
+msgstr ""
 
 #: book/static/js/modules/books/actions.js:78
 msgid "DOCX"
