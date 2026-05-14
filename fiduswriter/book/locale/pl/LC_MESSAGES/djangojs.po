@@ -5,139 +5,139 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Fidus Writer books\n"
-"Language: de\n"
+"Language: pl\n"
 
 #: book/static/js/modules/books/accessrights/index.js:81
 #: book/static/js/modules/books/actions.js:107
 #: book/static/js/modules/books/actions.js:276
 msgid "Submit"
-msgstr "Bestätigen"
+msgstr "Wyślij"
 
 #: book/static/js/modules/books/accessrights/index.js:107
 msgid "Share your book with others"
-msgstr "Teile dein Buch mit anderen"
+msgstr "Udostępnij swoją książkę innym"
 
 #: book/static/js/modules/books/accessrights/index.js:222
 msgid "Cannot save access rights."
-msgstr "Zugriffsrechte können nicht gespeichert werden."
+msgstr "Nie można zapisać praw dostępu."
 
 #: book/static/js/modules/books/accessrights/index.js:225
 msgid "Access rights have been saved"
-msgstr "Zugangsrechte wurde gespeichert"
+msgstr "Prawa dostępu zostały zapisane"
 
 #: book/static/js/modules/books/accessrights/index.js:197
 #: book/static/js/modules/books/accessrights/index.js:199
 msgid "Write"
-msgstr "Schreiben"
+msgstr "Zapisywanie"
 
 #: book/static/js/modules/books/accessrights/index.js:206
 #: book/static/js/modules/books/accessrights/index.js:208
 msgid "Read"
-msgstr "Lesen"
+msgstr "Odczyt"
 
 #: book/static/js/modules/books/accessrights/templates.js:17
 msgid "My contacts"
-msgstr "Meine Kontakte"
+msgstr "Moje kontakty"
 
 #: book/static/js/modules/books/accessrights/templates.js:17
 msgid "Contacts"
-msgstr "Kontakte"
+msgstr "Kontakty"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 msgid "My collaborators"
-msgstr "Meine Helfer"
+msgstr "Moi współpracownicy"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 msgid "Collaborators"
-msgstr "Helfer"
+msgstr "Współpracownicy"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 #: book/static/js/modules/books/index.js:169
 msgid "Rights"
-msgstr "Rechte"
+msgstr "Prawa"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 #: book/static/js/modules/books/actions.js:76
 #: book/static/js/modules/books/index.js:381
 msgid "Delete"
-msgstr "Entfernen"
+msgstr "Usuń"
 
 #: book/static/js/modules/books/actions.js:61
 msgid "Could not delete book"
-msgstr "Buch konnte nicht gelöscht werden"
+msgstr "Nie można usunąć książki"
 
 #: book/static/js/modules/books/actions.js:64
 msgid "Book has been deleted"
-msgstr "Buch wurde gelöscht"
+msgstr "Książka została usunięta"
 
 #: book/static/js/modules/books/actions.js:88
 #: book/static/js/modules/books/index.js:376
 msgid "Confirm deletion"
-msgstr "Entfernen bestätigen"
+msgstr "Potwierdź usunięcie"
 
 #: book/static/js/modules/books/actions.js:103
 #: book/static/js/modules/books/templates.js:61
 msgid "Untitled"
-msgstr "Ohne Titel"
+msgstr "Bez tytułu"
 
 #: book/static/js/modules/books/actions.js:121
 msgid "Edit Chapter"
-msgstr "Kapitell bearbeiten"
+msgstr "Edytuj rozdział"
 
 #: book/static/js/modules/books/actions.js:152
 msgid "The book could not be saved"
-msgstr "Das Buch konnte nicht gespeichert werden"
+msgstr "Książka nie mogła zostać zapisana"
 
 #: book/static/js/modules/books/actions.js:185
 msgid "The book could not be copied"
-msgstr "Das Buch konnte nicht kopiert werden"
+msgstr "Książka nie mogła zostać skopiowana"
 
 #: book/static/js/modules/books/actions.js:204
 msgid "Create Book"
-msgstr "Buch erstellen"
+msgstr "Utwórz książkę"
 
 #: book/static/js/modules/books/actions.js:33
 #: book/static/js/modules/books/actions.js:214
 msgid "Bibliography"
-msgstr "Bibliografie"
+msgstr "Bibliografia"
 
 #: book/static/js/modules/books/actions.js:235
 msgid "Edit Book"
-msgstr "Buch bearbeiten"
+msgstr "Edytuj książkę"
 
 #: book/static/js/modules/books/exporter/epub/index.js:36
 #: book/static/js/modules/books/exporter/html/multifile.js:36
 msgid "Book cannot be exported due to lack of chapters."
-msgstr "Das Buch kann aufgrund fehlender Kapitel nicht exportiert werden."
+msgstr "Książka nie może zostać wyeksportowana z powodu braku rozdziałów."
 
 #: book/static/js/modules/books/exporter/epub/index.js:105
 msgid "Cover"
-msgstr "Vorderseite"
+msgstr "Okładka"
 
 #: book/static/js/modules/books/exporter/epub/index.js:115
 msgid "Title page"
-msgstr "Titelseite"
+msgstr "Strona tytułowa"
 
 #: book/static/js/modules/books/exporter/epub/index.js:234
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "Prawa autorskie"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:25
 msgid "Cover Image"
-msgstr "Vorderseitenbild"
+msgstr "Obraz okładki"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:30
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "by"
-msgstr "von"
+msgstr "przez"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/index.js:169
 #: book/static/js/modules/books/templates.js:6
 #: book/static/js/modules/books/templates.js:48
 msgid "Title"
-msgstr "Titel"
+msgstr "Tytuł"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/templates.js:6
@@ -147,224 +147,224 @@ msgstr "Autor"
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Published by"
-msgstr "Publiziert von"
+msgstr "Wydane przez"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Last Updated"
-msgstr "Zuletzt verändert"
+msgstr "Ostatnia aktualizacja"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 #: book/static/js/modules/books/index.js:169
 msgid "Created"
-msgstr "Erstellt"
+msgstr "Utworzono"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Language"
-msgstr "Sprache"
+msgstr "Język"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 msgid "Languages"
-msgstr "Sprachen"
+msgstr "Języki"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Created by"
-msgstr "Erstellt von"
+msgstr "Utworzone przez"
 
 #: book/static/js/modules/books/exporter/html/multifile.js:274
 msgid "English"
-msgstr "Deutsch"
+msgstr "Polski"
 
 #: book/static/js/modules/books/exporter/tools.js:7
 msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "Das Buch kann nicht produziert werden, da Ihnen die Zugriffsrechte für die Kapitel fehlen."
+msgstr "Nie można wyprodukować książki, ponieważ nie masz praw dostępu do jej rozdziałów."
 
 #: book/static/js/modules/books/index.js:86
 msgid "Book Overview"
-msgstr "Buchübersicht"
+msgstr "Przegląd książki"
 
 #: book/static/js/modules/books/index.js:161
 msgid "No books available"
-msgstr "Keine Bücher verfügbar"
+msgstr "Brak dostępnych książek"
 
 #: book/static/js/modules/books/index.js:169
 msgid "Last changed"
-msgstr "Zuletzt geändert"
+msgstr "Ostatnia zmiana"
 
 #: book/static/js/modules/books/index.js:169
 msgid "Owner"
-msgstr "Inhaber"
+msgstr "Właściciel"
 
 #: book/static/js/modules/books/index.js:279
 msgid "Cannot load data of books."
-msgstr "Daten von Büchern können nicht geladen werden."
+msgstr "Nie można załadować danych książek."
 
 #: book/static/js/modules/books/menu.js:11
 msgid "Create new book"
-msgstr "Neues Buch erstellen"
+msgstr "Utwórz nową książkę"
 
 #: book/static/js/modules/books/menu.js:105
 msgid "Delete selected"
-msgstr "Ausgewählte löschen"
+msgstr "Usuń zaznaczone"
 
 #: book/static/js/modules/books/menu.js:115
 msgid "You cannot delete books of other users."
-msgstr "Sie können keine Bücher anderer Benutzer löschen."
+msgstr "Nie możesz usuwać książek innych użytkowników."
 
 #: book/static/js/modules/books/menu.js:124
 msgid "Share selected"
-msgstr "Ausgewählte freigeben"
+msgstr "Udostępnij zaznaczone"
 
 #: book/static/js/modules/books/menu.js:134
 msgid "You cannot share books of other users."
-msgstr "Sie können keine Bücher anderer Benutzer freigeben."
+msgstr "Nie możesz udostępniać książek innych użytkowników."
 
 #: book/static/js/modules/books/menu.js:144
 msgid "Copy selected"
-msgstr "Auswahl kopieren"
+msgstr "Kopiuj zaznaczone"
 
 #: book/static/js/modules/books/menu.js:152
 msgid "Export selected as Epub"
-msgstr "Ausgewählte als Epub exportieren"
+msgstr "Eksportuj zaznaczone jako Epub"
 
 #: book/static/js/modules/books/menu.js:51
 msgid "Epub export has been initiated."
-msgstr "Epub export wurde initiert."
+msgstr "Eksport Epub został rozpoczęty."
 
 #: book/static/js/modules/books/menu.js:163
 msgid "Export selected as HTML"
-msgstr "Ausgewählte als HTML exportieren"
+msgstr "Eksportuj zaznaczone jako HTML"
 
 #: book/static/js/modules/books/menu.js:57
 msgid "HTML export has been initiated."
-msgstr "HTML export wurde initiert."
+msgstr "Eksport HTML został rozpoczęty."
 
 #: book/static/js/modules/books/menu.js:185
 msgid "Export selected as LaTeX"
-msgstr "Ausgewählte als  LaTeX exportieren"
+msgstr "Eksportuj zaznaczone jako LaTeX"
 
 #: book/static/js/modules/books/menu.js:69
 msgid "LaTeX export has been initiated."
-msgstr "Der LaTeX-Export wurde gestartet."
+msgstr "Eksport LaTeX został rozpoczęty."
 
 #: book/static/js/modules/books/menu.js:196
 msgid "Export selected to Print/PDF"
-msgstr "Ausgewählte als Druck/PDF exportieren"
+msgstr "Eksportuj zaznaczone do druku/PDF"
 
 #: book/static/js/modules/books/menu.js:75
 msgid "Print has been initiated."
-msgstr "Der Druck wurde gestartet."
+msgstr "Drukowanie zostało rozpoczęte."
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Subtitle"
-msgstr "Untertitel"
+msgstr "Podtytuł"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Publisher"
-msgstr "Verlag"
+msgstr "Wydawca"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Copyright notice"
-msgstr "Copyright Notiz"
+msgstr "Informacja o prawach autorskich"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Comma separated keywords"
-msgstr "Kommaseparierte Keywörter"
+msgstr "Słowa kluczowe oddzielone przecinkami"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Keywords"
-msgstr "Keywörter"
+msgstr "Słowa kluczowe"
 
 #: book/static/js/modules/books/templates.js:12
 msgid "Citation style"
-msgstr "Zitatestil"
+msgstr "Styl cytowania"
 
 #: book/static/js/modules/books/templates.js:12
 msgid "Select citation style for the book"
-msgstr "Wählen Sie den Zitierstil für das Buch"
+msgstr "Wybierz styl cytowania dla książki"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "Folio (15 x 12 inch)"
-msgstr "Folio (15 x 12 inch)"
+msgstr "Folio (15 x 12 cali)"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "Quarto (12 × 9 inch)"
-msgstr "Quarto (12 × 9 inch)"
+msgstr "Kwarto (12 × 9 cali)"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "Octavo (9 x 6 inch)"
-msgstr "Octavo (9 x 6 inch)"
+msgstr "Octavo (9 x 6 cali)"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "A5"
-msgstr "DIN A5"
+msgstr "A5"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "A4"
-msgstr "DIN A4"
+msgstr "A4"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Book style"
-msgstr "Buchstil"
+msgstr "Styl książki"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Select stylesheet for the book"
-msgstr "Wählen Sie das Stylesheet für das Buch aus"
+msgstr "Wybierz arkusz stylów dla książki"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Paper size"
-msgstr "Papiergröße"
+msgstr "Rozmiar papieru"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Select paper size for the book"
-msgstr "Wählen Sie das Papierformat für das Buch"
+msgstr "Wybierz rozmiar papieru dla książki"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Cover image"
-msgstr "Vorderseitenbild"
+msgstr "Obraz okładki"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Select a cover image"
-msgstr "Wählen Sie ein Titelbild"
+msgstr "Wybierz obraz okładki"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Select Image"
-msgstr "Bild Auswählen"
+msgstr "Wybierz obraz"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Remove cover image"
-msgstr "Titelbild entfernen"
+msgstr "Usuń obraz okładki"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Remove Image"
-msgstr "Bild Entfernen"
+msgstr "Usuń obraz"
 
 #: book/static/js/modules/books/actions.js:26
 msgid "Basic book information"
-msgstr "Grundlegende Buchinformationen"
+msgstr "Podstawowe informacje o książce"
 
 #: book/static/js/modules/books/actions.js:25
 msgid "Basic info"
-msgstr "Basisangaben"
+msgstr "Podstawowe informacje"
 
 #: book/static/js/modules/books/actions.js:30
 msgid "Documents assigned as chapters"
-msgstr "Dokumente, die als Kapitel zugewiesen sind"
+msgstr "Dokumenty przypisane jako rozdziały"
 
 #: book/static/js/modules/books/actions.js:29
 msgid "Chapters"
-msgstr "Kapitel"
+msgstr "Rozdziały"
 
 #: book/static/js/modules/books/actions.js:34
 msgid "Bibliography related settings"
-msgstr "Bibliografiebezogene Einstellungen"
+msgstr "Ustawienia związane z bibliografią"
 
 #: book/static/js/modules/books/actions.js:38
 msgid "Epub related settings"
-msgstr "Epub-bezogene Einstellungen"
+msgstr "Ustawienia związane z Epub"
 
 #: book/static/js/modules/books/actions.js:37
 msgid "Epub"
@@ -372,279 +372,279 @@ msgstr "Epub"
 
 #: book/static/js/modules/books/actions.js:42
 msgid "Print related settings"
-msgstr "Druckeinstellungen"
+msgstr "Ustawienia związane z drukowaniem"
 
 #: book/static/js/modules/books/actions.js:41
 msgid "Print/PDF"
-msgstr "Druck/PDF"
+msgstr "Druk/PDF"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "My documents"
-msgstr "Meine Dokumente"
+msgstr "Moje dokumenty"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Book chapters"
-msgstr "Buchkapitel"
+msgstr "Rozdziały książki"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Sort"
-msgstr "Sortieren"
+msgstr "Sortuj"
 
 #: book/static/js/modules/books/templates.js:61
 msgid "Book part"
-msgstr "Buchabschnitt"
+msgstr "Część książki"
 
 #: book/static/js/modules/books/templates.js:68
 msgid "If this chapter starts a part of the book, specify the title of that part here"
-msgstr "Wenn dieses Kapitel einen Abschnitt des Buches starte, spezifiziere den Titel dieses Abschnittes hier"
+msgstr "Jeśli ten rozdział rozpoczyna część książki, podaj tutaj tytuł tej części"
 
 #: book/static/js/modules/books/templates.js:68
 msgid "Book part title"
-msgstr "Buchabschnitttitel"
+msgstr "Tytuł części książki"
 
 #: book/static/js/plugins/menu/books.js:10
 msgid "compose books"
-msgstr "Bücher zusammenstellen"
+msgstr "twórz książki"
 
 #: book/static/js/plugins/menu/books.js:12
 msgid "Books"
-msgstr "Bücher"
+msgstr "Książki"
 
 #: book/static/js/modules/books/menu.js:106
 msgid "Delete selected books."
-msgstr "Ausgewählte Bücher löschen."
+msgstr "Usuń zaznaczone książki."
 
 #: book/static/js/modules/books/menu.js:125
 msgid "Share selected books."
-msgstr "Teilen Sie die ausgewählten Bücher."
+msgstr "Udostępnij zaznaczone książki."
 
 #: book/static/js/modules/books/menu.js:145
 msgid "Copy selected books."
-msgstr "Kopieren Sie die ausgewählten Bücher."
+msgstr "Kopiuj zaznaczone książki."
 
 #: book/static/js/modules/books/menu.js:153
 msgid "Export selected books as Epub."
-msgstr "Exportieren Sie die ausgewählten Bücher als Epub."
+msgstr "Eksportuj zaznaczone książki jako Epub."
 
 #: book/static/js/modules/books/menu.js:164
 msgid "Export selected books as HTML."
-msgstr "Exportieren Sie die ausgewählten Bücher als HTML."
+msgstr "Eksportuj zaznaczone książki jako HTML."
 
 #: book/static/js/modules/books/menu.js:186
 msgid "Export selected books as LaTeX."
-msgstr "Exportieren Sie die ausgewählten Bücher als LaTeX."
+msgstr "Eksportuj zaznaczone książki jako LaTeX."
 
 #: book/static/js/modules/books/menu.js:197
 msgid "Export selected books to the print dialog."
-msgstr "Exportieren Sie die ausgewählten Bücher in den Druckdialog."
+msgstr "Eksportuj zaznaczone książki do okna drukowania."
 
 #: book/static/js/modules/books/accessrights/index.js:19
 msgid "Cannot load book access data."
-msgstr "Buchzugriffsdaten können nicht geladen werden."
+msgstr "Nie można załadować danych dostępu do książki."
 
 #: book/static/js/modules/books/accessrights/index.js:52
 msgid "Add contact or invite new user"
-msgstr "Kontakt hinzufügen oder neuen Benutzer einladen"
+msgstr "Dodaj kontakt lub zaproś nowego użytkownika"
 
 #: book/static/js/modules/books/accessrights/index.js:52
 msgid "Add contact"
-msgstr "Kontakt hinzufügen"
+msgstr "Dodaj kontakt"
 
 #: book/static/js/modules/books/accessrights/templates.js:7
 #: book/static/js/modules/books/accessrights/templates.js:11
 msgid "Invite"
-msgstr "Einladen"
+msgstr "Zaproś"
 
 #: book/static/js/modules/books/actions.js:45
 msgid "Sanity check"
-msgstr "Validierung"
+msgstr "Sprawdzenie poprawności"
 
 #: book/static/js/modules/books/actions.js:46
 msgid "Perform sanity check on book"
-msgstr "Führen Sie eine Validierung des Buches durch"
+msgstr "Wykonaj sprawdzenie poprawności książki"
 
 #: book/static/js/modules/books/actions.js:92
 msgid "Do you really want to delete the following books?"
-msgstr "Möchten Sie die folgenden Bücher wirklich löschen?"
+msgstr "Czy na pewno chcesz usunąć następujące książki?"
 
 #: book/static/js/modules/books/actions.js:92
 msgid "Do you really want to delete the following book?"
-msgstr "Möchten Sie das folgende Buch wirklich löschen?"
+msgstr "Czy na pewno chcesz usunąć następującą książkę?"
 
 #: book/static/js/modules/books/actions.js:180
 msgid "Copy of"
-msgstr "Kopie von"
+msgstr "Kopia"
 
 #: book/static/js/modules/books/actions.js:253
 msgid "Export"
-msgstr "Export"
+msgstr "Eksportuj"
 
 #: book/static/js/modules/books/index.js:340
 #: book/static/js/modules/books/index.js:351
 msgid "You cannot delete books while you are offline."
-msgstr "Sie können keine Bücher löschen, während Sie offline sind."
+msgstr "Nie możesz usuwać książek, gdy jesteś offline."
 
 #: book/static/js/modules/books/menu.js:20
 msgid "Create new folder"
-msgstr "Neuen Ordner erstellen"
+msgstr "Utwórz nowy folder"
 
 #: book/static/js/modules/books/menu.js:33
 msgid "Search books"
-msgstr "Bücher suchen"
+msgstr "Szukaj książek"
 
 #: book/static/js/modules/books/menu.js:82
 msgid "Move selected"
-msgstr "Ausgewählte verschieben"
+msgstr "Przenieś zaznaczone"
 
 #: book/static/js/modules/books/menu.js:83
 msgid "Move the books that have been selected."
-msgstr "Verschieben Sie die ausgewählten Bücher."
+msgstr "Przenieś zaznaczone książki."
 
 #: book/static/js/modules/books/menu.js:90
 msgid "Move books"
-msgstr "Bücher verschieben"
+msgstr "Przenieś książki"
 
 #: book/static/js/modules/books/menu.js:90
 msgid "Move book"
-msgstr "Buch verschieben"
+msgstr "Przenieś książkę"
 
 #: book/static/js/modules/books/menu.js:94
 msgid "Book has been moved"
-msgstr "Buch wurde verschoben"
+msgstr "Książka została przeniesiona"
 
 #: book/static/js/modules/books/menu.js:95
 msgid "Could not move book"
-msgstr "Buch konnte nicht verschoben werden"
+msgstr "Nie można przenieść książki"
 
 #: book/static/js/modules/books/menu.js:211
 msgid "Export as Epub"
-msgstr "Als Epub exportieren"
+msgstr "Eksportuj jako Epub"
 
 #: book/static/js/modules/books/menu.js:212
 msgid "Export book as Epub."
-msgstr "Buch als Epub exportieren."
+msgstr "Eksportuj książkę jako Epub."
 
 #: book/static/js/modules/books/menu.js:222
 msgid "Export as HTML"
-msgstr "Als HTML exportieren"
+msgstr "Eksportuj jako HTML"
 
 #: book/static/js/modules/books/menu.js:223
 msgid "Export book as HTML."
-msgstr "Buch als HTML exportieren."
+msgstr "Eksportuj książkę jako HTML."
 
 #: book/static/js/modules/books/menu.js:244
 msgid "Export as LaTeX"
-msgstr "Als LaTeX exportieren"
+msgstr "Eksportuj jako LaTeX"
 
 #: book/static/js/modules/books/menu.js:245
 msgid "Export book as LaTeX."
-msgstr "Buch als LaTeX exportieren."
+msgstr "Eksportuj książkę jako LaTeX."
 
 #: book/static/js/modules/books/menu.js:255
 msgid "Export to Print/PDF"
-msgstr "In Druck/PDF exportieren"
+msgstr "Eksportuj do druku/PDF"
 
 #: book/static/js/modules/books/menu.js:256
 msgid "Export book to the print dialog."
-msgstr "Buch in den Druckdialog exportieren."
+msgstr "Eksportuj książkę do okna drukowania."
 
 #: book/static/js/modules/books/sanity_check.js:4
 msgid "Chapter"
-msgstr "Kapitel"
+msgstr "Rozdział"
 
 #: book/static/js/modules/books/sanity_check.js:8
 #: book/static/js/modules/books/sanity_check.js:18
 msgid "Unresolved tracked changes"
-msgstr "Ungelöste nachverfolgte Änderungen"
+msgstr "Nierozwiązane śledzone zmiany"
 
 #: book/static/js/modules/books/sanity_check.js:14
 msgid "Internal links without target"
-msgstr "Interne Links ohne Ziel"
+msgstr "Wewnętrzne linki bez celu"
 
 #: book/static/js/modules/books/sanity_check.js:16
 msgid "Unresolved comments"
-msgstr "Ungelöste Kommentare"
+msgstr "Nierozwiązane komentarze"
 
 #: book/static/js/modules/books/sanity_check.js:24
 msgid "Cross references without targets"
-msgstr "Querverweise ohne Zielvorgaben"
+msgstr "Odnośniki krzyżowe bez celów"
 
 #: book/static/js/modules/books/sanity_check.js:34
 msgid "The book contains no chapters."
-msgstr "Das Buch enthält keine Kapitel."
+msgstr "Książka nie zawiera rozdziałów."
 
 #: book/static/js/modules/books/sanity_check.js:46
 #: book/static/js/modules/books/templates.js:61
 msgid "No access"
-msgstr "Kein Zugang"
+msgstr "Brak dostępu"
 
 #: book/static/js/modules/books/sanity_check.js:51
 msgid "No chapter title"
-msgstr "Kein Kapiteltitel"
+msgstr "Brak tytułu rozdziału"
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "No issues were found:"
-msgstr "Es wurden keine Probleme gefunden:"
+msgstr "Nie znaleziono problemów:"
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "The book contains chapters."
-msgstr "Das Buch enthält Kapitel."
+msgstr "Książka zawiera rozdziały."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "Each chapter has a title."
-msgstr "Jedes Kapitel hat einen Titel."
+msgstr "Każdy rozdział ma tytuł."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "There are no unresolved tracked changes."
-msgstr "Es gibt keine ungelösten nachverfolgten Änderungen."
+msgstr "Nie ma nierozwiązanych śledzonych zmian."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "There are no unresolved comments."
-msgstr "Es gibt keine ungelösten Kommentare."
+msgstr "Nie ma nierozwiązanych komentarzy."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "All cross references have working targets."
-msgstr "Alle Querverweise haben Arbeitsziele."
+msgstr "Wszystkie odnośniki krzyżowe mają działające cele."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "All internal links have working targets."
-msgstr "Alle internen Links haben funktionierende Ziele."
+msgstr "Wszystkie wewnętrzne linki mają działające cele."
 
 #: book/static/js/modules/books/templates.js:35
 msgid "Perform sanity check"
-msgstr "Validierung durchführen"
+msgstr "Wykonaj sprawdzenie poprawności"
 
 #: book/static/js/modules/books/index.js:162
 msgid "No books found"
-msgstr "Keine Bücher gefunden"
+msgstr "Nie znaleziono książek"
 
 #: book/static/js/modules/books/menu.js:63
 msgid "Unified HTML export has been initiated."
-msgstr "Der Unified HTML-Export wurde eingeleitet."
+msgstr "Eksport Unified HTML został rozpoczęty."
 
 #: book/static/js/modules/books/menu.js:174
 msgid "Export selected as Unified HTML"
-msgstr "Ausgewählte als Unified HTML exportieren"
+msgstr "Eksportuj zaznaczone jako Unified HTML"
 
 #: book/static/js/modules/books/menu.js:175
 msgid "Export selected books as Single-file HTML."
-msgstr "Exportieren Sie ausgewählte Bücher als Einzeldatei-HTML."
+msgstr "Eksportuj zaznaczone książki jako HTML w jednym pliku."
 
 #: book/static/js/modules/books/menu.js:233
 msgid "Export as Unified HTML"
-msgstr "Als Unified HTML exportieren"
+msgstr "Eksportuj jako Unified HTML"
 
 #: book/static/js/modules/books/menu.js:234
 msgid "Export book as Single-file HTML."
-msgstr "Buch als Einzeldatei-HTML exportieren."
+msgstr "Eksportuj książkę jako HTML w jednym pliku."
 
 #: book/static/js/modules/books/index.js:377
 msgid "Leaving an empty folder will delete it. Do you really want to delete this folder?"
-msgstr "Wenn Sie einen leeren Ordner verlassen, wird er gelöscht. Möchten Sie diesen Ordner wirklich löschen?"
+msgstr "Pozostawienie pustego folderu spowoduje jego usunięcie. Czy na pewno chcesz usunąć ten folder?"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Version"
-msgstr "Version"
+msgstr "Wersja"
 
 #: book/static/js/modules/books/actions.js:78
 msgid "DOCX"
@@ -652,7 +652,7 @@ msgstr "DOCX"
 
 #: book/static/js/modules/books/actions.js:79
 msgid "DOCX related settings"
-msgstr "DOCX-bezogene Einstellungen"
+msgstr "Ustawienia związane z DOCX"
 
 #: book/static/js/modules/books/actions.js:83
 msgid "ODT"
@@ -660,131 +660,131 @@ msgstr "ODT"
 
 #: book/static/js/modules/books/actions.js:84
 msgid "ODT related settings"
-msgstr "ODT-bezogene Einstellungen"
+msgstr "Ustawienia związane z ODT"
 
 #: book/static/js/modules/books/actions.js:330
 msgid "Import a book"
-msgstr "Ein Buch importieren"
+msgstr "Importuj książkę"
 
 #: book/static/js/modules/books/actions.js:337
 msgid "Select a .fidusbook file:"
-msgstr "Wählen Sie eine .fidusbook-Datei:"
+msgstr "Wybierz plik .fidusbook:"
 
 #: book/static/js/modules/books/actions.js:355
 msgid "Import"
-msgstr "Importieren"
+msgstr "Importuj"
 
 #: book/static/js/modules/books/actions.js:368
 msgid "File too large"
-msgstr "Datei zu groß"
+msgstr "Plik jest za duży"
 
 #: book/static/js/modules/books/actions.js:322
 msgid "Chapters will be imported as encrypted (E2EE) documents."
-msgstr "Kapitel werden als verschlüsselte (E2EE) Dokumente importiert."
+msgstr "Rozdziały zostaną zaimportowane jako zaszyfrowane (E2EE) dokumenty."
 
 #: book/static/js/modules/books/actions.js:329
 msgid "Import chapters as encrypted (E2EE) documents"
-msgstr "Kapitel als verschlüsselte (E2EE) Dokumente importieren"
+msgstr "Importuj rozdziały jako zaszyfrowane (E2EE) dokumenty"
 
 #: book/static/js/modules/books/actions.js:636
 msgid "This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book."
-msgstr "Dieses Buch enthält verschlüsselte Kapitel. Zum Exportieren oder für eine Überprüfung ist eine persönliche Passphrase erforderlich."
+msgstr "Ta książka zawiera zaszyfrowane rozdziały. Do eksportu lub sprawdzenia poprawności tej książki wymagane jest osobiste hasło."
 
 #: book/static/js/modules/books/menu.js:43
 msgid "Import book from Fidusbook file"
-msgstr "Buch aus Fidusbook-Datei importieren"
+msgstr "Importuj książkę z pliku Fidusbook"
 
 #: book/static/js/modules/books/menu.js:95
 msgid "BITS export has been initiated."
-msgstr "Der BITS-Export wurde gestartet."
+msgstr "Eksport BITS został rozpoczęty."
 
 #: book/static/js/modules/books/menu.js:161
 msgid "DOCX export has been initiated."
-msgstr "Der DOCX-Export wurde gestartet."
+msgstr "Eksport DOCX został rozpoczęty."
 
 #: book/static/js/modules/books/menu.js:177
 msgid "ODT export has been initiated."
-msgstr "Der ODT-Export wurde gestartet."
+msgstr "Eksport ODT został rozpoczęty."
 
 #: book/static/js/modules/books/menu.js:304
 msgid "Export selected as BITS"
-msgstr "Ausgewählte als BITS exportieren"
+msgstr "Eksportuj zaznaczone jako BITS"
 
 #: book/static/js/modules/books/menu.js:305
 msgid "Export selected books as BITS."
-msgstr "Ausgewählte Bücher als BITS exportieren."
+msgstr "Eksportuj zaznaczone książki jako BITS."
 
 #: book/static/js/modules/books/menu.js:364
 msgid "Export selected as DOCX"
-msgstr "Ausgewählte als DOCX exportieren"
+msgstr "Eksportuj zaznaczone jako DOCX"
 
 #: book/static/js/modules/books/menu.js:365
 msgid "Export selected books as DOCX."
-msgstr "Ausgewählte Bücher als DOCX exportieren."
+msgstr "Eksportuj zaznaczone książki jako DOCX."
 
 #: book/static/js/modules/books/menu.js:377
 msgid "This book does not have a DOCX template."
-msgstr "Dieses Buch hat keine DOCX-Vorlage."
+msgstr "Ta książka nie ma szablonu DOCX."
 
 #: book/static/js/modules/books/menu.js:387
 msgid "Export selected as ODT"
-msgstr "Ausgewählte als ODT exportieren"
+msgstr "Eksportuj zaznaczone jako ODT"
 
 #: book/static/js/modules/books/menu.js:388
 msgid "Export selected books as ODT."
-msgstr "Ausgewählte Bücher als ODT exportieren."
+msgstr "Eksportuj zaznaczone książki jako ODT."
 
 #: book/static/js/modules/books/menu.js:400
 msgid "This book does not have an ODT template."
-msgstr "Dieses Buch hat keine ODT-Vorlage."
+msgstr "Ta książka nie ma szablonu ODT."
 
 #: book/static/js/modules/books/menu.js:422
 msgid "Export selected as Fidusbook"
-msgstr "Ausgewählte als Fidusbook exportieren"
+msgstr "Eksportuj zaznaczone jako Fidusbook"
 
 #: book/static/js/modules/books/menu.js:423
 msgid "Export selected books as .fidusbook files (for moving to another server)."
-msgstr "Ausgewählte Bücher als .fidusbook-Dateien exportieren (zum Verschieben auf einen anderen Server)."
+msgstr "Eksportuj zaznaczone książki jako pliki .fidusbook (do przeniesienia na inny serwer)."
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
-msgstr "Als BITS exportieren"
+msgstr "Eksportuj jako BITS"
 
 #: book/static/js/modules/books/menu.js:443
 msgid "Export book as Book Interchange Tag Set."
-msgstr "Buch als Book Interchange Tag Set exportieren."
+msgstr "Eksportuj książkę jako Book Interchange Tag Set."
 
 #: book/static/js/modules/books/menu.js:482
 msgid "Export as DOCX"
-msgstr "Als DOCX exportieren"
+msgstr "Eksportuj jako DOCX"
 
 #: book/static/js/modules/books/menu.js:483
 msgid "Export book as DOCX."
-msgstr "Buch als DOCX exportieren."
+msgstr "Eksportuj książkę jako DOCX."
 
 #: book/static/js/modules/books/menu.js:492
 msgid "Export as ODT"
-msgstr "Als ODT exportieren"
+msgstr "Eksportuj jako ODT"
 
 #: book/static/js/modules/books/menu.js:493
 msgid "Export book as ODT."
-msgstr "Buch als ODT exportieren."
+msgstr "Eksportuj książkę jako ODT."
 
 #: book/static/js/modules/books/menu.js:508
 msgid "Export as Fidusbook"
-msgstr "Als Fidusbook exportieren"
+msgstr "Eksportuj jako Fidusbook"
 
 #: book/static/js/modules/books/menu.js:509
 msgid "Export book as a .fidusbook file (for moving to another server)."
-msgstr "Buch als .fidusbook-Datei exportieren (zum Verschieben auf einen anderen Server)."
+msgstr "Eksportuj książkę jako plik .fidusbook (do przeniesienia na inny serwer)."
 
 #: book/static/js/modules/books/exporter/native/index.js:50
 msgid "Fidusbook export has been initiated."
-msgstr "Der Fidusbook-Export wurde gestartet."
+msgstr "Eksport Fidusbook został rozpoczęty."
 
 #: book/static/js/modules/books/exporter/native/index.js:56
 msgid "Fidusbook export failed."
-msgstr "Der Fidusbook-Export ist fehlgeschlagen."
+msgstr "Eksport Fidusbook nie powiódł się."
 
 #: book/static/js/modules/books/exporter/native/index.js:29
 #: book/static/js/modules/books/exporter/bits/index.js:30
@@ -793,54 +793,53 @@ msgstr "Der Fidusbook-Export ist fehlgeschlagen."
 #: book/static/js/modules/books/exporter/html/index.js:61
 #: book/static/js/modules/books/exporter/odt/index.js:39
 msgid "Book cannot be exported due to lack of chapters."
-msgstr "Das Buch kann aufgrund fehlender Kapitel nicht exportiert werden."
+msgstr "Książka nie może zostać wyeksportowana z powodu braku rozdziałów."
 
 #: book/static/js/modules/books/exporter/tools.js:40
 msgid "Wrong passphrase. Please try again."
-msgstr "Falsche Passphrase. Bitte versuchen Sie es erneut."
+msgstr "Nieprawidłowe hasło. Spróbuj ponownie."
 
 #: book/static/js/modules/books/exporter/tools.js:97
 msgid "A personal passphrase is required to work with books that contain encrypted chapters. Please set up or unlock your personal passphrase in your profile settings."
-msgstr "Eine persönliche Passphrase ist erforderlich, um mit Büchern zu arbeiten, die verschlüsselte Kapitel enthalten. Bitte richten Sie eine Passphrase ein oder entsperren Sie diese in Ihren Profileinstellungen."
+msgstr "Osobiste hasło jest wymagane do pracy z książkami zawierającymi zaszyfrowane rozdziały. Skonfiguruj lub odblokuj swoje osobiste hasło w ustawieniach profilu."
 
 #: book/static/js/modules/books/exporter/tools.js:114
 msgid "No encryption key found for chapter:"
-msgstr "Kein Verschlüsselungsschlüssel für Kapitel gefunden:"
+msgstr "Nie znaleziono klucza szyfrowania dla rozdziału:"
 
 #: book/static/js/modules/books/exporter/tools.js:114
 msgid "The key may not have been shared with you."
-msgstr "Der Schlüssel wurde möglicherweise nicht mit Ihnen geteilt."
+msgstr "Klucz mógł nie zostać z Tobą udostępniony."
 
 #: book/static/js/modules/books/exporter/tools.js:270
 msgid "Could not decrypt chapter:"
-msgstr "Kapitel konnte nicht entschlüsselt werden:"
+msgstr "Nie można odszyfrować rozdziału:"
 
 #: book/static/js/modules/books/exporter/tools.js:270
 msgid "The document may have been re-encrypted with a different password."
-msgstr "Das Dokument wurde möglicherweise mit einem anderen Passwort neu verschlüsselt."
+msgstr "Dokument mógł zostać ponownie zaszyfrowany innym hasłem."
 
 #: book/static/js/modules/books/importer/native/index.js:60
 #: book/static/js/modules/books/importer/native/index.js:84
 msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "Die hochgeladene Datei scheint keine Fidusbook-Datei zu sein."
+msgstr "Przesłany plik nie wydaje się być plikiem Fidusbook."
 
 #: book/static/js/modules/books/importer/native/index.js:134
 msgid "The Fidusbook file version is not supported by this server: "
-msgstr "Die Fidusbook-Dateiversion wird von diesem Server nicht unterstützt: "
+msgstr "Wersja pliku Fidusbook nie jest obsługiwana przez ten serwer: "
 
 #: book/static/js/modules/books/importer/native/index.js:193
 msgid "Fidusbook file is missing data for chapter "
-msgstr "Fidusbook-Datei enthält keine Daten für Kapitel "
+msgstr "W pliku Fidusbook brakuje danych dla rozdziału "
 
 #: book/static/js/modules/books/importer/native/index.js:251
 msgid "Could not import chapter "
-msgstr "Kapitel konnte nicht importiert werden "
+msgstr "Nie można zaimportować rozdziału "
 
 #: book/static/js/modules/books/importer/native/index.js:301
 msgid "successfully imported."
-msgstr "erfolgreich importiert."
+msgstr "pomyślnie zaimportowano."
 
 #: book/static/js/modules/books/importer/native/index.js:420
 msgid "Could not create book record."
-msgstr "Buchdatensatz konnte nicht erstellt werden."
-
+msgstr "Nie można utworzyć rekordu książki."

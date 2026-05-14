@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Fidus Writer books backend\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-14 10:36+0200\n"
-"Language: de\n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,15 +11,15 @@ msgstr ""
 
 #: emails.py:18
 msgid "Untitled"
-msgstr "Ohne Titel"
+msgstr "Sem título"
 
 #: emails.py:97
 msgid "shared"
-msgstr "geteilt"
+msgstr "partilhado"
 
 #: emails.py:99
 msgid "Book"
-msgstr "Buch"
+msgstr "Livro"
 
 #: emails.py:101
 msgid "Editor"
@@ -27,13 +27,13 @@ msgstr "Editor"
 
 #: emails.py:103
 msgid "Access Rights"
-msgstr "Zugangsrechte"
+msgstr "Direitos de acesso"
 
 #: emails.py:106
 msgid "Access books"
-msgstr "Auf Bücher zugreifen"
+msgstr "Aceder aos livros"
 
 #: emails.py:109
 #, python-format
 msgid "Book shared: %(book_title)s"
-msgstr "Geteiltes Buch: %(book_title)s"
+msgstr "Livro partilhado: %(book_title)s"

@@ -1,0 +1,579 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books\n"
+"Language: da\n"
+
+#: book/static/js/modules/books/accessrights/index.js:81
+#: book/static/js/modules/books/accessrights/index.js:107
+#: book/static/js/modules/books/actions.js:276
+msgid "Submit"
+msgstr "Send"
+
+#: book/static/js/modules/books/accessrights/index.js:107
+msgid "Share your book with others"
+msgstr "Del din bog med andre"
+
+#: book/static/js/modules/books/accessrights/index.js:222
+msgid "Cannot save access rights."
+msgstr "Kan ikke gemme adgangsrettigheder."
+
+#: book/static/js/modules/books/accessrights/index.js:225
+msgid "Access rights have been saved"
+msgstr "Adgangsrettigheder er blevet gemt"
+
+#: book/static/js/modules/books/accessrights/index.js:197
+#: book/static/js/modules/books/accessrights/index.js:199
+msgid "Write"
+msgstr "Skriv"
+
+#: book/static/js/modules/books/accessrights/index.js:206
+#: book/static/js/modules/books/accessrights/index.js:208
+msgid "Read"
+msgstr "Læs"
+
+#: book/static/js/modules/books/accessrights/templates.js:17
+msgid "My contacts"
+msgstr "Mine kontakter"
+
+#: book/static/js/modules/books/accessrights/templates.js:17
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+msgid "My collaborators"
+msgstr "Mine samarbejdspartnere"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+msgid "Collaborators"
+msgstr "Samarbejdspartnere"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+#: book/static/js/modules/books/index.js:169
+msgid "Rights"
+msgstr "Rettigheder"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+#: book/static/js/modules/books/actions.js:76
+#: book/static/js/modules/books/index.js:381
+msgid "Delete"
+msgstr "Slet"
+
+#: book/static/js/modules/books/actions.js:61
+msgid "Could not delete book"
+msgstr "Kunne ikke slette bogen"
+
+#: book/static/js/modules/books/actions.js:64
+msgid "Book has been deleted"
+msgstr "Bogen er blevet slettet"
+
+#: book/static/js/modules/books/actions.js:88
+#: book/static/js/modules/books/index.js:376
+msgid "Confirm deletion"
+msgstr "Bekræft sletning"
+
+#: book/static/js/modules/books/actions.js:103
+#: book/static/js/modules/books/templates.js:61
+msgid "Untitled"
+msgstr "Uden titel"
+
+#: book/static/js/modules/books/actions.js:121
+msgid "Edit Chapter"
+msgstr "Rediger kapitel"
+
+#: book/static/js/modules/books/actions.js:152
+msgid "The book could not be saved"
+msgstr "Bogen kunne ikke gemmes"
+
+#: book/static/js/modules/books/actions.js:185
+msgid "The book could not be copied"
+msgstr "Bogen kunne ikke kopieres"
+
+#: book/static/js/modules/books/actions.js:204
+msgid "Create Book"
+msgstr "Opret bog"
+
+#: book/static/js/modules/books/actions.js:33
+#: book/static/js/modules/books/actions.js:214
+msgid "Bibliography"
+msgstr "Bibliografi"
+
+#: book/static/js/modules/books/actions.js:235
+msgid "Edit Book"
+msgstr "Rediger bog"
+
+#: book/static/js/modules/books/exporter/epub/index.js:36
+#: book/static/js/modules/books/exporter/html/multifile.js:36
+msgid "Book cannot be exported due to lack of chapters."
+msgstr "Bogen kan ikke eksporteres på grund af manglende kapitler."
+
+#: book/static/js/modules/books/exporter/epub/index.js:105
+msgid "Cover"
+msgstr "Forside"
+
+#: book/static/js/modules/books/exporter/epub/index.js:115
+msgid "Title page"
+msgstr "Titelside"
+
+#: book/static/js/modules/books/exporter/epub/index.js:234
+msgid "Copyright"
+msgstr "Ophavsret"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:25
+msgid "Cover Image"
+msgstr "Forsidebillede"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:30
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "by"
+msgstr "af"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/index.js:169
+#: book/static/js/modules/books/templates.js:6
+#: book/static/js/modules/books/templates.js:48
+msgid "Title"
+msgstr "Titel"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/templates.js:6
+msgid "Author"
+msgstr "Forfatter"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Published by"
+msgstr "Udgivet af"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Last Updated"
+msgstr "Sidst opdateret"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+#: book/static/js/modules/books/index.js:169
+msgid "Created"
+msgstr "Oprettet"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Language"
+msgstr "Sprog"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+msgid "Languages"
+msgstr "Sprog"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Created by"
+msgstr "Oprettet af"
+
+#: book/static/js/modules/books/exporter/html/multifile.js:274
+msgid "English"
+msgstr "Dansk"
+
+#: book/static/js/modules/books/exporter/tools.js:7
+msgid "Cannot produce book as you lack access rights to its chapters."
+msgstr "Kan ikke fremstille bogen, da du mangler adgangsrettigheder til dens kapitler."
+
+#: book/static/js/modules/books/index.js:86
+msgid "Book Overview"
+msgstr "Bogoversigt"
+
+#: book/static/js/modules/books/index.js:161
+msgid "No books available"
+msgstr "Ingen tilgængelige bøger"
+
+#: book/static/js/modules/books/index.js:169
+msgid "Last changed"
+msgstr "Sidst ændret"
+
+#: book/static/js/modules/books/index.js:169
+msgid "Owner"
+msgstr "Ejer"
+
+#: book/static/js/modules/books/index.js:279
+msgid "Cannot load data of books."
+msgstr "Kan ikke indlæse data om bøger."
+
+#: book/static/js/modules/books/menu.js:11
+msgid "Create new book"
+msgstr "Opret ny bog"
+
+#: book/static/js/modules/books/menu.js:105
+msgid "Delete selected"
+msgstr "Slet valgte"
+
+#: book/static/js/modules/books/menu.js:115
+msgid "You cannot delete books of other users."
+msgstr "Du kan ikke slette andre brugeres bøger."
+
+#: book/static/js/modules/books/menu.js:124
+msgid "Share selected"
+msgstr "Del valgte"
+
+#: book/static/js/modules/books/menu.js:134
+msgid "You cannot share books of other users."
+msgstr "Du kan ikke dele andre brugeres bøger."
+
+#: book/static/js/modules/books/menu.js:144
+msgid "Copy selected"
+msgstr "Kopier valgte"
+
+#: book/static/js/modules/books/menu.js:152
+msgid "Export selected as Epub"
+msgstr "Eksporter valgte som Epub"
+
+#: book/static/js/modules/books/menu.js:51
+msgid "Epub export has been initiated."
+msgstr "Epub-eksport er blevet påbegyndt."
+
+#: book/static/js/modules/books/menu.js:163
+msgid "Export selected as HTML"
+msgstr "Eksporter valgte som HTML"
+
+#: book/static/js/modules/books/menu.js:57
+msgid "HTML export has been initiated."
+msgstr "HTML-eksport er blevet påbegyndt."
+
+#: book/static/js/modules/books/menu.js:185
+msgid "Export selected as LaTeX"
+msgstr "Eksporter valgte som LaTeX"
+
+#: book/static/js/modules/books/menu.js:69
+msgid "LaTeX export has been initiated."
+msgstr "LaTeX-eksport er blevet påbegyndt."
+
+#: book/static/js/modules/books/menu.js:196
+msgid "Export selected to Print/PDF"
+msgstr "Eksporter valgte til print/PDF"
+
+#: book/static/js/modules/books/menu.js:75
+msgid "Print has been initiated."
+msgstr "Print er blevet påbegyndt."
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Subtitle"
+msgstr "Undertitel"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Publisher"
+msgstr "Udgiver"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Copyright notice"
+msgstr "Ophavsretsmeddelelse"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Comma separated keywords"
+msgstr "Kommaseparerede nøgleord"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Keywords"
+msgstr "Nøgleord"
+
+#: book/static/js/modules/books/templates.js:12
+msgid "Citation style"
+msgstr "Citationsstil"
+
+#: book/static/js/modules/books/templates.js:12
+msgid "Select citation style for the book"
+msgstr "Vælg citationsstil til bogen"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Folio (15 x 12 inch)"
+msgstr "Folio (15 x 12 tommer)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Quarto (12 × 9 inch)"
+msgstr "Quarto (12 × 9 tommer)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Octavo (9 x 6 inch)"
+msgstr "Octavo (9 x 6 tommer)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "A5"
+msgstr "A5"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "A4"
+msgstr "A4"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Book style"
+msgstr "Bogstil"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Select stylesheet for the book"
+msgstr "Vælg stylesheet til bogen"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Paper size"
+msgstr "Papirstørrelse"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Select paper size for the book"
+msgstr "Vælg papirstørrelse til bogen"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Cover image"
+msgstr "Forsidebillede"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Select a cover image"
+msgstr "Vælg et forsidebillede"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Select Image"
+msgstr "Vælg billede"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Remove cover image"
+msgstr "Fjern forsidebillede"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Remove Image"
+msgstr "Fjern billede"
+
+#: book/static/js/modules/books/actions.js:26
+msgid "Basic book information"
+msgstr "Grundlæggende boginformation"
+
+#: book/static/js/modules/books/actions.js:25
+msgid "Basic info"
+msgstr "Grundlæggende oplysninger"
+
+#: book/static/js/modules/books/actions.js:30
+msgid "Documents assigned as chapters"
+msgstr "Dokumenter tildelt som kapitler"
+
+#: book/static/js/modules/books/actions.js:29
+msgid "Chapters"
+msgstr "Kapitler"
+
+#: book/static/js/modules/books/actions.js:34
+msgid "Bibliography related settings"
+msgstr "Bibliografirelaterede indstillinger"
+
+#: book/static/js/modules/books/actions.js:38
+msgid "Epub related settings"
+msgstr "Epub-relaterede indstillinger"
+
+#: book/static/js/modules/books/actions.js:37
+msgid "Epub"
+msgstr "Epub"
+
+#: book/static/js/modules/books/actions.js:42
+msgid "Print related settings"
+msgstr "Printrelaterede indstillinger"
+
+#: book/static/js/modules/books/actions.js:41
+msgid "Print/PDF"
+msgstr "Print/PDF"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "My documents"
+msgstr "Mine dokumenter"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "Book chapters"
+msgstr "Bogens kapitler"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "Sort"
+msgstr "Sortér"
+
+#: book/static/js/modules/books/templates.js:61
+msgid "Book part"
+msgstr "Bogdel"
+
+#: book/static/js/modules/books/templates.js:68
+msgid "If this chapter starts a part of the book, specify the title of that part here"
+msgstr "Hvis dette kapitel starter en del af bogen, angiv titlen på den del her"
+
+#: book/static/js/modules/books/templates.js:68
+msgid "Book part title"
+msgstr "Titel på bogdel"
+
+#: book/static/js/plugins/menu/books.js:10
+msgid "compose books"
+msgstr "sammensætte bøger"
+
+#: book/static/js/plugins/menu/books.js:12
+msgid "Books"
+msgstr "Bøger"
+
+#: book/static/js/modules/books/menu.js:106
+msgid "Delete selected books."
+msgstr "Slet valgte bøger."
+
+#: book/static/js/modules/books/menu.js:125
+msgid "Share selected books."
+msgstr "Del valgte bøger."
+
+#: book/static/js/modules/books/menu.js:145
+msgid "Copy selected books."
+msgstr "Kopier valgte bøger."
+
+#: book/static/js/modules/books/menu.js:153
+msgid "Export selected books as Epub."
+msgstr "Eksporter valgte bøger som Epub."
+
+#: book/static/js/modules/books/menu.js:164
+msgid "Export selected books as HTML."
+msgstr "Eksporter valgte bøger som HTML."
+
+#: book/static/js/modules/books/menu.js:186
+msgid "Export selected books as LaTeX."
+msgstr "Eksporter valgte bøger som LaTeX."
+
+#: book/static/js/modules/books/menu.js:197
+msgid "Export selected books to the print dialog."
+msgstr "Eksporter valgte bøger til printdialogen."
+
+#: book/static/js/modules/books/accessrights/index.js:19
+msgid "Cannot load book access data."
+msgstr "Kan ikke indlæse bogens adgangsdata."
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact or invite new user"
+msgstr "Tilføj kontakt eller inviter ny bruger"
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact"
+msgstr "Tilføj kontakt"
+
+#: book/static/js/modules/books/accessrights/templates.js:7
+#: book/static/js/modules/books/accessrights/templates.js:11
+msgid "Invite"
+msgstr "Inviter"
+
+#: book/static/js/modules/books/actions.js:45
+msgid "Sanity check"
+msgstr "Sundhedstjek"
+
+#: book/static/js/modules/books/actions.js:46
+msgid "Perform sanity check on book"
+msgstr "Udfør sundhedstjek af bogen"
+
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following books?"
+msgstr "Vil du virkelig slette følgende bøger?"
+
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following book?"
+msgstr "Vil du virkelig slette følgende bog?"
+
+#: book/static/js/modules/books/actions.js:180
+msgid "Copy of"
+msgstr "Kopi af"
+
+#: book/static/js/modules/books/actions.js:253
+msgid "Export"
+msgstr "Eksport"
+
+#: book/static/js/modules/books/index.js:340
+#: book/static/js/modules/books/index.js:351
+msgid "You cannot delete books while you are offline."
+msgstr "Du kan ikke slette bøger, mens du er offline."
+
+#: book/static/js/modules/books/menu.js:20
+msgid "Create new folder"
+msgstr "Opret ny mappe"
+
+#: book/static/js/modules/books/menu.js:33
+msgid "Search books"
+msgstr "Søg i bøger"
+
+#: book/static/js/modules/books/menu.js:82
+msgid "Move selected"
+msgstr "Flyt valgte"
+
+#: book/static/js/modules/books/menu.js:83
+msgid "Move the books that have been selected."
+msgstr "Flyt de valgte bøger."
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move books"
+msgstr "Flyt bøger"
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move book"
+msgstr "Flyt bog"
+
+#: book/static/js/modules/books/menu.js:94
+msgid "Book has been moved"
+msgstr "Bogen er blevet flyttet"
+
+#: book/static/js/modules/books/menu.js:95
+msgid "Could not move book"
+msgstr "Kunne ikke flytte bogen"
+
+#: book/static/js/modules/books/menu.js:211
+msgid "Export as Epub"
+msgstr "Eksporter som Epub"
+
+#: book/static/js/modules/books/menu.js:212
+msgid "Export book as Epub."
+msgstr "Eksporter bog som Epub."
+
+#: book/static/js/modules/books/menu.js:222
+msgid "Export as HTML"
+msgstr "Eksporter som HTML"
+
+#: book/static/js/modules/books/menu.js:223
+msgid "Export book as HTML."
+msgstr "Eksporter bog som HTML."
+
+#: book/static/js/modules/books/menu.js:244
+msgid "Export as LaTeX"
+msgstr "Eksporter som LaTeX"
+
+#: book/static/js/modules/books/menu.js:245
+msgid "Export book as LaTeX."
+msgstr "Eksporter bog som LaTeX."
+
+#: book/static/js/modules/books/menu.js:255
+msgid "Export to Print/PDF"
+msgstr "Eksporter til print/PDF"
+
+#: book/static/js/modules/books/menu.js:256
+msgid "Export book to the print dialog."
+msgstr "Eksporter bog til printdialogen."
+
+#: book/static/js/modules/books/sanity_check.js:4
+msgid "Chapter"
+msgstr "Kapitel"
+
+#: book/static/js/modules/books/sanity_check.js:8
+#: book/static/js/modules/books/sanity_check.js:18
+msgid "Unresolved tracked changes"
+msgstr "Uafklarede spores ændringer"
+
+#: book/static/js/modules/books/sanity_check.js:14
+msgid "Internal links without target"
+msgstr "Interne links uden mål"
+
+#: book/static/js/modules/books/sanity_check.js:16
+msgid "Unresolved comments"
+msgstr "Uafklarede kommentarer"
+
+#: book/static/js/modules/books/sanity_check.js:24
+msgid "Cross references without targets"
+msgstr "Krydshenvisninger uden mål"
+
+#: book/static/js/modules/books/sanity_check.js:34
+msgid "The book contains no chapters."
+msgstr "Bogen indeholder ingen kapitler."
+
+#: book/static/js/modules/books/sanity_check.js:46
+#: book/static/js/modules/books/templates.js:61
+msgid "No access"
+msgstr "Ingen adgang"

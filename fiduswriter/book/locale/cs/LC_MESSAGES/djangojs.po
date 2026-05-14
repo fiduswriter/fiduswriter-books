@@ -1,0 +1,579 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books\n"
+"Language: cs\n"
+
+#: book/static/js/modules/books/accessrights/index.js:81
+#: book/static/js/modules/books/accessrights/index.js:107
+#: book/static/js/modules/books/actions.js:276
+msgid "Submit"
+msgstr "Odeslat"
+
+#: book/static/js/modules/books/accessrights/index.js:107
+msgid "Share your book with others"
+msgstr "Sdílet svou knihu s ostatními"
+
+#: book/static/js/modules/books/accessrights/index.js:222
+msgid "Cannot save access rights."
+msgstr "Nelze uložit přístupová práva."
+
+#: book/static/js/modules/books/accessrights/index.js:225
+msgid "Access rights have been saved"
+msgstr "Přístupová práva byla uložena"
+
+#: book/static/js/modules/books/accessrights/index.js:197
+#: book/static/js/modules/books/accessrights/index.js:199
+msgid "Write"
+msgstr "Zapisovat"
+
+#: book/static/js/modules/books/accessrights/index.js:206
+#: book/static/js/modules/books/accessrights/index.js:208
+msgid "Read"
+msgstr "Číst"
+
+#: book/static/js/modules/books/accessrights/templates.js:17
+msgid "My contacts"
+msgstr "Moje kontakty"
+
+#: book/static/js/modules/books/accessrights/templates.js:17
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+msgid "My collaborators"
+msgstr "Moji spolupracovníci"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+msgid "Collaborators"
+msgstr "Spolupracovníci"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+#: book/static/js/modules/books/index.js:169
+msgid "Rights"
+msgstr "Práva"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+#: book/static/js/modules/books/actions.js:76
+#: book/static/js/modules/books/index.js:381
+msgid "Delete"
+msgstr "Smazat"
+
+#: book/static/js/modules/books/actions.js:61
+msgid "Could not delete book"
+msgstr "Knihu nelze smazat"
+
+#: book/static/js/modules/books/actions.js:64
+msgid "Book has been deleted"
+msgstr "Kniha byla smazána"
+
+#: book/static/js/modules/books/actions.js:88
+#: book/static/js/modules/books/index.js:376
+msgid "Confirm deletion"
+msgstr "Potvrdit smazání"
+
+#: book/static/js/modules/books/actions.js:103
+#: book/static/js/modules/books/templates.js:61
+msgid "Untitled"
+msgstr "Bez názvu"
+
+#: book/static/js/modules/books/actions.js:121
+msgid "Edit Chapter"
+msgstr "Upravit kapitolu"
+
+#: book/static/js/modules/books/actions.js:152
+msgid "The book could not be saved"
+msgstr "Knihu nelze uložit"
+
+#: book/static/js/modules/books/actions.js:185
+msgid "The book could not be copied"
+msgstr "Knihu nelze zkopírovat"
+
+#: book/static/js/modules/books/actions.js:204
+msgid "Create Book"
+msgstr "Vytvořit knihu"
+
+#: book/static/js/modules/books/actions.js:33
+#: book/static/js/modules/books/actions.js:214
+msgid "Bibliography"
+msgstr "Bibliografie"
+
+#: book/static/js/modules/books/actions.js:235
+msgid "Edit Book"
+msgstr "Upravit knihu"
+
+#: book/static/js/modules/books/exporter/epub/index.js:36
+#: book/static/js/modules/books/exporter/html/multifile.js:36
+msgid "Book cannot be exported due to lack of chapters."
+msgstr "Knihu nelze exportovat kvůli nedostatku kapitol."
+
+#: book/static/js/modules/books/exporter/epub/index.js:105
+msgid "Cover"
+msgstr "Obálka"
+
+#: book/static/js/modules/books/exporter/epub/index.js:115
+msgid "Title page"
+msgstr "Titulní strana"
+
+#: book/static/js/modules/books/exporter/epub/index.js:234
+msgid "Copyright"
+msgstr "Autorská práva"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:25
+msgid "Cover Image"
+msgstr "Obrázek obálky"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:30
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "by"
+msgstr "od"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/index.js:169
+#: book/static/js/modules/books/templates.js:6
+#: book/static/js/modules/books/templates.js:48
+msgid "Title"
+msgstr "Název"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/templates.js:6
+msgid "Author"
+msgstr "Autor"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Published by"
+msgstr "Vydal"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Last Updated"
+msgstr "Poslední aktualizace"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+#: book/static/js/modules/books/index.js:169
+msgid "Created"
+msgstr "Vytvořeno"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Language"
+msgstr "Jazyk"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+msgid "Languages"
+msgstr "Jazyky"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Created by"
+msgstr "Vytvořil"
+
+#: book/static/js/modules/books/exporter/html/multifile.js:274
+msgid "English"
+msgstr "Čeština"
+
+#: book/static/js/modules/books/exporter/tools.js:7
+msgid "Cannot produce book as you lack access rights to its chapters."
+msgstr "Nelze vytvořit knihu, protože nemáte přístupová práva k jejím kapitolám."
+
+#: book/static/js/modules/books/index.js:86
+msgid "Book Overview"
+msgstr "Přehled knihy"
+
+#: book/static/js/modules/books/index.js:161
+msgid "No books available"
+msgstr "Žádné dostupné knihy"
+
+#: book/static/js/modules/books/index.js:169
+msgid "Last changed"
+msgstr "Poslední změna"
+
+#: book/static/js/modules/books/index.js:169
+msgid "Owner"
+msgstr "Vlastník"
+
+#: book/static/js/modules/books/index.js:279
+msgid "Cannot load data of books."
+msgstr "Nelze načíst data knih."
+
+#: book/static/js/modules/books/menu.js:11
+msgid "Create new book"
+msgstr "Vytvořit novou knihu"
+
+#: book/static/js/modules/books/menu.js:105
+msgid "Delete selected"
+msgstr "Smazat vybrané"
+
+#: book/static/js/modules/books/menu.js:115
+msgid "You cannot delete books of other users."
+msgstr "Nemůžete mazat knihy ostatních uživatelů."
+
+#: book/static/js/modules/books/menu.js:124
+msgid "Share selected"
+msgstr "Sdílet vybrané"
+
+#: book/static/js/modules/books/menu.js:134
+msgid "You cannot share books of other users."
+msgstr "Nemůžete sdílet knihy ostatních uživatelů."
+
+#: book/static/js/modules/books/menu.js:144
+msgid "Copy selected"
+msgstr "Kopírovat vybrané"
+
+#: book/static/js/modules/books/menu.js:152
+msgid "Export selected as Epub"
+msgstr "Exportovat vybrané jako Epub"
+
+#: book/static/js/modules/books/menu.js:51
+msgid "Epub export has been initiated."
+msgstr "Export Epub byl zahájen."
+
+#: book/static/js/modules/books/menu.js:163
+msgid "Export selected as HTML"
+msgstr "Exportovat vybrané jako HTML"
+
+#: book/static/js/modules/books/menu.js:57
+msgid "HTML export has been initiated."
+msgstr "Export HTML byl zahájen."
+
+#: book/static/js/modules/books/menu.js:185
+msgid "Export selected as LaTeX"
+msgstr "Exportovat vybrané jako LaTeX"
+
+#: book/static/js/modules/books/menu.js:69
+msgid "LaTeX export has been initiated."
+msgstr "Export LaTeX byl zahájen."
+
+#: book/static/js/modules/books/menu.js:196
+msgid "Export selected to Print/PDF"
+msgstr "Exportovat vybrané pro tisk/PDF"
+
+#: book/static/js/modules/books/menu.js:75
+msgid "Print has been initiated."
+msgstr "Tisk byl zahájen."
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Subtitle"
+msgstr "Podtitul"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Publisher"
+msgstr "Vydavatel"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Copyright notice"
+msgstr "Informace o autorských právech"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Comma separated keywords"
+msgstr "Klíčová slova oddělená čárkami"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Keywords"
+msgstr "Klíčová slova"
+
+#: book/static/js/modules/books/templates.js:12
+msgid "Citation style"
+msgstr "Citační styl"
+
+#: book/static/js/modules/books/templates.js:12
+msgid "Select citation style for the book"
+msgstr "Vyberte citační styl pro knihu"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Folio (15 x 12 inch)"
+msgstr "Folio (15 x 12 palců)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Quarto (12 × 9 inch)"
+msgstr "Quarto (12 × 9 palců)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Octavo (9 x 6 inch)"
+msgstr "Octavo (9 x 6 palců)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "A5"
+msgstr "A5"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "A4"
+msgstr "A4"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Book style"
+msgstr "Styl knihy"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Select stylesheet for the book"
+msgstr "Vyberte styl pro knihu"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Paper size"
+msgstr "Velikost papíru"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Select paper size for the book"
+msgstr "Vyberte velikost papíru pro knihu"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Cover image"
+msgstr "Obrázek obálky"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Select a cover image"
+msgstr "Vyberte obrázek obálky"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Select Image"
+msgstr "Vybrat obrázek"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Remove cover image"
+msgstr "Odebrat obrázek obálky"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Remove Image"
+msgstr "Odebrat obrázek"
+
+#: book/static/js/modules/books/actions.js:26
+msgid "Basic book information"
+msgstr "Základní informace o knize"
+
+#: book/static/js/modules/books/actions.js:25
+msgid "Basic info"
+msgstr "Základní informace"
+
+#: book/static/js/modules/books/actions.js:30
+msgid "Documents assigned as chapters"
+msgstr "Dokumenty přiřazené jako kapitoly"
+
+#: book/static/js/modules/books/actions.js:29
+msgid "Chapters"
+msgstr "Kapitoly"
+
+#: book/static/js/modules/books/actions.js:34
+msgid "Bibliography related settings"
+msgstr "Nastavení související s bibliografií"
+
+#: book/static/js/modules/books/actions.js:38
+msgid "Epub related settings"
+msgstr "Nastavení související s Epub"
+
+#: book/static/js/modules/books/actions.js:37
+msgid "Epub"
+msgstr "Epub"
+
+#: book/static/js/modules/books/actions.js:42
+msgid "Print related settings"
+msgstr "Nastavení související s tiskem"
+
+#: book/static/js/modules/books/actions.js:41
+msgid "Print/PDF"
+msgstr "Tisk/PDF"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "My documents"
+msgstr "Moje dokumenty"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "Book chapters"
+msgstr "Kapitoly knihy"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "Sort"
+msgstr "Seřadit"
+
+#: book/static/js/modules/books/templates.js:61
+msgid "Book part"
+msgstr "Část knihy"
+
+#: book/static/js/modules/books/templates.js:68
+msgid "If this chapter starts a part of the book, specify the title of that part here"
+msgstr "Pokud tato kapitola začíná část knihy, zadejte zde název této části"
+
+#: book/static/js/modules/books/templates.js:68
+msgid "Book part title"
+msgstr "Název části knihy"
+
+#: book/static/js/plugins/menu/books.js:10
+msgid "compose books"
+msgstr "sestavovat knihy"
+
+#: book/static/js/plugins/menu/books.js:12
+msgid "Books"
+msgstr "Knihy"
+
+#: book/static/js/modules/books/menu.js:106
+msgid "Delete selected books."
+msgstr "Smazat vybrané knihy."
+
+#: book/static/js/modules/books/menu.js:125
+msgid "Share selected books."
+msgstr "Sdílet vybrané knihy."
+
+#: book/static/js/modules/books/menu.js:145
+msgid "Copy selected books."
+msgstr "Kopírovat vybrané knihy."
+
+#: book/static/js/modules/books/menu.js:153
+msgid "Export selected books as Epub."
+msgstr "Exportovat vybrané knihy jako Epub."
+
+#: book/static/js/modules/books/menu.js:164
+msgid "Export selected books as HTML."
+msgstr "Exportovat vybrané knihy jako HTML."
+
+#: book/static/js/modules/books/menu.js:186
+msgid "Export selected books as LaTeX."
+msgstr "Exportovat vybrané knihy jako LaTeX."
+
+#: book/static/js/modules/books/menu.js:197
+msgid "Export selected books to the print dialog."
+msgstr "Exportovat vybrané knihy do tiskového dialogu."
+
+#: book/static/js/modules/books/accessrights/index.js:19
+msgid "Cannot load book access data."
+msgstr "Nelze načíst data přístupu ke knize."
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact or invite new user"
+msgstr "Přidat kontakt nebo pozvat nového uživatele"
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact"
+msgstr "Přidat kontakt"
+
+#: book/static/js/modules/books/accessrights/templates.js:7
+#: book/static/js/modules/books/accessrights/templates.js:11
+msgid "Invite"
+msgstr "Pozvat"
+
+#: book/static/js/modules/books/actions.js:45
+msgid "Sanity check"
+msgstr "Kontrola správnosti"
+
+#: book/static/js/modules/books/actions.js:46
+msgid "Perform sanity check on book"
+msgstr "Provést kontrolu správnosti knihy"
+
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following books?"
+msgstr "Opravdu chcete smazat následující knihy?"
+
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following book?"
+msgstr "Opravdu chcete smazat následující knihu?"
+
+#: book/static/js/modules/books/actions.js:180
+msgid "Copy of"
+msgstr "Kopie"
+
+#: book/static/js/modules/books/actions.js:253
+msgid "Export"
+msgstr "Export"
+
+#: book/static/js/modules/books/index.js:340
+#: book/static/js/modules/books/index.js:351
+msgid "You cannot delete books while you are offline."
+msgstr "Nemůžete mazat knihy, když jste offline."
+
+#: book/static/js/modules/books/menu.js:20
+msgid "Create new folder"
+msgstr "Vytvořit novou složku"
+
+#: book/static/js/modules/books/menu.js:33
+msgid "Search books"
+msgstr "Hledat knihy"
+
+#: book/static/js/modules/books/menu.js:82
+msgid "Move selected"
+msgstr "Přesunout vybrané"
+
+#: book/static/js/modules/books/menu.js:83
+msgid "Move the books that have been selected."
+msgstr "Přesunout vybrané knihy."
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move books"
+msgstr "Přesunout knihy"
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move book"
+msgstr "Přesunout knihu"
+
+#: book/static/js/modules/books/menu.js:94
+msgid "Book has been moved"
+msgstr "Kniha byla přesunuta"
+
+#: book/static/js/modules/books/menu.js:95
+msgid "Could not move book"
+msgstr "Knihu nelze přesunout"
+
+#: book/static/js/modules/books/menu.js:211
+msgid "Export as Epub"
+msgstr "Exportovat jako Epub"
+
+#: book/static/js/modules/books/menu.js:212
+msgid "Export book as Epub."
+msgstr "Exportovat knihu jako Epub."
+
+#: book/static/js/modules/books/menu.js:222
+msgid "Export as HTML"
+msgstr "Exportovat jako HTML"
+
+#: book/static/js/modules/books/menu.js:223
+msgid "Export book as HTML."
+msgstr "Exportovat knihu jako HTML."
+
+#: book/static/js/modules/books/menu.js:244
+msgid "Export as LaTeX"
+msgstr "Exportovat jako LaTeX"
+
+#: book/static/js/modules/books/menu.js:245
+msgid "Export book as LaTeX."
+msgstr "Exportovat knihu jako LaTeX."
+
+#: book/static/js/modules/books/menu.js:255
+msgid "Export to Print/PDF"
+msgstr "Exportovat pro tisk/PDF"
+
+#: book/static/js/modules/books/menu.js:256
+msgid "Export book to the print dialog."
+msgstr "Exportovat knihu do tiskového dialogu."
+
+#: book/static/js/modules/books/sanity_check.js:4
+msgid "Chapter"
+msgstr "Kapitola"
+
+#: book/static/js/modules/books/sanity_check.js:8
+#: book/static/js/modules/books/sanity_check.js:18
+msgid "Unresolved tracked changes"
+msgstr "Nevyřešené sledované změny"
+
+#: book/static/js/modules/books/sanity_check.js:14
+msgid "Internal links without target"
+msgstr "Interní odkazy bez cíle"
+
+#: book/static/js/modules/books/sanity_check.js:16
+msgid "Unresolved comments"
+msgstr "Nevyřešené komentáře"
+
+#: book/static/js/modules/books/sanity_check.js:24
+msgid "Cross references without targets"
+msgstr "Křížové odkazy bez cílů"
+
+#: book/static/js/modules/books/sanity_check.js:34
+msgid "The book contains no chapters."
+msgstr "Kniha neobsahuje žádné kapitoly."
+
+#: book/static/js/modules/books/sanity_check.js:46
+#: book/static/js/modules/books/templates.js:61
+msgid "No access"
+msgstr "Žádný přístup"

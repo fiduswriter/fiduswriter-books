@@ -648,3 +648,192 @@ msgstr "Deixar uma pasta vazia a excluirá. Você realmente deseja excluir esta 
 msgid "Version"
 msgstr "Versão"
 
+#: book/static/js/modules/books/actions.js:78
+msgid "DOCX"
+msgstr "DOCX"
+
+#: book/static/js/modules/books/actions.js:79
+msgid "DOCX related settings"
+msgstr "Configurações relacionadas a DOCX"
+
+#: book/static/js/modules/books/actions.js:83
+msgid "ODT"
+msgstr "ODT"
+
+#: book/static/js/modules/books/actions.js:84
+msgid "ODT related settings"
+msgstr "Configurações relacionadas a ODT"
+
+#: book/static/js/modules/books/actions.js:330
+msgid "Import a book"
+msgstr "Importar um livro"
+
+#: book/static/js/modules/books/actions.js:337
+msgid "Select a .fidusbook file:"
+msgstr "Selecione um arquivo .fidusbook:"
+
+#: book/static/js/modules/books/actions.js:355
+msgid "Import"
+msgstr "Importar"
+
+#: book/static/js/modules/books/actions.js:368
+msgid "File too large"
+msgstr "Arquivo muito grande"
+
+#: book/static/js/modules/books/actions.js:322
+msgid "Chapters will be imported as encrypted (E2EE) documents."
+msgstr "Os capítulos serão importados como documentos criptografados (E2EE)."
+
+#: book/static/js/modules/books/actions.js:329
+msgid "Import chapters as encrypted (E2EE) documents"
+msgstr "Importar capítulos como documentos criptografados (E2EE)"
+
+#: book/static/js/modules/books/actions.js:636
+msgid "This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book."
+msgstr "Este livro contém capítulos criptografados. É necessária uma frase secreta pessoal para exportar ou executar uma verificação de integridade neste livro."
+
+#: book/static/js/modules/books/menu.js:43
+msgid "Import book from Fidusbook file"
+msgstr "Importar livro do arquivo Fidusbook"
+
+#: book/static/js/modules/books/menu.js:95
+msgid "BITS export has been initiated."
+msgstr "A exportação BITS foi iniciada."
+
+#: book/static/js/modules/books/menu.js:161
+msgid "DOCX export has been initiated."
+msgstr "A exportação DOCX foi iniciada."
+
+#: book/static/js/modules/books/menu.js:177
+msgid "ODT export has been initiated."
+msgstr "A exportação ODT foi iniciada."
+
+#: book/static/js/modules/books/menu.js:304
+msgid "Export selected as BITS"
+msgstr "Exportar selecionados como BITS"
+
+#: book/static/js/modules/books/menu.js:305
+msgid "Export selected books as BITS."
+msgstr "Exportar os livros selecionados como BITS."
+
+#: book/static/js/modules/books/menu.js:364
+msgid "Export selected as DOCX"
+msgstr "Exportar selecionados como DOCX"
+
+#: book/static/js/modules/books/menu.js:365
+msgid "Export selected books as DOCX."
+msgstr "Exportar os livros selecionados como DOCX."
+
+#: book/static/js/modules/books/menu.js:377
+msgid "This book does not have a DOCX template."
+msgstr "Este livro não possui um modelo DOCX."
+
+#: book/static/js/modules/books/menu.js:387
+msgid "Export selected as ODT"
+msgstr "Exportar selecionados como ODT"
+
+#: book/static/js/modules/books/menu.js:388
+msgid "Export selected books as ODT."
+msgstr "Exportar os livros selecionados como ODT."
+
+#: book/static/js/modules/books/menu.js:400
+msgid "This book does not have an ODT template."
+msgstr "Este livro não possui um modelo ODT."
+
+#: book/static/js/modules/books/menu.js:422
+msgid "Export selected as Fidusbook"
+msgstr "Exportar selecionados como Fidusbook"
+
+#: book/static/js/modules/books/menu.js:423
+msgid "Export selected books as .fidusbook files (for moving to another server)."
+msgstr "Exportar os livros selecionados como arquivos .fidusbook (para mover para outro servidor)."
+
+#: book/static/js/modules/books/menu.js:442
+msgid "Export as BITS"
+msgstr "Exportar como BITS"
+
+#: book/static/js/modules/books/menu.js:443
+msgid "Export book as Book Interchange Tag Set."
+msgstr "Exportar livro como Book Interchange Tag Set."
+
+#: book/static/js/modules/books/menu.js:482
+msgid "Export as DOCX"
+msgstr "Exportar como DOCX"
+
+#: book/static/js/modules/books/menu.js:483
+msgid "Export book as DOCX."
+msgstr "Exportar livro como DOCX."
+
+#: book/static/js/modules/books/menu.js:492
+msgid "Export as ODT"
+msgstr "Exportar como ODT"
+
+#: book/static/js/modules/books/menu.js:493
+msgid "Export book as ODT."
+msgstr "Exportar livro como ODT."
+
+#: book/static/js/modules/books/menu.js:508
+msgid "Export as Fidusbook"
+msgstr "Exportar como Fidusbook"
+
+#: book/static/js/modules/books/menu.js:509
+msgid "Export book as a .fidusbook file (for moving to another server)."
+msgstr "Exportar livro como arquivo .fidusbook (para mover para outro servidor)."
+
+#: book/static/js/modules/books/exporter/native/index.js:50
+msgid "Fidusbook export has been initiated."
+msgstr "A exportação Fidusbook foi iniciada."
+
+#: book/static/js/modules/books/exporter/native/index.js:56
+msgid "Fidusbook export failed."
+msgstr "A exportação Fidusbook falhou."
+
+#: book/static/js/modules/books/exporter/tools.js:40
+msgid "Wrong passphrase. Please try again."
+msgstr "Frase secreta errada. Por favor, tente novamente."
+
+#: book/static/js/modules/books/exporter/tools.js:97
+msgid "A personal passphrase is required to work with books that contain encrypted chapters. Please set up or unlock your personal passphrase in your profile settings."
+msgstr "É necessária uma frase secreta pessoal para trabalhar com livros que contenham capítulos criptografados. Configure ou desbloqueie sua frase secreta pessoal nas configurações do seu perfil."
+
+#: book/static/js/modules/books/exporter/tools.js:114
+msgid "No encryption key found for chapter:"
+msgstr "Nenhuma chave de criptografia encontrada para o capítulo:"
+
+#: book/static/js/modules/books/exporter/tools.js:114
+msgid "The key may not have been shared with you."
+msgstr "A chave pode não ter sido compartilhada com você."
+
+#: book/static/js/modules/books/exporter/tools.js:270
+msgid "Could not decrypt chapter:"
+msgstr "Não foi possível descriptografar o capítulo:"
+
+#: book/static/js/modules/books/exporter/tools.js:270
+msgid "The document may have been re-encrypted with a different password."
+msgstr "O documento pode ter sido criptografado novamente com uma senha diferente."
+
+#: book/static/js/modules/books/importer/native/index.js:60
+#: book/static/js/modules/books/importer/native/index.js:84
+msgid "The uploaded file does not appear to be a Fidusbook file."
+msgstr "O arquivo enviado não parece ser um arquivo Fidusbook."
+
+#: book/static/js/modules/books/importer/native/index.js:134
+msgid "The Fidusbook file version is not supported by this server: "
+msgstr "A versão do arquivo Fidusbook não é compatível com este servidor: "
+
+#: book/static/js/modules/books/importer/native/index.js:193
+msgid "Fidusbook file is missing data for chapter "
+msgstr "O arquivo Fidusbook está faltando dados do capítulo "
+
+#: book/static/js/modules/books/importer/native/index.js:251
+msgid "Could not import chapter "
+msgstr "Não foi possível importar o capítulo "
+
+#: book/static/js/modules/books/importer/native/index.js:301
+msgid "successfully imported."
+msgstr "importado com sucesso."
+
+#: book/static/js/modules/books/importer/native/index.js:420
+msgid "Could not create book record."
+msgstr "Não foi possível criar o registro do livro."
+

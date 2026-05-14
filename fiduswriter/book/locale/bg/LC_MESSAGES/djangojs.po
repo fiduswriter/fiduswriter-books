@@ -646,3 +646,192 @@ msgstr "Ако оставите празна папка, ще я изтриет�
 msgid "Version"
 msgstr "Версия"
 
+#: book/static/js/modules/books/actions.js:78
+msgid "DOCX"
+msgstr "DOCX"
+
+#: book/static/js/modules/books/actions.js:79
+msgid "DOCX related settings"
+msgstr "Настройки, свързани с DOCX"
+
+#: book/static/js/modules/books/actions.js:83
+msgid "ODT"
+msgstr "ODT"
+
+#: book/static/js/modules/books/actions.js:84
+msgid "ODT related settings"
+msgstr "Настройки, свързани с ODT"
+
+#: book/static/js/modules/books/actions.js:330
+msgid "Import a book"
+msgstr "Импортиране на книга"
+
+#: book/static/js/modules/books/actions.js:337
+msgid "Select a .fidusbook file:"
+msgstr "Изберете .fidusbook файл:"
+
+#: book/static/js/modules/books/actions.js:355
+msgid "Import"
+msgstr "Импортиране"
+
+#: book/static/js/modules/books/actions.js:368
+msgid "File too large"
+msgstr "Файлът е твърде голям"
+
+#: book/static/js/modules/books/actions.js:322
+msgid "Chapters will be imported as encrypted (E2EE) documents."
+msgstr "Главите ще бъдат импортирани като криптирани (E2EE) документи."
+
+#: book/static/js/modules/books/actions.js:329
+msgid "Import chapters as encrypted (E2EE) documents"
+msgstr "Импортиране на глави като криптирани (E2EE) документи"
+
+#: book/static/js/modules/books/actions.js:636
+msgid "This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book."
+msgstr "Тази книга съдържа криптирани глави. Необходима е лична парола за експортиране или извършване на проверка на книгата."
+
+#: book/static/js/modules/books/menu.js:43
+msgid "Import book from Fidusbook file"
+msgstr "Импортиране на книга от Fidusbook файл"
+
+#: book/static/js/modules/books/menu.js:95
+msgid "BITS export has been initiated."
+msgstr "Експортът BITS е стартиран."
+
+#: book/static/js/modules/books/menu.js:161
+msgid "DOCX export has been initiated."
+msgstr "Експортът DOCX е стартиран."
+
+#: book/static/js/modules/books/menu.js:177
+msgid "ODT export has been initiated."
+msgstr "Експортът ODT е стартиран."
+
+#: book/static/js/modules/books/menu.js:304
+msgid "Export selected as BITS"
+msgstr "Експортиране на избраните като BITS"
+
+#: book/static/js/modules/books/menu.js:305
+msgid "Export selected books as BITS."
+msgstr "Експортиране на избраните книги като BITS."
+
+#: book/static/js/modules/books/menu.js:364
+msgid "Export selected as DOCX"
+msgstr "Експортиране на избраните като DOCX"
+
+#: book/static/js/modules/books/menu.js:365
+msgid "Export selected books as DOCX."
+msgstr "Експортиране на избраните книги като DOCX."
+
+#: book/static/js/modules/books/menu.js:377
+msgid "This book does not have a DOCX template."
+msgstr "Тази книга няма DOCX шаблон."
+
+#: book/static/js/modules/books/menu.js:387
+msgid "Export selected as ODT"
+msgstr "Експортиране на избраните като ODT"
+
+#: book/static/js/modules/books/menu.js:388
+msgid "Export selected books as ODT."
+msgstr "Експортиране на избраните книги като ODT."
+
+#: book/static/js/modules/books/menu.js:400
+msgid "This book does not have an ODT template."
+msgstr "Тази книга няма ODT шаблон."
+
+#: book/static/js/modules/books/menu.js:422
+msgid "Export selected as Fidusbook"
+msgstr "Експортиране на избраните като Fidusbook"
+
+#: book/static/js/modules/books/menu.js:423
+msgid "Export selected books as .fidusbook files (for moving to another server)."
+msgstr "Експортиране на избраните книги като .fidusbook файлове (за преместване на друг сървър)."
+
+#: book/static/js/modules/books/menu.js:442
+msgid "Export as BITS"
+msgstr "Експортиране като BITS"
+
+#: book/static/js/modules/books/menu.js:443
+msgid "Export book as Book Interchange Tag Set."
+msgstr "Експортиране на книга като Book Interchange Tag Set."
+
+#: book/static/js/modules/books/menu.js:482
+msgid "Export as DOCX"
+msgstr "Експортиране като DOCX"
+
+#: book/static/js/modules/books/menu.js:483
+msgid "Export book as DOCX."
+msgstr "Експортиране на книга като DOCX."
+
+#: book/static/js/modules/books/menu.js:492
+msgid "Export as ODT"
+msgstr "Експортиране като ODT"
+
+#: book/static/js/modules/books/menu.js:493
+msgid "Export book as ODT."
+msgstr "Експортиране на книга като ODT."
+
+#: book/static/js/modules/books/menu.js:508
+msgid "Export as Fidusbook"
+msgstr "Експортиране като Fidusbook"
+
+#: book/static/js/modules/books/menu.js:509
+msgid "Export book as a .fidusbook file (for moving to another server)."
+msgstr "Експортиране на книга като .fidusbook файл (за преместване на друг сървър)."
+
+#: book/static/js/modules/books/exporter/native/index.js:50
+msgid "Fidusbook export has been initiated."
+msgstr "Експортът Fidusbook е стартиран."
+
+#: book/static/js/modules/books/exporter/native/index.js:56
+msgid "Fidusbook export failed."
+msgstr "Експортът Fidusbook е неуспешен."
+
+#: book/static/js/modules/books/exporter/tools.js:40
+msgid "Wrong passphrase. Please try again."
+msgstr "Грешна парола. Моля, опитайте отново."
+
+#: book/static/js/modules/books/exporter/tools.js:97
+msgid "A personal passphrase is required to work with books that contain encrypted chapters. Please set up or unlock your personal passphrase in your profile settings."
+msgstr "Необходима е лична парола за работа с книги, които съдържат криптирани глави. Моля, настройте или отключете личната си парола в настройките на профила си."
+
+#: book/static/js/modules/books/exporter/tools.js:114
+msgid "No encryption key found for chapter:"
+msgstr "Не е намерен ключ за криптиране за глава:"
+
+#: book/static/js/modules/books/exporter/tools.js:114
+msgid "The key may not have been shared with you."
+msgstr "Ключът може да не е споделен с вас."
+
+#: book/static/js/modules/books/exporter/tools.js:270
+msgid "Could not decrypt chapter:"
+msgstr "Главата не може да бъде декриптирана:"
+
+#: book/static/js/modules/books/exporter/tools.js:270
+msgid "The document may have been re-encrypted with a different password."
+msgstr "Документът може да е бил повторно криптиран с различна парола."
+
+#: book/static/js/modules/books/importer/native/index.js:60
+#: book/static/js/modules/books/importer/native/index.js:84
+msgid "The uploaded file does not appear to be a Fidusbook file."
+msgstr "Каченият файл не изглежда да е Fidusbook файл."
+
+#: book/static/js/modules/books/importer/native/index.js:134
+msgid "The Fidusbook file version is not supported by this server: "
+msgstr "Версията на Fidusbook файла не се поддържа от този сървър: "
+
+#: book/static/js/modules/books/importer/native/index.js:193
+msgid "Fidusbook file is missing data for chapter "
+msgstr "На Fidusbook файла липсват данни за глава "
+
+#: book/static/js/modules/books/importer/native/index.js:251
+msgid "Could not import chapter "
+msgstr "Главата не може да бъде импортирана "
+
+#: book/static/js/modules/books/importer/native/index.js:301
+msgid "successfully imported."
+msgstr "успешно импортиран."
+
+#: book/static/js/modules/books/importer/native/index.js:420
+msgid "Could not create book record."
+msgstr "Записът на книгата не можа да бъде създаден."
+

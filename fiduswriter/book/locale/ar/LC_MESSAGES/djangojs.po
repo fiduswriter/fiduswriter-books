@@ -1,0 +1,579 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Fidus Writer books\n"
+"Language: ar\n"
+
+#: book/static/js/modules/books/accessrights/index.js:81
+#: book/static/js/modules/books/accessrights/index.js:107
+#: book/static/js/modules/books/actions.js:276
+msgid "Submit"
+msgstr "إرسال"
+
+#: book/static/js/modules/books/accessrights/index.js:107
+msgid "Share your book with others"
+msgstr "شارك كتابك مع الآخرين"
+
+#: book/static/js/modules/books/accessrights/index.js:222
+msgid "Cannot save access rights."
+msgstr "لا يمكن حفظ حقوق الوصول."
+
+#: book/static/js/modules/books/accessrights/index.js:225
+msgid "Access rights have been saved"
+msgstr "تم حفظ حقوق الوصول"
+
+#: book/static/js/modules/books/accessrights/index.js:197
+#: book/static/js/modules/books/accessrights/index.js:199
+msgid "Write"
+msgstr "كتابة"
+
+#: book/static/js/modules/books/accessrights/index.js:206
+#: book/static/js/modules/books/accessrights/index.js:208
+msgid "Read"
+msgstr "قراءة"
+
+#: book/static/js/modules/books/accessrights/templates.js:17
+msgid "My contacts"
+msgstr "جهات اتصالي"
+
+#: book/static/js/modules/books/accessrights/templates.js:17
+msgid "Contacts"
+msgstr "جهات الاتصال"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+msgid "My collaborators"
+msgstr "المتعاونون معي"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+msgid "Collaborators"
+msgstr "متعاونون"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+#: book/static/js/modules/books/index.js:169
+msgid "Rights"
+msgstr "صلاحيات"
+
+#: book/static/js/modules/books/accessrights/templates.js:19
+#: book/static/js/modules/books/actions.js:76
+#: book/static/js/modules/books/index.js:381
+msgid "Delete"
+msgstr "حذف"
+
+#: book/static/js/modules/books/actions.js:61
+msgid "Could not delete book"
+msgstr "تعذر حذف الكتاب"
+
+#: book/static/js/modules/books/actions.js:64
+msgid "Book has been deleted"
+msgstr "تم حذف الكتاب"
+
+#: book/static/js/modules/books/actions.js:88
+#: book/static/js/modules/books/index.js:376
+msgid "Confirm deletion"
+msgstr "تأكيد الحذف"
+
+#: book/static/js/modules/books/actions.js:103
+#: book/static/js/modules/books/templates.js:61
+msgid "Untitled"
+msgstr "بدون عنوان"
+
+#: book/static/js/modules/books/actions.js:121
+msgid "Edit Chapter"
+msgstr "تعديل الفصل"
+
+#: book/static/js/modules/books/actions.js:152
+msgid "The book could not be saved"
+msgstr "تعذر حفظ الكتاب"
+
+#: book/static/js/modules/books/actions.js:185
+msgid "The book could not be copied"
+msgstr "تعذر نسخ الكتاب"
+
+#: book/static/js/modules/books/actions.js:204
+msgid "Create Book"
+msgstr "إنشاء كتاب"
+
+#: book/static/js/modules/books/actions.js:33
+#: book/static/js/modules/books/actions.js:214
+msgid "Bibliography"
+msgstr "قائمة المراجع"
+
+#: book/static/js/modules/books/actions.js:235
+msgid "Edit Book"
+msgstr "تعديل الكتاب"
+
+#: book/static/js/modules/books/exporter/epub/index.js:36
+#: book/static/js/modules/books/exporter/html/multifile.js:36
+msgid "Book cannot be exported due to lack of chapters."
+msgstr "لا يمكن تصدير الكتاب لعدم وجود فصول."
+
+#: book/static/js/modules/books/exporter/epub/index.js:105
+msgid "Cover"
+msgstr "غلاف"
+
+#: book/static/js/modules/books/exporter/epub/index.js:115
+msgid "Title page"
+msgstr "صفحة العنوان"
+
+#: book/static/js/modules/books/exporter/epub/index.js:234
+msgid "Copyright"
+msgstr "حقوق النشر"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:25
+msgid "Cover Image"
+msgstr "صورة الغلاف"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:30
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "by"
+msgstr "بواسطة"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/index.js:169
+#: book/static/js/modules/books/templates.js:6
+#: book/static/js/modules/books/templates.js:48
+msgid "Title"
+msgstr "عنوان"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/templates.js:6
+msgid "Author"
+msgstr "مؤلف"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Published by"
+msgstr "نشر بواسطة"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Last Updated"
+msgstr "آخر تحديث"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+#: book/static/js/modules/books/index.js:169
+msgid "Created"
+msgstr "تم الإنشاء"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Language"
+msgstr "لغة"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+msgid "Languages"
+msgstr "لغات"
+
+#: book/static/js/modules/books/exporter/epub/templates.js:37
+#: book/static/js/modules/books/exporter/html/templates.js:29
+msgid "Created by"
+msgstr "تم الإنشاء بواسطة"
+
+#: book/static/js/modules/books/exporter/html/multifile.js:274
+msgid "English"
+msgstr "العربية"
+
+#: book/static/js/modules/books/exporter/tools.js:7
+msgid "Cannot produce book as you lack access rights to its chapters."
+msgstr "لا يمكن إنتاج الكتاب بسبب عدم وجود حقوق وصول لفصوله."
+
+#: book/static/js/modules/books/index.js:86
+msgid "Book Overview"
+msgstr "نظرة عامة على الكتاب"
+
+#: book/static/js/modules/books/index.js:161
+msgid "No books available"
+msgstr "لا توجد كتب متاحة"
+
+#: book/static/js/modules/books/index.js:169
+msgid "Last changed"
+msgstr "آخر تغيير"
+
+#: book/static/js/modules/books/index.js:169
+msgid "Owner"
+msgstr "مالك"
+
+#: book/static/js/modules/books/index.js:279
+msgid "Cannot load data of books."
+msgstr "لا يمكن تحميل بيانات الكتب."
+
+#: book/static/js/modules/books/menu.js:11
+msgid "Create new book"
+msgstr "إنشاء كتاب جديد"
+
+#: book/static/js/modules/books/menu.js:105
+msgid "Delete selected"
+msgstr "حذف المحدد"
+
+#: book/static/js/modules/books/menu.js:115
+msgid "You cannot delete books of other users."
+msgstr "لا يمكنك حذف كتب المستخدمين الآخرين."
+
+#: book/static/js/modules/books/menu.js:124
+msgid "Share selected"
+msgstr "مشاركة المحدد"
+
+#: book/static/js/modules/books/menu.js:134
+msgid "You cannot share books of other users."
+msgstr "لا يمكنك مشاركة كتب المستخدمين الآخرين."
+
+#: book/static/js/modules/books/menu.js:144
+msgid "Copy selected"
+msgstr "نسخ المحدد"
+
+#: book/static/js/modules/books/menu.js:152
+msgid "Export selected as Epub"
+msgstr "تصدير المحدد بصيغة Epub"
+
+#: book/static/js/modules/books/menu.js:51
+msgid "Epub export has been initiated."
+msgstr "تم بدء تصدير Epub."
+
+#: book/static/js/modules/books/menu.js:163
+msgid "Export selected as HTML"
+msgstr "تصدير المحدد بصيغة HTML"
+
+#: book/static/js/modules/books/menu.js:57
+msgid "HTML export has been initiated."
+msgstr "تم بدء تصدير HTML."
+
+#: book/static/js/modules/books/menu.js:185
+msgid "Export selected as LaTeX"
+msgstr "تصدير المحدد بصيغة LaTeX"
+
+#: book/static/js/modules/books/menu.js:69
+msgid "LaTeX export has been initiated."
+msgstr "تم بدء تصدير LaTeX."
+
+#: book/static/js/modules/books/menu.js:196
+msgid "Export selected to Print/PDF"
+msgstr "تصدير المحدد للطباعة/PDF"
+
+#: book/static/js/modules/books/menu.js:75
+msgid "Print has been initiated."
+msgstr "تم بدء الطباعة."
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Subtitle"
+msgstr "عنوان فرعي"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Publisher"
+msgstr "ناشر"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Copyright notice"
+msgstr "إشعار حقوق النشر"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Comma separated keywords"
+msgstr "كلمات مفتاحية مفصولة بفواصل"
+
+#: book/static/js/modules/books/templates.js:6
+msgid "Keywords"
+msgstr "كلمات مفتاحية"
+
+#: book/static/js/modules/books/templates.js:12
+msgid "Citation style"
+msgstr "أسلوب الاقتباس"
+
+#: book/static/js/modules/books/templates.js:12
+msgid "Select citation style for the book"
+msgstr "اختر أسلوب الاقتباس للكتاب"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Folio (15 x 12 inch)"
+msgstr "Folio (15 × 12 بوصة)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Quarto (12 × 9 inch)"
+msgstr "Quarto (12 × 9 بوصة)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "Octavo (9 x 6 inch)"
+msgstr "Octavo (9 × 6 بوصة)"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "A5"
+msgstr "A5"
+
+#: book/static/js/modules/books/templates.js:13
+msgid "A4"
+msgstr "A4"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Book style"
+msgstr "نمط الكتاب"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Select stylesheet for the book"
+msgstr "اختر ورقة الأنماط للكتاب"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Paper size"
+msgstr "حجم الورق"
+
+#: book/static/js/modules/books/templates.js:19
+msgid "Select paper size for the book"
+msgstr "اختر حجم الورق للكتاب"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Cover image"
+msgstr "صورة الغلاف"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Select a cover image"
+msgstr "اختر صورة غلاف"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Select Image"
+msgstr "اختر صورة"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Remove cover image"
+msgstr "إزالة صورة الغلاف"
+
+#: book/static/js/modules/books/templates.js:25
+msgid "Remove Image"
+msgstr "إزالة الصورة"
+
+#: book/static/js/modules/books/actions.js:26
+msgid "Basic book information"
+msgstr "معلومات الكتاب الأساسية"
+
+#: book/static/js/modules/books/actions.js:25
+msgid "Basic info"
+msgstr "معلومات أساسية"
+
+#: book/static/js/modules/books/actions.js:30
+msgid "Documents assigned as chapters"
+msgstr "المستندات المعينة كفصول"
+
+#: book/static/js/modules/books/actions.js:29
+msgid "Chapters"
+msgstr "فصول"
+
+#: book/static/js/modules/books/actions.js:34
+msgid "Bibliography related settings"
+msgstr "إعدادات متعلقة بقائمة المراجع"
+
+#: book/static/js/modules/books/actions.js:38
+msgid "Epub related settings"
+msgstr "إعدادات متعلقة بـ Epub"
+
+#: book/static/js/modules/books/actions.js:37
+msgid "Epub"
+msgstr "Epub"
+
+#: book/static/js/modules/books/actions.js:42
+msgid "Print related settings"
+msgstr "إعدادات متعلقة بالطباعة"
+
+#: book/static/js/modules/books/actions.js:41
+msgid "Print/PDF"
+msgstr "طباعة/PDF"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "My documents"
+msgstr "مستنداتي"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "Book chapters"
+msgstr "فصول الكتاب"
+
+#: book/static/js/modules/books/templates.js:48
+msgid "Sort"
+msgstr "ترتيب"
+
+#: book/static/js/modules/books/templates.js:61
+msgid "Book part"
+msgstr "جزء الكتاب"
+
+#: book/static/js/modules/books/templates.js:68
+msgid "If this chapter starts a part of the book, specify the title of that part here"
+msgstr "إذا كان هذا الفصل يبدأ جزءًا من الكتاب، فحدد عنوان ذلك الجزء هنا"
+
+#: book/static/js/modules/books/templates.js:68
+msgid "Book part title"
+msgstr "عنوان جزء الكتاب"
+
+#: book/static/js/plugins/menu/books.js:10
+msgid "compose books"
+msgstr "تأليف الكتب"
+
+#: book/static/js/plugins/menu/books.js:12
+msgid "Books"
+msgstr "كتب"
+
+#: book/static/js/modules/books/menu.js:106
+msgid "Delete selected books."
+msgstr "حذف الكتب المحددة."
+
+#: book/static/js/modules/books/menu.js:125
+msgid "Share selected books."
+msgstr "مشاركة الكتب المحددة."
+
+#: book/static/js/modules/books/menu.js:145
+msgid "Copy selected books."
+msgstr "نسخ الكتب المحددة."
+
+#: book/static/js/modules/books/menu.js:153
+msgid "Export selected books as Epub."
+msgstr "تصدير الكتب المحددة بصيغة Epub."
+
+#: book/static/js/modules/books/menu.js:164
+msgid "Export selected books as HTML."
+msgstr "تصدير الكتب المحددة بصيغة HTML."
+
+#: book/static/js/modules/books/menu.js:186
+msgid "Export selected books as LaTeX."
+msgstr "تصدير الكتب المحددة بصيغة LaTeX."
+
+#: book/static/js/modules/books/menu.js:197
+msgid "Export selected books to the print dialog."
+msgstr "تصدير الكتب المحددة إلى مربع حوار الطباعة."
+
+#: book/static/js/modules/books/accessrights/index.js:19
+msgid "Cannot load book access data."
+msgstr "لا يمكن تحميل بيانات وصول الكتاب."
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact or invite new user"
+msgstr "أضف جهة اتصال أو قم بدعوة مستخدم جديد"
+
+#: book/static/js/modules/books/accessrights/index.js:52
+msgid "Add contact"
+msgstr "أضف جهة اتصال"
+
+#: book/static/js/modules/books/accessrights/templates.js:7
+#: book/static/js/modules/books/accessrights/templates.js:11
+msgid "Invite"
+msgstr "دعوة"
+
+#: book/static/js/modules/books/actions.js:45
+msgid "Sanity check"
+msgstr "التحقق من الصحة"
+
+#: book/static/js/modules/books/actions.js:46
+msgid "Perform sanity check on book"
+msgstr "إجراء التحقق من صحة الكتاب"
+
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following books?"
+msgstr "هل تريد حقًا حذف الكتب التالية؟"
+
+#: book/static/js/modules/books/actions.js:92
+msgid "Do you really want to delete the following book?"
+msgstr "هل تريد حقًا حذف الكتاب التالي؟"
+
+#: book/static/js/modules/books/actions.js:180
+msgid "Copy of"
+msgstr "نسخة من"
+
+#: book/static/js/modules/books/actions.js:253
+msgid "Export"
+msgstr "تصدير"
+
+#: book/static/js/modules/books/index.js:340
+#: book/static/js/modules/books/index.js:351
+msgid "You cannot delete books while you are offline."
+msgstr "لا يمكنك حذف الكتب أثناء عدم الاتصال بالإنترنت."
+
+#: book/static/js/modules/books/menu.js:20
+msgid "Create new folder"
+msgstr "إنشاء مجلد جديد"
+
+#: book/static/js/modules/books/menu.js:33
+msgid "Search books"
+msgstr "بحث في الكتب"
+
+#: book/static/js/modules/books/menu.js:82
+msgid "Move selected"
+msgstr "نقل المحدد"
+
+#: book/static/js/modules/books/menu.js:83
+msgid "Move the books that have been selected."
+msgstr "نقل الكتب المحددة."
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move books"
+msgstr "نقل الكتب"
+
+#: book/static/js/modules/books/menu.js:90
+msgid "Move book"
+msgstr "نقل الكتاب"
+
+#: book/static/js/modules/books/menu.js:94
+msgid "Book has been moved"
+msgstr "تم نقل الكتاب"
+
+#: book/static/js/modules/books/menu.js:95
+msgid "Could not move book"
+msgstr "تعذر نقل الكتاب"
+
+#: book/static/js/modules/books/menu.js:211
+msgid "Export as Epub"
+msgstr "تصدير بصيغة Epub"
+
+#: book/static/js/modules/books/menu.js:212
+msgid "Export book as Epub."
+msgstr "تصدير الكتاب بصيغة Epub."
+
+#: book/static/js/modules/books/menu.js:222
+msgid "Export as HTML"
+msgstr "تصدير بصيغة HTML"
+
+#: book/static/js/modules/books/menu.js:223
+msgid "Export book as HTML."
+msgstr "تصدير الكتاب بصيغة HTML."
+
+#: book/static/js/modules/books/menu.js:244
+msgid "Export as LaTeX"
+msgstr "تصدير بصيغة LaTeX"
+
+#: book/static/js/modules/books/menu.js:245
+msgid "Export book as LaTeX."
+msgstr "تصدير الكتاب بصيغة LaTeX."
+
+#: book/static/js/modules/books/menu.js:255
+msgid "Export to Print/PDF"
+msgstr "تصدير للطباعة/PDF"
+
+#: book/static/js/modules/books/menu.js:256
+msgid "Export book to the print dialog."
+msgstr "تصدير الكتاب إلى مربع حوار الطباعة."
+
+#: book/static/js/modules/books/sanity_check.js:4
+msgid "Chapter"
+msgstr "فصل"
+
+#: book/static/js/modules/books/sanity_check.js:8
+#: book/static/js/modules/books/sanity_check.js:18
+msgid "Unresolved tracked changes"
+msgstr "تغييرات متتبعة غير محلولة"
+
+#: book/static/js/modules/books/sanity_check.js:14
+msgid "Internal links without target"
+msgstr "روابط داخلية بدون هدف"
+
+#: book/static/js/modules/books/sanity_check.js:16
+msgid "Unresolved comments"
+msgstr "تعليقات غير محلولة"
+
+#: book/static/js/modules/books/sanity_check.js:24
+msgid "Cross references without targets"
+msgstr "مراجع متقاطعة بدون أهداف"
+
+#: book/static/js/modules/books/sanity_check.js:34
+msgid "The book contains no chapters."
+msgstr "الكتاب لا يحتوي على فصول."
+
+#: book/static/js/modules/books/sanity_check.js:46
+#: book/static/js/modules/books/templates.js:61
+msgid "No access"
+msgstr "لا يوجد وصول"

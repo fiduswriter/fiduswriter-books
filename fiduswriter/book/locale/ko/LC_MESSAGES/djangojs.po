@@ -5,366 +5,366 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: Fidus Writer books\n"
-"Language: de\n"
+"Language: ko\n"
 
 #: book/static/js/modules/books/accessrights/index.js:81
 #: book/static/js/modules/books/actions.js:107
 #: book/static/js/modules/books/actions.js:276
 msgid "Submit"
-msgstr "Bestätigen"
+msgstr "제출"
 
 #: book/static/js/modules/books/accessrights/index.js:107
 msgid "Share your book with others"
-msgstr "Teile dein Buch mit anderen"
+msgstr "다른 사람과 책 공유하기"
 
 #: book/static/js/modules/books/accessrights/index.js:222
 msgid "Cannot save access rights."
-msgstr "Zugriffsrechte können nicht gespeichert werden."
+msgstr "접근 권한을 저장할 수 없습니다."
 
 #: book/static/js/modules/books/accessrights/index.js:225
 msgid "Access rights have been saved"
-msgstr "Zugangsrechte wurde gespeichert"
+msgstr "접근 권한이 저장되었습니다"
 
 #: book/static/js/modules/books/accessrights/index.js:197
 #: book/static/js/modules/books/accessrights/index.js:199
 msgid "Write"
-msgstr "Schreiben"
+msgstr "쓰기"
 
 #: book/static/js/modules/books/accessrights/index.js:206
 #: book/static/js/modules/books/accessrights/index.js:208
 msgid "Read"
-msgstr "Lesen"
+msgstr "읽기"
 
 #: book/static/js/modules/books/accessrights/templates.js:17
 msgid "My contacts"
-msgstr "Meine Kontakte"
+msgstr "내 연락처"
 
 #: book/static/js/modules/books/accessrights/templates.js:17
 msgid "Contacts"
-msgstr "Kontakte"
+msgstr "연락처"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 msgid "My collaborators"
-msgstr "Meine Helfer"
+msgstr "내 공동 작업자"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 msgid "Collaborators"
-msgstr "Helfer"
+msgstr "공동 작업자"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 #: book/static/js/modules/books/index.js:169
 msgid "Rights"
-msgstr "Rechte"
+msgstr "권한"
 
 #: book/static/js/modules/books/accessrights/templates.js:19
 #: book/static/js/modules/books/actions.js:76
 #: book/static/js/modules/books/index.js:381
 msgid "Delete"
-msgstr "Entfernen"
+msgstr "삭제"
 
 #: book/static/js/modules/books/actions.js:61
 msgid "Could not delete book"
-msgstr "Buch konnte nicht gelöscht werden"
+msgstr "책을 삭제할 수 없습니다"
 
 #: book/static/js/modules/books/actions.js:64
 msgid "Book has been deleted"
-msgstr "Buch wurde gelöscht"
+msgstr "책이 삭제되었습니다"
 
 #: book/static/js/modules/books/actions.js:88
 #: book/static/js/modules/books/index.js:376
 msgid "Confirm deletion"
-msgstr "Entfernen bestätigen"
+msgstr "삭제 확인"
 
 #: book/static/js/modules/books/actions.js:103
 #: book/static/js/modules/books/templates.js:61
 msgid "Untitled"
-msgstr "Ohne Titel"
+msgstr "제목 없음"
 
 #: book/static/js/modules/books/actions.js:121
 msgid "Edit Chapter"
-msgstr "Kapitell bearbeiten"
+msgstr "장 편집"
 
 #: book/static/js/modules/books/actions.js:152
 msgid "The book could not be saved"
-msgstr "Das Buch konnte nicht gespeichert werden"
+msgstr "책을 저장할 수 없습니다"
 
 #: book/static/js/modules/books/actions.js:185
 msgid "The book could not be copied"
-msgstr "Das Buch konnte nicht kopiert werden"
+msgstr "책을 복사할 수 없습니다"
 
 #: book/static/js/modules/books/actions.js:204
 msgid "Create Book"
-msgstr "Buch erstellen"
+msgstr "책 만들기"
 
 #: book/static/js/modules/books/actions.js:33
 #: book/static/js/modules/books/actions.js:214
 msgid "Bibliography"
-msgstr "Bibliografie"
+msgstr "참고문헌"
 
 #: book/static/js/modules/books/actions.js:235
 msgid "Edit Book"
-msgstr "Buch bearbeiten"
+msgstr "책 편집"
 
 #: book/static/js/modules/books/exporter/epub/index.js:36
 #: book/static/js/modules/books/exporter/html/multifile.js:36
 msgid "Book cannot be exported due to lack of chapters."
-msgstr "Das Buch kann aufgrund fehlender Kapitel nicht exportiert werden."
+msgstr "장이 없어 책을 내보낼 수 없습니다."
 
 #: book/static/js/modules/books/exporter/epub/index.js:105
 msgid "Cover"
-msgstr "Vorderseite"
+msgstr "표지"
 
 #: book/static/js/modules/books/exporter/epub/index.js:115
 msgid "Title page"
-msgstr "Titelseite"
+msgstr "제목 페이지"
 
 #: book/static/js/modules/books/exporter/epub/index.js:234
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "저작권"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:25
 msgid "Cover Image"
-msgstr "Vorderseitenbild"
+msgstr "표지 이미지"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:30
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "by"
-msgstr "von"
+msgstr "저자"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/index.js:169
 #: book/static/js/modules/books/templates.js:6
 #: book/static/js/modules/books/templates.js:48
 msgid "Title"
-msgstr "Titel"
+msgstr "제목"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/templates.js:6
 msgid "Author"
-msgstr "Autor"
+msgstr "저자"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Published by"
-msgstr "Publiziert von"
+msgstr "발행처"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Last Updated"
-msgstr "Zuletzt verändert"
+msgstr "최종 업데이트"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 #: book/static/js/modules/books/index.js:169
 msgid "Created"
-msgstr "Erstellt"
+msgstr "생성일"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Language"
-msgstr "Sprache"
+msgstr "언어"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 msgid "Languages"
-msgstr "Sprachen"
+msgstr "언어"
 
 #: book/static/js/modules/books/exporter/epub/templates.js:37
 #: book/static/js/modules/books/exporter/html/templates.js:29
 msgid "Created by"
-msgstr "Erstellt von"
+msgstr "만든 사람"
 
 #: book/static/js/modules/books/exporter/html/multifile.js:274
 msgid "English"
-msgstr "Deutsch"
+msgstr "한국어"
 
 #: book/static/js/modules/books/exporter/tools.js:7
 msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "Das Buch kann nicht produziert werden, da Ihnen die Zugriffsrechte für die Kapitel fehlen."
+msgstr "장에 대한 접근 권한이 없어 책을 생성할 수 없습니다."
 
 #: book/static/js/modules/books/index.js:86
 msgid "Book Overview"
-msgstr "Buchübersicht"
+msgstr "책 개요"
 
 #: book/static/js/modules/books/index.js:161
 msgid "No books available"
-msgstr "Keine Bücher verfügbar"
+msgstr "사용 가능한 책이 없습니다"
 
 #: book/static/js/modules/books/index.js:169
 msgid "Last changed"
-msgstr "Zuletzt geändert"
+msgstr "마지막 변경"
 
 #: book/static/js/modules/books/index.js:169
 msgid "Owner"
-msgstr "Inhaber"
+msgstr "소유자"
 
 #: book/static/js/modules/books/index.js:279
 msgid "Cannot load data of books."
-msgstr "Daten von Büchern können nicht geladen werden."
+msgstr "책 데이터를 불러올 수 없습니다."
 
 #: book/static/js/modules/books/menu.js:11
 msgid "Create new book"
-msgstr "Neues Buch erstellen"
+msgstr "새 책 만들기"
 
 #: book/static/js/modules/books/menu.js:105
 msgid "Delete selected"
-msgstr "Ausgewählte löschen"
+msgstr "선택 항목 삭제"
 
 #: book/static/js/modules/books/menu.js:115
 msgid "You cannot delete books of other users."
-msgstr "Sie können keine Bücher anderer Benutzer löschen."
+msgstr "다른 사용자의 책은 삭제할 수 없습니다."
 
 #: book/static/js/modules/books/menu.js:124
 msgid "Share selected"
-msgstr "Ausgewählte freigeben"
+msgstr "선택 항목 공유"
 
 #: book/static/js/modules/books/menu.js:134
 msgid "You cannot share books of other users."
-msgstr "Sie können keine Bücher anderer Benutzer freigeben."
+msgstr "다른 사용자의 책은 공유할 수 없습니다."
 
 #: book/static/js/modules/books/menu.js:144
 msgid "Copy selected"
-msgstr "Auswahl kopieren"
+msgstr "선택 항목 복사"
 
 #: book/static/js/modules/books/menu.js:152
 msgid "Export selected as Epub"
-msgstr "Ausgewählte als Epub exportieren"
+msgstr "선택 항목을 Epub으로 내보내기"
 
 #: book/static/js/modules/books/menu.js:51
 msgid "Epub export has been initiated."
-msgstr "Epub export wurde initiert."
+msgstr "Epub 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/menu.js:163
 msgid "Export selected as HTML"
-msgstr "Ausgewählte als HTML exportieren"
+msgstr "선택 항목을 HTML로 내보내기"
 
 #: book/static/js/modules/books/menu.js:57
 msgid "HTML export has been initiated."
-msgstr "HTML export wurde initiert."
+msgstr "HTML 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/menu.js:185
 msgid "Export selected as LaTeX"
-msgstr "Ausgewählte als  LaTeX exportieren"
+msgstr "선택 항목을 LaTeX으로 내보내기"
 
 #: book/static/js/modules/books/menu.js:69
 msgid "LaTeX export has been initiated."
-msgstr "Der LaTeX-Export wurde gestartet."
+msgstr "LaTeX 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/menu.js:196
 msgid "Export selected to Print/PDF"
-msgstr "Ausgewählte als Druck/PDF exportieren"
+msgstr "선택 항목을 인쇄/PDF로 내보내기"
 
 #: book/static/js/modules/books/menu.js:75
 msgid "Print has been initiated."
-msgstr "Der Druck wurde gestartet."
+msgstr "인쇄가 시작되었습니다."
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Subtitle"
-msgstr "Untertitel"
+msgstr "부제목"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Publisher"
-msgstr "Verlag"
+msgstr "출판사"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Copyright notice"
-msgstr "Copyright Notiz"
+msgstr "저작권 표시"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Comma separated keywords"
-msgstr "Kommaseparierte Keywörter"
+msgstr "쉼표로 구분된 키워드"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Keywords"
-msgstr "Keywörter"
+msgstr "키워드"
 
 #: book/static/js/modules/books/templates.js:12
 msgid "Citation style"
-msgstr "Zitatestil"
+msgstr "인용 스타일"
 
 #: book/static/js/modules/books/templates.js:12
 msgid "Select citation style for the book"
-msgstr "Wählen Sie den Zitierstil für das Buch"
+msgstr "책의 인용 스타일 선택"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "Folio (15 x 12 inch)"
-msgstr "Folio (15 x 12 inch)"
+msgstr "Folio (15 × 12인치)"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "Quarto (12 × 9 inch)"
-msgstr "Quarto (12 × 9 inch)"
+msgstr "Quarto (12 × 9인치)"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "Octavo (9 x 6 inch)"
-msgstr "Octavo (9 x 6 inch)"
+msgstr "Octavo (9 × 6인치)"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "A5"
-msgstr "DIN A5"
+msgstr "A5"
 
 #: book/static/js/modules/books/templates.js:13
 msgid "A4"
-msgstr "DIN A4"
+msgstr "A4"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Book style"
-msgstr "Buchstil"
+msgstr "책 스타일"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Select stylesheet for the book"
-msgstr "Wählen Sie das Stylesheet für das Buch aus"
+msgstr "책의 스타일시트 선택"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Paper size"
-msgstr "Papiergröße"
+msgstr "용지 크기"
 
 #: book/static/js/modules/books/templates.js:19
 msgid "Select paper size for the book"
-msgstr "Wählen Sie das Papierformat für das Buch"
+msgstr "책의 용지 크기 선택"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Cover image"
-msgstr "Vorderseitenbild"
+msgstr "표지 이미지"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Select a cover image"
-msgstr "Wählen Sie ein Titelbild"
+msgstr "표지 이미지 선택"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Select Image"
-msgstr "Bild Auswählen"
+msgstr "이미지 선택"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Remove cover image"
-msgstr "Titelbild entfernen"
+msgstr "표지 이미지 제거"
 
 #: book/static/js/modules/books/templates.js:25
 msgid "Remove Image"
-msgstr "Bild Entfernen"
+msgstr "이미지 제거"
 
 #: book/static/js/modules/books/actions.js:26
 msgid "Basic book information"
-msgstr "Grundlegende Buchinformationen"
+msgstr "기본 책 정보"
 
 #: book/static/js/modules/books/actions.js:25
 msgid "Basic info"
-msgstr "Basisangaben"
+msgstr "기본 정보"
 
 #: book/static/js/modules/books/actions.js:30
 msgid "Documents assigned as chapters"
-msgstr "Dokumente, die als Kapitel zugewiesen sind"
+msgstr "장으로 할당된 문서"
 
 #: book/static/js/modules/books/actions.js:29
 msgid "Chapters"
-msgstr "Kapitel"
+msgstr "장"
 
 #: book/static/js/modules/books/actions.js:34
 msgid "Bibliography related settings"
-msgstr "Bibliografiebezogene Einstellungen"
+msgstr "참고문헌 관련 설정"
 
 #: book/static/js/modules/books/actions.js:38
 msgid "Epub related settings"
-msgstr "Epub-bezogene Einstellungen"
+msgstr "Epub 관련 설정"
 
 #: book/static/js/modules/books/actions.js:37
 msgid "Epub"
@@ -372,279 +372,279 @@ msgstr "Epub"
 
 #: book/static/js/modules/books/actions.js:42
 msgid "Print related settings"
-msgstr "Druckeinstellungen"
+msgstr "인쇄 관련 설정"
 
 #: book/static/js/modules/books/actions.js:41
 msgid "Print/PDF"
-msgstr "Druck/PDF"
+msgstr "인쇄/PDF"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "My documents"
-msgstr "Meine Dokumente"
+msgstr "내 문서"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Book chapters"
-msgstr "Buchkapitel"
+msgstr "책 장"
 
 #: book/static/js/modules/books/templates.js:48
 msgid "Sort"
-msgstr "Sortieren"
+msgstr "정렬"
 
 #: book/static/js/modules/books/templates.js:61
 msgid "Book part"
-msgstr "Buchabschnitt"
+msgstr "책 부문"
 
 #: book/static/js/modules/books/templates.js:68
 msgid "If this chapter starts a part of the book, specify the title of that part here"
-msgstr "Wenn dieses Kapitel einen Abschnitt des Buches starte, spezifiziere den Titel dieses Abschnittes hier"
+msgstr "이 장이 책의 한 부문을 시작하는 경우, 해당 부문의 제목을 여기에 지정하세요"
 
 #: book/static/js/modules/books/templates.js:68
 msgid "Book part title"
-msgstr "Buchabschnitttitel"
+msgstr "부문 제목"
 
 #: book/static/js/plugins/menu/books.js:10
 msgid "compose books"
-msgstr "Bücher zusammenstellen"
+msgstr "책 구성"
 
 #: book/static/js/plugins/menu/books.js:12
 msgid "Books"
-msgstr "Bücher"
+msgstr "책"
 
 #: book/static/js/modules/books/menu.js:106
 msgid "Delete selected books."
-msgstr "Ausgewählte Bücher löschen."
+msgstr "선택한 책을 삭제합니다."
 
 #: book/static/js/modules/books/menu.js:125
 msgid "Share selected books."
-msgstr "Teilen Sie die ausgewählten Bücher."
+msgstr "선택한 책을 공유합니다."
 
 #: book/static/js/modules/books/menu.js:145
 msgid "Copy selected books."
-msgstr "Kopieren Sie die ausgewählten Bücher."
+msgstr "선택한 책을 복사합니다."
 
 #: book/static/js/modules/books/menu.js:153
 msgid "Export selected books as Epub."
-msgstr "Exportieren Sie die ausgewählten Bücher als Epub."
+msgstr "선택한 책을 Epub으로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:164
 msgid "Export selected books as HTML."
-msgstr "Exportieren Sie die ausgewählten Bücher als HTML."
+msgstr "선택한 책을 HTML로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:186
 msgid "Export selected books as LaTeX."
-msgstr "Exportieren Sie die ausgewählten Bücher als LaTeX."
+msgstr "선택한 책을 LaTeX으로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:197
 msgid "Export selected books to the print dialog."
-msgstr "Exportieren Sie die ausgewählten Bücher in den Druckdialog."
+msgstr "선택한 책을 인쇄 대화상자로 내보냅니다."
 
 #: book/static/js/modules/books/accessrights/index.js:19
 msgid "Cannot load book access data."
-msgstr "Buchzugriffsdaten können nicht geladen werden."
+msgstr "책 접근 데이터를 불러올 수 없습니다."
 
 #: book/static/js/modules/books/accessrights/index.js:52
 msgid "Add contact or invite new user"
-msgstr "Kontakt hinzufügen oder neuen Benutzer einladen"
+msgstr "연락처 추가 또는 새 사용자 초대"
 
 #: book/static/js/modules/books/accessrights/index.js:52
 msgid "Add contact"
-msgstr "Kontakt hinzufügen"
+msgstr "연락처 추가"
 
 #: book/static/js/modules/books/accessrights/templates.js:7
 #: book/static/js/modules/books/accessrights/templates.js:11
 msgid "Invite"
-msgstr "Einladen"
+msgstr "초대"
 
 #: book/static/js/modules/books/actions.js:45
 msgid "Sanity check"
-msgstr "Validierung"
+msgstr "무결성 검사"
 
 #: book/static/js/modules/books/actions.js:46
 msgid "Perform sanity check on book"
-msgstr "Führen Sie eine Validierung des Buches durch"
+msgstr "책 무결성 검사 수행"
 
 #: book/static/js/modules/books/actions.js:92
 msgid "Do you really want to delete the following books?"
-msgstr "Möchten Sie die folgenden Bücher wirklich löschen?"
+msgstr "다음 책을 정말 삭제하시겠습니까?"
 
 #: book/static/js/modules/books/actions.js:92
 msgid "Do you really want to delete the following book?"
-msgstr "Möchten Sie das folgende Buch wirklich löschen?"
+msgstr "다음 책을 정말 삭제하시겠습니까?"
 
 #: book/static/js/modules/books/actions.js:180
 msgid "Copy of"
-msgstr "Kopie von"
+msgstr "의 사본"
 
 #: book/static/js/modules/books/actions.js:253
 msgid "Export"
-msgstr "Export"
+msgstr "내보내기"
 
 #: book/static/js/modules/books/index.js:340
 #: book/static/js/modules/books/index.js:351
 msgid "You cannot delete books while you are offline."
-msgstr "Sie können keine Bücher löschen, während Sie offline sind."
+msgstr "오프라인 상태에서는 책을 삭제할 수 없습니다."
 
 #: book/static/js/modules/books/menu.js:20
 msgid "Create new folder"
-msgstr "Neuen Ordner erstellen"
+msgstr "새 폴더 만들기"
 
 #: book/static/js/modules/books/menu.js:33
 msgid "Search books"
-msgstr "Bücher suchen"
+msgstr "책 검색"
 
 #: book/static/js/modules/books/menu.js:82
 msgid "Move selected"
-msgstr "Ausgewählte verschieben"
+msgstr "선택 항목 이동"
 
 #: book/static/js/modules/books/menu.js:83
 msgid "Move the books that have been selected."
-msgstr "Verschieben Sie die ausgewählten Bücher."
+msgstr "선택된 책을 이동합니다."
 
 #: book/static/js/modules/books/menu.js:90
 msgid "Move books"
-msgstr "Bücher verschieben"
+msgstr "책 이동"
 
 #: book/static/js/modules/books/menu.js:90
 msgid "Move book"
-msgstr "Buch verschieben"
+msgstr "책 이동"
 
 #: book/static/js/modules/books/menu.js:94
 msgid "Book has been moved"
-msgstr "Buch wurde verschoben"
+msgstr "책이 이동되었습니다"
 
 #: book/static/js/modules/books/menu.js:95
 msgid "Could not move book"
-msgstr "Buch konnte nicht verschoben werden"
+msgstr "책을 이동할 수 없습니다"
 
 #: book/static/js/modules/books/menu.js:211
 msgid "Export as Epub"
-msgstr "Als Epub exportieren"
+msgstr "Epub으로 내보내기"
 
 #: book/static/js/modules/books/menu.js:212
 msgid "Export book as Epub."
-msgstr "Buch als Epub exportieren."
+msgstr "책을 Epub으로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:222
 msgid "Export as HTML"
-msgstr "Als HTML exportieren"
+msgstr "HTML로 내보내기"
 
 #: book/static/js/modules/books/menu.js:223
 msgid "Export book as HTML."
-msgstr "Buch als HTML exportieren."
+msgstr "책을 HTML로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:244
 msgid "Export as LaTeX"
-msgstr "Als LaTeX exportieren"
+msgstr "LaTeX으로 내보내기"
 
 #: book/static/js/modules/books/menu.js:245
 msgid "Export book as LaTeX."
-msgstr "Buch als LaTeX exportieren."
+msgstr "책을 LaTeX으로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:255
 msgid "Export to Print/PDF"
-msgstr "In Druck/PDF exportieren"
+msgstr "인쇄/PDF로 내보내기"
 
 #: book/static/js/modules/books/menu.js:256
 msgid "Export book to the print dialog."
-msgstr "Buch in den Druckdialog exportieren."
+msgstr "책을 인쇄 대화상자로 내보냅니다."
 
 #: book/static/js/modules/books/sanity_check.js:4
 msgid "Chapter"
-msgstr "Kapitel"
+msgstr "장"
 
 #: book/static/js/modules/books/sanity_check.js:8
 #: book/static/js/modules/books/sanity_check.js:18
 msgid "Unresolved tracked changes"
-msgstr "Ungelöste nachverfolgte Änderungen"
+msgstr "해결되지 않은 변경 추적"
 
 #: book/static/js/modules/books/sanity_check.js:14
 msgid "Internal links without target"
-msgstr "Interne Links ohne Ziel"
+msgstr "대상이 없는 내부 링크"
 
 #: book/static/js/modules/books/sanity_check.js:16
 msgid "Unresolved comments"
-msgstr "Ungelöste Kommentare"
+msgstr "해결되지 않은 댓글"
 
 #: book/static/js/modules/books/sanity_check.js:24
 msgid "Cross references without targets"
-msgstr "Querverweise ohne Zielvorgaben"
+msgstr "대상이 없는 상호 참조"
 
 #: book/static/js/modules/books/sanity_check.js:34
 msgid "The book contains no chapters."
-msgstr "Das Buch enthält keine Kapitel."
+msgstr "책에 장이 포함되어 있지 않습니다."
 
 #: book/static/js/modules/books/sanity_check.js:46
 #: book/static/js/modules/books/templates.js:61
 msgid "No access"
-msgstr "Kein Zugang"
+msgstr "접근 불가"
 
 #: book/static/js/modules/books/sanity_check.js:51
 msgid "No chapter title"
-msgstr "Kein Kapiteltitel"
+msgstr "장 제목 없음"
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "No issues were found:"
-msgstr "Es wurden keine Probleme gefunden:"
+msgstr "문제가 발견되지 않았습니다:"
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "The book contains chapters."
-msgstr "Das Buch enthält Kapitel."
+msgstr "책에 장이 포함되어 있습니다."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "Each chapter has a title."
-msgstr "Jedes Kapitel hat einen Titel."
+msgstr "각 장에 제목이 있습니다."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "There are no unresolved tracked changes."
-msgstr "Es gibt keine ungelösten nachverfolgten Änderungen."
+msgstr "해결되지 않은 변경 추적이 없습니다."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "There are no unresolved comments."
-msgstr "Es gibt keine ungelösten Kommentare."
+msgstr "해결되지 않은 댓글이 없습니다."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "All cross references have working targets."
-msgstr "Alle Querverweise haben Arbeitsziele."
+msgstr "모든 상호 참조에 유효한 대상이 있습니다."
 
 #: book/static/js/modules/books/sanity_check.js:60
 msgid "All internal links have working targets."
-msgstr "Alle internen Links haben funktionierende Ziele."
+msgstr "모든 내부 링크에 유효한 대상이 있습니다."
 
 #: book/static/js/modules/books/templates.js:35
 msgid "Perform sanity check"
-msgstr "Validierung durchführen"
+msgstr "무결성 검사 수행"
 
 #: book/static/js/modules/books/index.js:162
 msgid "No books found"
-msgstr "Keine Bücher gefunden"
+msgstr "책을 찾을 수 없습니다"
 
 #: book/static/js/modules/books/menu.js:63
 msgid "Unified HTML export has been initiated."
-msgstr "Der Unified HTML-Export wurde eingeleitet."
+msgstr "Unified HTML 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/menu.js:174
 msgid "Export selected as Unified HTML"
-msgstr "Ausgewählte als Unified HTML exportieren"
+msgstr "선택 항목을 Unified HTML로 내보내기"
 
 #: book/static/js/modules/books/menu.js:175
 msgid "Export selected books as Single-file HTML."
-msgstr "Exportieren Sie ausgewählte Bücher als Einzeldatei-HTML."
+msgstr "선택한 책을 단일 파일 HTML로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:233
 msgid "Export as Unified HTML"
-msgstr "Als Unified HTML exportieren"
+msgstr "Unified HTML로 내보내기"
 
 #: book/static/js/modules/books/menu.js:234
 msgid "Export book as Single-file HTML."
-msgstr "Buch als Einzeldatei-HTML exportieren."
+msgstr "책을 단일 파일 HTML로 내보냅니다."
 
 #: book/static/js/modules/books/index.js:377
 msgid "Leaving an empty folder will delete it. Do you really want to delete this folder?"
-msgstr "Wenn Sie einen leeren Ordner verlassen, wird er gelöscht. Möchten Sie diesen Ordner wirklich löschen?"
+msgstr "빈 폴더를 그대로 두면 삭제됩니다. 이 폴더를 정말 삭제하시겠습니까?"
 
 #: book/static/js/modules/books/templates.js:6
 msgid "Version"
-msgstr "Version"
+msgstr "버전"
 
 #: book/static/js/modules/books/actions.js:78
 msgid "DOCX"
@@ -652,7 +652,7 @@ msgstr "DOCX"
 
 #: book/static/js/modules/books/actions.js:79
 msgid "DOCX related settings"
-msgstr "DOCX-bezogene Einstellungen"
+msgstr "DOCX 관련 설정"
 
 #: book/static/js/modules/books/actions.js:83
 msgid "ODT"
@@ -660,131 +660,131 @@ msgstr "ODT"
 
 #: book/static/js/modules/books/actions.js:84
 msgid "ODT related settings"
-msgstr "ODT-bezogene Einstellungen"
+msgstr "ODT 관련 설정"
 
 #: book/static/js/modules/books/actions.js:330
 msgid "Import a book"
-msgstr "Ein Buch importieren"
+msgstr "책 가져오기"
 
 #: book/static/js/modules/books/actions.js:337
 msgid "Select a .fidusbook file:"
-msgstr "Wählen Sie eine .fidusbook-Datei:"
+msgstr ".fidusbook 파일 선택:"
 
 #: book/static/js/modules/books/actions.js:355
 msgid "Import"
-msgstr "Importieren"
+msgstr "가져오기"
 
 #: book/static/js/modules/books/actions.js:368
 msgid "File too large"
-msgstr "Datei zu groß"
+msgstr "파일이 너무 큽니다"
 
 #: book/static/js/modules/books/actions.js:322
 msgid "Chapters will be imported as encrypted (E2EE) documents."
-msgstr "Kapitel werden als verschlüsselte (E2EE) Dokumente importiert."
+msgstr "장은 암호화(E2EE) 문서로 가져옵니다."
 
 #: book/static/js/modules/books/actions.js:329
 msgid "Import chapters as encrypted (E2EE) documents"
-msgstr "Kapitel als verschlüsselte (E2EE) Dokumente importieren"
+msgstr "장을 암호화(E2EE) 문서로 가져오기"
 
 #: book/static/js/modules/books/actions.js:636
 msgid "This book contains encrypted chapters. A personal passphrase is required to export or run a sanity check on this book."
-msgstr "Dieses Buch enthält verschlüsselte Kapitel. Zum Exportieren oder für eine Überprüfung ist eine persönliche Passphrase erforderlich."
+msgstr "이 책에는 암호화된 장이 포함되어 있습니다. 이 책을 내보내거나 무결성 검사를 실행하려면 개인 암호가 필요합니다."
 
 #: book/static/js/modules/books/menu.js:43
 msgid "Import book from Fidusbook file"
-msgstr "Buch aus Fidusbook-Datei importieren"
+msgstr "Fidusbook 파일에서 책 가져오기"
 
 #: book/static/js/modules/books/menu.js:95
 msgid "BITS export has been initiated."
-msgstr "Der BITS-Export wurde gestartet."
+msgstr "BITS 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/menu.js:161
 msgid "DOCX export has been initiated."
-msgstr "Der DOCX-Export wurde gestartet."
+msgstr "DOCX 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/menu.js:177
 msgid "ODT export has been initiated."
-msgstr "Der ODT-Export wurde gestartet."
+msgstr "ODT 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/menu.js:304
 msgid "Export selected as BITS"
-msgstr "Ausgewählte als BITS exportieren"
+msgstr "선택 항목을 BITS로 내보내기"
 
 #: book/static/js/modules/books/menu.js:305
 msgid "Export selected books as BITS."
-msgstr "Ausgewählte Bücher als BITS exportieren."
+msgstr "선택한 책을 BITS로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:364
 msgid "Export selected as DOCX"
-msgstr "Ausgewählte als DOCX exportieren"
+msgstr "선택 항목을 DOCX로 내보내기"
 
 #: book/static/js/modules/books/menu.js:365
 msgid "Export selected books as DOCX."
-msgstr "Ausgewählte Bücher als DOCX exportieren."
+msgstr "선택한 책을 DOCX로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:377
 msgid "This book does not have a DOCX template."
-msgstr "Dieses Buch hat keine DOCX-Vorlage."
+msgstr "이 책에는 DOCX 템플릿이 없습니다."
 
 #: book/static/js/modules/books/menu.js:387
 msgid "Export selected as ODT"
-msgstr "Ausgewählte als ODT exportieren"
+msgstr "선택 항목을 ODT로 내보내기"
 
 #: book/static/js/modules/books/menu.js:388
 msgid "Export selected books as ODT."
-msgstr "Ausgewählte Bücher als ODT exportieren."
+msgstr "선택한 책을 ODT로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:400
 msgid "This book does not have an ODT template."
-msgstr "Dieses Buch hat keine ODT-Vorlage."
+msgstr "이 책에는 ODT 템플릿이 없습니다."
 
 #: book/static/js/modules/books/menu.js:422
 msgid "Export selected as Fidusbook"
-msgstr "Ausgewählte als Fidusbook exportieren"
+msgstr "선택 항목을 Fidusbook으로 내보내기"
 
 #: book/static/js/modules/books/menu.js:423
 msgid "Export selected books as .fidusbook files (for moving to another server)."
-msgstr "Ausgewählte Bücher als .fidusbook-Dateien exportieren (zum Verschieben auf einen anderen Server)."
+msgstr "선택한 책을 .fidusbook 파일로 내보내기 (다른 서버로 이동)."
 
 #: book/static/js/modules/books/menu.js:442
 msgid "Export as BITS"
-msgstr "Als BITS exportieren"
+msgstr "BITS로 내보내기"
 
 #: book/static/js/modules/books/menu.js:443
 msgid "Export book as Book Interchange Tag Set."
-msgstr "Buch als Book Interchange Tag Set exportieren."
+msgstr "책을 Book Interchange Tag Set으로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:482
 msgid "Export as DOCX"
-msgstr "Als DOCX exportieren"
+msgstr "DOCX로 내보내기"
 
 #: book/static/js/modules/books/menu.js:483
 msgid "Export book as DOCX."
-msgstr "Buch als DOCX exportieren."
+msgstr "책을 DOCX로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:492
 msgid "Export as ODT"
-msgstr "Als ODT exportieren"
+msgstr "ODT로 내보내기"
 
 #: book/static/js/modules/books/menu.js:493
 msgid "Export book as ODT."
-msgstr "Buch als ODT exportieren."
+msgstr "책을 ODT로 내보냅니다."
 
 #: book/static/js/modules/books/menu.js:508
 msgid "Export as Fidusbook"
-msgstr "Als Fidusbook exportieren"
+msgstr "Fidusbook으로 내보내기"
 
 #: book/static/js/modules/books/menu.js:509
 msgid "Export book as a .fidusbook file (for moving to another server)."
-msgstr "Buch als .fidusbook-Datei exportieren (zum Verschieben auf einen anderen Server)."
+msgstr "책을 .fidusbook 파일로 내보내기 (다른 서버로 이동)."
 
 #: book/static/js/modules/books/exporter/native/index.js:50
 msgid "Fidusbook export has been initiated."
-msgstr "Der Fidusbook-Export wurde gestartet."
+msgstr "Fidusbook 내보내기가 시작되었습니다."
 
 #: book/static/js/modules/books/exporter/native/index.js:56
 msgid "Fidusbook export failed."
-msgstr "Der Fidusbook-Export ist fehlgeschlagen."
+msgstr "Fidusbook 내보내기에 실패했습니다."
 
 #: book/static/js/modules/books/exporter/native/index.js:29
 #: book/static/js/modules/books/exporter/bits/index.js:30
@@ -793,54 +793,37 @@ msgstr "Der Fidusbook-Export ist fehlgeschlagen."
 #: book/static/js/modules/books/exporter/html/index.js:61
 #: book/static/js/modules/books/exporter/odt/index.js:39
 msgid "Book cannot be exported due to lack of chapters."
-msgstr "Das Buch kann aufgrund fehlender Kapitel nicht exportiert werden."
+msgstr "장이 없어 책을 내보낼 수 없습니다."
 
 #: book/static/js/modules/books/exporter/tools.js:40
 msgid "Wrong passphrase. Please try again."
-msgstr "Falsche Passphrase. Bitte versuchen Sie es erneut."
+msgstr "암호가 잘못되었습니다. 다시 시도해 주세요."
 
 #: book/static/js/modules/books/exporter/tools.js:97
 msgid "A personal passphrase is required to work with books that contain encrypted chapters. Please set up or unlock your personal passphrase in your profile settings."
-msgstr "Eine persönliche Passphrase ist erforderlich, um mit Büchern zu arbeiten, die verschlüsselte Kapitel enthalten. Bitte richten Sie eine Passphrase ein oder entsperren Sie diese in Ihren Profileinstellungen."
+msgstr "암호화된 장이 포함된 책을 작업하려면 개인 암호가 필요합니다. 프로필 설정에서 개인 암호를 설정하거나 잠금을 해제해 주세요."
 
 #: book/static/js/modules/books/exporter/tools.js:114
 msgid "No encryption key found for chapter:"
-msgstr "Kein Verschlüsselungsschlüssel für Kapitel gefunden:"
+msgstr "장에 대한 암호화 키를 찾을 수 없습니다:"
 
 #: book/static/js/modules/books/exporter/tools.js:114
 msgid "The key may not have been shared with you."
-msgstr "Der Schlüssel wurde möglicherweise nicht mit Ihnen geteilt."
+msgstr "키가 사용자와 공유되지 않았을 수 있습니다."
 
 #: book/static/js/modules/books/exporter/tools.js:270
 msgid "Could not decrypt chapter:"
-msgstr "Kapitel konnte nicht entschlüsselt werden:"
+msgstr "장을 복호화할 수 없습니다:"
 
 #: book/static/js/modules/books/exporter/tools.js:270
 msgid "The document may have been re-encrypted with a different password."
-msgstr "Das Dokument wurde möglicherweise mit einem anderen Passwort neu verschlüsselt."
+msgstr "문서가 다른 암호로 다시 암호화되었을 수 있습니다."
 
 #: book/static/js/modules/books/importer/native/index.js:60
 #: book/static/js/modules/books/importer/native/index.js:84
 msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "Die hochgeladene Datei scheint keine Fidusbook-Datei zu sein."
+msgstr "업로드된 파일이 Fidusbook 파일이 아닌 것 같습니다."
 
 #: book/static/js/modules/books/importer/native/index.js:134
 msgid "The Fidusbook file version is not supported by this server: "
-msgstr "Die Fidusbook-Dateiversion wird von diesem Server nicht unterstützt: "
-
-#: book/static/js/modules/books/importer/native/index.js:193
-msgid "Fidusbook file is missing data for chapter "
-msgstr "Fidusbook-Datei enthält keine Daten für Kapitel "
-
-#: book/static/js/modules/books/importer/native/index.js:251
-msgid "Could not import chapter "
-msgstr "Kapitel konnte nicht importiert werden "
-
-#: book/static/js/modules/books/importer/native/index.js:301
-msgid "successfully imported."
-msgstr "erfolgreich importiert."
-
-#: book/static/js/modules/books/importer/native/index.js:420
-msgid "Could not create book record."
-msgstr "Buchdatensatz konnte nicht erstellt werden."
-
+msgstr "이 서버에서 지원하지 않는 Fidusbook 파일 버전입니다: "
