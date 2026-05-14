@@ -51,6 +51,15 @@ export const epubBookTitlepageTemplate = ({book, shortLang}) =>
                     ? `<h4 class="bookversion">${escapeText(book.metadata.version)}</h4>`
                     : ""
             }
+            ${
+                book.metadata.series_title
+                    ? `<p class="bookseries">${escapeText(book.metadata.series_title)}${
+                          book.metadata.series_position
+                              ? ` \u2013 ${bookTerm("Series position", book.settings.language)} ${escapeText(book.metadata.series_position)}`
+                              : ""
+                      }</p>`
+                    : ""
+            }
         </div>
     </body>
 </html>`
@@ -89,6 +98,30 @@ export const epubBookCopyrightTemplate = ({
                 ${
                     book.metadata.publisher
                         ? `<p>${bookTerm("Published by", book.settings.language)}: ${escapeText(book.metadata.publisher)}</p>`
+                        : ""
+                }
+                ${
+                    book.metadata.isbn
+                        ? `<p>${bookTerm("ISBN", book.settings.language)}: ${escapeText(book.metadata.isbn)}</p>`
+                        : ""
+                }
+                ${
+                    book.metadata.publication_date
+                        ? `<p>${bookTerm("Publication date", book.settings.language)}: ${escapeText(book.metadata.publication_date)}</p>`
+                        : ""
+                }
+                ${
+                    book.metadata.series_title
+                        ? `<p>${bookTerm("Series", book.settings.language)}: ${escapeText(book.metadata.series_title)}${
+                              book.metadata.series_position
+                                  ? ` (${bookTerm("Series position", book.settings.language)}: ${escapeText(book.metadata.series_position)})`
+                                  : ""
+                          }</p>`
+                        : ""
+                }
+                ${
+                    book.metadata.description
+                        ? `<p class="book-description">${escapeText(book.metadata.description).replace(/\n/g, "<br>")}</p>`
                         : ""
                 }
                 <p>${bookTerm("Last updated", book.settings.language)}: ${localizeDate(
@@ -134,7 +167,7 @@ export const epubBookOpfTemplate = ({
         }</dc:creator>
         <dc:language>${language}</dc:language>
         <meta property="dcterms:modified">${modified}</meta>
-        <dc:date>${date}</dc:date>
+        <dc:date>${book.metadata.publication_date || date}</dc:date>
         ${
             book.metadata.copyright
                 ? `<dc:rights>${escapeText(book.metadata.copyright)}</dc:rights>`
@@ -143,6 +176,27 @@ export const epubBookOpfTemplate = ({
         ${
             book.metadata.publisher
                 ? `<dc:publisher>${escapeText(book.metadata.publisher)}</dc:publisher>`
+                : ""
+        }
+        ${
+            book.metadata.description
+                ? `<dc:description>${escapeText(book.metadata.description)}</dc:description>`
+                : ""
+        }
+        ${
+            book.metadata.isbn
+                ? `<dc:identifier id="isbn">${escapeText(book.metadata.isbn)}</dc:identifier>`
+                : ""
+        }
+        ${
+            book.metadata.series_title
+                ? `<meta property="belongs-to-collection" id="series01">${escapeText(book.metadata.series_title)}</meta>
+        <meta refines="#series01" property="collection-type">series</meta>
+        ${
+            book.metadata.series_position
+                ? `<meta refines="#series01" property="group-position">${escapeText(book.metadata.series_position)}</meta>`
+                : ""
+        }`
                 : ""
         }
         ${

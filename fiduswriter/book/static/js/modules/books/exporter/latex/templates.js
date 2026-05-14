@@ -5,9 +5,20 @@ ${preamble}
 \\usepackage{docmute}
 \\title{${book.title}}
 \\author{${book.metadata.author}}
-${book.metadata.version?.length ? `\\date{${book.metadata.version}}` : ""}
+${
+    book.metadata.publication_date?.length || book.metadata.version?.length
+        ? `\\date{${book.metadata.publication_date || book.metadata.version}}`
+        : ""
+}
 \\begin{document}
 \\maketitle
+${
+    book.metadata.description?.length
+        ? `\\chapter*{Abstract}
+${book.metadata.description}
+`
+        : ""
+}
 \\def\\title#1{\\chapter{#1}}
 \\tableofcontents
 ${book.chapters

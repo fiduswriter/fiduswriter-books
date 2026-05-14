@@ -39,7 +39,12 @@ function emptyMetadata() {
         version: "",
         publisher: "",
         copyright: "",
-        keywords: ""
+        keywords: "",
+        description: "",
+        isbn: "",
+        publication_date: "",
+        series_title: "",
+        series_position: ""
     }
 }
 
@@ -232,6 +237,19 @@ export class BookActions {
         ).value
         book.metadata.keywords = document.getElementById(
             "book-metadata-keywords"
+        ).value
+        book.metadata.description = document.getElementById(
+            "book-metadata-description"
+        ).value
+        book.metadata.isbn = document.getElementById("book-metadata-isbn").value
+        book.metadata.publication_date = document.getElementById(
+            "book-metadata-publication-date"
+        ).value
+        book.metadata.series_title = document.getElementById(
+            "book-metadata-series-title"
+        ).value
+        book.metadata.series_position = document.getElementById(
+            "book-metadata-series-position"
         ).value
         book.settings.language = document.getElementById(
             "book-settings-language"

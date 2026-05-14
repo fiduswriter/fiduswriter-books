@@ -147,6 +147,63 @@ export const bookBasicInfoTemplate = ({book}) =>
                     >
                 </td>
             </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Description")}</h4>
+                </th>
+                <td>
+                    <textarea class="entry-form" id="book-metadata-description" rows="4"
+                            ${book.rights === "read" ? 'disabled="disabled"' : ""}
+                    >${escapeText(book.metadata.description)}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("ISBN")}</h4>
+                </th>
+                <td>
+                    <input class="entry-form" type="text" id="book-metadata-isbn"
+                            value="${escapeText(book.metadata.isbn)}"
+                            ${book.rights === "read" ? 'disabled="disabled"' : ""}
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title" title="${gettext("E.g.: 2024 or January 2024")}">
+                        ${gettext("Publication date")}
+                    </h4>
+                </th>
+                <td>
+                    <input class="entry-form" type="text" id="book-metadata-publication-date"
+                            value="${escapeText(book.metadata.publication_date)}"
+                            placeholder="${gettext("E.g.: 2024")}"
+                            ${book.rights === "read" ? 'disabled="disabled"' : ""}
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Series title")}</h4>
+                </th>
+                <td>
+                    <input class="entry-form" type="text" id="book-metadata-series-title"
+                            value="${escapeText(book.metadata.series_title)}"
+                            ${book.rights === "read" ? 'disabled="disabled"' : ""}
+                    >
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h4 class="fw-tablerow-title">${gettext("Series position")}</h4>
+                </th>
+                <td>
+                    <input class="entry-form" type="text" id="book-metadata-series-position"
+                            value="${escapeText(book.metadata.series_position)}"
+                            ${book.rights === "read" ? 'disabled="disabled"' : ""}
+                    >
+                </td>
+            </tr>
         </tbody>
     </table>`
 

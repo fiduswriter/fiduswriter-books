@@ -74,7 +74,12 @@ export class ODTBookExporterRender extends ODTExporterRender {
         copyright,
         author,
         keywords,
-        language
+        language,
+        description,
+        isbn,
+        publication_date,
+        series_title,
+        series_position
     }) {
         const tags = [
             {title: "book.title", content: title},
@@ -84,7 +89,12 @@ export class ODTBookExporterRender extends ODTExporterRender {
             {title: "book.copyright", content: copyright},
             {title: "book.author", content: author},
             {title: "book.keywords", content: keywords},
-            {title: "book.language", content: language}
+            {title: "book.language", content: language},
+            {title: "book.description", content: description},
+            {title: "book.isbn", content: isbn},
+            {title: "book.publication_date", content: publication_date},
+            {title: "book.series_title", content: series_title},
+            {title: "book.series_position", content: series_position}
         ]
         const usedTags = [],
             ambles = [this.preamble, this.postamble]

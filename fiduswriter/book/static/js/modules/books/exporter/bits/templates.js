@@ -21,6 +21,13 @@ export const bitsTemplate = (book, chapters) => {
         }
         <content-language>${book.settings.language.split("-")[0]}</content-language>
         ${
+            book.metadata.description.length
+                ? `<abstract>
+    <p>${escapeText(book.metadata.description)}</p>
+</abstract>`
+                : ""
+        }
+        ${
             book.metadata.author.length
                 ? `<contrib-group>
             <contrib contrib-type="author">
@@ -38,10 +45,34 @@ export const bitsTemplate = (book, chapters) => {
             <day>${updated.getDate()}</day>
         </pub-date>
         ${
+            book.metadata.publication_date.length
+                ? `<pub-date date-type="pub" publication-format="electronic">
+    <string-date>${escapeText(book.metadata.publication_date)}</string-date>
+</pub-date>`
+                : ""
+        }
+        ${
+            book.metadata.isbn.length
+                ? `<isbn>${escapeText(book.metadata.isbn)}</isbn>`
+                : ""
+        }
+        ${
             book.metadata.publisher.length
                 ? `<publisher>
                 <publisher-name>${escapeText(book.metadata.publisher)}</publisher-name>
             </publisher>`
+                : ""
+        }
+        ${
+            book.metadata.series_title.length
+                ? `<series>
+    <series-title>${escapeText(book.metadata.series_title)}</series-title>
+    ${
+        book.metadata.series_position.length
+            ? `<series-text>${escapeText(book.metadata.series_position)}</series-text>`
+            : ""
+    }
+</series>`
                 : ""
         }
         ${

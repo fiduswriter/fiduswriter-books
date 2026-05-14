@@ -97,6 +97,15 @@ export const htmlBookIndexBodyTemplate = ({
                   )}</h4>`
                 : ""
         }
+        ${
+            book.metadata.series_title?.length
+                ? `<p class="bookseries">${escapeText(book.metadata.series_title)}${
+                      book.metadata.series_position?.length
+                          ? ` \u2013 ${bookTerm("Series position", book.settings.language)} ${escapeText(book.metadata.series_position)}`
+                          : ""
+                  }</p>`
+                : ""
+        }
     </div>
     <div class="copyrightpage frontmatter">
         ${
@@ -105,6 +114,30 @@ export const htmlBookIndexBodyTemplate = ({
                       "Published by",
                       book.settings.language
                   )}: ${escapeText(book.metadata.publisher)}</p>`
+                : ""
+        }
+        ${
+            book.metadata.isbn?.length
+                ? `<p>${bookTerm("ISBN", book.settings.language)}: ${escapeText(book.metadata.isbn)}</p>`
+                : ""
+        }
+        ${
+            book.metadata.publication_date?.length
+                ? `<p>${bookTerm("Publication date", book.settings.language)}: ${escapeText(book.metadata.publication_date)}</p>`
+                : ""
+        }
+        ${
+            book.metadata.series_title?.length
+                ? `<p>${bookTerm("Series", book.settings.language)}: ${escapeText(book.metadata.series_title)}${
+                      book.metadata.series_position?.length
+                          ? ` (${bookTerm("Series position", book.settings.language)}: ${escapeText(book.metadata.series_position)})`
+                          : ""
+                  }</p>`
+                : ""
+        }
+        ${
+            book.metadata.description?.length
+                ? `<p class="book-description">${escapeText(book.metadata.description).replace(/\n/g, "<br>")}</p>`
                 : ""
         }
         <p>${bookTerm("Last updated", book.settings.language)}: ${localizeDate(
@@ -141,6 +174,11 @@ export const htmlBookIndexTemplate = ({
 <html lang="${book.settings.language.split("-")[0]}">
     <head>
         <meta charset="utf-8"></meta>
+        ${
+            book.metadata.description
+                ? `<meta name="description" content="${escapeText(book.metadata.description.replace(/\n/g, " "))}">`
+                : ""
+        }
         <title>${escapeText(book.title)}</title>
         <link type="text/css" rel="stylesheet" href="css/book.css" />
         ${styleSheets
