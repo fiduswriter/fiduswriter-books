@@ -54,8 +54,7 @@ export class EpubBookExporter {
         await getMissingChapterData(this.book, this.docList, this.schema)
 
         this.addBookStyle()
-        await this.exportContents()
-        return true
+        return await this.exportContents()
     }
 
     addBookStyle() {

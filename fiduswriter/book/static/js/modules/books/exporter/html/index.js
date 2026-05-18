@@ -72,9 +72,7 @@ export class HTMLBookExporter {
             this.styleSheets.map(async sheet => await this.loadStyle(sheet))
         )
 
-        await this.exportChapters()
-
-        return true
+        return await this.exportChapters()
     }
 
     async loadStyle(sheet) {
