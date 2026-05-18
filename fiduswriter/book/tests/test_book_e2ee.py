@@ -82,6 +82,18 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
     def tearDown(self):
         self.driver.execute_script("window.localStorage.clear()")
         self.driver.execute_script("window.sessionStorage.clear()")
+        # Clear the books IndexedDB cache so stale document lists from
+        # previous tests do not leak into the file selector.
+        self.driver.execute_async_script(
+            """
+            const done = arguments[0];
+            if (window.theApp && theApp.indexedDB) {
+                theApp.indexedDB.clearData("books_data").then(done).catch(done);
+            } else {
+                done();
+            }
+            """
+        )
         super().tearDown()
         if "coverage" in sys.modules.keys():
             time.sleep(self.wait_time / 3)
@@ -347,19 +359,64 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
             By.CSS_SELECTOR, 'a[href="#optionTab1"]'
         ).click()
 
-        # Select the first document in the list and add it as a chapter.
+        # Wait for the document list to be fully rendered before interacting.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.visibility_of_element_located(
+                (By.CSS_SELECTOR, "#book-document-list .file")
+            )
+        )
+
+        # Select the first document in the list.
         self.driver.find_element(
             By.CSS_SELECTOR, "#book-document-list .file .file-name"
         ).click()
-        self.driver.find_element(By.ID, "add-chapter").click()
 
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
+        # Ensure the document is actually marked as selected.
+        # We use a locator rather than a captured element reference because
+        # the file selector re-renders on selection, which would stale the
+        # original handle.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located(
+                (
+                    By.CSS_SELECTOR,
+                    "#book-document-list .file .file-name.selected",
+                )
+            )
+        )
+
+        # Wait for the add-chapter button to be clickable, then click it.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable((By.ID, "add-chapter"))
         ).click()
 
+        # Wait for the chapter row to appear in the chapter list.
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".book-title"))
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "#book-chapter-list tr")
+            )
+        )
+
+        # Wait for the Submit button to be clickable before clicking.
+        submit_btn = WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
+                )
+            )
+        )
+        submit_btn.click()
+
+        # Wait for the dialog to close before looking for the book list.
+        # Detecting dialog closure first is more reliable than waiting for a
+        # list element that may be obscured by a lingering modal.
+        WebDriverWait(self.driver, self.wait_time * 2).until(
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ui-dialog"))
+        )
+        # The table re-renders after a save; use a fresh wait so we do not
+        # capture a stale element.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, ".book-title"))
         )
 
     # ---------------------------------------------------------------------- #
@@ -401,7 +458,24 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR, "#book-document-list .file .file-name"
         ).click()
-        self.driver.find_element(By.ID, "add-chapter").click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located(
+                (
+                    By.CSS_SELECTOR,
+                    "#book-document-list .file .file-name.selected",
+                )
+            )
+        )
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable((By.ID, "add-chapter"))
+        ).click()
+
+        # Wait for the chapter row to render before looking for the lock icon.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "#book-chapter-list tr")
+            )
+        )
 
         # A lock icon must appear on the chapter row.
         lock_icon = WebDriverWait(self.driver, self.wait_time).until(
@@ -420,12 +494,19 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.assertIn("encrypted chapters", notice.text.lower())
 
         # Submit the book so the dialog is cleanly dismissed.
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
-        ).click()
-        WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".book-title"))
+        submit_btn = WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
+                )
+            )
+        )
+        submit_btn.click()
+
+        # Wait for the book to appear in the overview list.
+        WebDriverWait(self.driver, self.wait_time * 2).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, ".book-title"))
         )
 
     def test_book_sanity_check_with_e2ee_chapter_and_image(self):
@@ -475,7 +556,8 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         self._insert_image_in_editor()
 
         # Allow the encrypted snapshot to be committed to the server.
-        time.sleep(3)
+        # The snapshot with an image is larger, so give it extra time.
+        time.sleep(5)
 
         self.driver.find_element(By.ID, "close-document-top").click()
         WebDriverWait(self.driver, self.wait_time).until(
@@ -488,7 +570,9 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         self._create_book_with_first_chapter("Image E2EE Book")
 
         # ---- Open the book dialog and run the sanity check -------------------
-        self.driver.find_element(By.CSS_SELECTOR, ".book-title").click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, ".book-title"))
+        ).click()
 
         # Navigate to the Sanity Check tab (index 7 in the dialog template).
         self.driver.find_element(
@@ -662,7 +746,7 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.execute_script("window.sessionStorage.clear()")
         self.driver.refresh()
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".book-title"))
+            EC.visibility_of_element_located((By.CSS_SELECTOR, ".book-title"))
         )
 
         # Open the book dialog.
