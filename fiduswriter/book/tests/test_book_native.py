@@ -27,11 +27,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-# Use the patched variant for E2EE test classes that need @override_settings.
-from channels.testing import ChannelsLiveServerTestCase
-from testing.channels_patch import (
-    ChannelsLiveServerTestCase as ChannelsLiveServerTestCasePatched,
-)
+from testing.live_server import ChannelsLiveServerTestCase
+
 from testing.selenium_helper import SeleniumHelper
 
 
@@ -750,7 +747,7 @@ def _run_e2ee_import_test(self, *, tick_checkbox):
 
 @override_settings(E2EE_MODE="enabled")
 class BookNativeE2EEEnabledTest(
-    BookNativeBase, SeleniumHelper, ChannelsLiveServerTestCasePatched
+    BookNativeBase, SeleniumHelper, ChannelsLiveServerTestCase
 ):
     fixtures = [
         "initial_documenttemplates.json",
@@ -800,7 +797,7 @@ class BookNativeE2EEEnabledTest(
 
 @override_settings(E2EE_MODE="required")
 class BookNativeE2EERequiredTest(
-    BookNativeBase, SeleniumHelper, ChannelsLiveServerTestCasePatched
+    BookNativeBase, SeleniumHelper, ChannelsLiveServerTestCase
 ):
     fixtures = [
         "initial_documenttemplates.json",
