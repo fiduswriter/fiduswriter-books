@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-14 11:32+0000\n"
+"POT-Creation-Date: 2026-06-02 17:00+0000\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,13 +72,13 @@ msgid "Collaborators"
 msgstr "Соавторы"
 
 #: book/static/js/modules/books/accessrights/templates.js:85
-#: book/static/js/modules/books/index.js:215
+#: book/static/js/modules/books/index.js:224
 msgid "Rights"
 msgstr "Права"
 
 #: book/static/js/modules/books/accessrights/templates.js:86
 #: book/static/js/modules/books/actions.js:143
-#: book/static/js/modules/books/index.js:610
+#: book/static/js/modules/books/index.js:619
 msgid "Delete"
 msgstr "Удалить"
 
@@ -156,7 +156,7 @@ msgid "Book has been deleted"
 msgstr "Книга удалена"
 
 #: book/static/js/modules/books/actions.js:155
-#: book/static/js/modules/books/index.js:600
+#: book/static/js/modules/books/index.js:609
 msgid "Confirm deletion"
 msgstr "Подтвердите удаление"
 
@@ -313,46 +313,46 @@ msgstr "успешно импортировано."
 msgid "Could not create book record."
 msgstr "Не удалось создать запись книги."
 
-#: book/static/js/modules/books/index.js:107
+#: book/static/js/modules/books/index.js:116
 msgid "Book Overview"
 msgstr "Обзор книг"
 
-#: book/static/js/modules/books/index.js:200
+#: book/static/js/modules/books/index.js:209
 msgid "No books available"
 msgstr "Нет доступных книг"
 
-#: book/static/js/modules/books/index.js:201
+#: book/static/js/modules/books/index.js:210
 msgid "No books found"
 msgstr "Книги не найдены"
 
-#: book/static/js/modules/books/index.js:211
+#: book/static/js/modules/books/index.js:220
 #: book/static/js/modules/books/templates.js:10
 #: book/static/js/modules/books/templates.js:554
 msgid "Title"
 msgstr "Название"
 
-#: book/static/js/modules/books/index.js:212
+#: book/static/js/modules/books/index.js:221
 msgid "Created"
 msgstr "Создано"
 
-#: book/static/js/modules/books/index.js:213
+#: book/static/js/modules/books/index.js:222
 msgid "Last changed"
 msgstr "Последнее изменение"
 
-#: book/static/js/modules/books/index.js:214
+#: book/static/js/modules/books/index.js:223
 msgid "Owner"
 msgstr "Владелец"
 
-#: book/static/js/modules/books/index.js:436
+#: book/static/js/modules/books/index.js:445
 msgid "Cannot load data of books."
 msgstr "Не удается загрузить данные книг."
 
-#: book/static/js/modules/books/index.js:554
-#: book/static/js/modules/books/index.js:568
+#: book/static/js/modules/books/index.js:563
+#: book/static/js/modules/books/index.js:577
 msgid "You cannot delete books while you are offline."
 msgstr "Вы не можете удалять книги в автономном режиме."
 
-#: book/static/js/modules/books/index.js:603
+#: book/static/js/modules/books/index.js:612
 msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
