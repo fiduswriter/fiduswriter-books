@@ -40,7 +40,7 @@ export class BookOverview {
         this.schema = docSchema
         this.mod = {}
         this.bookList = []
-        this.styles = false
+        this.styles = []
         this.documentList = []
         this.contacts = []
         this.citationStyles = []
@@ -86,7 +86,7 @@ export class BookOverview {
         this.plugins = {}
 
         plugins.forEach(([app, plugin]) => {
-            if (!this.settings.APPS.includes(app)) {
+            if (!this.app.settings.APPS.includes(app)) {
                 return
             }
             Object.values(plugin).forEach(pluginExport => {
