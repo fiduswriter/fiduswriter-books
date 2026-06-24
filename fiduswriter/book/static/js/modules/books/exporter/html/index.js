@@ -1,10 +1,10 @@
+import {HTMLExporter} from "@fiduswriter/document/exporter/html/index"
+import {createSlug} from "@fiduswriter/document/exporter/tools/file"
+import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
+import {LANGUAGES} from "@fiduswriter/document/schema/const"
 import download from "downloadjs"
 import pretty from "pretty"
 import {addAlert, get} from "../../../common"
-import {HTMLExporter} from "../../../exporter/html/index"
-import {createSlug} from "../../../exporter/tools/file"
-import {ZipFileCreator} from "../../../exporter/tools/zip"
-import {LANGUAGES} from "../../../schema/const"
 import {getMissingChapterData} from "../tools"
 import {
     htmlBookChapterTemplate,

@@ -1,6 +1,6 @@
+import {LANGUAGES} from "@fiduswriter/document/schema/const"
 import {escapeText, localizeDate} from "../../../common"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
-import {LANGUAGES} from "../../../schema/const"
 import {bookTerm} from "../../i18n"
 
 export const containerTemplate = () => `<?xml version="1.0" encoding="UTF-8"?>

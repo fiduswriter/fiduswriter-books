@@ -1,11 +1,11 @@
+import {HTMLExporterConvert} from "@fiduswriter/document/exporter/html/convert"
+import {htmlExportTemplate} from "@fiduswriter/document/exporter/html/templates"
+import {removeHidden} from "@fiduswriter/document/exporter/tools/doc_content"
+import {createSlug} from "@fiduswriter/document/exporter/tools/file"
+import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
 import download from "downloadjs"
 import pretty from "pretty"
 import {addAlert, get} from "../../../common"
-import {HTMLExporterConvert} from "../../../exporter/html/convert"
-import {htmlExportTemplate} from "../../../exporter/html/templates"
-import {removeHidden} from "../../../exporter/tools/doc_content"
-import {createSlug} from "../../../exporter/tools/file"
-import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {getMissingChapterData} from "../tools"
 import {
     containerTemplate,

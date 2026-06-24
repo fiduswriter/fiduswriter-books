@@ -2,6 +2,7 @@ import deepEqual from "fast-deep-equal"
 import {DataTable} from "simple-datatables"
 import {keyName} from "w3c-keyname"
 
+import {docSchema} from "@fiduswriter/document/schema/document/index"
 import {plugins} from "../../plugins/books_overview"
 import {
     DatatableBulk,
@@ -23,7 +24,6 @@ import {
 import {FeedbackTab} from "../feedback"
 import {ImageDB} from "../images/database"
 import {SiteMenu} from "../menu"
-import {docSchema} from "../schema/document"
 import {BookAccessRightsDialog} from "./accessrights"
 import {BookActions} from "./actions"
 import {bulkMenuModel, menuModel} from "./menu"

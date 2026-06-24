@@ -1,20 +1,23 @@
 import download from "downloadjs"
 
+import {
+    fixTables,
+    removeHidden
+} from "@fiduswriter/document/exporter/tools/doc_content"
+import {createSlug} from "@fiduswriter/document/exporter/tools/file"
+import {XmlZip} from "@fiduswriter/document/exporter/tools/xml_zip"
 import {addAlert} from "../../../common"
-import {fixTables, removeHidden} from "../../../exporter/tools/doc_content"
-import {createSlug} from "../../../exporter/tools/file"
-import {XmlZip} from "../../../exporter/tools/xml_zip"
 import {getMissingChapterData} from "../tools"
 
-import {ODTExporterCitations} from "../../../exporter/odt/citations"
-import {ODTExporterImages} from "../../../exporter/odt/images"
+import {ODTExporterCitations} from "@fiduswriter/document/exporter/odt/citations"
+import {ODTExporterImages} from "@fiduswriter/document/exporter/odt/images"
 
-import {ODTExporterFootnotes} from "../../../exporter/odt/footnotes"
-import {ODTExporterMath} from "../../../exporter/odt/math"
-import {ODTExporterMetadata} from "../../../exporter/odt/metadata"
-import {ODTExporterRichtext} from "../../../exporter/odt/richtext"
-import {ODTExporterStyles} from "../../../exporter/odt/styles"
-import {ODTExporterTracks} from "../../../exporter/odt/track"
+import {ODTExporterFootnotes} from "@fiduswriter/document/exporter/odt/footnotes"
+import {ODTExporterMath} from "@fiduswriter/document/exporter/odt/math"
+import {ODTExporterMetadata} from "@fiduswriter/document/exporter/odt/metadata"
+import {ODTExporterRichtext} from "@fiduswriter/document/exporter/odt/richtext"
+import {ODTExporterStyles} from "@fiduswriter/document/exporter/odt/styles"
+import {ODTExporterTracks} from "@fiduswriter/document/exporter/odt/track"
 
 import {ODTBookExporterRender} from "./render"
 

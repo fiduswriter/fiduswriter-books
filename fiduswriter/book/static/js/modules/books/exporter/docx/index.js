@@ -1,22 +1,25 @@
 import download from "downloadjs"
 
+import {
+    fixTables,
+    removeHidden
+} from "@fiduswriter/document/exporter/tools/doc_content"
+import {createSlug} from "@fiduswriter/document/exporter/tools/file"
+import {XmlZip} from "@fiduswriter/document/exporter/tools/xml_zip"
 import {addAlert} from "../../../common"
-import {fixTables, removeHidden} from "../../../exporter/tools/doc_content"
-import {createSlug} from "../../../exporter/tools/file"
-import {XmlZip} from "../../../exporter/tools/xml_zip"
 import {getMissingChapterData} from "../tools"
 
-import {DOCXExporterCitations} from "../../../exporter/docx/citations"
-import {DOCXExporterComments} from "../../../exporter/docx/comments"
-import {DOCXExporterFootnotes} from "../../../exporter/docx/footnotes"
-import {DOCXExporterImages} from "../../../exporter/docx/images"
-import {DOCXExporterLists} from "../../../exporter/docx/lists"
-import {DOCXExporterMath} from "../../../exporter/docx/math"
-import {DOCXExporterMetadata} from "../../../exporter/docx/metadata"
-import {DOCXExporterRels} from "../../../exporter/docx/rels"
-import {DOCXExporterRichtext} from "../../../exporter/docx/richtext"
-import {DOCXExporterTables} from "../../../exporter/docx/tables"
-import {moveFootnoteComments} from "../../../exporter/docx/tools"
+import {DOCXExporterCitations} from "@fiduswriter/document/exporter/docx/citations"
+import {DOCXExporterComments} from "@fiduswriter/document/exporter/docx/comments"
+import {DOCXExporterFootnotes} from "@fiduswriter/document/exporter/docx/footnotes"
+import {DOCXExporterImages} from "@fiduswriter/document/exporter/docx/images"
+import {DOCXExporterLists} from "@fiduswriter/document/exporter/docx/lists"
+import {DOCXExporterMath} from "@fiduswriter/document/exporter/docx/math"
+import {DOCXExporterMetadata} from "@fiduswriter/document/exporter/docx/metadata"
+import {DOCXExporterRels} from "@fiduswriter/document/exporter/docx/rels"
+import {DOCXExporterRichtext} from "@fiduswriter/document/exporter/docx/richtext"
+import {DOCXExporterTables} from "@fiduswriter/document/exporter/docx/tables"
+import {moveFootnoteComments} from "@fiduswriter/document/exporter/docx/tools"
 
 import {DOCXBookExporterRender} from "./render"
 

@@ -1,11 +1,11 @@
 import download from "downloadjs"
 import pretty from "pretty"
 
+import {JATSExporterConverter} from "@fiduswriter/document/exporter/jats/convert"
+import {darManifest} from "@fiduswriter/document/exporter/jats/templates"
+import {createSlug} from "@fiduswriter/document/exporter/tools/file"
+import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
 import {addAlert} from "../../../common"
-import {JATSExporterConverter} from "../../../exporter/jats/convert"
-import {darManifest} from "../../../exporter/jats/templates"
-import {createSlug} from "../../../exporter/tools/file"
-import {ZipFileCreator} from "../../../exporter/tools/zip"
 import {getMissingChapterData} from "../tools"
 
 import {bitsTemplate} from "./templates"

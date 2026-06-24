@@ -1,5 +1,5 @@
+import {LANGUAGES} from "@fiduswriter/document/schema/const"
 import {escapeText, localizeDate, longFilePath} from "../common"
-import {LANGUAGES} from "../schema/const"
 
 /** A template for the basic info book template pane */
 export const bookBasicInfoTemplate = ({book}) =>

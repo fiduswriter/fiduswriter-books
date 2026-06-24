@@ -1,4 +1,4 @@
-import {DOCXExporterRender} from "../../../exporter/docx/render"
+import {DOCXExporterRender} from "@fiduswriter/document/exporter/docx/render"
 
 export class DOCXBookExporterRender extends DOCXExporterRender {
     constructor(xml) {

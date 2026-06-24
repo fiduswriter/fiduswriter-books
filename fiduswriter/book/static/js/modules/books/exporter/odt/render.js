@@ -1,4 +1,4 @@
-import {ODTExporterRender} from "../../../exporter/odt/render"
+import {ODTExporterRender} from "@fiduswriter/document/exporter/odt/render"
 
 export class ODTBookExporterRender extends ODTExporterRender {
     constructor(xml, styles) {

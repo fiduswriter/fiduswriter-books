@@ -1,10 +1,10 @@
 import {BibLatexExporter} from "biblatex-csl-converter"
 import download from "downloadjs"
 
-import {LatexExporterConvert} from "../../../exporter/latex/convert"
-import {removeHidden} from "../../../exporter/tools/doc_content"
-import {createSlug} from "../../../exporter/tools/file"
-import {ZipFileCreator} from "../../../exporter/tools/zip"
+import {LatexExporterConvert} from "@fiduswriter/document/exporter/latex/convert"
+import {removeHidden} from "@fiduswriter/document/exporter/tools/doc_content"
+import {createSlug} from "@fiduswriter/document/exporter/tools/file"
+import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
 import {getMissingChapterData} from "../tools"
 import {bookTexTemplate} from "./templates"
 

@@ -1,10 +1,10 @@
+import {getSettings} from "@fiduswriter/document/schema/convert"
 import {addAlert} from "../../common"
 import {getMissingDocumentListData} from "../../documents/tools"
 import {E2EEEncryptor} from "../../editor/e2ee/encryptor"
 import {enterPassphraseDialog} from "../../editor/e2ee/passphrase-dialog"
 import {PassphraseManager} from "../../editor/e2ee/passphrase-manager"
 import {acceptAllNoInsertions} from "../../editor/track"
-import {getSettings} from "../../schema/convert"
 
 /**
  * Ensure the user's personal passphrase keys are available in the session.
