@@ -10,7 +10,7 @@ import {
     longFilePath,
     post,
     postJson
-} from "../common"
+} from "fwtoolkit"
 import {ImageSelectionDialog} from "../images/selection_dialog"
 import {NativeBookImporter} from "./importer/native"
 import {exportMenuModel} from "./menu"

@@ -1,4 +1,4 @@
-import {longFilePath} from "../common"
+import {longFilePath} from "fwtoolkit"
 
 import {getMissingChapterData} from "./exporter/tools"
 

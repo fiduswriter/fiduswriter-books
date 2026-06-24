@@ -1,4 +1,4 @@
-import {addAlert, postJson} from "../../../common"
+import {addAlert, postJson} from "fwtoolkit"
 import {NativeImporter} from "../../../importer/native"
 
 export const FIDUSBOOK_VERSION = "1.0"

@@ -6,7 +6,7 @@ import {
 } from "@fiduswriter/document/exporter/tools/doc_content"
 import {createSlug} from "@fiduswriter/document/exporter/tools/file"
 import {XmlZip} from "@fiduswriter/document/exporter/tools/xml_zip"
-import {addAlert} from "../../../common"
+import {addAlert} from "fwtoolkit"
 import {getMissingChapterData} from "../tools"
 
 import {DOCXExporterCitations} from "@fiduswriter/document/exporter/docx/citations"

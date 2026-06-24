@@ -5,7 +5,7 @@ import {JATSExporterConverter} from "@fiduswriter/document/exporter/jats/convert
 import {darManifest} from "@fiduswriter/document/exporter/jats/templates"
 import {createSlug} from "@fiduswriter/document/exporter/tools/file"
 import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
-import {addAlert} from "../../../common"
+import {addAlert} from "fwtoolkit"
 import {getMissingChapterData} from "../tools"
 
 import {bitsTemplate} from "./templates"

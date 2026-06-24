@@ -1,4 +1,4 @@
-import {escapeText, localizeDate} from "../../../common"
+import {escapeText, localizeDate} from "fwtoolkit"
 import {bookTerm} from "../../i18n"
 
 export const htmlBookChapterTemplate = ({body, back}) => `${body}${back}`

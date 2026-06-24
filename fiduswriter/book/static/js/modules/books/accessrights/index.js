@@ -6,7 +6,7 @@ import {
     getSettings,
     postJson,
     setCheckableLabel
-} from "../../common"
+} from "fwtoolkit"
 import {AddContactDialog} from "../../contacts/add_dialog"
 import {
     bookAccessRightOverviewTemplate,

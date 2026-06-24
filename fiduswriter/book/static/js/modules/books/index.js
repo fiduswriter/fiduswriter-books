@@ -3,7 +3,6 @@ import {DataTable} from "simple-datatables"
 import {keyName} from "w3c-keyname"
 
 import {docSchema} from "@fiduswriter/document/schema/document/index"
-import {plugins} from "../../plugins/books_overview"
 import {
     DatatableBulk,
     Dialog,
@@ -20,7 +19,8 @@ import {
     setDocTitle,
     shortFileTitle,
     whenReady
-} from "../common"
+} from "fwtoolkit"
+import {plugins} from "../../plugins/books_overview"
 import {FeedbackTab} from "../feedback"
 import {ImageDB} from "../images/database"
 import {SiteMenu} from "../menu"

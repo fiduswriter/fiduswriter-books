@@ -1,5 +1,5 @@
 import {LANGUAGES} from "@fiduswriter/document/schema/const"
-import {escapeText, localizeDate} from "../../../common"
+import {escapeText, localizeDate} from "fwtoolkit"
 import {mathliveOpfIncludes} from "../../../mathlive/opf_includes"
 import {bookTerm} from "../../i18n"
 

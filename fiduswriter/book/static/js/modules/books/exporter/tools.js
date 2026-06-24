@@ -1,5 +1,5 @@
 import {getSettings} from "@fiduswriter/document/schema/convert"
-import {addAlert} from "../../common"
+import {addAlert} from "fwtoolkit"
 import {getMissingDocumentListData} from "../../documents/tools"
 import {E2EEEncryptor} from "../../editor/e2ee/encryptor"
 import {enterPassphraseDialog} from "../../editor/e2ee/passphrase-dialog"

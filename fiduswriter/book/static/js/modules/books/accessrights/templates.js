@@ -1,4 +1,4 @@
-import {avatarTemplate, escapeText} from "../../common"
+import {avatarTemplate, escapeText} from "fwtoolkit"
 
 /** A template for the book collaboration pane */
 export const bookCollaboratorsTemplate = ({collaborators}) => {

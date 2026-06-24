@@ -1,4 +1,4 @@
-import {escapeText} from "../../../common"
+import {escapeText} from "fwtoolkit"
 
 const bookPartTemplate = ({front, body, back}) =>
     `<book-part book-part-type="chapter" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:mml="http://www.w3.org/1998/Math/MathML">${front}${body}${back}</book-part>`

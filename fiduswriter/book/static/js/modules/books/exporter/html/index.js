@@ -3,8 +3,8 @@ import {createSlug} from "@fiduswriter/document/exporter/tools/file"
 import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
 import {LANGUAGES} from "@fiduswriter/document/schema/const"
 import download from "downloadjs"
+import {addAlert, get} from "fwtoolkit"
 import pretty from "pretty"
-import {addAlert, get} from "../../../common"
 import {getMissingChapterData} from "../tools"
 import {
     htmlBookChapterTemplate,

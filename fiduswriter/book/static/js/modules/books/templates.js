@@ -1,5 +1,5 @@
 import {LANGUAGES} from "@fiduswriter/document/schema/const"
-import {escapeText, localizeDate, longFilePath} from "../common"
+import {escapeText, localizeDate, longFilePath} from "fwtoolkit"
 
 /** A template for the basic info book template pane */
 export const bookBasicInfoTemplate = ({book}) =>

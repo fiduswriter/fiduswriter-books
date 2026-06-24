@@ -4,8 +4,8 @@ import {removeHidden} from "@fiduswriter/document/exporter/tools/doc_content"
 import {createSlug} from "@fiduswriter/document/exporter/tools/file"
 import {ZipFileCreator} from "@fiduswriter/document/exporter/tools/zip"
 import download from "downloadjs"
+import {addAlert, get} from "fwtoolkit"
 import pretty from "pretty"
-import {addAlert, get} from "../../../common"
 import {getMissingChapterData} from "../tools"
 import {
     containerTemplate,
