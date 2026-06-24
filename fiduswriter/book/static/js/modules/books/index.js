@@ -10,7 +10,6 @@ import {
     activateWait,
     addAlert,
     avatarTemplate,
-    baseBodyTemplate,
     deactivateWait,
     ensureCSS,
     escapeText,
@@ -21,6 +20,7 @@ import {
     whenReady
 } from "fwtoolkit"
 import {plugins} from "../../plugins/books_overview"
+import {baseBodyTemplate} from "../common/index.js"
 import {FeedbackTab} from "../feedback"
 import {ImageDB} from "../images/database"
 import {SiteMenu} from "../menu"
