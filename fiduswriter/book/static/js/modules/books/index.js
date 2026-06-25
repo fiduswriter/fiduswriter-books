@@ -1,11 +1,9 @@
 import deepEqual from "fast-deep-equal"
-import {DataTable} from "simple-datatables"
-import {keyName} from "w3c-keyname"
 
 import {docSchema} from "@fiduswriter/document/schema/document/index"
 import {
-    DatatableBulk,
     Dialog,
+    OverviewDataTable,
     OverviewMenuView,
     activateWait,
     addAlert,
@@ -141,29 +139,22 @@ export class BookOverview {
 
     /* Initialize the overview table */
     initTable(searching = false) {
-        if (this.table) {
-            this.table.destroy()
-            this.table = null
+        if (this.overviewTable) {
+            this.overviewTable.destroy()
+            this.overviewTable = null
         }
-        if (this.dtBulk) {
-            this.dtBulk.destroy()
-            this.dtBulk = null
-        }
+        this.table = null
+        this.dtBulk = null
+
         const subdirs = {}
-        const tableEl = document.createElement("table")
-        tableEl.classList.add("fw-data-table")
-        tableEl.classList.add("fw-large")
         const contentsEl = document.querySelector(".fw-contents")
         contentsEl.innerHTML = ""
-        contentsEl.appendChild(tableEl)
 
         if (this.path !== "/") {
             const headerEl = document.createElement("h1")
             headerEl.innerHTML = escapeText(this.path)
-            contentsEl.insertBefore(headerEl, tableEl)
+            contentsEl.appendChild(headerEl)
         }
-
-        this.dtBulk = new DatatableBulk(this, this.dtBulkModel, 2)
 
         const hiddenCols = [0, 1]
 
@@ -201,31 +192,9 @@ export class BookOverview {
             ])
         }
 
-        this.table = new DataTable(tableEl, {
-            searchable: searching,
-            paging: false,
-            scrollY: `${Math.max(window.innerHeight - 360, 100)}px`,
-            labels: {
-                noRows: gettext("No books available"),
-                noResults: gettext("No books found") // Message shown when there are no search results
-            },
-            layout: {
-                top: ""
-            },
-            data: {
-                headings: [
-                    "",
-                    "",
-                    this.dtBulk.getHTML(),
-                    gettext("Title"),
-                    gettext("Created"),
-                    gettext("Last changed"),
-                    gettext("Owner"),
-                    gettext("Rights"),
-                    ""
-                ],
-                data: fileList
-            },
+        this.overviewTable = new OverviewDataTable({
+            dom: contentsEl,
+            classes: ["fw-data-table", "fw-large"],
             columns: [
                 {
                     select: 0,
@@ -249,9 +218,31 @@ export class BookOverview {
                     sort: this.lastSort.dir
                 }
             ],
-            rowNavigation: true,
-            rowSelectionKeys: ["Enter", "Delete", " "],
+            data: fileList,
+            idColumn: 0,
+            checkboxColumn: 2,
+            bulkMenu: this.dtBulkModel,
+            bulkMenuPage: this,
+            searchable: searching,
+            scrollY: `${Math.max(window.innerHeight - 360, 100)}px`,
             tabIndex: 1,
+            labels: {
+                noRows: gettext("No books available"),
+                noResults: gettext("No books found") // Message shown when there are no search results
+            },
+            headings: [
+                "",
+                "",
+                "",
+                gettext("Title"),
+                gettext("Created"),
+                gettext("Last changed"),
+                gettext("Owner"),
+                gettext("Rights"),
+                ""
+            ],
+            template: (options, _dom) =>
+                `<div class='${options.classes.container}'${options.scrollY.length ? ` style='height: ${options.scrollY}; overflow-Y: auto;'` : ""}></div>`,
             rowRender: (row, tr, _index) => {
                 if (row.cells[1].data === "folder") {
                     tr.childNodes[0].childNodes = []
@@ -279,54 +270,31 @@ export class BookOverview {
                         }
                     }
                 ]
-            }
-        })
-
-        this.table.on("datatable.selectrow", (rowIndex, event, focused) => {
-            event.preventDefault()
-            if (event.type === "keydown") {
-                const key = keyName(event)
-                if (key === "Enter") {
-                    if (this.getSelected().length > 0) {
-                        // Don't open. Let the bulk menu handle it.
-                        return
-                    }
-                    const link = this.table.dom.querySelector(
-                        `tr[data-index="${rowIndex}"] a.fw-data-table-title`
-                    )
-                    if (link) {
-                        link.click()
-                    }
-                } else if (key === " ") {
-                    const cell = this.table.data.data[rowIndex].cells[2]
-                    cell.data = !cell.data
-                    cell.text = String(cell.data)
-                    this.table.update()
-                } else if (key === "Delete") {
-                    const cell = this.table.data.data[rowIndex].cells[0]
-                    const bookId = cell.data
-                    this.mod.actions.deleteBookDialog([bookId], this.app)
-                }
-            } else {
-                if (
-                    event.target.closest(
-                        "span.fw-data-table-title, span.rights, span.delete-book, label"
-                    )
-                ) {
+            },
+            onEnter: (row, _event) => {
+                if (this.getSelected().length > 0) {
                     return
                 }
-                if (!focused) {
-                    this.table.dom.focus()
+                const rowIndex = this.table.data.data.indexOf(row)
+                const link = this.table.dom.querySelector(
+                    `tr[data-index="${rowIndex}"] a.fw-data-table-title`
+                )
+                if (link) {
+                    link.click()
                 }
-                this.table.rows.setCursor(rowIndex)
+            },
+            onDelete: row => {
+                const bookId = row.cells[0].data
+                this.mod.actions.deleteBookDialog([bookId], this.app)
             }
         })
+        this.overviewTable.init()
+        this.table = this.overviewTable.table
+        this.dtBulk = this.overviewTable.dtBulk
 
         this.table.on("datatable.sort", (column, dir) => {
             this.lastSort = {column, dir}
         })
-
-        this.dtBulk.init(this.table)
 
         this.table.dom.focus()
     }
@@ -379,8 +347,8 @@ export class BookOverview {
                     <i class="fas fa-folder"></i>
                     <span>${escapeText(subdir)}</span>
                 </a>`,
-                `<span class="date">${dateCell({date: book.added})}</span>`,
-                `<span class="date">${dateCell({date: book.updated})}</span>`,
+                `<span class="fw-date">${dateCell({date: book.added})}</span>`,
+                `<span class="fw-date">${dateCell({date: book.updated})}</span>`,
                 "",
                 "",
                 ownedIds.length ? deleteFolderCell({subdir, ids: ownedIds}) : ""
@@ -407,16 +375,16 @@ export class BookOverview {
                     ${shortFileTitle(book.title, book.path)}
                 </span>
             </span>`,
-            `<span class="date">${dateCell({date: book.added})}</span>`,
-            `<span class="date">${dateCell({date: book.updated})}</span>`,
+            `<span class="fw-date">${dateCell({date: book.added})}</span>`,
+            `<span class="fw-date">${dateCell({date: book.updated})}</span>`,
             `<span>${avatarTemplate({user: book.owner})}</span>
             <span class="fw-inline fw-searchable">${escapeText(
                 book.owner.name
             )}</span>`,
             `<span class="${
-                this.user.id === book.owner.id ? "owned-by-user " : ""
+                this.user.id === book.owner.id ? "fw-owned-by-user " : ""
             }rights fw-inline" data-id="${book.id}">
-                <i data-id="${book.id}" class="icon-access-right icon-access-${
+                <i data-id="${book.id}" class="fw-icon-access-right icon-access-${
                     book.rights
                 }"></i>
             </span>`,
@@ -584,7 +552,7 @@ export class BookOverview {
                         this.mod.actions.deleteBookDialog(ids)
                     }
                     break
-                case findTarget(event, ".owned-by-user.rights", el): {
+                case findTarget(event, ".fw-owned-by-user.rights", el): {
                     const bookId = Number.parseInt(el.target.dataset.id)
                     const accessDialog = new BookAccessRightsDialog(
                         [bookId],

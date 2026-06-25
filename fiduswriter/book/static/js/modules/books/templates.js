@@ -352,7 +352,7 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
         ${
             book.rights === "write"
                 ? `<td class="figure-preview-row">
-                <button type="button" class="ui-button ui-widget ui-state-default
+                <button type="button" class="fw-dialog-titlebar-button ui-widget ui-state-default
                         ui-corner-all ui-button-text-only fw-button fw-dark"
                         id="select-cover-image-button" role="button" aria-disabled="false" title="${gettext(
                             "Select a cover image"
@@ -361,7 +361,7 @@ export const bookEpubDataCoverTemplate = ({book, imageDB}) =>
                 </button>
                 ${
                     book.cover_image
-                        ? `<button type="button" class="ui-button ui-widget ui-state-default
+                        ? `<button type="button" class="fw-dialog-titlebar-button ui-widget ui-state-default
                             ui-corner-all ui-button-text-only fw-button fw-orange"
                             id="remove-cover-image-button" role="button" aria-disabled="false"  title="${gettext(
                                 "Remove cover image"
@@ -403,7 +403,7 @@ export const bookODTDataRowTemplate = ({book}) =>
     ${
         book.rights === "write"
             ? `<td class="odt-template-row">
-            <button type="button" class="ui-button ui-widget ui-state-default
+            <button type="button" class="fw-dialog-titlebar-button ui-widget ui-state-default
                     ui-corner-all ui-button-text-only fw-button fw-dark"
                     id="select-odt-template" role="button" aria-disabled="false"
                     title="${gettext("Select an ODT template file")}">
@@ -412,7 +412,7 @@ export const bookODTDataRowTemplate = ({book}) =>
             <input type="file" id="input-odt-template" accept=".odt" class="fw-media-file-input">
             ${
                 book.odt_template
-                    ? `<button type="button" class="ui-button ui-widget ui-state-default
+                    ? `<button type="button" class="fw-dialog-titlebar-button ui-widget ui-state-default
                     ui-corner-all ui-button-text-only fw-button fw-orange"
                     id="remove-odt-template-button" role="button" aria-disabled="false"
                     title="${gettext("Remove ODT template file")}">
@@ -452,7 +452,7 @@ export const bookDOCXDataRowTemplate = ({book}) =>
     ${
         book.rights === "write"
             ? `<td class="docx-template-row">
-            <button type="button" class="ui-button ui-widget ui-state-default
+            <button type="button" class="fw-dialog-titlebar-button ui-widget ui-state-default
                     ui-corner-all ui-button-text-only fw-button fw-dark"
                     id="select-docx-template" role="button" aria-disabled="false"
                     title="${gettext("Select an DOCX template file")}">
@@ -461,7 +461,7 @@ export const bookDOCXDataRowTemplate = ({book}) =>
             <input type="file" id="input-docx-template" accept=".docx" class="fw-media-file-input">
             ${
                 book.docx_template
-                    ? `<button type="button" class="ui-button ui-widget ui-state-default
+                    ? `<button type="button" class="fw-dialog-titlebar-button ui-widget ui-state-default
                     ui-corner-all ui-button-text-only fw-button fw-orange"
                     id="remove-docx-template-button" role="button" aria-disabled="false"
                     title="${gettext("Remove DOCX template file")}">
@@ -490,7 +490,7 @@ export const bookSanityCheckTemplate = () =>
         <tbody>
             <tr>
                 <th>
-                    <button type="button" id="perform-sanity-check-button" class="ui-button fw-button fw-dark">${gettext(
+                    <button type="button" id="perform-sanity-check-button" class="fw-dialog-titlebar-button fw-button fw-dark">${gettext(
                         "Perform sanity check"
                     )}</button>
                 </th>
@@ -503,12 +503,12 @@ export const bookSanityCheckTemplate = () =>
 export const bookDialogTemplate = ({title, bookInfo, dialogParts}) =>
     `<div id="book-dialog" title="${title}">
         <div id="bookoptions-tab">
-            <ul class="ui-tabs-nav">
+            <ul class="fw-tabs-nav">
                 ${dialogParts
                     .map(
                         (part, index) =>
-                            `<li class="tab-link ${index === 0 ? "current-tab" : ""}">
-                                <a href="#optionTab${index}" class="tab-link-inner" title="${escapeText(
+                            `<li class="fw-tab-link ${index === 0 ? "fw-current-tab" : ""}">
+                                <a href="#optionTab${index}" class="fw-tab-link-inner" title="${escapeText(
                                     part.description
                                 )}">
                                     ${escapeText(part.title)}
@@ -520,7 +520,7 @@ export const bookDialogTemplate = ({title, bookInfo, dialogParts}) =>
             ${dialogParts
                 .map(
                     (part, index) =>
-                        `<div class="tab-content ui-tabs-panel" id="optionTab${index}" title="${escapeText(
+                        `<div class="tab-content fw-tabs-panel" id="optionTab${index}" title="${escapeText(
                             part.description
                         )}">
                             ${part.template(bookInfo)}
@@ -673,4 +673,4 @@ export const deleteFolderCell = ({subdir, ids}) =>
  </span>`
 
 export const dateCell = ({date}) =>
-    `<span class="date">${localizeDate(date * 1000, "sortable-date")}</span>`
+    `<span class="fw-date">${localizeDate(date * 1000, "sortable-date")}</span>`

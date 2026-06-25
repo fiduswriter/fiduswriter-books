@@ -66,7 +66,7 @@ function findContentIssues(node, chapter, doc, messages) {
 export const bookSanityCheck = (book, documentList, schema) => {
     if (!book.chapters.length) {
         return Promise.resolve(
-            `<ul class="errorlist"><li>${gettext(
+            `<ul class="fw-errorlist"><li>${gettext(
                 "The book contains no chapters."
             )}</li></ul>`
         )
@@ -109,20 +109,20 @@ export const bookSanityCheck = (book, documentList, schema) => {
             return `<ul class="warninglist">
                     ${warnings.map(warning => `<li>${warning}</li>`).join("")}
                 </ul>
-                <ul class="errorlist">
+                <ul class="fw-errorlist">
                     ${errors.map(error => `<li>${error}</li>`).join("")}
                 </ul>`
         })
         .catch(err => {
             // Passphrase unavailable or user cancelled the unlock dialog.
             if (err.message && err.message.includes("Passphrase required")) {
-                return `<ul class="errorlist"><li>${gettext(
+                return `<ul class="fw-errorlist"><li>${gettext(
                     "This book contains encrypted chapters. A personal passphrase is required to perform a sanity check. Please set up or unlock your personal passphrase in your profile settings."
                 )}</li></ul>`
             }
             // Individual chapter decryption failure — alerts were already
             // shown by decryptE2EEChapters; show a summary here.
-            return `<ul class="errorlist"><li>${gettext(
+            return `<ul class="fw-errorlist"><li>${gettext(
                 "One or more encrypted chapters could not be decrypted. See the error notifications for details."
             )}</li></ul>`
         })

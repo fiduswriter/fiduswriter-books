@@ -122,7 +122,7 @@ export class BookAccessRightsDialog {
                 click: () => {
                     const accessRights = []
                     document
-                        .querySelectorAll("#share-contact .collaborator-tr")
+                        .querySelectorAll("#share-contact .fw-collaborator-tr")
                         .forEach(el => {
                             accessRights.push({
                                 holder: {
@@ -162,7 +162,7 @@ export class BookAccessRightsDialog {
             .addEventListener("click", () => {
                 const selectedData = []
                 document
-                    .querySelectorAll("#my-contacts .fw-checkable.checked")
+                    .querySelectorAll("#my-contacts .fw-checkable.fw-checked")
                     .forEach(el => {
                         const collaboratorEl = document.getElementById(
                             `collaborator-${el.dataset.type}-${el.dataset.id}`
@@ -172,7 +172,7 @@ export class BookAccessRightsDialog {
                                 collaboratorEl.dataset.rights = "read"
                                 const accessRightIcon =
                                     collaboratorEl.querySelector(
-                                        ".icon-access-right"
+                                        ".fw-icon-access-right"
                                     )
                                 accessRightIcon.classList.remove(
                                     "icon-access-delete"
@@ -207,8 +207,10 @@ export class BookAccessRightsDialog {
                     })
 
                 document
-                    .querySelectorAll("#my-contacts .checkable-label.checked")
-                    .forEach(el => el.classList.remove("checked"))
+                    .querySelectorAll(
+                        "#my-contacts .checkable-label.fw-checked"
+                    )
+                    .forEach(el => el.classList.remove("fw-checked"))
                 document
                     .querySelector("#share-contact table tbody")
                     .insertAdjacentHTML(
@@ -227,7 +229,7 @@ export class BookAccessRightsDialog {
                     break
                 case findTarget(event, ".edit-right", el): {
                     const colRow = el.target.closest(
-                        ".collaborator-tr,.invite-tr"
+                        ".fw-collaborator-tr,.invite-tr"
                     )
                     const currentRight = colRow.dataset.rights
                     const menu = this.getDropdownMenu(
@@ -235,10 +237,10 @@ export class BookAccessRightsDialog {
                         newRight => {
                             colRow.dataset.rights = newRight
                             colRow
-                                .querySelector(".icon-access-right")
+                                .querySelector(".fw-icon-access-right")
                                 .setAttribute(
                                     "class",
-                                    `icon-access-right icon-access-${newRight}`
+                                    `fw-icon-access-right icon-access-${newRight}`
                                 )
                         }
                     )
@@ -251,13 +253,13 @@ export class BookAccessRightsDialog {
                     break
                 }
                 case findTarget(event, ".delete-collaborator", el): {
-                    const colRow = el.target.closest(".collaborator-tr")
+                    const colRow = el.target.closest(".fw-collaborator-tr")
                     colRow.dataset.right = "delete"
                     colRow
-                        .querySelector(".icon-access-right")
+                        .querySelector(".fw-icon-access-right")
                         .setAttribute(
                             "class",
-                            "icon-access-right icon-access-delete"
+                            "fw-icon-access-right icon-access-delete"
                         )
                     break
                 }

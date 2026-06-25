@@ -578,15 +578,15 @@ export class BookActions {
 
         // Handle tab link clicking
         dialog.dialogEl
-            .querySelectorAll("#bookoptions-tab .tab-link a")
+            .querySelectorAll("#bookoptions-tab .fw-tab-link a")
             .forEach(el =>
                 el.addEventListener("click", event => {
                     event.preventDefault()
 
                     el.parentNode.parentNode
-                        .querySelectorAll(".tab-link.current-tab")
-                        .forEach(el => el.classList.remove("current-tab"))
-                    el.parentNode.classList.add("current-tab")
+                        .querySelectorAll(".fw-tab-link.fw-current-tab")
+                        .forEach(el => el.classList.remove("fw-current-tab"))
+                    el.parentNode.classList.add("fw-current-tab")
 
                     const link = el.getAttribute("href")
                     dialog.dialogEl

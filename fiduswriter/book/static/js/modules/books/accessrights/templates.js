@@ -11,7 +11,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) => {
         data-type="${collaborator.holder.type}" data-id="${
             collaborator.holder.id
         }"
-        class="collaborator-tr" data-rights="${collaborator.rights}">
+        class="fw-collaborator-tr" data-rights="${collaborator.rights}">
             <td width="212">
                 <span>${avatarTemplate({user: collaborator.holder})}</span>
                 <span class="fw-inline">${
@@ -22,7 +22,7 @@ export const bookCollaboratorsTemplate = ({collaborators}) => {
             </td>
             <td width="50" align="center">
                 <div class="fw-inline edit-right-wrapper">
-                    <i class="icon-access-right icon-access-${
+                    <i class="fw-icon-access-right icon-access-${
                         collaborator.rights
                     }"></i>
                     <i class="fas fa-caret-down edit-right"></i>
