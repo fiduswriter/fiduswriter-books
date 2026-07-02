@@ -39,7 +39,7 @@ jobs:
         with:
           python-version: "3.14"
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: lts/*
       - name: Install Python dependencies
@@ -61,7 +61,7 @@ jobs:
           pip install selenium
           coverage run $(which fiduswriter) setup --no-static
       - name: Run tests
-        uses: nick-invision/retry@v3
+        uses: nick-invision/retry@v4
         with:
           timeout_minutes: 8
           max_attempts: 3
