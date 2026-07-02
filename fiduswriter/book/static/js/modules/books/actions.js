@@ -1,3 +1,4 @@
+import {NativeBookImporter} from "@fiduswriter/books-document/importer/native"
 import {
     ContentMenu,
     Dialog,
@@ -12,7 +13,8 @@ import {
     postJson
 } from "fwtoolkit"
 import {ImageSelectionDialog} from "../images/selection_dialog"
-import {NativeBookImporter} from "./importer/native"
+import {createNativeImporterBackend} from "../importer/native/import"
+import {createBookImporterBackend} from "./adapters/book-importer-backend"
 import {exportMenuModel} from "./menu"
 import {bookSanityCheck} from "./sanity_check"
 import {
@@ -306,30 +308,12 @@ export class BookActions {
 
     /**
      * Open a dialog to let the user pick a .fidusbook file and import it.
-     * Creates all chapter documents on the server, uploads the cover image
-     * (if present), and finally creates the book record.
+     * Creates all chapter documents on the server via the native importer
+     * backend and finally creates the book record via the book importer
+     * backend.
      */
     importBook() {
         const overview = this.bookOverview
-        const e2eeMode = overview.app.settings.E2EE_MODE
-        const e2eeRequired = e2eeMode === "required"
-        const e2eeOptional = e2eeMode === "enabled"
-
-        // Extra UI inside the dialog body for E2EE modes.
-        const e2eeNote = e2eeRequired
-            ? `<p class="fw-note" style="margin-top:10px;">
-                <i class="fas fa-lock"></i>
-                ${gettext("Chapters will be imported as encrypted (E2EE) documents.")}
-               </p>`
-            : ""
-        const e2eeCheckbox = e2eeOptional
-            ? `<p style="margin-top:10px;">
-                <label>
-                    <input type="checkbox" id="fidusbook-import-e2ee" style="margin-right:6px;">
-                    ${gettext("Import chapters as encrypted (E2EE) documents")}
-                </label>
-               </p>`
-            : ""
 
         const importDialog = new Dialog({
             id: "import_fidusbook",
@@ -344,10 +328,8 @@ export class BookActions {
                        id="fidusbook-uploader"
                        accept=".fidusbook"
                        style="display:block;margin-top:8px;">
-            </p>
-            ${e2eeNote}
-            ${e2eeCheckbox}`,
-            height: e2eeRequired || e2eeOptional ? 230 : 180,
+            </p>`,
+            height: 180,
             buttons: [
                 {
                     text: gettext("Import"),
@@ -364,20 +346,15 @@ export class BookActions {
                             addAlert("error", gettext("File too large"))
                             return
                         }
-                        const useE2EE =
-                            e2eeRequired ||
-                            (e2eeOptional &&
-                                !!document.getElementById(
-                                    "fidusbook-import-e2ee"
-                                )?.checked)
                         importDialog.close()
                         activateWait(true)
 
                         const importer = new NativeBookImporter(
                             file,
                             overview.user,
-                            overview.path,
-                            useE2EE
+                            createNativeImporterBackend(overview.user, null),
+                            createBookImporterBackend(overview.path),
+                            overview.path
                         )
                         importer
                             .init()

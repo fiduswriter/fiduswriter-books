@@ -1,15 +1,56 @@
+import {BITSBookExporter} from "@fiduswriter/books-document/exporter/bits"
+import {DOCXBookExporter} from "@fiduswriter/books-document/exporter/docx"
+import {EpubBookExporter} from "@fiduswriter/books-document/exporter/epub"
+import {HTMLBookExporter} from "@fiduswriter/books-document/exporter/html"
+import {LatexBookExporter} from "@fiduswriter/books-document/exporter/latex"
+import {NativeBookExporter} from "@fiduswriter/books-document/exporter/native"
+import {ODTBookExporter} from "@fiduswriter/books-document/exporter/odt"
+import {PrintBookExporter} from "@fiduswriter/books-document/exporter/print"
+import {getMissingChapterData} from "@fiduswriter/books-document/exporter/tools"
+import download from "downloadjs"
 import {FileDialog, NewFolderDialog, addAlert} from "fwtoolkit"
 import {BookAccessRightsDialog} from "./accessrights"
-import {BITSBookExporter} from "./exporter/bits"
-import {DOCXBookExporter} from "./exporter/docx"
-import {EpubBookExporter} from "./exporter/epub"
-import {HTMLBookExporter} from "./exporter/html"
-import {LatexBookExporter} from "./exporter/latex"
-import {NativeBookExporter} from "./exporter/native"
-import {ODTBookExporter} from "./exporter/odt"
-import {PrintBookExporter} from "./exporter/print"
+import {chapterLoader} from "./adapters/chapter-loader"
+import {e2eeStrategy} from "./adapters/e2ee-strategy"
 
 let currentlySearching = false
+
+/**
+ * Load any missing chapter data (fetching content lazily and decrypting E2EE
+ * chapters), run the given exporter, then trigger a browser download of the
+ * resulting Blob.
+ *
+ * The @fiduswriter/books-document exporters are environment-agnostic: they
+ * load chapter data through injected strategies (defaulting to no-ops) and
+ * their base `download()` simply returns the produced Blob. In the browser we
+ * therefore pre-load the chapter data with the core-backed adapters — after
+ * which the exporter's own internal `getMissingChapterData` call is a no-op —
+ * and deliver the finished Blob to the user via downloadjs.
+ *
+ * @param {Object} exporter - A constructed book exporter instance.
+ * @param {Object} overview - The BookOverview page.
+ * @param {string} mimeType - MIME type for the downloaded file.
+ * @param {boolean} rawContent - Whether the exporter needs doc.rawContent.
+ * @returns {Promise}
+ */
+const runBookExport = (exporter, overview, mimeType, rawContent = false) =>
+    getMissingChapterData(
+        exporter.book,
+        overview.documentList,
+        overview.schema,
+        {
+            rawContent,
+            loader: chapterLoader,
+            e2ee: e2eeStrategy
+        }
+    )
+        .then(() => exporter.init())
+        .then(blob => {
+            if (blob) {
+                download(blob, exporter.defaultFilename, mimeType)
+            }
+            return blob
+        })
 
 export const menuModel = () => ({
     content: [
@@ -85,7 +126,7 @@ const exportEpub = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, "application/epub+zip")
 }
 
 const exportBITS = (book, overview) => {
@@ -101,7 +142,7 @@ const exportBITS = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, "application/zip")
 }
 
 const exportHTML = (book, overview) => {
@@ -118,7 +159,7 @@ const exportHTML = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, "application/zip")
 }
 
 const exportSingleHTML = (book, overview) => {
@@ -136,7 +177,7 @@ const exportSingleHTML = (book, overview) => {
         new Date(book.updated * 1000),
         false
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, "application/zip")
 }
 
 const exportLatex = (book, overview) => {
@@ -151,7 +192,7 @@ const exportLatex = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, "application/zip")
 }
 
 const exportDOCX = (book, overview) => {
@@ -167,7 +208,7 @@ const exportDOCX = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, exporter.mimeType, true)
 }
 
 const exportODT = (book, overview) => {
@@ -183,7 +224,7 @@ const exportODT = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, exporter.mimeType, true)
 }
 
 const exportPrint = (book, overview) => {
@@ -196,7 +237,7 @@ const exportPrint = (book, overview) => {
         overview.user,
         overview.documentList
     )
-    exporter.init()
+    return runBookExport(exporter, overview, "text/html")
 }
 
 const exportFidusbook = (book, overview) => {
@@ -207,7 +248,7 @@ const exportFidusbook = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return exporter.init()
+    return runBookExport(exporter, overview, "application/fidusbook+zip")
 }
 
 export const bulkMenuModel = () => ({

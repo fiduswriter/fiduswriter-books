@@ -21,3 +21,4 @@ fiduswriter/configuration.py
 fiduswriter/fiduswriter.sql
 fiduswriter/fiduswriter.sqlite3
 fiduswriter/screenshots
+.lint-temp
