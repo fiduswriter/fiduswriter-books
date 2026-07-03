@@ -129,7 +129,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             "yeti2@snowman.com"
         )
         self.driver.find_element(
-            By.CSS_SELECTOR, '[aria-describedby="add-new-contact"] button.fw-dark'
+            By.CSS_SELECTOR,
+            '[aria-describedby="add-new-contact"] button.fw-dark',
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -150,7 +151,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             "Yeti3"
         )
         self.driver.find_element(
-            By.CSS_SELECTOR, '[aria-describedby="add-new-contact"] button.fw-dark'
+            By.CSS_SELECTOR,
+            '[aria-describedby="add-new-contact"] button.fw-dark',
         ).click()
         time.sleep(1)
         self.assertEqual(
