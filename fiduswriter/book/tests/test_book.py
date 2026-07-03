@@ -125,7 +125,14 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "yeti2@snowman.com"
         )
-        self.driver.find_element(By.CSS_SELECTOR, "button.fw-dark").click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
+        ).click()
         time.sleep(1)
         self.assertEqual(
             len(
@@ -141,7 +148,14 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "Yeti3"
         )
-        self.driver.find_element(By.CSS_SELECTOR, "button.fw-dark").click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
+        ).click()
         time.sleep(1)
         self.assertEqual(
             len(
@@ -181,15 +195,15 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             By.CSS_SELECTOR, 'a[href="#optionTab1"]'
         ).click()
         self.driver.find_element(
-            By.CSS_SELECTOR, "#book-document-list .file .file-name"
+            By.CSS_SELECTOR, "#book-document-list .fw-file .fw-file-name"
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            "#book-document-list .file:nth-child(2) .file-name",
+            "#book-document-list .fw-file:nth-child(2) .fw-file-name",
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            "#book-document-list .file:nth-child(3) .file-name",
+            "#book-document-list .fw-file:nth-child(3) .fw-file-name",
         ).click()
         self.driver.find_element(By.ID, "add-chapter").click()
         self.driver.find_element(
@@ -217,9 +231,20 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
                 'and normalize-space()="Use image"]'
             ),
         ).click()
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
+        # Wait for any success alert to disappear so it does not intercept
+        # the following Submit button click.
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.invisibility_of_element_located(
+                (By.CSS_SELECTOR, ".alerts-success.fw-visible")
+            )
+        )
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -275,15 +300,20 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             By.CSS_SELECTOR, "#input-odt-template"
         ).send_keys(odt_path)
         time.sleep(1)
-        self.driver.find_element(
-            By.XPATH, '//*[normalize-space()="Submit"]'
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
         ).click()
         time.sleep(1)
 
         # Add access rights for user 2 (write) + 3 (read)
         self.driver.find_element(
             By.CSS_SELECTOR,
-            ".owned-by-user .icon-access-right.icon-access-write",
+            ".fw-owned-by-user .fw-icon-access-right.icon-access-write",
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR, "#my-contacts tr .fw-checkable"
@@ -298,29 +328,34 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Write"]'
         ).click()
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
         ).click()
         time.sleep(1)
         # Check that access rights are listed
         self.driver.refresh()
         time.sleep(1)
         self.driver.find_element(
-            By.CSS_SELECTOR, ".icon-access-right.icon-access-write"
+            By.CSS_SELECTOR, ".fw-icon-access-right.icon-access-write"
         ).click()
         # Wait for the async API call to complete and the dialog to render
         # collaborator rows before asserting (find_elements won't trigger
         # implicit wait, so we need an explicit wait here).
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located(
-                (By.CSS_SELECTOR, "tr.collaborator-tr")
+                (By.CSS_SELECTOR, "tr.fw-collaborator-tr")
             )
         )
         self.assertEqual(
             len(
                 self.driver.find_elements(
-                    By.CSS_SELECTOR, 'tr.collaborator-tr[data-rights="write"]'
+                    By.CSS_SELECTOR,
+                    'tr.fw-collaborator-tr[data-rights="write"]',
                 )
             ),
             1,
@@ -328,7 +363,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.assertEqual(
             len(
                 self.driver.find_elements(
-                    By.CSS_SELECTOR, 'tr.collaborator-tr[data-rights="read"]'
+                    By.CSS_SELECTOR,
+                    'tr.fw-collaborator-tr[data-rights="read"]',
                 )
             ),
             1,
@@ -359,7 +395,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.assertEqual(
             len(
                 self.driver.find_elements(
-                    By.CSS_SELECTOR, ".icon-access-right.icon-access-write"
+                    By.CSS_SELECTOR, ".fw-icon-access-right.icon-access-write"
                 )
             ),
             1,
@@ -369,7 +405,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             len(
                 self.driver.find_elements(
                     By.CSS_SELECTOR,
-                    ".owned-by-user .icon-access-right.icon-access-write",
+                    ".fw-owned-by-user .fw-icon-access-right.icon-access-write",
                 )
             ),
             0,
@@ -414,9 +450,13 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             By.CSS_SELECTOR,
             ".fw-ar-container:nth-child(3) tr:nth-child(2) .book-sort-up",
         ).click()
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -439,7 +479,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.assertEqual(
             len(
                 self.driver.find_elements(
-                    By.CSS_SELECTOR, ".icon-access-right.icon-access-read"
+                    By.CSS_SELECTOR, ".fw-icon-access-right.icon-access-read"
                 )
             ),
             1,
@@ -579,7 +619,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             len(
                 self.driver.find_elements(
                     By.CSS_SELECTOR,
-                    ".owned-by-user .icon-access-right.icon-access-write",
+                    ".fw-owned-by-user .fw-icon-access-right.icon-access-write",
                 )
             ),
             1,
@@ -622,9 +662,13 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys(
             "Book 1"
         )
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -644,7 +688,14 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR, "#new-folder-name"
         ).send_keys("Releases")
-        self.driver.find_element(By.CSS_SELECTOR, "button.fw-dark").click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Create folder"]',
+                )
+            )
+        ).click()
         time.sleep(1)
         trs = self.driver.find_elements(
             By.CSS_SELECTOR, ".fw-contents tbody tr .fw-data-table-title"
@@ -668,9 +719,13 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(By.CSS_SELECTOR, "#book-title").send_keys(
             "Book 2"
         )
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
         ).click()
         time.sleep(1)
         trs = self.driver.find_elements(
@@ -706,7 +761,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             "/Book 1",
         )
         self.driver.find_element(
-            By.CSS_SELECTOR, "#move-dialog .folder-content .folder-name"
+            By.CSS_SELECTOR, "#move-dialog .fw-folder-content .fw-folder-name"
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -715,9 +770,13 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             ).get_attribute("value"),
             "/Releases/Book 1",
         )
-        self.driver.find_element(
-            By.XPATH,
-            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.element_to_be_clickable(
+                (
+                    By.XPATH,
+                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
+                )
+            )
         ).click()
         time.sleep(1)
         trs = self.driver.find_elements(
@@ -848,14 +907,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             "#edit-link > div:nth-child(2) > select > option:nth-child(2)",
         ).click()
         self.driver.find_element(
-            By.CSS_SELECTOR,
-            (
-                "body > div.fw-dialog.fw-corner-all.fw-widget."
-                "fw-widget-content.fw-front.fw-dialog-buttons > "
-                "div.fw-dialog-buttonpane.fw-widget-content."
-                "fw-helper-clearfix > div > button.fw-dark."
-                "fw-button.fw-button.fw-corner-all.fw-widget"
-            ),
+            By.XPATH,
+            '//*[contains(@class, "fw-button") and normalize-space()="Insert"]',
         ).click()
         cross_reference = self.driver.find_element(
             By.CSS_SELECTOR, ".doc-body .cross-reference"
@@ -874,14 +927,8 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             "#edit-link > div:nth-child(5) > select > option:nth-child(2)",
         ).click()
         self.driver.find_element(
-            By.CSS_SELECTOR,
-            (
-                "body > div.fw-dialog.fw-corner-all.fw-widget."
-                "fw-widget-content.fw-front.fw-dialog-buttons > "
-                "div.fw-dialog-buttonpane.fw-widget-content."
-                "fw-helper-clearfix > div > button.fw-dark."
-                "fw-button.fw-button.fw-corner-all.fw-widget"
-            ),
+            By.XPATH,
+            '//*[contains(@class, "fw-button") and normalize-space()="Insert"]',
         ).click()
         internal_link = self.driver.find_element(
             By.CSS_SELECTOR, ".doc-body a"
@@ -931,7 +978,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.assertEqual(
             len(
                 self.driver.find_elements(
-                    By.CSS_SELECTOR, ".margin-box.warning"
+                    By.CSS_SELECTOR, ".margin-box.fw-warning"
                 )
             ),
             2,
@@ -968,15 +1015,15 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
             By.CSS_SELECTOR, 'a[href="#optionTab1"]'
         ).click()
         self.driver.find_element(
-            By.CSS_SELECTOR, "#book-document-list .file .file-name"
+            By.CSS_SELECTOR, "#book-document-list .fw-file .fw-file-name"
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            "#book-document-list .file:nth-child(2) .file-name",
+            "#book-document-list .fw-file:nth-child(2) .fw-file-name",
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            "#book-document-list .file:nth-child(3) .file-name",
+            "#book-document-list .fw-file:nth-child(3) .fw-file-name",
         ).click()
         self.driver.find_element(By.ID, "add-chapter").click()
         self.driver.find_element(

@@ -331,11 +331,11 @@ class BookNativeTest(
             By.CSS_SELECTOR, 'a[href="#optionTab1"]'
         ).click()
         self.driver.find_element(
-            By.CSS_SELECTOR, "#book-document-list .file .file-name"
+            By.CSS_SELECTOR, "#book-document-list .fw-file .fw-file-name"
         ).click()
         self.driver.find_element(
             By.CSS_SELECTOR,
-            "#book-document-list .file:nth-child(2) .file-name",
+            "#book-document-list .fw-file:nth-child(2) .fw-file-name",
         ).click()
         self.driver.find_element(By.ID, "add-chapter").click()
         self.driver.find_element(
@@ -602,11 +602,11 @@ def _run_e2ee_import_test(self, *, tick_checkbox):
     self.driver.find_element(By.ID, "book-title").send_keys("Test Book")
     self.driver.find_element(By.CSS_SELECTOR, 'a[href="#optionTab1"]').click()
     self.driver.find_element(
-        By.CSS_SELECTOR, "#book-document-list .file .file-name"
+        By.CSS_SELECTOR, "#book-document-list .fw-file .fw-file-name"
     ).click()
     self.driver.find_element(
         By.CSS_SELECTOR,
-        "#book-document-list .file:nth-child(2) .file-name",
+        "#book-document-list .fw-file:nth-child(2) .fw-file-name",
     ).click()
     self.driver.find_element(By.ID, "add-chapter").click()
     self.driver.find_element(
@@ -689,7 +689,10 @@ def _run_e2ee_import_test(self, *, tick_checkbox):
         # "enabled" mode: opt-in checkbox must be checked before Import.
         self.driver.find_element(By.ID, "fidusbook-import-e2ee").click()
 
-    self.driver.find_element(By.CSS_SELECTOR, "button.fw-dark").click()
+    self.driver.find_element(
+        By.XPATH,
+        '//*[contains(@class, "fw-button") and normalize-space()="Import"]',
+    ).click()
 
     # ── Wait for import ───────────────────────────────────────────────────────
     # Extra time: E2EE key generation + image encryption + passphrase save.

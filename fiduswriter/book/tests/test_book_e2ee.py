@@ -362,13 +362,13 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         # Wait for the document list to be fully rendered before interacting.
         WebDriverWait(self.driver, self.wait_time).until(
             EC.visibility_of_element_located(
-                (By.CSS_SELECTOR, "#book-document-list .file")
+                (By.CSS_SELECTOR, "#book-document-list .fw-file")
             )
         )
 
         # Select the first document in the list.
         self.driver.find_element(
-            By.CSS_SELECTOR, "#book-document-list .file .file-name"
+            By.CSS_SELECTOR, "#book-document-list .fw-file .fw-file-name"
         ).click()
 
         # Ensure the document is actually marked as selected.
@@ -379,7 +379,7 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
             EC.presence_of_element_located(
                 (
                     By.CSS_SELECTOR,
-                    "#book-document-list .file .file-name.selected",
+                    "#book-document-list .fw-file .fw-file-name.fw-selected",
                 )
             )
         )
@@ -456,13 +456,13 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
 
         # Add the E2EE document as a chapter.
         self.driver.find_element(
-            By.CSS_SELECTOR, "#book-document-list .file .file-name"
+            By.CSS_SELECTOR, "#book-document-list .fw-file .fw-file-name"
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.presence_of_element_located(
                 (
                     By.CSS_SELECTOR,
-                    "#book-document-list .file .file-name.selected",
+                    "#book-document-list .fw-file .fw-file-name.fw-selected",
                 )
             )
         )
