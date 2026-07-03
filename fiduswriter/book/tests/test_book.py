@@ -207,19 +207,19 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ).send_keys(image_path)
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Upload"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Upload"]',
         ).click()
         time.sleep(1)
         self.driver.find_element(
             By.XPATH,
             (
-                '//*[contains(@class, "ui-button") '
+                '//*[contains(@class, "fw-button") '
                 'and normalize-space()="Use image"]'
             ),
         ).click()
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -300,7 +300,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ).click()
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         # Check that access rights are listed
@@ -335,7 +335,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         )
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Close"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Close"]',
         ).click()
         # Login as user 2 and check that write access is there and usable
         self.login_user(self.user2, self.driver, self.client)
@@ -416,7 +416,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         ).click()
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -477,7 +477,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         )
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Close"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Close"]',
         ).click()
 
         # We export the book
@@ -624,7 +624,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         )
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -670,7 +670,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         )
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         trs = self.driver.find_elements(
@@ -717,7 +717,7 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         )
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         trs = self.driver.find_elements(
@@ -850,11 +850,11 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR,
             (
-                "body > div.ui-dialog.ui-corner-all.ui-widget."
-                "ui-widget-content.ui-front.ui-dialog-buttons > "
-                "div.ui-dialog-buttonpane.ui-widget-content."
-                "ui-helper-clearfix > div > button.fw-dark."
-                "fw-button.ui-button.ui-corner-all.ui-widget"
+                "body > div.fw-dialog.fw-corner-all.fw-widget."
+                "fw-widget-content.fw-front.fw-dialog-buttons > "
+                "div.fw-dialog-buttonpane.fw-widget-content."
+                "fw-helper-clearfix > div > button.fw-dark."
+                "fw-button.fw-button.fw-corner-all.fw-widget"
             ),
         ).click()
         cross_reference = self.driver.find_element(
@@ -876,11 +876,11 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR,
             (
-                "body > div.ui-dialog.ui-corner-all.ui-widget."
-                "ui-widget-content.ui-front.ui-dialog-buttons > "
-                "div.ui-dialog-buttonpane.ui-widget-content."
-                "ui-helper-clearfix > div > button.fw-dark."
-                "fw-button.ui-button.ui-corner-all.ui-widget"
+                "body > div.fw-dialog.fw-corner-all.fw-widget."
+                "fw-widget-content.fw-front.fw-dialog-buttons > "
+                "div.fw-dialog-buttonpane.fw-widget-content."
+                "fw-helper-clearfix > div > button.fw-dark."
+                "fw-button.fw-button.fw-corner-all.fw-widget"
             ),
         ).click()
         internal_link = self.driver.find_element(

@@ -189,11 +189,11 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
 
         # Encryption choice dialog — select "Encrypted".
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".ui-dialog"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".fw-dialog"))
         )
         self.driver.find_element(By.ID, "e2ee").click()
         self.driver.find_element(
-            By.CSS_SELECTOR, ".ui-dialog .fw-dark"
+            By.CSS_SELECTOR, ".fw-dialog .fw-dark"
         ).click()
 
         # With the master key in sessionStorage the editor opens directly.
@@ -279,7 +279,7 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         # Submit the upload.
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class,"ui-button") and normalize-space()="Upload"]',
+            '//*[contains(@class,"fw-button") and normalize-space()="Upload"]',
         ).click()
 
         # Wait for the upload to complete (the row check-mark appears).
@@ -401,7 +401,7 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
             EC.element_to_be_clickable(
                 (
                     By.XPATH,
-                    '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
+                    '//*[contains(@class,"fw-button") and normalize-space()="Submit"]',
                 )
             )
         )
@@ -411,7 +411,7 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         # Detecting dialog closure first is more reliable than waiting for a
         # list element that may be obscured by a lingering modal.
         WebDriverWait(self.driver, self.wait_time * 2).until(
-            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ui-dialog"))
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".fw-dialog"))
         )
         # The table re-renders after a save; use a fresh wait so we do not
         # capture a stale element.
@@ -498,7 +498,7 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
             EC.element_to_be_clickable(
                 (
                     By.XPATH,
-                    '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
+                    '//*[contains(@class,"fw-button") and normalize-space()="Submit"]',
                 )
             )
         )
@@ -531,11 +531,11 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
 
         # Encryption choice dialog.
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".ui-dialog"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".fw-dialog"))
         )
         self.driver.find_element(By.ID, "e2ee").click()
         self.driver.find_element(
-            By.CSS_SELECTOR, ".ui-dialog .fw-dark"
+            By.CSS_SELECTOR, ".fw-dialog .fw-dark"
         ).click()
 
         # Editor opens immediately (master key is in sessionStorage).
@@ -659,7 +659,7 @@ class BookE2EETest(SeleniumHelper, ChannelsLiveServerTestCase):
         # DOM before continuing.
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class,"ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class,"fw-button") and normalize-space()="Submit"]',
         ).click()
         WebDriverWait(self.driver, self.wait_time).until(
             EC.staleness_of(chapter_list)

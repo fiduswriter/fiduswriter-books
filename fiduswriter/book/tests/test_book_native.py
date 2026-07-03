@@ -100,7 +100,7 @@ class BookNativeBase:
         # Submit the upload.
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class,"ui-button") and normalize-space()="Upload"]',
+            '//*[contains(@class,"fw-button") and normalize-space()="Upload"]',
         ).click()
 
         # Wait for the upload to complete (check-mark row appears).
@@ -340,7 +340,7 @@ class BookNativeTest(
         self.driver.find_element(By.ID, "add-chapter").click()
         self.driver.find_element(
             By.XPATH,
-            '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+            '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -513,13 +513,13 @@ def _run_e2ee_import_test(self, *, tick_checkbox):
     if tick_checkbox:
         # Wait for and interact with encryption choice dialog
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".ui-dialog"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".fw-dialog"))
         )
         # Select "Encrypted" radio button
         self.driver.find_element(By.ID, "e2ee").click()
         # Click "Create"
         self.driver.find_element(
-            By.CSS_SELECTOR, ".ui-dialog .fw-dark"
+            By.CSS_SELECTOR, ".fw-dialog .fw-dark"
         ).click()
 
     WebDriverWait(self.driver, self.wait_time).until(
@@ -544,13 +544,13 @@ def _run_e2ee_import_test(self, *, tick_checkbox):
     if tick_checkbox:
         # Wait for and interact with encryption choice dialog
         WebDriverWait(self.driver, self.wait_time).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".ui-dialog"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".fw-dialog"))
         )
         # Select "Non-encrypted" radio button
         self.driver.find_element(By.ID, "nonencrypted").click()
         # Click "Create"
         self.driver.find_element(
-            By.CSS_SELECTOR, ".ui-dialog .fw-dark"
+            By.CSS_SELECTOR, ".fw-dialog .fw-dark"
         ).click()
 
     WebDriverWait(self.driver, self.wait_time).until(
@@ -611,7 +611,7 @@ def _run_e2ee_import_test(self, *, tick_checkbox):
     self.driver.find_element(By.ID, "add-chapter").click()
     self.driver.find_element(
         By.XPATH,
-        '//*[contains(@class, "ui-button") and normalize-space()="Submit"]',
+        '//*[contains(@class, "fw-button") and normalize-space()="Submit"]',
     ).click()
     WebDriverWait(self.driver, self.wait_time).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, ".book-title"))
