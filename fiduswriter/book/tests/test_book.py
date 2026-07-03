@@ -122,16 +122,14 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR, "button[title='Invite contact (Alt-i)']"
         ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located((By.ID, "new-contact-user-string"))
+        )
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "yeti2@snowman.com"
         )
-        WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
-                )
-            )
+        self.driver.find_element(
+            By.CSS_SELECTOR, '[aria-describedby="add-new-contact"] button.fw-dark'
         ).click()
         time.sleep(1)
         self.assertEqual(
@@ -145,16 +143,14 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.CSS_SELECTOR, "button[title='Invite contact (Alt-i)']"
         ).click()
+        WebDriverWait(self.driver, self.wait_time).until(
+            EC.presence_of_element_located((By.ID, "new-contact-user-string"))
+        )
         self.driver.find_element(By.ID, "new-contact-user-string").send_keys(
             "Yeti3"
         )
-        WebDriverWait(self.driver, self.wait_time).until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    '(//div[contains(@class,"fw-dialog")])[last()]//button[contains(@class,"fw-dark") and normalize-space()="Submit"]',
-                )
-            )
+        self.driver.find_element(
+            By.CSS_SELECTOR, '[aria-describedby="add-new-contact"] button.fw-dark'
         ).click()
         time.sleep(1)
         self.assertEqual(
