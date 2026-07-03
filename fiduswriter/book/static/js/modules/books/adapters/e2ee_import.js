@@ -1,5 +1,5 @@
-import {E2EEKeyManager} from "../../editor/e2ee/key-manager.js"
-import {PassphraseManager} from "../../editor/e2ee/passphrase-manager.js"
+import {E2EEKeyManager} from "../../editor/e2ee/key-manager"
+import {PassphraseManager} from "../../editor/e2ee/passphrase-manager"
 
 /**
  * Generate fresh E2EE options for a newly imported chapter.
