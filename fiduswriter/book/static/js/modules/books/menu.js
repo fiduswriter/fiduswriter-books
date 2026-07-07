@@ -8,7 +8,7 @@ import {ODTBookExporter} from "@fiduswriter/books-document/exporter/odt"
 import {PrintBookExporter} from "@fiduswriter/books-document/exporter/print"
 import {getMissingChapterData} from "@fiduswriter/books-document/exporter/tools"
 import download from "downloadjs"
-import {FileDialog, NewFolderDialog, addAlert} from "fwtoolkit"
+import {FileDialog, NewFolderDialog, addAlert, addProgress} from "fwtoolkit"
 import {BookAccessRightsDialog} from "./accessrights"
 import {chapterLoader} from "./adapters/chapter-loader"
 import {e2eeStrategy} from "./adapters/e2ee-strategy"
@@ -33,24 +33,42 @@ let currentlySearching = false
  * @param {boolean} rawContent - Whether the exporter needs doc.rawContent.
  * @returns {Promise}
  */
-const runBookExport = (exporter, overview, mimeType, rawContent = false) =>
-    getMissingChapterData(
+const runBookExport = (exporter, overview, mimeType, rawContent = false) => {
+    const formatName =
+        exporter.defaultFilename.split(".").pop()?.toUpperCase() ||
+        gettext("Book")
+    const task = addProgress(
+        "info",
+        `${exporter.book.title}: ${gettext("Exporting")} ${formatName}...`,
+        {autoClose: false}
+    )
+    const progressCallback = (message, percentage) =>
+        task.update(percentage, message)
+
+    return getMissingChapterData(
         exporter.book,
         overview.documentList,
         overview.schema,
         {
             rawContent,
             loader: chapterLoader,
-            e2ee: e2eeStrategy
+            e2ee: e2eeStrategy,
+            progressCallback
         }
     )
-        .then(() => exporter.init())
+        .then(() => exporter.init(progressCallback))
         .then(blob => {
+            task.update(100, gettext("Export complete."))
             if (blob) {
                 download(blob, exporter.defaultFilename, mimeType)
             }
             return blob
         })
+        .catch(error => {
+            task.close()
+            addAlert("error", error.message || gettext("Book export failed."))
+        })
+}
 
 export const menuModel = () => ({
     content: [
@@ -113,10 +131,6 @@ export const menuModel = () => ({
 })
 
 const exportEpub = (book, overview) => {
-    addAlert(
-        "info",
-        book.title + ": " + gettext("Epub export has been initiated.")
-    )
     const exporter = new EpubBookExporter(
         overview.schema,
         overview.app.csl,
@@ -130,10 +144,6 @@ const exportEpub = (book, overview) => {
 }
 
 const exportBITS = (book, overview) => {
-    addAlert(
-        "info",
-        book.title + ": " + gettext("BITS export has been initiated.")
-    )
     const exporter = new BITSBookExporter(
         overview.schema,
         overview.app.csl,
@@ -146,10 +156,6 @@ const exportBITS = (book, overview) => {
 }
 
 const exportHTML = (book, overview) => {
-    addAlert(
-        "info",
-        book.title + ": " + gettext("HTML export has been initiated.")
-    )
     const exporter = new HTMLBookExporter(
         overview.schema,
         overview.app.csl,
@@ -163,10 +169,6 @@ const exportHTML = (book, overview) => {
 }
 
 const exportSingleHTML = (book, overview) => {
-    addAlert(
-        "info",
-        book.title + ": " + gettext("Unified HTML export has been initiated.")
-    )
     const exporter = new HTMLBookExporter(
         overview.schema,
         overview.app.csl,
@@ -181,10 +183,6 @@ const exportSingleHTML = (book, overview) => {
 }
 
 const exportLatex = (book, overview) => {
-    addAlert(
-        "info",
-        book.title + ": " + gettext("LaTeX export has been initiated.")
-    )
     const exporter = new LatexBookExporter(
         overview.schema,
         book,
@@ -196,10 +194,6 @@ const exportLatex = (book, overview) => {
 }
 
 const exportDOCX = (book, overview) => {
-    addAlert(
-        "info",
-        book.title + ": " + gettext("DOCX export has been initiated.")
-    )
     const exporter = new DOCXBookExporter(
         overview.schema,
         overview.app.csl,
@@ -212,10 +206,6 @@ const exportDOCX = (book, overview) => {
 }
 
 const exportODT = (book, overview) => {
-    addAlert(
-        "info",
-        book.title + ": " + gettext("ODT export has been initiated.")
-    )
     const exporter = new ODTBookExporter(
         overview.schema,
         overview.app.csl,
@@ -228,7 +218,6 @@ const exportODT = (book, overview) => {
 }
 
 const exportPrint = (book, overview) => {
-    addAlert("info", book.title + ": " + gettext("Print has been initiated."))
     const exporter = new PrintBookExporter(
         overview.schema,
         overview.app.csl,
