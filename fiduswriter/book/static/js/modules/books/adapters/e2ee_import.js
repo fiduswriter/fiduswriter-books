@@ -1,5 +1,5 @@
-import {E2EEKeyManager} from "../../editor/e2ee/key-manager"
-import {PassphraseManager} from "../../editor/e2ee/passphrase-manager"
+import {E2EEKeyManager} from "@fiduswriter/editor/e2ee/key-manager"
+import {PassphraseManager} from "@fiduswriter/editor/e2ee/passphrase-manager"
 
 /**
  * Generate fresh E2EE options for a newly imported chapter.

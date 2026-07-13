@@ -1,5 +1,8 @@
 import deepEqual from "fast-deep-equal"
 
+import {baseBodyTemplate} from "@fiduswriter/common/common"
+import {FeedbackTab} from "@fiduswriter/common/feedback"
+import {SiteMenu} from "@fiduswriter/common/menu"
 import {docSchema} from "@fiduswriter/document/schema/document/index"
 import {
     Dialog,
@@ -18,10 +21,7 @@ import {
     whenReady
 } from "fwtoolkit"
 import {plugins} from "../../plugins/books_overview"
-import {baseBodyTemplate} from "../common/index.js"
-import {FeedbackTab} from "../feedback"
 import {ImageDB} from "../images/database"
-import {SiteMenu} from "../menu"
 import {BookAccessRightsDialog} from "./accessrights"
 import {BookActions} from "./actions"
 import {bulkMenuModel, menuModel} from "./menu"
@@ -472,8 +472,8 @@ export class BookOverview {
         }
         ;(async () => {
             const [{E2EEKeyManager}, {E2EEEncryptor}] = await Promise.all([
-                import("../editor/e2ee/key-manager"),
-                import("../editor/e2ee/encryptor")
+                import("@fiduswriter/editor/e2ee/key-manager"),
+                import("@fiduswriter/editor/e2ee/encryptor")
             ])
             await Promise.all(
                 needsAsyncDecrypt.map(async doc => {
