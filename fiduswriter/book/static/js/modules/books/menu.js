@@ -40,7 +40,7 @@ const runBookExport = (exporter, overview, mimeType, rawContent = false) => {
     const task = addProgress(
         "info",
         `${exporter.book.title}: ${gettext("Exporting")} ${formatName}...`,
-        {autoClose: false}
+        {autoClose: 6000}
     )
     const progressCallback = (message, percentage) =>
         task.update(percentage, message)
