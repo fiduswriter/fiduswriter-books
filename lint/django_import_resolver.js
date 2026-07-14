@@ -5,6 +5,63 @@ const {execSync} = require("child_process")
 
 const EXCEPTIONS = ["../../../mathlive/opf_includes"]
 
+// Packages provided by Fidus Writer core base apps. Plugins may import these
+// without re-declaring them in their own package.json5 files.
+const BASE_PACKAGES = new Set([
+    "fwtoolkit",
+    "downloadjs",
+    "bibliojson",
+    "cropperjs",
+    "browserslist-useragent-regexp",
+    "file-loader",
+    "diff-dom",
+    "@fortawesome/fontawesome-free",
+    "simple-datatables",
+    "@vivliostyle/print",
+    "w3c-keyname",
+    "source-map-loader",
+    "stacktrace-js",
+    "regenerator-runtime",
+    "@aaroon/workbox-rspack-plugin",
+    "qrcode",
+    "tokenfield",
+    "fix-utf8"
+])
+
+function getPackageName(source) {
+    if (source.startsWith("@")) {
+        const parts = source.split("/")
+        return `${parts[0]}/${parts[1]}`
+    }
+    return source.split("/")[0]
+}
+
+function loadPackageDeps(packageFile) {
+    try {
+        const output = execSync(
+            `python -c "from npm_mjs.json5_parser import load_json5; import json; data=load_json5('${packageFile}'); print(json.dumps(list(data.get('dependencies',{}).keys()) + list(data.get('peerDependencies',{}).keys())))"`,
+            {encoding: "utf-8", stdio: ["pipe", "pipe", "ignore"]}
+        )
+        return JSON.parse(output.trim())
+    } catch {
+        return []
+    }
+}
+
+function collectAllowedPackages(appsPaths) {
+    const allowed = new Set(BASE_PACKAGES)
+    appsPaths.forEach(appPath => {
+        for (const fileName of ["package.json5", "package.json"]) {
+            const packageFile = path.join(appPath, fileName)
+            if (isFile(packageFile)) {
+                loadPackageDeps(packageFile).forEach(dep => allowed.add(dep))
+                break
+            }
+        }
+    })
+    return allowed
+}
+
 function getFidusWriterPath() {
     try {
         // Get all paths from fiduswriter.__path__ (handles namespace packages and editable installs)
@@ -171,15 +228,21 @@ function checkExports(filePath, importedNames, sourcePath) {
     })
 }
 
-function checkImports(file, appsPaths) {
+function checkImports(file, appsPaths, allowedPackages) {
     const content = fs.readFileSync(file, "utf-8")
     const importRegex =
         /import\s+(?:(\*\s+as\s+\w+)|(\w+)|(\{[^}]+\}))\s+from\s+['"](.*)['"]/g
     let match
     while ((match = importRegex.exec(content)) !== null) {
         const source = match[4]
-        // Skip non-relative imports
+        // Non-relative imports are allowed if they come from the plugin's own
+        // declared dependencies or from Fidus Writer core base packages.
         if (!source.startsWith(".") && !source.startsWith("..")) {
+            const packageName = getPackageName(source)
+            if (!allowedPackages.has(packageName)) {
+                console.error(`Unresolved import: ${source} in file ${file}`)
+                process.exit(1)
+            }
             continue
         }
         if (EXCEPTIONS.includes(source)) {
@@ -222,5 +285,7 @@ const fidusWriterAppsPaths = getAppsPaths(fidusWriterPath)
 
 const appsPaths = pluginAppsPaths.concat(fidusWriterAppsPaths)
 
+const allowedPackages = collectAllowedPackages(appsPaths)
+
 const files = process.argv.slice(2)
-files.forEach(file => checkImports(file, appsPaths))
+files.forEach(file => checkImports(file, appsPaths, allowedPackages))
