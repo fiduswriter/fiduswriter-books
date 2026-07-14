@@ -4,6 +4,7 @@ import {baseBodyTemplate} from "@fiduswriter/common/common"
 import {FeedbackTab} from "@fiduswriter/common/feedback"
 import {SiteMenu} from "@fiduswriter/common/menu"
 import {docSchema} from "@fiduswriter/document/schema/document/index"
+import {ImageDB} from "@fiduswriter/image-manager"
 import {
     Dialog,
     OverviewDataTable,
@@ -21,7 +22,6 @@ import {
     whenReady
 } from "fwtoolkit"
 import {plugins} from "../../plugins/books_overview"
-import {ImageDB} from "@fiduswriter/image-manager"
 import {BookAccessRightsDialog} from "./accessrights"
 import {BookActions} from "./actions"
 import {bulkMenuModel, menuModel} from "./menu"
