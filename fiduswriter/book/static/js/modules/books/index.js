@@ -21,7 +21,7 @@ import {
     whenReady
 } from "fwtoolkit"
 import {plugins} from "../../plugins/books_overview"
-import {ImageDB} from "../images/database"
+import {ImageDB} from "@fiduswriter/image-manager"
 import {BookAccessRightsDialog} from "./accessrights"
 import {BookActions} from "./actions"
 import {bulkMenuModel, menuModel} from "./menu"
@@ -472,8 +472,8 @@ export class BookOverview {
         }
         ;(async () => {
             const [{E2EEKeyManager}, {E2EEEncryptor}] = await Promise.all([
-                import("@fiduswriter/editor/e2ee/key-manager"),
-                import("@fiduswriter/editor/e2ee/encryptor")
+                import("fwtoolkit/e2ee/key-manager"),
+                import("fwtoolkit/e2ee/encryptor")
             ])
             await Promise.all(
                 needsAsyncDecrypt.map(async doc => {
