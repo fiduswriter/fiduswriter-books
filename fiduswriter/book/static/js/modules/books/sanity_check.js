@@ -121,7 +121,10 @@ export const bookSanityCheck = (book, documentList, schema) => {
         })
         .catch(err => {
             // Passphrase unavailable or user cancelled the unlock dialog.
-            if (err.message && err.message.includes("Passphrase required")) {
+            if (
+                err.message &&
+                err.message.toLowerCase().includes("passphrase is required")
+            ) {
                 return `<ul class="fw-errorlist"><li>${gettext(
                     "This book contains encrypted chapters. A personal passphrase is required to perform a sanity check. Please set up or unlock your personal passphrase in your profile settings."
                 )}</li></ul>`
