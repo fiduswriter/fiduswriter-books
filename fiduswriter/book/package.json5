@@ -1,7 +1,7 @@
 {
     dependencies: {
         "@fiduswriter/books-document": "^0.1.7",
-        "@fiduswriter/common": "^0.1.4",
+        "@fiduswriter/common": "^0.1.5",
         "@fiduswriter/image-manager": "^0.1.4"
     }
 }
