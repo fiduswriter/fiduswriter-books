@@ -1,9 +1,9 @@
 import deepEqual from "fast-deep-equal"
 
-import {baseBodyTemplate} from "@fiduswriter/common/common"
-import {FeedbackTab} from "@fiduswriter/common/feedback"
-import {SiteMenu} from "@fiduswriter/common/menu"
 import {docSchema} from "@fiduswriter/document/schema/document/index"
+import {baseBodyTemplate} from "@fiduswriter/frontend/common"
+import {FeedbackTab} from "@fiduswriter/frontend/feedback"
+import {SiteMenu} from "@fiduswriter/frontend/menu"
 import {ImageDB} from "@fiduswriter/image-manager"
 import {
     Dialog,
