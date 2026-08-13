@@ -840,7 +840,8 @@ export class BookActions {
                             bookSanityCheck(
                                 book,
                                 this.bookOverview.documentList,
-                                this.bookOverview.schema
+                                this.bookOverview.schema,
+                                this.bookOverview.app
                             )
                         )
                         .then(sanityCheckOutputHTML => {

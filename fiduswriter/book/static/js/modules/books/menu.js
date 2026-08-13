@@ -10,7 +10,7 @@ import {getMissingChapterData} from "@fiduswriter/books-document/exporter/tools"
 import download from "downloadjs"
 import {FileDialog, NewFolderDialog, addAlert, addProgress} from "fwtoolkit"
 import {BookAccessRightsDialog} from "./accessrights"
-import {chapterLoader} from "./adapters/chapter-loader"
+import {createChapterLoader} from "./adapters/chapter-loader"
 import {e2eeStrategy} from "./adapters/e2ee-strategy"
 
 let currentlySearching = false
@@ -51,7 +51,7 @@ const runBookExport = (exporter, overview, mimeType, rawContent = false) => {
         overview.schema,
         {
             rawContent,
-            loader: chapterLoader,
+            loader: createChapterLoader(overview.app),
             e2ee: e2eeStrategy,
             progressCallback
         }

@@ -118,7 +118,7 @@ export class BookOverview {
 
     getImageDB() {
         if (!this.imageDB) {
-            const imageGetter = new ImageDB()
+            const imageGetter = new ImageDB(this.app)
             return new Promise(resolve => {
                 imageGetter.getDB().then(() => {
                     this.imageDB = imageGetter

@@ -1,7 +1,7 @@
 import {getMissingChapterData} from "@fiduswriter/books-document/exporter/tools"
 import {longFilePath} from "fwtoolkit"
 
-import {chapterLoader} from "./adapters/chapter-loader"
+import {createChapterLoader} from "./adapters/chapter-loader"
 import {e2eeStrategy} from "./adapters/e2ee-strategy"
 
 const labelChapter = (chapter, doc) =>
@@ -65,7 +65,7 @@ function findContentIssues(node, chapter, doc, messages) {
     }
 }
 
-export const bookSanityCheck = (book, documentList, schema) => {
+export const bookSanityCheck = (book, documentList, schema, app) => {
     if (!book.chapters.length) {
         return Promise.resolve(
             `<ul class="fw-errorlist"><li>${gettext(
@@ -75,7 +75,7 @@ export const bookSanityCheck = (book, documentList, schema) => {
     }
     return getMissingChapterData(book, documentList, schema, {
         rawContent: true,
-        loader: chapterLoader,
+        loader: createChapterLoader(app),
         e2ee: e2eeStrategy
     })
         .then(() => {
