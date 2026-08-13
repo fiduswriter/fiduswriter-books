@@ -1,4 +1,5 @@
 import {NativeBookImporter} from "@fiduswriter/books-document/importer/native"
+import {createNativeImporterBackend} from "@fiduswriter/frontend/documents/importer/native/import"
 import {ImageSelectionDialog} from "@fiduswriter/image-manager"
 import {
     ContentMenu,
@@ -13,7 +14,6 @@ import {
     post,
     postJson
 } from "fwtoolkit"
-import {createNativeImporterBackend} from "../importer/native/import"
 import {createBookImporterBackend} from "./adapters/book-importer-backend"
 import {
     generateE2EEOptions,

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 17:00+0000\n"
+"POT-Creation-Date: 2026-07-23 09:50+0000\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,8 @@ msgid "Add contact"
 msgstr "Добавить контакт"
 
 #: book/static/js/modules/books/accessrights/index.js:120
-#: book/static/js/modules/books/actions.js:190
-#: book/static/js/modules/books/actions.js:483
+#: book/static/js/modules/books/actions.js:196
+#: book/static/js/modules/books/actions.js:498
 msgid "Submit"
 msgstr "Отправить"
 
@@ -32,21 +32,21 @@ msgstr "Отправить"
 msgid "Share your book with others"
 msgstr "Поделиться книгой с другими"
 
-#: book/static/js/modules/books/accessrights/index.js:275
 #: book/static/js/modules/books/accessrights/index.js:277
+#: book/static/js/modules/books/accessrights/index.js:279
 msgid "Write"
 msgstr "Запись"
 
-#: book/static/js/modules/books/accessrights/index.js:285
 #: book/static/js/modules/books/accessrights/index.js:287
+#: book/static/js/modules/books/accessrights/index.js:289
 msgid "Read"
 msgstr "Чтение"
 
-#: book/static/js/modules/books/accessrights/index.js:303
+#: book/static/js/modules/books/accessrights/index.js:305
 msgid "Cannot save access rights."
 msgstr "Не удается сохранить права доступа."
 
-#: book/static/js/modules/books/accessrights/index.js:307
+#: book/static/js/modules/books/accessrights/index.js:309
 msgid "Access rights have been saved"
 msgstr "Права доступа сохранены"
 
@@ -72,162 +72,161 @@ msgid "Collaborators"
 msgstr "Соавторы"
 
 #: book/static/js/modules/books/accessrights/templates.js:85
-#: book/static/js/modules/books/index.js:224
+#: book/static/js/modules/books/index.js:241
 msgid "Rights"
 msgstr "Права"
 
 #: book/static/js/modules/books/accessrights/templates.js:86
-#: book/static/js/modules/books/actions.js:143
-#: book/static/js/modules/books/index.js:619
+#: book/static/js/modules/books/actions.js:149
+#: book/static/js/modules/books/index.js:587
 msgid "Delete"
 msgstr "Удалить"
 
-#: book/static/js/modules/books/actions.js:59
+#: book/static/js/modules/books/actions.js:65
 msgid "Basic info"
 msgstr "Основная информация"
 
-#: book/static/js/modules/books/actions.js:60
+#: book/static/js/modules/books/actions.js:66
 msgid "Basic book information"
 msgstr "Основная информация о книге"
 
-#: book/static/js/modules/books/actions.js:64
+#: book/static/js/modules/books/actions.js:70
 msgid "Chapters"
 msgstr "Главы"
 
-#: book/static/js/modules/books/actions.js:65
+#: book/static/js/modules/books/actions.js:71
 msgid "Documents assigned as chapters"
 msgstr "Документы, назначенные как главы"
 
-#: book/static/js/modules/books/actions.js:69
-#: book/static/js/modules/books/actions.js:423
+#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:438
 msgid "Bibliography"
 msgstr "Библиография"
 
-#: book/static/js/modules/books/actions.js:70
+#: book/static/js/modules/books/actions.js:76
 msgid "Bibliography related settings"
 msgstr "Настройки библиографии"
 
-#: book/static/js/modules/books/actions.js:74
+#: book/static/js/modules/books/actions.js:80
 msgid "Epub"
 msgstr "Epub"
 
-#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:81
 msgid "Epub related settings"
 msgstr "Настройки Epub"
 
-#: book/static/js/modules/books/actions.js:79
+#: book/static/js/modules/books/actions.js:85
 msgid "DOCX"
 msgstr "DOCX"
 
-#: book/static/js/modules/books/actions.js:80
+#: book/static/js/modules/books/actions.js:86
 msgid "DOCX related settings"
 msgstr "Настройки DOCX"
 
-#: book/static/js/modules/books/actions.js:84
+#: book/static/js/modules/books/actions.js:90
 msgid "ODT"
 msgstr "ODT"
 
-#: book/static/js/modules/books/actions.js:85
+#: book/static/js/modules/books/actions.js:91
 msgid "ODT related settings"
 msgstr "Настройки ODT"
 
-#: book/static/js/modules/books/actions.js:89
+#: book/static/js/modules/books/actions.js:95
 msgid "Print/PDF"
 msgstr "Печать/PDF"
 
-#: book/static/js/modules/books/actions.js:90
+#: book/static/js/modules/books/actions.js:96
 msgid "Print related settings"
 msgstr "Настройки печати"
 
-#: book/static/js/modules/books/actions.js:94
+#: book/static/js/modules/books/actions.js:100
 msgid "Sanity check"
 msgstr "Проверка"
 
-#: book/static/js/modules/books/actions.js:95
+#: book/static/js/modules/books/actions.js:101
 msgid "Perform sanity check on book"
 msgstr "Выполнить проверку книги"
 
-#: book/static/js/modules/books/actions.js:111
+#: book/static/js/modules/books/actions.js:117
 msgid "Could not delete book"
 msgstr "Не удалось удалить книгу"
 
-#: book/static/js/modules/books/actions.js:121
+#: book/static/js/modules/books/actions.js:127
 msgid "Book has been deleted"
 msgstr "Книга удалена"
 
-#: book/static/js/modules/books/actions.js:155
-#: book/static/js/modules/books/index.js:609
+#: book/static/js/modules/books/actions.js:161
+#: book/static/js/modules/books/index.js:577
 msgid "Confirm deletion"
 msgstr "Подтвердите удаление"
 
-#: book/static/js/modules/books/actions.js:162
+#: book/static/js/modules/books/actions.js:168
 msgid "Do you really want to delete the following books?"
 msgstr "Вы действительно хотите удалить следующие книги?"
 
-#: book/static/js/modules/books/actions.js:165
+#: book/static/js/modules/books/actions.js:171
 msgid "Do you really want to delete the following book?"
 msgstr "Вы действительно хотите удалить следующую книгу?"
 
-#: book/static/js/modules/books/actions.js:182
-#: book/static/js/modules/books/exporter/tools.js:105
-#: book/static/js/modules/books/importer/native/index.js:401
+#: book/static/js/modules/books/actions.js:188
+#: book/static/js/modules/books/adapters/book-importer-backend.js:19
 #: book/static/js/modules/books/templates.js:610
 msgid "Untitled"
 msgstr "Без названия"
 
-#: book/static/js/modules/books/actions.js:206
+#: book/static/js/modules/books/actions.js:212
 msgid "Edit Chapter"
 msgstr "Редактировать главу"
 
-#: book/static/js/modules/books/actions.js:263
+#: book/static/js/modules/books/actions.js:269
 msgid "The book could not be saved"
 msgstr "Не удалось сохранить книгу"
 
-#: book/static/js/modules/books/actions.js:292
+#: book/static/js/modules/books/actions.js:298
 msgid "Copy of"
 msgstr "Копия"
 
-#: book/static/js/modules/books/actions.js:296
+#: book/static/js/modules/books/actions.js:302
 msgid "The book could not be copied"
 msgstr "Не удалось скопировать книгу"
 
-#: book/static/js/modules/books/actions.js:322
+#: book/static/js/modules/books/actions.js:328
 msgid "Chapters will be imported as encrypted (E2EE) documents."
 msgstr "Главы будут импортированы как зашифрованные (E2EE) документы."
 
-#: book/static/js/modules/books/actions.js:329
+#: book/static/js/modules/books/actions.js:335
 msgid "Import chapters as encrypted (E2EE) documents"
 msgstr "Импортировать главы как зашифрованные (E2EE) документы"
 
-#: book/static/js/modules/books/actions.js:336
+#: book/static/js/modules/books/actions.js:342
 msgid "Import a book"
 msgstr "Импортировать книгу"
 
-#: book/static/js/modules/books/actions.js:339
+#: book/static/js/modules/books/actions.js:345
 msgid "Select a .fidusbook file:"
 msgstr "Выберите файл .fidusbook:"
 
-#: book/static/js/modules/books/actions.js:353
+#: book/static/js/modules/books/actions.js:359
 msgid "Import"
 msgstr "Импорт"
 
-#: book/static/js/modules/books/actions.js:364
+#: book/static/js/modules/books/actions.js:370
 msgid "File too large"
 msgstr "Файл слишком большой"
 
-#: book/static/js/modules/books/actions.js:413
+#: book/static/js/modules/books/actions.js:428
 msgid "Create Book"
 msgstr "Создать книгу"
 
-#: book/static/js/modules/books/actions.js:448
+#: book/static/js/modules/books/actions.js:463
 msgid "Edit Book"
 msgstr "Редактировать книгу"
 
-#: book/static/js/modules/books/actions.js:464
+#: book/static/js/modules/books/actions.js:479
 msgid "Export"
 msgstr "Экспорт"
 
-#: book/static/js/modules/books/actions.js:635
+#: book/static/js/modules/books/actions.js:650
 #: book/static/js/modules/books/templates.js:570
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
@@ -236,452 +235,367 @@ msgstr ""
 "Эта книга содержит зашифрованные главы. Для экспорта или проверки книги "
 "требуется личная парольная фраза."
 
-#: book/static/js/modules/books/exporter/bits/index.js:30
-#: book/static/js/modules/books/exporter/docx/index.js:43
-#: book/static/js/modules/books/exporter/epub/index.js:49
-#: book/static/js/modules/books/exporter/html/index.js:62
-#: book/static/js/modules/books/exporter/native/index.js:42
-#: book/static/js/modules/books/exporter/odt/index.js:40
-msgid "Book cannot be exported due to lack of chapters."
-msgstr "Невозможно экспортировать книгу из-за отсутствия глав."
-
-#: book/static/js/modules/books/exporter/native/index.js:49
-msgid "Fidusbook export has been initiated."
-msgstr "Экспорт Fidusbook запущен."
-
-#: book/static/js/modules/books/exporter/native/index.js:57
-msgid "Fidusbook export failed."
-msgstr "Экспорт Fidusbook не удался."
-
-#: book/static/js/modules/books/exporter/tools.js:37
-msgid "Wrong passphrase. Please try again."
-msgstr "Неверная парольная фраза. Пожалуйста, попробуйте снова."
-
-#: book/static/js/modules/books/exporter/tools.js:92
-msgid ""
-"A personal passphrase is required to work with books that contain encrypted "
-"chapters. Please set up or unlock your personal passphrase in your profile "
-"settings."
-msgstr ""
-"Для работы с книгами, содержащими зашифрованные главы, требуется личная "
-"парольная фраза. Пожалуйста, настройте или разблокируйте её в настройках "
-"профиля."
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "No encryption key found for chapter:"
-msgstr "Не найден ключ шифрования для главы:"
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "The key may not have been shared with you."
-msgstr "Ключ, возможно, не был передан вам."
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "Could not decrypt chapter:"
-msgstr "Не удалось расшифровать главу:"
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "The document may have been re-encrypted with a different password."
-msgstr "Документ мог быть перешифрован с другим паролем."
-
-#: book/static/js/modules/books/exporter/tools.js:293
-msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "Невозможно создать книгу, так как у вас нет прав доступа к её главам."
-
-#: book/static/js/modules/books/importer/native/index.js:58
-#: book/static/js/modules/books/importer/native/index.js:82
-#: book/static/js/modules/books/importer/native/index.js:145
-msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "Загруженный файл не является файлом Fidusbook."
-
-#: book/static/js/modules/books/importer/native/index.js:134
-msgid "The Fidusbook file version is not supported by this server: "
-msgstr "Версия файла Fidusbook не поддерживается этим сервером: "
-
-#: book/static/js/modules/books/importer/native/index.js:193
-msgid "Fidusbook file is missing data for chapter "
-msgstr "В файле Fidusbook отсутствуют данные для главы "
-
-#: book/static/js/modules/books/importer/native/index.js:251
-msgid "Could not import chapter "
-msgstr "Не удалось импортировать главу "
-
-#: book/static/js/modules/books/importer/native/index.js:300
-msgid "successfully imported."
-msgstr "успешно импортировано."
-
-#: book/static/js/modules/books/importer/native/index.js:418
+#: book/static/js/modules/books/adapters/book-importer-backend.js:37
 msgid "Could not create book record."
 msgstr "Не удалось создать запись книги."
 
-#: book/static/js/modules/books/index.js:116
+#: book/static/js/modules/books/adapters/e2ee-strategy.js:43
+msgid "Wrong passphrase. Please try again."
+msgstr "Неверная парольная фраза. Пожалуйста, попробуйте снова."
+
+#: book/static/js/modules/books/index.js:114
 msgid "Book Overview"
 msgstr "Обзор книг"
 
-#: book/static/js/modules/books/index.js:209
+#: book/static/js/modules/books/index.js:230
 msgid "No books available"
 msgstr "Нет доступных книг"
 
-#: book/static/js/modules/books/index.js:210
+#: book/static/js/modules/books/index.js:231
 msgid "No books found"
 msgstr "Книги не найдены"
 
-#: book/static/js/modules/books/index.js:220
+#: book/static/js/modules/books/index.js:237
 #: book/static/js/modules/books/templates.js:10
 #: book/static/js/modules/books/templates.js:554
 msgid "Title"
 msgstr "Название"
 
-#: book/static/js/modules/books/index.js:221
+#: book/static/js/modules/books/index.js:238
 msgid "Created"
 msgstr "Создано"
 
-#: book/static/js/modules/books/index.js:222
+#: book/static/js/modules/books/index.js:239
 msgid "Last changed"
 msgstr "Последнее изменение"
 
-#: book/static/js/modules/books/index.js:223
+#: book/static/js/modules/books/index.js:240
 msgid "Owner"
 msgstr "Владелец"
 
-#: book/static/js/modules/books/index.js:445
+#: book/static/js/modules/books/index.js:413
 msgid "Cannot load data of books."
 msgstr "Не удается загрузить данные книг."
 
-#: book/static/js/modules/books/index.js:563
-#: book/static/js/modules/books/index.js:577
+#: book/static/js/modules/books/index.js:531
+#: book/static/js/modules/books/index.js:545
 msgid "You cannot delete books while you are offline."
 msgstr "Вы не можете удалять книги в автономном режиме."
 
-#: book/static/js/modules/books/index.js:612
+#: book/static/js/modules/books/index.js:580
 msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr ""
 "Пустая папка будет удалена. Вы действительно хотите удалить эту папку?"
 
-#: book/static/js/modules/books/menu.js:18
+#: book/static/js/modules/books/menu.js:39
+msgid "Book"
+msgstr "Книга"
+
+#: book/static/js/modules/books/menu.js:42
+msgid "Exporting"
+msgstr "Экспорт"
+
+#: book/static/js/modules/books/menu.js:61
+msgid "Export complete."
+msgstr "Экспорт завершен."
+
+#: book/static/js/modules/books/menu.js:69
+msgid "Book export failed."
+msgstr "Не удалось экспортировать книгу."
+
+#: book/static/js/modules/books/menu.js:77
 msgid "Create new book"
 msgstr "Создать новую книгу"
 
-#: book/static/js/modules/books/menu.js:29
+#: book/static/js/modules/books/menu.js:88
 msgid "Create new folder"
 msgstr "Создать новую папку"
 
-#: book/static/js/modules/books/menu.js:43
+#: book/static/js/modules/books/menu.js:102
 msgid "Import book from Fidusbook file"
 msgstr "Импортировать книгу из файла Fidusbook"
 
-#: book/static/js/modules/books/menu.js:53
+#: book/static/js/modules/books/menu.js:112
 msgid "Search books"
 msgstr "Поиск книг"
 
-#: book/static/js/modules/books/menu.js:77
-msgid "Epub export has been initiated."
-msgstr "Экспорт в Epub запущен."
-
-#: book/static/js/modules/books/menu.js:94
-msgid "BITS export has been initiated."
-msgstr "Экспорт в BITS запущен."
-
-#: book/static/js/modules/books/menu.js:110
-msgid "HTML export has been initiated."
-msgstr "Экспорт в HTML запущен."
-
-#: book/static/js/modules/books/menu.js:127
-msgid "Unified HTML export has been initiated."
-msgstr "Экспорт в единый HTML запущен."
-
-#: book/static/js/modules/books/menu.js:145
-msgid "LaTeX export has been initiated."
-msgstr "Экспорт в LaTeX запущен."
-
-#: book/static/js/modules/books/menu.js:160
-msgid "DOCX export has been initiated."
-msgstr "Экспорт в DOCX запущен."
-
-#: book/static/js/modules/books/menu.js:176
-msgid "ODT export has been initiated."
-msgstr "Экспорт в ODT запущен."
-
-#: book/static/js/modules/books/menu.js:190
-msgid "Print has been initiated."
-msgstr "Печать запущена."
-
-#: book/static/js/modules/books/menu.js:216
+#: book/static/js/modules/books/menu.js:246
 msgid "Move selected"
 msgstr "Переместить выбранные"
 
-#: book/static/js/modules/books/menu.js:217
+#: book/static/js/modules/books/menu.js:247
 msgid "Move the books that have been selected."
 msgstr "Переместить выбранные книги."
 
-#: book/static/js/modules/books/menu.js:227
+#: book/static/js/modules/books/menu.js:257
 msgid "Move books"
 msgstr "Переместить книги"
 
-#: book/static/js/modules/books/menu.js:228
+#: book/static/js/modules/books/menu.js:258
 msgid "Move book"
 msgstr "Переместить книгу"
 
-#: book/static/js/modules/books/menu.js:232
+#: book/static/js/modules/books/menu.js:262
 msgid "Book has been moved"
 msgstr "Книга перемещена"
 
-#: book/static/js/modules/books/menu.js:233
+#: book/static/js/modules/books/menu.js:263
 msgid "Could not move book"
 msgstr "Не удалось переместить книгу"
 
-#: book/static/js/modules/books/menu.js:244
+#: book/static/js/modules/books/menu.js:274
 msgid "Delete selected"
 msgstr "Удалить выбранные"
 
-#: book/static/js/modules/books/menu.js:245
+#: book/static/js/modules/books/menu.js:275
 msgid "Delete selected books."
 msgstr "Удалить выбранные книги."
 
-#: book/static/js/modules/books/menu.js:255
+#: book/static/js/modules/books/menu.js:285
 msgid "You cannot delete books of other users."
 msgstr "Вы не можете удалять книги других пользователей."
 
-#: book/static/js/modules/books/menu.js:265
+#: book/static/js/modules/books/menu.js:295
 msgid "Share selected"
 msgstr "Поделиться выбранными"
 
-#: book/static/js/modules/books/menu.js:266
+#: book/static/js/modules/books/menu.js:296
 msgid "Share selected books."
 msgstr "Поделиться выбранными книгами."
 
-#: book/static/js/modules/books/menu.js:276
+#: book/static/js/modules/books/menu.js:306
 msgid "You cannot share books of other users."
 msgstr "Вы не можете делиться книгами других пользователей."
 
-#: book/static/js/modules/books/menu.js:291
+#: book/static/js/modules/books/menu.js:321
 msgid "Copy selected"
 msgstr "Копировать выбранные"
 
-#: book/static/js/modules/books/menu.js:292
+#: book/static/js/modules/books/menu.js:322
 msgid "Copy selected books."
 msgstr "Копировать выбранные книги."
 
-#: book/static/js/modules/books/menu.js:304
+#: book/static/js/modules/books/menu.js:334
 msgid "Export selected as BITS"
 msgstr "Экспортировать выбранные как BITS"
 
-#: book/static/js/modules/books/menu.js:305
+#: book/static/js/modules/books/menu.js:335
 msgid "Export selected books as BITS."
 msgstr "Экспортировать выбранные книги как BITS."
 
-#: book/static/js/modules/books/menu.js:316
+#: book/static/js/modules/books/menu.js:346
 msgid "Export selected as Epub"
 msgstr "Экспортировать выбранные в Epub"
 
-#: book/static/js/modules/books/menu.js:317
+#: book/static/js/modules/books/menu.js:347
 msgid "Export selected books as Epub."
 msgstr "Экспортировать выбранные книги в Epub."
 
-#: book/static/js/modules/books/menu.js:328
+#: book/static/js/modules/books/menu.js:358
 msgid "Export selected as HTML"
 msgstr "Экспортировать выбранные в HTML"
 
-#: book/static/js/modules/books/menu.js:329
+#: book/static/js/modules/books/menu.js:359
 msgid "Export selected books as HTML."
 msgstr "Экспортировать выбранные книги в HTML."
 
-#: book/static/js/modules/books/menu.js:340
+#: book/static/js/modules/books/menu.js:370
 msgid "Export selected as Unified HTML"
 msgstr "Экспортировать выбранные как единый HTML"
 
-#: book/static/js/modules/books/menu.js:341
+#: book/static/js/modules/books/menu.js:371
 msgid "Export selected books as Single-file HTML."
 msgstr "Экспортировать выбранные книги как однофайловый HTML."
 
-#: book/static/js/modules/books/menu.js:352
+#: book/static/js/modules/books/menu.js:382
 msgid "Export selected as LaTeX"
 msgstr "Экспортировать выбранные в LaTeX"
 
-#: book/static/js/modules/books/menu.js:353
+#: book/static/js/modules/books/menu.js:383
 msgid "Export selected books as LaTeX."
 msgstr "Экспортировать выбранные книги в LaTeX."
 
-#: book/static/js/modules/books/menu.js:364
+#: book/static/js/modules/books/menu.js:394
 msgid "Export selected as DOCX"
 msgstr "Экспортировать выбранные как DOCX"
 
-#: book/static/js/modules/books/menu.js:365
+#: book/static/js/modules/books/menu.js:395
 msgid "Export selected books as DOCX."
 msgstr "Экспортировать выбранные книги как DOCX."
 
-#: book/static/js/modules/books/menu.js:378
+#: book/static/js/modules/books/menu.js:408
 msgid "This book does not have a DOCX template."
 msgstr "У этой книги нет шаблона DOCX."
 
-#: book/static/js/modules/books/menu.js:387
+#: book/static/js/modules/books/menu.js:417
 msgid "Export selected as ODT"
 msgstr "Экспортировать выбранные как ODT"
 
-#: book/static/js/modules/books/menu.js:388
+#: book/static/js/modules/books/menu.js:418
 msgid "Export selected books as ODT."
 msgstr "Экспортировать выбранные книги как ODT."
 
-#: book/static/js/modules/books/menu.js:401
+#: book/static/js/modules/books/menu.js:431
 msgid "This book does not have an ODT template."
 msgstr "У этой книги нет шаблона ODT."
 
-#: book/static/js/modules/books/menu.js:410
+#: book/static/js/modules/books/menu.js:440
 msgid "Export selected to Print/PDF"
 msgstr "Экспортировать выбранные в печать/PDF"
 
-#: book/static/js/modules/books/menu.js:411
+#: book/static/js/modules/books/menu.js:441
 msgid "Export selected books to the print dialog."
 msgstr "Экспортировать выбранные книги в диалог печати."
 
-#: book/static/js/modules/books/menu.js:422
+#: book/static/js/modules/books/menu.js:452
 msgid "Export selected as Fidusbook"
 msgstr "Экспортировать выбранные как Fidusbook"
 
-#: book/static/js/modules/books/menu.js:424
+#: book/static/js/modules/books/menu.js:454
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr ""
 "Экспортировать выбранные книги как файлы .fidusbook (для переноса на другой "
 "сервер)."
 
-#: book/static/js/modules/books/menu.js:442
+#: book/static/js/modules/books/menu.js:472
 msgid "Export as BITS"
 msgstr "Экспортировать как BITS"
 
-#: book/static/js/modules/books/menu.js:443
+#: book/static/js/modules/books/menu.js:473
 msgid "Export book as Book Interchange Tag Set."
 msgstr "Экспортировать книгу как набор тегов обмена книгами (BITS)."
 
-#: book/static/js/modules/books/menu.js:450
+#: book/static/js/modules/books/menu.js:480
 msgid "Export as Epub"
 msgstr "Экспортировать как Epub"
 
-#: book/static/js/modules/books/menu.js:451
+#: book/static/js/modules/books/menu.js:481
 msgid "Export book as Epub."
 msgstr "Экспортировать книгу как Epub."
 
-#: book/static/js/modules/books/menu.js:458
+#: book/static/js/modules/books/menu.js:488
 msgid "Export as HTML"
 msgstr "Экспортировать как HTML"
 
-#: book/static/js/modules/books/menu.js:459
+#: book/static/js/modules/books/menu.js:489
 msgid "Export book as HTML."
 msgstr "Экспортировать книгу как HTML."
 
-#: book/static/js/modules/books/menu.js:466
+#: book/static/js/modules/books/menu.js:496
 msgid "Export as Unified HTML"
 msgstr "Экспортировать как единый HTML"
 
-#: book/static/js/modules/books/menu.js:467
+#: book/static/js/modules/books/menu.js:497
 msgid "Export book as Single-file HTML."
 msgstr "Экспортировать книгу как однофайловый HTML."
 
-#: book/static/js/modules/books/menu.js:474
+#: book/static/js/modules/books/menu.js:504
 msgid "Export as LaTeX"
 msgstr "Экспортировать как LaTeX"
 
-#: book/static/js/modules/books/menu.js:475
+#: book/static/js/modules/books/menu.js:505
 msgid "Export book as LaTeX."
 msgstr "Экспортировать книгу как LaTeX."
 
-#: book/static/js/modules/books/menu.js:482
+#: book/static/js/modules/books/menu.js:512
 msgid "Export as DOCX"
 msgstr "Экспортировать как DOCX"
 
-#: book/static/js/modules/books/menu.js:483
+#: book/static/js/modules/books/menu.js:513
 msgid "Export book as DOCX."
 msgstr "Экспортировать книгу как DOCX."
 
-#: book/static/js/modules/books/menu.js:492
+#: book/static/js/modules/books/menu.js:522
 msgid "Export as ODT"
 msgstr "Экспортировать как ODT"
 
-#: book/static/js/modules/books/menu.js:493
+#: book/static/js/modules/books/menu.js:523
 msgid "Export book as ODT."
 msgstr "Экспортировать книгу как ODT."
 
-#: book/static/js/modules/books/menu.js:501
+#: book/static/js/modules/books/menu.js:531
 msgid "Export to Print/PDF"
 msgstr "Экспорт в печать/PDF"
 
-#: book/static/js/modules/books/menu.js:502
+#: book/static/js/modules/books/menu.js:532
 msgid "Export book to the print dialog."
 msgstr "Экспортировать книгу в диалог печати."
 
-#: book/static/js/modules/books/menu.js:509
+#: book/static/js/modules/books/menu.js:539
 msgid "Export as Fidusbook"
 msgstr "Экспортировать как Fidusbook"
 
-#: book/static/js/modules/books/menu.js:511
+#: book/static/js/modules/books/menu.js:541
 msgid "Export book as a .fidusbook file (for moving to another server)."
 msgstr ""
 "Экспортировать книгу как файл .fidusbook (для переноса на другой сервер)."
 
-#: book/static/js/modules/books/sanity_check.js:6
+#: book/static/js/modules/books/sanity_check.js:8
 msgid "Chapter"
 msgstr "Глава"
 
-#: book/static/js/modules/books/sanity_check.js:14
-#: book/static/js/modules/books/sanity_check.js:42
+#: book/static/js/modules/books/sanity_check.js:16
+#: book/static/js/modules/books/sanity_check.js:44
 msgid "Unresolved tracked changes"
 msgstr "Неразрешённые отслеживаемые изменения"
 
-#: book/static/js/modules/books/sanity_check.js:25
+#: book/static/js/modules/books/sanity_check.js:27
 msgid "Internal links without target"
 msgstr "Внутренние ссылки без цели"
 
-#: book/static/js/modules/books/sanity_check.js:35
+#: book/static/js/modules/books/sanity_check.js:37
 msgid "Unresolved comments"
 msgstr "Неразрешённые комментарии"
 
-#: book/static/js/modules/books/sanity_check.js:52
+#: book/static/js/modules/books/sanity_check.js:54
 msgid "Cross references without targets"
 msgstr "Перекрёстные ссылки без целей"
 
-#: book/static/js/modules/books/sanity_check.js:70
+#: book/static/js/modules/books/sanity_check.js:72
 msgid "The book contains no chapters."
 msgstr "Книга не содержит глав."
 
-#: book/static/js/modules/books/sanity_check.js:84
+#: book/static/js/modules/books/sanity_check.js:90
 #: book/static/js/modules/books/templates.js:611
 msgid "No access"
 msgstr "Нет доступа"
 
-#: book/static/js/modules/books/sanity_check.js:90
+#: book/static/js/modules/books/sanity_check.js:96
 msgid "No chapter title"
 msgstr "Нет названия главы"
 
-#: book/static/js/modules/books/sanity_check.js:99
+#: book/static/js/modules/books/sanity_check.js:105
 msgid "No issues were found:"
 msgstr "Проблем не найдено:"
 
-#: book/static/js/modules/books/sanity_check.js:100
+#: book/static/js/modules/books/sanity_check.js:106
 msgid "The book contains chapters."
 msgstr "Книга содержит главы."
 
-#: book/static/js/modules/books/sanity_check.js:101
+#: book/static/js/modules/books/sanity_check.js:107
 msgid "Each chapter has a title."
 msgstr "Каждая глава имеет название."
 
-#: book/static/js/modules/books/sanity_check.js:102
+#: book/static/js/modules/books/sanity_check.js:108
 msgid "There are no unresolved tracked changes."
 msgstr "Нет неразрешённых отслеживаемых изменений."
 
-#: book/static/js/modules/books/sanity_check.js:103
+#: book/static/js/modules/books/sanity_check.js:109
 msgid "There are no unresolved comments."
 msgstr "Нет неразрешённых комментариев."
 
-#: book/static/js/modules/books/sanity_check.js:104
+#: book/static/js/modules/books/sanity_check.js:110
 msgid "All cross references have working targets."
 msgstr "Все перекрёстные ссылки имеют рабочие цели."
 
-#: book/static/js/modules/books/sanity_check.js:106
+#: book/static/js/modules/books/sanity_check.js:112
 msgid "All internal links have working targets."
 msgstr "Все внутренние ссылки имеют рабочие цели."
 
-#: book/static/js/modules/books/sanity_check.js:120
+#: book/static/js/modules/books/sanity_check.js:129
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -691,7 +605,7 @@ msgstr ""
 "требуется персональная парольная фраза. Пожалуйста, установите или "
 "разблокируйте свою личную парольную фразу в настройках вашего профиля."
 
-#: book/static/js/modules/books/sanity_check.js:126
+#: book/static/js/modules/books/sanity_check.js:135
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
@@ -904,6 +818,75 @@ msgstr "составлять книги"
 #: book/static/js/plugins/menu/books.js:13
 msgid "Books"
 msgstr "Книги"
+
+#~ msgid "Book cannot be exported due to lack of chapters."
+#~ msgstr "Невозможно экспортировать книгу из-за отсутствия глав."
+
+#~ msgid "Fidusbook export has been initiated."
+#~ msgstr "Экспорт Fidusbook запущен."
+
+#~ msgid ""
+#~ "A personal passphrase is required to work with books that contain encrypted "
+#~ "chapters. Please set up or unlock your personal passphrase in your profile "
+#~ "settings."
+#~ msgstr ""
+#~ "Для работы с книгами, содержащими зашифрованные главы, требуется личная "
+#~ "парольная фраза. Пожалуйста, настройте или разблокируйте её в настройках "
+#~ "профиля."
+
+#~ msgid "No encryption key found for chapter:"
+#~ msgstr "Не найден ключ шифрования для главы:"
+
+#~ msgid "The key may not have been shared with you."
+#~ msgstr "Ключ, возможно, не был передан вам."
+
+#~ msgid "Could not decrypt chapter:"
+#~ msgstr "Не удалось расшифровать главу:"
+
+#~ msgid "The document may have been re-encrypted with a different password."
+#~ msgstr "Документ мог быть перешифрован с другим паролем."
+
+#~ msgid "Cannot produce book as you lack access rights to its chapters."
+#~ msgstr "Невозможно создать книгу, так как у вас нет прав доступа к её главам."
+
+#~ msgid "The uploaded file does not appear to be a Fidusbook file."
+#~ msgstr "Загруженный файл не является файлом Fidusbook."
+
+#~ msgid "The Fidusbook file version is not supported by this server: "
+#~ msgstr "Версия файла Fidusbook не поддерживается этим сервером: "
+
+#~ msgid "Fidusbook file is missing data for chapter "
+#~ msgstr "В файле Fidusbook отсутствуют данные для главы "
+
+#~ msgid "Could not import chapter "
+#~ msgstr "Не удалось импортировать главу "
+
+#~ msgid "successfully imported."
+#~ msgstr "успешно импортировано."
+
+#~ msgid "Epub export has been initiated."
+#~ msgstr "Экспорт в Epub запущен."
+
+#~ msgid "BITS export has been initiated."
+#~ msgstr "Экспорт в BITS запущен."
+
+#~ msgid "HTML export has been initiated."
+#~ msgstr "Экспорт в HTML запущен."
+
+#~ msgid "Unified HTML export has been initiated."
+#~ msgstr "Экспорт в единый HTML запущен."
+
+#~ msgid "LaTeX export has been initiated."
+#~ msgstr "Экспорт в LaTeX запущен."
+
+#~ msgid "DOCX export has been initiated."
+#~ msgstr "Экспорт в DOCX запущен."
+
+#~ msgid "ODT export has been initiated."
+#~ msgstr "Экспорт в ODT запущен."
+
+#~ msgid "Print has been initiated."
+#~ msgstr "Печать запущена."
 
 #~ msgid "Pandoc export has been initiated."
 #~ msgstr "Экспорт Pandoc начат."

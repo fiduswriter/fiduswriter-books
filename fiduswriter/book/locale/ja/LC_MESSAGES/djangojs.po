@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 17:00+0000\n"
+"POT-Creation-Date: 2026-07-23 09:50+0000\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,8 @@ msgid "Add contact"
 msgstr "連絡先を追加"
 
 #: book/static/js/modules/books/accessrights/index.js:120
-#: book/static/js/modules/books/actions.js:190
-#: book/static/js/modules/books/actions.js:483
+#: book/static/js/modules/books/actions.js:196
+#: book/static/js/modules/books/actions.js:498
 msgid "Submit"
 msgstr "送信"
 
@@ -32,21 +32,21 @@ msgstr "送信"
 msgid "Share your book with others"
 msgstr "他のユーザーと本を共有する"
 
-#: book/static/js/modules/books/accessrights/index.js:275
 #: book/static/js/modules/books/accessrights/index.js:277
+#: book/static/js/modules/books/accessrights/index.js:279
 msgid "Write"
 msgstr "書き込み"
 
-#: book/static/js/modules/books/accessrights/index.js:285
 #: book/static/js/modules/books/accessrights/index.js:287
+#: book/static/js/modules/books/accessrights/index.js:289
 msgid "Read"
 msgstr "読み取り"
 
-#: book/static/js/modules/books/accessrights/index.js:303
+#: book/static/js/modules/books/accessrights/index.js:305
 msgid "Cannot save access rights."
 msgstr "アクセス権限を保存できません。"
 
-#: book/static/js/modules/books/accessrights/index.js:307
+#: book/static/js/modules/books/accessrights/index.js:309
 msgid "Access rights have been saved"
 msgstr "アクセス権限が保存されました"
 
@@ -72,608 +72,524 @@ msgid "Collaborators"
 msgstr "共同作業者"
 
 #: book/static/js/modules/books/accessrights/templates.js:85
-#: book/static/js/modules/books/index.js:224
+#: book/static/js/modules/books/index.js:241
 msgid "Rights"
 msgstr "権限"
 
 #: book/static/js/modules/books/accessrights/templates.js:86
-#: book/static/js/modules/books/actions.js:143
-#: book/static/js/modules/books/index.js:619
+#: book/static/js/modules/books/actions.js:149
+#: book/static/js/modules/books/index.js:587
 msgid "Delete"
 msgstr "削除"
 
-#: book/static/js/modules/books/actions.js:59
+#: book/static/js/modules/books/actions.js:65
 msgid "Basic info"
 msgstr "基本情報"
 
-#: book/static/js/modules/books/actions.js:60
+#: book/static/js/modules/books/actions.js:66
 msgid "Basic book information"
 msgstr "基本の本の情報"
 
-#: book/static/js/modules/books/actions.js:64
+#: book/static/js/modules/books/actions.js:70
 msgid "Chapters"
 msgstr "章"
 
-#: book/static/js/modules/books/actions.js:65
+#: book/static/js/modules/books/actions.js:71
 msgid "Documents assigned as chapters"
 msgstr "章として割り当てられたドキュメント"
 
-#: book/static/js/modules/books/actions.js:69
-#: book/static/js/modules/books/actions.js:423
+#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:438
 msgid "Bibliography"
 msgstr "参考文献"
 
-#: book/static/js/modules/books/actions.js:70
+#: book/static/js/modules/books/actions.js:76
 msgid "Bibliography related settings"
 msgstr "参考文献関連の設定"
 
-#: book/static/js/modules/books/actions.js:74
+#: book/static/js/modules/books/actions.js:80
 msgid "Epub"
 msgstr "Epub"
 
-#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:81
 msgid "Epub related settings"
 msgstr "Epub関連の設定"
 
-#: book/static/js/modules/books/actions.js:79
+#: book/static/js/modules/books/actions.js:85
 msgid "DOCX"
 msgstr "DOCX"
 
-#: book/static/js/modules/books/actions.js:80
+#: book/static/js/modules/books/actions.js:86
 msgid "DOCX related settings"
 msgstr "DOCX関連の設定"
 
-#: book/static/js/modules/books/actions.js:84
+#: book/static/js/modules/books/actions.js:90
 msgid "ODT"
 msgstr "ODT"
 
-#: book/static/js/modules/books/actions.js:85
+#: book/static/js/modules/books/actions.js:91
 msgid "ODT related settings"
 msgstr "ODT関連の設定"
 
-#: book/static/js/modules/books/actions.js:89
+#: book/static/js/modules/books/actions.js:95
 msgid "Print/PDF"
 msgstr "印刷/PDF"
 
-#: book/static/js/modules/books/actions.js:90
+#: book/static/js/modules/books/actions.js:96
 msgid "Print related settings"
 msgstr "印刷関連の設定"
 
-#: book/static/js/modules/books/actions.js:94
+#: book/static/js/modules/books/actions.js:100
 msgid "Sanity check"
 msgstr "整合性チェック"
 
-#: book/static/js/modules/books/actions.js:95
+#: book/static/js/modules/books/actions.js:101
 msgid "Perform sanity check on book"
 msgstr "本の整合性チェックを実行"
 
-#: book/static/js/modules/books/actions.js:111
+#: book/static/js/modules/books/actions.js:117
 msgid "Could not delete book"
 msgstr "本を削除できませんでした"
 
-#: book/static/js/modules/books/actions.js:121
+#: book/static/js/modules/books/actions.js:127
 msgid "Book has been deleted"
 msgstr "本が削除されました"
 
-#: book/static/js/modules/books/actions.js:155
-#: book/static/js/modules/books/index.js:609
+#: book/static/js/modules/books/actions.js:161
+#: book/static/js/modules/books/index.js:577
 msgid "Confirm deletion"
 msgstr "削除の確認"
 
-#: book/static/js/modules/books/actions.js:162
+#: book/static/js/modules/books/actions.js:168
 msgid "Do you really want to delete the following books?"
 msgstr "次の本を本当に削除しますか？"
 
-#: book/static/js/modules/books/actions.js:165
+#: book/static/js/modules/books/actions.js:171
 msgid "Do you really want to delete the following book?"
 msgstr "次の本を本当に削除しますか？"
 
-#: book/static/js/modules/books/actions.js:182
-#: book/static/js/modules/books/exporter/tools.js:105
-#: book/static/js/modules/books/importer/native/index.js:401
+#: book/static/js/modules/books/actions.js:188
+#: book/static/js/modules/books/adapters/book-importer-backend.js:19
 #: book/static/js/modules/books/templates.js:610
 msgid "Untitled"
 msgstr "無題"
 
-#: book/static/js/modules/books/actions.js:206
+#: book/static/js/modules/books/actions.js:212
 msgid "Edit Chapter"
 msgstr "章を編集"
 
-#: book/static/js/modules/books/actions.js:263
+#: book/static/js/modules/books/actions.js:269
 msgid "The book could not be saved"
 msgstr "本を保存できませんでした"
 
-#: book/static/js/modules/books/actions.js:292
+#: book/static/js/modules/books/actions.js:298
 msgid "Copy of"
 msgstr "のコピー"
 
-#: book/static/js/modules/books/actions.js:296
+#: book/static/js/modules/books/actions.js:302
 msgid "The book could not be copied"
 msgstr "本をコピーできませんでした"
 
-#: book/static/js/modules/books/actions.js:322
+#: book/static/js/modules/books/actions.js:328
 msgid "Chapters will be imported as encrypted (E2EE) documents."
 msgstr "章は暗号化（E2EE）ドキュメントとしてインポートされます。"
 
-#: book/static/js/modules/books/actions.js:329
+#: book/static/js/modules/books/actions.js:335
 msgid "Import chapters as encrypted (E2EE) documents"
 msgstr "章を暗号化（E2EE）ドキュメントとしてインポート"
 
-#: book/static/js/modules/books/actions.js:336
+#: book/static/js/modules/books/actions.js:342
 msgid "Import a book"
 msgstr "本をインポート"
 
-#: book/static/js/modules/books/actions.js:339
+#: book/static/js/modules/books/actions.js:345
 msgid "Select a .fidusbook file:"
 msgstr ".fidusbookファイルを選択："
 
-#: book/static/js/modules/books/actions.js:353
+#: book/static/js/modules/books/actions.js:359
 msgid "Import"
 msgstr "インポート"
 
-#: book/static/js/modules/books/actions.js:364
+#: book/static/js/modules/books/actions.js:370
 msgid "File too large"
 msgstr "ファイルが大きすぎます"
 
-#: book/static/js/modules/books/actions.js:413
+#: book/static/js/modules/books/actions.js:428
 msgid "Create Book"
 msgstr "本を作成"
 
-#: book/static/js/modules/books/actions.js:448
+#: book/static/js/modules/books/actions.js:463
 msgid "Edit Book"
 msgstr "本を編集"
 
-#: book/static/js/modules/books/actions.js:464
+#: book/static/js/modules/books/actions.js:479
 msgid "Export"
 msgstr "エクスポート"
 
-#: book/static/js/modules/books/actions.js:635
+#: book/static/js/modules/books/actions.js:650
 #: book/static/js/modules/books/templates.js:570
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "export or run a sanity check on this book."
 msgstr "この本には暗号化された章が含まれています。この本をエクスポートまたは整合性チェックを実行するには、個人用パスフレーズが必要です。"
 
-#: book/static/js/modules/books/exporter/bits/index.js:30
-#: book/static/js/modules/books/exporter/docx/index.js:43
-#: book/static/js/modules/books/exporter/epub/index.js:49
-#: book/static/js/modules/books/exporter/html/index.js:62
-#: book/static/js/modules/books/exporter/native/index.js:42
-#: book/static/js/modules/books/exporter/odt/index.js:40
-msgid "Book cannot be exported due to lack of chapters."
-msgstr "章がないため本をエクスポートできません。"
-
-#: book/static/js/modules/books/exporter/native/index.js:49
-msgid "Fidusbook export has been initiated."
-msgstr "Fidusbookエクスポートが開始されました。"
-
-#: book/static/js/modules/books/exporter/native/index.js:57
-msgid "Fidusbook export failed."
-msgstr "Fidusbookエクスポートに失敗しました。"
-
-#: book/static/js/modules/books/exporter/tools.js:37
-msgid "Wrong passphrase. Please try again."
-msgstr "パスフレーズが間違っています。もう一度お試しください。"
-
-#: book/static/js/modules/books/exporter/tools.js:92
-msgid ""
-"A personal passphrase is required to work with books that contain encrypted "
-"chapters. Please set up or unlock your personal passphrase in your profile "
-"settings."
-msgstr ""
-"暗号化された章を含む本を操作するには個人用パスフレーズが必要です。プロフィール設定で個人用パスフレーズを設定するかロックを解除してください。"
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "No encryption key found for chapter:"
-msgstr "章の暗号化キーが見つかりません："
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "The key may not have been shared with you."
-msgstr "キーがあなたと共有されていない可能性があります。"
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "Could not decrypt chapter:"
-msgstr "章を復号できませんでした："
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "The document may have been re-encrypted with a different password."
-msgstr "ドキュメントが異なるパスワードで再暗号化された可能性があります。"
-
-#: book/static/js/modules/books/exporter/tools.js:293
-msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "章へのアクセス権限がないため本を生成できません。"
-
-#: book/static/js/modules/books/importer/native/index.js:58
-#: book/static/js/modules/books/importer/native/index.js:82
-#: book/static/js/modules/books/importer/native/index.js:145
-msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "アップロードされたファイルはFidusbookファイルではないようです。"
-
-#: book/static/js/modules/books/importer/native/index.js:134
-msgid "The Fidusbook file version is not supported by this server: "
-msgstr "このサーバーはFidusbookファイルのバージョンをサポートしていません："
-
-#: book/static/js/modules/books/importer/native/index.js:193
-msgid "Fidusbook file is missing data for chapter "
-msgstr "Fidusbook ファイルに章のデータがありません "
-
-#: book/static/js/modules/books/importer/native/index.js:251
-msgid "Could not import chapter "
-msgstr "章をインポートできませんでした "
-
-#: book/static/js/modules/books/importer/native/index.js:300
-msgid "successfully imported."
-msgstr "正常にインポートされました。"
-
-#: book/static/js/modules/books/importer/native/index.js:418
+#: book/static/js/modules/books/adapters/book-importer-backend.js:37
 msgid "Could not create book record."
 msgstr "帳簿を作成できませんでした。"
 
-#: book/static/js/modules/books/index.js:116
+#: book/static/js/modules/books/adapters/e2ee-strategy.js:43
+msgid "Wrong passphrase. Please try again."
+msgstr "パスフレーズが間違っています。もう一度お試しください。"
+
+#: book/static/js/modules/books/index.js:114
 msgid "Book Overview"
 msgstr "本の概要"
 
-#: book/static/js/modules/books/index.js:209
+#: book/static/js/modules/books/index.js:230
 msgid "No books available"
 msgstr "利用可能な本はありません"
 
-#: book/static/js/modules/books/index.js:210
+#: book/static/js/modules/books/index.js:231
 msgid "No books found"
 msgstr "本が見つかりません"
 
-#: book/static/js/modules/books/index.js:220
+#: book/static/js/modules/books/index.js:237
 #: book/static/js/modules/books/templates.js:10
 #: book/static/js/modules/books/templates.js:554
 msgid "Title"
 msgstr "タイトル"
 
-#: book/static/js/modules/books/index.js:221
+#: book/static/js/modules/books/index.js:238
 msgid "Created"
 msgstr "作成日"
 
-#: book/static/js/modules/books/index.js:222
+#: book/static/js/modules/books/index.js:239
 msgid "Last changed"
 msgstr "最終変更日"
 
-#: book/static/js/modules/books/index.js:223
+#: book/static/js/modules/books/index.js:240
 msgid "Owner"
 msgstr "所有者"
 
-#: book/static/js/modules/books/index.js:445
+#: book/static/js/modules/books/index.js:413
 msgid "Cannot load data of books."
 msgstr "本のデータを読み込めません。"
 
-#: book/static/js/modules/books/index.js:563
-#: book/static/js/modules/books/index.js:577
+#: book/static/js/modules/books/index.js:531
+#: book/static/js/modules/books/index.js:545
 msgid "You cannot delete books while you are offline."
 msgstr "オフライン中は本を削除できません。"
 
-#: book/static/js/modules/books/index.js:612
+#: book/static/js/modules/books/index.js:580
 msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr "空のフォルダを残すと削除されます。このフォルダを本当に削除しますか？"
 
-#: book/static/js/modules/books/menu.js:18
+#: book/static/js/modules/books/menu.js:39
+msgid "Book"
+msgstr "本"
+
+#: book/static/js/modules/books/menu.js:42
+msgid "Exporting"
+msgstr "輸出中"
+
+#: book/static/js/modules/books/menu.js:61
+msgid "Export complete."
+msgstr "エクスポートが完了しました。"
+
+#: book/static/js/modules/books/menu.js:69
+msgid "Book export failed."
+msgstr "書籍のエクスポートに失敗しました。"
+
+#: book/static/js/modules/books/menu.js:77
 msgid "Create new book"
 msgstr "新しい本を作成"
 
-#: book/static/js/modules/books/menu.js:29
+#: book/static/js/modules/books/menu.js:88
 msgid "Create new folder"
 msgstr "新しいフォルダを作成"
 
-#: book/static/js/modules/books/menu.js:43
+#: book/static/js/modules/books/menu.js:102
 msgid "Import book from Fidusbook file"
 msgstr "Fidusbookファイルから本をインポート"
 
-#: book/static/js/modules/books/menu.js:53
+#: book/static/js/modules/books/menu.js:112
 msgid "Search books"
 msgstr "本を検索"
 
-#: book/static/js/modules/books/menu.js:77
-msgid "Epub export has been initiated."
-msgstr "Epubエクスポートが開始されました。"
-
-#: book/static/js/modules/books/menu.js:94
-msgid "BITS export has been initiated."
-msgstr "BITSエクスポートが開始されました。"
-
-#: book/static/js/modules/books/menu.js:110
-msgid "HTML export has been initiated."
-msgstr "HTMLエクスポートが開始されました。"
-
-#: book/static/js/modules/books/menu.js:127
-msgid "Unified HTML export has been initiated."
-msgstr "Unified HTMLエクスポートが開始されました。"
-
-#: book/static/js/modules/books/menu.js:145
-msgid "LaTeX export has been initiated."
-msgstr "LaTeXエクスポートが開始されました。"
-
-#: book/static/js/modules/books/menu.js:160
-msgid "DOCX export has been initiated."
-msgstr "DOCXエクスポートが開始されました。"
-
-#: book/static/js/modules/books/menu.js:176
-msgid "ODT export has been initiated."
-msgstr "ODTエクスポートが開始されました。"
-
-#: book/static/js/modules/books/menu.js:190
-msgid "Print has been initiated."
-msgstr "印刷が開始されました。"
-
-#: book/static/js/modules/books/menu.js:216
+#: book/static/js/modules/books/menu.js:246
 msgid "Move selected"
 msgstr "選択項目を移動"
 
-#: book/static/js/modules/books/menu.js:217
+#: book/static/js/modules/books/menu.js:247
 msgid "Move the books that have been selected."
 msgstr "選択された本を移動します。"
 
-#: book/static/js/modules/books/menu.js:227
+#: book/static/js/modules/books/menu.js:257
 msgid "Move books"
 msgstr "本を移動"
 
-#: book/static/js/modules/books/menu.js:228
+#: book/static/js/modules/books/menu.js:258
 msgid "Move book"
 msgstr "本を移動"
 
-#: book/static/js/modules/books/menu.js:232
+#: book/static/js/modules/books/menu.js:262
 msgid "Book has been moved"
 msgstr "本が移動されました"
 
-#: book/static/js/modules/books/menu.js:233
+#: book/static/js/modules/books/menu.js:263
 msgid "Could not move book"
 msgstr "本を移動できませんでした"
 
-#: book/static/js/modules/books/menu.js:244
+#: book/static/js/modules/books/menu.js:274
 msgid "Delete selected"
 msgstr "選択項目を削除"
 
-#: book/static/js/modules/books/menu.js:245
+#: book/static/js/modules/books/menu.js:275
 msgid "Delete selected books."
 msgstr "選択した本を削除します。"
 
-#: book/static/js/modules/books/menu.js:255
+#: book/static/js/modules/books/menu.js:285
 msgid "You cannot delete books of other users."
 msgstr "他のユーザーの本は削除できません。"
 
-#: book/static/js/modules/books/menu.js:265
+#: book/static/js/modules/books/menu.js:295
 msgid "Share selected"
 msgstr "選択項目を共有"
 
-#: book/static/js/modules/books/menu.js:266
+#: book/static/js/modules/books/menu.js:296
 msgid "Share selected books."
 msgstr "選択した本を共有します。"
 
-#: book/static/js/modules/books/menu.js:276
+#: book/static/js/modules/books/menu.js:306
 msgid "You cannot share books of other users."
 msgstr "他のユーザーの本は共有できません。"
 
-#: book/static/js/modules/books/menu.js:291
+#: book/static/js/modules/books/menu.js:321
 msgid "Copy selected"
 msgstr "選択項目をコピー"
 
-#: book/static/js/modules/books/menu.js:292
+#: book/static/js/modules/books/menu.js:322
 msgid "Copy selected books."
 msgstr "選択した本をコピーします。"
 
-#: book/static/js/modules/books/menu.js:304
+#: book/static/js/modules/books/menu.js:334
 msgid "Export selected as BITS"
 msgstr "選択項目をBITSとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:305
+#: book/static/js/modules/books/menu.js:335
 msgid "Export selected books as BITS."
 msgstr "選択した本をBITSとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:316
+#: book/static/js/modules/books/menu.js:346
 msgid "Export selected as Epub"
 msgstr "選択項目をEpubとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:317
+#: book/static/js/modules/books/menu.js:347
 msgid "Export selected books as Epub."
 msgstr "選択した本をEpubとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:328
+#: book/static/js/modules/books/menu.js:358
 msgid "Export selected as HTML"
 msgstr "選択項目をHTMLとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:329
+#: book/static/js/modules/books/menu.js:359
 msgid "Export selected books as HTML."
 msgstr "選択した本をHTMLとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:340
+#: book/static/js/modules/books/menu.js:370
 msgid "Export selected as Unified HTML"
 msgstr "選択項目をUnified HTMLとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:341
+#: book/static/js/modules/books/menu.js:371
 msgid "Export selected books as Single-file HTML."
 msgstr "選択した本を単一ファイルHTMLとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:352
+#: book/static/js/modules/books/menu.js:382
 msgid "Export selected as LaTeX"
 msgstr "選択項目をLaTeXとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:353
+#: book/static/js/modules/books/menu.js:383
 msgid "Export selected books as LaTeX."
 msgstr "選択した本をLaTeXとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:364
+#: book/static/js/modules/books/menu.js:394
 msgid "Export selected as DOCX"
 msgstr "選択項目をDOCXとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:365
+#: book/static/js/modules/books/menu.js:395
 msgid "Export selected books as DOCX."
 msgstr "選択した本をDOCXとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:378
+#: book/static/js/modules/books/menu.js:408
 msgid "This book does not have a DOCX template."
 msgstr "この本にはDOCXテンプレートがありません。"
 
-#: book/static/js/modules/books/menu.js:387
+#: book/static/js/modules/books/menu.js:417
 msgid "Export selected as ODT"
 msgstr "選択項目をODTとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:388
+#: book/static/js/modules/books/menu.js:418
 msgid "Export selected books as ODT."
 msgstr "選択した本をODTとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:401
+#: book/static/js/modules/books/menu.js:431
 msgid "This book does not have an ODT template."
 msgstr "この本にはODTテンプレートがありません。"
 
-#: book/static/js/modules/books/menu.js:410
+#: book/static/js/modules/books/menu.js:440
 msgid "Export selected to Print/PDF"
 msgstr "選択項目を印刷/PDFにエクスポート"
 
-#: book/static/js/modules/books/menu.js:411
+#: book/static/js/modules/books/menu.js:441
 msgid "Export selected books to the print dialog."
 msgstr "選択した本を印刷ダイアログにエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:422
+#: book/static/js/modules/books/menu.js:452
 msgid "Export selected as Fidusbook"
 msgstr "選択項目をFidusbookとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:424
+#: book/static/js/modules/books/menu.js:454
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr "選択した本を.fidusbookファイルとしてエクスポート（別のサーバーに移動するため）。"
 
-#: book/static/js/modules/books/menu.js:442
+#: book/static/js/modules/books/menu.js:472
 msgid "Export as BITS"
 msgstr "BITSとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:443
+#: book/static/js/modules/books/menu.js:473
 msgid "Export book as Book Interchange Tag Set."
 msgstr "本をBook Interchange Tag Setとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:450
+#: book/static/js/modules/books/menu.js:480
 msgid "Export as Epub"
 msgstr "Epubとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:451
+#: book/static/js/modules/books/menu.js:481
 msgid "Export book as Epub."
 msgstr "本をEpubとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:458
+#: book/static/js/modules/books/menu.js:488
 msgid "Export as HTML"
 msgstr "HTMLとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:459
+#: book/static/js/modules/books/menu.js:489
 msgid "Export book as HTML."
 msgstr "本をHTMLとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:466
+#: book/static/js/modules/books/menu.js:496
 msgid "Export as Unified HTML"
 msgstr "Unified HTMLとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:467
+#: book/static/js/modules/books/menu.js:497
 msgid "Export book as Single-file HTML."
 msgstr "本を単一ファイルHTMLとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:474
+#: book/static/js/modules/books/menu.js:504
 msgid "Export as LaTeX"
 msgstr "LaTeXとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:475
+#: book/static/js/modules/books/menu.js:505
 msgid "Export book as LaTeX."
 msgstr "本をLaTeXとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:482
+#: book/static/js/modules/books/menu.js:512
 msgid "Export as DOCX"
 msgstr "DOCXとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:483
+#: book/static/js/modules/books/menu.js:513
 msgid "Export book as DOCX."
 msgstr "本をDOCXとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:492
+#: book/static/js/modules/books/menu.js:522
 msgid "Export as ODT"
 msgstr "ODTとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:493
+#: book/static/js/modules/books/menu.js:523
 msgid "Export book as ODT."
 msgstr "本をODTとしてエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:501
+#: book/static/js/modules/books/menu.js:531
 msgid "Export to Print/PDF"
 msgstr "印刷/PDFにエクスポート"
 
-#: book/static/js/modules/books/menu.js:502
+#: book/static/js/modules/books/menu.js:532
 msgid "Export book to the print dialog."
 msgstr "本を印刷ダイアログにエクスポートします。"
 
-#: book/static/js/modules/books/menu.js:509
+#: book/static/js/modules/books/menu.js:539
 msgid "Export as Fidusbook"
 msgstr "Fidusbookとしてエクスポート"
 
-#: book/static/js/modules/books/menu.js:511
+#: book/static/js/modules/books/menu.js:541
 msgid "Export book as a .fidusbook file (for moving to another server)."
 msgstr "本を.fidusbookファイルとしてエクスポート（別のサーバーに移動するため）。"
 
-#: book/static/js/modules/books/sanity_check.js:6
+#: book/static/js/modules/books/sanity_check.js:8
 msgid "Chapter"
 msgstr "章"
 
-#: book/static/js/modules/books/sanity_check.js:14
-#: book/static/js/modules/books/sanity_check.js:42
+#: book/static/js/modules/books/sanity_check.js:16
+#: book/static/js/modules/books/sanity_check.js:44
 msgid "Unresolved tracked changes"
 msgstr "未解決の変更履歴"
 
-#: book/static/js/modules/books/sanity_check.js:25
+#: book/static/js/modules/books/sanity_check.js:27
 msgid "Internal links without target"
 msgstr "ターゲットのない内部リンク"
 
-#: book/static/js/modules/books/sanity_check.js:35
+#: book/static/js/modules/books/sanity_check.js:37
 msgid "Unresolved comments"
 msgstr "未解決のコメント"
 
-#: book/static/js/modules/books/sanity_check.js:52
+#: book/static/js/modules/books/sanity_check.js:54
 msgid "Cross references without targets"
 msgstr "ターゲットのない相互参照"
 
-#: book/static/js/modules/books/sanity_check.js:70
+#: book/static/js/modules/books/sanity_check.js:72
 msgid "The book contains no chapters."
 msgstr "本に章が含まれていません。"
 
-#: book/static/js/modules/books/sanity_check.js:84
+#: book/static/js/modules/books/sanity_check.js:90
 #: book/static/js/modules/books/templates.js:611
 msgid "No access"
 msgstr "アクセス不可"
 
-#: book/static/js/modules/books/sanity_check.js:90
+#: book/static/js/modules/books/sanity_check.js:96
 msgid "No chapter title"
 msgstr "章のタイトルなし"
 
-#: book/static/js/modules/books/sanity_check.js:99
+#: book/static/js/modules/books/sanity_check.js:105
 msgid "No issues were found:"
 msgstr "問題は見つかりませんでした："
 
-#: book/static/js/modules/books/sanity_check.js:100
+#: book/static/js/modules/books/sanity_check.js:106
 msgid "The book contains chapters."
 msgstr "本に章が含まれています。"
 
-#: book/static/js/modules/books/sanity_check.js:101
+#: book/static/js/modules/books/sanity_check.js:107
 msgid "Each chapter has a title."
 msgstr "各章にタイトルがあります。"
 
-#: book/static/js/modules/books/sanity_check.js:102
+#: book/static/js/modules/books/sanity_check.js:108
 msgid "There are no unresolved tracked changes."
 msgstr "未解決の変更履歴はありません。"
 
-#: book/static/js/modules/books/sanity_check.js:103
+#: book/static/js/modules/books/sanity_check.js:109
 msgid "There are no unresolved comments."
 msgstr "未解決のコメントはありません。"
 
-#: book/static/js/modules/books/sanity_check.js:104
+#: book/static/js/modules/books/sanity_check.js:110
 msgid "All cross references have working targets."
 msgstr "すべての相互参照に有効なターゲットがあります。"
 
-#: book/static/js/modules/books/sanity_check.js:106
+#: book/static/js/modules/books/sanity_check.js:112
 msgid "All internal links have working targets."
 msgstr "すべての内部リンクに有効なターゲットがあります。"
 
-#: book/static/js/modules/books/sanity_check.js:120
+#: book/static/js/modules/books/sanity_check.js:129
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -681,7 +597,7 @@ msgid ""
 msgstr ""
 "この本には暗号化された章が含まれています。健全性チェックを実行するには、個人のパスフレーズが必要です。プロファイル設定で個人パスフレーズを設定またはロック解除してください。"
 
-#: book/static/js/modules/books/sanity_check.js:126
+#: book/static/js/modules/books/sanity_check.js:135
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
@@ -891,6 +807,73 @@ msgstr "本を作成"
 #: book/static/js/plugins/menu/books.js:13
 msgid "Books"
 msgstr "本"
+
+#~ msgid "Book cannot be exported due to lack of chapters."
+#~ msgstr "章がないため本をエクスポートできません。"
+
+#~ msgid "Fidusbook export has been initiated."
+#~ msgstr "Fidusbookエクスポートが開始されました。"
+
+#~ msgid ""
+#~ "A personal passphrase is required to work with books that contain encrypted "
+#~ "chapters. Please set up or unlock your personal passphrase in your profile "
+#~ "settings."
+#~ msgstr ""
+#~ "暗号化された章を含む本を操作するには個人用パスフレーズが必要です。プロフィール設定で個人用パスフレーズを設定するかロックを解除してください。"
+
+#~ msgid "No encryption key found for chapter:"
+#~ msgstr "章の暗号化キーが見つかりません："
+
+#~ msgid "The key may not have been shared with you."
+#~ msgstr "キーがあなたと共有されていない可能性があります。"
+
+#~ msgid "Could not decrypt chapter:"
+#~ msgstr "章を復号できませんでした："
+
+#~ msgid "The document may have been re-encrypted with a different password."
+#~ msgstr "ドキュメントが異なるパスワードで再暗号化された可能性があります。"
+
+#~ msgid "Cannot produce book as you lack access rights to its chapters."
+#~ msgstr "章へのアクセス権限がないため本を生成できません。"
+
+#~ msgid "The uploaded file does not appear to be a Fidusbook file."
+#~ msgstr "アップロードされたファイルはFidusbookファイルではないようです。"
+
+#~ msgid "The Fidusbook file version is not supported by this server: "
+#~ msgstr "このサーバーはFidusbookファイルのバージョンをサポートしていません："
+
+#~ msgid "Fidusbook file is missing data for chapter "
+#~ msgstr "Fidusbook ファイルに章のデータがありません "
+
+#~ msgid "Could not import chapter "
+#~ msgstr "章をインポートできませんでした "
+
+#~ msgid "successfully imported."
+#~ msgstr "正常にインポートされました。"
+
+#~ msgid "Epub export has been initiated."
+#~ msgstr "Epubエクスポートが開始されました。"
+
+#~ msgid "BITS export has been initiated."
+#~ msgstr "BITSエクスポートが開始されました。"
+
+#~ msgid "HTML export has been initiated."
+#~ msgstr "HTMLエクスポートが開始されました。"
+
+#~ msgid "Unified HTML export has been initiated."
+#~ msgstr "Unified HTMLエクスポートが開始されました。"
+
+#~ msgid "LaTeX export has been initiated."
+#~ msgstr "LaTeXエクスポートが開始されました。"
+
+#~ msgid "DOCX export has been initiated."
+#~ msgstr "DOCXエクスポートが開始されました。"
+
+#~ msgid "ODT export has been initiated."
+#~ msgstr "ODTエクスポートが開始されました。"
+
+#~ msgid "Print has been initiated."
+#~ msgstr "印刷が開始されました。"
 
 #~ msgid "Pandoc export has been initiated."
 #~ msgstr "Pandoc のエクスポートが開始されました。"

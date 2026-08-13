@@ -1,4 +1,4 @@
-import {getMissingDocumentListData} from "../../documents/tools"
+import {getMissingDocumentListData} from "@fiduswriter/frontend/documents/tools"
 
 /**
  * Browser `ChapterLoader` adapter.

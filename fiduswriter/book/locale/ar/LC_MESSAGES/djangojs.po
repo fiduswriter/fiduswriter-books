@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 17:00+0000\n"
+"POT-Creation-Date: 2026-07-23 09:50+0000\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,8 @@ msgid "Add contact"
 msgstr "أضف جهة اتصال"
 
 #: book/static/js/modules/books/accessrights/index.js:120
-#: book/static/js/modules/books/actions.js:190
-#: book/static/js/modules/books/actions.js:483
+#: book/static/js/modules/books/actions.js:196
+#: book/static/js/modules/books/actions.js:498
 msgid "Submit"
 msgstr "إرسال"
 
@@ -32,21 +32,21 @@ msgstr "إرسال"
 msgid "Share your book with others"
 msgstr "شارك كتابك مع الآخرين"
 
-#: book/static/js/modules/books/accessrights/index.js:275
 #: book/static/js/modules/books/accessrights/index.js:277
+#: book/static/js/modules/books/accessrights/index.js:279
 msgid "Write"
 msgstr "كتابة"
 
-#: book/static/js/modules/books/accessrights/index.js:285
 #: book/static/js/modules/books/accessrights/index.js:287
+#: book/static/js/modules/books/accessrights/index.js:289
 msgid "Read"
 msgstr "قراءة"
 
-#: book/static/js/modules/books/accessrights/index.js:303
+#: book/static/js/modules/books/accessrights/index.js:305
 msgid "Cannot save access rights."
 msgstr "لا يمكن حفظ حقوق الوصول."
 
-#: book/static/js/modules/books/accessrights/index.js:307
+#: book/static/js/modules/books/accessrights/index.js:309
 msgid "Access rights have been saved"
 msgstr "تم حفظ حقوق الوصول"
 
@@ -72,162 +72,161 @@ msgid "Collaborators"
 msgstr "متعاونون"
 
 #: book/static/js/modules/books/accessrights/templates.js:85
-#: book/static/js/modules/books/index.js:224
+#: book/static/js/modules/books/index.js:241
 msgid "Rights"
 msgstr "صلاحيات"
 
 #: book/static/js/modules/books/accessrights/templates.js:86
-#: book/static/js/modules/books/actions.js:143
-#: book/static/js/modules/books/index.js:619
+#: book/static/js/modules/books/actions.js:149
+#: book/static/js/modules/books/index.js:587
 msgid "Delete"
 msgstr "حذف"
 
-#: book/static/js/modules/books/actions.js:59
+#: book/static/js/modules/books/actions.js:65
 msgid "Basic info"
 msgstr "معلومات أساسية"
 
-#: book/static/js/modules/books/actions.js:60
+#: book/static/js/modules/books/actions.js:66
 msgid "Basic book information"
 msgstr "معلومات الكتاب الأساسية"
 
-#: book/static/js/modules/books/actions.js:64
+#: book/static/js/modules/books/actions.js:70
 msgid "Chapters"
 msgstr "فصول"
 
-#: book/static/js/modules/books/actions.js:65
+#: book/static/js/modules/books/actions.js:71
 msgid "Documents assigned as chapters"
 msgstr "المستندات المعينة كفصول"
 
-#: book/static/js/modules/books/actions.js:69
-#: book/static/js/modules/books/actions.js:423
+#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:438
 msgid "Bibliography"
 msgstr "قائمة المراجع"
 
-#: book/static/js/modules/books/actions.js:70
+#: book/static/js/modules/books/actions.js:76
 msgid "Bibliography related settings"
 msgstr "إعدادات متعلقة بقائمة المراجع"
 
-#: book/static/js/modules/books/actions.js:74
+#: book/static/js/modules/books/actions.js:80
 msgid "Epub"
 msgstr "Epub"
 
-#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:81
 msgid "Epub related settings"
 msgstr "إعدادات متعلقة بـ Epub"
 
-#: book/static/js/modules/books/actions.js:79
+#: book/static/js/modules/books/actions.js:85
 msgid "DOCX"
 msgstr "دوكإكس"
 
-#: book/static/js/modules/books/actions.js:80
+#: book/static/js/modules/books/actions.js:86
 msgid "DOCX related settings"
 msgstr "الإعدادات ذات الصلة بـ DOCX"
 
-#: book/static/js/modules/books/actions.js:84
+#: book/static/js/modules/books/actions.js:90
 msgid "ODT"
 msgstr "ODT"
 
-#: book/static/js/modules/books/actions.js:85
+#: book/static/js/modules/books/actions.js:91
 msgid "ODT related settings"
 msgstr "الإعدادات المتعلقة بـ ODT"
 
-#: book/static/js/modules/books/actions.js:89
+#: book/static/js/modules/books/actions.js:95
 msgid "Print/PDF"
 msgstr "طباعة/PDF"
 
-#: book/static/js/modules/books/actions.js:90
+#: book/static/js/modules/books/actions.js:96
 msgid "Print related settings"
 msgstr "إعدادات متعلقة بالطباعة"
 
-#: book/static/js/modules/books/actions.js:94
+#: book/static/js/modules/books/actions.js:100
 msgid "Sanity check"
 msgstr "التحقق من الصحة"
 
-#: book/static/js/modules/books/actions.js:95
+#: book/static/js/modules/books/actions.js:101
 msgid "Perform sanity check on book"
 msgstr "إجراء التحقق من صحة الكتاب"
 
-#: book/static/js/modules/books/actions.js:111
+#: book/static/js/modules/books/actions.js:117
 msgid "Could not delete book"
 msgstr "تعذر حذف الكتاب"
 
-#: book/static/js/modules/books/actions.js:121
+#: book/static/js/modules/books/actions.js:127
 msgid "Book has been deleted"
 msgstr "تم حذف الكتاب"
 
-#: book/static/js/modules/books/actions.js:155
-#: book/static/js/modules/books/index.js:609
+#: book/static/js/modules/books/actions.js:161
+#: book/static/js/modules/books/index.js:577
 msgid "Confirm deletion"
 msgstr "تأكيد الحذف"
 
-#: book/static/js/modules/books/actions.js:162
+#: book/static/js/modules/books/actions.js:168
 msgid "Do you really want to delete the following books?"
 msgstr "هل تريد حقًا حذف الكتب التالية؟"
 
-#: book/static/js/modules/books/actions.js:165
+#: book/static/js/modules/books/actions.js:171
 msgid "Do you really want to delete the following book?"
 msgstr "هل تريد حقًا حذف الكتاب التالي؟"
 
-#: book/static/js/modules/books/actions.js:182
-#: book/static/js/modules/books/exporter/tools.js:105
-#: book/static/js/modules/books/importer/native/index.js:401
+#: book/static/js/modules/books/actions.js:188
+#: book/static/js/modules/books/adapters/book-importer-backend.js:19
 #: book/static/js/modules/books/templates.js:610
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-#: book/static/js/modules/books/actions.js:206
+#: book/static/js/modules/books/actions.js:212
 msgid "Edit Chapter"
 msgstr "تعديل الفصل"
 
-#: book/static/js/modules/books/actions.js:263
+#: book/static/js/modules/books/actions.js:269
 msgid "The book could not be saved"
 msgstr "تعذر حفظ الكتاب"
 
-#: book/static/js/modules/books/actions.js:292
+#: book/static/js/modules/books/actions.js:298
 msgid "Copy of"
 msgstr "نسخة من"
 
-#: book/static/js/modules/books/actions.js:296
+#: book/static/js/modules/books/actions.js:302
 msgid "The book could not be copied"
 msgstr "تعذر نسخ الكتاب"
 
-#: book/static/js/modules/books/actions.js:322
+#: book/static/js/modules/books/actions.js:328
 msgid "Chapters will be imported as encrypted (E2EE) documents."
 msgstr "سيتم استيراد الفصول كمستندات مشفرة (E2EE)."
 
-#: book/static/js/modules/books/actions.js:329
+#: book/static/js/modules/books/actions.js:335
 msgid "Import chapters as encrypted (E2EE) documents"
 msgstr "استيراد الفصول كمستندات مشفرة (E2EE)."
 
-#: book/static/js/modules/books/actions.js:336
+#: book/static/js/modules/books/actions.js:342
 msgid "Import a book"
 msgstr "استيراد كتاب"
 
-#: book/static/js/modules/books/actions.js:339
+#: book/static/js/modules/books/actions.js:345
 msgid "Select a .fidusbook file:"
 msgstr "حدد ملف .fidusbook:"
 
-#: book/static/js/modules/books/actions.js:353
+#: book/static/js/modules/books/actions.js:359
 msgid "Import"
 msgstr "يستورد"
 
-#: book/static/js/modules/books/actions.js:364
+#: book/static/js/modules/books/actions.js:370
 msgid "File too large"
 msgstr "الملف كبير جدًا"
 
-#: book/static/js/modules/books/actions.js:413
+#: book/static/js/modules/books/actions.js:428
 msgid "Create Book"
 msgstr "إنشاء كتاب"
 
-#: book/static/js/modules/books/actions.js:448
+#: book/static/js/modules/books/actions.js:463
 msgid "Edit Book"
 msgstr "تعديل الكتاب"
 
-#: book/static/js/modules/books/actions.js:464
+#: book/static/js/modules/books/actions.js:479
 msgid "Export"
 msgstr "تصدير"
 
-#: book/static/js/modules/books/actions.js:635
+#: book/static/js/modules/books/actions.js:650
 #: book/static/js/modules/books/templates.js:570
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
@@ -236,447 +235,363 @@ msgstr ""
 "يحتوي هذا الكتاب على فصول مشفرة. مطلوب عبارة مرور شخصية لتصدير أو إجراء فحص "
 "سلامة هذا الكتاب."
 
-#: book/static/js/modules/books/exporter/bits/index.js:30
-#: book/static/js/modules/books/exporter/docx/index.js:43
-#: book/static/js/modules/books/exporter/epub/index.js:49
-#: book/static/js/modules/books/exporter/html/index.js:62
-#: book/static/js/modules/books/exporter/native/index.js:42
-#: book/static/js/modules/books/exporter/odt/index.js:40
-msgid "Book cannot be exported due to lack of chapters."
-msgstr "لا يمكن تصدير الكتاب لعدم وجود فصول."
-
-#: book/static/js/modules/books/exporter/native/index.js:49
-msgid "Fidusbook export has been initiated."
-msgstr "تم بدء تصدير Fidusbook."
-
-#: book/static/js/modules/books/exporter/native/index.js:57
-msgid "Fidusbook export failed."
-msgstr "فشل تصدير Fidusbook."
-
-#: book/static/js/modules/books/exporter/tools.js:37
-msgid "Wrong passphrase. Please try again."
-msgstr "عبارة مرور خاطئة. يرجى المحاولة مرة أخرى."
-
-#: book/static/js/modules/books/exporter/tools.js:92
-msgid ""
-"A personal passphrase is required to work with books that contain encrypted "
-"chapters. Please set up or unlock your personal passphrase in your profile "
-"settings."
-msgstr ""
-"مطلوب عبارة مرور شخصية للعمل مع الكتب التي تحتوي على فصول مشفرة. يرجى إعداد "
-"أو إلغاء قفل عبارة المرور الشخصية في إعدادات ملفك الشخصي."
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "No encryption key found for chapter:"
-msgstr "لم يتم العثور على مفتاح تشفير للفصل:"
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "The key may not have been shared with you."
-msgstr "ربما لم تتم مشاركة المفتاح معك."
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "Could not decrypt chapter:"
-msgstr "لا يمكن فك تشفير الفصل:"
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "The document may have been re-encrypted with a different password."
-msgstr "ربما تمت إعادة تشفير المستند بكلمة مرور مختلفة."
-
-#: book/static/js/modules/books/exporter/tools.js:293
-msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "لا يمكن إنتاج الكتاب بسبب عدم وجود حقوق وصول لفصوله."
-
-#: book/static/js/modules/books/importer/native/index.js:58
-#: book/static/js/modules/books/importer/native/index.js:82
-#: book/static/js/modules/books/importer/native/index.js:145
-msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "لا يبدو أن الملف الذي تم تحميله هو ملف Fidusbook."
-
-#: book/static/js/modules/books/importer/native/index.js:134
-msgid "The Fidusbook file version is not supported by this server: "
-msgstr "إصدار ملف Fidusbook غير مدعوم من قبل هذا الخادم: "
-
-#: book/static/js/modules/books/importer/native/index.js:193
-msgid "Fidusbook file is missing data for chapter "
-msgstr "ملف Fidusbook يفتقد بيانات الفصل "
-
-#: book/static/js/modules/books/importer/native/index.js:251
-msgid "Could not import chapter "
-msgstr "تعذر استيراد الفصل "
-
-#: book/static/js/modules/books/importer/native/index.js:300
-msgid "successfully imported."
-msgstr "تم استيرادها بنجاح."
-
-#: book/static/js/modules/books/importer/native/index.js:418
+#: book/static/js/modules/books/adapters/book-importer-backend.js:37
 msgid "Could not create book record."
 msgstr "لا يمكن إنشاء سجل الكتاب."
 
-#: book/static/js/modules/books/index.js:116
+#: book/static/js/modules/books/adapters/e2ee-strategy.js:43
+msgid "Wrong passphrase. Please try again."
+msgstr "عبارة مرور خاطئة. يرجى المحاولة مرة أخرى."
+
+#: book/static/js/modules/books/index.js:114
 msgid "Book Overview"
 msgstr "نظرة عامة على الكتاب"
 
-#: book/static/js/modules/books/index.js:209
+#: book/static/js/modules/books/index.js:230
 msgid "No books available"
 msgstr "لا توجد كتب متاحة"
 
-#: book/static/js/modules/books/index.js:210
+#: book/static/js/modules/books/index.js:231
 msgid "No books found"
 msgstr "لم يتم العثور على كتب"
 
-#: book/static/js/modules/books/index.js:220
+#: book/static/js/modules/books/index.js:237
 #: book/static/js/modules/books/templates.js:10
 #: book/static/js/modules/books/templates.js:554
 msgid "Title"
 msgstr "عنوان"
 
-#: book/static/js/modules/books/index.js:221
+#: book/static/js/modules/books/index.js:238
 msgid "Created"
 msgstr "تم الإنشاء"
 
-#: book/static/js/modules/books/index.js:222
+#: book/static/js/modules/books/index.js:239
 msgid "Last changed"
 msgstr "آخر تغيير"
 
-#: book/static/js/modules/books/index.js:223
+#: book/static/js/modules/books/index.js:240
 msgid "Owner"
 msgstr "مالك"
 
-#: book/static/js/modules/books/index.js:445
+#: book/static/js/modules/books/index.js:413
 msgid "Cannot load data of books."
 msgstr "لا يمكن تحميل بيانات الكتب."
 
-#: book/static/js/modules/books/index.js:563
-#: book/static/js/modules/books/index.js:577
+#: book/static/js/modules/books/index.js:531
+#: book/static/js/modules/books/index.js:545
 msgid "You cannot delete books while you are offline."
 msgstr "لا يمكنك حذف الكتب أثناء عدم الاتصال بالإنترنت."
 
-#: book/static/js/modules/books/index.js:612
+#: book/static/js/modules/books/index.js:580
 msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr "سيؤدي ترك مجلد فارغ إلى حذفه. هل تريد حقًا حذف هذا المجلد؟"
 
-#: book/static/js/modules/books/menu.js:18
+#: book/static/js/modules/books/menu.js:39
+msgid "Book"
+msgstr "كتاب"
+
+#: book/static/js/modules/books/menu.js:42
+msgid "Exporting"
+msgstr "تصدير"
+
+#: book/static/js/modules/books/menu.js:61
+msgid "Export complete."
+msgstr "اكتمل التصدير."
+
+#: book/static/js/modules/books/menu.js:69
+msgid "Book export failed."
+msgstr "فشل تصدير الكتاب."
+
+#: book/static/js/modules/books/menu.js:77
 msgid "Create new book"
 msgstr "إنشاء كتاب جديد"
 
-#: book/static/js/modules/books/menu.js:29
+#: book/static/js/modules/books/menu.js:88
 msgid "Create new folder"
 msgstr "إنشاء مجلد جديد"
 
-#: book/static/js/modules/books/menu.js:43
+#: book/static/js/modules/books/menu.js:102
 msgid "Import book from Fidusbook file"
 msgstr "استيراد الكتاب من ملف Fidusbook"
 
-#: book/static/js/modules/books/menu.js:53
+#: book/static/js/modules/books/menu.js:112
 msgid "Search books"
 msgstr "بحث في الكتب"
 
-#: book/static/js/modules/books/menu.js:77
-msgid "Epub export has been initiated."
-msgstr "تم بدء تصدير Epub."
-
-#: book/static/js/modules/books/menu.js:94
-msgid "BITS export has been initiated."
-msgstr "تم بدء تصدير BITS."
-
-#: book/static/js/modules/books/menu.js:110
-msgid "HTML export has been initiated."
-msgstr "تم بدء تصدير HTML."
-
-#: book/static/js/modules/books/menu.js:127
-msgid "Unified HTML export has been initiated."
-msgstr "تم بدء تصدير HTML الموحد."
-
-#: book/static/js/modules/books/menu.js:145
-msgid "LaTeX export has been initiated."
-msgstr "تم بدء تصدير LaTeX."
-
-#: book/static/js/modules/books/menu.js:160
-msgid "DOCX export has been initiated."
-msgstr "تم بدء تصدير DOCX."
-
-#: book/static/js/modules/books/menu.js:176
-msgid "ODT export has been initiated."
-msgstr "تم بدء تصدير ODT."
-
-#: book/static/js/modules/books/menu.js:190
-msgid "Print has been initiated."
-msgstr "تم بدء الطباعة."
-
-#: book/static/js/modules/books/menu.js:216
+#: book/static/js/modules/books/menu.js:246
 msgid "Move selected"
 msgstr "نقل المحدد"
 
-#: book/static/js/modules/books/menu.js:217
+#: book/static/js/modules/books/menu.js:247
 msgid "Move the books that have been selected."
 msgstr "نقل الكتب المحددة."
 
-#: book/static/js/modules/books/menu.js:227
+#: book/static/js/modules/books/menu.js:257
 msgid "Move books"
 msgstr "نقل الكتب"
 
-#: book/static/js/modules/books/menu.js:228
+#: book/static/js/modules/books/menu.js:258
 msgid "Move book"
 msgstr "نقل الكتاب"
 
-#: book/static/js/modules/books/menu.js:232
+#: book/static/js/modules/books/menu.js:262
 msgid "Book has been moved"
 msgstr "تم نقل الكتاب"
 
-#: book/static/js/modules/books/menu.js:233
+#: book/static/js/modules/books/menu.js:263
 msgid "Could not move book"
 msgstr "تعذر نقل الكتاب"
 
-#: book/static/js/modules/books/menu.js:244
+#: book/static/js/modules/books/menu.js:274
 msgid "Delete selected"
 msgstr "حذف المحدد"
 
-#: book/static/js/modules/books/menu.js:245
+#: book/static/js/modules/books/menu.js:275
 msgid "Delete selected books."
 msgstr "حذف الكتب المحددة."
 
-#: book/static/js/modules/books/menu.js:255
+#: book/static/js/modules/books/menu.js:285
 msgid "You cannot delete books of other users."
 msgstr "لا يمكنك حذف كتب المستخدمين الآخرين."
 
-#: book/static/js/modules/books/menu.js:265
+#: book/static/js/modules/books/menu.js:295
 msgid "Share selected"
 msgstr "مشاركة المحدد"
 
-#: book/static/js/modules/books/menu.js:266
+#: book/static/js/modules/books/menu.js:296
 msgid "Share selected books."
 msgstr "مشاركة الكتب المحددة."
 
-#: book/static/js/modules/books/menu.js:276
+#: book/static/js/modules/books/menu.js:306
 msgid "You cannot share books of other users."
 msgstr "لا يمكنك مشاركة كتب المستخدمين الآخرين."
 
-#: book/static/js/modules/books/menu.js:291
+#: book/static/js/modules/books/menu.js:321
 msgid "Copy selected"
 msgstr "نسخ المحدد"
 
-#: book/static/js/modules/books/menu.js:292
+#: book/static/js/modules/books/menu.js:322
 msgid "Copy selected books."
 msgstr "نسخ الكتب المحددة."
 
-#: book/static/js/modules/books/menu.js:304
+#: book/static/js/modules/books/menu.js:334
 msgid "Export selected as BITS"
 msgstr "تم تحديد التصدير على هيئة BITS"
 
-#: book/static/js/modules/books/menu.js:305
+#: book/static/js/modules/books/menu.js:335
 msgid "Export selected books as BITS."
 msgstr "تصدير الكتب المحددة بتنسيق BITS."
 
-#: book/static/js/modules/books/menu.js:316
+#: book/static/js/modules/books/menu.js:346
 msgid "Export selected as Epub"
 msgstr "تصدير المحدد بصيغة Epub"
 
-#: book/static/js/modules/books/menu.js:317
+#: book/static/js/modules/books/menu.js:347
 msgid "Export selected books as Epub."
 msgstr "تصدير الكتب المحددة بصيغة Epub."
 
-#: book/static/js/modules/books/menu.js:328
+#: book/static/js/modules/books/menu.js:358
 msgid "Export selected as HTML"
 msgstr "تصدير المحدد بصيغة HTML"
 
-#: book/static/js/modules/books/menu.js:329
+#: book/static/js/modules/books/menu.js:359
 msgid "Export selected books as HTML."
 msgstr "تصدير الكتب المحددة بصيغة HTML."
 
-#: book/static/js/modules/books/menu.js:340
+#: book/static/js/modules/books/menu.js:370
 msgid "Export selected as Unified HTML"
 msgstr "تصدير محدد كـ HTML موحد"
 
-#: book/static/js/modules/books/menu.js:341
+#: book/static/js/modules/books/menu.js:371
 msgid "Export selected books as Single-file HTML."
 msgstr "تصدير الكتب المحددة كملف HTML واحد."
 
-#: book/static/js/modules/books/menu.js:352
+#: book/static/js/modules/books/menu.js:382
 msgid "Export selected as LaTeX"
 msgstr "تصدير المحدد بصيغة LaTeX"
 
-#: book/static/js/modules/books/menu.js:353
+#: book/static/js/modules/books/menu.js:383
 msgid "Export selected books as LaTeX."
 msgstr "تصدير الكتب المحددة بصيغة LaTeX."
 
-#: book/static/js/modules/books/menu.js:364
+#: book/static/js/modules/books/menu.js:394
 msgid "Export selected as DOCX"
 msgstr "تم تحديد التصدير كـ DOCX"
 
-#: book/static/js/modules/books/menu.js:365
+#: book/static/js/modules/books/menu.js:395
 msgid "Export selected books as DOCX."
 msgstr "تصدير الكتب المحددة بصيغة DOCX."
 
-#: book/static/js/modules/books/menu.js:378
+#: book/static/js/modules/books/menu.js:408
 msgid "This book does not have a DOCX template."
 msgstr "لا يحتوي هذا الكتاب على قالب DOCX."
 
-#: book/static/js/modules/books/menu.js:387
+#: book/static/js/modules/books/menu.js:417
 msgid "Export selected as ODT"
 msgstr "تم تحديد التصدير كـ ODT"
 
-#: book/static/js/modules/books/menu.js:388
+#: book/static/js/modules/books/menu.js:418
 msgid "Export selected books as ODT."
 msgstr "تصدير الكتب المحددة بتنسيق ODT."
 
-#: book/static/js/modules/books/menu.js:401
+#: book/static/js/modules/books/menu.js:431
 msgid "This book does not have an ODT template."
 msgstr "لا يحتوي هذا الكتاب على قالب ODT."
 
-#: book/static/js/modules/books/menu.js:410
+#: book/static/js/modules/books/menu.js:440
 msgid "Export selected to Print/PDF"
 msgstr "تصدير المحدد للطباعة/PDF"
 
-#: book/static/js/modules/books/menu.js:411
+#: book/static/js/modules/books/menu.js:441
 msgid "Export selected books to the print dialog."
 msgstr "تصدير الكتب المحددة إلى مربع حوار الطباعة."
 
-#: book/static/js/modules/books/menu.js:422
+#: book/static/js/modules/books/menu.js:452
 msgid "Export selected as Fidusbook"
 msgstr "تم تحديد التصدير كـ Fidusbook"
 
-#: book/static/js/modules/books/menu.js:424
+#: book/static/js/modules/books/menu.js:454
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr "تصدير الكتب المحددة كملفات .fidusbook (للنقل إلى خادم آخر)."
 
-#: book/static/js/modules/books/menu.js:442
+#: book/static/js/modules/books/menu.js:472
 msgid "Export as BITS"
 msgstr "تصدير كـ BITS"
 
-#: book/static/js/modules/books/menu.js:443
+#: book/static/js/modules/books/menu.js:473
 msgid "Export book as Book Interchange Tag Set."
 msgstr "تصدير الكتاب كمجموعة علامات تبادل الكتب."
 
-#: book/static/js/modules/books/menu.js:450
+#: book/static/js/modules/books/menu.js:480
 msgid "Export as Epub"
 msgstr "تصدير بصيغة Epub"
 
-#: book/static/js/modules/books/menu.js:451
+#: book/static/js/modules/books/menu.js:481
 msgid "Export book as Epub."
 msgstr "تصدير الكتاب بصيغة Epub."
 
-#: book/static/js/modules/books/menu.js:458
+#: book/static/js/modules/books/menu.js:488
 msgid "Export as HTML"
 msgstr "تصدير بصيغة HTML"
 
-#: book/static/js/modules/books/menu.js:459
+#: book/static/js/modules/books/menu.js:489
 msgid "Export book as HTML."
 msgstr "تصدير الكتاب بصيغة HTML."
 
-#: book/static/js/modules/books/menu.js:466
+#: book/static/js/modules/books/menu.js:496
 msgid "Export as Unified HTML"
 msgstr "تصدير بتنسيق HTML موحد"
 
-#: book/static/js/modules/books/menu.js:467
+#: book/static/js/modules/books/menu.js:497
 msgid "Export book as Single-file HTML."
 msgstr "تصدير الكتاب كملف HTML واحد."
 
-#: book/static/js/modules/books/menu.js:474
+#: book/static/js/modules/books/menu.js:504
 msgid "Export as LaTeX"
 msgstr "تصدير بصيغة LaTeX"
 
-#: book/static/js/modules/books/menu.js:475
+#: book/static/js/modules/books/menu.js:505
 msgid "Export book as LaTeX."
 msgstr "تصدير الكتاب بصيغة LaTeX."
 
-#: book/static/js/modules/books/menu.js:482
+#: book/static/js/modules/books/menu.js:512
 msgid "Export as DOCX"
 msgstr "تصدير بصيغة DOCX"
 
-#: book/static/js/modules/books/menu.js:483
+#: book/static/js/modules/books/menu.js:513
 msgid "Export book as DOCX."
 msgstr "تصدير الكتاب بصيغة DOCX."
 
-#: book/static/js/modules/books/menu.js:492
+#: book/static/js/modules/books/menu.js:522
 msgid "Export as ODT"
 msgstr "تصدير كـ ODT"
 
-#: book/static/js/modules/books/menu.js:493
+#: book/static/js/modules/books/menu.js:523
 msgid "Export book as ODT."
 msgstr "تصدير الكتاب بتنسيق ODT."
 
-#: book/static/js/modules/books/menu.js:501
+#: book/static/js/modules/books/menu.js:531
 msgid "Export to Print/PDF"
 msgstr "تصدير للطباعة/PDF"
 
-#: book/static/js/modules/books/menu.js:502
+#: book/static/js/modules/books/menu.js:532
 msgid "Export book to the print dialog."
 msgstr "تصدير الكتاب إلى مربع حوار الطباعة."
 
-#: book/static/js/modules/books/menu.js:509
+#: book/static/js/modules/books/menu.js:539
 msgid "Export as Fidusbook"
 msgstr "تصدير كـ Fidusbook"
 
-#: book/static/js/modules/books/menu.js:511
+#: book/static/js/modules/books/menu.js:541
 msgid "Export book as a .fidusbook file (for moving to another server)."
 msgstr "تصدير الكتاب كملف .fidusbook (للنقل إلى خادم آخر)."
 
-#: book/static/js/modules/books/sanity_check.js:6
+#: book/static/js/modules/books/sanity_check.js:8
 msgid "Chapter"
 msgstr "فصل"
 
-#: book/static/js/modules/books/sanity_check.js:14
-#: book/static/js/modules/books/sanity_check.js:42
+#: book/static/js/modules/books/sanity_check.js:16
+#: book/static/js/modules/books/sanity_check.js:44
 msgid "Unresolved tracked changes"
 msgstr "تغييرات متتبعة غير محلولة"
 
-#: book/static/js/modules/books/sanity_check.js:25
+#: book/static/js/modules/books/sanity_check.js:27
 msgid "Internal links without target"
 msgstr "روابط داخلية بدون هدف"
 
-#: book/static/js/modules/books/sanity_check.js:35
+#: book/static/js/modules/books/sanity_check.js:37
 msgid "Unresolved comments"
 msgstr "تعليقات غير محلولة"
 
-#: book/static/js/modules/books/sanity_check.js:52
+#: book/static/js/modules/books/sanity_check.js:54
 msgid "Cross references without targets"
 msgstr "مراجع متقاطعة بدون أهداف"
 
-#: book/static/js/modules/books/sanity_check.js:70
+#: book/static/js/modules/books/sanity_check.js:72
 msgid "The book contains no chapters."
 msgstr "الكتاب لا يحتوي على فصول."
 
-#: book/static/js/modules/books/sanity_check.js:84
+#: book/static/js/modules/books/sanity_check.js:90
 #: book/static/js/modules/books/templates.js:611
 msgid "No access"
 msgstr "لا يوجد وصول"
 
-#: book/static/js/modules/books/sanity_check.js:90
+#: book/static/js/modules/books/sanity_check.js:96
 msgid "No chapter title"
 msgstr "لا يوجد عنوان الفصل"
 
-#: book/static/js/modules/books/sanity_check.js:99
+#: book/static/js/modules/books/sanity_check.js:105
 msgid "No issues were found:"
 msgstr "لم يتم العثور على مشاكل:"
 
-#: book/static/js/modules/books/sanity_check.js:100
+#: book/static/js/modules/books/sanity_check.js:106
 msgid "The book contains chapters."
 msgstr "يحتوي الكتاب على فصول."
 
-#: book/static/js/modules/books/sanity_check.js:101
+#: book/static/js/modules/books/sanity_check.js:107
 msgid "Each chapter has a title."
 msgstr "كل فصل له عنوان."
 
-#: book/static/js/modules/books/sanity_check.js:102
+#: book/static/js/modules/books/sanity_check.js:108
 msgid "There are no unresolved tracked changes."
 msgstr "لا توجد أية تغييرات متعقبة لم يتم حلها."
 
-#: book/static/js/modules/books/sanity_check.js:103
+#: book/static/js/modules/books/sanity_check.js:109
 msgid "There are no unresolved comments."
 msgstr "لا توجد تعليقات لم يتم حلها."
 
-#: book/static/js/modules/books/sanity_check.js:104
+#: book/static/js/modules/books/sanity_check.js:110
 msgid "All cross references have working targets."
 msgstr "جميع المراجع التبادلية لها أهداف عمل."
 
-#: book/static/js/modules/books/sanity_check.js:106
+#: book/static/js/modules/books/sanity_check.js:112
 msgid "All internal links have working targets."
 msgstr "جميع الروابط الداخلية لها أهداف عمل."
 
-#: book/static/js/modules/books/sanity_check.js:120
+#: book/static/js/modules/books/sanity_check.js:129
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -685,7 +600,7 @@ msgstr ""
 "يحتوي هذا الكتاب على فصول مشفرة. مطلوب عبارة مرور شخصية لإجراء فحص السلامة. "
 "يرجى إعداد أو إلغاء قفل عبارة المرور الشخصية في إعدادات ملفك الشخصي."
 
-#: book/static/js/modules/books/sanity_check.js:126
+#: book/static/js/modules/books/sanity_check.js:135
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
@@ -897,6 +812,74 @@ msgstr "تأليف الكتب"
 #: book/static/js/plugins/menu/books.js:13
 msgid "Books"
 msgstr "كتب"
+
+#~ msgid "Book cannot be exported due to lack of chapters."
+#~ msgstr "لا يمكن تصدير الكتاب لعدم وجود فصول."
+
+#~ msgid "Fidusbook export has been initiated."
+#~ msgstr "تم بدء تصدير Fidusbook."
+
+#~ msgid ""
+#~ "A personal passphrase is required to work with books that contain encrypted "
+#~ "chapters. Please set up or unlock your personal passphrase in your profile "
+#~ "settings."
+#~ msgstr ""
+#~ "مطلوب عبارة مرور شخصية للعمل مع الكتب التي تحتوي على فصول مشفرة. يرجى إعداد "
+#~ "أو إلغاء قفل عبارة المرور الشخصية في إعدادات ملفك الشخصي."
+
+#~ msgid "No encryption key found for chapter:"
+#~ msgstr "لم يتم العثور على مفتاح تشفير للفصل:"
+
+#~ msgid "The key may not have been shared with you."
+#~ msgstr "ربما لم تتم مشاركة المفتاح معك."
+
+#~ msgid "Could not decrypt chapter:"
+#~ msgstr "لا يمكن فك تشفير الفصل:"
+
+#~ msgid "The document may have been re-encrypted with a different password."
+#~ msgstr "ربما تمت إعادة تشفير المستند بكلمة مرور مختلفة."
+
+#~ msgid "Cannot produce book as you lack access rights to its chapters."
+#~ msgstr "لا يمكن إنتاج الكتاب بسبب عدم وجود حقوق وصول لفصوله."
+
+#~ msgid "The uploaded file does not appear to be a Fidusbook file."
+#~ msgstr "لا يبدو أن الملف الذي تم تحميله هو ملف Fidusbook."
+
+#~ msgid "The Fidusbook file version is not supported by this server: "
+#~ msgstr "إصدار ملف Fidusbook غير مدعوم من قبل هذا الخادم: "
+
+#~ msgid "Fidusbook file is missing data for chapter "
+#~ msgstr "ملف Fidusbook يفتقد بيانات الفصل "
+
+#~ msgid "Could not import chapter "
+#~ msgstr "تعذر استيراد الفصل "
+
+#~ msgid "successfully imported."
+#~ msgstr "تم استيرادها بنجاح."
+
+#~ msgid "Epub export has been initiated."
+#~ msgstr "تم بدء تصدير Epub."
+
+#~ msgid "BITS export has been initiated."
+#~ msgstr "تم بدء تصدير BITS."
+
+#~ msgid "HTML export has been initiated."
+#~ msgstr "تم بدء تصدير HTML."
+
+#~ msgid "Unified HTML export has been initiated."
+#~ msgstr "تم بدء تصدير HTML الموحد."
+
+#~ msgid "LaTeX export has been initiated."
+#~ msgstr "تم بدء تصدير LaTeX."
+
+#~ msgid "DOCX export has been initiated."
+#~ msgstr "تم بدء تصدير DOCX."
+
+#~ msgid "ODT export has been initiated."
+#~ msgstr "تم بدء تصدير ODT."
+
+#~ msgid "Print has been initiated."
+#~ msgstr "تم بدء الطباعة."
 
 #~ msgid "Pandoc export has been initiated."
 #~ msgstr "بدأ تصدير Pandoc."

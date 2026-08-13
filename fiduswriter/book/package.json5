@@ -1,5 +1,10 @@
 {
     dependencies: {
-        "@fiduswriter/books-document": "^0.1.8"
+        "@fiduswriter/books-document": "^0.1.14",
+        "@fiduswriter/document": "^0.2.40",
+        "@fiduswriter/frontend": "^0.1.43",
+        "@fiduswriter/image-manager": "^0.1.22",
+        "downloadjs": "^1.4.7",
+        "fast-deep-equal": "^3.1.3"
     }
 }

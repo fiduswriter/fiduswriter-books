@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 17:00+0000\n"
+"POT-Creation-Date: 2026-07-23 09:50+0000\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,8 @@ msgid "Add contact"
 msgstr "添加联系人"
 
 #: book/static/js/modules/books/accessrights/index.js:120
-#: book/static/js/modules/books/actions.js:190
-#: book/static/js/modules/books/actions.js:483
+#: book/static/js/modules/books/actions.js:196
+#: book/static/js/modules/books/actions.js:498
 msgid "Submit"
 msgstr "提交"
 
@@ -32,21 +32,21 @@ msgstr "提交"
 msgid "Share your book with others"
 msgstr "与他人分享您的书籍"
 
-#: book/static/js/modules/books/accessrights/index.js:275
 #: book/static/js/modules/books/accessrights/index.js:277
+#: book/static/js/modules/books/accessrights/index.js:279
 msgid "Write"
 msgstr "写入"
 
-#: book/static/js/modules/books/accessrights/index.js:285
 #: book/static/js/modules/books/accessrights/index.js:287
+#: book/static/js/modules/books/accessrights/index.js:289
 msgid "Read"
 msgstr "读取"
 
-#: book/static/js/modules/books/accessrights/index.js:303
+#: book/static/js/modules/books/accessrights/index.js:305
 msgid "Cannot save access rights."
 msgstr "无法保存访问权限。"
 
-#: book/static/js/modules/books/accessrights/index.js:307
+#: book/static/js/modules/books/accessrights/index.js:309
 msgid "Access rights have been saved"
 msgstr "访问权限已保存"
 
@@ -72,614 +72,531 @@ msgid "Collaborators"
 msgstr "合作者"
 
 #: book/static/js/modules/books/accessrights/templates.js:85
-#: book/static/js/modules/books/index.js:224
+#: book/static/js/modules/books/index.js:241
 msgid "Rights"
 msgstr "权限"
 
 #: book/static/js/modules/books/accessrights/templates.js:86
-#: book/static/js/modules/books/actions.js:143
-#: book/static/js/modules/books/index.js:619
+#: book/static/js/modules/books/actions.js:149
+#: book/static/js/modules/books/index.js:587
 msgid "Delete"
 msgstr "删除"
 
-#: book/static/js/modules/books/actions.js:59
+#: book/static/js/modules/books/actions.js:65
 msgid "Basic info"
 msgstr "基本信息"
 
-#: book/static/js/modules/books/actions.js:60
+#: book/static/js/modules/books/actions.js:66
 msgid "Basic book information"
 msgstr "基本书籍信息"
 
-#: book/static/js/modules/books/actions.js:64
+#: book/static/js/modules/books/actions.js:70
 msgid "Chapters"
 msgstr "章节"
 
-#: book/static/js/modules/books/actions.js:65
+#: book/static/js/modules/books/actions.js:71
 msgid "Documents assigned as chapters"
 msgstr "指定为章节的文档"
 
-#: book/static/js/modules/books/actions.js:69
-#: book/static/js/modules/books/actions.js:423
+#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:438
 msgid "Bibliography"
 msgstr "参考文献"
 
-#: book/static/js/modules/books/actions.js:70
+#: book/static/js/modules/books/actions.js:76
 msgid "Bibliography related settings"
 msgstr "参考文献相关设置"
 
-#: book/static/js/modules/books/actions.js:74
+#: book/static/js/modules/books/actions.js:80
 msgid "Epub"
 msgstr "Epub"
 
-#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:81
 msgid "Epub related settings"
 msgstr "Epub相关设置"
 
-#: book/static/js/modules/books/actions.js:79
+#: book/static/js/modules/books/actions.js:85
 msgid "DOCX"
 msgstr "DOCX"
 
-#: book/static/js/modules/books/actions.js:80
+#: book/static/js/modules/books/actions.js:86
 msgid "DOCX related settings"
 msgstr "DOCX相关设置"
 
-#: book/static/js/modules/books/actions.js:84
+#: book/static/js/modules/books/actions.js:90
 msgid "ODT"
 msgstr "ODT"
 
-#: book/static/js/modules/books/actions.js:85
+#: book/static/js/modules/books/actions.js:91
 msgid "ODT related settings"
 msgstr "ODT相关设置"
 
-#: book/static/js/modules/books/actions.js:89
+#: book/static/js/modules/books/actions.js:95
 msgid "Print/PDF"
 msgstr "打印/PDF"
 
-#: book/static/js/modules/books/actions.js:90
+#: book/static/js/modules/books/actions.js:96
 msgid "Print related settings"
 msgstr "打印相关设置"
 
-#: book/static/js/modules/books/actions.js:94
+#: book/static/js/modules/books/actions.js:100
 msgid "Sanity check"
 msgstr "完整性检查"
 
-#: book/static/js/modules/books/actions.js:95
+#: book/static/js/modules/books/actions.js:101
 msgid "Perform sanity check on book"
 msgstr "对书籍执行完整性检查"
 
-#: book/static/js/modules/books/actions.js:111
+#: book/static/js/modules/books/actions.js:117
 msgid "Could not delete book"
 msgstr "无法删除书籍"
 
-#: book/static/js/modules/books/actions.js:121
+#: book/static/js/modules/books/actions.js:127
 msgid "Book has been deleted"
 msgstr "书籍已删除"
 
-#: book/static/js/modules/books/actions.js:155
-#: book/static/js/modules/books/index.js:609
+#: book/static/js/modules/books/actions.js:161
+#: book/static/js/modules/books/index.js:577
 msgid "Confirm deletion"
 msgstr "确认删除"
 
-#: book/static/js/modules/books/actions.js:162
+#: book/static/js/modules/books/actions.js:168
 msgid "Do you really want to delete the following books?"
 msgstr "您确定要删除以下书籍吗？"
 
-#: book/static/js/modules/books/actions.js:165
+#: book/static/js/modules/books/actions.js:171
 msgid "Do you really want to delete the following book?"
 msgstr "您确定要删除以下书籍吗？"
 
-#: book/static/js/modules/books/actions.js:182
-#: book/static/js/modules/books/exporter/tools.js:105
-#: book/static/js/modules/books/importer/native/index.js:401
+#: book/static/js/modules/books/actions.js:188
+#: book/static/js/modules/books/adapters/book-importer-backend.js:19
 #: book/static/js/modules/books/templates.js:610
 msgid "Untitled"
 msgstr "无标题"
 
-#: book/static/js/modules/books/actions.js:206
+#: book/static/js/modules/books/actions.js:212
 msgid "Edit Chapter"
 msgstr "编辑章节"
 
-#: book/static/js/modules/books/actions.js:263
+#: book/static/js/modules/books/actions.js:269
 msgid "The book could not be saved"
 msgstr "书籍无法保存"
 
-#: book/static/js/modules/books/actions.js:292
+#: book/static/js/modules/books/actions.js:298
 msgid "Copy of"
 msgstr "复制自"
 
-#: book/static/js/modules/books/actions.js:296
+#: book/static/js/modules/books/actions.js:302
 msgid "The book could not be copied"
 msgstr "书籍无法复制"
 
-#: book/static/js/modules/books/actions.js:322
+#: book/static/js/modules/books/actions.js:328
 msgid "Chapters will be imported as encrypted (E2EE) documents."
 msgstr "章节将作为加密 (E2EE) 文档导入。"
 
-#: book/static/js/modules/books/actions.js:329
+#: book/static/js/modules/books/actions.js:335
 msgid "Import chapters as encrypted (E2EE) documents"
 msgstr "将章节导入为加密 (E2EE) 文档"
 
-#: book/static/js/modules/books/actions.js:336
+#: book/static/js/modules/books/actions.js:342
 msgid "Import a book"
 msgstr "导入一本书"
 
-#: book/static/js/modules/books/actions.js:339
+#: book/static/js/modules/books/actions.js:345
 msgid "Select a .fidusbook file:"
 msgstr "选择 .fidusbook 文件："
 
-#: book/static/js/modules/books/actions.js:353
+#: book/static/js/modules/books/actions.js:359
 msgid "Import"
 msgstr "进口"
 
-#: book/static/js/modules/books/actions.js:364
+#: book/static/js/modules/books/actions.js:370
 msgid "File too large"
 msgstr "文件太大"
 
-#: book/static/js/modules/books/actions.js:413
+#: book/static/js/modules/books/actions.js:428
 msgid "Create Book"
 msgstr "创建书籍"
 
-#: book/static/js/modules/books/actions.js:448
+#: book/static/js/modules/books/actions.js:463
 msgid "Edit Book"
 msgstr "编辑书籍"
 
-#: book/static/js/modules/books/actions.js:464
+#: book/static/js/modules/books/actions.js:479
 msgid "Export"
 msgstr "导出"
 
-#: book/static/js/modules/books/actions.js:635
+#: book/static/js/modules/books/actions.js:650
 #: book/static/js/modules/books/templates.js:570
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "export or run a sanity check on this book."
 msgstr "本书包含加密章节。导出本书或对其进行健全性检查需要个人密码。"
 
-#: book/static/js/modules/books/exporter/bits/index.js:30
-#: book/static/js/modules/books/exporter/docx/index.js:43
-#: book/static/js/modules/books/exporter/epub/index.js:49
-#: book/static/js/modules/books/exporter/html/index.js:62
-#: book/static/js/modules/books/exporter/native/index.js:42
-#: book/static/js/modules/books/exporter/odt/index.js:40
-msgid "Book cannot be exported due to lack of chapters."
-msgstr "由于缺少章节，无法导出书籍。"
-
-#: book/static/js/modules/books/exporter/native/index.js:49
-msgid "Fidusbook export has been initiated."
-msgstr "Fidusbook 导出已启动。"
-
-#: book/static/js/modules/books/exporter/native/index.js:57
-msgid "Fidusbook export failed."
-msgstr "Fidusbook 导出失败。"
-
-#: book/static/js/modules/books/exporter/tools.js:37
-msgid "Wrong passphrase. Please try again."
-msgstr "密码错误。请再试一次。"
-
-#: book/static/js/modules/books/exporter/tools.js:92
-msgid ""
-"A personal passphrase is required to work with books that contain encrypted "
-"chapters. Please set up or unlock your personal passphrase in your profile "
-"settings."
-msgstr "需要个人密码才能使用包含加密章节的书籍。请在您的个人资料设置中设置或解锁您的个人密码。"
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "No encryption key found for chapter:"
-msgstr "找不到章节的加密密钥："
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "The key may not have been shared with you."
-msgstr "密钥可能尚未与您共享。"
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "Could not decrypt chapter:"
-msgstr "无法解密章节："
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "The document may have been re-encrypted with a different password."
-msgstr "该文档可能已使用不同的密码重新加密。"
-
-#: book/static/js/modules/books/exporter/tools.js:293
-msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr "由于您缺少对章节的访问权限，无法生成书籍。"
-
-#: book/static/js/modules/books/importer/native/index.js:58
-#: book/static/js/modules/books/importer/native/index.js:82
-#: book/static/js/modules/books/importer/native/index.js:145
-msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "上传的文件似乎不是 Fidusbook 文件。"
-
-#: book/static/js/modules/books/importer/native/index.js:134
-msgid "The Fidusbook file version is not supported by this server: "
-msgstr "该服务器不支持 Fidusbook 文件版本： "
-
-#: book/static/js/modules/books/importer/native/index.js:193
-msgid "Fidusbook file is missing data for chapter "
-msgstr "Fidusbook 文件缺少章节数据 "
-
-#: book/static/js/modules/books/importer/native/index.js:251
-msgid "Could not import chapter "
-msgstr "无法导入章节 "
-
-#: book/static/js/modules/books/importer/native/index.js:300
-msgid "successfully imported."
-msgstr "成功导入。"
-
-#: book/static/js/modules/books/importer/native/index.js:418
+#: book/static/js/modules/books/adapters/book-importer-backend.js:37
 msgid "Could not create book record."
 msgstr "无法创建图书记录。"
 
-#: book/static/js/modules/books/index.js:116
+#: book/static/js/modules/books/adapters/e2ee-strategy.js:43
+msgid "Wrong passphrase. Please try again."
+msgstr "密码错误。请再试一次。"
+
+#: book/static/js/modules/books/index.js:114
 msgid "Book Overview"
 msgstr "书籍概览"
 
-#: book/static/js/modules/books/index.js:209
+#: book/static/js/modules/books/index.js:230
 msgid "No books available"
 msgstr "没有可用书籍"
 
-#: book/static/js/modules/books/index.js:210
+#: book/static/js/modules/books/index.js:231
 msgid "No books found"
 msgstr "没有找到书"
 
-#: book/static/js/modules/books/index.js:220
+#: book/static/js/modules/books/index.js:237
 #: book/static/js/modules/books/templates.js:10
 #: book/static/js/modules/books/templates.js:554
 msgid "Title"
 msgstr "标题"
 
-#: book/static/js/modules/books/index.js:221
+#: book/static/js/modules/books/index.js:238
 msgid "Created"
 msgstr "创建"
 
-#: book/static/js/modules/books/index.js:222
+#: book/static/js/modules/books/index.js:239
 msgid "Last changed"
 msgstr "最后更改"
 
-#: book/static/js/modules/books/index.js:223
+#: book/static/js/modules/books/index.js:240
 msgid "Owner"
 msgstr "所有者"
 
-#: book/static/js/modules/books/index.js:445
+#: book/static/js/modules/books/index.js:413
 msgid "Cannot load data of books."
 msgstr "无法加载书籍数据。"
 
-#: book/static/js/modules/books/index.js:563
-#: book/static/js/modules/books/index.js:577
+#: book/static/js/modules/books/index.js:531
+#: book/static/js/modules/books/index.js:545
 msgid "You cannot delete books while you are offline."
 msgstr "离线时您无法删除图书。"
 
-#: book/static/js/modules/books/index.js:612
+#: book/static/js/modules/books/index.js:580
 msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
 msgstr "留下空文件夹将删除它。您真的要删除该文件夹吗？"
 
-#: book/static/js/modules/books/menu.js:18
+#: book/static/js/modules/books/menu.js:39
+msgid "Book"
+msgstr "书"
+
+#: book/static/js/modules/books/menu.js:42
+msgid "Exporting"
+msgstr "出口"
+
+#: book/static/js/modules/books/menu.js:61
+msgid "Export complete."
+msgstr "导出完成。"
+
+#: book/static/js/modules/books/menu.js:69
+msgid "Book export failed."
+msgstr "图书导出失败。"
+
+#: book/static/js/modules/books/menu.js:77
 msgid "Create new book"
 msgstr "创建新书"
 
-#: book/static/js/modules/books/menu.js:29
+#: book/static/js/modules/books/menu.js:88
 msgid "Create new folder"
 msgstr "创建新文件夹"
 
-#: book/static/js/modules/books/menu.js:43
+#: book/static/js/modules/books/menu.js:102
 msgid "Import book from Fidusbook file"
 msgstr "从 Fidusbook 文件导入书籍"
 
-#: book/static/js/modules/books/menu.js:53
+#: book/static/js/modules/books/menu.js:112
 msgid "Search books"
 msgstr "搜索书籍"
 
-#: book/static/js/modules/books/menu.js:77
-msgid "Epub export has been initiated."
-msgstr "Epub导出已启动。"
-
-#: book/static/js/modules/books/menu.js:94
-msgid "BITS export has been initiated."
-msgstr "BITS 导出已启动。"
-
-#: book/static/js/modules/books/menu.js:110
-msgid "HTML export has been initiated."
-msgstr "HTML导出已启动。"
-
-#: book/static/js/modules/books/menu.js:127
-msgid "Unified HTML export has been initiated."
-msgstr "统一 HTML 导出已启动。"
-
-#: book/static/js/modules/books/menu.js:145
-msgid "LaTeX export has been initiated."
-msgstr "LaTeX导出已启动。"
-
-#: book/static/js/modules/books/menu.js:160
-msgid "DOCX export has been initiated."
-msgstr "DOCX 导出已启动。"
-
-#: book/static/js/modules/books/menu.js:176
-msgid "ODT export has been initiated."
-msgstr "ODT出口已启动。"
-
-#: book/static/js/modules/books/menu.js:190
-msgid "Print has been initiated."
-msgstr "打印已启动。"
-
-#: book/static/js/modules/books/menu.js:216
+#: book/static/js/modules/books/menu.js:246
 msgid "Move selected"
 msgstr "移动所选内容"
 
-#: book/static/js/modules/books/menu.js:217
+#: book/static/js/modules/books/menu.js:247
 msgid "Move the books that have been selected."
 msgstr "移动已选择的书籍。"
 
-#: book/static/js/modules/books/menu.js:227
+#: book/static/js/modules/books/menu.js:257
 msgid "Move books"
 msgstr "搬书"
 
-#: book/static/js/modules/books/menu.js:228
+#: book/static/js/modules/books/menu.js:258
 msgid "Move book"
 msgstr "搬书"
 
-#: book/static/js/modules/books/menu.js:232
+#: book/static/js/modules/books/menu.js:262
 msgid "Book has been moved"
 msgstr "书已移走"
 
-#: book/static/js/modules/books/menu.js:233
+#: book/static/js/modules/books/menu.js:263
 msgid "Could not move book"
 msgstr "无法移动书籍"
 
-#: book/static/js/modules/books/menu.js:244
+#: book/static/js/modules/books/menu.js:274
 msgid "Delete selected"
 msgstr "删除选中项"
 
-#: book/static/js/modules/books/menu.js:245
+#: book/static/js/modules/books/menu.js:275
 msgid "Delete selected books."
 msgstr "删除选中的书籍。"
 
-#: book/static/js/modules/books/menu.js:255
+#: book/static/js/modules/books/menu.js:285
 msgid "You cannot delete books of other users."
 msgstr "您不能删除其他用户的书籍。"
 
-#: book/static/js/modules/books/menu.js:265
+#: book/static/js/modules/books/menu.js:295
 msgid "Share selected"
 msgstr "共享选中项"
 
-#: book/static/js/modules/books/menu.js:266
+#: book/static/js/modules/books/menu.js:296
 msgid "Share selected books."
 msgstr "共享选中的书籍。"
 
-#: book/static/js/modules/books/menu.js:276
+#: book/static/js/modules/books/menu.js:306
 msgid "You cannot share books of other users."
 msgstr "您不能共享其他用户的书籍。"
 
-#: book/static/js/modules/books/menu.js:291
+#: book/static/js/modules/books/menu.js:321
 msgid "Copy selected"
 msgstr "复制选中项"
 
-#: book/static/js/modules/books/menu.js:292
+#: book/static/js/modules/books/menu.js:322
 msgid "Copy selected books."
 msgstr "复制选中的书籍。"
 
-#: book/static/js/modules/books/menu.js:304
+#: book/static/js/modules/books/menu.js:334
 msgid "Export selected as BITS"
 msgstr "导出选择为 BITS"
 
-#: book/static/js/modules/books/menu.js:305
+#: book/static/js/modules/books/menu.js:335
 msgid "Export selected books as BITS."
 msgstr "将选定的书籍导出为 BITS。"
 
-#: book/static/js/modules/books/menu.js:316
+#: book/static/js/modules/books/menu.js:346
 msgid "Export selected as Epub"
 msgstr "将选中项导出为Epub"
 
-#: book/static/js/modules/books/menu.js:317
+#: book/static/js/modules/books/menu.js:347
 msgid "Export selected books as Epub."
 msgstr "将选中的书籍导出为Epub。"
 
-#: book/static/js/modules/books/menu.js:328
+#: book/static/js/modules/books/menu.js:358
 msgid "Export selected as HTML"
 msgstr "将选中项导出为HTML"
 
-#: book/static/js/modules/books/menu.js:329
+#: book/static/js/modules/books/menu.js:359
 msgid "Export selected books as HTML."
 msgstr "将选中的书籍导出为HTML。"
 
-#: book/static/js/modules/books/menu.js:340
+#: book/static/js/modules/books/menu.js:370
 msgid "Export selected as Unified HTML"
 msgstr "将所选内容导出为统一 HTML"
 
-#: book/static/js/modules/books/menu.js:341
+#: book/static/js/modules/books/menu.js:371
 msgid "Export selected books as Single-file HTML."
 msgstr "将选定的书籍导出为单文件 HTML。"
 
-#: book/static/js/modules/books/menu.js:352
+#: book/static/js/modules/books/menu.js:382
 msgid "Export selected as LaTeX"
 msgstr "将选中项导出为LaTeX"
 
-#: book/static/js/modules/books/menu.js:353
+#: book/static/js/modules/books/menu.js:383
 msgid "Export selected books as LaTeX."
 msgstr "将选中的书籍导出为LaTeX。"
 
-#: book/static/js/modules/books/menu.js:364
+#: book/static/js/modules/books/menu.js:394
 msgid "Export selected as DOCX"
 msgstr "导出选择为 DOCX"
 
-#: book/static/js/modules/books/menu.js:365
+#: book/static/js/modules/books/menu.js:395
 msgid "Export selected books as DOCX."
 msgstr "将选定的书籍导出为 DOCX。"
 
-#: book/static/js/modules/books/menu.js:378
+#: book/static/js/modules/books/menu.js:408
 msgid "This book does not have a DOCX template."
 msgstr "本书没有 DOCX 模板。"
 
-#: book/static/js/modules/books/menu.js:387
+#: book/static/js/modules/books/menu.js:417
 msgid "Export selected as ODT"
 msgstr "导出选择为 ODT"
 
-#: book/static/js/modules/books/menu.js:388
+#: book/static/js/modules/books/menu.js:418
 msgid "Export selected books as ODT."
 msgstr "将选定的书籍导出为 ODT。"
 
-#: book/static/js/modules/books/menu.js:401
+#: book/static/js/modules/books/menu.js:431
 msgid "This book does not have an ODT template."
 msgstr "本书没有 ODT 模板。"
 
-#: book/static/js/modules/books/menu.js:410
+#: book/static/js/modules/books/menu.js:440
 msgid "Export selected to Print/PDF"
 msgstr "将选中项导出为打印/PDF"
 
-#: book/static/js/modules/books/menu.js:411
+#: book/static/js/modules/books/menu.js:441
 msgid "Export selected books to the print dialog."
 msgstr "将选中的书籍导出到打印对话框。"
 
-#: book/static/js/modules/books/menu.js:422
+#: book/static/js/modules/books/menu.js:452
 msgid "Export selected as Fidusbook"
 msgstr "导出选择为 Fidusbook"
 
-#: book/static/js/modules/books/menu.js:424
+#: book/static/js/modules/books/menu.js:454
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr "将选定的书籍导出为 .fidusbook 文件（用于移动到另一台服务器）。"
 
-#: book/static/js/modules/books/menu.js:442
+#: book/static/js/modules/books/menu.js:472
 msgid "Export as BITS"
 msgstr "导出为 BITS"
 
-#: book/static/js/modules/books/menu.js:443
+#: book/static/js/modules/books/menu.js:473
 msgid "Export book as Book Interchange Tag Set."
 msgstr "将书籍导出为书籍交换标签集。"
 
-#: book/static/js/modules/books/menu.js:450
+#: book/static/js/modules/books/menu.js:480
 msgid "Export as Epub"
 msgstr "导出为 Epub"
 
-#: book/static/js/modules/books/menu.js:451
+#: book/static/js/modules/books/menu.js:481
 msgid "Export book as Epub."
 msgstr "将书籍导出为 Epub。"
 
-#: book/static/js/modules/books/menu.js:458
+#: book/static/js/modules/books/menu.js:488
 msgid "Export as HTML"
 msgstr "导出为 HTML"
 
-#: book/static/js/modules/books/menu.js:459
+#: book/static/js/modules/books/menu.js:489
 msgid "Export book as HTML."
 msgstr "将图书导出为 HTML。"
 
-#: book/static/js/modules/books/menu.js:466
+#: book/static/js/modules/books/menu.js:496
 msgid "Export as Unified HTML"
 msgstr "导出为统一 HTML"
 
-#: book/static/js/modules/books/menu.js:467
+#: book/static/js/modules/books/menu.js:497
 msgid "Export book as Single-file HTML."
 msgstr "将图书导出为单文件 HTML。"
 
-#: book/static/js/modules/books/menu.js:474
+#: book/static/js/modules/books/menu.js:504
 msgid "Export as LaTeX"
 msgstr "导出为 LaTeX"
 
-#: book/static/js/modules/books/menu.js:475
+#: book/static/js/modules/books/menu.js:505
 msgid "Export book as LaTeX."
 msgstr "将书籍导出为 LaTeX。"
 
-#: book/static/js/modules/books/menu.js:482
+#: book/static/js/modules/books/menu.js:512
 msgid "Export as DOCX"
 msgstr "导出为 DOCX"
 
-#: book/static/js/modules/books/menu.js:483
+#: book/static/js/modules/books/menu.js:513
 msgid "Export book as DOCX."
 msgstr "将图书导出为 DOCX。"
 
-#: book/static/js/modules/books/menu.js:492
+#: book/static/js/modules/books/menu.js:522
 msgid "Export as ODT"
 msgstr "导出为 ODT"
 
-#: book/static/js/modules/books/menu.js:493
+#: book/static/js/modules/books/menu.js:523
 msgid "Export book as ODT."
 msgstr "将图书导出为 ODT。"
 
-#: book/static/js/modules/books/menu.js:501
+#: book/static/js/modules/books/menu.js:531
 msgid "Export to Print/PDF"
 msgstr "导出为打印/PDF"
 
-#: book/static/js/modules/books/menu.js:502
+#: book/static/js/modules/books/menu.js:532
 msgid "Export book to the print dialog."
 msgstr "将书籍导出到打印对话框。"
 
-#: book/static/js/modules/books/menu.js:509
+#: book/static/js/modules/books/menu.js:539
 msgid "Export as Fidusbook"
 msgstr "导出为 Fidusbook"
 
-#: book/static/js/modules/books/menu.js:511
+#: book/static/js/modules/books/menu.js:541
 msgid "Export book as a .fidusbook file (for moving to another server)."
 msgstr "将书籍导出为 .fidusbook 文件（用于移动到另一台服务器）。"
 
-#: book/static/js/modules/books/sanity_check.js:6
+#: book/static/js/modules/books/sanity_check.js:8
 msgid "Chapter"
 msgstr "章"
 
-#: book/static/js/modules/books/sanity_check.js:14
-#: book/static/js/modules/books/sanity_check.js:42
+#: book/static/js/modules/books/sanity_check.js:16
+#: book/static/js/modules/books/sanity_check.js:44
 msgid "Unresolved tracked changes"
 msgstr "未解决的跟踪更改"
 
-#: book/static/js/modules/books/sanity_check.js:25
+#: book/static/js/modules/books/sanity_check.js:27
 msgid "Internal links without target"
 msgstr "无目标的内部链接"
 
-#: book/static/js/modules/books/sanity_check.js:35
+#: book/static/js/modules/books/sanity_check.js:37
 msgid "Unresolved comments"
 msgstr "未解决的评论"
 
-#: book/static/js/modules/books/sanity_check.js:52
+#: book/static/js/modules/books/sanity_check.js:54
 msgid "Cross references without targets"
 msgstr "无目标的交叉引用"
 
-#: book/static/js/modules/books/sanity_check.js:70
+#: book/static/js/modules/books/sanity_check.js:72
 msgid "The book contains no chapters."
 msgstr "本书不包含任何章节。"
 
-#: book/static/js/modules/books/sanity_check.js:84
+#: book/static/js/modules/books/sanity_check.js:90
 #: book/static/js/modules/books/templates.js:611
 msgid "No access"
 msgstr "无法访问"
 
-#: book/static/js/modules/books/sanity_check.js:90
+#: book/static/js/modules/books/sanity_check.js:96
 msgid "No chapter title"
 msgstr "无章节标题"
 
-#: book/static/js/modules/books/sanity_check.js:99
+#: book/static/js/modules/books/sanity_check.js:105
 msgid "No issues were found:"
 msgstr "没有发现问题："
 
-#: book/static/js/modules/books/sanity_check.js:100
+#: book/static/js/modules/books/sanity_check.js:106
 msgid "The book contains chapters."
 msgstr "本书包含章节。"
 
-#: book/static/js/modules/books/sanity_check.js:101
+#: book/static/js/modules/books/sanity_check.js:107
 msgid "Each chapter has a title."
 msgstr "每章都有一个标题。"
 
-#: book/static/js/modules/books/sanity_check.js:102
+#: book/static/js/modules/books/sanity_check.js:108
 msgid "There are no unresolved tracked changes."
 msgstr "没有未解决的跟踪更改。"
 
-#: book/static/js/modules/books/sanity_check.js:103
+#: book/static/js/modules/books/sanity_check.js:109
 msgid "There are no unresolved comments."
 msgstr "没有未解决的评论。"
 
-#: book/static/js/modules/books/sanity_check.js:104
+#: book/static/js/modules/books/sanity_check.js:110
 msgid "All cross references have working targets."
 msgstr "所有交叉引用都有工作目标。"
 
-#: book/static/js/modules/books/sanity_check.js:106
+#: book/static/js/modules/books/sanity_check.js:112
 msgid "All internal links have working targets."
 msgstr "所有内部链接都有工作目标。"
 
-#: book/static/js/modules/books/sanity_check.js:120
+#: book/static/js/modules/books/sanity_check.js:129
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
 "your profile settings."
 msgstr "本书包含加密章节。需要个人密码来执行健全性检查。请在您的个人资料设置中设置或解锁您的个人密码。"
 
-#: book/static/js/modules/books/sanity_check.js:126
+#: book/static/js/modules/books/sanity_check.js:135
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
@@ -889,6 +806,72 @@ msgstr "撰写书籍"
 #: book/static/js/plugins/menu/books.js:13
 msgid "Books"
 msgstr "书籍"
+
+#~ msgid "Book cannot be exported due to lack of chapters."
+#~ msgstr "由于缺少章节，无法导出书籍。"
+
+#~ msgid "Fidusbook export has been initiated."
+#~ msgstr "Fidusbook 导出已启动。"
+
+#~ msgid ""
+#~ "A personal passphrase is required to work with books that contain encrypted "
+#~ "chapters. Please set up or unlock your personal passphrase in your profile "
+#~ "settings."
+#~ msgstr "需要个人密码才能使用包含加密章节的书籍。请在您的个人资料设置中设置或解锁您的个人密码。"
+
+#~ msgid "No encryption key found for chapter:"
+#~ msgstr "找不到章节的加密密钥："
+
+#~ msgid "The key may not have been shared with you."
+#~ msgstr "密钥可能尚未与您共享。"
+
+#~ msgid "Could not decrypt chapter:"
+#~ msgstr "无法解密章节："
+
+#~ msgid "The document may have been re-encrypted with a different password."
+#~ msgstr "该文档可能已使用不同的密码重新加密。"
+
+#~ msgid "Cannot produce book as you lack access rights to its chapters."
+#~ msgstr "由于您缺少对章节的访问权限，无法生成书籍。"
+
+#~ msgid "The uploaded file does not appear to be a Fidusbook file."
+#~ msgstr "上传的文件似乎不是 Fidusbook 文件。"
+
+#~ msgid "The Fidusbook file version is not supported by this server: "
+#~ msgstr "该服务器不支持 Fidusbook 文件版本： "
+
+#~ msgid "Fidusbook file is missing data for chapter "
+#~ msgstr "Fidusbook 文件缺少章节数据 "
+
+#~ msgid "Could not import chapter "
+#~ msgstr "无法导入章节 "
+
+#~ msgid "successfully imported."
+#~ msgstr "成功导入。"
+
+#~ msgid "Epub export has been initiated."
+#~ msgstr "Epub导出已启动。"
+
+#~ msgid "BITS export has been initiated."
+#~ msgstr "BITS 导出已启动。"
+
+#~ msgid "HTML export has been initiated."
+#~ msgstr "HTML导出已启动。"
+
+#~ msgid "Unified HTML export has been initiated."
+#~ msgstr "统一 HTML 导出已启动。"
+
+#~ msgid "LaTeX export has been initiated."
+#~ msgstr "LaTeX导出已启动。"
+
+#~ msgid "DOCX export has been initiated."
+#~ msgstr "DOCX 导出已启动。"
+
+#~ msgid "ODT export has been initiated."
+#~ msgstr "ODT出口已启动。"
+
+#~ msgid "Print has been initiated."
+#~ msgstr "打印已启动。"
 
 #~ msgid "Pandoc export has been initiated."
 #~ msgstr "Pandoc 导出已启动。"

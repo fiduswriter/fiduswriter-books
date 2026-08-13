@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fidus Writer books\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 17:00+0000\n"
+"POT-Creation-Date: 2026-07-23 09:50+0000\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,8 @@ msgid "Add contact"
 msgstr "Ajouter le contact"
 
 #: book/static/js/modules/books/accessrights/index.js:120
-#: book/static/js/modules/books/actions.js:190
-#: book/static/js/modules/books/actions.js:483
+#: book/static/js/modules/books/actions.js:196
+#: book/static/js/modules/books/actions.js:498
 msgid "Submit"
 msgstr "Soumettre"
 
@@ -32,21 +32,21 @@ msgstr "Soumettre"
 msgid "Share your book with others"
 msgstr "Partagez votre livre avec les autres"
 
-#: book/static/js/modules/books/accessrights/index.js:275
 #: book/static/js/modules/books/accessrights/index.js:277
+#: book/static/js/modules/books/accessrights/index.js:279
 msgid "Write"
 msgstr "Écrire"
 
-#: book/static/js/modules/books/accessrights/index.js:285
 #: book/static/js/modules/books/accessrights/index.js:287
+#: book/static/js/modules/books/accessrights/index.js:289
 msgid "Read"
 msgstr "Lis"
 
-#: book/static/js/modules/books/accessrights/index.js:303
+#: book/static/js/modules/books/accessrights/index.js:305
 msgid "Cannot save access rights."
 msgstr "Impossible d'enregistrer les droits d'accès."
 
-#: book/static/js/modules/books/accessrights/index.js:307
+#: book/static/js/modules/books/accessrights/index.js:309
 msgid "Access rights have been saved"
 msgstr "Les droits d'accès ont été enregistrés"
 
@@ -72,162 +72,161 @@ msgid "Collaborators"
 msgstr "Collaborateurs"
 
 #: book/static/js/modules/books/accessrights/templates.js:85
-#: book/static/js/modules/books/index.js:224
+#: book/static/js/modules/books/index.js:241
 msgid "Rights"
 msgstr "Droits"
 
 #: book/static/js/modules/books/accessrights/templates.js:86
-#: book/static/js/modules/books/actions.js:143
-#: book/static/js/modules/books/index.js:619
+#: book/static/js/modules/books/actions.js:149
+#: book/static/js/modules/books/index.js:587
 msgid "Delete"
 msgstr "Supprimer"
 
-#: book/static/js/modules/books/actions.js:59
+#: book/static/js/modules/books/actions.js:65
 msgid "Basic info"
 msgstr "Informations de base"
 
-#: book/static/js/modules/books/actions.js:60
+#: book/static/js/modules/books/actions.js:66
 msgid "Basic book information"
 msgstr "Informations de base sur le livre"
 
-#: book/static/js/modules/books/actions.js:64
+#: book/static/js/modules/books/actions.js:70
 msgid "Chapters"
 msgstr "Chapitres"
 
-#: book/static/js/modules/books/actions.js:65
+#: book/static/js/modules/books/actions.js:71
 msgid "Documents assigned as chapters"
 msgstr "Documents assignés comme chapitres"
 
-#: book/static/js/modules/books/actions.js:69
-#: book/static/js/modules/books/actions.js:423
+#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:438
 msgid "Bibliography"
 msgstr "Bibliographie"
 
-#: book/static/js/modules/books/actions.js:70
+#: book/static/js/modules/books/actions.js:76
 msgid "Bibliography related settings"
 msgstr "Paramètres liés à la bibliographie"
 
-#: book/static/js/modules/books/actions.js:74
+#: book/static/js/modules/books/actions.js:80
 msgid "Epub"
 msgstr "Epub"
 
-#: book/static/js/modules/books/actions.js:75
+#: book/static/js/modules/books/actions.js:81
 msgid "Epub related settings"
 msgstr "Paramètres liés à epub"
 
-#: book/static/js/modules/books/actions.js:79
+#: book/static/js/modules/books/actions.js:85
 msgid "DOCX"
 msgstr "DOCX"
 
-#: book/static/js/modules/books/actions.js:80
+#: book/static/js/modules/books/actions.js:86
 msgid "DOCX related settings"
 msgstr "Paramètres liés au DOCX"
 
-#: book/static/js/modules/books/actions.js:84
+#: book/static/js/modules/books/actions.js:90
 msgid "ODT"
 msgstr "ODT"
 
-#: book/static/js/modules/books/actions.js:85
+#: book/static/js/modules/books/actions.js:91
 msgid "ODT related settings"
 msgstr "Paramètres liés au ODT"
 
-#: book/static/js/modules/books/actions.js:89
+#: book/static/js/modules/books/actions.js:95
 msgid "Print/PDF"
 msgstr "Imprimer / PDF"
 
-#: book/static/js/modules/books/actions.js:90
+#: book/static/js/modules/books/actions.js:96
 msgid "Print related settings"
 msgstr "Imprimer les paramètres associés"
 
-#: book/static/js/modules/books/actions.js:94
+#: book/static/js/modules/books/actions.js:100
 msgid "Sanity check"
 msgstr "Verification sanitaire"
 
-#: book/static/js/modules/books/actions.js:95
+#: book/static/js/modules/books/actions.js:101
 msgid "Perform sanity check on book"
 msgstr "Effectuer un contrôle d'intégrité sur le livre"
 
-#: book/static/js/modules/books/actions.js:111
+#: book/static/js/modules/books/actions.js:117
 msgid "Could not delete book"
 msgstr "Impossible de supprimer le livre"
 
-#: book/static/js/modules/books/actions.js:121
+#: book/static/js/modules/books/actions.js:127
 msgid "Book has been deleted"
 msgstr "Le livre a été supprimé"
 
-#: book/static/js/modules/books/actions.js:155
-#: book/static/js/modules/books/index.js:609
+#: book/static/js/modules/books/actions.js:161
+#: book/static/js/modules/books/index.js:577
 msgid "Confirm deletion"
 msgstr "Confirmer la suppression"
 
-#: book/static/js/modules/books/actions.js:162
+#: book/static/js/modules/books/actions.js:168
 msgid "Do you really want to delete the following books?"
 msgstr "Voulez-vous vraiment supprimer les livres suivants ?"
 
-#: book/static/js/modules/books/actions.js:165
+#: book/static/js/modules/books/actions.js:171
 msgid "Do you really want to delete the following book?"
 msgstr "Voulez-vous vraiment supprimer le livre suivant ?"
 
-#: book/static/js/modules/books/actions.js:182
-#: book/static/js/modules/books/exporter/tools.js:105
-#: book/static/js/modules/books/importer/native/index.js:401
+#: book/static/js/modules/books/actions.js:188
+#: book/static/js/modules/books/adapters/book-importer-backend.js:19
 #: book/static/js/modules/books/templates.js:610
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: book/static/js/modules/books/actions.js:206
+#: book/static/js/modules/books/actions.js:212
 msgid "Edit Chapter"
 msgstr "Modifier le chapitre"
 
-#: book/static/js/modules/books/actions.js:263
+#: book/static/js/modules/books/actions.js:269
 msgid "The book could not be saved"
 msgstr "Le livre n'a pas pu être enregistré"
 
-#: book/static/js/modules/books/actions.js:292
+#: book/static/js/modules/books/actions.js:298
 msgid "Copy of"
 msgstr "Copie de"
 
-#: book/static/js/modules/books/actions.js:296
+#: book/static/js/modules/books/actions.js:302
 msgid "The book could not be copied"
 msgstr "Le livre n'a pas pu être copié"
 
-#: book/static/js/modules/books/actions.js:322
+#: book/static/js/modules/books/actions.js:328
 msgid "Chapters will be imported as encrypted (E2EE) documents."
 msgstr "Les chapitres seront importés en tant que documents chiffrés (E2EE)."
 
-#: book/static/js/modules/books/actions.js:329
+#: book/static/js/modules/books/actions.js:335
 msgid "Import chapters as encrypted (E2EE) documents"
 msgstr "Importer les chapitres en tant que documents chiffrés (E2EE)"
 
-#: book/static/js/modules/books/actions.js:336
+#: book/static/js/modules/books/actions.js:342
 msgid "Import a book"
 msgstr "Importer un livre"
 
-#: book/static/js/modules/books/actions.js:339
+#: book/static/js/modules/books/actions.js:345
 msgid "Select a .fidusbook file:"
 msgstr "Sélectionnez un fichier .fidusbook :"
 
-#: book/static/js/modules/books/actions.js:353
+#: book/static/js/modules/books/actions.js:359
 msgid "Import"
 msgstr "Importer"
 
-#: book/static/js/modules/books/actions.js:364
+#: book/static/js/modules/books/actions.js:370
 msgid "File too large"
 msgstr "Fichier trop volumineux"
 
-#: book/static/js/modules/books/actions.js:413
+#: book/static/js/modules/books/actions.js:428
 msgid "Create Book"
 msgstr "Créer un livre"
 
-#: book/static/js/modules/books/actions.js:448
+#: book/static/js/modules/books/actions.js:463
 msgid "Edit Book"
 msgstr "Modifier le livre"
 
-#: book/static/js/modules/books/actions.js:464
+#: book/static/js/modules/books/actions.js:479
 msgid "Export"
 msgstr "Exportation"
 
-#: book/static/js/modules/books/actions.js:635
+#: book/static/js/modules/books/actions.js:650
 #: book/static/js/modules/books/templates.js:570
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
@@ -236,127 +235,54 @@ msgstr ""
 "Ce livre contient des chapitres chiffrés. Une phrase de passe personnelle "
 "est requise pour exporter ou effectuer une vérification de ce livre."
 
-#: book/static/js/modules/books/exporter/bits/index.js:30
-#: book/static/js/modules/books/exporter/docx/index.js:43
-#: book/static/js/modules/books/exporter/epub/index.js:49
-#: book/static/js/modules/books/exporter/html/index.js:62
-#: book/static/js/modules/books/exporter/native/index.js:42
-#: book/static/js/modules/books/exporter/odt/index.js:40
-msgid "Book cannot be exported due to lack of chapters."
-msgstr "Le livre ne peut pas être exporté par manque de chapitres."
-
-#: book/static/js/modules/books/exporter/native/index.js:49
-msgid "Fidusbook export has been initiated."
-msgstr "L'exportation Fidusbook a été lancée."
-
-#: book/static/js/modules/books/exporter/native/index.js:57
-msgid "Fidusbook export failed."
-msgstr "L'exportation Fidusbook a échoué."
-
-#: book/static/js/modules/books/exporter/tools.js:37
-msgid "Wrong passphrase. Please try again."
-msgstr "Mauvaise phrase de passe. Veuillez réessayer."
-
-#: book/static/js/modules/books/exporter/tools.js:92
-msgid ""
-"A personal passphrase is required to work with books that contain encrypted "
-"chapters. Please set up or unlock your personal passphrase in your profile "
-"settings."
-msgstr ""
-"Une phrase de passe personnelle est nécessaire pour travailler avec des "
-"livres contenant des chapitres chiffrés. Veuillez configurer ou "
-"déverrouiller votre phrase de passe personnelle dans les paramètres de votre"
-" profil."
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "No encryption key found for chapter:"
-msgstr "Aucune clé de chiffrement trouvée pour le chapitre :"
-
-#: book/static/js/modules/books/exporter/tools.js:112
-msgid "The key may not have been shared with you."
-msgstr "La clé n'a peut-être pas été partagée avec vous."
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "Could not decrypt chapter:"
-msgstr "Impossible de déchiffrer le chapitre :"
-
-#: book/static/js/modules/books/exporter/tools.js:268
-msgid "The document may have been re-encrypted with a different password."
-msgstr "Le document a peut-être été rechiffré avec un mot de passe différent."
-
-#: book/static/js/modules/books/exporter/tools.js:293
-msgid "Cannot produce book as you lack access rights to its chapters."
-msgstr ""
-"Impossible de produire un livre car vous ne disposez pas des droits d'accès "
-"à ses chapitres."
-
-#: book/static/js/modules/books/importer/native/index.js:58
-#: book/static/js/modules/books/importer/native/index.js:82
-#: book/static/js/modules/books/importer/native/index.js:145
-msgid "The uploaded file does not appear to be a Fidusbook file."
-msgstr "Le fichier téléchargé ne semble pas être un fichier Fidusbook."
-
-#: book/static/js/modules/books/importer/native/index.js:134
-msgid "The Fidusbook file version is not supported by this server: "
-msgstr ""
-"La version du fichier Fidusbook n'est pas prise en charge par ce serveur : "
-
-#: book/static/js/modules/books/importer/native/index.js:193
-msgid "Fidusbook file is missing data for chapter "
-msgstr "Le fichier Fidusbook ne contient pas de données pour le chapitre "
-
-#: book/static/js/modules/books/importer/native/index.js:251
-msgid "Could not import chapter "
-msgstr "Impossible d'importer le chapitre "
-
-#: book/static/js/modules/books/importer/native/index.js:300
-msgid "successfully imported."
-msgstr "importé avec succès."
-
-#: book/static/js/modules/books/importer/native/index.js:418
+#: book/static/js/modules/books/adapters/book-importer-backend.js:37
 msgid "Could not create book record."
 msgstr "Impossible de créer l'enregistrement du livre."
 
-#: book/static/js/modules/books/index.js:116
+#: book/static/js/modules/books/adapters/e2ee-strategy.js:43
+msgid "Wrong passphrase. Please try again."
+msgstr "Mauvaise phrase de passe. Veuillez réessayer."
+
+#: book/static/js/modules/books/index.js:114
 msgid "Book Overview"
 msgstr "Aperçu du livre"
 
-#: book/static/js/modules/books/index.js:209
+#: book/static/js/modules/books/index.js:230
 msgid "No books available"
 msgstr "Aucun livre disponible"
 
-#: book/static/js/modules/books/index.js:210
+#: book/static/js/modules/books/index.js:231
 msgid "No books found"
 msgstr "Aucun livre trouvé"
 
-#: book/static/js/modules/books/index.js:220
+#: book/static/js/modules/books/index.js:237
 #: book/static/js/modules/books/templates.js:10
 #: book/static/js/modules/books/templates.js:554
 msgid "Title"
 msgstr "Titre"
 
-#: book/static/js/modules/books/index.js:221
+#: book/static/js/modules/books/index.js:238
 msgid "Created"
 msgstr "Établi"
 
-#: book/static/js/modules/books/index.js:222
+#: book/static/js/modules/books/index.js:239
 msgid "Last changed"
 msgstr "Dernière modification"
 
-#: book/static/js/modules/books/index.js:223
+#: book/static/js/modules/books/index.js:240
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: book/static/js/modules/books/index.js:445
+#: book/static/js/modules/books/index.js:413
 msgid "Cannot load data of books."
 msgstr "Impossible de charger les données des livres."
 
-#: book/static/js/modules/books/index.js:563
-#: book/static/js/modules/books/index.js:577
+#: book/static/js/modules/books/index.js:531
+#: book/static/js/modules/books/index.js:545
 msgid "You cannot delete books while you are offline."
 msgstr "Vous ne pouvez pas supprimer de livres lorsque vous êtes hors ligne."
 
-#: book/static/js/modules/books/index.js:612
+#: book/static/js/modules/books/index.js:580
 msgid ""
 "Leaving an empty folder will delete it. Do you really want to delete this "
 "folder?"
@@ -364,331 +290,315 @@ msgstr ""
 "Laisser un dossier vide le supprimera. Voulez-vous vraiment supprimer ce "
 "dossier ?"
 
-#: book/static/js/modules/books/menu.js:18
+#: book/static/js/modules/books/menu.js:39
+msgid "Book"
+msgstr "Livre"
+
+#: book/static/js/modules/books/menu.js:42
+msgid "Exporting"
+msgstr "Exportation"
+
+#: book/static/js/modules/books/menu.js:61
+msgid "Export complete."
+msgstr "Exportation terminée."
+
+#: book/static/js/modules/books/menu.js:69
+msgid "Book export failed."
+msgstr "L'exportation du livre a échoué."
+
+#: book/static/js/modules/books/menu.js:77
 msgid "Create new book"
 msgstr "Créer un nouveau livre"
 
-#: book/static/js/modules/books/menu.js:29
+#: book/static/js/modules/books/menu.js:88
 msgid "Create new folder"
 msgstr "Créer un nouveau dossier"
 
-#: book/static/js/modules/books/menu.js:43
+#: book/static/js/modules/books/menu.js:102
 msgid "Import book from Fidusbook file"
 msgstr "Importer un livre depuis un fichier Fidusbook"
 
-#: book/static/js/modules/books/menu.js:53
+#: book/static/js/modules/books/menu.js:112
 msgid "Search books"
 msgstr "Rechercher des livres"
 
-#: book/static/js/modules/books/menu.js:77
-msgid "Epub export has been initiated."
-msgstr "L'exportation epub a été lancée."
-
-#: book/static/js/modules/books/menu.js:94
-msgid "BITS export has been initiated."
-msgstr "L'exportation BITS a été lancée."
-
-#: book/static/js/modules/books/menu.js:110
-msgid "HTML export has been initiated."
-msgstr "L'exportation HTML a été lancée."
-
-#: book/static/js/modules/books/menu.js:127
-msgid "Unified HTML export has been initiated."
-msgstr "L'exportation HTML unifiée a été lancée."
-
-#: book/static/js/modules/books/menu.js:145
-msgid "LaTeX export has been initiated."
-msgstr "L'exportation LaTeX a été lancée."
-
-#: book/static/js/modules/books/menu.js:160
-msgid "DOCX export has been initiated."
-msgstr "L'exportation DOCX a été lancée."
-
-#: book/static/js/modules/books/menu.js:176
-msgid "ODT export has been initiated."
-msgstr "L'exportation ODT a été lancée."
-
-#: book/static/js/modules/books/menu.js:190
-msgid "Print has been initiated."
-msgstr "L'impression a été lancée."
-
-#: book/static/js/modules/books/menu.js:216
+#: book/static/js/modules/books/menu.js:246
 msgid "Move selected"
 msgstr "Déplacer sélectionné"
 
-#: book/static/js/modules/books/menu.js:217
+#: book/static/js/modules/books/menu.js:247
 msgid "Move the books that have been selected."
 msgstr "Déplacez les livres qui ont été sélectionnés."
 
-#: book/static/js/modules/books/menu.js:227
+#: book/static/js/modules/books/menu.js:257
 msgid "Move books"
 msgstr "Déplacer des livres"
 
-#: book/static/js/modules/books/menu.js:228
+#: book/static/js/modules/books/menu.js:258
 msgid "Move book"
 msgstr "Déplacer le livre"
 
-#: book/static/js/modules/books/menu.js:232
+#: book/static/js/modules/books/menu.js:262
 msgid "Book has been moved"
 msgstr "Le livre a été déplacé"
 
-#: book/static/js/modules/books/menu.js:233
+#: book/static/js/modules/books/menu.js:263
 msgid "Could not move book"
 msgstr "Impossible de déplacer le livre"
 
-#: book/static/js/modules/books/menu.js:244
+#: book/static/js/modules/books/menu.js:274
 msgid "Delete selected"
 msgstr "Supprimer sélectionnée"
 
-#: book/static/js/modules/books/menu.js:245
+#: book/static/js/modules/books/menu.js:275
 msgid "Delete selected books."
 msgstr "Supprimer les livres sélectionnés."
 
-#: book/static/js/modules/books/menu.js:255
+#: book/static/js/modules/books/menu.js:285
 msgid "You cannot delete books of other users."
 msgstr "Vous ne pouvez pas supprimer les livres d'autres utilisateurs."
 
-#: book/static/js/modules/books/menu.js:265
+#: book/static/js/modules/books/menu.js:295
 msgid "Share selected"
 msgstr "Partager sélectionné"
 
-#: book/static/js/modules/books/menu.js:266
+#: book/static/js/modules/books/menu.js:296
 msgid "Share selected books."
 msgstr "Partagez des livres sélectionnés."
 
-#: book/static/js/modules/books/menu.js:276
+#: book/static/js/modules/books/menu.js:306
 msgid "You cannot share books of other users."
 msgstr "Vous ne pouvez pas partager des livres d'autres utilisateurs."
 
-#: book/static/js/modules/books/menu.js:291
+#: book/static/js/modules/books/menu.js:321
 msgid "Copy selected"
 msgstr "Copie sélectionnée"
 
-#: book/static/js/modules/books/menu.js:292
+#: book/static/js/modules/books/menu.js:322
 msgid "Copy selected books."
 msgstr "Copiez les livres sélectionnés."
 
-#: book/static/js/modules/books/menu.js:304
+#: book/static/js/modules/books/menu.js:334
 msgid "Export selected as BITS"
 msgstr "Exporter la sélection en BITS"
 
-#: book/static/js/modules/books/menu.js:305
+#: book/static/js/modules/books/menu.js:335
 msgid "Export selected books as BITS."
 msgstr "Exporter les livres sélectionnés au format BITS."
 
-#: book/static/js/modules/books/menu.js:316
+#: book/static/js/modules/books/menu.js:346
 msgid "Export selected as Epub"
 msgstr "Exporter sélectionné comme Epub"
 
-#: book/static/js/modules/books/menu.js:317
+#: book/static/js/modules/books/menu.js:347
 msgid "Export selected books as Epub."
 msgstr "Exportez les livres sélectionnés au format Epub."
 
-#: book/static/js/modules/books/menu.js:328
+#: book/static/js/modules/books/menu.js:358
 msgid "Export selected as HTML"
 msgstr "Exporter sélectionné en HTML"
 
-#: book/static/js/modules/books/menu.js:329
+#: book/static/js/modules/books/menu.js:359
 msgid "Export selected books as HTML."
 msgstr "Exportez les livres sélectionnés au format HTML."
 
-#: book/static/js/modules/books/menu.js:340
+#: book/static/js/modules/books/menu.js:370
 msgid "Export selected as Unified HTML"
 msgstr "Exporter la sélection en HTML unifié"
 
-#: book/static/js/modules/books/menu.js:341
+#: book/static/js/modules/books/menu.js:371
 msgid "Export selected books as Single-file HTML."
 msgstr "Exportez les livres sélectionnés au format HTML à fichier unique."
 
-#: book/static/js/modules/books/menu.js:352
+#: book/static/js/modules/books/menu.js:382
 msgid "Export selected as LaTeX"
 msgstr "Exporter sélectionné en tant que LaTeX"
 
-#: book/static/js/modules/books/menu.js:353
+#: book/static/js/modules/books/menu.js:383
 msgid "Export selected books as LaTeX."
 msgstr "Exportez les livres sélectionnés au format LaTeX."
 
-#: book/static/js/modules/books/menu.js:364
+#: book/static/js/modules/books/menu.js:394
 msgid "Export selected as DOCX"
 msgstr "Exporter la sélection en DOCX"
 
-#: book/static/js/modules/books/menu.js:365
+#: book/static/js/modules/books/menu.js:395
 msgid "Export selected books as DOCX."
 msgstr "Exporter les livres sélectionnés au format DOCX."
 
-#: book/static/js/modules/books/menu.js:378
+#: book/static/js/modules/books/menu.js:408
 msgid "This book does not have a DOCX template."
 msgstr "Ce livre n'a pas de modèle DOCX."
 
-#: book/static/js/modules/books/menu.js:387
+#: book/static/js/modules/books/menu.js:417
 msgid "Export selected as ODT"
 msgstr "Exporter la sélection en ODT"
 
-#: book/static/js/modules/books/menu.js:388
+#: book/static/js/modules/books/menu.js:418
 msgid "Export selected books as ODT."
 msgstr "Exporter les livres sélectionnés au format ODT."
 
-#: book/static/js/modules/books/menu.js:401
+#: book/static/js/modules/books/menu.js:431
 msgid "This book does not have an ODT template."
 msgstr "Ce livre n'a pas de modèle ODT."
 
-#: book/static/js/modules/books/menu.js:410
+#: book/static/js/modules/books/menu.js:440
 msgid "Export selected to Print/PDF"
 msgstr "Exporter sélectionné pour imprimer / PDF"
 
-#: book/static/js/modules/books/menu.js:411
+#: book/static/js/modules/books/menu.js:441
 msgid "Export selected books to the print dialog."
 msgstr ""
 "Exportez les livres sélectionnés dans la boîte de dialogue d'impression."
 
-#: book/static/js/modules/books/menu.js:422
+#: book/static/js/modules/books/menu.js:452
 msgid "Export selected as Fidusbook"
 msgstr "Exporter la sélection en Fidusbook"
 
-#: book/static/js/modules/books/menu.js:424
+#: book/static/js/modules/books/menu.js:454
 msgid ""
 "Export selected books as .fidusbook files (for moving to another server)."
 msgstr ""
 "Exporter les livres sélectionnés en tant que fichiers .fidusbook (pour les "
 "déplacer vers un autre serveur)."
 
-#: book/static/js/modules/books/menu.js:442
+#: book/static/js/modules/books/menu.js:472
 msgid "Export as BITS"
 msgstr "Exporter en BITS"
 
-#: book/static/js/modules/books/menu.js:443
+#: book/static/js/modules/books/menu.js:473
 msgid "Export book as Book Interchange Tag Set."
 msgstr "Exporter le livre en tant que Book Interchange Tag Set."
 
-#: book/static/js/modules/books/menu.js:450
+#: book/static/js/modules/books/menu.js:480
 msgid "Export as Epub"
 msgstr "Exporter en Epub"
 
-#: book/static/js/modules/books/menu.js:451
+#: book/static/js/modules/books/menu.js:481
 msgid "Export book as Epub."
 msgstr "Exporter le livre en Epub."
 
-#: book/static/js/modules/books/menu.js:458
+#: book/static/js/modules/books/menu.js:488
 msgid "Export as HTML"
 msgstr "Exporter au format HTML"
 
-#: book/static/js/modules/books/menu.js:459
+#: book/static/js/modules/books/menu.js:489
 msgid "Export book as HTML."
 msgstr "Exporter le livre au format HTML."
 
-#: book/static/js/modules/books/menu.js:466
+#: book/static/js/modules/books/menu.js:496
 msgid "Export as Unified HTML"
 msgstr "Exporter au format HTML unifié"
 
-#: book/static/js/modules/books/menu.js:467
+#: book/static/js/modules/books/menu.js:497
 msgid "Export book as Single-file HTML."
 msgstr "Exportez le livre au format HTML à fichier unique."
 
-#: book/static/js/modules/books/menu.js:474
+#: book/static/js/modules/books/menu.js:504
 msgid "Export as LaTeX"
 msgstr "Exporter au format LaTeX"
 
-#: book/static/js/modules/books/menu.js:475
+#: book/static/js/modules/books/menu.js:505
 msgid "Export book as LaTeX."
 msgstr "Exporter le livre au format LaTeX."
 
-#: book/static/js/modules/books/menu.js:482
+#: book/static/js/modules/books/menu.js:512
 msgid "Export as DOCX"
 msgstr "Exporter en DOCX"
 
-#: book/static/js/modules/books/menu.js:483
+#: book/static/js/modules/books/menu.js:513
 msgid "Export book as DOCX."
 msgstr "Exporter le livre au format DOCX."
 
-#: book/static/js/modules/books/menu.js:492
+#: book/static/js/modules/books/menu.js:522
 msgid "Export as ODT"
 msgstr "Exporter en ODT"
 
-#: book/static/js/modules/books/menu.js:493
+#: book/static/js/modules/books/menu.js:523
 msgid "Export book as ODT."
 msgstr "Exporter le livre au format ODT."
 
-#: book/static/js/modules/books/menu.js:501
+#: book/static/js/modules/books/menu.js:531
 msgid "Export to Print/PDF"
 msgstr "Exporter vers impression/PDF"
 
-#: book/static/js/modules/books/menu.js:502
+#: book/static/js/modules/books/menu.js:532
 msgid "Export book to the print dialog."
 msgstr "Exporter le livre vers la boîte de dialogue d'impression."
 
-#: book/static/js/modules/books/menu.js:509
+#: book/static/js/modules/books/menu.js:539
 msgid "Export as Fidusbook"
 msgstr "Exporter en Fidusbook"
 
-#: book/static/js/modules/books/menu.js:511
+#: book/static/js/modules/books/menu.js:541
 msgid "Export book as a .fidusbook file (for moving to another server)."
 msgstr ""
 "Exporter le livre en tant que fichier .fidusbook (pour le déplacer vers un "
 "autre serveur)."
 
-#: book/static/js/modules/books/sanity_check.js:6
+#: book/static/js/modules/books/sanity_check.js:8
 msgid "Chapter"
 msgstr "Chapitre"
 
-#: book/static/js/modules/books/sanity_check.js:14
-#: book/static/js/modules/books/sanity_check.js:42
+#: book/static/js/modules/books/sanity_check.js:16
+#: book/static/js/modules/books/sanity_check.js:44
 msgid "Unresolved tracked changes"
 msgstr "Modifications suivies non résolues"
 
-#: book/static/js/modules/books/sanity_check.js:25
+#: book/static/js/modules/books/sanity_check.js:27
 msgid "Internal links without target"
 msgstr "Liens internes sans cible"
 
-#: book/static/js/modules/books/sanity_check.js:35
+#: book/static/js/modules/books/sanity_check.js:37
 msgid "Unresolved comments"
 msgstr "Commentaires non résolus"
 
-#: book/static/js/modules/books/sanity_check.js:52
+#: book/static/js/modules/books/sanity_check.js:54
 msgid "Cross references without targets"
 msgstr "Références croisées sans cibles"
 
-#: book/static/js/modules/books/sanity_check.js:70
+#: book/static/js/modules/books/sanity_check.js:72
 msgid "The book contains no chapters."
 msgstr "Le livre ne contient aucun chapitre."
 
-#: book/static/js/modules/books/sanity_check.js:84
+#: book/static/js/modules/books/sanity_check.js:90
 #: book/static/js/modules/books/templates.js:611
 msgid "No access"
 msgstr "Pas d'accès"
 
-#: book/static/js/modules/books/sanity_check.js:90
+#: book/static/js/modules/books/sanity_check.js:96
 msgid "No chapter title"
 msgstr "Pas de titre de chapitre"
 
-#: book/static/js/modules/books/sanity_check.js:99
+#: book/static/js/modules/books/sanity_check.js:105
 msgid "No issues were found:"
 msgstr "Aucun problème n'a été trouvé :"
 
-#: book/static/js/modules/books/sanity_check.js:100
+#: book/static/js/modules/books/sanity_check.js:106
 msgid "The book contains chapters."
 msgstr "Le livre contient des chapitres."
 
-#: book/static/js/modules/books/sanity_check.js:101
+#: book/static/js/modules/books/sanity_check.js:107
 msgid "Each chapter has a title."
 msgstr "Chaque chapitre a un titre."
 
-#: book/static/js/modules/books/sanity_check.js:102
+#: book/static/js/modules/books/sanity_check.js:108
 msgid "There are no unresolved tracked changes."
 msgstr "Il n'y a pas de modifications suivies non résolues."
 
-#: book/static/js/modules/books/sanity_check.js:103
+#: book/static/js/modules/books/sanity_check.js:109
 msgid "There are no unresolved comments."
 msgstr "Il n'y a pas de commentaires non résolus."
 
-#: book/static/js/modules/books/sanity_check.js:104
+#: book/static/js/modules/books/sanity_check.js:110
 msgid "All cross references have working targets."
 msgstr "Toutes les références croisées ont des cibles de travail."
 
-#: book/static/js/modules/books/sanity_check.js:106
+#: book/static/js/modules/books/sanity_check.js:112
 msgid "All internal links have working targets."
 msgstr "Tous les liens internes ont des cibles de travail."
 
-#: book/static/js/modules/books/sanity_check.js:120
+#: book/static/js/modules/books/sanity_check.js:129
 msgid ""
 "This book contains encrypted chapters. A personal passphrase is required to "
 "perform a sanity check. Please set up or unlock your personal passphrase in "
@@ -699,7 +609,7 @@ msgstr ""
 "déverrouiller votre phrase secrète personnelle dans les paramètres de votre "
 "profil."
 
-#: book/static/js/modules/books/sanity_check.js:126
+#: book/static/js/modules/books/sanity_check.js:135
 msgid ""
 "One or more encrypted chapters could not be decrypted. See the error "
 "notifications for details."
@@ -913,6 +823,79 @@ msgstr "composer des livres"
 #: book/static/js/plugins/menu/books.js:13
 msgid "Books"
 msgstr "Livres"
+
+#~ msgid "Book cannot be exported due to lack of chapters."
+#~ msgstr "Le livre ne peut pas être exporté par manque de chapitres."
+
+#~ msgid "Fidusbook export has been initiated."
+#~ msgstr "L'exportation Fidusbook a été lancée."
+
+#~ msgid ""
+#~ "A personal passphrase is required to work with books that contain encrypted "
+#~ "chapters. Please set up or unlock your personal passphrase in your profile "
+#~ "settings."
+#~ msgstr ""
+#~ "Une phrase de passe personnelle est nécessaire pour travailler avec des "
+#~ "livres contenant des chapitres chiffrés. Veuillez configurer ou "
+#~ "déverrouiller votre phrase de passe personnelle dans les paramètres de votre"
+#~ " profil."
+
+#~ msgid "No encryption key found for chapter:"
+#~ msgstr "Aucune clé de chiffrement trouvée pour le chapitre :"
+
+#~ msgid "The key may not have been shared with you."
+#~ msgstr "La clé n'a peut-être pas été partagée avec vous."
+
+#~ msgid "Could not decrypt chapter:"
+#~ msgstr "Impossible de déchiffrer le chapitre :"
+
+#~ msgid "The document may have been re-encrypted with a different password."
+#~ msgstr "Le document a peut-être été rechiffré avec un mot de passe différent."
+
+#~ msgid "Cannot produce book as you lack access rights to its chapters."
+#~ msgstr ""
+#~ "Impossible de produire un livre car vous ne disposez pas des droits d'accès "
+#~ "à ses chapitres."
+
+#~ msgid "The uploaded file does not appear to be a Fidusbook file."
+#~ msgstr "Le fichier téléchargé ne semble pas être un fichier Fidusbook."
+
+#~ msgid "The Fidusbook file version is not supported by this server: "
+#~ msgstr ""
+#~ "La version du fichier Fidusbook n'est pas prise en charge par ce serveur : "
+
+#~ msgid "Fidusbook file is missing data for chapter "
+#~ msgstr "Le fichier Fidusbook ne contient pas de données pour le chapitre "
+
+#~ msgid "Could not import chapter "
+#~ msgstr "Impossible d'importer le chapitre "
+
+#~ msgid "successfully imported."
+#~ msgstr "importé avec succès."
+
+#~ msgid "Epub export has been initiated."
+#~ msgstr "L'exportation epub a été lancée."
+
+#~ msgid "BITS export has been initiated."
+#~ msgstr "L'exportation BITS a été lancée."
+
+#~ msgid "HTML export has been initiated."
+#~ msgstr "L'exportation HTML a été lancée."
+
+#~ msgid "Unified HTML export has been initiated."
+#~ msgstr "L'exportation HTML unifiée a été lancée."
+
+#~ msgid "LaTeX export has been initiated."
+#~ msgstr "L'exportation LaTeX a été lancée."
+
+#~ msgid "DOCX export has been initiated."
+#~ msgstr "L'exportation DOCX a été lancée."
+
+#~ msgid "ODT export has been initiated."
+#~ msgstr "L'exportation ODT a été lancée."
+
+#~ msgid "Print has been initiated."
+#~ msgstr "L'impression a été lancée."
 
 #~ msgid "Pandoc export has been initiated."
 #~ msgstr "L'exportation Pandoc a été lancée."

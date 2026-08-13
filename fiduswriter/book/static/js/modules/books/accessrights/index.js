@@ -1,3 +1,4 @@
+import {AddContactDialog} from "@fiduswriter/frontend/user/contacts/add_dialog"
 import {
     ContentMenu,
     Dialog,
@@ -7,7 +8,6 @@ import {
     postJson,
     setCheckableLabel
 } from "fwtoolkit"
-import {AddContactDialog} from "../../contacts/add_dialog"
 import {
     bookAccessRightOverviewTemplate,
     bookCollaboratorsTemplate,
