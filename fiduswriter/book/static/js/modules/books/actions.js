@@ -382,7 +382,11 @@ export class BookActions {
                         const importer = new NativeBookImporter(
                             file,
                             overview.user,
-                            createNativeImporterBackend(overview.user, null),
+                            createNativeImporterBackend(
+                                overview.user,
+                                null,
+                                overview.app.apiConnectors
+                            ),
                             createBookImporterBackend(overview.path),
                             {
                                 path: overview.path,
