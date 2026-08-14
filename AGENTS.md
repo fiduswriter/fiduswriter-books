@@ -1,18 +1,18 @@
-# AGENTS.md — fiduswriter-books
+# AGENTS.md — fiduswriter-books-plugin
 
 This file contains information for AI coding agents working on the
-`fiduswriter-books` plugin repository. Read this first if you are unfamiliar
+`fiduswriter-books-plugin` repository. Read this first if you are unfamiliar
 with the project.
 
 ## Project overview
 
-`fiduswriter-books` is a Django plugin for Fidus Writer that adds book
+`fiduswriter-books-plugin` is a Django plugin for Fidus Writer that adds book
 management: grouping documents into books, ordering chapters, and exporting
 books to various formats.
 
 - Package name: `fiduswriter_books` (Python egg)
 - License: `AGPL-3.0`
-- Repository: `https://codeberg.org/fiduswriter/fiduswriter-books.git`
+- Repository: `https://codeberg.org/fiduswriter/fiduswriter-books-plugin.git`
 - Author: Johannes Wilm
 
 ## Relationship to other repositories
@@ -28,7 +28,7 @@ now:
 Dependency direction:
 
 ```
-fiduswriter-books/     (this repo: Django plugin, UI, models)
+fiduswriter-books-plugin/     (this repo: Django plugin, UI, models)
         │
         │ depends on
         ▼
