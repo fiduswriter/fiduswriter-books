@@ -237,7 +237,11 @@ const exportFidusbook = (book, overview) => {
         overview.documentList,
         new Date(book.updated * 1000)
     )
-    return runBookExport(exporter, overview, "application/fidusbook+zip")
+    return runBookExport(
+        exporter,
+        overview,
+        "application/vnd.fiduswriter.book+zip"
+    )
 }
 
 export const bulkMenuModel = () => ({
