@@ -12,7 +12,7 @@ books to various formats.
 
 - Package name: `fiduswriter_books` (Python egg)
 - License: `AGPL-3.0`
-- Repository: `https://codeberg.org/fiduswriter/fiduswriter-books-plugin.git`
+- Repository: `https://git.fiduswriter.org/fiduswriter/fiduswriter-books-plugin.git`
 - Author: Johannes Wilm
 
 ## Relationship to other repositories
