@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
@@ -383,9 +384,22 @@ class BookTest(SeleniumHelper, ChannelsLiveServerTestCase):
         self.driver.find_element(
             By.XPATH, '//*[normalize-space()="Accept invite"]'
         ).click()
-        self.driver.find_element(
-            By.XPATH, '//*[normalize-space()="Books"]'
-        ).click()
+        # Wait for the layout to settle (webfonts) and retry: the SPA header
+        # can briefly overlap the nav items while fonts load.
+        self.driver.set_script_timeout(30)
+        self.driver.execute_async_script(
+            "document.fonts.ready.then(() => "
+            "arguments[arguments.length - 1]())"
+        )
+        for _attempt in range(5):
+            books_link = self.driver.find_element(
+                By.XPATH, '//*[normalize-space()="Books"]'
+            )
+            try:
+                books_link.click()
+                break
+            except ElementClickInterceptedException:
+                time.sleep(1)
         self.assertEqual(
             len(self.driver.find_elements(By.CSS_SELECTOR, ".book-title")), 1
         )
