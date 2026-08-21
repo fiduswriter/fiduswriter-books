@@ -91,7 +91,7 @@ This plugin does not build itself in isolation. Development happens inside a
 Fidus Writer installation where the plugin is installed.
 
 ```bash
-# From the main Fidus Writer app directory (fiduswriter/fiduswriter/)
+# From the main Fidus Writer app directory (fiduswriter-server-backend/fiduswriter/)
 python manage.py test book
 ```
 
