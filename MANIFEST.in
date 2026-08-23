@@ -2,6 +2,7 @@ include LICENSE
 include README.rst
 recursive-include fiduswriter/book/static *
 recursive-include fiduswriter/book/assets *
+include fiduswriter/book/package.json5
 recursive-include fiduswriter/book/fixtures *
 recursive-include fiduswriter/book/templates *
 recursive-include fiduswriter/book/locale *
