@@ -49,7 +49,7 @@ Code in this repository should be limited to:
 
 - Django `book` app: models, views, admin, migrations, URLs.
 - Book browser UI: templates and JavaScript modules under
-  `fiduswriter/book/static/js/modules/books/`.
+  `fiduswriter/book/assets/js/modules/books/`.
 - Book Selenium tests.
 
 Do **not** put in this repository:
@@ -77,7 +77,7 @@ Do **not** put in this repository:
 │       ├── urls.py
 │       ├── migrations/
 │       ├── templates/          # Django templates for book UI
-│       ├── static/js/modules/books/  # Browser-side book UI
+│       ├── assets/js/modules/books/   # Browser-side book UI (TS)
 │       ├── tests/              # Selenium tests
 │       └── package.json5       # npm dependency on @fiduswriter/books-document
 ├── setup.py
@@ -103,9 +103,9 @@ python manage.py transpile --force
 
 ## JavaScript imports
 
-Because `django-npm-mjs` overlays `static/js/modules/` from all installed apps,
-modules in this plugin can import from the main app and vice versa using
-relative paths.
+Because `django-npm-mjs` (5.0+) overlays the `assets/js/` and `assets/ts/`
+folders of all installed apps into a single tree, modules in this plugin can
+import from the main app and vice versa using relative paths.
 
 The plugin also imports from npm packages declared in `book/package.json5`,
 notably `@fiduswriter/books-document`.
@@ -147,7 +147,7 @@ pre-commit run --all-files
 
 - `fiduswriter/book/package.json5` — npm dependency on
   `@fiduswriter/books-document`.
-- `fiduswriter/book/static/js/modules/books/` — browser-side book UI.
+- `fiduswriter/book/assets/js/modules/books/` — browser-side book UI.
 - `fiduswriter/book/tests/` — Selenium tests.
 - Main Fidus Writer `AGENTS.md` — shared build, routing, and testing
   conventions.
